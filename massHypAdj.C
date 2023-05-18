@@ -1145,7 +1145,7 @@ void saveHD5(const std::vector<ParticleInfo>& particleVectorIn)
 
 	    
 	    // Assuming the map is a TH2F*, convert it to a 2D array
-	    newParticle.map = ParticleUtils::convertTH2FTo2DArray(particle.map);
+	    //newParticle.map = ParticleUtils::convertTH2FTo2DArray(particle.map);
 
 	    // Add the new ParticleInfo with the converted map to the new vector
 	    convertedVector.push_back(newParticle);

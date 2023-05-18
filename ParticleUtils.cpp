@@ -1,28 +1,69 @@
 #include "H5Cpp.h"
 // sudo yum install hdf5-devel
-
+#include "H5Cpp.h"
 #include <iostream>
 #include <vector>
 #include "TH2F.h"
 
-
 using namespace H5;
+
 struct Bin {
     double x;
     double y;
 };
 
 class ParticleUtils {
-public:
-    struct ParticleInfo {
-        double momentum;
-        double mass;
-        double energy;
-        double refractiveIndex;
-        double ckov;
-        std::vector<std::vector<double>> map; // Assuming the map is a 2D array of doubles
-        std::vector<Bin> filledBins;
-    };
+    public:
+        struct ParticleInfo {
+            double momentum;
+            double mass;
+            double energy;
+            double refractiveIndex;
+            double ckov;
+            // std::vector<std::vector<double>> map; // Assuming the map is a 2D array of doubles
+            std::vector<Bin> filledBins;
+        };
+
+        static void saveParticleInfoToHDF5(std::vector<ParticleInfo>& particleVector) {
+            H5File file("ParticleInfo.h5", H5F_ACC_TRUNC);
+
+            // Create a compound datatype for Bin
+            CompType binType(sizeof(Bin));
+            binType.insertMember("X", HOFFSET(Bin, x), PredType::NATIVE_DOUBLE);
+            binType.insertMember("Y", HOFFSET(Bin, y), PredType::NATIVE_DOUBLE);
+
+            for (size_t i = 0; i < particleVector.size(); ++i) {
+                const auto& particle = particleVector[i];
+
+                // Now let's create a group for each particle
+                std::string groupName = "Particle" + std::to_string(i);
+                Group particleGroup = file.createGroup(groupName);
+
+                // Store scalar values
+                DataSpace attr_dataspace = DataSpace(H5S_SCALAR);
+                Attribute attribute = particleGroup.createAttribute("Momentum", PredType::NATIVE_DOUBLE, attr_dataspace);
+                attribute.write(PredType::NATIVE_DOUBLE, &particle.momentum);
+
+                attribute = particleGroup.createAttribute("Mass", PredType::NATIVE_DOUBLE, attr_dataspace);
+                attribute.write(PredType::NATIVE_DOUBLE, &particle.mass);
+
+                attribute = particleGroup.createAttribute("Energy", PredType::NATIVE_DOUBLE, attr_dataspace);
+                attribute.write(PredType::NATIVE_DOUBLE, &particle.energy);
+
+                attribute = particleGroup.createAttribute("RefractiveIndex", PredType::NATIVE_DOUBLE, attr_dataspace);
+                attribute.write(PredType::NATIVE_DOUBLE, &particle.refractiveIndex);
+
+                attribute = particleGroup.createAttribute("Ckov", PredType::NATIVE_DOUBLE, attr_dataspace);
+                attribute.write(PredType::NATIVE_DOUBLE, &particle.ckov);
+
+                // Write filledBins to HDF5 file
+                hsize_t binDims[1] = {particle.filledBins.size()};
+
+                DataSpace binspace(1, binDims);
+                DataSet binDataset = particleGroup.createDataSet("FilledBins", binType, binspace);
+                binDataset.write(&particle.filledBins[0], binType);
+            }
+        }
 
         static std::vector<std::vector<double>> convertTH2FTo2DArray(TH2F* histogram) {
             // Create a 2D vector with the same size as the histogram
@@ -41,138 +82,73 @@ public:
             return array;
         }
 
-    static void saveParticleInfoToHDF5(std::vector<ParticleInfo>& particleVector) {
-        H5File file("ParticleInfo.h5", H5F_ACC_TRUNC);
+        static std::vector<ParticleInfo> loadParticleInfoFromHDF5(const std::string& filename) {
+            std::vector<ParticleInfo> particleVector;
 
-        // Create a compound datatype for Bin
-        CompType binType(sizeof(Bin));
-        binType.insertMember("X", HOFFSET(Bin, x), PredType::NATIVE_DOUBLE);
-        binType.insertMember("Y", HOFFSET(Bin, y), PredType::NATIVE_DOUBLE);
+            // Create a compound datatype for Bin
+            CompType binType(sizeof(Bin));
+            binType.insertMember("X", HOFFSET(Bin, x), PredType::NATIVE_DOUBLE);
+            binType.insertMember("Y", HOFFSET(Bin, y), PredType::NATIVE_DOUBLE);
 
-        for (size_t i = 0; i < particleVector.size(); ++i) {
-            const auto& particle = particleVector[i];
+            // Open the file
+            H5File file(filename, H5F_ACC_RDONLY);
 
-            // Create a group for each particle
-            std::string groupName = "Particle" + std::to_string(i);
-            Group particleGroup = file.createGroup(groupName);
+            // Iterate over all groups in the file
+            for (hsize_t i = 0; i < file.getNumObjs(); ++i) {
+                std::string groupName = file.getObjnameByIdx(i);
 
-            // Store all the scalar attributes
-            DataSpace attr_dataspace = DataSpace(H5S_SCALAR);
-            
-            Attribute momentumAttribute = particleGroup.createAttribute("Momentum", PredType::NATIVE_DOUBLE, attr_dataspace);
-            momentumAttribute.write(PredType::NATIVE_DOUBLE, &particle.momentum);
+                // Open the group
+                Group particleGroup = file.openGroup(groupName);
 
-            Attribute massAttribute = particleGroup.createAttribute("Mass", PredType::NATIVE_DOUBLE, attr_dataspace);
-            massAttribute.write(PredType::NATIVE_DOUBLE, &particle.mass);
-            
-            Attribute energyAttribute = particleGroup.createAttribute("Energy", PredType::NATIVE_DOUBLE, attr_dataspace);
-            energyAttribute.write(PredType::NATIVE_DOUBLE, &particle.energy);
-            
-            Attribute refractiveIndexAttribute = particleGroup.createAttribute("RefractiveIndex", PredType::NATIVE_DOUBLE, attr_dataspace);
-            refractiveIndexAttribute.write(PredType::NATIVE_DOUBLE, &particle.refractiveIndex);
-            
-            Attribute ckovAttribute = particleGroup.createAttribute("Ckov", PredType::NATIVE_DOUBLE, attr_dataspace);
-            ckovAttribute.write(PredType::NATIVE_DOUBLE, &particle.ckov);
+                // Read momentum
+                Attribute attribute = particleGroup.openAttribute("Momentum");
+                double momentum;
+                attribute.read(PredType::NATIVE_DOUBLE, &momentum);
 
+                std::cout << "Particle " << i << " Momentum: " << momentum << std::endl;
 
-	    
-            // Store 2D array "map"
-            hsize_t dims[2] = {particle.map.size(), particle.map[0].size()};
-            DataSpace dataspace(2, dims);
+                attribute = particleGroup.openAttribute("Mass");
+                double mass;
+                attribute.read(PredType::NATIVE_DOUBLE, &mass);
 
-            DataSet dataset = particleGroup.createDataSet("Map", PredType::NATIVE_DOUBLE, dataspace);
-            dataset.write(&particle.map[0][0], PredType::NATIVE_DOUBLE);
+                attribute = particleGroup.openAttribute("Energy");
+                double energy;
+                attribute.read(PredType::NATIVE_DOUBLE, &energy);
 
-            // Write filledBins to HDF5 file
-            hsize_t binDims[1] = {particle.filledBins.size()};
-            DataSpace binspace(1, binDims);
-            DataSet binDataset = particleGroup.createDataSet("FilledBins", binType, binspace);
-            binDataset.write(&particle.filledBins[0], binType);
-        }
-    }
+                attribute = particleGroup.openAttribute("RefractiveIndex");
+                double refractiveIndex;
+                attribute.read(PredType::NATIVE_DOUBLE, &refractiveIndex);
 
-    static std::vector<ParticleInfo> loadParticleInfoFromHDF5(const std::string& filename) {
-        std::vector<ParticleInfo> particleVector; 
+                attribute = particleGroup.openAttribute("Ckov");
+                double ckov;
+                attribute.read(PredType::NATIVE_DOUBLE, &ckov);
 
-        // Create a compound datatype for Bin
-        CompType binType(sizeof(Bin));
-        binType.insertMember("X", HOFFSET(Bin, x), PredType::NATIVE_DOUBLE);
-        binType.insertMember("Y", HOFFSET(Bin, y), PredType::NATIVE_DOUBLE);
-        
-        // Open the file
-        H5File file(filename, H5F_ACC_RDONLY);
+                // Read filledBins
+                DataSet binDataset = particleGroup.openDataSet("FilledBins");
+                DataSpace binDataSpace = binDataset.getSpace();
 
-        // Iterate over all groups in the file
-        for (hsize_t i = 0; i < file.getNumObjs(); ++i) {
-            std::string groupName = file.getObjnameByIdx(i);
+                hsize_t binDims[1];
+                binDataSpace.getSimpleExtentDims(binDims, NULL);
+                std::vector<Bin> filledBins(binDims[0]);
+                binDataset.read(&filledBins[0], binType);
 
-            // Open the group
-            Group particleGroup = file.openGroup(groupName);
-
-            // Read all the scalar attributes
-            Attribute momentumAttribute = particleGroup.openAttribute("Momentum");
-            double momentum;
-            momentumAttribute.read(PredType::NATIVE_DOUBLE, &momentum);
-
-            Attribute massAttribute = particleGroup.openAttribute("Mass");
-            double mass;
-            massAttribute.read(PredType::NATIVE_DOUBLE, &mass);
-            
-            Attribute energyAttribute = particleGroup.openAttribute("Energy");
-            double energy;
-            energyAttribute.read(PredType::NATIVE_DOUBLE, &energy);
-            
-            Attribute refractiveIndexAttribute = particleGroup.openAttribute("RefractiveIndex");
-            double refractiveIndex;
-            refractiveIndexAttribute.read(PredType::NATIVE_DOUBLE, &refractiveIndex);
-            
-            Attribute ckovAttribute = particleGroup.openAttribute("Ckov");
-            double ckov;
-            ckovAttribute.read(PredType::NATIVE_DOUBLE, &ckov);
-
-            // Read the map
-            DataSet dataset = particleGroup.openDataSet("Map");
-            DataSpace dataspace = dataset.getSpace();
-
-            hsize_t dims[2];
-            dataspace.getSimpleExtentDims(dims, NULL);
-
-            // Create a contiguous array to read the data into
-            std::vector<double> data(dims[0] * dims[1]);
-
-            // Read the data
-            dataset.read(data.data(), PredType::NATIVE_DOUBLE);
-
-            // Copy the data into your map
-            std::vector<std::vector<double>> map(dims[0], std::vector<double>(dims[1]));
-            for (hsize_t i = 0; i < dims[0]; ++i) {
-                for (hsize_t j = 0; j < dims[1]; ++j) {
-                    map[i][j] = data[i * dims[1] + j];
+                std::cout << "Particle " << i << " FilledBins: \n";
+                for (auto &bin : filledBins) {
+                    std::cout << "X: " << bin.x << ", Y: " << bin.y << '\n';
                 }
+
+                // Construct a ParticleInfo and add it to the vector
+                ParticleInfo particleInfo;
+                particleInfo.momentum = momentum;
+                particleInfo.mass = mass;
+                particleInfo.energy = energy;
+                particleInfo.refractiveIndex = refractiveIndex;
+                particleInfo.ckov = ckov;
+                particleInfo.filledBins = filledBins;
+                particleVector.push_back(particleInfo);
             }
 
-            // Read filledBins
-            DataSet binDataset = particleGroup.openDataSet("FilledBins");
-            DataSpace binDataSpace = binDataset.getSpace();
-
-            hsize_t binDims[1];
-            binDataSpace.getSimpleExtentDims(binDims, NULL);
-            std::vector<Bin> filledBins(binDims[0]);
-            binDataset.read(&filledBins[0], binType);
-            
-            // Construct a ParticleInfo and add it to the vector
-            ParticleInfo particleInfo;
-            particleInfo.momentum = momentum;
-            particleInfo.mass = mass;
-            particleInfo.energy = energy;
-            particleInfo.refractiveIndex = refractiveIndex;
-            particleInfo.ckov = ckov;
-            particleInfo.map = map;
-            particleInfo.filledBins = filledBins;
-            particleVector.push_back(particleInfo);
+            return particleVector;
         }
-
-        return particleVector;
-    }
-};
+    };
 
