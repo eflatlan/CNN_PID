@@ -1,10 +1,6 @@
 #include "H5Cpp.h"
-// sudo yum install hdf5-devel
-
 #include <iostream>
 #include <vector>
-#include "TH2F.h"
-
 
 using namespace H5;
 struct Bin {
@@ -12,7 +8,7 @@ struct Bin {
     double y;
 };
 
-class ParticleUtils {
+class ParticleDataUtils {
 public:
     struct ParticleInfo {
         double momentum;

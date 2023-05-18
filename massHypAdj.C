@@ -62,7 +62,7 @@ public:
     float refractiveIndex;
     double ckov;
     TH2F* map;
-
+    std::vector<Bin> filledBins;
     ParticleInfo() {
         // Initialize your data members
     }
@@ -136,7 +136,7 @@ const double refIndexQuartz = GetQuartzIndexOfRefraction(defaultPhotonEnergy);
 const double  refIndexCH4 = 1.00; 
 
 
-TH2F* backgroundStudy(double ckovActual = 0.5, double occupancy = 0.03, double thetaTrack = 0);
+TH2F* backgroundStudy(std::vector<Bin>& mapBins, double ckovActual = 0.5, double occupancy = 0.03, double thetaTrack = 0);
 
 const double CH4GapWidth = 8;
 const double  RadiatorWidth = 1.;
@@ -178,10 +178,11 @@ double randomMomentum()
 }*/
 
 TH2F* tHistMass = new TH2F("test", "test; Momentum (GeV/c); Cherenkov Angle, #theta_{ch} (rad)", 5000, 0., 5., 800, 0., 0.8);
-//TCanvas *tCkov = new TCanvas("ckov","ckov",800,800);  
+
+
 void testHyp()
 {  
-
+  TCanvas *tCkov = new TCanvas("ckov","ckov",800,800);  
 //TH2F *hClusterMap = new TH2F("Cluster Map", "Cluster Map; x [cm]; y [cm]",1000,-10.,10.,1000,-10.,10.);
   rndInt->SetSeed(0);
   for(double p = 0.; p < 5; p+= 0.001)
@@ -214,6 +215,28 @@ double pActual = 0.;
 void saveDataInst();
 /*std::shared_ptr<TFile>*/void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector);
 
+
+
+std::vector<Bin> fillMapVector(TH2F* map)
+{
+
+  std::vector<Bin> filledBins;
+	int nBinsX = map->GetNbinsX();
+	int nBinsY = map->GetNbinsY();
+
+	for (int i = 1; i <= nBinsX; ++i) {
+	    for (int j = 1; j <= nBinsY; ++j) {
+		double binContent = map->GetBinContent(i, j);
+		if (binContent > 0) {
+		    double x = map->GetXaxis()->GetBinCenter(i);
+		    double y = map->GetYaxis()->GetBinCenter(j);
+		    filledBins.push_back(Bin{x, y});
+		}
+	    }
+	}
+  return filledBins;
+}
+
 void testRandomMomentum(int numObjects = 10, double thetaTrackInclination = 0)
 {  
 
@@ -236,15 +259,22 @@ void testRandomMomentum(int numObjects = 10, double thetaTrackInclination = 0)
      const auto& ckov = calcCkovFromMass(randomValue.momentum, randomValue.refractiveIndex, randomValue.mass); //  calcCkovFromMass(momentum, n, mass)
 
      // get the map with a given occupancy and ckov angle calculated 
-     const auto& map = backgroundStudy(ckov, 0.01, thetaTrackInclination); // cherenkov angle mean / occupancy / theta track inclination (perpendicular =)
-     Printf("CkovAngle %f Mass %f RefIndex %f Momentum %f", ckov, randomValue.mass, randomValue.refractiveIndex, randomValue.momentum);   
+
+     std::vector<Bin> mapBins;
+     const auto& map = backgroundStudy(mapBins, ckov, 0.01, thetaTrackInclination); // cherenkov angle mean / occupancy / theta track inclination (perpendicular =)
+
+     auto filledBins = fillMapVector(map);
+
+  
 
      // make sure the momentum is valid for the given particle (e.g., no - in the square-root in calcCkovFromMass and acos [-1..1])
     if (ckov == 0) {
       continue;
     }
      i++;
+
      ParticleInfo particle;
+     particle.filledBins = mapBins;
      particle.momentum = randomValue.momentum;
      particle.mass = randomValue.mass;
      particle.energy = randomValue.energy;
@@ -252,6 +282,8 @@ void testRandomMomentum(int numObjects = 10, double thetaTrackInclination = 0)
      particle.ckov = ckov;
      particle.map = map;  
      particleVector.emplace_back(particle);
+
+     Printf("CkovAngle %f Mass %f RefIndex %f Momentum %f | Num Entries in Map : %d", ckov, particle.mass, particle.refractiveIndex, particle.momentum, particle.filledBins.size()); 
      //map->SaveAs(Form("map%d.root", i));
   }
 
@@ -263,7 +295,7 @@ void testRandomMomentum(int numObjects = 10, double thetaTrackInclination = 0)
 
 
 
-TH2F* backgroundStudy(double ckovActual = 0.5, double occupancy = 0.03, double thetaTrack = 0)   
+TH2F* backgroundStudy(std::vector<Bin>& mapBins, double ckovActual = 0.5, double occupancy = 0.03, double thetaTrack = 0)   
 {
 
   auto ckovAngle = ckovActual;
@@ -300,7 +332,8 @@ TH2F* backgroundStudy(double ckovActual = 0.5, double occupancy = 0.03, double t
 
   TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",1000,-25.,25.,1000,-25.,25.);
   double mapArray[40][40]{};
-   
+  
+
   float Deltax = (RadiatorWidth+QuartzWindowWidth+CH4GapWidth-EmissionLenght)*TMath::Tan(ThetaP)*TMath::Cos(PhiP);
   float Deltay = (RadiatorWidth+QuartzWindowWidth+CH4GapWidth-EmissionLenght)*TMath::Tan(ThetaP)*TMath::Sin(PhiP);
 	  
@@ -340,6 +373,8 @@ TH2F* backgroundStudy(double ckovActual = 0.5, double occupancy = 0.03, double t
 
       //noiseMap->Fill(Xcen[n1], Ycen[n1]);
       hSignalAndNoiseMap->Fill(Xcen[n1], Ycen[n1]);
+
+      mapBins.push_back(Bin{Xcen[n1], Ycen[n1]});
       //mapArray[Xcen[n1]+20][Ycen[n1]+20] = 1;
       //hSignalAndNoiseMap2->Fill(Xcen[n1], Ycen[n1]);
 
@@ -370,7 +405,7 @@ TH2F* backgroundStudy(double ckovActual = 0.5, double occupancy = 0.03, double t
    // hThetaCh->Fill(ckovAngle);
 
 
-
+   // trenger eliptisk skewing her:!
    double ringRadius = getRadiusFromCkov(ckovAnglePhot); // R in photon-map
    Printf("Cherenkov Photon : Angle = %f Radius = %f", ckovAnglePhot, ringRadius);	
 
@@ -387,16 +422,17 @@ TH2F* backgroundStudy(double ckovActual = 0.5, double occupancy = 0.03, double t
 
    // populating the pad
    hSignalAndNoiseMap->Fill(x,y);
-   // 
+   mapBins.push_back(Bin{x, y});
    //mapArray[Xcen[n1]+20][Ycen[n1]+20] = 1;
 
    // add Actual Cherenkov Photon to Candidates
    photonCandidates.emplace_back(ckovAnglePhot);
 
   } 
-
-
-	
+  int cnt = 0;
+  for(auto& b : mapBins) {/*Printf("xval %f", b.x);*/ cnt++;}
+  Printf(" mapBins size = %d", mapBins.size());
+  Printf(" mapBins cnt size = %d",   cnt);
  //Printf("Hough Window size = %f", Hwidth);
  
  /*auto ckovAnglePredicted = houghResponse(photonCandidates,  Hwidth); */
@@ -1097,33 +1133,48 @@ void readParticleInfoFromROOT2() {
 void saveHD5(const std::vector<ParticleInfo>& particleVectorIn)
 {
 	// Convert TH2F* maps to 2D array and save ParticleInfo structs to an HDF5 file.
-	std::vector<ParticleUtils::ParticleDataUtils::ParticleInfo> convertedVector;
+	std::vector<ParticleUtils::ParticleInfo> convertedVector;
 	for (const auto& particle : particleVectorIn) {
-	    ParticleUtils::ParticleDataUtils::ParticleInfo newParticle;
+	    ParticleUtils::ParticleInfo newParticle;
 	    newParticle.momentum = particle.momentum;
 	    newParticle.mass = particle.mass;
 	    newParticle.energy = particle.energy;
 	    newParticle.refractiveIndex = particle.refractiveIndex;
 	    newParticle.ckov = particle.ckov;
+	    newParticle.filledBins = particle.filledBins;
 
+	    
 	    // Assuming the map is a TH2F*, convert it to a 2D array
-	    newParticle.map = ParticleUtils::ParticleDataUtils::convertTH2FTo2DArray(particle.map);
+	    newParticle.map = ParticleUtils::convertTH2FTo2DArray(particle.map);
 
 	    // Add the new ParticleInfo with the converted map to the new vector
 	    convertedVector.push_back(newParticle);
+
+	    // Print the ParticleInfo object's values
+            std::cout << "HD5 reading object "  << ":\n";
+            std::cout << "  momentum: " << particle.momentum << "\n";
+            std::cout << "  mass: " << particle.mass << "\n";
+            std::cout << "  energy: " << particle.energy << "\n";
+            std::cout << "  refractiveIndex: " << particle.refractiveIndex << "\n";
+            std::cout << "  ckov: " << particle.ckov << "\n";
+
+       
 	}
 
 	// Save the new vector of ParticleInfo with the converted maps to an HDF5 file
-	ParticleUtils::ParticleDataUtils::saveParticleInfoToHDF5(convertedVector);
+	ParticleUtils::saveParticleInfoToHDF5(convertedVector);
 
 
+
+	// reading the entreis...
+    	ParticleUtils::loadParticleInfoFromHDF5("ParticleInfo.h5");
 	// Suppose you have a std::vector<ParticleInfo> named particleVector
-	std::vector<ParticleUtils::ParticleDataUtils::ParticleInfo> particleVector;
+	//std::vector<ParticleUtils::ParticleInfo> particleVector;
 
 	// Populate particleVector...
 
 	// Now save the vector of ParticleInfo to an HDF5 file
-	ParticleUtils::ParticleDataUtils::saveParticleInfoToHDF5(particleVector);
+	//ParticleUtils::saveParticleInfoToHDF5(particleVector);
 }
 
 void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector) {
@@ -1189,7 +1240,9 @@ void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector) {
 
    
     saveHD5(particleVector);
+    
 
+    
     // works good
     Printf("\n\n Reading from file now...");
     readParticleInfoFromROOT();
