@@ -74,6 +74,8 @@ public:
             Attribute ckovAttribute = particleGroup.createAttribute("Ckov", PredType::NATIVE_DOUBLE, attr_dataspace);
             ckovAttribute.write(PredType::NATIVE_DOUBLE, &particle.ckov);
 
+
+	    
             // Store 2D array "map"
             hsize_t dims[2] = {particle.map.size(), particle.map[0].size()};
             DataSpace dataspace(2, dims);
