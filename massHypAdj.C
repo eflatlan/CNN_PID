@@ -22,8 +22,12 @@
 #include <TFile.h>
 #include <TTree.h>
 #include <memory>
+
 #include "SaveData.cpp"
 #include "RandomValues.cpp"
+#include "ParticleUtils.cpp"
+// sudo yum install hdf5-devel
+
 
 #include <Math/Vector3D.h>
 #include <Math/Vector2D.h>
@@ -132,7 +136,7 @@ const double refIndexQuartz = GetQuartzIndexOfRefraction(defaultPhotonEnergy);
 const double  refIndexCH4 = 1.00; 
 
 
-TH2F* backgroundStudy(double ckovActual = 0.5, double occupancy = 0.03);
+TH2F* backgroundStudy(double ckovActual = 0.5, double occupancy = 0.03, double thetaTrack = 0);
 
 const double CH4GapWidth = 8;
 const double  RadiatorWidth = 1.;
@@ -174,7 +178,7 @@ double randomMomentum()
 }*/
 
 TH2F* tHistMass = new TH2F("test", "test; Momentum (GeV/c); Cherenkov Angle, #theta_{ch} (rad)", 5000, 0., 5., 800, 0., 0.8);
-TCanvas *tCkov = new TCanvas("ckov","ckov",800,800);  
+//TCanvas *tCkov = new TCanvas("ckov","ckov",800,800);  
 void testHyp()
 {  
 
@@ -210,7 +214,7 @@ double pActual = 0.;
 void saveDataInst();
 /*std::shared_ptr<TFile>*/void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector);
 
-void testRandomMomentum(int numObjects = 10)
+void testRandomMomentum(int numObjects = 10, double thetaTrackInclination = 0)
 {  
 
 
@@ -232,7 +236,7 @@ void testRandomMomentum(int numObjects = 10)
      const auto& ckov = calcCkovFromMass(randomValue.momentum, randomValue.refractiveIndex, randomValue.mass); //  calcCkovFromMass(momentum, n, mass)
 
      // get the map with a given occupancy and ckov angle calculated 
-     const auto& map = backgroundStudy(ckov, 0.01);
+     const auto& map = backgroundStudy(ckov, 0.01, thetaTrackInclination); // cherenkov angle mean / occupancy / theta track inclination (perpendicular =)
      Printf("CkovAngle %f Mass %f RefIndex %f Momentum %f", ckov, randomValue.mass, randomValue.refractiveIndex, randomValue.momentum);   
 
      // make sure the momentum is valid for the given particle (e.g., no - in the square-root in calcCkovFromMass and acos [-1..1])
@@ -259,7 +263,7 @@ void testRandomMomentum(int numObjects = 10)
 
 
 
-TH2F* backgroundStudy(double ckovActual = 0.5, double occupancy = 0.03)   
+TH2F* backgroundStudy(double ckovActual = 0.5, double occupancy = 0.03, double thetaTrack = 0)   
 {
 
   auto ckovAngle = ckovActual;
@@ -276,7 +280,11 @@ TH2F* backgroundStudy(double ckovActual = 0.5, double occupancy = 0.03)
   const auto numberOfCkovPhotons = rndP->Poisson(13);
 
   photonCandidates.clear();
-  double ThetaP=0,PhiP=0,PhiF=0,DegThetaP=0,DegPhiP=0;
+  double ThetaP = 0; // [rad]  // endre denne
+  double PhiP=0,PhiF=0,DegPhiP=0;
+
+  double DegThetaP = thetaTrack;
+
   //float /*RadiatorWidth,*/ QuartzWindowWidth,CH4GapWidth,EmissionLenght;
   float FreonIndexOfRefraction,QuartzIndexOfRefraction,CH4IndexOfRefraction;
   double ThetaF1,ThetaF2,ThetaF=0,ThetaLimite;
@@ -309,10 +317,13 @@ TH2F* backgroundStudy(double ckovActual = 0.5, double occupancy = 0.03)
     
     float Xcen[100000],Ycen[100000];
      
-    DegThetaP = 4.;//0.*(1 - 2*gRandom->Rndm(iEvt));
+    //DegThetaP = 4.;//0.*(1 - 2*gRandom->Rndm(iEvt));
     gRandom->SetSeed(0);
-    DegPhiP   = 360*gRandom->Rndm(iEvt);
+
+
+    DegPhiP   = 7.5;//360*gRandom->Rndm(iEvt); 
         
+    // hvordan endre denne:?
     ThetaP = TMath::Pi()*DegThetaP/180;
     PhiP = TMath::Pi()*DegPhiP/180;  
      
@@ -351,7 +362,7 @@ TH2F* backgroundStudy(double ckovActual = 0.5, double occupancy = 0.03)
 
  for(Int_t i=0; i < numberOfCkovPhotons; i++) {
    
-
+   // endre std-dev her til å følge prob-dist?!
    double ckovAnglePhot = rnd->Gaus(ckovAngle, 0.012);		    // random CkovAngle, with 0.012 std-dev
    
 
@@ -836,7 +847,7 @@ void setStyle()
   hTheta->SetLabelSize(phots->GetLabelSize("x"), "xy");
 }
 
-
+/*
 void saveDataVector()
 {
   std::vector<DataInfo> dataVector(100);  // Assuming you have a vector of Data
@@ -882,7 +893,7 @@ void saveDataInst()
     DataSaver dataSaver("data.root");
     dataSaver.fillData(dataVector);
     dataSaver.save();
-}
+} */ 
 
 
 /*
@@ -1083,7 +1094,37 @@ void readParticleInfoFromROOT2() {
     inputFile->Close();
 }*/ 
 
+void saveHD5(const std::vector<ParticleInfo>& particleVectorIn)
+{
+	// Convert TH2F* maps to 2D array and save ParticleInfo structs to an HDF5 file.
+	std::vector<ParticleUtils::ParticleDataUtils::ParticleInfo> convertedVector;
+	for (const auto& particle : particleVectorIn) {
+	    ParticleUtils::ParticleDataUtils::ParticleInfo newParticle;
+	    newParticle.momentum = particle.momentum;
+	    newParticle.mass = particle.mass;
+	    newParticle.energy = particle.energy;
+	    newParticle.refractiveIndex = particle.refractiveIndex;
+	    newParticle.ckov = particle.ckov;
 
+	    // Assuming the map is a TH2F*, convert it to a 2D array
+	    newParticle.map = ParticleUtils::ParticleDataUtils::convertTH2FTo2DArray(particle.map);
+
+	    // Add the new ParticleInfo with the converted map to the new vector
+	    convertedVector.push_back(newParticle);
+	}
+
+	// Save the new vector of ParticleInfo with the converted maps to an HDF5 file
+	ParticleUtils::ParticleDataUtils::saveParticleInfoToHDF5(convertedVector);
+
+
+	// Suppose you have a std::vector<ParticleInfo> named particleVector
+	std::vector<ParticleUtils::ParticleDataUtils::ParticleInfo> particleVector;
+
+	// Populate particleVector...
+
+	// Now save the vector of ParticleInfo to an HDF5 file
+	ParticleUtils::ParticleDataUtils::saveParticleInfoToHDF5(particleVector);
+}
 
 void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector) {
     // Create a new TFile
@@ -1146,6 +1187,8 @@ void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector) {
     // save by class: some problems
     //saveParticleInfoToROOT2(particleVector);
 
+   
+    saveHD5(particleVector);
 
     // works good
     Printf("\n\n Reading from file now...");
