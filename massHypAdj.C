@@ -161,6 +161,27 @@ std::array<double, 3> calcCherenkovHyp(double p, double n);
 
 double randomMass(); double randomEnergy();
 
+std::vector<Bin> fillMapVector(TH2F* map)
+{
+    std::vector<Bin> filledBins;
+
+    int nBinsX = map->GetNbinsX();
+    int nBinsY = map->GetNbinsY();
+
+    for (int i = 1; i <= nBinsX; ++i) {
+        for (int j = 1; j <= nBinsY; ++j) {
+            double binContent = map->GetBinContent(i, j);
+            if (binContent > 0) {
+                float x = map->GetXaxis()->GetBinCenter(i);
+                float y = map->GetYaxis()->GetBinCenter(j);
+                filledBins.push_back(Bin{x, y});
+            }
+        }
+    }
+
+    return filledBins;
+}
+
 
 double randomMomentum()
 {
@@ -216,27 +237,6 @@ void saveDataInst();
 /*std::shared_ptr<TFile>*/void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector);
 
 
-
-std::vector<Bin<float>> fillMapVector(TH2F* map)
-{
-    std::vector<Bin<float>> filledBins;
-
-    int nBinsX = map->GetNbinsX();
-    int nBinsY = map->GetNbinsY();
-
-    for (int i = 1; i <= nBinsX; ++i) {
-        for (int j = 1; j <= nBinsY; ++j) {
-            double binContent = map->GetBinContent(i, j);
-            if (binContent > 0) {
-                float x = map->GetXaxis()->GetBinCenter(i);
-                float y = map->GetYaxis()->GetBinCenter(j);
-                filledBins.push_back(Bin<float>{x, y});
-            }
-        }
-    }
-
-    return filledBins;
-}
 
 
 void testRandomMomentum(int numObjects = 10, double thetaTrackInclination = 0)
@@ -417,8 +417,8 @@ TH2F* backgroundStudy(std::vector<Bin>& mapBins, double ckovActual = 0.5, double
    double alpha = static_cast<double>((3.14159)*(1-2*gRandom->Rndm(1)));    // angle in photon-map (-pi to pi)
 
    // get x and y values of Photon-candidate:
-   double x = static_cast<double>(TMath::Cos(alpha)*ringRadius);
-   double y = static_cast<double>(TMath::Sin(alpha)*ringRadius);  
+   float x = static_cast<float>(TMath::Cos(alpha)*ringRadius);
+   float y = static_cast<float>(TMath::Sin(alpha)*ringRadius);  
 
 
 
