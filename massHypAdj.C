@@ -217,25 +217,27 @@ void saveDataInst();
 
 
 
-std::vector<Bin> fillMapVector(TH2F* map)
+std::vector<Bin<float>> fillMapVector(TH2F* map)
 {
+    std::vector<Bin<float>> filledBins;
 
-  std::vector<Bin> filledBins;
-	int nBinsX = map->GetNbinsX();
-	int nBinsY = map->GetNbinsY();
+    int nBinsX = map->GetNbinsX();
+    int nBinsY = map->GetNbinsY();
 
-	for (int i = 1; i <= nBinsX; ++i) {
-	    for (int j = 1; j <= nBinsY; ++j) {
-		double binContent = map->GetBinContent(i, j);
-		if (binContent > 0) {
-		    double x = map->GetXaxis()->GetBinCenter(i);
-		    double y = map->GetYaxis()->GetBinCenter(j);
-		    filledBins.push_back(Bin{x, y});
-		}
-	    }
-	}
-  return filledBins;
+    for (int i = 1; i <= nBinsX; ++i) {
+        for (int j = 1; j <= nBinsY; ++j) {
+            double binContent = map->GetBinContent(i, j);
+            if (binContent > 0) {
+                float x = map->GetXaxis()->GetBinCenter(i);
+                float y = map->GetYaxis()->GetBinCenter(j);
+                filledBins.push_back(Bin<float>{x, y});
+            }
+        }
+    }
+
+    return filledBins;
 }
+
 
 void testRandomMomentum(int numObjects = 10, double thetaTrackInclination = 0)
 {  
