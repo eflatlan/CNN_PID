@@ -45,22 +45,22 @@
 
 
 
-static constexpr double arrWaveLenDefault[30] = {
+static constexpr float arrWaveLenDefault[30] = {
   162, 164, 166, 168, 170, 172, 174, 176, 178, 180,
   182, 184, 186, 188, 190, 192, 194, 196, 198, 200,
   202, 204, 206, 208, 210, 212, 214, 216, 218, 220};
-static constexpr double nm2eV = 1239.842609;
+static constexpr float nm2eV = 1239.842609;
 
 
 
 class ParticleInfo : public TObject {
 public:
     // Your data members here
-    double momentum;
-    double mass;
-    double energy;
+    float momentum;
+    float mass;
+    float energy;
     float refractiveIndex;
-    double ckov;
+    float ckov;
     TH2F* map;
     std::vector<Bin> filledBins;
     ParticleInfo() {
@@ -75,38 +75,38 @@ public:
 
 /*
 struct ParticleInfo {
-    double momentum;
-    double mass;
-    double energy;
+    float momentum;
+    float mass;
+    float energy;
     float refractiveIndex;
-    double ckov;
+    float ckov;
     TH2F* map;
 }; */ 
 
 
-double arrW[750]= {0.};
+float arrW[750]= {0.};
 
 
 using namespace o2;
 using namespace o2::hmpid;
 
 #include <HMPIDBase/Param.h>
-void setStyleInd(TH2* th1f, double ratio = 1.2);
-void setStyleInd(TH1* th1f, double ratio = 1.2);
+void setStyleInd(TH2* th1f, float ratio = 1.2);
+void setStyleInd(TH1* th1f, float ratio = 1.2);
 
 
 
-const double mass_Pion = 0.1396, mass_Kaon = 0.4937, mass_Proton = 0.938; // masses in
-std::array<double, 3> masses = {mass_Pion, mass_Kaon, mass_Proton};
+const float mass_Pion = 0.1396, mass_Kaon = 0.4937, mass_Proton = 0.938; // masses in
+std::array<float, 3> masses = {mass_Pion, mass_Kaon, mass_Proton};
 // get Ring-radius from Cherenkov-angle
-double getRadiusFromCkov(double ckovAngle);
-double calcRingGeom(double ckovAng, int level);
+float getRadiusFromCkov(float ckovAngle);
+float calcRingGeom(float ckovAng, int level);
 float GetFreonIndexOfRefraction(float x);
 float GetQuartzIndexOfRefraction(float x);
-double BackgroundFunc(double *x, double *par);
+float BackgroundFunc(float *x, float *par);
 
-const double fDTheta = 0.001;  // increment
-double kThetaMax = 0.75;
+const float fDTheta = 0.001;  // increment
+float kThetaMax = 0.75;
 int nChannels = (int)(kThetaMax / fDTheta + 0.5);
 
 
@@ -120,46 +120,46 @@ TH1F *hTheta = new TH1F("Background","Background; angle [rad]; counts/1 mrad",75
 
 TH1F *hThetaCh = new TH1F("Cherenkov Photons","Cherenkov Photons; angle [rad]; counts/1 mrad",750,0.,0.75); 
 
-double meanCherenkovAngle;
+float meanCherenkovAngle;
 
 
-std::vector<double> photonCandidates;
+std::vector<float> photonCandidates;
 
-double ckovTrackOut = 0;
-double /*std::array<TH1D*, 3>*/ houghResponse(std::vector<double>& photonCandidates, double fWindowWidth);
-
-
-
-const double defaultPhotonEnergy = 6.75; 
-const double refIndexFreon = GetFreonIndexOfRefraction(defaultPhotonEnergy);
-const double refIndexQuartz = GetQuartzIndexOfRefraction(defaultPhotonEnergy);
-const double  refIndexCH4 = 1.00; 
+float ckovTrackOut = 0;
+float /*std::array<TH1D*, 3>*/ houghResponse(std::vector<float>& photonCandidates, float fWindowWidth);
 
 
-TH2F* backgroundStudy(std::vector<Bin>& mapBins, double ckovActual = 0.5, double occupancy = 0.03, double thetaTrack = 0);
 
-const double CH4GapWidth = 8;
-const double  RadiatorWidth = 1.;
-const double  QuartzWindowWidth = 0.5;
-const double  EmissionLenght = RadiatorWidth/2;
+const float defaultPhotonEnergy = 6.75; 
+const float refIndexFreon = GetFreonIndexOfRefraction(defaultPhotonEnergy);
+const float refIndexQuartz = GetQuartzIndexOfRefraction(defaultPhotonEnergy);
+const float  refIndexCH4 = 1.00; 
 
 
-TH1* getMaxInRange(TH1* th1, double& up, double mid, double width);
-double getMaxInRange(TH1* th1, int start, int width);
-double getMaxInRange(TH1* th1, double mid, double width);
+TH2F* backgroundStudy(std::vector<Bin>& mapBins, float ckovActual = 0.5, float occupancy = 0.01, float thetaTrack = 0);
+
+const float CH4GapWidth = 8;
+const float  RadiatorWidth = 1.;
+const float  QuartzWindowWidth = 0.5;
+const float  EmissionLenght = RadiatorWidth/2;
+
+
+TH1* getMaxInRange(TH1* th1, float& up, float mid, float width);
+float getMaxInRange(TH1* th1, int start, int width);
+float getMaxInRange(TH1* th1, float mid, float width);
 
 
 // mass_Pion_sq mass_Kaon_sq mass_Proton_sq GeV/c^2
-const double mass_Pion_sq = mass_Pion*mass_Pion, mass_Kaon_sq = mass_Kaon*mass_Kaon,  mass_Proton_sq = mass_Proton*mass_Proton;
+const float mass_Pion_sq = mass_Pion*mass_Pion, mass_Kaon_sq = mass_Kaon*mass_Kaon,  mass_Proton_sq = mass_Proton*mass_Proton;
 
 
 TRandom2* rndInt = new TRandom2(1); 
 
-double calcCkovFromMass(double p, double n, double m);
-std::array<double, 3> calcCherenkovHyp(double p, double n);
+float calcCkovFromMass(float p, float n, float m);
+std::array<float, 3> calcCherenkovHyp(float p, float n);
 
 
-double randomMass(); double randomEnergy();
+float randomMass(); float randomEnergy();
 
 std::vector<Bin> fillMapVector(TH2F* map)
 {
@@ -170,7 +170,7 @@ std::vector<Bin> fillMapVector(TH2F* map)
 
     for (int i = 1; i <= nBinsX; ++i) {
         for (int j = 1; j <= nBinsY; ++j) {
-            double binContent = map->GetBinContent(i, j);
+            float binContent = map->GetBinContent(i, j);
             if (binContent > 0) {
                 float x = map->GetXaxis()->GetBinCenter(i);
                 float y = map->GetYaxis()->GetBinCenter(j);
@@ -183,18 +183,18 @@ std::vector<Bin> fillMapVector(TH2F* map)
 }
 
 
-double randomMomentum()
+float randomMomentum()
 {
   return 1+4*rndInt->Gaus(0.5, 0.25);
 }
 
 
 // create a number of random particles 
-/*double[] randomParticles(int numParticles)
+/*float[] randomParticles(int numParticles)
 {
   DataSaver dataSaver(Form("RandomParticles%3d.root",numParticles));
 
-  double[] randomMomentum = 
+  float[] randomMomentum = 
 
 }*/
 
@@ -206,7 +206,7 @@ void testHyp()
   TCanvas *tCkov = new TCanvas("ckov","ckov",800,800);  
 //TH2F *hClusterMap = new TH2F("Cluster Map", "Cluster Map; x [cm]; y [cm]",1000,-10.,10.,1000,-10.,10.);
   rndInt->SetSeed(0);
-  for(double p = 0.; p < 5; p+= 0.001)
+  for(float p = 0.; p < 5; p+= 0.001)
   { 
 
     
@@ -224,14 +224,14 @@ void testHyp()
 
 }
 
-std::array<double, 3> ckovMassHyp;
-const double ckovConstraintWhidth = 0.015; // 15 mrad per side for ckovangle constraint 
+std::array<float, 3> ckovMassHyp;
+const float ckovConstraintWhidth = 0.015; // 15 mrad per side for ckovangle constraint 
 					   // from mass hypotheses
 
 
-double ckovActual = 0.;
-double massActual = 0.;
-double pActual = 0.;
+float ckovActual = 0.;
+float massActual = 0.;
+float pActual = 0.;
 
 void saveDataInst();
 /*std::shared_ptr<TFile>*/void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector);
@@ -239,7 +239,7 @@ void saveDataInst();
 
 
 
-void testRandomMomentum(int numObjects = 10, double thetaTrackInclination = 0)
+void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0)
 {  
 
 
@@ -263,7 +263,7 @@ void testRandomMomentum(int numObjects = 10, double thetaTrackInclination = 0)
      // get the map with a given occupancy and ckov angle calculated 
 
      std::vector<Bin> mapBins;
-     const auto& map = backgroundStudy(mapBins, ckov, 0.01, thetaTrackInclination); // cherenkov angle mean / occupancy / theta track inclination (perpendicular =)
+     const auto& map = backgroundStudy(mapBins, ckov, 0.001, thetaTrackInclination); // cherenkov angle mean / occupancy / theta track inclination (perpendicular =)
 
      auto filledBins = fillMapVector(map);
 
@@ -297,12 +297,12 @@ void testRandomMomentum(int numObjects = 10, double thetaTrackInclination = 0)
 
 
 
-TH2F* backgroundStudy(std::vector<Bin>& mapBins, double ckovActual = 0.5, double occupancy = 0.03, double thetaTrack = 0)   
+TH2F* backgroundStudy(std::vector<Bin>& mapBins, float ckovActual = 0.5, float occupancy = 0.01, float thetaTrack = 0)   
 {
 
   auto ckovAngle = ckovActual;
 
-  Int_t NumberOfEvents = 1; Int_t NumberOfClusters = 13; double Hwidth = 15.;
+  Int_t NumberOfEvents = 1; Int_t NumberOfClusters = 13; float Hwidth = 15.;
   //testRandomMomentum();
   gStyle->SetOptStat("ei");
 
@@ -314,14 +314,14 @@ TH2F* backgroundStudy(std::vector<Bin>& mapBins, double ckovActual = 0.5, double
   const auto numberOfCkovPhotons = rndP->Poisson(13);
 
   photonCandidates.clear();
-  double ThetaP = 0; // [rad]  // endre denne
-  double PhiP=0,PhiF=0,DegPhiP=0;
+  float ThetaP = 0; // [rad]  // endre denne
+  float PhiP=0,PhiF=0,DegPhiP=0;
 
-  double DegThetaP = thetaTrack;
+  float DegThetaP = thetaTrack;
 
   //float /*RadiatorWidth,*/ QuartzWindowWidth,CH4GapWidth,EmissionLenght;
   float FreonIndexOfRefraction,QuartzIndexOfRefraction,CH4IndexOfRefraction;
-  double ThetaF1,ThetaF2,ThetaF=0,ThetaLimite;
+  float ThetaF1,ThetaF2,ThetaF=0,ThetaLimite;
   float Xpi=0,Ypi=0,Xf=0,Yf=0,Xf1=0,Yf1=0,Xf2=0,Yf2=0,Xp=0,Yp=0; 
 
   float PhotonEnergy = 6.75; 
@@ -332,8 +332,11 @@ TH2F* backgroundStudy(std::vector<Bin>& mapBins, double ckovActual = 0.5, double
 
   setStyle();
 
-  TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",1000,-25.,25.,1000,-25.,25.);
-  double mapArray[40][40]{};
+  //TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",1000,-25.,25.,1000,-25.,25.);
+
+  TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160,0.,159.,144,0,143);
+
+  float mapArray[40][40]{};
   
 
   float Deltax = (RadiatorWidth+QuartzWindowWidth+CH4GapWidth-EmissionLenght)*TMath::Tan(ThetaP)*TMath::Cos(PhiP);
@@ -363,15 +366,15 @@ TH2F* backgroundStudy(std::vector<Bin>& mapBins, double ckovActual = 0.5, double
     PhiP = TMath::Pi()*DegPhiP/180;  
      
 
-    const int numBackGround = occupancy*120*120; //occupancy = 0.03
+    const int numBackGround = occupancy*6*80*48; //occupancy = 0.03
     NumberOfClusters = numBackGround;
 
     for(Int_t n1=0;n1<NumberOfClusters; n1++) {// clusters loop
       
     //  Printf("cluster = %i",n1);
       
-      Xcen[n1] = 60*(1 - 2*gRandom->Rndm(n1));
-      Ycen[n1] = 60*(1 - 2*gRandom->Rndm(n1));
+      Xcen[n1] = 160*(gRandom->Rndm(n1));
+      Ycen[n1] = 144*(gRandom->Rndm(n1));
 
       //noiseMap->Fill(Xcen[n1], Ycen[n1]);
       hSignalAndNoiseMap->Fill(Xcen[n1], Ycen[n1]);
@@ -397,10 +400,14 @@ TH2F* backgroundStudy(std::vector<Bin>& mapBins, double ckovActual = 0.5, double
 
 
 
+ // place the MIP in x[10..150] and y[10..134]
+ const float xMip = static_cast<float>((160-10)*(1*gRandom->Rndm())-10);
+ const float yMip = static_cast<float>((144-10)*(1*gRandom->Rndm())-10);
+
  for(Int_t i=0; i < numberOfCkovPhotons; i++) {
    
    // endre std-dev her til å følge prob-dist?!
-   double ckovAnglePhot = rnd->Gaus(ckovAngle, 0.012);		    // random CkovAngle, with 0.012 std-dev
+   float ckovAnglePhot = rnd->Gaus(ckovAngle, 0.012);		    // random CkovAngle, with 0.012 std-dev
    
 
 
@@ -408,17 +415,19 @@ TH2F* backgroundStudy(std::vector<Bin>& mapBins, double ckovActual = 0.5, double
 
 
    // trenger eliptisk skewing her:!
-   double ringRadius = getRadiusFromCkov(ckovAnglePhot); // R in photon-map
+   float ringRadius = getRadiusFromCkov(ckovAnglePhot); // R in photon-map
    Printf("Cherenkov Photon : Angle = %f Radius = %f", ckovAnglePhot, ringRadius);	
 
 
 
    // populate the photon maps randomly radially
-   double alpha = static_cast<double>((3.14159)*(1-2*gRandom->Rndm(1)));    // angle in photon-map (-pi to pi)
+   float alpha = static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));    // angle in photon-map (-pi to pi)
+
+
 
    // get x and y values of Photon-candidate:
-   float x = static_cast<float>(TMath::Cos(alpha)*ringRadius);
-   float y = static_cast<float>(TMath::Sin(alpha)*ringRadius);  
+   float x = xMip+ static_cast<float>(TMath::Cos(alpha)*ringRadius);
+   float y = yMip+ static_cast<float>(TMath::Sin(alpha)*ringRadius);  
 
 
 
@@ -458,11 +467,11 @@ float GetQuartzIndexOfRefraction(float x)
 }
 
 //*********************************************************************************************************************************************************************************************************
-double BackgroundFunc(double *x, double *par)
+float BackgroundFunc(float *x, float *par)
 {
- double xx = x[0];
+ float xx = x[0];
   
- double f = par[0]*TMath::Tan(TMath::ASin(1.2903*TMath::Sin(xx)))*(1+TMath::Tan(TMath::ASin(1.2903*TMath::Sin(xx)))*TMath::Tan(TMath::ASin(1.2903*TMath::Sin(xx)))*1.2903*TMath::Cos(xx)/cos(asin(1.2903*TMath::Sin(xx))));
+ float f = par[0]*TMath::Tan(TMath::ASin(1.2903*TMath::Sin(xx)))*(1+TMath::Tan(TMath::ASin(1.2903*TMath::Sin(xx)))*TMath::Tan(TMath::ASin(1.2903*TMath::Sin(xx)))*1.2903*TMath::Cos(xx)/cos(asin(1.2903*TMath::Sin(xx))));
   
  return f;
 }       
@@ -470,19 +479,19 @@ double BackgroundFunc(double *x, double *par)
 
 
 // get Ring-radius from Cherenkov-angle
-double getRadiusFromCkov(double ckovAngle)
+float getRadiusFromCkov(float ckovAngle)
 {
 
   //// refIndexFreon refIndexQuartz refIndexCH4
-  double sin_ckov = static_cast<double>(TMath::Sin(ckovAngle));
-  double sin_qz = static_cast<double>(sin_ckov*(refIndexFreon/refIndexQuartz));
-  double sin_theta0 = static_cast<double>(sin_qz*(refIndexQuartz/refIndexCH4));
+  float sin_ckov = static_cast<float>(TMath::Sin(ckovAngle));
+  float sin_qz = static_cast<float>(sin_ckov*(refIndexFreon/refIndexQuartz));
+  float sin_theta0 = static_cast<float>(sin_qz*(refIndexQuartz/refIndexCH4));
 
-  double R_ckov = sin_ckov*(RadiatorWidth - EmissionLenght);
-  double R_qz = sin_qz * QuartzWindowWidth;
-  double R_0 = sin_theta0*CH4GapWidth;
+  float R_ckov = sin_ckov*(RadiatorWidth - EmissionLenght);
+  float R_qz = sin_qz * QuartzWindowWidth;
+  float R_0 = sin_theta0*CH4GapWidth;
   //Printf("Radiuses  , R_ckov  % f + R_qz %f + R_0 %f", R_ckov, R_qz, R_0);
-  double R = static_cast<double>(R_ckov + R_qz + R_0);
+  float R = static_cast<float>(R_ckov + R_qz + R_0);
   return R;
 } 
 
@@ -490,7 +499,7 @@ double getRadiusFromCkov(double ckovAngle)
 /*
 */
 
-double /*std::array<TH1D*, 3>*/ houghResponse(std::vector<double>& photonCandidates, double fWindowWidth)
+float /*std::array<TH1D*, 3>*/ houghResponse(std::vector<float>& photonCandidates, float fWindowWidth)
 {
 
   // ckovMassHyp applies constraints!!
@@ -518,7 +527,7 @@ double /*std::array<TH1D*, 3>*/ houghResponse(std::vector<double>& photonCandida
 
   Printf("nBin %d nCorrBand %d", nBin, nCorrBand);
   int binMax, sumMax = 0;
-  std::vector<double> okAngles;
+  std::vector<float> okAngles;
   okAngles.clear();
   for (const auto& angle : photonCandidates) { // photon cadidates loop
 
@@ -533,20 +542,20 @@ double /*std::array<TH1D*, 3>*/ houghResponse(std::vector<double>& photonCandida
     phots->Fill(angle);
 
     int bin = (int)(0.5 + angle / (fDTheta));
-    double weight = 1.;
+    float weight = 1.;
     if (true) {
-      double lowerlimit = ((double)bin) * fDTheta - 0.5 * fDTheta;
-      double upperlimit = ((double)bin) * fDTheta + 0.5 * fDTheta;
+      float lowerlimit = ((float)bin) * fDTheta - 0.5 * fDTheta;
+      float upperlimit = ((float)bin) * fDTheta + 0.5 * fDTheta;
 
 
-      double rLow = getRadiusFromCkov(lowerlimit);
-      double areaLow =  0.5*TMath::Pi()*TMath::Sq(rLow);// calcRingGeom(lowerlimit, 2);
+      float rLow = getRadiusFromCkov(lowerlimit);
+      float areaLow =  0.5*TMath::Pi()*TMath::Sq(rLow);// calcRingGeom(lowerlimit, 2);
  
-      double rHigh = getRadiusFromCkov(upperlimit);
-      double areaHigh =  0.5*TMath::Pi()*TMath::Sq(rHigh);// calcRingGeom(lowerlimit, 2);
+      float rHigh = getRadiusFromCkov(upperlimit);
+      float areaHigh =  0.5*TMath::Pi()*TMath::Sq(rHigh);// calcRingGeom(lowerlimit, 2);
       //Printf("Areas : areaLow %f, areaHigh %f ", areaLow, areaHigh);
 
-      double diffArea = areaHigh - areaLow;
+      float diffArea = areaHigh - areaLow;
       
       if (diffArea > 0)
         weight = 1. / diffArea;
@@ -566,13 +575,13 @@ double /*std::array<TH1D*, 3>*/ houghResponse(std::vector<double>& photonCandida
       bin1 = 1;
     if (bin2 > nBin)
       bin2 = nBin;
-    double sumPhots = phots->Integral(bin1, bin2);
+    float sumPhots = phots->Integral(bin1, bin2);
 
     /*Printf("bin1 %d ; bin2 %d; sumPhots %f ", bin1, bin2, sumPhots);
     if (sumPhots < 3)
       continue; // if less then 3 photons don't trust to this ring*/
-    double sumPhotsw = photsw->Integral(bin1, bin2);
-    if ((double)((i /*+ 0.5*/) * fDTheta) > 0.7)
+    float sumPhotsw = photsw->Integral(bin1, bin2);
+    if ((float)((i /*+ 0.5*/) * fDTheta) > 0.7)
       continue;
 
     if (sumPhotsw > sumMax){
@@ -580,15 +589,15 @@ double /*std::array<TH1D*, 3>*/ houghResponse(std::vector<double>& photonCandida
       sumMax = sumPhotsw;
       
     }
-    resultw->Fill((double)((i /*+ 0.5*/) * fDTheta), sumPhotsw);
+    resultw->Fill((float)((i /*+ 0.5*/) * fDTheta), sumPhotsw);
   }
   // evaluate the "BEST" theta ckov as the maximum value of histogramm
 
-  double* pVec = resultw->GetArray();
+  float* pVec = (float*)resultw->GetArray();
   int locMax = TMath::LocMax(nBin, pVec);
 
 
-  double smtest = 0; int ent=0;
+  float smtest = 0; int ent=0;
 
   for(const auto& ok:okAngles){
     if (TMath::Abs(ok*1000-locMax) > nCorrBand)
@@ -613,13 +622,13 @@ double /*std::array<TH1D*, 3>*/ houghResponse(std::vector<double>& photonCandida
   // delete phots;delete photsw;delete resultw; // Reset and delete objects
 
   
-  double ckovTrack = static_cast<double>(locMax * fDTheta + 0.5 * fDTheta); // final most probable track theta ckov
+  float ckovTrack = static_cast<float>(locMax * fDTheta + 0.5 * fDTheta); // final most probable track theta ckov
   ckovTrackOut = ckovTrack;
 
 
-  double sumCkov = 0.;
+  float sumCkov = 0.;
   int entries = 0;
-  double ckovSliding = phots->Integral(locMax-nCorrBand, locMax+nCorrBand);
+  float ckovSliding = phots->Integral(locMax-nCorrBand, locMax+nCorrBand);
 
   //binMax
   //locMax
@@ -636,7 +645,7 @@ double /*std::array<TH1D*, 3>*/ houghResponse(std::vector<double>& photonCandida
      }
   }
 
-  const double avgCkov = sumCkov/static_cast<double>(entries);
+  const float avgCkov = sumCkov/static_cast<float>(entries);
   ckovTrack = avgCkov;
   Printf("Avg Ckov = %f", avgCkov);
 
@@ -684,7 +693,7 @@ double /*std::array<TH1D*, 3>*/ houghResponse(std::vector<double>& photonCandida
 
   houghCanvas->cd(3);
   setStyleInd(photsw);
-  double up_ = 0;
+  float up_ = 0;
   auto th = getMaxInRange(photsw, up_, ckovTrack, fWindowWidth);
   th->Draw();
 
@@ -727,7 +736,7 @@ double /*std::array<TH1D*, 3>*/ houghResponse(std::vector<double>& photonCandida
 
 
 
-void setStyleInd(TH1* th1f, double ratio = 1.2)
+void setStyleInd(TH1* th1f, float ratio = 1.2)
 {
   th1f->SetTitleSize((th1f->GetTitleSize("x")*ratio), "xy");
   th1f->SetLabelSize((th1f->GetLabelSize("x")*ratio), "xy");
@@ -735,13 +744,13 @@ void setStyleInd(TH1* th1f, double ratio = 1.2)
 
 
 /*
-void setPad(TPad*, double l, double, r, double t, double b)
+void setPad(TPad*, float l, float, r, float t, float b)
 {
   th1f->SetPadMaring((th1f->GetTitleSize("x")*ratio), "xy");
 }*/
 
 
-void setStyleInd(TH2* th1f, double ratio)
+void setStyleInd(TH2* th1f, float ratio)
 {
   th1f->SetTitleSize((th1f->GetTitleSize("x")*ratio), "xy");
   th1f->SetLabelSize((th1f->GetLabelSize("x")*ratio), "xy");
@@ -751,12 +760,12 @@ void setStyleInd(TH2* th1f, double ratio)
 
 
 
-double getMaxInRange(TH1* th1, double mid, double width)
+float getMaxInRange(TH1* th1, float mid, float width)
 {
 
 
   //Printf("mid %f || width %f ", mid, width);
-  double max = 1.0;
+  float max = 1.0;
 
   const int startBin = static_cast<int>(mid*1000);
   const int nBin2 = static_cast<int>(width/2);
@@ -773,12 +782,12 @@ double getMaxInRange(TH1* th1, double mid, double width)
   return max;
 }
 
-TH1* getMaxInRange(TH1* th1, double& up, double mid, double width)
+TH1* getMaxInRange(TH1* th1, float& up, float mid, float width)
 {
   TH1* thOut = static_cast<TH1*>(th1);
 
   //Printf("mid %f || width %f ", mid, width);
-  double max = 1.0;
+  float max = 1.0;
 
   const int startBin = static_cast<int>(mid*1000);
   const int nBin2 = static_cast<int>(width/2);
@@ -788,7 +797,7 @@ TH1* getMaxInRange(TH1* th1, double& up, double mid, double width)
   int start = static_cast<int>(startBin-nBin2);
   int end = static_cast<int>(startBin+nBin2);
 
-  double r = 0;
+  float r = 0;
   for(const auto& i : arrW){
     if (i > r) 
       r = i;
@@ -808,19 +817,19 @@ TH1* getMaxInRange(TH1* th1, double& up, double mid, double width)
 }
 
 // mass_Pion_sq mass_Kaon_sq mass_Proton_sq
-std::array<double, 3> calcCherenkovHyp(double p, double n)
+std::array<float, 3> calcCherenkovHyp(float p, float n)
 {
-  const double p_sq = p*p;
-  const double cos_ckov_denom = p*refIndexFreon;
-  const auto cos_ckov_Pion = TMath::Sqrt(p_sq + mass_Pion_sq)/(cos_ckov_denom); // n = refIndexFreon 1.289 later make it random?
+  const float p_sq = p*p;
+  const float cos_ckov_denom = p*refIndexFreon;
+  const auto cos_ckov_Pion = static_cast<float>(TMath::Sqrt(p_sq + mass_Pion_sq)/(cos_ckov_denom)); // n = refIndexFreon 1.289 later make it random?
 
-  const auto cos_ckov_Kaon = TMath::Sqrt(p_sq + mass_Kaon_sq)/(cos_ckov_denom); 
-  const auto cos_ckov_Proton = TMath::Sqrt(p_sq + mass_Proton_sq)/(cos_ckov_denom);
+  const float cos_ckov_Kaon = static_cast<float>(TMath::Sqrt(p_sq + mass_Kaon_sq)/(cos_ckov_denom)); 
+  const float cos_ckov_Proton = static_cast<float>(TMath::Sqrt(p_sq + mass_Proton_sq)/(cos_ckov_denom));
   
 
-  const auto ckovAnglePion = TMath::ACos(cos_ckov_Pion); 
-  const auto ckovAngleKaon = TMath::ACos(cos_ckov_Kaon); 
-  const auto ckovAngleProton = TMath::ACos(cos_ckov_Proton); 
+  const float ckovAnglePion = static_cast<float>( TMath::ACos(cos_ckov_Pion)); 
+  const float ckovAngleKaon = static_cast<float>(TMath::ACos(cos_ckov_Kaon)); 
+  const float ckovAngleProton = static_cast<float>(TMath::ACos(cos_ckov_Proton)); 
 
   Printf("Pion %.3f Kaon %.3f Proton %.3f", ckovAnglePion, ckovAngleKaon, ckovAngleProton);
 
@@ -829,23 +838,23 @@ std::array<double, 3> calcCherenkovHyp(double p, double n)
 
 
 
-double calcCkovFromMass(double p, double n, double m)
+float calcCkovFromMass(float p, float n, float m)
 {
-  const double p_sq = p*p;
-  const double cos_ckov_denom = p*refIndexFreon;
+  const float p_sq = p*p;
+  const float cos_ckov_denom = p*refIndexFreon;
 
   // sanity check ;)
   if(p_sq + m*m < 0){
     return 0;
   }
 
-  const auto cos_ckov = TMath::Sqrt(p_sq + m*m)/(cos_ckov_denom);
+  const auto cos_ckov = static_cast<float>(TMath::Sqrt(p_sq + m*m)/(cos_ckov_denom));
 
   // sanity check ;)
   if(cos_ckov > 1 || cos_ckov < -1)
     return 0;
 
-  const auto ckovAngle = TMath::ACos(cos_ckov);
+  const auto ckovAngle = static_cast<float>(TMath::ACos(cos_ckov));
 
   return ckovAngle;
 }
@@ -853,19 +862,19 @@ double calcCkovFromMass(double p, double n, double m)
 
 
 
-double randomMass() 
+float randomMass() 
 {  
   auto index = static_cast<int>(rndInt->Integer(3));
   Printf("randomMass indes = %d", index);
   return masses[index];
 }
 
-double randomEnergy()
+float randomEnergy()
 {
   // random energy from the arrWaveLenDefault
   auto index = static_cast<int>(rndInt->Integer(30));
   Printf("rEn indes = %d", index);
-  double photonEnergy = static_cast<double>(nm2eV/arrWaveLenDefault[index]);
+  float photonEnergy = static_cast<float>(nm2eV/arrWaveLenDefault[index]);
   return photonEnergy;
 }
 
@@ -944,11 +953,11 @@ std::shared_ptr<TFile> saveParticleInfoToROOT(const std::vector<ParticleInfo>& p
     std::shared_ptr<TTree> tree(new TTree("tree", "ParticleInfo Tree"));
 
     // Create variables to hold the values of ParticleInfo properties
-    double momentum;
-    double mass;
-    double energy;
+    float momentum;
+    float mass;
+    float energy;
     float refractiveIndex;
-    double ckov;
+    float ckov;
 
     // Set the branch addresses for the TTree
     tree->Branch("momentum", &momentum);
@@ -1022,11 +1031,11 @@ void readParticleInfoFromROOT() {
     TTree* tree = (TTree*)inputFile->Get("tree");
 
     // Variables to hold the values of ParticleInfo properties
-    double momentum;
-    double mass;
-    double energy;
+    float momentum;
+    float mass;
+    float energy;
     float refractiveIndex;
-    double ckov;
+    float ckov;
 
     // Set the branch addresses for the TTree
     tree->SetBranchAddress("momentum", &momentum);
@@ -1187,18 +1196,18 @@ void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector) {
     TTree* tree = new TTree("tree", "ParticleInfo Tree");
 
     // Create variables to hold the values of ParticleInfo properties
-    double momentum;
-    double mass;
-    double energy;
+    float momentum;
+    float mass;
+    float energy;
     float refractiveIndex;
-    double ckov;
+    float ckov;
 
     // Set the branch addresses for the TTree
-    tree->Branch("momentum", &momentum, "momentum/D");
-    tree->Branch("mass", &mass, "mass/D");
-    tree->Branch("energy", &energy, "energy/D");
+    tree->Branch("momentum", &momentum, "momentum/F");
+    tree->Branch("mass", &mass, "mass/F");
+    tree->Branch("energy", &energy, "energy/F");
     tree->Branch("refractiveIndex", &refractiveIndex, "refractiveIndex/F");
-    tree->Branch("ckov", &ckov, "ckov/D");
+    tree->Branch("ckov", &ckov, "ckov/F");
 
     // Create a directory to store the maps
     TDirectory* mapsDir = outputFile->mkdir("maps");

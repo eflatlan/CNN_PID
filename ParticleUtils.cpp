@@ -13,11 +13,11 @@ struct Bin {
 class ParticleUtils {
 public:
     struct ParticleInfo {
-        double momentum;
-        double mass;
-        double energy;
-        double refractiveIndex;
-        double ckov;
+        float momentum;
+        float mass;
+        float energy;
+        float refractiveIndex;
+        float ckov;
         std::vector<Bin> filledBins;
     };
 
@@ -38,20 +38,20 @@ public:
 
             // Store scalar values
             DataSpace attr_dataspace = DataSpace(H5S_SCALAR);
-            Attribute attribute = particleGroup.createAttribute("Momentum", PredType::NATIVE_DOUBLE, attr_dataspace);
-            attribute.write(PredType::NATIVE_DOUBLE, &particle.momentum);
+            Attribute attribute = particleGroup.createAttribute("Momentum", PredType::NATIVE_FLOAT, attr_dataspace);
+            attribute.write(PredType::NATIVE_FLOAT, &particle.momentum);
 
-            attribute = particleGroup.createAttribute("Mass", PredType::NATIVE_DOUBLE, attr_dataspace);
-            attribute.write(PredType::NATIVE_DOUBLE, &particle.mass);
+            attribute = particleGroup.createAttribute("Mass", PredType::NATIVE_FLOAT, attr_dataspace);
+            attribute.write(PredType::NATIVE_FLOAT, &particle.mass);
 
-            attribute = particleGroup.createAttribute("Energy", PredType::NATIVE_DOUBLE, attr_dataspace);
-            attribute.write(PredType::NATIVE_DOUBLE, &particle.energy);
+            attribute = particleGroup.createAttribute("Energy", PredType::NATIVE_FLOAT, attr_dataspace);
+            attribute.write(PredType::NATIVE_FLOAT, &particle.energy);
 
-            attribute = particleGroup.createAttribute("RefractiveIndex", PredType::NATIVE_DOUBLE, attr_dataspace);
-            attribute.write(PredType::NATIVE_DOUBLE, &particle.refractiveIndex);
+            attribute = particleGroup.createAttribute("RefractiveIndex", PredType::NATIVE_FLOAT, attr_dataspace);
+            attribute.write(PredType::NATIVE_FLOAT, &particle.refractiveIndex);
 
-            attribute = particleGroup.createAttribute("Ckov", PredType::NATIVE_DOUBLE, attr_dataspace);
-            attribute.write(PredType::NATIVE_DOUBLE, &particle.ckov);
+            attribute = particleGroup.createAttribute("Ckov", PredType::NATIVE_FLOAT, attr_dataspace);
+            attribute.write(PredType::NATIVE_FLOAT, &particle.ckov);
 
             // Write filledBins to HDF5 file
             hsize_t binDims[1] = {particle.filledBins.size()};
@@ -82,26 +82,26 @@ public:
 
             // Read momentum
             Attribute attribute = particleGroup.openAttribute("Momentum");
-            double momentum;
-            attribute.read(PredType::NATIVE_DOUBLE, &momentum);
+            float momentum;
+            attribute.read(PredType::NATIVE_FLOAT, &momentum);
 
             std::cout << "Particle " << i << " Momentum: " << momentum << std::endl;
 
             attribute = particleGroup.openAttribute("Mass");
-            double mass;
-            attribute.read(PredType::NATIVE_DOUBLE, &mass);
+            float mass;
+            attribute.read(PredType::NATIVE_FLOAT, &mass);
 
             attribute = particleGroup.openAttribute("Energy");
-            double energy;
-            attribute.read(PredType::NATIVE_DOUBLE, &energy);
+            float energy;
+            attribute.read(PredType::NATIVE_FLOAT, &energy);
 
             attribute = particleGroup.openAttribute("RefractiveIndex");
-            double refractiveIndex;
-            attribute.read(PredType::NATIVE_DOUBLE, &refractiveIndex);
+            float refractiveIndex;
+            attribute.read(PredType::NATIVE_FLOAT, &refractiveIndex);
 
             attribute = particleGroup.openAttribute("Ckov");
-            double ckov;
-            attribute.read(PredType::NATIVE_DOUBLE, &ckov);
+            float ckov;
+            attribute.read(PredType::NATIVE_FLOAT, &ckov);
 
             // Read filledBins
             DataSet binDataset = particleGroup.openDataSet("FilledBins");
