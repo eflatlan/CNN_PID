@@ -573,19 +573,17 @@ std::array<float, 3> calcCherenkovHyp(float p, float n)
   return {ckovAnglePion, ckovAngleKaon, ckovAngleProton};
 }
 
-
-
 float calcCkovFromMass(float p, float n, float m)
 {
-  const float p_sq = p*p;
-  const float cos_ckov_denom = p*refIndexFreon;
+  const double p_sq = p*p;
+  const double cos_ckov_denom = p*n;
 
   // sanity check ;)
   if(p_sq + m*m < 0){
     return 0;
   }
 
-  const auto cos_ckov = static_cast<float>(TMath::Sqrt(p_sq + m*m)/(cos_ckov_denom));
+  const auto cos_ckov = static_cast<double>(TMath::Sqrt(p_sq + m*m)/(cos_ckov_denom));
 
   // sanity check ;)
   if(cos_ckov > 1 || cos_ckov < -1)
@@ -897,13 +895,7 @@ void saveHD5(const std::vector<ParticleInfo>& particleVectorIn)
 	    // Add the new ParticleInfo with the converted map to the new vector
 	    convertedVector.push_back(newParticle);
 
-	    // Print the ParticleInfo object's values
-            std::cout << "HD5 reading object "  << ":\n";
-            std::cout << "  momentum: " << particle.momentum << "\n";
-            std::cout << "  mass: " << particle.mass << "\n";
-            std::cout << "  refractiveIndex: " << particle.refractiveIndex << "\n";
-            std::cout << "  ckov: " << particle.ckov << "\n";
-	    std::cout << "  mipPos " << particle.mipPos.first << " " << particle.mipPos.second << std::endl; 
+	   
        
 	}
 

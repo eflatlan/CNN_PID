@@ -1,6 +1,7 @@
 #include "H5Cpp.h"
 #include <iostream>
 #include <vector>
+#include <iomanip>  // for std::setprecision
 #include "TH2F.h"
 
 using namespace H5;
@@ -15,11 +16,10 @@ public:
     struct ParticleInfo {
         float momentum;
         float mass;
-        //float energy;
         float refractiveIndex;
         float ckov;
         std::vector<Bin> filledBins;
-	    std::pair<float, float> mipPos;
+        std::pair<float, float> mipPos;
     };
 
     static void saveParticleInfoToHDF5(std::vector<ParticleInfo>& particleVector) {
@@ -45,9 +45,6 @@ public:
             attribute = particleGroup.createAttribute("Mass", PredType::NATIVE_FLOAT, attr_dataspace);
             attribute.write(PredType::NATIVE_FLOAT, &particle.mass);
 
-            //attribute = particleGroup.createAttribute("Energy", PredType::NATIVE_FLOAT, attr_dataspace);
-            //attribute.write(PredType::NATIVE_FLOAT, &particle.energy);
-
             attribute = particleGroup.createAttribute("RefractiveIndex", PredType::NATIVE_FLOAT, attr_dataspace);
             attribute.write(PredType::NATIVE_FLOAT, &particle.refractiveIndex);
 
@@ -58,19 +55,14 @@ public:
             hsize_t mipPosDims[1] = {2};
             DataSpace mipPosSpace(1, mipPosDims);
             DataSet mipPosDataset = particleGroup.createDataSet("MipPos", PredType::NATIVE_FLOAT, mipPosSpace);
-            float mipPos[2] = {particle.mipPos.first, particle.mipPos.second};
+            float mipPos[2] = {roundToDecimalPlaces(particle.mipPos.first, 5), roundToDecimalPlaces(particle.mipPos.second, 5)};
             mipPosDataset.write(mipPos, PredType::NATIVE_FLOAT);
 
             // Write filledBins to HDF5 file
             hsize_t binDims[1] = {particle.filledBins.size()};
-
             DataSpace binspace(1, binDims);
             DataSet binDataset = particleGroup.createDataSet("FilledBins", binType, binspace);
             binDataset.write(&particle.filledBins[0], binType);
-
-
-	    //std::cout << "particleInfo save : mipPos " << particle.mipPos.first << " " << particle.mipPos.second << std::endl; 
-
         }
     }
 
@@ -101,10 +93,6 @@ public:
             float mass;
             attribute.read(PredType::NATIVE_FLOAT, &mass);
 
-            //attribute = particleGroup.openAttribute("Energy");
-            //float energy;
-            //attribute.read(PredType::NATIVE_FLOAT, &energy);
-
             attribute = particleGroup.openAttribute("RefractiveIndex");
             float refractiveIndex;
             attribute.read(PredType::NATIVE_FLOAT, &refractiveIndex);
@@ -131,16 +119,29 @@ public:
             ParticleInfo particleInfo;
             particleInfo.momentum = momentum;
             particleInfo.mass = mass;
-            //particleInfo.energy = energy;
             particleInfo.refractiveIndex = refractiveIndex;
             particleInfo.ckov = ckov;
             particleInfo.filledBins = filledBins;
             particleInfo.mipPos = std::make_pair(mipPos[0], mipPos[1]);
-	    //std::cout << "particleInfo.mipPos " << particleInfo.mipPos.first << " " << particleInfo.mipPos.second << std::endl; 
             particleVector.push_back(particleInfo);
+
+            // Print the ParticleInfo object's values with 5 decimal places precision
+            std::cout << "ParticleUtils: HDF5 reading object " << i << ":\n";
+            std::cout << "  momentum: " << particleInfo.momentum << "\n";
+            std::cout << "  mass: " << particleInfo.mass << "\n";
+            std::cout << "  refractiveIndex: " << particleInfo.refractiveIndex << "\n";
+            std::cout << "  ckov: " << particleInfo.ckov << "\n";
+            std::cout << "  mipPos: " << std::fixed << std::setprecision(5)
+                      << particleInfo.mipPos.first << " " << particleInfo.mipPos.second << std::endl;
         }
 
         return particleVector;
+    }
+
+private:
+    static float roundToDecimalPlaces(float value, int decimalPlaces) {
+        float multiplier = std::pow(10.0f, decimalPlaces);
+        return std::round(value * multiplier) / multiplier;
     }
 };
 
