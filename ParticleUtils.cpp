@@ -67,6 +67,10 @@ public:
             DataSpace binspace(1, binDims);
             DataSet binDataset = particleGroup.createDataSet("FilledBins", binType, binspace);
             binDataset.write(&particle.filledBins[0], binType);
+
+
+	    std::cout << "particleInfo save : mipPos " << particle.mipPos.first << " " << particle.mipPos.second << std::endl; 
+
         }
     }
 
