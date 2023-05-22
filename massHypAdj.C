@@ -106,7 +106,7 @@ const float refIndexQuartz = GetQuartzIndexOfRefraction(defaultPhotonEnergy);
 const float  refIndexCH4 = 1.00; 
 
      
-TH2F* backgroundStudy(std::vector<Bin>& mapBins, std::pair<float, float>& mipPos, float ckovActual = 0.5, float occupancy = 0, float thetaTrack = 0);
+void backgroundStudy(std::vector<Bin>& mapBins, std::pair<float, float>& mipPos, float ckovActual = 0.5, float occupancy = 0, float thetaTrack = 0);
 
 const float CH4GapWidth = 8;
 const float  RadiatorWidth = 1.;
@@ -121,7 +121,7 @@ struct ParticleInfo {
 	float ckov;
 	std::vector<Bin> filledBins;
 	    std::pair<float, float> mipPos;
-	TH2F* map;
+	//TH2F* map;
 };
 
 
@@ -250,7 +250,7 @@ void testHyp()
 
     
     auto photonEnergy = randomEnergy();
-    auto n = GetFreonIndexOfRefraction(photonEnergy); // refractive index
+    auto n = 1.28;//GetFreonIndexOfRefraction(photonEnergy); // refractive index
     Printf("P =  %f  || n = %f", p, n);
     auto ckovAngles = calcCherenkovHyp(p, n);
     for(auto& ckovAngle:ckovAngles){
@@ -276,7 +276,7 @@ void saveDataInst();
 /*std::shared_ptr<TFile>*/void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector);
 
 
-
+void saveHD5(const std::vector<ParticleInfo>& particleVectorIn);
 
 void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0)
 {  
@@ -309,11 +309,11 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0)
        continue;
      }
 
-     const auto& map = backgroundStudy(mapBins, mipPos, ckov, 0.001, thetaTrackInclination); // cherenkov angle mean / occupancy / theta track inclination (perpendicular =)
+     backgroundStudy(mapBins, mipPos, ckov, 0.001, thetaTrackInclination); // cherenkov angle mean / occupancy / theta track inclination (perpendicular =)
 
- std::cout << "study ret&:particleInfo.mipPos " << mipPos.first << " " << mipPos.second << std::endl; 
+     //std::cout << "study ret&:particleInfo.mipPos " << mipPos.first << " " << mipPos.second << std::endl; 
 
-     auto filledBins = fillMapVector(map);
+     //auto filledBins = fillMapVector(map);
 
   
 
@@ -328,7 +328,7 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0)
      particle.energy = randomValue.energy;
      particle.refractiveIndex = randomValue.refractiveIndex;
      particle.ckov = ckov;
-     particle.map = map; 
+     //particle.map = map; 
      particle.mipPos = mipPos;
      particleVector.emplace_back(particle);
 
@@ -336,14 +336,14 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0)
      //map->SaveAs(Form("map%d.root", i));
   }
 
-
-  saveParticleInfoToROOT(particleVector);
+  saveHD5(particleVector);
+  //saveParticleInfoToROOT(particleVector);
 }
 
 
 
 
-TH2F* backgroundStudy(std::vector<Bin>& mapBins, std::pair<float, float>& mipPos, float ckovActual = 0.5, float occupancy = 0, float thetaTrack = 0)   
+void backgroundStudy(std::vector<Bin>& mapBins, std::pair<float, float>& mipPos, float ckovActual = 0.5, float occupancy = 0, float thetaTrack = 0)   
 {
 
   auto ckovAngle = ckovActual;
@@ -382,9 +382,9 @@ TH2F* backgroundStudy(std::vector<Bin>& mapBins, std::pair<float, float>& mipPos
 
   //TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",1000,-25.,25.,1000,-25.,25.);
 
-  TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
+  //TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
 
-  float mapArray[40][40]{};
+  //float mapArray[40][40]{};
   
 
   float Deltax = (RadiatorWidth+QuartzWindowWidth+CH4GapWidth-EmissionLenght)*TMath::Tan(ThetaP)*TMath::Cos(PhiP);
@@ -393,18 +393,18 @@ TH2F* backgroundStudy(std::vector<Bin>& mapBins, std::pair<float, float>& mipPos
   Xpi = Xp - Deltax;
   Ypi = Yp - Deltay;
 	  
-  float ThetaCherenkov[100000] = {0x0}, PhiCherenkov[100000] = {0x0}, DegPhiCherenkov[100000] = {0x0};
-    
+  float ThetaCherenkov[100] = {0x0}, PhiCherenkov[100] = {0x0}, DegPhiCherenkov[100] = {0x0};
+    gRandom->SetSeed(0);
 
   
   for(Int_t iEvt = 0; iEvt<NumberOfEvents; iEvt++){
     
     //Printf("event number = %i",iEvt);
     
-    float Xcen[100000],Ycen[100000];
+    float Xcen[100],Ycen[100];
      
     //DegThetaP = 4.;//0.*(1 - 2*gRandom->Rndm(iEvt));
-    gRandom->SetSeed(0);
+
 
 
     DegPhiP   = 7.5;//360*gRandom->Rndm(iEvt); 
@@ -425,7 +425,7 @@ TH2F* backgroundStudy(std::vector<Bin>& mapBins, std::pair<float, float>& mipPos
       Ycen[n1] = 144*(gRandom->Rndm(n1));
 
       //noiseMap->Fill(Xcen[n1], Ycen[n1]);
-      hSignalAndNoiseMap->Fill(Xcen[n1], Ycen[n1]);
+      //hSignalAndNoiseMap->Fill(Xcen[n1], Ycen[n1]);
 
       mapBins.push_back(Bin{Xcen[n1], Ycen[n1]});
       //mapArray[Xcen[n1]+20][Ycen[n1]+20] = 1;
@@ -487,7 +487,7 @@ TH2F* backgroundStudy(std::vector<Bin>& mapBins, std::pair<float, float>& mipPos
 
 
    // populating the pad
-   hSignalAndNoiseMap->Fill(x,y);
+   //hSignalAndNoiseMap->Fill(x,y);
    mapBins.push_back(Bin{x, y});
    //mapArray[Xcen[n1]+20][Ycen[n1]+20] = 1;
 
@@ -503,7 +503,7 @@ TH2F* backgroundStudy(std::vector<Bin>& mapBins, std::pair<float, float>& mipPos
  
  /*auto ckovAnglePredicted = houghResponse(photonCandidates,  Hwidth); */
 
- return hSignalAndNoiseMap;
+ //return hSignalAndNoiseMap;
  
 }
 //**********************************************************************************************************************************************************************************************************
@@ -886,7 +886,6 @@ void saveHD5(const std::vector<ParticleInfo>& particleVectorIn)
 	    ParticleUtils::ParticleInfo newParticle;
 	    newParticle.momentum = particle.momentum;
 	    newParticle.mass = particle.mass;
-	    newParticle.energy = particle.energy;
 	    newParticle.refractiveIndex = particle.refractiveIndex;
 	    newParticle.ckov = particle.ckov;
 	    newParticle.filledBins = particle.filledBins;
@@ -902,7 +901,6 @@ void saveHD5(const std::vector<ParticleInfo>& particleVectorIn)
             std::cout << "HD5 reading object "  << ":\n";
             std::cout << "  momentum: " << particle.momentum << "\n";
             std::cout << "  mass: " << particle.mass << "\n";
-            std::cout << "  energy: " << particle.energy << "\n";
             std::cout << "  refractiveIndex: " << particle.refractiveIndex << "\n";
             std::cout << "  ckov: " << particle.ckov << "\n";
 	    std::cout << "  mipPos " << particle.mipPos.first << " " << particle.mipPos.second << std::endl; 
@@ -927,6 +925,9 @@ void saveHD5(const std::vector<ParticleInfo>& particleVectorIn)
 
 void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector) {
     // Create a new TFile
+
+
+    /*
     TFile* outputFile = new TFile("outputFile.root", "RECREATE");
 
     // Create a TTree
@@ -963,21 +964,21 @@ void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector) {
 	//TCanvas* canvas = new TCanvas("canvas", "Map Canvas", 800, 800);
         // Write each histogram to the maps directory with a unique name
         TString histName = TString::Format("hist_%d", histCounter++);
-        TH2F* histCopy = new TH2F(*particle.map);
-        histCopy->SetName(histName);
+        //TH2F* histCopy = new TH2F(*particle.map);
+        //histCopy->SetName(histName);
 
 	// Draw the map on the canvas with a 1:1 aspect ratio
 	//canvas->SetCanvasSize(800, 800);
 	//canvas->SetFixedAspectRatio();
-        histCopy->Write();
-        tree->Fill();
+        //histCopy->Write();
+        //tree->Fill();
     }
 
     // Go back to the top directory
     outputFile->cd();
 
     // Write the TTree to the TFile
-    tree->Write();
+    //tree->Write();
 
     // Close the TFile
     outputFile->Close();
@@ -986,14 +987,14 @@ void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector) {
     // save by class: some problems
     //saveParticleInfoToROOT2(particleVector);
 
-   
+    */   
     saveHD5(particleVector);
     
 
     
     // works good
     Printf("\n\n Reading from file now...");
-    readParticleInfoFromROOT();
+    //readParticleInfoFromROOT();
 }
 
 

@@ -43,7 +43,7 @@ public:
     }
 
     float getRandomMomentum() {
-        return 1 + 4 * momentumDistribution(gen);
+        return 1 + 1.5 * momentumDistribution(gen); // changed from 4
     }
 
     float getRandomMass() {

@@ -15,7 +15,7 @@ public:
     struct ParticleInfo {
         float momentum;
         float mass;
-        float energy;
+        //float energy;
         float refractiveIndex;
         float ckov;
         std::vector<Bin> filledBins;
@@ -45,8 +45,8 @@ public:
             attribute = particleGroup.createAttribute("Mass", PredType::NATIVE_FLOAT, attr_dataspace);
             attribute.write(PredType::NATIVE_FLOAT, &particle.mass);
 
-            attribute = particleGroup.createAttribute("Energy", PredType::NATIVE_FLOAT, attr_dataspace);
-            attribute.write(PredType::NATIVE_FLOAT, &particle.energy);
+            //attribute = particleGroup.createAttribute("Energy", PredType::NATIVE_FLOAT, attr_dataspace);
+            //attribute.write(PredType::NATIVE_FLOAT, &particle.energy);
 
             attribute = particleGroup.createAttribute("RefractiveIndex", PredType::NATIVE_FLOAT, attr_dataspace);
             attribute.write(PredType::NATIVE_FLOAT, &particle.refractiveIndex);
@@ -69,7 +69,7 @@ public:
             binDataset.write(&particle.filledBins[0], binType);
 
 
-	    std::cout << "particleInfo save : mipPos " << particle.mipPos.first << " " << particle.mipPos.second << std::endl; 
+	    //std::cout << "particleInfo save : mipPos " << particle.mipPos.first << " " << particle.mipPos.second << std::endl; 
 
         }
     }
@@ -101,9 +101,9 @@ public:
             float mass;
             attribute.read(PredType::NATIVE_FLOAT, &mass);
 
-            attribute = particleGroup.openAttribute("Energy");
-            float energy;
-            attribute.read(PredType::NATIVE_FLOAT, &energy);
+            //attribute = particleGroup.openAttribute("Energy");
+            //float energy;
+            //attribute.read(PredType::NATIVE_FLOAT, &energy);
 
             attribute = particleGroup.openAttribute("RefractiveIndex");
             float refractiveIndex;
@@ -131,12 +131,12 @@ public:
             ParticleInfo particleInfo;
             particleInfo.momentum = momentum;
             particleInfo.mass = mass;
-            particleInfo.energy = energy;
+            //particleInfo.energy = energy;
             particleInfo.refractiveIndex = refractiveIndex;
             particleInfo.ckov = ckov;
             particleInfo.filledBins = filledBins;
             particleInfo.mipPos = std::make_pair(mipPos[0], mipPos[1]);
-	    std::cout << "particleInfo.mipPos " << particleInfo.mipPos.first << " " << particleInfo.mipPos.second << std::endl; 
+	    //std::cout << "particleInfo.mipPos " << particleInfo.mipPos.first << " " << particleInfo.mipPos.second << std::endl; 
             particleVector.push_back(particleInfo);
         }
 
