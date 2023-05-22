@@ -106,23 +106,23 @@ const float refIndexQuartz = GetQuartzIndexOfRefraction(defaultPhotonEnergy);
 const float  refIndexCH4 = 1.00; 
 
      
-TH2F* backgroundStudy(std::vector<Bin>& mapBins, std::pair<float, float>& mipPos, float ckovActual = 0.5, float occupancy = 0.01, float thetaTrack = 0);
+TH2F* backgroundStudy(std::vector<Bin>& mapBins, std::pair<float, float>& mipPos, float ckovActual = 0.5, float occupancy = 0, float thetaTrack = 0);
 
 const float CH4GapWidth = 8;
 const float  RadiatorWidth = 1.;
 const float  QuartzWindowWidth = 0.5;
 const float  EmissionLenght = RadiatorWidth/2;
 
-    struct ParticleInfo {
-        float momentum;
-        float mass;
-        float energy;
-        float refractiveIndex;
-        float ckov;
-        std::vector<Bin> filledBins;
+struct ParticleInfo {
+	float momentum;
+	float mass;
+	float energy;
+	float refractiveIndex;
+	float ckov;
+	std::vector<Bin> filledBins;
 	    std::pair<float, float> mipPos;
 	TH2F* map;
-    };
+};
 
 
 // mass_Pion_sq mass_Kaon_sq mass_Proton_sq GeV/c^2
@@ -162,6 +162,82 @@ std::vector<Bin> fillMapVector(TH2F* map)
 
 
 TH2F* tHistMass = new TH2F("test", "test; Momentum (GeV/c); Cherenkov Angle, #theta_{ch} (rad)", 5000, 0., 5., 800, 0., 0.8);
+
+
+void testRingRadius()
+{
+  // Creating a canvas for the histograms
+  TCanvas *tRingRadius = new TCanvas("ringRadius", "ringRadius", 1200, 800);
+  tRingRadius->Divide(2, 2);
+
+  gStyle->SetOptStat("ei");
+  // Creating TH2F histograms for each particle class
+  TH2F *hRingRadiusPion = new TH2F("Ring Radii - Pion", "Ring Radii - Pion; Momentum; Ring Radius (cm)",
+                                   5000, 0., 5., 800, 0., 8);
+  TH2F *hRingRadiusKaon = new TH2F("Ring Radii - Kaon", "Ring Radii - Kaon; Momentum; Ring Radius (cm)",
+                                    5000, 0., 5.,800, 0., 8);
+  TH2F *hRingRadiusProton = new TH2F("Ring Radii - Proton", "Ring Radii - Proton; Momentum; Ring Radius (cm)",
+                                     5000, 0., 5.,800, 0., 8);
+  TH2F *hRingRadiusCombined = new TH2F("Ring Radii - Combined", "Ring Radii - Combined; Momentum; Ring Radius (cm)",
+                                     5000, 0., 5., 800, 0., 8);
+
+  rndInt->SetSeed(0);
+
+  for(float p = 0.; p < 5; p+= 0.01){
+    // Calculate refractive index for random photon energy
+    auto photonEnergy = randomEnergy();
+    const auto n = 1.28;
+
+    // Calculate Cherenkov angle for each mass
+    std::array<float, 3> ckovAngles = calcCherenkovHyp(p, n);
+
+    int cntx = 0;
+    for (auto& ckovAngle : ckovAngles) {
+      // Ignore NaN Cherenkov angles
+      if (TMath::IsNaN(ckovAngle)) {
+        Printf("fill values IsNaN ckov %f ", ckovAngle);
+        continue;
+      }
+
+      // Get ring radius for current Cherenkov angle
+      float ringRadius = getRadiusFromCkov(ckovAngle);
+
+      // Add ring radius to respective histograms based on particle class
+      if (cntx == 0) {
+        hRingRadiusPion->Fill(p, ringRadius);
+        hRingRadiusCombined->Fill(p, ringRadius);
+      } else if (cntx == 1) {
+        hRingRadiusKaon->Fill(p, ringRadius);
+        hRingRadiusCombined->Fill(p, ringRadius);
+      } else if (cntx == 2) {
+        hRingRadiusProton->Fill(p, ringRadius);
+        hRingRadiusCombined->Fill(p, ringRadius);
+      }
+
+      Printf("fill values : ckov %f  ringRadius %f | n = %d", ckovAngle, ringRadius, cntx);
+      cntx++;
+    }
+  }
+
+  // Set the statistics options for each histogram
+  hRingRadiusPion->SetStats(kTRUE);
+  hRingRadiusKaon->SetStats(kTRUE);
+  hRingRadiusProton->SetStats(kTRUE);
+  hRingRadiusCombined->SetStats(kTRUE);
+
+  // Draw histograms on the canvas
+  tRingRadius->cd(1);
+  hRingRadiusPion->Draw();
+  tRingRadius->cd(2);
+  hRingRadiusKaon->Draw();
+  tRingRadius->cd(3);
+  hRingRadiusProton->Draw();
+  tRingRadius->cd(4);
+  hRingRadiusCombined->Draw();
+  gStyle->SetOptStat("ei");
+}
+
+
 
 
 void testHyp()
@@ -227,6 +303,12 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0)
 
      std::vector<Bin> mapBins;
      std::pair<float, float> mipPos;
+
+
+     if (ckov < 0.1) {
+       continue;
+     }
+
      const auto& map = backgroundStudy(mapBins, mipPos, ckov, 0.001, thetaTrackInclination); // cherenkov angle mean / occupancy / theta track inclination (perpendicular =)
 
  std::cout << "study ret&:particleInfo.mipPos " << mipPos.first << " " << mipPos.second << std::endl; 
@@ -236,9 +318,7 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0)
   
 
      // make sure the momentum is valid for the given particle (e.g., no - in the square-root in calcCkovFromMass and acos [-1..1])
-    if (ckov == 0) {
-      continue;
-    }
+
      i++;
 
      ParticleInfo particle;
@@ -263,11 +343,13 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0)
 
 
 
-TH2F* backgroundStudy(std::vector<Bin>& mapBins, std::pair<float, float>& mipPos, float ckovActual = 0.5, float occupancy = 0.01, float thetaTrack = 0)   
+TH2F* backgroundStudy(std::vector<Bin>& mapBins, std::pair<float, float>& mipPos, float ckovActual = 0.5, float occupancy = 0, float thetaTrack = 0)   
 {
 
   auto ckovAngle = ckovActual;
 
+
+  
   Int_t NumberOfEvents = 1; Int_t NumberOfClusters = 13; float Hwidth = 15.;
   //testRandomMomentum();
   gStyle->SetOptStat("ei");
@@ -371,10 +453,12 @@ TH2F* backgroundStudy(std::vector<Bin>& mapBins, std::pair<float, float>& mipPos
  mipPos = {xMip, yMip};
 
 
+
+ Printf("Cherenkov Theta = %f numberOfCkovPhotons= %d", ckovAngle, numberOfCkovPhotons);	
  for(Int_t i=0; i < numberOfCkovPhotons; i++) {
    
    // endre std-dev her til å følge prob-dist?!
-   float ckovAnglePhot = rnd->Gaus(ckovAngle, 0.012);		    // random CkovAngle, with 0.012 std-dev
+   float ckovAnglePhot = rnd->Gaus(ckovAngle, 0.02);		    // random CkovAngle, with 0.012 std-dev
    
 
 
@@ -383,6 +467,10 @@ TH2F* backgroundStudy(std::vector<Bin>& mapBins, std::pair<float, float>& mipPos
 
    // trenger eliptisk skewing her:!
    float ringRadius = getRadiusFromCkov(ckovAnglePhot); // R in photon-map
+
+
+   if(ringRadius < 0 ) {
+   } 
    Printf("Cherenkov Photon : Angle = %f Radius = %f", ckovAnglePhot, ringRadius);	
 
 
