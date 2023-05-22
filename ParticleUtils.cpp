@@ -19,6 +19,7 @@ public:
         float refractiveIndex;
         float ckov;
         std::vector<Bin> filledBins;
+	    std::pair<float, float> mipPos;
     };
 
     static void saveParticleInfoToHDF5(std::vector<ParticleInfo>& particleVector) {
@@ -53,6 +54,13 @@ public:
             attribute = particleGroup.createAttribute("Ckov", PredType::NATIVE_FLOAT, attr_dataspace);
             attribute.write(PredType::NATIVE_FLOAT, &particle.ckov);
 
+            // Store MipPos
+            hsize_t mipPosDims[1] = {2};
+            DataSpace mipPosSpace(1, mipPosDims);
+            DataSet mipPosDataset = particleGroup.createDataSet("MipPos", PredType::NATIVE_FLOAT, mipPosSpace);
+            float mipPos[2] = {particle.mipPos.first, particle.mipPos.second};
+            mipPosDataset.write(mipPos, PredType::NATIVE_FLOAT);
+
             // Write filledBins to HDF5 file
             hsize_t binDims[1] = {particle.filledBins.size()};
 
@@ -85,8 +93,6 @@ public:
             float momentum;
             attribute.read(PredType::NATIVE_FLOAT, &momentum);
 
-            std::cout << "Particle " << i << " Momentum: " << momentum << std::endl;
-
             attribute = particleGroup.openAttribute("Mass");
             float mass;
             attribute.read(PredType::NATIVE_FLOAT, &mass);
@@ -103,6 +109,11 @@ public:
             float ckov;
             attribute.read(PredType::NATIVE_FLOAT, &ckov);
 
+            // Read MipPos
+            DataSet mipPosDataset = particleGroup.openDataSet("MipPos");
+            float mipPos[2];
+            mipPosDataset.read(mipPos, PredType::NATIVE_FLOAT);
+
             // Read filledBins
             DataSet binDataset = particleGroup.openDataSet("FilledBins");
             DataSpace binDataSpace = binDataset.getSpace();
@@ -112,11 +123,6 @@ public:
             std::vector<Bin> filledBins(binDims[0]);
             binDataset.read(&filledBins[0], binType);
 
-            std::cout << "Particle " << i << " FilledBins: \n";
-            for (auto& bin : filledBins) {
-                std::cout << "X: " << bin.x << ", Y: " << bin.y << '\n';
-            }
-
             // Construct a ParticleInfo and add it to the vector
             ParticleInfo particleInfo;
             particleInfo.momentum = momentum;
@@ -125,9 +131,12 @@ public:
             particleInfo.refractiveIndex = refractiveIndex;
             particleInfo.ckov = ckov;
             particleInfo.filledBins = filledBins;
+            particleInfo.mipPos = std::make_pair(mipPos[0], mipPos[1]);
+	    std::cout << "particleInfo.mipPos " << particleInfo.mipPos.first << " " << particleInfo.mipPos.second << std::endl; 
             particleVector.push_back(particleInfo);
         }
 
         return particleVector;
     }
 };
+

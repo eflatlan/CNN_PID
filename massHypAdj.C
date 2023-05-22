@@ -53,46 +53,16 @@ static constexpr float nm2eV = 1239.842609;
 
 
 
-class ParticleInfo : public TObject {
-public:
-    // Your data members here
-    float momentum;
-    float mass;
-    float energy;
-    float refractiveIndex;
-    float ckov;
-    TH2F* map;
-    std::vector<Bin> filledBins;
-    ParticleInfo() {
-        // Initialize your data members
-    }
-
-    virtual ~ParticleInfo() {}
-
-    ClassDef(ParticleInfo,1) // For ROOT dictionary
-};
-
-
-/*
-struct ParticleInfo {
-    float momentum;
-    float mass;
-    float energy;
-    float refractiveIndex;
-    float ckov;
-    TH2F* map;
-}; */ 
 
 
 float arrW[750]= {0.};
 
 
-using namespace o2;
-using namespace o2::hmpid;
+//using namespace o2;
+//using namespace o2::hmpid;
 
 #include <HMPIDBase/Param.h>
-void setStyleInd(TH2* th1f, float ratio = 1.2);
-void setStyleInd(TH1* th1f, float ratio = 1.2);
+
 
 
 
@@ -135,18 +105,24 @@ const float refIndexFreon = GetFreonIndexOfRefraction(defaultPhotonEnergy);
 const float refIndexQuartz = GetQuartzIndexOfRefraction(defaultPhotonEnergy);
 const float  refIndexCH4 = 1.00; 
 
-
-TH2F* backgroundStudy(std::vector<Bin>& mapBins, float ckovActual = 0.5, float occupancy = 0.01, float thetaTrack = 0);
+     
+TH2F* backgroundStudy(std::vector<Bin>& mapBins, std::pair<float, float>& mipPos, float ckovActual = 0.5, float occupancy = 0.01, float thetaTrack = 0);
 
 const float CH4GapWidth = 8;
 const float  RadiatorWidth = 1.;
 const float  QuartzWindowWidth = 0.5;
 const float  EmissionLenght = RadiatorWidth/2;
 
-
-TH1* getMaxInRange(TH1* th1, float& up, float mid, float width);
-float getMaxInRange(TH1* th1, int start, int width);
-float getMaxInRange(TH1* th1, float mid, float width);
+    struct ParticleInfo {
+        float momentum;
+        float mass;
+        float energy;
+        float refractiveIndex;
+        float ckov;
+        std::vector<Bin> filledBins;
+	    std::pair<float, float> mipPos;
+	TH2F* map;
+    };
 
 
 // mass_Pion_sq mass_Kaon_sq mass_Proton_sq GeV/c^2
@@ -183,20 +159,7 @@ std::vector<Bin> fillMapVector(TH2F* map)
 }
 
 
-float randomMomentum()
-{
-  return 1+4*rndInt->Gaus(0.5, 0.25);
-}
 
-
-// create a number of random particles 
-/*float[] randomParticles(int numParticles)
-{
-  DataSaver dataSaver(Form("RandomParticles%3d.root",numParticles));
-
-  float[] randomMomentum = 
-
-}*/
 
 TH2F* tHistMass = new TH2F("test", "test; Momentum (GeV/c); Cherenkov Angle, #theta_{ch} (rad)", 5000, 0., 5., 800, 0., 0.8);
 
@@ -263,7 +226,10 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0)
      // get the map with a given occupancy and ckov angle calculated 
 
      std::vector<Bin> mapBins;
-     const auto& map = backgroundStudy(mapBins, ckov, 0.001, thetaTrackInclination); // cherenkov angle mean / occupancy / theta track inclination (perpendicular =)
+     std::pair<float, float> mipPos;
+     const auto& map = backgroundStudy(mapBins, mipPos, ckov, 0.001, thetaTrackInclination); // cherenkov angle mean / occupancy / theta track inclination (perpendicular =)
+
+ std::cout << "study ret&:particleInfo.mipPos " << mipPos.first << " " << mipPos.second << std::endl; 
 
      auto filledBins = fillMapVector(map);
 
@@ -282,22 +248,22 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0)
      particle.energy = randomValue.energy;
      particle.refractiveIndex = randomValue.refractiveIndex;
      particle.ckov = ckov;
-     particle.map = map;  
+     particle.map = map; 
+     particle.mipPos = mipPos;
      particleVector.emplace_back(particle);
 
      Printf("CkovAngle %f Mass %f RefIndex %f Momentum %f | Num Entries in Map : %d", ckov, particle.mass, particle.refractiveIndex, particle.momentum, particle.filledBins.size()); 
      //map->SaveAs(Form("map%d.root", i));
   }
 
-  // save object
-  
+
   saveParticleInfoToROOT(particleVector);
 }
 
 
 
 
-TH2F* backgroundStudy(std::vector<Bin>& mapBins, float ckovActual = 0.5, float occupancy = 0.01, float thetaTrack = 0)   
+TH2F* backgroundStudy(std::vector<Bin>& mapBins, std::pair<float, float>& mipPos, float ckovActual = 0.5, float occupancy = 0.01, float thetaTrack = 0)   
 {
 
   auto ckovAngle = ckovActual;
@@ -334,7 +300,7 @@ TH2F* backgroundStudy(std::vector<Bin>& mapBins, float ckovActual = 0.5, float o
 
   //TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",1000,-25.,25.,1000,-25.,25.);
 
-  TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160,0.,159.,144,0,143);
+  TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
 
   float mapArray[40][40]{};
   
@@ -382,9 +348,6 @@ TH2F* backgroundStudy(std::vector<Bin>& mapBins, float ckovActual = 0.5, float o
       mapBins.push_back(Bin{Xcen[n1], Ycen[n1]});
       //mapArray[Xcen[n1]+20][Ycen[n1]+20] = 1;
       //hSignalAndNoiseMap2->Fill(Xcen[n1], Ycen[n1]);
-
-
-     
       
    }
 	  
@@ -401,8 +364,12 @@ TH2F* backgroundStudy(std::vector<Bin>& mapBins, float ckovActual = 0.5, float o
 
 
  // place the MIP in x[10..150] and y[10..134]
- const float xMip = static_cast<float>((160-10)*(1*gRandom->Rndm())-10);
- const float yMip = static_cast<float>((144-10)*(1*gRandom->Rndm())-10);
+ const float xMip = static_cast<float>((160-20)*(1*gRandom->Rndm(1))+10);
+ const float yMip = static_cast<float>((144-20)*(1*gRandom->Rndm(1))+10);
+
+
+ mipPos = {xMip, yMip};
+
 
  for(Int_t i=0; i < numberOfCkovPhotons; i++) {
    
@@ -496,325 +463,7 @@ float getRadiusFromCkov(float ckovAngle)
 } 
 
 
-/*
-*/
 
-float /*std::array<TH1D*, 3>*/ houghResponse(std::vector<float>& photonCandidates, float fWindowWidth)
-{
-
-  // ckovMassHyp applies constraints!!
-  
-  auto l0 = ckovMassHyp[0] - ckovConstraintWhidth;
-  auto u0 = ckovMassHyp[0] + ckovConstraintWhidth;
-  auto l1 = ckovMassHyp[1] - ckovConstraintWhidth;
-  auto u1 = ckovMassHyp[1] + ckovConstraintWhidth;
-  auto l2 = ckovMassHyp[2] - ckovConstraintWhidth;
-  auto u2 = ckovMassHyp[2] + ckovConstraintWhidth;
-  Printf("Regions %f %f || %f %f || %f %f  ", l0, u0, l1, u1, l2, u2);
-
-  
-  
-  /* ef : changed from this:
-  // TH1D *resultw = new TH1D("resultw","resultw"       ,nChannels,0,kThetaMax);
-  // TH1D *phots   = new TH1D("Rphot"  ,"phots"         ,nChannels,0,kThetaMax);
-  // TH1D *photsw  = new TH1D("RphotWeighted" ,"photsw" ,nChannels,0,kThetaMax); */
-
-  int nBin = (int)(kThetaMax / fDTheta);
-
-
-  // ef : nCorrBand w the previous setting led to the bin1 = 1 bin2 = 750
-  int nCorrBand = (int)(fWindowWidth / (2 /** fDTheta*/));
-
-  Printf("nBin %d nCorrBand %d", nBin, nCorrBand);
-  int binMax, sumMax = 0;
-  std::vector<float> okAngles;
-  okAngles.clear();
-  for (const auto& angle : photonCandidates) { // photon cadidates loop
-
-    if (angle < 0 || angle > kThetaMax)
-      continue;
-
-    // ef : check if angle in ckovMassHyp:
-    if (angle < l2 || angle > u0)
-      continue;
-
-
-    phots->Fill(angle);
-
-    int bin = (int)(0.5 + angle / (fDTheta));
-    float weight = 1.;
-    if (true) {
-      float lowerlimit = ((float)bin) * fDTheta - 0.5 * fDTheta;
-      float upperlimit = ((float)bin) * fDTheta + 0.5 * fDTheta;
-
-
-      float rLow = getRadiusFromCkov(lowerlimit);
-      float areaLow =  0.5*TMath::Pi()*TMath::Sq(rLow);// calcRingGeom(lowerlimit, 2);
- 
-      float rHigh = getRadiusFromCkov(upperlimit);
-      float areaHigh =  0.5*TMath::Pi()*TMath::Sq(rHigh);// calcRingGeom(lowerlimit, 2);
-      //Printf("Areas : areaLow %f, areaHigh %f ", areaLow, areaHigh);
-
-      float diffArea = areaHigh - areaLow;
-      
-      if (diffArea > 0)
-        weight = 1. / diffArea;
-    }
-    okAngles.emplace_back(angle);
-    photsw->Fill(angle, weight);
-
-    int nnn = static_cast<int>(angle*1000);
-    arrW[nnn] += weight;
-    //fPhotWei.emplace_back(weight); ef: do i need this?
-  } // photon candidates loop
-
-  for (int i = 1; i <= nBin; i++) {
-    int bin1 = i - nCorrBand;
-    int bin2 = i + nCorrBand;
-    if (bin1 < 1)
-      bin1 = 1;
-    if (bin2 > nBin)
-      bin2 = nBin;
-    float sumPhots = phots->Integral(bin1, bin2);
-
-    /*Printf("bin1 %d ; bin2 %d; sumPhots %f ", bin1, bin2, sumPhots);
-    if (sumPhots < 3)
-      continue; // if less then 3 photons don't trust to this ring*/
-    float sumPhotsw = photsw->Integral(bin1, bin2);
-    if ((float)((i /*+ 0.5*/) * fDTheta) > 0.7)
-      continue;
-
-    if (sumPhotsw > sumMax){
-      binMax = i;
-      sumMax = sumPhotsw;
-      
-    }
-    resultw->Fill((float)((i /*+ 0.5*/) * fDTheta), sumPhotsw);
-  }
-  // evaluate the "BEST" theta ckov as the maximum value of histogramm
-
-  float* pVec = (float*)resultw->GetArray();
-  int locMax = TMath::LocMax(nBin, pVec);
-
-
-  float smtest = 0; int ent=0;
-
-  for(const auto& ok:okAngles){
-    if (TMath::Abs(ok*1000-locMax) > nCorrBand)
-      continue;     
-    smtest+=ok; ent++;	
-  }
-  auto avgTest = smtest/ent;
-  Printf("avgTest %f ent %d", avgTest, ent);
-  
-
-
-
-  Printf("pVec %f locMax %d", *pVec, locMax);
-  Printf("sumMax %d, binMax %d", sumMax, binMax);
-//photsw
-  Printf("Entries : resultw %f photsw %f phots %f", resultw->GetEntries(), photsw->GetEntries(), phots->GetEntries());
-  Printf("Max resultw %f photsw %f phots %f",  resultw->GetMaximum(10000.), photsw->GetMaximum(10000.), phots->GetMaximum(10000.));
-  Printf("Min resultw %f photsw %f phots %f",  resultw->GetMinimum(-1.), photsw->GetMinimum(-1.), phots->GetMinimum(-1.));
-
-  // ef: not this method, raw-pointers should not be used with new/delete-keywords
-  //     smart-pointers are deleted when the fcuntion exits scope :
-  // delete phots;delete photsw;delete resultw; // Reset and delete objects
-
-  
-  float ckovTrack = static_cast<float>(locMax * fDTheta + 0.5 * fDTheta); // final most probable track theta ckov
-  ckovTrackOut = ckovTrack;
-
-
-  float sumCkov = 0.;
-  int entries = 0;
-  float ckovSliding = phots->Integral(locMax-nCorrBand, locMax+nCorrBand);
-
-  //binMax
-  //locMax
-  for(int i = locMax-nCorrBand; i < locMax+nCorrBand; i++)
-  {
-
-     auto val = phots->GetBinContent(i);
-     auto w = photsw->GetBinContent(i);
-     //Printf("Ckov Photons : Bin %d, Value %f; Weight %f", i, val,w);
-
-     if(val > 0.){
-       sumCkov += fDTheta*i;//+0.5*fDTheta;
-       entries++;
-     }
-  }
-
-  const float avgCkov = sumCkov/static_cast<float>(entries);
-  ckovTrack = avgCkov;
-  Printf("Avg Ckov = %f", avgCkov);
-
-  Printf("sumCkov = %f || ckovSliding = %f", sumCkov,ckovSliding);
-
-  TCanvas *houghCanvas = new TCanvas("Hough Canvas","Hough Canvas", 800, 800);
-  houghCanvas->Divide(2,2);
-
-  houghCanvas->cd(1);
-  auto hThetaCl2 = static_cast<TH1*>(hTheta->Clone());
-  setStyleInd(hThetaCl2);
-  hThetaCl2->Draw();
-
-  houghCanvas->cd(2);
-  setStyleInd(phots);
-  phots->Draw();
-  TLatex lt2;
-  lt2.DrawLatexNDC(.15, .85, Form("Window #eta_{c} :"));
-  lt2.DrawLatexNDC(.16, .775, Form("Width = %.0f [mRad]", fWindowWidth));
-  lt2.DrawLatexNDC(.16, .7, Form("Entries = %d", entries));
-
-  auto up = getMaxInRange(phots, ckovTrack, fWindowWidth);
-  TLine* l3 = new TLine(ckovTrack-(fWindowWidth/2)*0.001, 0, ckovTrack-(fWindowWidth/2)*0.001, up);
-  TLine* l4 = new TLine(ckovTrack+(fWindowWidth/2)*0.001, 0, ckovTrack+(fWindowWidth/2)*0.001, up);
-  TLine* l5 = new TLine(ckovTrack-(fWindowWidth/2)*0.001,up, ckovTrack+(fWindowWidth/2)*0.001, up);
-  l3->SetLineColor(kGreen);  l4->SetLineColor(kGreen);l5->SetLineColor(kGreen);
-  l3->SetLineWidth(2);    l4->SetLineWidth(2);l5->SetLineWidth(2);
-  l3->Draw();  l4->Draw();l5->Draw();
-
-
-  Printf("TBox Max %f ", photsw->GetBinContent(phots->GetMaximumBin()));
-  Printf("TBox MaxBin %f ", phots->GetMaximumBin());
-
-
-  int binBox = phots->GetYaxis()->GetLast();
-  int yMax = phots->GetYaxis()->GetXmax();
-  Printf("TBox binY %d ", binBox);
-    Printf("TBox maxY %d ", yMax);
-
-  TBox* box = new TBox(/*ckovTrack*/ckovTrack-nCorrBand*0.001,0.,/*ckovTrack*/ckovTrack+nCorrBand*0.001,phots->GetBinContent(ckovTrack*1000/*photsw->GetMaximumBin()*/));
-  box->SetLineColor(kGreen);
-  box->SetFillStyle(0);  
-  box->SetLineWidth(2);  
-
-
-  houghCanvas->cd(3);
-  setStyleInd(photsw);
-  float up_ = 0;
-  auto th = getMaxInRange(photsw, up_, ckovTrack, fWindowWidth);
-  th->Draw();
-
-
-
-
-  auto l3c = static_cast<TLine*>(l3->Clone());  auto l4c = static_cast<TLine*>(l4->Clone());  auto l5c = static_cast<TLine*>(l5->Clone());
-  l5c->SetY1(up_);
-  l3c->SetY2(up_); l4c->SetY2(up_);l5c->SetY2(up_);
-  l3c->Draw();  l4c->Draw();l5c->Draw();
-
-
-
-  auto pad4 = static_cast<TPad*>(houghCanvas->cd(4));
-  pad4->PaintText(.2, .9, Form("Track Cherenkov"));
-  pad4->PaintText(.2, .8, Form("Actual Value = %.3f", meanCherenkovAngle));
-  pad4->PaintText(.2, .7, Form("Predicted Value = %.3f", ckovTrack));
-  pad4->PaintTextNDC(.2, .9, Form("Track Cherenkov"));
-  pad4->PaintTextNDC(.2, .8, Form("Actual Value = %.3f", meanCherenkovAngle));
-  pad4->PaintTextNDC(.2, .7, Form("Predicted Value = %.3f", ckovTrack));
-  
-  gStyle->SetPaintTextFormat("1.3f");
-  setStyleInd(resultw);
-  resultw->Draw();
-
-
-  TLine* l = new TLine(/*ckovTrack*/ckovTrack, 0, /*ckovTrack*/ckovTrack, resultw->GetBinContent(locMax)*2);
-
-  //TLine* l = new TLine(resultw->GetMaximumBin(), 0., resultw->GetMaximumBin(), resultw->GetBinContent(resultw->GetMaximumBin()));
-  l->SetLineColor(kGreen);
-  l->SetLineWidth(2);  
-  l->Draw();
-
-   
-  Printf("ckovTrack = %f", ckovTrack);
-  return ckovTrack;
-
-}
-
-
-
-
-void setStyleInd(TH1* th1f, float ratio = 1.2)
-{
-  th1f->SetTitleSize((th1f->GetTitleSize("x")*ratio), "xy");
-  th1f->SetLabelSize((th1f->GetLabelSize("x")*ratio), "xy");
-}
-
-
-/*
-void setPad(TPad*, float l, float, r, float t, float b)
-{
-  th1f->SetPadMaring((th1f->GetTitleSize("x")*ratio), "xy");
-}*/
-
-
-void setStyleInd(TH2* th1f, float ratio)
-{
-  th1f->SetTitleSize((th1f->GetTitleSize("x")*ratio), "xy");
-  th1f->SetLabelSize((th1f->GetLabelSize("x")*ratio), "xy");
-}
-
-
-
-
-
-float getMaxInRange(TH1* th1, float mid, float width)
-{
-
-
-  //Printf("mid %f || width %f ", mid, width);
-  float max = 1.0;
-
-  const int startBin = static_cast<int>(mid*1000);
-  const int nBin2 = static_cast<int>(width/2);
-  //Printf("startBin %d || endBin %d ", startBin-nBin2, startBin+nBin2);
-
-
-  int start = static_cast<int>(startBin-nBin2);
-  int end = static_cast<int>(startBin+nBin2);
-  for(int i = start; i < end; i++){
-    auto binEnt = th1->GetBinContent(i);
-    //if (binEnt > max) max = binEnt;
-    //Printf("ent i %d || val %f ", i, binEnt);
-  }
-  return max;
-}
-
-TH1* getMaxInRange(TH1* th1, float& up, float mid, float width)
-{
-  TH1* thOut = static_cast<TH1*>(th1);
-
-  //Printf("mid %f || width %f ", mid, width);
-  float max = 1.0;
-
-  const int startBin = static_cast<int>(mid*1000);
-  const int nBin2 = static_cast<int>(width/2);
-  //Printf("startBin %d || endBin %d ", startBin-nBin2, startBin+nBin2);
-
-
-  int start = static_cast<int>(startBin-nBin2);
-  int end = static_cast<int>(startBin+nBin2);
-
-  float r = 0;
-  for(const auto& i : arrW){
-    if (i > r) 
-      r = i;
-  }
-  
-  for(int i = start; i < end; i++){
-    auto binEnt = th1->GetBinContent(i);
-    auto binent = arrW[i-1];
-    thOut->SetBinContent(binent, i);
-    //if (binEnt > max) max = binent;
-    //Printf("ent i %d || val %f || val2 %f", i, binEnt, binent);
-
-  }
-  thOut->GetXaxis()->SetRangeUser(0., r);
-  up = max;
-  return thOut;
-}
 
 // mass_Pion_sq mass_Kaon_sq mass_Proton_sq
 std::array<float, 3> calcCherenkovHyp(float p, float n)
@@ -1153,7 +802,7 @@ void saveHD5(const std::vector<ParticleInfo>& particleVectorIn)
 	    newParticle.refractiveIndex = particle.refractiveIndex;
 	    newParticle.ckov = particle.ckov;
 	    newParticle.filledBins = particle.filledBins;
-
+	    newParticle.mipPos = particle.mipPos;
 	    
 	    // Assuming the map is a TH2F*, convert it to a 2D array
 	    //newParticle.map = ParticleUtils::convertTH2FTo2DArray(particle.map);
@@ -1168,7 +817,7 @@ void saveHD5(const std::vector<ParticleInfo>& particleVectorIn)
             std::cout << "  energy: " << particle.energy << "\n";
             std::cout << "  refractiveIndex: " << particle.refractiveIndex << "\n";
             std::cout << "  ckov: " << particle.ckov << "\n";
-
+	    std::cout << "  mipPos " << particle.mipPos.first << " " << particle.mipPos.second << std::endl; 
        
 	}
 
