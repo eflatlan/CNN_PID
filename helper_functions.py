@@ -1,7 +1,7 @@
+from __future__ import print_function
 import numpy as np
 import matplotlib.pyplot as plt
 from numpy.linalg import norm
-from __future__ import print_function
 import os
 import h5py
 import tensorflow as tf
