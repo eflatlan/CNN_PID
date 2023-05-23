@@ -42,7 +42,7 @@ def print_points(filled_bins_array = None, map_array = None, mip_position_array 
 
 
 
-def plot_maps(filled_bins_array = None, map_array = None, mip_position_array = None, X_momentum, X_refractive_index, X_ckov, percentage_to_plot = 5)
+def plot_maps(filled_bins_array=None, map_array=None, mip_position_array=None, X_momentum=None, X_refractive_index=None, X_ckov=None, percentage_to_plot=5):
   """
   Args : filled_bins_array : array that holds the vectors of filled pads 
          map_array : 2d  map with a determined resolution (the points in the filled_bins_array element, just restricted by the resolution)
