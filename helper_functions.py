@@ -1,3 +1,10 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from numpy.linalg import norm
+from __future__ import print_function
+import os
+import h5py
+import tensorflow as tf
 
 # to check the impact of resolution in the 2d-map; 
 # print the difference between the filledBins vector versus the map (map is restricted by resolution)
@@ -24,7 +31,7 @@ def print_points(filled_bins_array = None, map_array = None, mip_position_array 
             for x in range(map.shape[2]):
                 if map[i, y, x] == 1:
                     point = (x, y)
-                    distance = np.linalg.norm(np.array(point) - particle_vector[i].mip_position)
+                    distance = np.linalg.norm(np.array(point) - mip_pos)
                     distances_map.append(distance)
         
         
@@ -78,7 +85,9 @@ def plot_maps(filled_bins_array=None, map_array=None, mip_position_array=None, X
       ax.plot(mip_position[0], mip_position[1], 'ro')
 
       # Set the title with the information
-      ax.set_title(f"Mass: {mass_category}, CKOV: {ckov}, MIP Position: {mip_position}, Momentum: {momentum},  refractive_index: {refractive_index}")
+      #ax.set_title(f"Mass: {mass_category}, CKOV: {ckov}, MIP Position: {mip_position}, Momentum: {momentum},  refractive_index: {refractive_index}")
+      ax.set_title(f"CKOV: {ckov}, MIP Position: {mip_position}, Momentum: {momentum},  refractive_index: {refractive_index}")
+
       ax.axis('off')
 
   # Adjust the spacing between subplots
