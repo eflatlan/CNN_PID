@@ -1,3 +1,4 @@
+#@title Default title text
 from __future__ import print_function
 import numpy as np
 import matplotlib.pyplot as plt
@@ -8,17 +9,26 @@ import tensorflow as tf
 
 # to check the impact of resolution in the 2d-map; 
 # print the difference between the filledBins vector versus the map (map is restricted by resolution)
-def print_points(filled_bins_array = None, map_array = None, mip_position_array = None):
+def print_points(filled_bins_array = None, map_array = None, mip_position_array = None, resolution = 10):
 
     length = map_array.shape[0]
     distances_bins_list = []
     distances_map_list = []
 
+    print(f"filled_bins_array shape = {filled_bins_array.shape}")
+    print(f"map_array shape = {map_array.shape}")
+    print(f"mip_position_array shape = {mip_position_array.shape}")
+
+
     for i in range (1, length):
-        
-        filled_bins = filled_bins_array[i, :]
-        map = map_array[i, :,:]
-        mip_pos = mip_position_array[i, :]
+
+        filled_bins = np.array(filled_bins_array[i])
+        map = np.array(map_array[i, :,:])
+        mip_pos = np.array(mip_position_array[i, :])
+
+        #print(f"filled_bins shape = {filled_bins.shape}")
+        #print(f"map shape = {map.shape}")
+        #print(f"mip_pos shape = {mip_pos.shape}")
 
         _mip_position = []
         #_mip_position.append(mip_position_array[])
@@ -27,11 +37,11 @@ def print_points(filled_bins_array = None, map_array = None, mip_position_array 
         distances_bins = [norm(np.array(pos) - mip_pos) for pos in filled_bins]
 
         distances_map = []
-        for y in range(map.shape[1]):
-            for x in range(map.shape[2]):
-                if map[i, y, x] == 1:
+        for y in range(map.shape[0]):
+            for x in range(map.shape[1]):
+                if map[y, x] == 1:
                     point = (x, y)
-                    distance = np.linalg.norm(np.array(point) - mip_pos)
+                    distance = np.linalg.norm(np.array(point) - mip_pos*resolution)
                     distances_map.append(distance)
         
         
@@ -43,13 +53,13 @@ def print_points(filled_bins_array = None, map_array = None, mip_position_array 
     # Print the distances for each element in map_data_list
     print(f"Element {i+1} distances:")
     for j, (distances_bins, distances_map) in enumerate(zip(distances_bins_list, distances_map_list)):
-        print(f"  Point {j+1}: Distance bins: {distances_bins}, Distance map: {distances_map}")
+        print(f"  Point {j+1}: Distance bins: {distances_bins}\n, Distance map: {distances_map}")
     print()
 
 
 
 
-def plot_maps(filled_bins_array=None, map_array=None, mip_position_array=None, X_momentum=None, X_refractive_index=None, X_ckov=None, percentage_to_plot=5):
+def plot_maps(filled_bins_array=None, map_array=None, mip_position_array=None, X_momentum=None, X_refractive_index=None, X_ckov=None, percentage_to_plot=5, resolution = 10):
   """
   Args : filled_bins_array : array that holds the vectors of filled pads 
          map_array : 2d  map with a determined resolution (the points in the filled_bins_array element, just restricted by the resolution)
@@ -71,18 +81,18 @@ def plot_maps(filled_bins_array=None, map_array=None, mip_position_array=None, X
   # Iterate over the samples and plot each map with information
   for i, ax in enumerate(axes):
       # Get the map and corresponding information
-      map_data = map_array[start_index + i, :, :, 0]
+      map_data = map_array[start_index + i, :, :]
       #mass_category = particle_vector[start_index + i].mass_category
-      ckov = X_ckov[start_index + i, :]
-      mip_position = mip_position_array[start_index + i,:]
-      momentum = X_momentum[start_index + i, :]
-      refractive_index = X_refractive_index[start_index + i,:]
+      ckov = X_ckov[start_index + i]
+      mip_position = mip_position_array[start_index + i]
+      momentum = X_momentum[start_index + i]
+      refractive_index = X_refractive_index[start_index + i]
 
       # Plot the map
       ax.imshow(map_data, cmap='gray')
 
       # Add a red dot at the MIP position
-      ax.plot(mip_position[0], mip_position[1], 'ro')
+      ax.plot(mip_position[0]*resolution, mip_position[1]*resolution, 'ro')
 
       # Set the title with the information
       #ax.set_title(f"Mass: {mass_category}, CKOV: {ckov}, MIP Position: {mip_position}, Momentum: {momentum},  refractive_index: {refractive_index}")
