@@ -234,7 +234,7 @@ def plot5(X_test_map, particle_vector):
 
 
 
-  def create_lr_scheduler(num_epochs = 10):
+def create_lr_scheduler(num_epochs = 10):
 
   start_lr = 0.1
   end_lr = 5e-6
@@ -261,7 +261,6 @@ def plot_lr(num_epochs = 10, history = None):
 
 
 def create_lr_scheduler(num_epochs = 10):
-
   start_lr = 0.1
   end_lr = 5e-6
   exp_decay = -np.log(end_lr/start_lr) / num_epochs # Calculate decay rate based on start and end learning rate
@@ -350,6 +349,8 @@ def plot_maps(filled_bins_array=None, map_array=None, mip_position_array=None, X
 
   # Show the plot
   plt.show()
+    
+    
 def create_circular_mask(center, size, mean_radius, std):
     H, W = size
     Y, X = np.ogrid[:H, :W]
