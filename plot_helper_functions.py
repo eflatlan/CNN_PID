@@ -5,9 +5,9 @@ from numpy.linalg import norm
 import os
 import h5py
 import tensorflow as tf
-def plot_training_history(self, history=None, vector_of_weights=None, vector_of_weights2=None, dropout=None, y_pred_train=None, y_pred_test=None, y_train_true=None, y_test_true=None, relu_alpha = None):
+def plot_training_history(history=None, vector_of_weights=None, vector_of_weights2=None, dropout=None, y_pred_train=None, y_pred_test=None, y_train_true=None, y_test_true=None, relu_alpha = None):
+    try:       
         fig, axs = plt.subplots(3, 2, figsize=(16, 18))
-
         # Plot Training and Validation Loss
         axs[0, 0].plot(history.history["loss"], label="Train Loss")
         axs[0, 0].plot(history.history["val_loss"], label="Validation Loss")
@@ -84,7 +84,8 @@ def plot_training_history(self, history=None, vector_of_weights=None, vector_of_
         plt.tight_layout()
         plt.show()
         print(f'Weights: {vector_of_weights}\nWeights2: {vector_of_weights2}\nDropout: {dropout}\nLR alpha = {relu_alpha}')
-
+    except Exception as e:
+        print(f"plot_training_history failed with {e}")
 
 def plot_dist2mip_histograms(X_test_dist2mip = None, resolution = None):
         
