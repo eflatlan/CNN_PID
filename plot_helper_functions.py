@@ -2,7 +2,8 @@ from __future__ import print_function
 import numpy as np
 
 
-from sklearn.metrics import precision_recall_curve
+
+from sklearn.metrics import precision_recall_curve, confusion_matrix
 from sklearn.preprocessing import label_binarize
 import matplotlib.pyplot as plt
 from itertools import cycle
