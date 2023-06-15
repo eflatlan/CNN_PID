@@ -450,6 +450,7 @@ Printf("bgstudy segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP)
 
 
   Printf(" backgroundStudy : enter  numberOfCkovPhotons loop"); 
+  Printf(" backgroundStudy : numberOfCkovPhotons %d", numberOfCkovPhotons); 
  std::vector<std::pair<double, double>> cherenkovPhotons(numberOfCkovPhotons);
  for(Int_t i=0; i < numberOfCkovPhotons; i++) {
    
@@ -466,8 +467,8 @@ Printf("bgstudy segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP)
   Printf(" backgroundStudy : enter  ckovTools.makeCkovPhoton"); 	 
    const auto& ckovPhotonCoordinates = ckovTools.makeCkovPhoton(phiL, etaC);
 
-   cherenkovPhotons.push_back(ckovPhotonCoordinates);
-	 
+   cherenkovPhotons[i] = ckovPhotonCoordinates;
+   Printf(" backgroundStudy : ckovTools.makeCkovPhoton returned x %f y%f", ckovPhotonCoordinates.first, ckovPhotonCoordinates.second); 	 
 	 
    // old code, just a circle:
    // hThetaCh->Fill(ckovAngle)
@@ -495,17 +496,19 @@ Printf("bgstudy segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP)
 	
   // local coordinates are transformed to global here : 
   // also population of noise is done here
-  
 
-
+ Printf(" backgroundStudy : num cherenkovPhotons %f", cherenkovPhotons.size()); 
   typedef std::vector<std::pair<double, double>> MapType;
   MapType temp;
+
+ 
 
   Printf(" backgroundStudy : enter  ckovTools.segment"); 	 
   const auto photonCandidatesCoords = ckovTools.segment(cherenkovPhotons, temp); // temp --> mapBins
 
 
-  Printf(" backgroundStudy : num photonCandidatesCoords %f", photonCandidatesCoords.size()); 	 
+
+  Printf(" backgroundStudy : num photonCandidatesCoords %d", photonCandidatesCoords.size()); 	 
   for(const auto& photons : photonCandidatesCoords){
     Printf("photon x %f y %f", photons.first, photons.second);
     hSignalAndNoiseMap->Fill(photons.first, photons.second);
