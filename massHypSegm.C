@@ -284,10 +284,13 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0, do
      auto filledBins = fillMapVector(map); */
     
      // new : fill instead a vector with x, y pairs
-     float xP, yP, thetaP, phiP; 
+     float xP, yP, thetaP, phiP;
+
+
+     Printf(" enter backgroundStudy"); 
      const auto& filledBins = backgroundStudy(mapBins, ckov, occupancy, thetaTrackInclination, photonEnergy, xP, yP, thetaP, phiP, ckovHyps); // cherenkov angle mean / occupancy / theta track inclination (perpendicular =)
      
-     
+          Printf(" exit backgroundStudy"); 
 
     
       // TODO : hSignalAndNoiseMap just placeholder, make instead a TH2F from the filledBins?
@@ -426,7 +429,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
  // MIP polar angle:
  // a.o.n; only between +- 5 deg
- thetaP = static_cast<float>((5/180*3.149265)*(1-2*gRandom->Rndm(1)));
+ thetaP = static_cast<float>(0.1*(1-2*gRandom->Rndm(1)));
 
  // rndm value in ranfe 0.4, 0.7?
  TRandom2* rnd = new TRandom2(1);
@@ -434,16 +437,19 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
 
  // place the impact point in x[10..150] and y[10..134]
- xP = static_cast<float>((160-10)*(1*gRandom->Rndm())-10);
- yP = static_cast<float>((144-10)*(1*gRandom->Rndm())-10);
+ xP = static_cast<float>((160-10)*(1*gRandom->Rndm())+10);
+ yP = static_cast<float>((144-10)*(1*gRandom->Rndm())+10);
 
-
+Printf("bgstudy segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP);
 
  // make instance of CkovTools
 
  // ckovHyps, nF, nQ, nG,
  CkovTools ckovTools(xP, yP, thetaP, phiP, ckovHyps, nF, nQ, nG, occupancy);
 	
+
+
+  Printf(" backgroundStudy : enter  numberOfCkovPhotons loop"); 
  std::vector<std::pair<double, double>> cherenkovPhotons(numberOfCkovPhotons);
  for(Int_t i=0; i < numberOfCkovPhotons; i++) {
    
@@ -456,7 +462,8 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 	 
    // populate map with cherenkov photon
 
-   // later change below fcn to take valeus from setPhoton:	 
+   // later change below fcn to take valeus from setPhoton:
+  Printf(" backgroundStudy : enter  ckovTools.makeCkovPhoton"); 	 
    const auto& ckovPhotonCoordinates = ckovTools.makeCkovPhoton(phiL, etaC);
 
    cherenkovPhotons.push_back(ckovPhotonCoordinates);
@@ -493,6 +500,8 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
   typedef std::vector<std::pair<double, double>> MapType;
   MapType temp;
+
+  Printf(" backgroundStudy : enter  ckovTools.segment"); 	 
   const auto photonCandidatesCoords = ckovTools.segment(cherenkovPhotons, temp); // temp --> mapBins	
 	
   int cnt = 0;

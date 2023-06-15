@@ -123,7 +123,11 @@ public:
     const auto coordsMaxPhiPi = makeCkovPhoton(3.1415, ckovPionMax);
     const auto xMaxPhiPi = coordsMaxPhiPi.first;
     const auto yMaxPhiPi = coordsMaxPhiPi.first;
+    Printf("CkovTools segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP);
 
+    Printf("CkovTools segment : xMaxPhiPi %f xMipLocal %f yMaxPhiPi %f yMipLocal %f ", xMaxPhiPi, xMipLocal, yMaxPhiPi, yMipLocal);
+
+    // all retusn -nan?
     const auto l1Max = TMath::Sqrt((xMaxPhiPi-xMipLocal)*(xMaxPhiPi-xMipLocal) + (yMaxPhiPi-yMipLocal)*(yMaxPhiPi-yMipLocal));
     const auto l2Max = TMath::Sqrt((xMaxPhi0-xMipLocal)*(xMaxPhi0-xMipLocal) + (yMaxPhi0-yMipLocal)*(yMaxPhi0-yMipLocal));
     const auto rMax = getR(ckovPionMax);
@@ -131,8 +135,13 @@ public:
     // populate with background:
     const auto area = rMax*2*(l1Max+l2Max);
     const auto numBackgroundPhotons = area*occupancy; 
+
+    Printf("CkovTools segment : rMax %f l1Max %f l2Max %fArea %f ", rMax, l1Max, l2Max, area);
+
+
+    Printf("CkovTools segment backGroundPhotons vector numBackgroundPhotons = %f", numBackgroundPhotons);
     std::vector<std::pair<double, double>> backGroundPhotons(numBackgroundPhotons);
-    
+        Printf("CkovTools segment backGroundPhotons vector created");
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<> dis1(0, l1Max + l2Max);
