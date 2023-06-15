@@ -274,6 +274,8 @@ public:
 	// based on one etaC value (i.e., one photon at a time)
 	const std::pair<double, double> makeCkovPhoton(double phiL, double etaC)
 	{
+
+    Printf("makeCkovPhoton : phiL %f etaC %f", phiL, etaC);
 		const auto cosPhiL = TMath::Cos(phiL);
 		const auto sinPhiL = TMath::Sin(phiL);
 		
@@ -289,6 +291,9 @@ public:
 
 		const auto denominator = 1- (tanThetaP*cosPhiL*sinPhiP*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
 
+
+    Printf("makeCkovPhoton : rwlGap %f qwGap %f numerator %f", rwlGap, qwGap, numerator);
+
 		const auto tGapZ = numerator/denominator;
 
 
@@ -303,6 +308,8 @@ public:
 
 		const auto y = T*(sinPhiP*cosPhiL - cosPhiP*sinPhiL/cosThetaP) + Lz*tanThetaP*sinPhiP;
 
+
+    Printf("makeCkovPhoton : Lz %f tGapGap %f T %f", Lz, tGapGap, T);
 		return std::make_pair(x, y);
 	}
 
