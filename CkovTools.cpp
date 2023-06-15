@@ -80,8 +80,9 @@ public:
   // only consider photons in the correct range:
   std::vector<std::pair<double, double>> segment(std::vector<std::pair<double, double>>& cherenkovPhotons, MapType& bins) { 
     // TODO: ckovHyps : get std-dev for Theta_ckov of pion kaon and proton from the values theta_i
-    
-
+   
+    Printf("ckovtools segmetns cherenkovPhotons size  = %f", cherenkovPhotons.size()); 
+   
     MapType filledBins;
     // placeholders for the above : 
     double stdDevPion = 0.008; 
@@ -134,12 +135,12 @@ public:
 
     // populate with background:
     const auto area = rMax*2*(l1Max+l2Max);
-    const auto numBackgroundPhotons = area*occupancy; 
+    const auto numBackgroundPhotons = static_cast<int>(area*occupancy); 
 
     Printf("CkovTools segment : rMax %f l1Max %f l2Max %fArea %f ", rMax, l1Max, l2Max, area);
 
 
-    Printf("CkovTools segment backGroundPhotons vector numBackgroundPhotons = %f", numBackgroundPhotons);
+    Printf("CkovTools segment backGroundPhotons vector numBackgroundPhotons = %d", numBackgroundPhotons);
     std::vector<std::pair<double, double>> backGroundPhotons(numBackgroundPhotons);
         Printf("CkovTools segment backGroundPhotons vector created");
     std::random_device rd;
@@ -150,6 +151,8 @@ public:
     for (auto& pair : backGroundPhotons) {
       pair.first = dis1(gen);
       pair.second = dis2(gen);
+
+        Printf("CkovTools segment created bg x%f y%f", pair.first, pair.second);
     }
 
     std::vector<std::pair<double, double>> photonCandidates;
@@ -163,6 +166,12 @@ public:
         // check if the coordinates also corresponds to one of the possible cherenkov candidates
         const auto& ckov = getCkovFromCoords(xP, yP, x, y, phiP, thetaP, nF, nQ, nG);      
 
+
+
+
+        Printf("CkovTools segment ckov %f", ckov);
+        Printf("CkovTools segment ckovPionMin %f ckovPionMax %f", ckovPionMin, ckovPionMax);
+   
         // TODO: later, also add to candidates (i.e., pionCandidates, kaonCandidates...)
         if( ckovPionMin <  ckov & ckov < ckovPionMax ){
           withinRange = true;
@@ -180,6 +189,7 @@ public:
           // transform to global coordinates:
           const auto& coords = local2Global(x, y);
           filledBins.push_back(coords);
+          Printf("CkovTools segment ckovphton  x %f y %f", x,y);
         }
           
         // Fill map
@@ -190,6 +200,7 @@ public:
     for(const auto& photons : backGroundPhotons) {  
       const auto& x = photons.first;
       const auto& y = photons.second;
+        Printf("CkovTools segment : backGroundPhotons %f x", x);
       if(x > xMaxPhiPi && x < xMaxPhi0 && y > yMaxPhiPi && y < yMaxPhi0){
         bool withinRange = false; 
         // check if the coordinates also corresponds to one of the possible cherenkov candidates
@@ -212,9 +223,12 @@ public:
           // transform to global coordinates:
           const auto coords = local2Global(x, y);
           filledBins.push_back(coords);
+          Printf("CkovTools segment backGroundPhotons  x %f y %f", x,y);
         }      
       } // end if    
     } // end for
+
+    Printf("CkovTools segment filledBins Size %f", filledBins.size());
     return filledBins;
   } // end segment
 
@@ -250,9 +264,13 @@ public:
 
 		const auto qwGap = (qW*nF)/(TMath::Sqrt(nQ*nQ-sinEtaC*sinEtaC*nF*nF));
 
-		const auto numerator = (tGap + tanThetaP*cosPhiL*sinPhiP * (rwlGap + qwGap));
+		const auto numerator = (tGap + tanThetaP*cosPhiL*sinEtaC * (rwlGap + qwGap));
 
-		const auto denominator = 1- (tanThetaP*cosPhiL*sinPhiP*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
+
+   // ef :error was on this line :
+   // 		const auto denominator = 1- (tanThetaP*cosPhiL*sinPhiP*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
+
+		const auto denominator = 1- (tanThetaP*cosPhiL*sinEtaC*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
 
 		const auto tGapZ = numerator/denominator;
 
@@ -275,7 +293,7 @@ public:
 	const std::pair<double, double> makeCkovPhoton(double phiL, double etaC)
 	{
 
-    Printf("makeCkovPhoton : phiL %f etaC %f", phiL, etaC);
+    Printf("\nmakeCkovPhoton : phiL %f etaC %f", phiL, etaC);
 		const auto cosPhiL = TMath::Cos(phiL);
 		const auto sinPhiL = TMath::Sin(phiL);
 		
@@ -314,6 +332,7 @@ public:
 
 
     Printf("makeCkovPhoton : Lz %f tGapGap %f T %f", Lz, tGapGap, T);
+    Printf("makeCkovPhoton : x %f, y %f \n", x, y);
 		return std::make_pair(x, y);
 	}
 
