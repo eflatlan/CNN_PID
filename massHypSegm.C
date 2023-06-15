@@ -26,6 +26,7 @@
 #include "SaveData.cpp"
 #include "RandomValues.cpp"
 #include "ParticleUtils.cpp"
+#include "CkovTools.cpp"
 // sudo yum install hdf5-devel
 
 
@@ -139,7 +140,12 @@ const float refIndexQuartz = GetQuartzIndexOfRefraction(defaultPhotonEnergy);
 const float  refIndexCH4 = 1.00; 
 
 double getCkovFromCoords(double xP, double yP, double x, double y, double phiP, double thetaP, float nF, float nQ, float nG);
-std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBins, float ckovActual = 0.5, float occupancy = 0.01, float thetaTrack = 0, double photonEnergy = 6.75, float& xP, float& yP, float& thetaP, float& phiP, std::vector<double> ckovHyps);
+
+
+
+std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBins, float ckovActual, float occupancy, float thetaTrack, double photonEnergy, float& xP , float& yP, float& thetaP, float& phiP, std::array<float, 3> ckovHyps);
+
+
 
 const float CH4GapWidth = 8;
 const float  RadiatorWidth = 1.;
@@ -285,7 +291,7 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0, do
 
     
       // TODO : hSignalAndNoiseMap just placeholder, make instead a TH2F from the filledBins?
-     const auto& map = hSignalAndNoiseMap;
+     const auto& map =  new TH2F("Signal and Noise2 ", "Signal and Noise2 ; x [cm]; y [cm]",160,0.,159.,144,0,143);
 
      // make sure the momentum is valid for the given particle (e.g., no - in the square-root in calcCkovFromMass and acos [-1..1])
     if (ckov == 0) {
@@ -322,9 +328,10 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0, do
 
 //(mapBins, ckov, occupancy, thetaTrackInclination, photonEnergy, 
 
-std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBins, float ckovActual = 0.5, float occupancy = 0.01, float thetaTrack = 0, double photonEnergy = 6.75, float& xP, float& yP, float& thetaP, float& phiP, std::vector<double> ckovHyps)   
+std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBins, float ckovActual, float occupancy, float thetaTrack, double photonEnergy, float& xP , float& yP, float& thetaP, float& phiP, std::array<float, 3> ckovHyps)  
 {
 
+  if(photonEnergy < 5) photonEnergy = 6.75; 
   auto ckovAngle = ckovActual;
 
   Int_t NumberOfEvents = 1; Int_t NumberOfClusters = 13; float Hwidth = 15.;
@@ -347,6 +354,8 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   //float /*RadiatorWidth,*/ QuartzWindowWidth,CH4GapWidth,EmissionLenght;
   float FreonIndexOfRefraction,QuartzIndexOfRefraction,CH4IndexOfRefraction;
 
+
+  // randomly created in RandomValues.cpp
   float PhotonEnergy = photonEnergy; 
   
   FreonIndexOfRefraction = GetFreonIndexOfRefraction(photonEnergy);
@@ -423,32 +432,32 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  TRandom2* rnd = new TRandom2(1);
  rnd->SetSeed(0);
 
-  const auto cosThetaP = TMath::Cos(thetaP);
-  const auto sinThetaP = TMath::Sin(thetaP);
-  const auto tanThetaP = TMath::Tan(thetaP);
-  const auto cosPhiP = TMath::Cos(phiP);
-  const auto sinPhiP = TMath::Sin(phiP);
 
  // place the impact point in x[10..150] and y[10..134]
  xP = static_cast<float>((160-10)*(1*gRandom->Rndm())-10);
  yP = static_cast<float>((144-10)*(1*gRandom->Rndm())-10);
 
- const auto xMipLocal = tanThetaP*cosPhiP;
- const auto yMipLocal = tanThetaP*sinPhiP;
+
+
+ // make instance of CkovTools
+
+ // ckovHyps, nF, nQ, nG,
+ CkovTools ckovTools(xP, yP, thetaP, phiP, ckovHyps, nF, nQ, nG, occupancy);
 	
  std::vector<std::pair<double, double>> cherenkovPhotons(numberOfCkovPhotons);
  for(Int_t i=0; i < numberOfCkovPhotons; i++) {
    
    // endre std-dev her til å følge prob-dist?!
-   float ckovAnglePhot = rnd->Gaus(ckovAngle, 0.012);		    // random CkovAngle, with 0.012 std-dev
-   float alpha = static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));    // angle in photon-map (-pi to pi)
+   float etaC = rnd->Gaus(ckovAngle, 0.012);		    // random CkovAngle, with 0.012 std-dev
+
+   float phiL = static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
+   // angle around ckov Cone of photon
     
-   // alpha, ckovAnglePhot will temp be placeholders..
-   float phiL = alpha;
-   float etaC = ckovAnglePhot;
 	 
-   // populate map with cherenkov photon	 
-   const auto& ckovPhotonCoordinates = makeCkovPhoton(thetaP, phiP, phiL, etaC, nF, nG, nQ); // nF, nG, nQ to be added here? 
+   // populate map with cherenkov photon
+
+   // later change below fcn to take valeus from setPhoton:	 
+   const auto& ckovPhotonCoordinates = ckovTools.makeCkovPhoton(phiL, etaC);
 
    cherenkovPhotons.push_back(ckovPhotonCoordinates);
 	 
@@ -459,8 +468,8 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 	  
 	 
    /*	 
-   float ringRadius = getRadiusFromCkov(ckovAnglePhot); // R in photon-map
-   Printf("Cherenkov Photon : Angle = %f Radius = %f", ckovAnglePhot, ringRadius);	
+   float ringRadius = getRadiusFromCkov(etaC); // R in photon-map
+   Printf("Cherenkov Photon : Angle = %f Radius = %f", etaC, ringRadius);	
    // populate the photon maps randomly radially
 
    // get x and y values of Photon-candidate:
@@ -473,7 +482,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
    //mapArray[Xcen[n1]+20][Ycen[n1]+20] = 1;
 
    // add Actual Cherenkov Photon to Candidates
-   photonCandidates.emplace_back(ckovAnglePhot);*/ 
+   photonCandidates.emplace_back(etaC);*/ 
 
   } 
 	
@@ -481,7 +490,10 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   // also population of noise is done here
   
 
-  const auto& photonCandidatesCoords = segment(xP, yP, xMipLocal, yMipLocal, cherenkovPhotons, ckovHyps, nF, nQ, nG);	
+
+  typedef std::vector<std::pair<double, double>> MapType;
+  MapType temp;
+  const auto photonCandidatesCoords = ckovTools.segment(cherenkovPhotons, temp); // temp --> mapBins	
 	
   int cnt = 0;
   for(auto& b : mapBins) {/*Printf("xval %f", b.x);*/ cnt++;}
@@ -1300,364 +1312,6 @@ void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector) {
     // works good
     Printf("\n\n Reading from file now...");
     readParticleInfoFromROOT();
-}
-
-
-// TODO : add nQ
-// only consider photons in the correct range:
-std::vector<std::pair<double, double>> segment(double yP, double yP, double xMipLocal, double yMipLocal, std::vector<std::pair<double, double>>& cherenkovPhotons, std::vector<double> ckovHyps, float nF, float nQ, float nG))
-{ 
-  // TODO: ckovHyps : get std-dev for Theta_ckov of pion kaon and proton from the values theta_i
-  
-  // placeholders for the above : 
-  double stdDevPion = 0.08; double stdDevKaon = 0.08; double stdDevProton = 0.08;
-  double ckovPionMin = ckovHyps[0] - 3 * stdDevPion;
-  double ckovPionMax = ckovHyps[0] + 3 * stdDevPion;
-
-  double ckovKaonMin = ckovHyps[1] - 3 * stdDevKaon;
-  double ckovKaonMax = ckovHyps[1] + 3 * stdDevKaon;
-
-  double ckovProtonMin = ckovHyps[2] - 3 * stdDevProton;
-  double ckovProtonMax = ckovHyps[2] + 3 * stdDevProton;
-
-
-  // these are in local coordinate system
-  // create bbox of minimal possible ckov
-  // Proton with eta_c = theta_c_proton - 3*std_dev_proton
-  const auto& coordsMinPhi0 = populateMap(thetaP, phiP, 0, ckovProtonMin);
-  xMinPhi0 = coordsMinPhi0.first;
-  yMinPhi0 = coordsMinPhi0.first;
-
-  // these are in local coordinate system
-  const auto& coordsMinPhiPi = populateMap(thetaP, phiP, TMath::Pi, ckovProtonMin);
-  xMinPhiPi = coordsMinPhiPi.first;
-  yMinPhiPi = coordsMinPhiPi.first;
-
-  const auto l1Min = TMath::Sqrt((xMinPhiPi-  xMipLocal)*(xMinPhiPi-xMipLocal) + (yMinPhiPi-yMipLocal)*(yMinPhiPi-yMipLocal));
-
-  const auto l2Min = TMath::Sqrt((xMinPhi0-xMipLocal)*(xMinPhi0-xMipLocal) + (yMinPhi0-yMipLocal)*(yMinPhi0-yMipLocal));
-
- const auto rMin = getR(thetaP, phiP, etaCMin);
-
-
-  // these are in local coordinate system
-  // create bbox of maximal possible ckov
-  // Proton with eta_c = theta_c_pion + 3*std_dev_pion
-
-  const auto& coordsMinPhi0 = populateMap(thetaP, phiP, 0, ckovPionMax)
-  xMinPhi0 = coordsMinPhi0.first;
-  yMinPhi0 = coordsMinPhi0.first;
-
-  // these are in local coordinate system
-  const auto& coordsMinPhiPi = populateMap(thetaP, phiP, TMath::Pi, ckovPionMax)
-  xMaxPhiPi = coordsMaxPhiPi.first;
-  yMaxPhiPi = coordsMaxPhiPi.first;
-
-  const auto l1Max = TMath::Sqrt((xMaxPhiPi-xMipLocal)*(xMaxPhiPi-xMipLocal) + (yMaxPhiPi-yMipLocal)*(yMaxPhiPi-yMipLocal));
-
-  const auto l2Max = TMath::Sqrt((xMaxPhi0-xMipLocal)*(xMaxPhi0-xMipLocal) + (yMaxPhi0-yMipLocal)*(yMaxPhi0-yMipLocal));
-
-  const auto rMax = getR(thetaP, phiP, etaCMax);
-
-
-  // populate with background:
-  const auto area = rMax*2*(l1Max+l2Max);
-  const auto numBackgroundPhotons = area*occupancy; 
-  std::vector<std::pair<double, double>> backGroundPhotons(numBackgroundPhotons);
-  
-std::random_device rd;
-std::mt19937 gen(rd());
-std::uniform_real_distribution<> dis1(0, l1Max + l2Max);
-std::uniform_real_distribution<> dis2(-rMax, rMax);
-
-
-for (auto& pair : backGroundPhotons) {
-  pair.first = dis1(gen);
-  pair.second = dis2(gen);
-}
-
- std::vector<std::pair<double, double>> photonCandidates;
-
-// here : loop through all backGroundPhotons and cherenkovPhotons
-
-  for(const auto& photons : cherenkovPhotons)
-  {  
-    const auto& x = photons.first;
-    const auto& y = photons.second;
-    if(x > xMin && x < xMax && y > yMin && y < yMax){
-      
-      bool withinRange = false; 
-      // check if the coordinates also corresponds to one of the possible cherenkov candidates
-      const auto& ckov = getCkovFromCoords(xP, yP, x, y, phiP, thetaP, nF, nQ, nG);      
-      
-      // TODO: later, also add to candidates (i.e., pionCandidates, kaonCandidates...)
-      if( ckovPionMin <  ckov & ckov < ckovPionMax ){
-        withinRange = true;
-      }
-      
-      if( ckovKaonMin <  ckov & ckov < ckovKaonMax ){
-        withinRange = true;
-      }
-      
-      if( ckovProtonMin <  ckov & ckov < ckovProtonMax ){
-        withinRange = true;
-      }
-      
-      if(withinRange){
-        // transform to global coordinates:
-        const auto& coords = local2Global(phi, xP, yP, x, y);
-
-        filledBins.push_back(coords);
-      }
-        
-        // Fill map
-      //hSignalAndNoiseMap->Fill(Xcen[n1], Ycen[n1]);
-      
-    }    
-
-  }
-
-  for(const auto& photons : backGroundPhotons)
-  {  
-    const auto& x = photons.first;
-    const auto& y = photons.second;
-    if(x > xMin && x < xMax && y > yMin && y < yMax){
-
-      bool withinRange = false; 
-      // check if the coordinates also corresponds to one of the possible cherenkov candidates
-      const auto& ckov = getCkovFromCoords(xP, yP, x, y, phiP, thetaP, nF, nQ, nG); 
-           
-      // TODO: later, also add to candidates (i.e., pionCandidates, kaonCandidates...)
-      if( ckovPionMin <  ckov & ckov < ckovPionMax ){
-        withinRange = true;
-      }
-      
-      if( ckovKaonMin <  ckov & ckov < ckovKaonMax ){
-        withinRange = true;
-      }
-      
-      if( ckovProtonMin <  ckov & ckov < ckovProtonMax ){
-        withinRange = true;
-      }
-      
-      if(withinRange){
-        // transform to global coordinates:
-        const auto& coords = local2Global(phi, xP, yP, x, y);
-
-        filledBins.push_back(coords);
-      }      
-    }    
-  }
-}
-
-double getCkovFromCoords(double xP, double yP, double x, double y, double phiP, double thetaP, float nF, float nQ, float nG)
-{    
-  double phiF = 0;
-  double ThetaF1,ThetaF2,ThetaF=0,ThetaLimite;
-  float Xpi=0,Ypi=0,Xf=0,Yf=0,Xf1=0,Yf1=0,Xf2=0,Yf2=0; 
-  float ThetaCherenkov, PhiCherenkov, DegPhiCherenkov;
-
-  
-  float deltaX = (rW+qW+tGap-L)*TMath::Tan(thetaP)*TMath::Cos(phiP);
-  float deltaY = (rW+qW+tGap-L)*TMath::Tan(thetaP)*TMath::Sin(phiP);
-	  
-  Xpi = xP - deltaX;
-  Ypi = yP - deltaY;
-
-  TVector3 v2(Xcen[n1]-Xpi-EmissionLenght*TMath::Tan(ThetaP)*TMath::Cos(PhiP),Ycen[n1]-Ypi-EmissionLenght*TMath::Tan(ThetaP)*TMath::Sin(PhiP),RadiatorWidth+QuartzWindowWidth+CH4GapWidth-EmissionLenght); 
-
-  PhiF = v2.Phi();      
-
-  ThetaLimite = TMath::ASin(nG/nQ);
-
-  double ThetaF0 = TMath::ASin(nQ/nF*TMath::Sin(ThetaLimite))-0.00001;
-
-  //  Printf("ThetaF0 = %f",ThetaF0*TMath::RadToDeg());
-
-  double ThetaF01 = TMath::ASin((nF/nQ)*(TMath::Sin(ThetaF0)));      
-
-  double ThetaF02 = TMath::ASin((nQ/nG)*(TMath::Sin(ThetaF01)));
-
-  float X01 = EmissionLenght*TMath::Tan(ThetaP)*TMath::Cos(PhiP);
-
-  float Y01 =  EmissionLenght*TMath::Tan(ThetaP)*TMath::Sin(PhiP);
-
-  float X02 = (RadiatorWidth - EmissionLenght)*TMath::Tan(ThetaF0)*TMath::Cos(PhiF)+QuartzWindowWidth*TMath::Tan(ThetaF01)*TMath::Cos(PhiF)+CH4GapWidth*TMath::Tan(ThetaF02)*TMath::Cos(PhiF);
-
-  float Y02 = (RadiatorWidth - EmissionLenght)*TMath::Tan(ThetaF0)*TMath::Sin(PhiF) + QuartzWindowWidth*TMath::Tan(ThetaF01)*TMath::Sin(PhiF) + CH4GapWidth*TMath::Tan(ThetaF02)*TMath::Sin(PhiF);  
-
-  float X0 = X01 + X02;
-  float Y0 = Y01 + Y02;
-
-  double ThetaMin = 0;
-  //  Double_t ThetaMax = 0.75+ThetaP;
-  double ThetaMax = ThetaF0;
-
-  Xf = 999;
-  Yf = 999;
-
-  Int_t nWhile = 0;
-
-  while(TMath::Sqrt((Xf-Xcen[n1]+Xpi)*(Xf-Xcen[n1]+Xpi)+(Yf-Ycen[n1]+Ypi)*(Yf-Ycen[n1]+Ypi))>0.0001)
-  { 
-    nWhile++;
-
-    ThetaF = static_cast<double>( (0.5*(ThetaMax - ThetaMin) + ThetaMin));
-
-    ThetaF1 = TMath::ASin((nF/nQ)*(TMath::Sin(ThetaF)));     
-    ThetaF2 = TMath::ASin((nQ/nG)*(TMath::Sin(ThetaF1)));
-
-    Xf1 = EmissionLenght*TMath::Tan(ThetaP)*TMath::Cos(PhiP);
-    Yf1 =  EmissionLenght*TMath::Tan(ThetaP)*TMath::Sin(PhiP);
-
-    Xf2 = (RadiatorWidth - EmissionLenght)*TMath::Tan(ThetaF)*TMath::Cos(PhiF)+QuartzWindowWidth*TMath::Tan(ThetaF1)*TMath::Cos(PhiF)+CH4GapWidth*TMath::Tan(ThetaF2)*TMath::Cos(PhiF);
-    Yf2 = (RadiatorWidth - EmissionLenght)*TMath::Tan(ThetaF)*TMath::Sin(PhiF) + QuartzWindowWidth*TMath::Tan(ThetaF1)*TMath::Sin(PhiF) + CH4GapWidth*TMath::Tan(ThetaF2)*TMath::Sin(PhiF);  
-
-    Xf = Xf1 + Xf2;
-    Yf = Yf1 + Yf2;
-    
-    if(TMath::Sqrt((Xf-X0)*(Xf-X0)+(Yf-Y0)*(Yf-Y0))>TMath::Sqrt((Xcen[n1]-Xpi-X0)*(Xcen[n1]-Xpi-X0)+(Ycen[n1]-Ypi-Y0)*(Ycen[n1]-Ypi-Y0)))
-    {
-      ThetaMin = ThetaF;
-    }
-
-    else 
-    {
-      ThetaMax = ThetaF;   
-    }  
-
-    if(nWhile>30) break;
-
-  } // while 
-        
-	      
-  TVector3 vP((TMath::Sin(ThetaP))*(TMath::Cos(PhiP)),(TMath::Sin(ThetaP))*(TMath::Sin(PhiP)),(TMath::Cos(ThetaP)));
-  TVector3 vz(0.,0.,1.);
-
-  TVector3 v1 = vP.Cross(vz);
-
-  TVector3 vF((TMath::Sin(ThetaF))*(TMath::Cos(PhiF)),(TMath::Sin(ThetaF))*(TMath::Sin(PhiF)),(TMath::Cos(ThetaF)));
-
-  
-  
-  if(ThetaP==0)
-  {	      
-    ThetaCherenkov = ThetaF;		  
-    PhiCherenkov = PhiF;	      
-  }	  
-  else		
-  {
-    vF.Rotate(ThetaP,v1);
-    ThetaCherenkov = vF.Theta();
-    PhiCherenkov = vF.Phi();
-  }
-
-  DegPhiCherenkov = 180*PhiCherenkov/(TMath::Pi());
-
-  if(DegPhiCherenkov<0) DegPhiCherenkov+=360;	
-}
-
-
-std::pair<double, double> local2Global(double phi, double xP, double yP, double xL, double yL)
-{
-  const auto cosPhiP = TMath::Cos(phiP);
-  const auto sinPhiP = TMath::Sin(phiP);
-  const auto x = cosPhiP*xL + sinPhiP*yL - xP;
-  const auto y = sinPhiP*xL - cosPhiP*yL - yP;
-  return std::make_pair(x, y);
-}
-
-std::pair<double, double> global2Local(double phi, double xP, double yP, double xG, double yG)
-{
-  const auto cosPhiP = TMath::Cos(phiP);
-  const auto sinPhiP = TMath::Sin(phiP);
-  const auto x = cosPhiP*xG - sinPhiP*yG + xP;
-  const auto y = sinPhiP*xG + cosPhiP*yG + yP;
-  return std::make_pair(x, y);
-}
-
-
-// populate map in local reference system
-// based on one etaC value (i.e., one photon at a time)
-std::pair<double, double> populateMap(double thetaP, double phiP, double phiL, double etaC)
-{
-  const auto cosThetaP = TMath::Cos(thetaP);
-  const auto sinThetaP = TMath::Sin(thetaP);
-  const auto tanThetaP = TMath::Tan(thetaP);
-
-  const auto cosPhiP = TMath::Cos(phiP);
-  const auto sinPhiP = TMath::Sin(phiP);
-
-  const auto cosPhiL = TMath::Cos(phiL);
-  const auto sinPhiL = TMath::Sin(phiL);
-  
-  const auto cosEtaC = TMath::Cos(etaC);
-  const auto sinEtaC = TMath::Sin(etaC);
-
-
-  const auto rwlGap = (rW - L)/(TMath::Sqrt(1-sinEtaC*sinEtaC));
-
-  const auto qwGap = (qW*nF)/(TMath::Sqrt(nQ*nQ-sinEtaC*sinEtaC*nF*nF));
-
-  numerator = (tGap + tanThetaP*cosPhiL*sinPhiP * (rwlGap + qwGap));
-
-  const auto denominator = 1- (tanThetaP*cosPhiL*sinPhiP*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
-
-  const auto tGapZ = numerator/denominator;
-
-
-  const auto Lz = (rW-L) + qW + tGapZ;
-
-
-  const auto tGapGap = (tGapZ*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF);
-
-  const auto T = sinEtaC*(rwlGap+qwGap+tGapGap);
-
-  const auto x = T*(cosPhiP*cosPhiL - sinPhiP*sinPhiL/cosThetaP) + Lz*tanThetaP*cosPhiP;
-
-  const auto y = T*(sinPhiP*cosPhiL - cosPhiP*sinPhiL/cosThetaP) + Lz*tanThetaP*sinPhiP;
-
-  return std::make_pair(x, y);
-}
-
-
-
-
-// get R at phiLocal = pi/2 V = 3pi/2
-double getR(double thetaP, double phiP, double etaC)
-{
-  const auto cosThetaP = TMath::Cos(thetaP);
-  const auto sinThetaP = TMath::Sin(thetaP);
-  const auto tanThetaP = TMath::Tan(thetaP);
-
-  const auto cosPhiP = TMath::Cos(phiP);
-  const auto sinPhiP = TMath::Sin(phiP);
-
-  const auto cosPhiL = 0; // phiLocal = pi/2
-  const auto sinPhiL = 1; // --||-- 
-  
-  const auto cosEtaC = TMath::Cos(etaC);
-  const auto sinEtaC = TMath::Sin(etaC);
-
-  const auto rwlGap = (rW - L)/(TMath::Sqrt(1-sinEtaC*sinEtaC));
-
-  const auto qwGap = (qW*nF)/(TMath::Sqrt(nQ*nQ-sinEtaC*sinEtaC*nF*nF));
-
-  numerator = (tGap + tanThetaP*cosPhiL*sinPhiP * (rwlGap + qwGap));
-
-  const auto denominator = 1- (tanThetaP*cosPhiL*sinPhiP*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
-
-  const auto tGapZ = numerator/denominator;
-
-
-  const auto Lz = (rW-L) + qW + tGapZ;
-
-
-  const auto tGapGap = (tGapZ*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF);
-
-  const auto R = sinEtaC*(rwlGap+qwGap+tGapGap)/cos_theta_P;
-
-  return R;
 }
 
 

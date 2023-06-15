@@ -18,6 +18,10 @@ public:
         float energy;
         float refractiveIndex;
         float ckov;
+        float xP;
+        float yP;
+        float thetaP;
+        float phiP;
         std::vector<Bin> filledBins;
     };
 
