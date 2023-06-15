@@ -81,6 +81,9 @@ public:
   std::vector<std::pair<double, double>> segment(std::vector<std::pair<double, double>>& cherenkovPhotons, MapType& bins) { 
     // TODO: ckovHyps : get std-dev for Theta_ckov of pion kaon and proton from the values theta_i
    
+    for(const auto& p :cherenkovPhotons)
+      Printf(" Ckovtools segments cherenkovPhotons : x %f y %f", p.first, p.second);
+
     Printf("ckovtools segmetns cherenkovPhotons size  = %f", cherenkovPhotons.size()); 
    
     MapType filledBins;
@@ -102,12 +105,12 @@ public:
     // Proton with eta_c = theta_c_proton - 3*std_dev_proton
     const auto coordsMinPhi0 = makeCkovPhoton(0., ckovProtonMin);
     const auto xMinPhi0 = coordsMinPhi0.first;
-    const auto yMinPhi0 = coordsMinPhi0.first;
+    const auto yMinPhi0 = coordsMinPhi0.second;
 
     // these are in local coordinate system
     const auto coordsMinPhiPi = makeCkovPhoton(static_cast<double>(3.1415), ckovProtonMin);
     const auto xMinPhiPi = coordsMinPhiPi.first;
-    const auto yMinPhiPi = coordsMinPhiPi.first;
+    const auto yMinPhiPi = coordsMinPhiPi.second;
 
     const auto l1Min = TMath::Sqrt((xMinPhiPi-  xMipLocal)*(xMinPhiPi-xMipLocal) + (yMinPhiPi-yMipLocal)*(yMinPhiPi-yMipLocal));
     const auto l2Min = TMath::Sqrt((xMinPhi0-xMipLocal)*(xMinPhi0-xMipLocal) + (yMinPhi0-yMipLocal)*(yMinPhi0-yMipLocal));
@@ -118,12 +121,12 @@ public:
     // Proton with eta_c = theta_c_pion + 3*std_dev_pion
     const auto coordsMaxPhi0 = makeCkovPhoton(0, ckovPionMax);
     const auto xMaxPhi0 = coordsMaxPhi0.first;
-    const auto yMaxPhi0 = coordsMaxPhi0.first;
+    const auto yMaxPhi0 = coordsMaxPhi0.second;
 
     // these are in local coordinate system
     const auto coordsMaxPhiPi = makeCkovPhoton(3.1415, ckovPionMax);
     const auto xMaxPhiPi = coordsMaxPhiPi.first;
-    const auto yMaxPhiPi = coordsMaxPhiPi.first;
+    const auto yMaxPhiPi = coordsMaxPhiPi.second;
     Printf("CkovTools segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP);
 
     Printf("CkovTools segment : xMaxPhiPi %f xMipLocal %f yMaxPhiPi %f yMipLocal %f ", xMaxPhiPi, xMipLocal, yMaxPhiPi, yMipLocal);
@@ -133,6 +136,9 @@ public:
     const auto l2Max = TMath::Sqrt((xMaxPhi0-xMipLocal)*(xMaxPhi0-xMipLocal) + (yMaxPhi0-yMipLocal)*(yMaxPhi0-yMipLocal));
     const auto rMax = getR(ckovPionMax);
 
+
+       const auto rMax2 = getR2(ckovPionMax);
+    Printf("rMax2 = %f w ckov = %f", rMax2, ckovPionMax);
     // populate with background:
     const auto area = rMax*2*(l1Max+l2Max);
     const auto numBackgroundPhotons = static_cast<int>(area*occupancy); 
@@ -161,13 +167,17 @@ public:
     for(const auto& photons : cherenkovPhotons) {  
       const auto& x = photons.first;
       const auto& y = photons.second;
-      if(x > xMaxPhiPi && x < xMaxPhi0 && y > yMaxPhiPi && y < yMaxPhi0){
-        bool withinRange = false; 
+
+      Printf("ckovtools cherenkov photons x > xMaxPhiPi && x < xMaxPhi0 && y > yMaxPhiPi && y < yMaxPhi0");
+      Printf("ckovtools cherenkov photons x %f xMaxPhiPi %f x %f < xMaxPhi0 %f && y %f > yMaxPhiPi  %f && y %f < yMaxPhi0 %f",  x, xMaxPhiPi, x , xMaxPhi0 , y , yMaxPhiPi , y , yMaxPhi0);
+      //if(x > xMaxPhiPi && x < xMaxPhi0 && y > yMaxPhiPi && y < yMaxPhi0){
+      if(true){
+        bool withinRange = true; 
         // check if the coordinates also corresponds to one of the possible cherenkov candidates
+
+
+        // TODO : check if this method is wrong??
         const auto& ckov = getCkovFromCoords(xP, yP, x, y, phiP, thetaP, nF, nQ, nG);      
-
-
-
 
         Printf("CkovTools segment ckov %f", ckov);
         Printf("CkovTools segment ckovPionMin %f ckovPionMax %f", ckovPionMin, ckovPionMax);
@@ -200,9 +210,10 @@ public:
     for(const auto& photons : backGroundPhotons) {  
       const auto& x = photons.first;
       const auto& y = photons.second;
-        Printf("CkovTools segment : backGroundPhotons %f x", x);
+        //Printf("CkovTools segment : backGroundPhotons %f x", x);
+      
       if(x > xMaxPhiPi && x < xMaxPhi0 && y > yMaxPhiPi && y < yMaxPhi0){
-        bool withinRange = false; 
+        bool withinRange = true; 
         // check if the coordinates also corresponds to one of the possible cherenkov candidates
         const auto& ckov = getCkovFromCoords(xP, yP, x, y, phiP, thetaP, nF, nQ, nG); 
              
@@ -223,10 +234,14 @@ public:
           // transform to global coordinates:
           const auto coords = local2Global(x, y);
           filledBins.push_back(coords);
-          Printf("CkovTools segment backGroundPhotons  x %f y %f", x,y);
+          //Printf("CkovTools segment backGroundPhotons  x %f y %f", x,y);
         }      
       } // end if    
     } // end for
+    
+    for(const auto& pair: filledBins)
+    	Printf("CkovTools segment candidates: x%f y%f", pair.first, pair.second);    
+
 
     Printf("CkovTools segment filledBins Size %f", filledBins.size());
     return filledBins;
@@ -248,7 +263,24 @@ public:
 	}
 
 
+ // get R at phiLocal = pi/2 V = 3pi/2
+	double getR2(double etaC)
+	{
+		const auto cosEtaC = TMath::Cos(etaC);
+		const auto sinEtaC = TMath::Sin(etaC);
 
+		const auto rwlGap = (rW - L)/(TMath::Sqrt(1-sinEtaC*sinEtaC));
+
+		const auto qwGap = (qW*nF)/(TMath::Sqrt(nQ*nQ-sinEtaC*sinEtaC*nF*nF));
+
+		const auto tGapGap = (tGap*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
+
+		const auto R = sinEtaC*(rwlGap+qwGap+tGapGap)/cosThetaP;
+    Printf("getR2 rwlGap %f qwGap %f tGapGap %f", rwlGap, qwGap, tGapGap);
+    Printf("getR2 rW%f L %f qW %f tGap %f", rW, L, qW, tGap);
+    Printf("getR2 nF %f nG %f nQ %f", nF, nG, nQ);
+		return R;
+	}
 
   // get R at phiLocal = pi/2 V = 3pi/2
 	double getR(double etaC)
@@ -274,9 +306,7 @@ public:
 
 		const auto tGapZ = numerator/denominator;
 
-
 		const auto Lz = (rW-L) + qW + tGapZ;
-
 
 		const auto tGapGap = (tGapZ*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
 
@@ -309,9 +339,9 @@ public:
 
 		const auto qwGap = (qW*nF)/(TMath::Sqrt(nQ*nQ-sinEtaC*sinEtaC*nF*nF));
 
-		const auto numerator = (tGap + tanThetaP*cosPhiL*sinPhiP * (rwlGap + qwGap));
+		const auto numerator = (tGap + tanThetaP*cosPhiL*sinEtaC * (rwlGap + qwGap));
 
-		const auto denominator = 1- (tanThetaP*cosPhiL*sinPhiP*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
+		const auto denominator = 1- (tanThetaP*cosPhiL*sinEtaC*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
 
 
     Printf("makeCkovPhoton : rwlGap %f qwGap %f numerator %f", rwlGap, qwGap, numerator);
