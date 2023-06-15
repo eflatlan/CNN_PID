@@ -502,7 +502,20 @@ Printf("bgstudy segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP)
   MapType temp;
 
   Printf(" backgroundStudy : enter  ckovTools.segment"); 	 
-  const auto photonCandidatesCoords = ckovTools.segment(cherenkovPhotons, temp); // temp --> mapBins	
+  const auto photonCandidatesCoords = ckovTools.segment(cherenkovPhotons, temp); // temp --> mapBins
+
+
+  Printf(" backgroundStudy : num photonCandidatesCoords %f", photonCandidatesCoords.size()); 	 
+  for(const auto& photons : photonCandidatesCoords){
+    Printf("photon x %f y %f", photons.first, photons.second);
+    hSignalAndNoiseMap->Fill(photons.first, photons.second);
+  }
+  TCanvas *thSignalAndNoiseMap = new TCanvas("hSignalAndNoiseMap","hSignalAndNoiseMap",800,800);  
+  thSignalAndNoiseMap->cd();
+  hSignalAndNoiseMap->Draw();
+  //hSignalAndNoiseMap->Show();
+  thSignalAndNoiseMap->SaveAs("thSignalAndNoiseMap.png");
+  	thSignalAndNoiseMap->Show();
 	
   int cnt = 0;
   for(auto& b : mapBins) {/*Printf("xval %f", b.x);*/ cnt++;}
