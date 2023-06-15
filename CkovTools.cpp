@@ -84,9 +84,9 @@ public:
 
     MapType filledBins;
     // placeholders for the above : 
-    double stdDevPion = 0.08; 
-    double stdDevKaon = 0.08; 
-    double stdDevProton = 0.08;
+    double stdDevPion = 0.008; 
+    double stdDevKaon = 0.008; 
+    double stdDevProton = 0.008;
     double ckovPionMin = ckovHyps[0] - 3 * stdDevPion;
     double ckovPionMax = ckovHyps[0] + 3 * stdDevPion;
 
@@ -279,6 +279,10 @@ public:
 		const auto cosPhiL = TMath::Cos(phiL);
 		const auto sinPhiL = TMath::Sin(phiL);
 		
+
+    // if isNan; find etaC that corresponds to rwlGap ^ qwGap NOT nan
+    //if(isNan){}
+    
 		const auto cosEtaC = TMath::Cos(etaC);
 		const auto sinEtaC = TMath::Sin(etaC);
 
