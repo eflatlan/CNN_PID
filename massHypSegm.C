@@ -423,7 +423,10 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
      
  }*/
 
-   
+  // rndm value in ranfe 0.4, 0.7?
+ TRandom2* rnd = new TRandom2(1);
+ rnd->SetSeed(0);
+ gRandom->SetSeed(0);
  // MIP azimuthal angle:
  phiP = static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
 
@@ -431,9 +434,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  // a.o.n; only between +- 5 deg
  thetaP = static_cast<float>(0.1*(1-2*gRandom->Rndm(1)));
 
- // rndm value in ranfe 0.4, 0.7?
- TRandom2* rnd = new TRandom2(1);
- rnd->SetSeed(0);
+
 
 
  // place the impact point in x[10..150] and y[10..134]
