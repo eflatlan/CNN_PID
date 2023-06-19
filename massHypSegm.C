@@ -96,6 +96,32 @@ using namespace o2::hmpid;
 
 #include <HMPIDBase/Param.h>
 void setStyleInd(TH2* th1f, float ratio = 1.2);
+
+
+// TODO : add std-dev or similar here :?
+double getThetaP(double momentum)
+{
+  double degThetaP;
+  float pH, pL, degThetaH, degThetaL;
+  if (momentum < 0.5){
+		pH = 0.5; pL = 0.4; degThetaH = 50; degThetaL = 42.5;
+  } else if (momentum < 0.5 && momentum < 0.7){
+		pH = 0.7; pL = 0.5; degThetaH = 42.5; degThetaL = 27.5;
+  } else if (momentum >= 0.7 && momentum < 1){
+		pH = 1; pL = 0.7; degThetaH = 27.5; degThetaL = 22.5;
+  } else if (momentum >= 1 && momentum < 1.5){
+		pH = 1.5; pL = 1; degThetaH = 15; degThetaL = 22.5;
+  } else if (momentum >= 1.5 && momentum < 2.5){
+		pH = 2.5; pL = 1.5; degThetaH = 10; degThetaL = 15;
+  } else  {
+		pH = 5; pL = 2.5; degThetaH = 8; degThetaL = 10;
+  }
+  
+  degThetaP = degThetaL + (degThetaH-degThetaL)/(pH-pL) * (momentum - pL);
+  return degThetaP*3.1415/180;
+}
+
+
 void setStyleInd(TH1* th1f, float ratio = 1.2);
 
 
@@ -143,7 +169,7 @@ double getCkovFromCoords(double xP, double yP, double x, double y, double phiP, 
 
 
 
-std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBins, float ckovActual, float occupancy, float thetaTrack, double photonEnergy, float& xP , float& yP, float& thetaP, float& phiP, std::array<float, 3> ckovHyps);
+std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBins, float occupancy, RandomValues& randomValue, ParticleInfo& particle);
 
 
 
@@ -268,27 +294,18 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0, do
   std::vector<ParticleInfo> particleVector;
 
   int i = 0;
-  for(const auto& randomValue : randomObjects){
+  for(auto& randomValue : randomObjects){
      // get cherenkov angle from mass momentum and refindex
-     const auto& ckov = calcCkovFromMass(randomValue.momentum, randomValue.refractiveIndex, randomValue.mass); //  calcCkovFromMass(momentum, n, mass)
-     
-     // theoretical ckov angles : 
-     const auto& ckovHyps = calcCherenkovHyp(randomValue.momentum, randomValue.refractiveIndex); 
+
     
      // get the map with a given occupancy and ckov angle calculated 
-     double photonEnergy = randomValue.energy;
      std::vector<Bin> mapBins;
-    
-     /* old : 
-     const auto& map = backgroundStudy(mapBins, ckov, occupancy, thetaTrackInclination, photonEnergy); // cherenkov angle mean / occupancy / theta track inclination (perpendicular =)
-     auto filledBins = fillMapVector(map); */
-    
-     // new : fill instead a vector with x, y pairs
-     float xP, yP, thetaP, phiP;
 
+
+     ParticleInfo particle;
 
      Printf(" enter backgroundStudy"); 
-     const auto& filledBins = backgroundStudy(mapBins, ckov, occupancy, thetaTrackInclination, photonEnergy, xP, yP, thetaP, phiP, ckovHyps); // cherenkov angle mean / occupancy / theta track inclination (perpendicular =)
+     const auto& filledBins = backgroundStudy(mapBins, occupancy, randomValue, particle); 
      
           Printf(" exit backgroundStudy"); 
 
@@ -297,29 +314,17 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0, do
      const auto& map =  new TH2F("Signal and Noise2 ", "Signal and Noise2 ; x [cm]; y [cm]",160,0.,159.,144,0,143);
 
      // make sure the momentum is valid for the given particle (e.g., no - in the square-root in calcCkovFromMass and acos [-1..1])
-    if (ckov == 0) {
+    if (particle.ckov == 0) {
       continue;
     }
-     i++;
+    i++;
 
     
      // ParticleInfo Has to be extended to also contain xP, yP, (xMIP, yMIP?), thetaP, phiP 
-     ParticleInfo particle;
-     particle.filledBins = mapBins;
-     particle.momentum = randomValue.momentum;
-     particle.mass = randomValue.mass;
-     particle.energy = randomValue.energy;
-     particle.refractiveIndex = randomValue.refractiveIndex;
-     particle.ckov = ckov;
-     particle.xP = xP;
-     particle.yP = yP;
-     particle.thetaP = thetaP;
-     particle.phiP = phiP;
 
-     particle.map = map;  
      particleVector.emplace_back(particle);
 
-     Printf("CkovAngle %f Mass %f RefIndex %f Momentum %f | Num Entries in Map : %d", ckov, particle.mass, particle.refractiveIndex, particle.momentum, particle.filledBins.size()); 
+     Printf("CkovAngle %f Mass %f RefIndex %f Momentum %f | Num Entries in Map : %d", particle.ckov, particle.mass, particle.refractiveIndex, particle.momentum, particle.filledBins.size()); 
      //map->SaveAs(Form("map%d.root", i));
   }
 
@@ -331,11 +336,18 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0, do
 
 //(mapBins, ckov, occupancy, thetaTrackInclination, photonEnergy, 
 
-std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBins, float ckovActual, float occupancy, float thetaTrack, double photonEnergy, float& xP , float& yP, float& thetaP, float& phiP, std::array<float, 3> ckovHyps)  
+
+
+std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBins, float occupancy, RandomValues& randomValue, ParticleInfo& particle)  
 {
 
-  if(photonEnergy < 5) photonEnergy = 6.75; 
-  auto ckovAngle = ckovActual;
+   const auto& ckov = calcCkovFromMass(randomValue.momentum, randomValue.refractiveIndex, randomValue.mass); //  calcCkovFromMass(momentum, n, mass)
+     
+   // theoretical ckov angles : 
+  const auto& ckovHyps = calcCherenkovHyp(randomValue.momentum, randomValue.refractiveIndex); 
+
+  if(particle.energy < 5) particle.energy = 6.75; 
+  auto ckovAngle = ckov;
 
   Int_t NumberOfEvents = 1; Int_t NumberOfClusters = 13; float Hwidth = 15.;
   //testRandomMomentum();
@@ -352,17 +364,19 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   float ThetaP = 0; // [rad]  // endre denne
   float PhiP=0,PhiF=0,DegPhiP=0;
 
-  float DegThetaP = thetaTrack;
+
+
+
 
   //float /*RadiatorWidth,*/ QuartzWindowWidth,CH4GapWidth,EmissionLenght;
   float FreonIndexOfRefraction,QuartzIndexOfRefraction,CH4IndexOfRefraction;
 
 
   // randomly created in RandomValues.cpp
-  float PhotonEnergy = photonEnergy; 
+
   
-  FreonIndexOfRefraction = GetFreonIndexOfRefraction(photonEnergy);
-  QuartzIndexOfRefraction = GetQuartzIndexOfRefraction(photonEnergy);
+  FreonIndexOfRefraction = GetFreonIndexOfRefraction(particle.energy);
+  QuartzIndexOfRefraction = GetQuartzIndexOfRefraction(particle.energy);
   CH4IndexOfRefraction = 1.00;
   
   
@@ -381,73 +395,34 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   float mapArray[40][40]{};
       
 
-  /* old code 
-  for(Int_t iEvt = 0; iEvt<NumberOfEvents; iEvt++){
-    
-    //Printf("event number = %i",iEvt);
-    
-    float Xcen[100000],Ycen[100000];
-     
-    //DegThetaP = 4.;//0.*(1 - 2*gRandom->Rndm(iEvt));
-    gRandom->SetSeed(0);
-
-
-    DegPhiP   = 7.5;//360*gRandom->Rndm(iEvt); 
-        
-    // hvordan endre denne:?
-    ThetaP = TMath::Pi()*DegThetaP/180;
-    PhiP = TMath::Pi()*DegPhiP/180;  
-     
-    
-    const int numBackGround = occupancy*6*80*48; //occupancy = 0.03
-    NumberOfClusters = numBackGround;
-
-    
-    for(Int_t n1=0;n1<NumberOfClusters; n1++) {// clusters loop
-      
-    //  Printf("cluster = %i",n1);
-      
-      Xcen[n1] = 160*(gRandom->Rndm(n1));
-      Ycen[n1] = 144*(gRandom->Rndm(n1));
-
-      //noiseMap->Fill(Xcen[n1], Ycen[n1]);
-      hSignalAndNoiseMap->Fill(Xcen[n1], Ycen[n1]);
-
-      mapBins.push_back(Bin{Xcen[n1], Ycen[n1]});
-      //mapArray[Xcen[n1]+20][Ycen[n1]+20] = 1;
-      //hSignalAndNoiseMap2->Fill(Xcen[n1], Ycen[n1]);      
-   } 
-	  
-  Int_t NphotTot = 0;
-  float MeanTot = 0;
-     
- }*/
-
   // rndm value in ranfe 0.4, 0.7?
  TRandom2* rnd = new TRandom2(1);
  rnd->SetSeed(0);
  gRandom->SetSeed(0);
  // MIP azimuthal angle:
- phiP = static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
+
+ // TODO: change phiP back again
+ //double phiP = 0;//static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
+ double phiP = static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
 
  // MIP polar angle:
  // a.o.n; only between +- 5 deg
- thetaP = static_cast<float>(0.1*(1-2*gRandom->Rndm(1)));
-
-
+ double thetaP = getThetaP(randomValue.momentum);// = static_cast<float>(0.1*(1-2*gRandom->Rndm(1)));
+  
+         
 
 
  // place the impact point in x[10..150] and y[10..134]
- xP = static_cast<float>((160-10)*(1*gRandom->Rndm())+10);
- yP = static_cast<float>((144-10)*(1*gRandom->Rndm())+10);
+ double xP = static_cast<float>((160-10)*(1*gRandom->Rndm())+10);
+ double yP = static_cast<float>((144-10)*(1*gRandom->Rndm())+10);
 
-Printf("bgstudy segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP);
+
 
  // make instance of CkovTools
 
  // ckovHyps, nF, nQ, nG,
- CkovTools ckovTools(xP, yP, thetaP, phiP, ckovHyps, nF, nQ, nG, occupancy);
-	
+  CkovTools ckovTools(xP, yP, thetaP, phiP, ckovHyps, nF, nQ, nG, occupancy);
+  Printf("bgstudy segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP);
 
 
   Printf(" backgroundStudy : enter  numberOfCkovPhotons loop"); 
@@ -455,8 +430,8 @@ Printf("bgstudy segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP)
  std::vector<std::pair<double, double>> cherenkovPhotons(numberOfCkovPhotons);
  for(Int_t i=0; i < numberOfCkovPhotons; i++) {
    
-   // endre std-dev her til å følge prob-dist?!
-   float etaC = rnd->Gaus(ckovAngle, 0.012);		    // random CkovAngle, with 0.012 std-dev
+   // TODO: endre std-dev her til å følge prob-dist?!
+   float etaC = rnd->Gaus(ckovAngle, 0.00012);		    // random CkovAngle, with 0.012 std-dev
 
    float phiL = static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
    // angle around ckov Cone of photon
@@ -471,34 +446,13 @@ Printf("bgstudy segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP)
    cherenkovPhotons[i] = ckovPhotonCoordinates;
    Printf(" backgroundStudy : ckovTools.makeCkovPhoton returned x %f y%f", ckovPhotonCoordinates.first, ckovPhotonCoordinates.second); 	 
 	 
-   // old code, just a circle:
-   // hThetaCh->Fill(ckovAngle)
-   // trenger eliptisk skewing her:!
-	  
-	 
-   /*	 
-   float ringRadius = getRadiusFromCkov(etaC); // R in photon-map
-   Printf("Cherenkov Photon : Angle = %f Radius = %f", etaC, ringRadius);	
-   // populate the photon maps randomly radially
-
-   // get x and y values of Photon-candidate:
-   float x = xMip+ static_cast<float>(TMath::Cos(alpha)*ringRadius);
-   float y = yMip+ static_cast<float>(TMath::Sin(alpha)*ringRadius);  
-
-   // populating the pad
-   hSignalAndNoiseMap->Fill(x,y);
-   mapBins.push_back(Bin{x, y});
-   //mapArray[Xcen[n1]+20][Ycen[n1]+20] = 1;
-
-   // add Actual Cherenkov Photon to Candidates
-   photonCandidates.emplace_back(etaC);*/ 
 
   } 
 	
   // local coordinates are transformed to global here : 
   // also population of noise is done here
 
- Printf(" backgroundStudy : num cherenkovPhotons %f", cherenkovPhotons.size()); 
+  //Printf(" backgroundStudy : num cherenkovPhotons %f", cherenkovPhotons.size()); 
   typedef std::vector<std::pair<double, double>> MapType;
   MapType temp;
 
@@ -529,7 +483,19 @@ Printf("bgstudy segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP)
  
  /*auto ckovAnglePredicted = houghResponse(photonCandidates,  Hwidth); */
 
- return photonCandidatesCoords;
+	particle.filledBins = mapBins;
+	particle.momentum = randomValue.momentum;
+	particle.mass = randomValue.mass;
+	particle.energy = randomValue.energy;
+	particle.refractiveIndex = randomValue.refractiveIndex;
+	particle.ckov = ckov;
+	particle.xP = xP;
+	particle.yP = yP;
+	particle.thetaP = thetaP;
+	particle.phiP = phiP;
+  particle.map = hSignalAndNoiseMap;  
+
+  return photonCandidatesCoords;
  
 }
 //**********************************************************************************************************************************************************************************************************
