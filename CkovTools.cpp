@@ -158,7 +158,7 @@ public:
       pair.first = dis1(gen);
       pair.second = dis2(gen);
 
-        Printf("CkovTools segment created bg x%f y%f", pair.first, pair.second);
+       // Printf("CkovTools segment created bg x%f y%f", pair.first, pair.second);
     }
 
     std::vector<std::pair<double, double>> photonCandidates;
@@ -169,7 +169,7 @@ public:
       const auto& y = photons.second;
 
       Printf("ckovtools cherenkov photons x > xMaxPhiPi && x < xMaxPhi0 && y > yMaxPhiPi && y < yMaxPhi0");
-      Printf("ckovtools cherenkov photons x %f xMaxPhiPi %f x %f < xMaxPhi0 %f && y %f > yMaxPhiPi  %f && y %f < yMaxPhi0 %f",  x, xMaxPhiPi, x , xMaxPhi0 , y , yMaxPhiPi , y , yMaxPhi0);
+      Printf("ckovtools cherenkov photons x  %f > xMaxPhiPi %f && x %f < xMaxPhi0 %f && y %f > yMaxPhiPi  %f && y %f < yMaxPhi0 %f",  x, xMaxPhiPi, x , xMaxPhi0 , y , yMaxPhiPi , y , yMaxPhi0);
       //if(x > xMaxPhiPi && x < xMaxPhi0 && y > yMaxPhiPi && y < yMaxPhi0){
       if(true){
         bool withinRange = true; 
@@ -199,7 +199,8 @@ public:
           // transform to global coordinates:
           const auto& coords = local2Global(x, y);
           filledBins.push_back(coords);
-          Printf("CkovTools segment ckovphton  x %f y %f", x,y);
+
+    	   Printf("CkovTools segment : x%f y%f --> xG %f yG %f ", x,y, coords.first, coords.second); 
         }
           
         // Fill map
@@ -212,11 +213,12 @@ public:
       const auto& y = photons.second;
         //Printf("CkovTools segment : backGroundPhotons %f x", x);
       
-      if(x > xMaxPhiPi && x < xMaxPhi0 && y > yMaxPhiPi && y < yMaxPhi0){
+      //if(x > xMaxPhiPi && x < xMaxPhi0 && y > yMaxPhiPi && y < yMaxPhi0){
+      if(true){
         bool withinRange = true; 
         // check if the coordinates also corresponds to one of the possible cherenkov candidates
         const auto& ckov = getCkovFromCoords(xP, yP, x, y, phiP, thetaP, nF, nQ, nG); 
-             
+        Printf("CkovTools segment :ckov%f ", ckov);
         // TODO: later, also add to candidates (i.e., pionCandidates, kaonCandidates...)
         if( ckovPionMin <  ckov & ckov < ckovPionMax ){
           withinRange = true;
@@ -233,6 +235,7 @@ public:
         if(withinRange){
           // transform to global coordinates:
           const auto coords = local2Global(x, y);
+    	   Printf("CkovTools segment : x%f y%f --> xG %f yG %f ", x,y, coords.first, coords.second);    
           filledBins.push_back(coords);
           //Printf("CkovTools segment backGroundPhotons  x %f y %f", x,y);
         }      
@@ -250,8 +253,8 @@ public:
     
 	std::pair<double, double> local2Global(double xL, double yL)
 	{
-	  const auto x = cosPhiP*xL + sinPhiP*yL - xP;
-	  const auto y = sinPhiP*xL - cosPhiP*yL - yP;
+	  const auto x = cosPhiP*xL + sinPhiP*yL + xP;
+	  const auto y = sinPhiP*xL - cosPhiP*yL + yP;
 	  return {x, y};
 	}
 
@@ -375,13 +378,13 @@ public:
 		float ThetaCherenkov, PhiCherenkov, DegPhiCherenkov;
 
 		
-		float deltaX = (rW+qW+tGap-L)*TMath::Tan(thetaP)*TMath::Cos(phiP);
-		float deltaY = (rW+qW+tGap-L)*TMath::Tan(thetaP)*TMath::Sin(phiP);
+		float deltaX = (rW-L+qW+tGap)*tanThetaP*cosPhiP;
+		float deltaY = (rW-L+qW+tGap)*tanThetaP*sinPhiP;
 			
 		xPi = xP - deltaX;
 		yPi = yP - deltaY;
 
-		TVector3 v2(x-xPi-L*TMath::Tan(thetaP)*TMath::Cos(phiP), y-yPi-L*TMath::Tan(thetaP)*TMath::Sin(phiP),rW+qW+tGap-L); 
+		TVector3 v2(x-xPi-L*tanThetaP*cosPhiP, y-yPi-L*tanThetaP*sinPhiP,rW+qW+tGap-L); 
 
 		phiF = v2.Phi();      
 
@@ -395,9 +398,9 @@ public:
 
 		double thetaF02 = TMath::ASin((nQ/nG)*(TMath::Sin(thetaF01)));
 
-		float x01 = EmissionLenght*TMath::Tan(thetaP)*TMath::Cos(phiP);
+		float x01 = L*tanThetaP*cosPhiP;
 
-		float y01 =  EmissionLenght*TMath::Tan(thetaP)*TMath::Sin(phiP);
+		float y01 =  L*tanThetaP*sinPhiP;
 
 		float x02 = (rW - L)*TMath::Tan(thetaF0)*TMath::Cos(phiF)+qW*TMath::Tan(thetaF01)*TMath::Cos(phiF)+tGap*TMath::Tan(thetaF02)*TMath::Cos(phiF);
 
@@ -424,8 +427,8 @@ public:
 		  thetaF1 = TMath::ASin((nF/nQ)*(TMath::Sin(thetaF)));     
 		  thetaF2 = TMath::ASin((nQ/nG)*(TMath::Sin(thetaF1)));
 
-		  xF1 = EmissionLenght*TMath::Tan(thetaP)*TMath::Cos(phiP);
-		  yF1 =  EmissionLenght*TMath::Tan(thetaP)*TMath::Sin(phiP);
+		  xF1 = EmissionLenght*tanThetaP*cosPhiP;
+		  yF1 =  EmissionLenght*tanThetaP*sinPhiP;
 
 		  xF2 = (rW-L)*TMath::Tan(thetaF)*TMath::Cos(phiF)+qW*TMath::Tan(thetaF1)*TMath::Cos(phiF)+tGap*TMath::Tan(thetaF2)*TMath::Cos(phiF);
 		  yF2 = (rW-L)*TMath::Tan(thetaF)*TMath::Sin(phiF) + qW*TMath::Tan(thetaF1)*TMath::Sin(phiF) + tGap*TMath::Tan(thetaF2)*TMath::Sin(phiF);  
