@@ -358,7 +358,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
 
   // number of cherenkov photons in the cherenkov ring:
-  const auto numberOfCkovPhotons = rndP->Poisson(13);
+  const auto numberOfCkovPhotons = rndP->Poisson(50);
 
   photonCandidates.clear();
   float ThetaP = 0; // [rad]  // endre denne
@@ -431,9 +431,9 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  for(Int_t i=0; i < numberOfCkovPhotons; i++) {
    
    // TODO: endre std-dev her til å følge prob-dist?!
-   float etaC = rnd->Gaus(ckovAngle, 0.00012);		    // random CkovAngle, with 0.012 std-dev
+   float etaC = rnd->Gaus(ckovAngle, 0.000001);		    // random CkovAngle, with 0.012 std-dev
 
-   float phiL = static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
+   float phiL = static_cast<float>((3.14159265)*(1-2*gRandom->Rndm(1)));
    // angle around ckov Cone of photon
     
 	 
@@ -465,7 +465,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
   Printf(" backgroundStudy : num photonCandidatesCoords %d", photonCandidatesCoords.size()); 	 
   for(const auto& photons : photonCandidatesCoords){
-    Printf("photon x %f y %f", photons.first, photons.second);
+    //Printf("photon x %f y %f", photons.first, photons.second);
     hSignalAndNoiseMap->Fill(photons.first, photons.second);
   }
   TCanvas *thSignalAndNoiseMap = new TCanvas("hSignalAndNoiseMap","hSignalAndNoiseMap",800,800);  
