@@ -118,6 +118,8 @@ double getThetaP(double momentum)
   }
   
   degThetaP = degThetaL + (degThetaH-degThetaL)/(pH-pL) * (momentum - pL);
+
+  // TODO : change this back
   return degThetaP*3.1415/180;
 }
 
@@ -421,7 +423,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  // make instance of CkovTools
 
  // ckovHyps, nF, nQ, nG,
-  CkovTools ckovTools(xP, yP, thetaP, phiP, ckovHyps, nF, nQ, nG, occupancy);
+  CkovTools ckovTools(xP, yP, thetaP, phiP, ckovHyps, nF, nQ, nG, occupancy,ckovAngle);
   Printf("bgstudy segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP);
 
 
@@ -431,7 +433,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  for(Int_t i=0; i < numberOfCkovPhotons; i++) {
    
    // TODO: endre std-dev her til å følge prob-dist?!
-   float etaC = rnd->Gaus(ckovAngle, 0.000001);		    // random CkovAngle, with 0.012 std-dev
+   float etaC = rnd->Gaus(ckovAngle, 0.00001);		    // random CkovAngle, with 0.012 std-dev
 
    float phiL = static_cast<float>((3.14159265)*(1-2*gRandom->Rndm(1)));
    // angle around ckov Cone of photon
