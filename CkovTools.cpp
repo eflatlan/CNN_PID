@@ -480,7 +480,43 @@ const auto infString2 = Form("globalREf #Theta_{p}  = %f #Phi_{p} = %f ; x [cm];
 	}
 
 
-  
+  // populate map in local reference system
+	// based on one etaC value (i.e., one photon at a time)
+	const std::pair<double, double> makeCkovPhoton2(double phiL, double etaC)
+	{
+
+	  Printf("\nmakeCkovPhoton : phiL %f etaC %f", phiL, etaC);
+		const auto cosPhiL = TMath::Cos(phiL);
+		const auto sinPhiL = TMath::Sin(phiL);
+		
+    // if isNan; find etaC that corresponds to rwlGap ^ qwGap NOT nan
+    //if(isNan){}
+    
+		const auto cosEtaC = TMath::Cos(etaC);
+		const auto sinEtaC = TMath::Sin(etaC);
+
+    auto thetaC = etaC;
+    double firstTerm = ((rW - L) / std::cos(thetaP)) * std::tan(thetaC / 2.0);
+    double secondTerm = (qW / std::cos(thetaP)) * std::tan(std::asin(std::sin(thetaC) * nF * nG / (nQ * nG)) / 2.0);
+    double thirdTerm = ((rW - L + qW + tGap - rW + L - qW) / std::cos(thetaP)) * std::tan(std::asin((std::sin(thetaC) * nF) / nG) / 2.0);
+		
+		double R = firstTerm + secondTerm + thirdTerm;
+		
+		double x = R * std::cos(thetaL) * std::cos(phiP) * std::cos(thetaP) - R * std::sin(thetaL) * std::sin(thetaP);
+		double y = R * std::cos(thetaL) * std::cos(phiP) * std::sin(thetaP) + R * std::sin(thetaL) * std::cos(thetaP);
+		z = R*std::cos(thetaL)*std::cos(phiP)*std::sin(thetaP) + R*std::sin(thetaL)*std::cos(thetaP);
+			
+		/*
+		z = R*cos(thetaL)*sin(phiP) + l
+		x = R*cos(thetaL)*cos(phiP)cos(thetaP) - Rsin(thetaL)sin(thetaP)
+		y = Rcos(thetaL)*cos(phiP)sin(thetaP) + Rsin(thetaL)*cos(thetaP)*/
+															
+		Printf("makeCkovPhoton : Lz %f tGapGap %f T %f", Lz, tGapGap, T);
+		Printf("makeCkovPhoton : x %f, y %f %z || z != %f \n", x, y, z, rW - L + tGap + qW);
+				
+		//		return std::make_pair(x, y);
+		return std::make_pair(posOut.Px(), posOut.Py());
+	}
 
 	// populate map in local reference system
 	// based on one etaC value (i.e., one photon at a time)
