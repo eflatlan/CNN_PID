@@ -4,11 +4,11 @@
 #include <random>
 
 #include <math.h>
-
-
+//#include "ReconE.cpp"
+#include "ReconG.cpp"
 
 //namespace ParticleUtils
-
+using namespace o2;
 class CkovTools {
 
 
@@ -66,6 +66,8 @@ public:
     : xP(xP), yP(yP), thetaP(thetaP), phiP(phiP), 
       ckovHyps(ckovHyps), nF(nF), nQ(nQ), nG(nG), occupancy(occupancy) , trackCkov(trackCkov){
 			  
+		
+
 			  ckovPionMin = ckovHyps[0] - 3 * stdDevPion;
 			  ckovPionMax = ckovHyps[0] + 3 * stdDevPion;
 
@@ -140,6 +142,18 @@ public:
     TH2F *localRef = new TH2F("localRef ", infString,400,-20.,20.,400,-20,20);
   
     // TODO: ckovHyps : get std-dev for Theta_ckov of pion kaon and proton from the values theta_i
+
+   // initialize recon with track input params 
+   
+
+   // TODO: change this, xMipLocal just placeholder
+   // not sure if xPC simply is obtained like this
+   double xPC = xMipLocal, yPC = yMipLocal;
+   local2GlobalRef(xPC, yPC);
+
+
+   ReconG reconG(thetaP, phiP, xP, yP, xPC, yPC, nF);
+
 
 
    TH2F *hNoiseMap = new TH2F("  Noise ", "  Noise ; x [cm]; y [cm]",160,0.,159.,144,0,143);
@@ -312,7 +326,7 @@ public:
       auto x = photons.first;
       auto y = photons.second;
 
-
+      double xG = x, yG = y;
       localRefUnrot->Fill(x,y);
 
       // transform to phiRing ref-system
@@ -325,15 +339,31 @@ public:
       
 		
 	Printf("\nckovtools cherenkov photons x  %f > -mL1Max %f && x %f < mL2Max %f && y %f > -mRMax  %f && y %f < mRMax %f\n",  x, -mL1Max, x , mL2Max , y , -mRMax , y , mRMax);
+
+      double thetaCer, phiCer;
+      local2GlobalRef(xG, yG);
+      // double cluX, double cluY, double& thetaCer, double& phiCer
+      reconG.findPhotCkov(xG, yG, thetaCer, phiCer);	
+      auto ckov = thetaCer;
+      Printf("CkovTools segment thetaCer %f phiCer %f", thetaCer, phiCer);
+	
+
       if(x > -mL1Max && x < mL2Max && y*y > mRMax*mRMax  && y < mRMax){
       //if(true){
+
+
+	double thetaCer, phiCer;
+	reconG.findPhotCkov(xG, yG, thetaCer, phiCer);	
+	auto ckov = thetaCer;
+        Printf("CkovTools segment thetaCer %f phiCer %f", thetaCer, phiCer);
+	
         bool withinRange = true; 
         // check if the coordinates also corresponds to one of the possible cherenkov candidates
 
 
         // TODO : check if this method is wrong??
         // use here instead method from Recon.cxx
-        const auto& ckov = getCkovFromCoords(xP, yP, x, y, phiP, thetaP, nF, nQ, nG);      
+        //const auto& ckov = getCkovFromCoords(xP, yP, x, y, phiP, thetaP, nF, nQ, nG);      
 
        // Printf("CkovTools segment ckov %f", ckov);
         //Printf("CkovTools segment ckovPionMin %f ckovPionMax %f", ckovPionMin, ckovPionMax);
@@ -353,9 +383,8 @@ public:
         
         if(withinRange){
           // transform to global coordinates:
-          const auto& coords = local2Global(x, y);
-          filledBins.push_back(coords);
-          hSignalMap->Fill(coords.first, coords.second);
+          filledBins.push_back(std::make_pair(xG, yG));
+          hSignalMap->Fill(xG, yG);
 
     	  //Printf("CkovTools segment : x%f y%f --> xG %f yG %f ", x,y, coords.first, coords.second); 
         } // end if withinRange
