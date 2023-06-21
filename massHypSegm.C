@@ -28,7 +28,7 @@
 #include "ParticleUtils.cpp"
 #include "CkovTools.cpp"
 // sudo yum install hdf5-devel
-
+#include <HMPIDBase/Param.h>
 
 #include <Math/Vector3D.h>
 #include <Math/Vector2D.h>
@@ -94,7 +94,7 @@ float arrW[750]= {0.};
 using namespace o2;
 using namespace o2::hmpid;
 
-#include <HMPIDBase/Param.h>
+
 void setStyleInd(TH2* th1f, float ratio = 1.2);
 
 
@@ -360,7 +360,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
 
   // number of cherenkov photons in the cherenkov ring:
-  const auto numberOfCkovPhotons = rndP->Poisson(50);
+  const auto numberOfCkovPhotons = rndP->Poisson(13);
 
   photonCandidates.clear();
   float ThetaP = 0; // [rad]  // endre denne
@@ -427,7 +427,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
 
   // initialize recon with track input params 
-  ReconE reconE(thetaP, phiP, xP, yP);
+  //ReconE reconE(thetaP, phiP, xP, yP);
 
   Printf("bgstudy segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP);
 
@@ -470,7 +470,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
 
 
-  Printf(" backgroundStudy : num photonCandidatesCoords %d", photonCandidatesCoords.size()); 	 
+  Printf(" backgroundStudy : num photonCandidatesCoords %zu", photonCandidatesCoords.size()); 	 
   for(const auto& photons : photonCandidatesCoords){
     //Printf("photon x %f y %f", photons.first, photons.second);
     hSignalAndNoiseMap->Fill(photons.first, photons.second);
@@ -484,7 +484,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 	
   int cnt = 0;
   for(auto& b : mapBins) {/*Printf("xval %f", b.x);*/ cnt++;}
-  Printf(" mapBins size = %d", mapBins.size());
+  Printf(" mapBins size = %zu", mapBins.size());
   Printf(" mapBins cnt size = %d",   cnt);
  //Printf("Hough Window size = %f", Hwidth);
  
@@ -536,6 +536,7 @@ float BackgroundFunc(float *x, float *par)
 float getRadiusFromCkov(float ckovAngle)
 {
 
+  // TODO: change this back to using n!! not
   //// refIndexFreon refIndexQuartz refIndexCH4
   float sin_ckov = static_cast<float>(TMath::Sin(ckovAngle));
   float sin_qz = static_cast<float>(sin_ckov*(refIndexFreon/refIndexQuartz));
@@ -731,7 +732,7 @@ float /*std::array<TH1D*, 3>*/ houghResponse(std::vector<float>& photonCandidate
 
 
   Printf("TBox Max %f ", photsw->GetBinContent(phots->GetMaximumBin()));
-  Printf("TBox MaxBin %f ", phots->GetMaximumBin());
+  Printf("TBox MaxBin %d ", phots->GetMaximumBin());
 
 
   int binBox = phots->GetYaxis()->GetLast();
@@ -874,7 +875,7 @@ TH1* getMaxInRange(TH1* th1, float& up, float mid, float width)
 std::array<float, 3> calcCherenkovHyp(float p, float n)
 {
   const float p_sq = p*p;
-  const float cos_ckov_denom = p*refIndexFreon;
+  const float cos_ckov_denom = p*n;
   const auto cos_ckov_Pion = static_cast<float>(TMath::Sqrt(p_sq + mass_Pion_sq)/(cos_ckov_denom)); // n = refIndexFreon 1.289 later make it random?
 
   const float cos_ckov_Kaon = static_cast<float>(TMath::Sqrt(p_sq + mass_Kaon_sq)/(cos_ckov_denom)); 
@@ -895,7 +896,7 @@ std::array<float, 3> calcCherenkovHyp(float p, float n)
 float calcCkovFromMass(float p, float n, float m)
 {
   const float p_sq = p*p;
-  const float cos_ckov_denom = p*refIndexFreon;
+  const float cos_ckov_denom = p*n;
 
   // sanity check ;)
   if(p_sq + m*m < 0){
