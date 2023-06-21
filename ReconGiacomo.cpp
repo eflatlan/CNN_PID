@@ -4,14 +4,9 @@
 
 #include <TNamed.h> //base class
 
-// ef: change from TRotation legacy class
-#include <Math/GenVector/Rotation3D.h>
-#include <Math/GenVector/RotationX.h>
-#include <Math/GenVector/RotationY.h>
-#include <Math/GenVector/RotationZ.h>
 
 // ef: new includes to replace TVector2/3
-#include <Math/Vector3D.h>
+
 
 #include <vector>
 // ef: using vectors instead of TClonesArray
@@ -35,13 +30,6 @@
 #include "ReconstructionDataFormats/Track.h"
 #include <TNamed.h> //base class
 
-#include <Math/GenVector/Rotation3D.h>
-#include "Math/GenVector/RotationX.h"
-#include "Math/GenVector/RotationY.h"
-#include "Math/GenVector/RotationZ.h"
-
-#include <Math/Vector3D.h>
-#include "Math/Vector3D.h"
 
 #include <TVector2.h>
 #include <TVector3.h>

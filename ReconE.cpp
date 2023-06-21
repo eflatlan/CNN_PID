@@ -12,6 +12,8 @@
 
 // ef: new includes to replace TVector2/3
 #include <Math/Vector3D.h>
+#include <Math/Vector2D.h>
+
 
 #include <vector>
 // ef: using vectors instead of TClonesArray
@@ -23,6 +25,9 @@
 #include "DataFormatsHMP/Cluster.h"
 #include "ReconstructionDataFormats/Track.h"
 
+#include "MathUtils/Cartesian.h"
+using namespace o2;
+using namespace o2::hmpid;
 //namespace ParticleUtils
 
 class ReconE {
@@ -61,7 +66,11 @@ class ReconE {
   ReconE& operator=(const ReconE& r); // dummy assignment operator
 
  public: 
-    ReconE(double trkX, double trxY) : fParam(Param::instance(), )
+    ReconE(double _xRad, double _yRad, double _theta, double _phi, double _xPC, double _yPC) : fParam(o2::hmpid::Param::instance()) 
+    { 
+      setTrack(xRad, yRad, theta, phi);
+      setImpPC(_xPC, _yPC);
+    }
     
     template <typename T>
     bool findPhotCkov(double cluX, double cluY, double& thetaCer, double& phiCer)
@@ -188,7 +197,9 @@ class ReconE {
     thetaCer = dirCkovLORS.Theta(); // actual value of thetaCerenkov of the photon
     }
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    void (double ckovAng, int level)
+
+    /*
+    void findRingGeom(double ckovAng, int level)
     {
     // Find area covered in the PC acceptance
     // Arguments: ckovAng - cerenkov angle
@@ -239,9 +250,9 @@ class ReconE {
     area *= 0.5;
     fRingArea = area;
     } // FindRingGeom()
-
+    */
     // template <typename T>
-    void Recon::propagate(const Polar3DVector& dir, math_utils::Vector3D<double>& pos, double z) const
+    void propagate(const Polar3DVector& dir, math_utils::Vector3D<double>& pos, double z) const
     {
     // Finds an intersection point between a line and XY plane shifted along Z.
     // Arguments:  dir,pos   - vector along the line and any point of the line
@@ -297,8 +308,11 @@ class ReconE {
     fTrkDir.SetCoordinates(1, theta, phi);
     fTrkPos.SetCoordinates(xRad, yRad);
   } // set track parameter at RAD
+
+
   void setImpPC(double xPc, double yPc)
   {
+    
     fPc.SetCoordinates(xPc, yPc);
   } // set track impact to PC
   void setMip(double xmip, double ymip)
