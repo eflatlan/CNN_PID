@@ -423,7 +423,12 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  // make instance of CkovTools
 
  // ckovHyps, nF, nQ, nG,
-  CkovTools ckovTools(xP, yP, thetaP, phiP, ckovHyps, nF, nQ, nG, occupancy,ckovAngle);
+  CkovTools ckovTools(xP, yP, thetaP, phiP, ckovHyps, nF, nQ, nG, occupancy, ckovAngle);
+
+
+  // initialize recon with track input params 
+  ReconE reconE(thetaP, phiP, xP, yP);
+
   Printf("bgstudy segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP);
 
 
