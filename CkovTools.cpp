@@ -169,8 +169,9 @@ public:
     TH2F *localRefMIP = new TH2F("localRefMIP ", infString,400,-20.,20.,400,-20,20);
     TH2F *localRefMIPUnrot = new TH2F("localRefMIPUnrot ", infString,400,-20.,20.,400,-20,20);
     TH2F *localRefUnrot = new TH2F("localRef ", infString,400,-20.,20.,400,-20,20);
-    TH2F *localRef = new TH2F("localRef ", infString,400,-20.,20.,400,-20,20);
-  
+    TH2F *localRef = new TH2F("localRef ", infString,400,-20.,20.,400,-20,20);  
+    TH2F *localRefBG = new TH2F("localRefBG ", infString,400,-20.,20.,400,-20,20);
+
     // TODO: ckovHyps : get std-dev for Theta_ckov of pion kaon and proton from the values theta_i
 
    // initialize recon with track input params 
@@ -211,13 +212,13 @@ public:
     double xLU = -mL1Max;
     double yLU = mRMax;
 
-    double xRU = mL1Max;
+    double xRU = mL2Max;
     double yRU = mRMax;
 
     double xLD = -mL1Max;
     double yLD = -mL1Max;
 
-    double xRD = mL1Max;
+    double xRD = mL2Max;
     double yRD = -mRMax;
 
 
@@ -282,6 +283,11 @@ public:
 			local2GlobalRef(xRU,yRU);
 			local2GlobalRef(xLD,yLD);
 			local2GlobalRef(xRD,yRD);
+
+
+	    TLine *tlineLeftGlobal = new TLine(xLU, yLU, xLD, yLD);
+
+	    TLine *tlineRightGlobal = new TLine(xRU, yRU, xRD, yRD);
 
 	    TLine *tlineUpGlobal = new TLine(xLU, yLU, xRU, yRU);
 
@@ -361,8 +367,9 @@ public:
       localRefUnrot->Fill(x,y);
 
       // transform to phiRing ref-system
-      local2PhiRing(x,y,xMipLocal,yMipLocal);
+      local2PhiRing(x, y, xMipLocal, yMipLocal);
       localRef->Fill(x,y);
+
 
 			/*
       Printf("ckovtools cherenkov photons x > xMaxPhiPi && x < xMaxPhi0 && y > yMaxPhiPi && y < yMaxPhi0");
@@ -374,7 +381,8 @@ public:
       double thetaCer, phiCer;
       local2GlobalRef(xG, yG);
       // double cluX, double cluY, double& thetaCer, double& phiCer
-      reconG.findPhotCkov(xG, yG, thetaCer, phiCer);	
+      
+      reconG.findPhotCkov(xG, yG, thetaCer, phiCer, etaC);	
       auto ckov = thetaCer;
       //Printf("CkovTools segment thetaCer %f phiCer %f", thetaCer, phiCer);
 	
@@ -383,8 +391,7 @@ public:
       auto yAbs = TMath::Abs(y);
 
 	Printf("\nckovtools cherenkov photons xAbs  %f > mL1Max %f && x %f < mL2Max %f && yAbs %f > mRMax  %f && y %f < mRMax %f\n",  x, mL1Max, xAbs , mL2Max , yAbs , mRMax , y , mRMax);
-      if(y > -mL1Max && x < mL2Max && y > -mRMax  && y < mRMax){
-
+      if(x > -mL1Max && x < mL2Max && y > -mRMax  && y < mRMax){
 
 
 	//double thetaCer, phiCer;
@@ -436,9 +443,11 @@ public:
       const auto& x = photons.first;
       const auto& y = photons.second;
         //Printf("CkovTools segment : backGroundPhotons %f x", x);
-      
 
-      if(y > -mL1Max && x < mL2Max && y > -mRMax  && y < mRMax){
+          auto X = x, Y = y;
+			    local2PhiRing(X, Y, xMipLocal, yMipLocal);      
+
+      if(X > -mL1Max && X < mL2Max && Y > -mRMax  && Y < mRMax){
         bool withinRange = true; 
         // check if the coordinates also corresponds to one of the possible cherenkov candidates
 
@@ -460,6 +469,14 @@ public:
         }
         
         if(withinRange){
+
+			    // transform to phiRing ref-system
+
+
+					localRefBG->Fill(X,Y);
+
+
+
           // transform to global coordinates:
           const auto coords = local2Global(x, y);
     	    //Printf("CkovTools segment : x%f y%f --> xG %f yG %f ", x,y, coords.first, coords.second);    
@@ -490,9 +507,10 @@ public:
 
   hNoiseMap->SetMarkerStyle(2);
   hNoiseMap->Draw("same");
-	tlineUpGlobal->Draw();
-	tlineDownGlobal->Draw();
-
+tlineUpGlobal->Draw();
+tlineRightGlobal->Draw();
+tlineDownGlobal->Draw();
+  tlineLeftGlobal->Draw();
   //hSignalAndNoiseMap->Show();
   /*thSignalNoiseMap->cd(2);
   //globalBoxSignal->Draw();
@@ -511,7 +529,13 @@ public:
   localRef->SetMarkerStyle(2);
   localRef->Draw();
   localRefUnrot->SetMarkerStyle(2);
-  localRefUnrot->SetMarkerColor(kRed);
+  localRefUnrot->SetMarkerColor(kBlue);
+
+
+localRefBG->SetMarkerColor(kRed);
+
+  localRefBG->SetMarkerStyle(2);
+localRefBG->Draw("same");
   localRefUnrot->Draw("same");
   
   
@@ -922,14 +946,14 @@ public:
 	double getCkovFromCoords(double xP, double yP, double xL, double yL, double phiP, double thetaP, float nF, float nQ, float nG, double etaC)
 	{       
     const auto infString = Form("localRefCk xP %.2f yP %.2f",xP,yP);
-    TH2F *localRefCk = new TH2F("localRefCk ", infString,400,-20.,20.,400,-20,20);
+    TH2F *localRefCk = new TH2F("localRefCk ", infString,40,-20.,20.,40,-20,20);
 
 
     const auto infString2 = Form("localRefCk2 xP %.2f yP %.2f",xP,yP);
-    TH2F *localRefCk2 = new TH2F("localRefCk2 ", infString2,400,-20.,20.,400,-20,20);
+    TH2F *localRefCk2 = new TH2F("localRefCk2 ", infString2,40,-20.,20.,40,-20,20);
 
     const auto infString3 = Form("localRefCk3 xP %.2f yP %.2f",xP,yP);
-    TH2F *localRefCk3 = new TH2F("localRefCk3 ", infString3,400,-20.,20.,400,-20,20);
+    TH2F *localRefCk3 = new TH2F("localRefCk3 ", infString3,40,-20.,20.,40,-20,20);
 
     localRefCk->Fill(xL,L);
     const auto& coords = local2Global(xL, yL);
@@ -982,7 +1006,7 @@ public:
 
 		Int_t nWhile = 0;
 		
-		TGraph* tCkovReconGraph = new TGraph(30);		
+		TGraph* tCkovReconGraph = new TGraph(50);		
 			
 		while(TMath::Sqrt((xF-x+xPi)*(xF-x+xPi)+(yF-y+yPi)*(yF-y+yPi))>0.0001)
 		{ 
@@ -1003,8 +1027,6 @@ public:
 		  yF = yF1 + yF2;
 
 
-
-
 		  double X = xF, Y = yF, x1 = xF1, y1 = yF1, x2 = xF2, y2 = yF2;
 
 		  local2PhiRing(X, Y, xMipLocal, yMipLocal);
@@ -1017,7 +1039,7 @@ public:
 
   		  tCkovReconGraph->SetPoint(nWhile, nWhile, thetaF);
 
-		  Printf("localRefCk xF %.2f, yF %.2f thetaF %.4f",xF,yF,thetaF );
+		  //Printf("localRefCk xF %.2f, yF %.2f thetaF %.4f",xF,yF,thetaF );
 		  if(TMath::Sqrt((xF-x0)*(xF-x0)+(yF-y0)*(yF-y0))>TMath::Sqrt((x-xPi-x0)*(x-xPi-x0)+(y-yPi-y0)*(y-yPi-y0)))
 		  {
 		    ThetaMin = thetaF;
@@ -1027,7 +1049,7 @@ public:
 		    ThetaMax = thetaF;   
 		  }  
 
-		  if(nWhile>30) break;
+		  if(nWhile>50) break;
 
 		} // while 
 		      
@@ -1059,8 +1081,8 @@ public:
 
 		DegPhiCherenkov = 180*PhiCherenkov/(TMath::Pi());
 
-                const auto infString4 = Form("localRefCk3 xP %.2f yP %.2f | Actual Ckov : %.3f | Reconstructed Ckov1 = %.3f, Ckov2 = %.3f",xP,yP, etaC, thetaF, vF.Theta());
-
+                const auto infString4 = Form("bg meth: xP %.2f yP %.2f | Actual Ckov : %.3f | Reconstructed Ckov1 = %.3f, Ckov2 = %.3f, avgRecCkov = %.3f",xP,yP, etaC, thetaF, vF.Theta(), thetaF/2 + vF.Theta()/2);
+ 
 
 
 		TCanvas* tCkovGraph = new TCanvas("t2","etaC Graph", 1600, 1600);
