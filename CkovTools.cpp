@@ -357,8 +357,8 @@ public:
 
 
 	double thetaCer, phiCer;
-	reconG.findPhotCkov(xG, yG, thetaCer, phiCer);	
-	auto ckov = thetaCer;
+	//reconG.findPhotCkov(xG, yG, thetaCer, phiCer);	
+	//auto ckov = thetaCer;
         Printf("CkovTools segment thetaCer %f phiCer %f", thetaCer, phiCer);
 	
         bool withinRange = true; 
@@ -367,7 +367,8 @@ public:
 
         // TODO : check if this method is wrong??
         // use here instead method from Recon.cxx
-        //const auto& ckov = getCkovFromCoords(xP, yP, x, y, phiP, thetaP, nF, nQ, nG);      
+        const auto& ckov = getCkovFromCoords(xP, yP, x, y, phiP, thetaP, nF, nQ, nG);      
+        Printf("CkovTools segment :ckov%f ", ckov);
 
        // Printf("CkovTools segment ckov %f", ckov);
         //Printf("CkovTools segment ckovPionMin %f ckovPionMax %f", ckovPionMin, ckovPionMax);
@@ -409,8 +410,9 @@ public:
         // check if the coordinates also corresponds to one of the possible cherenkov candidates
 
         // change to method from Recon.cxx:
-        const auto& ckov = getCkovFromCoords(xP, yP, x, y, phiP, thetaP, nF, nQ, nG); 
-        Printf("CkovTools segment :ckov%f ", ckov);
+	auto ckov = 1;
+        //const auto& ckov = getCkovFromCoords(xP, yP, x, y, phiP, thetaP, nF, nQ, nG); 
+        //Printf("CkovTools segment :ckov%f ", ckov);
         // TODO: later, also add to candidates (i.e., pionCandidates, kaonCandidates...)
         if( ckovPionMin <  ckov & ckov < ckovPionMax ){
           withinRange = true;
@@ -850,9 +852,12 @@ public:
 
 	double getCkovFromCoords(double xP, double yP, double xL, double yL, double phiP, double thetaP, float nF, float nQ, float nG)
 	{       
+    const auto infString = Form("localRefCk xP %.2f yP %.2f",xP,yP);
+    TH2F *localRefCk = new TH2F("localRefCk ", infString,400,-20.,20.,400,-20,20);
     const auto& coords = local2Global(xL, yL);
     const auto x = coords.first;
 		const auto y = coords.second;
+		localRefCk->Fill(x,y);
 		double phiF = 0;
 		double thetaF1,thetaF2,thetaF=0,thetaLimite;
 		float xPi=0,yPi=0,xF=0,yF=0,xF1=0,yF1=0,xF2=0,yF2=0; 
@@ -916,7 +921,8 @@ public:
 
 		  xF = xF1 + xF2;
 		  yF = yF1 + yF2;
-		  
+  		  localRefCk->Fill(xF,yF);
+		  Printf("localRefCk xF %.2f, yF %.2f thetaF %.4f",xF,yF,thetaF );
 		  if(TMath::Sqrt((xF-x0)*(xF-x0)+(yF-y0)*(yF-y0))>TMath::Sqrt((x-xPi-x0)*(x-xPi-x0)+(y-yPi-y0)*(y-yPi-y0)))
 		  {
 		    ThetaMin = thetaF;
@@ -931,7 +937,7 @@ public:
 
 		} // while 
 		      
-			    
+	        localRefCk->Draw();
 		TVector3 vP((TMath::Sin(thetaP))*(TMath::Cos(phiP)),(TMath::Sin(thetaP))*(TMath::Sin(phiP)),(TMath::Cos(thetaP)));
 		TVector3 vz(0.,0.,1.);
 
