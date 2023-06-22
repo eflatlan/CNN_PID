@@ -426,8 +426,6 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   CkovTools ckovTools(xP, yP, thetaP, phiP, ckovHyps, nF, nQ, nG, occupancy, ckovAngle);
 
 
-  // initialize recon with track input params 
-  //ReconE reconE(thetaP, phiP, xP, yP);
 
   Printf("bgstudy segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP);
 
@@ -438,7 +436,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  for(Int_t i=0; i < numberOfCkovPhotons; i++) {
    
    // TODO: endre std-dev her til å følge prob-dist?!
-   float etaC = rnd->Gaus(ckovAngle, 0.00001);		    // random CkovAngle, with 0.012 std-dev
+   float etaC = rnd->Gaus(ckovAngle, 0.008);		    // random CkovAngle, with 0.012 std-dev
 
    float phiL = static_cast<float>((3.14159265)*(1-2*gRandom->Rndm(1)));
    // angle around ckov Cone of photon
