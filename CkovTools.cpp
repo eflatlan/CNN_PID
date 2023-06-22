@@ -326,7 +326,7 @@ public:
       auto x = photons.first;
       auto y = photons.second;
 
-      double xG = x, yG = y;
+      double xG = photons.first, yG = photons.second;
       localRefUnrot->Fill(x,y);
 
       // transform to phiRing ref-system
@@ -348,8 +348,12 @@ public:
       Printf("CkovTools segment thetaCer %f phiCer %f", thetaCer, phiCer);
 	
 
-      if(x > -mL1Max && x < mL2Max && y*y > mRMax*mRMax  && y < mRMax){
-      //if(true){
+      auto xAbs = TMath::Abs(x);
+      auto yAbs = TMath::Abs(y);
+
+	Printf("\nckovtools cherenkov photons xAbs  %f > mL1Max %f && x %f < mL2Max %f && yAbs %f > mRMax  %f && y %f < mRMax %f\n",  x, mL1Max, xAbs , mL2Max , yAbs , mRMax , y , mRMax);
+      if(y > -mL1Max && x < mL2Max && y > -mRMax  && y < mRMax){
+
 
 
 	double thetaCer, phiCer;
@@ -399,8 +403,8 @@ public:
       const auto& y = photons.second;
         //Printf("CkovTools segment : backGroundPhotons %f x", x);
       
-      //if(x > mL1Max && x < mL2Max && y > -mRMax && y < mRMax){
-      if(x > -mL1Max && x < mL2Max && y*y > mRMax*mRMax  && y < mRMax){
+
+      if(y > -mL1Max && x < mL2Max && y > -mRMax  && y < mRMax){
         bool withinRange = true; 
         // check if the coordinates also corresponds to one of the possible cherenkov candidates
 
