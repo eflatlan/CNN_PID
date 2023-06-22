@@ -419,7 +419,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  double yP = static_cast<float>((144-10)*(1*gRandom->Rndm())+10);
 
 
- double L = static_cast<float>((rW)*(0.8*gRandom->Rndm()+0.1));
+ double L = rW/2;//static_cast<float>((rW)*(0.8*gRandom->Rndm()+0.1));
 
  // make instance of CkovTools
 
@@ -438,7 +438,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
   Printf(" backgroundStudy : enter  numberOfCkovPhotons loop"); 
   Printf(" backgroundStudy : numberOfCkovPhotons %d", numberOfCkovPhotons); 
- std::vector<std::pair<double, double>> cherenkovPhotons(numberOfCkovPhotons);
+ std::vector<std::array<double, 3>> cherenkovPhotons(numberOfCkovPhotons);
  for(Int_t i=0; i < numberOfCkovPhotons; i++) {
    
    // TODO: endre std-dev her til å følge prob-dist?!
@@ -453,8 +453,12 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
    // later change below fcn to take valeus from setPhoton:
   Printf(" backgroundStudy : enter  ckovTools.makeCkovPhoton"); 	 
    const auto& ckovPhotonCoordinates = ckovTools.makeCkovPhoton(phiL, etaC);
+   
+   std::array<double, 3> cand = {ckovPhotonCoordinates.first,ckovPhotonCoordinates.second , etaC};
 
-   cherenkovPhotons[i] = ckovPhotonCoordinates;
+
+  cherenkovPhotons.emplace_back(cand);
+
    Printf(" backgroundStudy : ckovTools.makeCkovPhoton returned x %f y%f", ckovPhotonCoordinates.first, ckovPhotonCoordinates.second); 	 
 	 
 

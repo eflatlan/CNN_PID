@@ -157,7 +157,11 @@ public:
 
   // TODO: add nQ
   // only consider photons in the correct range:
-  std::vector<std::pair<double, double>> segment(std::vector<std::pair<double, double>>& cherenkovPhotons, MapType& bins) { 
+
+
+ // x, y, etaC
+
+ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>>& cherenkovPhotons, MapType& bins) { 
      
 
     const auto infString = Form("localRef #Theta_{p}  = %.4f #Phi_{p} = %.4f L = %.2f \n #Theta_{C} = %.4f maxCkov = %.4f \n maxR = %.1f | l1 = %.1f | l2 = %.1f; x [cm]; y [cm]", thetaP,phiP, L,trackCkov,ckovPionMax, mRMax, mL1Max, mL2Max); 
@@ -186,10 +190,10 @@ public:
    int numPhotons= 0;
     for(const auto& p :cherenkovPhotons){
 
-			const auto& xDif = p.first - xMipLocal; 
-			const auto& yDif = p.second - yMipLocal; 
+			const auto& xDif = p[0] - xMipLocal; 
+			const auto& yDif = p[1] - yMipLocal; 
       auto R = TMath::Sqrt(xDif*xDif+yDif*yDif);
-      Printf(" Ckovtools segments cherenkovPhotons : x %f y %f R = %f", p.first, p.second, R);
+      Printf(" Ckovtools segments cherenkovPhotons : x %f y %f R = %f", p[0], p[1], R);
       numPhotons++;
     }
 
@@ -349,10 +353,11 @@ public:
       localRefMIP->Fill(xML,yML);
     // here : loop through all backGroundPhotons and cherenkovPhotons
     for(const auto& photons : cherenkovPhotons) {  
-      auto x = photons.first;
-      auto y = photons.second;
+      auto x = photons[0];
+      auto y = photons[1];
+      const auto& etaC = photons[2];
 
-      double xG = photons.first, yG = photons.second;
+      double xG = photons[0], yG = photons[1];
       localRefUnrot->Fill(x,y);
 
       // transform to phiRing ref-system
@@ -371,7 +376,7 @@ public:
       // double cluX, double cluY, double& thetaCer, double& phiCer
       reconG.findPhotCkov(xG, yG, thetaCer, phiCer);	
       auto ckov = thetaCer;
-      Printf("CkovTools segment thetaCer %f phiCer %f", thetaCer, phiCer);
+      //Printf("CkovTools segment thetaCer %f phiCer %f", thetaCer, phiCer);
 	
 
       auto xAbs = TMath::Abs(x);
@@ -382,10 +387,10 @@ public:
 
 
 
-	double thetaCer, phiCer;
+	//double thetaCer, phiCer;
 	//reconG.findPhotCkov(xG, yG, thetaCer, phiCer);	
 	//auto ckov = thetaCer;
-        Printf("CkovTools segment thetaCer %f phiCer %f", thetaCer, phiCer);
+
 	
         bool withinRange = true; 
         // check if the coordinates also corresponds to one of the possible cherenkov candidates
@@ -393,8 +398,10 @@ public:
 
         // TODO : check if this method is wrong??
         // use here instead method from Recon.cxx
-        const auto& ckov = getCkovFromCoords(xP, yP, x, y, phiP, thetaP, nF, nQ, nG);      
-        Printf("CkovTools segment :ckov%f ", ckov);
+        const auto& ckov = getCkovFromCoords(xP, yP, x, y, phiP, thetaP, nF, nQ, nG, etaC);      
+        Printf("CkovTools segment | actual ckov = %.3f | bgstdy method:  %.3f | ReconMEthods:  thetaCer %f phiCer %f", etaC, ckov,  thetaCer, phiCer);
+
+
 
        // Printf("CkovTools segment ckov %f", ckov);
         //Printf("CkovTools segment ckovPionMin %f ckovPionMax %f", ckovPionMin, ckovPionMax);
@@ -912,7 +919,7 @@ public:
 	}
 
 
-	double getCkovFromCoords(double xP, double yP, double xL, double yL, double phiP, double thetaP, float nF, float nQ, float nG)
+	double getCkovFromCoords(double xP, double yP, double xL, double yL, double phiP, double thetaP, float nF, float nQ, float nG, double etaC)
 	{       
     const auto infString = Form("localRefCk xP %.2f yP %.2f",xP,yP);
     TH2F *localRefCk = new TH2F("localRefCk ", infString,400,-20.,20.,400,-20,20);
@@ -974,7 +981,9 @@ public:
 		yF = 999;
 
 		Int_t nWhile = 0;
-
+		
+		TGraph* tCkovReconGraph = new TGraph(30);		
+			
 		while(TMath::Sqrt((xF-x+xPi)*(xF-x+xPi)+(yF-y+yPi)*(yF-y+yPi))>0.0001)
 		{ 
 		  nWhile++;
@@ -1006,13 +1015,13 @@ public:
   		  localRefCk2->Fill(xF1,yF1);
   		  localRefCk3->Fill(xF2,yF2);
 
+  		  tCkovReconGraph->SetPoint(nWhile, nWhile, thetaF);
 
 		  Printf("localRefCk xF %.2f, yF %.2f thetaF %.4f",xF,yF,thetaF );
 		  if(TMath::Sqrt((xF-x0)*(xF-x0)+(yF-y0)*(yF-y0))>TMath::Sqrt((x-xPi-x0)*(x-xPi-x0)+(y-yPi-y0)*(y-yPi-y0)))
 		  {
 		    ThetaMin = thetaF;
 		  }
-
 		  else 
 		  {
 		    ThetaMax = thetaF;   
@@ -1023,17 +1032,6 @@ public:
 		} // while 
 		      
 
-		TCanvas* tcanv = new TCanvas("test", "test", 1600, 1600);
-
-
-		tcanv->cd();
-	        localRefCk->Draw();
-
-	        localRefCk2->SetMarkerColor(kRed);
-	        localRefCk2->Draw("same");
-
-	        localRefCk3->SetMarkerColor(kBlue);
-	        localRefCk3->Draw("same");
 
 		TVector3 vP((TMath::Sin(thetaP))*(TMath::Cos(phiP)),(TMath::Sin(thetaP))*(TMath::Sin(phiP)),(TMath::Cos(thetaP)));
 		TVector3 vz(0.,0.,1.);
@@ -1056,7 +1054,33 @@ public:
 		  PhiCherenkov = vF.Phi();
 		}
 
+
+
+
 		DegPhiCherenkov = 180*PhiCherenkov/(TMath::Pi());
+
+                const auto infString4 = Form("localRefCk3 xP %.2f yP %.2f | Actual Ckov : %.3f | Reconstructed Ckov1 = %.3f, Ckov2 = %.3f",xP,yP, etaC, thetaF, vF.Theta());
+
+
+
+		TCanvas* tCkovGraph = new TCanvas("t2","etaC Graph", 1600, 1600);
+		tCkovGraph->cd();
+		tCkovReconGraph->SetTitle(infString4);
+		tCkovReconGraph->Draw("AP");
+		
+
+		TCanvas* tcanv = new TCanvas("test", "test", 1600, 1600);
+		tcanv->cd();
+
+
+	        localRefCk->SetTitle(infString4);
+	        localRefCk->Draw();
+
+	        localRefCk2->SetMarkerColor(kRed);
+	        localRefCk2->Draw("same");
+	        localRefCk3->SetMarkerColor(kBlue);
+	        localRefCk3->Draw("same");
+
 
 		if(DegPhiCherenkov<0) DegPhiCherenkov+=360;
     return static_cast<double>(ThetaCherenkov);	
