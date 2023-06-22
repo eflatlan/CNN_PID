@@ -280,10 +280,12 @@ void saveDataInst();
 /*std::shared_ptr<TFile>*/void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector);
 
 
+double scaleThetaP;
 
-
-void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0, double occupancy = 0.03)
+void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0, double occupancy = 0.03, double _scaleThetaP = 1)
 {  
+
+  scaleThetaP = _scaleThetaP;
 
 
 // create random mass, energy (and from this ref-index) and momentum :
@@ -360,7 +362,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
 
   // number of cherenkov photons in the cherenkov ring:
-  const auto numberOfCkovPhotons = rndP->Poisson(1);
+  const auto numberOfCkovPhotons = rndP->Poisson(13);
 
   photonCandidates.clear();
   float ThetaP = 0; // [rad]  // endre denne
@@ -405,11 +407,11 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
  // TODO: change phiP back again
  //double phiP = 0;//static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
- double phiP = 0*static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
+ double phiP = static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
 
  // MIP polar angle:
  // a.o.n; only between +- 5 deg
- double thetaP = 0*getThetaP(randomValue.momentum);// = static_cast<float>(0.1*(1-2*gRandom->Rndm(1)));
+ double thetaP = scaleThetaP*getThetaP(randomValue.momentum);// = static_cast<float>(0.1*(1-2*gRandom->Rndm(1)));
   
          
 
@@ -419,7 +421,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  double yP = static_cast<float>((144-10)*(1*gRandom->Rndm())+10);
 
 
- double L = rW/2;//static_cast<float>((rW)*(0.8*gRandom->Rndm()+0.1));
+ double L = static_cast<float>((rW)*(0.8*gRandom->Rndm()+0.1));
 
  // make instance of CkovTools
 

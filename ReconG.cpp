@@ -65,15 +65,26 @@ class ReconG {
     const double gapThick = 0.5;
     const double winIdx = 1.5787;
     const double gapIdx = 1.0005;
-
+    double etaC;
  private:
   ReconG(const ReconG& r);            // dummy copy constructor
   ReconG& operator=(const ReconG& r); // dummy assignment operator
 
  public: //   ReconG reconG(thetaP, phiP, xP, yP, xPC, yPC, nF);
+    ReconG(double _theta, double _phi, double _xRad, double _yRad, double _xPC, double _yPC, double n, double _etaC) : refIdx(n), etaC(_etaC)
+    { 
+      setTrack(_xRad, _yRad, _theta, _phi);
+      setImpPC(_xPC, _yPC);
+
+
+
+     Printf("fTrkPos: x %f y %f ", fTrkPos.X(), fTrkPos.Y());
+     Printf("fPC : x %f y %f ", fPc.X(), fPc.Y());
+    }
+
     ReconG(double _theta, double _phi, double _xRad, double _yRad, double _xPC, double _yPC, double n) : refIdx(n)
     { 
-      setTrack(_xRad, _yRad, _theta, -_phi);
+      setTrack(_xRad, _yRad, _theta, _phi);
       setImpPC(_xPC, _yPC);
 
 
@@ -89,7 +100,7 @@ class ReconG {
       setImpPC(_xPC, _yPC);
     }*/
 
-bool findPhotCkov(double cluX, double cluY, double& thetaCer, double& phiCer)
+bool findPhotCkov(double cluX, double cluY, double& thetaCer, double& phiCer, double etaC)
   {
     // Finds Cerenkov angle  for this photon candidate
     // Arguments: cluX,cluY - position of cadidate's cluster
@@ -108,6 +119,9 @@ bool findPhotCkov(double cluX, double cluY, double& thetaCer, double& phiCer)
     double ckov2 = 0.75 + fTrkDir.Theta(); // start to find theta cerenkov in DRS
     const double kTol = 0.01;
     Int_t iIterCnt = 0;
+
+		TGraph* tCkovReconGGraph = new TGraph(50);	
+
     while (1) {
         if (iIterCnt >= 50) {
         return kFALSE;
@@ -117,6 +131,9 @@ bool findPhotCkov(double cluX, double cluY, double& thetaCer, double& phiCer)
         dirCkov.SetMagThetaPhi(1, ckov, phi);
         TVector2 posC = traceForward(dirCkov);   // trace photon with actual angles
         double dist = cluR - (posC - fPc).Mod(); // get distance between trial point and cluster position
+
+
+  		  tCkovReconGGraph->SetPoint(iIterCnt, iIterCnt, ckov);
         
 	/*
 	auto sinThetaP = TMath::Sin(fTrkDir.Theta());
@@ -145,11 +162,21 @@ bool findPhotCkov(double cluX, double cluY, double& thetaCer, double& phiCer)
 
         return kTRUE;
         }
-	Printf("ReconG findCkov: cnt %d| ckov %.4f : ckov1 %.4f : ckov2 %.4f | dist %.3f" , iIterCnt, ckov, ckov1, ckov2, dist);
-	/*
+
+
+
+//	Printf("ReconG findCkov: cnt %d| ckov %.4f : ckov1 %.4f : ckov2 %.4f | dist %.3f" , iIterCnt, ckov, ckov1, ckov2, dist);
+
+
+/*
 	Printf("ReconG findCkov: cluX %.3f fPcX %.3f" ,cluX, fPc.X());
 	Printf("ReconG findCkov: cluY %.3f fPcY %.3f" ,cluY, fPc.Y());*/
     }
+
+const auto infString4 = Form("ReconG meth: | Actual Ckov : %.3f | Reconstructed Ckov1 = %.3f",etaC, thetaCer);
+		TCanvas* tCkovGraphG = new TCanvas("T ReconG","etaC Graph ReconG", 1600, 1600);		tCkovGraphG->cd();	
+		tCkovReconGGraph->SetTitle(infString4);
+		tCkovReconGGraph->Draw("AP");
 
     } // FindPhotTheta()
    
