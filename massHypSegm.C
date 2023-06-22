@@ -360,7 +360,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
 
   // number of cherenkov photons in the cherenkov ring:
-  const auto numberOfCkovPhotons = rndP->Poisson(13);
+  const auto numberOfCkovPhotons = rndP->Poisson(1);
 
   photonCandidates.clear();
   float ThetaP = 0; // [rad]  // endre denne
@@ -419,11 +419,17 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  double yP = static_cast<float>((144-10)*(1*gRandom->Rndm())+10);
 
 
+ double L = static_cast<float>((rW)*(0.8*gRandom->Rndm()+0.1));
 
  // make instance of CkovTools
 
  // ckovHyps, nF, nQ, nG,
-  CkovTools ckovTools(xP, yP, thetaP, phiP, ckovHyps, nF, nQ, nG, occupancy, ckovAngle);
+
+  
+  double pc[5] = {xP,yP,L,thetaP, phiP};
+  double refIndexes[3] = {nF, nQ, nG};
+
+  CkovTools ckovTools(pc, refIndexes, ckovHyps, occupancy, ckovAngle);
 
 
 
