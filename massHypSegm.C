@@ -405,11 +405,11 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
  // TODO: change phiP back again
  //double phiP = 0;//static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
- double phiP = static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
+ double phiP = 0*static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
 
  // MIP polar angle:
  // a.o.n; only between +- 5 deg
- double thetaP = getThetaP(randomValue.momentum);// = static_cast<float>(0.1*(1-2*gRandom->Rndm(1)));
+ double thetaP = 0*getThetaP(randomValue.momentum);// = static_cast<float>(0.1*(1-2*gRandom->Rndm(1)));
   
          
 
