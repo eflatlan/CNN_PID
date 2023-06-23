@@ -104,24 +104,24 @@ double getThetaP(double momentum)
   double degThetaP;
   float pH, pL, degThetaH, degThetaL;
   if (momentum < 0.5){
-		pH = 0.5; pL = 0.4; degThetaH = 50; degThetaL = 42.5;
-  } else if (momentum < 0.5 && momentum < 0.7){
-		pH = 0.7; pL = 0.5; degThetaH = 42.5; degThetaL = 27.5;
+		pH = 0.5; pL = 0.4; degThetaH = 42.5; degThetaL = 50;
+  } else if (momentum >= 0.5 && momentum < 0.7){
+		pH = 0.7; pL = 0.5; degThetaH = 27.5; degThetaL = 42.5;
   } else if (momentum >= 0.7 && momentum < 1){
-		pH = 1; pL = 0.7; degThetaH = 27.5; degThetaL = 22.5;
+		pH = 1; pL = 0.7; degThetaH = 22.5; degThetaL = 27.5;
   } else if (momentum >= 1 && momentum < 1.5){
 		pH = 1.5; pL = 1; degThetaH = 15; degThetaL = 22.5;
   } else if (momentum >= 1.5 && momentum < 2.5){
 		pH = 2.5; pL = 1.5; degThetaH = 10; degThetaL = 15;
-  } else  {
+  } else {
 		pH = 5; pL = 2.5; degThetaH = 8; degThetaL = 10;
   }
   
   degThetaP = degThetaL + (degThetaH-degThetaL)/(pH-pL) * (momentum - pL);
 
-  // TODO : change this back
   return degThetaP*3.1415/180;
 }
+
 
 
 void setStyleInd(TH1* th1f, float ratio = 1.2);
