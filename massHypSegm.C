@@ -441,7 +441,11 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   Printf(" backgroundStudy : enter  numberOfCkovPhotons loop"); 
   Printf(" backgroundStudy : numberOfCkovPhotons %d", numberOfCkovPhotons); 
  std::vector<std::array<double, 3>> cherenkovPhotons(numberOfCkovPhotons);
- for(Int_t i=0; i < numberOfCkovPhotons; i++) {
+
+
+
+ int photonCount = 0;
+ for(photonCount=0; photonCount < numberOfCkovPhotons; photonCount++) {
    
    // TODO: endre std-dev her til å følge prob-dist?!
    float etaC = rnd->Gaus(ckovAngle, 0.008);		    // random CkovAngle, with 0.012 std-dev
@@ -458,13 +462,17 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
    
    std::array<double, 3> cand = {ckovPhotonCoordinates.first,ckovPhotonCoordinates.second , etaC};
 
-
-  cherenkovPhotons.emplace_back(cand);
+  
+  //cherenkovPhotons.emplace_back(cand);
+  cherenkovPhotons[photonCount] = cand;
 
    Printf(" backgroundStudy : ckovTools.makeCkovPhoton returned x %f y%f", ckovPhotonCoordinates.first, ckovPhotonCoordinates.second); 	 
 	 
 
   } 
+
+   Printf(" backgroundStudy : Number of photons created :  %f ", photonCount); 
+
 	
   // local coordinates are transformed to global here : 
   // also population of noise is done here
@@ -514,7 +522,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
   return photonCandidatesCoords;
  
-}
+} // end backgroundStudy()
 //**********************************************************************************************************************************************************************************************************
 float GetFreonIndexOfRefraction(float photonEnergy)
 {
