@@ -227,6 +227,8 @@ public:
 		phiRing2Local(xRD, yRD, xMipLocal,yMipLocal);
 		phiRing2Local(xLD, yLD, xMipLocal,yMipLocal);
 
+
+    /*
     const auto coordsMinPhi0 = makeCkovPhoton(0., ckovProtonMin);
     const auto xMinPhi0 = coordsMinPhi0.first;
     const auto yMinPhi0 = coordsMinPhi0.second;
@@ -258,7 +260,8 @@ public:
     local2PhiRing(xMaxPhi0, yMaxPhi0, xMipLocal,yMipLocal);
     double xMipRing = xMipLocal, yMipRing = yMipLocal;
     local2PhiRing(xMipRing, yMipRing, xMipRing, yMipRing); 
-    //Printf("CkovTools segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP);
+    //Printf("CkovTools segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP); 
+  */ 
 
     //Printf("CkovTools segment : xMaxPhiPi %f xMipLocal %f yMaxPhiPi %f yMipLocal %f ", xMaxPhiPi, xMipLocal, yMaxPhiPi, yMipLocal);
 
@@ -267,7 +270,7 @@ public:
     const auto l1Max = mL1Max;//TMath::Sqrt((xMaxPhiPi-xMipRing)*(xMaxPhiPi-xMipRing) + (yMaxPhiPi-yMipRing)*(yMaxPhiPi-yMipRing));
     const auto l2Max = mL2Max;//TMath::Sqrt((xMaxPhi0-xMipRing)*(xMaxPhi0-xMipRing) + (yMaxPhi0-yMipRing)*(yMaxPhi0-yMipRing)); 
     
-    
+      /*
       TBox* localBox = new TBox(xMaxPhi0, yMaxPhiPi - mRMax, xMaxPhiPi, yMaxPhiPi+mRMax);
       localBox->SetLineColor(kGreen);
       
@@ -276,7 +279,7 @@ public:
 			const auto& coords3 = local2Global(xMaxPhi0, yMaxPhi0+mRMax);
 			const auto& coords4 = local2Global(xMaxPhiPi, yMaxPhiPi+mRMax);
 	    
-	    TBox* globalBoxSignal = new TBox(coords1.first, coords1.second, coords2.first, coords2.second);
+	    TBox* globalBoxSignal = new TBox(coords1.first, coords1.second, coords2.first, coords2.second); */
 	    
 
 			local2GlobalRef(xLU,yLU);
@@ -297,7 +300,7 @@ public:
 		  tlineUpGlobal->SetLineColor(kGreen);
 		  tlineDownGlobal->SetLineColor(kBlue);
 	       
-      globalBoxSignal->SetLineColor(kGreen);
+      //globalBoxSignal->SetLineColor(kGreen);
       /*
       TLine *tlineUpLocal = new TLine(xMaxPhi0,yMaxPhi0 - mRMax, xMaxPhiPi, yMaxPhiPi - mRMax);
       TLine *tlineDownLocal = new TLine(xMaxPhi0,yMaxPhi0 + mRMax, xMaxPhiPi, yMaxPhiPi + mRMax);
@@ -498,7 +501,7 @@ public:
   //globalBoxSignal->Draw();
 
   globalREfMIP->SetMarkerStyle(3);
-    globalREfMIP->SetMarkerColor(kRed);
+  globalREfMIP->SetMarkerColor(kBlue);
 
 
   hSignalMap->SetMarkerStyle(2);
@@ -527,26 +530,21 @@ tlineDownGlobal->Draw();
 
   localRefMIP->SetMarkerStyle(3);
   localRef->SetMarkerStyle(2);
-  localRef->Draw();
   localRefUnrot->SetMarkerStyle(2);
   localRefUnrot->SetMarkerColor(kBlue);
-
-
-localRefBG->SetMarkerColor(kRed);
-
+  localRefBG->SetMarkerColor(kRed);
   localRefBG->SetMarkerStyle(2);
-localRefBG->Draw("same");
-  localRefUnrot->Draw("same");
-  
-  
-  localRefMIPUnrot->SetMarkerColor(kRed);
+  localRefMIPUnrot->SetMarkerColor(kBlue);
   localRefMIPUnrot->SetMarkerStyle(3);
-  localRefMIPUnrot->Draw("same");
+  localRefMIPUnrot->Draw("same");   
+  localRef->Draw();
+  localRefBG->Draw("same");
+  localRefUnrot->Draw("same");
     
   localRefMIP->Draw("same");
   tlineUpLocal->Draw();
 	tlineDownLocal->Draw();
-	  tlineUpLocalR->Draw();
+	tlineUpLocalR->Draw();
 	tlineDownLocalR->Draw();
 	gPad->Update();
 
