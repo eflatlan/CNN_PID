@@ -73,7 +73,7 @@ class ReconG {
  public: //   ReconG reconG(thetaP, phiP, xP, yP, xPC, yPC, nF);
     ReconG(double _theta, double _phi, double _xRad, double _yRad, double _xPC, double _yPC, double n) : refIdx(n)
     { 
-      setTrack(_xRad, _yRad, _theta, _phi);
+      setTrack(_xRad, _yRad, _theta, -_phi);
       setImpPC(_xPC, _yPC);
 
 
