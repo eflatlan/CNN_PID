@@ -43,7 +43,7 @@ class CkovTools {
   // L value for reconstruction
   static constexpr float  EmissionLenght = RadiatorWidth/2;
   
-float thetaP, phiP, xP, yP;
+float thetaP, phiP, xPC, yPC, xRad, yRad; 
    float nF, nQ, nG;  
    double occupancy;
    std::array<float, 3> ckovHyps;
@@ -74,19 +74,19 @@ public:
   }
 
 
-  //   double pc[5] = {xP,yP,L,thetaP, phiP};
+  //   double pc[5] = {xRad,yRad,L,thetaP, phiP};
   double refIndexes[3] = {nF, nQ, nG};
 
 
-  CkovTools (double pc[5], double refIndexes[3], 
+  CkovTools (double radParams[5], double refIndexes[3], 
              std::array<float, 3> ckovHyps, double occupancy, float trackCkov)
     : 
       ckovHyps(ckovHyps), occupancy(occupancy) , trackCkov(trackCkov) {
-			  xP = pc[0];
-			  yP = pc[1];
-			  L = pc[2]; 
-			  thetaP = pc[3];
-			  phiP = pc[4];
+			  xRad= radParams[0];
+			  yRad= radParams[1];
+			  L = radParams[2]; 
+			  thetaP = radParams[3];
+			  phiP = radParams[4];
 			  
 			  nF = refIndexes[0];
 			  nQ = refIndexes[1];
@@ -117,8 +117,12 @@ public:
         TVector3 ip(0,0,rW-L+tGap+qW);
 	TVector3 op; op = rotZ*rotY*ip;
 
-				xMipLocal = tanThetaP*cosPhiP*(rW-L + tGap + qW);
-				yMipLocal = tanThetaP*sinPhiP*(rW-L + tGap + qW);
+	xMipLocal = tanThetaP*cosPhiP*(rW-L + tGap + qW);
+	yMipLocal = tanThetaP*sinPhiP*(rW-L + tGap + qW);
+
+	xPC = xMipLocal + xRad;
+	yPC = yMipLocal + yRad;
+	
 	Printf("init Ckovtools \n MIP Root : %f %f %f \n MIP local %f %f",op.Px(),op.Py(),op.Pz(),xMipLocal,yMipLocal);
         // constructor body goes here, if needed
 
@@ -137,7 +141,7 @@ public:
 					auto R = getR_Lmax(c, halfPI);
 					auto l2 = getR_Lmax(c, 0);
 					auto l1 = getR_Lmax(c, PI);
-					Printf("init CkovTools : CkovHyp %f, R %f, l1 %f l2 %f", c, R, l2, l1);
+					Printf("init CkovTools : CkovHyRad%f, R %f, l1 %f l2 %f", c, R, l2, l1);
         }   
   }
 
@@ -182,17 +186,17 @@ public:
    double xPC = xMipLocal, yPC = yMipLocal;
    local2GlobalRef(xPC, yPC);
 
+  // ReconG(double _theta, double _phi, double _xRad, double _yRad, double _xPC, double _yPC, double n, double _etaC) : refIdx(n), etaC(_etaC)
+   ReconG reconG(thetaP, phiP, xRad , yRad, xRad + xMipLocal,  yRad + yMipLocal, nF);
 
-   ReconG reconG(thetaP, phiP, xP, yP, xPC, yPC, nF);
-
-
+   Printf("dX %f dY %f ", xMipLocal, yMipLocal);
 
    TH2F *hNoiseMap = new TH2F("  Noise ", "  Noise ; x [cm]; y [cm]",160,0.,159.,144,0,143);
    int numPhotons= 0;
     for(const auto& p :cherenkovPhotons){
 
-			const auto& xDif = p[0] - xMipLocal; 
-			const auto& yDif = p[1] - yMipLocal; 
+      const auto& xDif = p[0] - (xMipLocal + xRad); 
+      const auto& yDif = p[1] - (yMipLocal + yRad) ; 
       auto R = TMath::Sqrt(xDif*xDif+yDif*yDif);
       Printf(" Ckovtools segments cherenkovPhotons : x %f y %f R = %f", p[0], p[1], R);
       numPhotons++;
@@ -260,7 +264,7 @@ public:
     local2PhiRing(xMaxPhi0, yMaxPhi0, xMipLocal,yMipLocal);
     double xMipRing = xMipLocal, yMipRing = yMipLocal;
     local2PhiRing(xMipRing, yMipRing, xMipRing, yMipRing); 
-    //Printf("CkovTools segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP); 
+    //Printf("CkovTools segment : phiP %f thetaP %f xRad%f yRad%f ", phiP, thetaP, xRad, yP); 
   */ 
 
     //Printf("CkovTools segment : xMaxPhiPi %f xMipLocal %f yMaxPhiPi %f yMipLocal %f ", xMaxPhiPi, xMipLocal, yMaxPhiPi, yMipLocal);
@@ -382,11 +386,10 @@ public:
 	Printf("\nckovtools cherenkov photons x  %f > -mL1Max %f && x %f < mL2Max %f && y %f > -mRMax  %f && y %f < mRMax %f\n",  x, -mL1Max, x , mL2Max , y , -mRMax , y , mRMax);
 
       double thetaCer, phiCer;
-      local2GlobalRef(xG, yG);
+      //local2GlobalRef(xG, yG);
       // double cluX, double cluY, double& thetaCer, double& phiCer
       
-      reconG.findPhotCkov(xG, yG, thetaCer, phiCer, etaC);	
-      auto ckov = thetaCer;
+
       //Printf("CkovTools segment thetaCer %f phiCer %f", thetaCer, phiCer);
 	
 
@@ -394,8 +397,8 @@ public:
       auto yAbs = TMath::Abs(y);
 
 	Printf("\nckovtools cherenkov photons xAbs  %f > mL1Max %f && x %f < mL2Max %f && yAbs %f > mRMax  %f && y %f < mRMax %f\n",  x, mL1Max, xAbs , mL2Max , yAbs , mRMax , y , mRMax);
-      if(x > -mL1Max && x < mL2Max && y > -mRMax  && y < mRMax){
-
+      if(true){
+      //if(x > -mL1Max && x < mL2Max && y > -mRMax  && y < mRMax){
 
 	//double thetaCer, phiCer;
 	//reconG.findPhotCkov(xG, yG, thetaCer, phiCer);	
@@ -408,9 +411,11 @@ public:
 
         // TODO : check if this method is wrong??
         // use here instead method from Recon.cxx
-        const auto& ckov = getCkovFromCoords(xP, yP, x, y, phiP, thetaP, nF, nQ, nG, etaC);      
-        Printf("CkovTools segment | actual ckov = %.3f | bgstdy method:  %.3f | ReconMEthods:  thetaCer %f phiCer %f", etaC, ckov,  thetaCer, phiCer);
 
+        reconG.findPhotCkov(xG, yG, thetaCer, phiCer, etaC);	
+        auto ckov = thetaCer;
+        const auto& ckov2 = getCkovFromCoords(xG, yG, phiP, thetaP, nF, nQ, nG, etaC);      
+        Printf("CkovTools segment | actual ckov = %.3f | bgstdy method:  %.3f | ReconMEthods:  thetaCer %f phiCer %f ", etaC, ckov2,  thetaCer, phiCer);
 
 
        // Printf("CkovTools segment ckov %f", ckov);
@@ -448,7 +453,8 @@ public:
         //Printf("CkovTools segment : backGroundPhotons %f x", x);
 
           auto X = x, Y = y;
-			    local2PhiRing(X, Y, xMipLocal, yMipLocal);      
+			    local2PhiRing(X, Y, xMipLocal, yMipLocal);
+      
 
       if(X > -mL1Max && X < mL2Max && Y > -mRMax  && Y < mRMax){
         bool withinRange = true; 
@@ -456,7 +462,7 @@ public:
 
         // change to method from Recon.cxx:
 	auto ckov = 1;
-        //const auto& ckov = getCkovFromCoords(xP, yP, x, y, phiP, thetaP, nF, nQ, nG); 
+        //const auto& ckov = getCkovFromCoords(xRad, yRad, x, y, phiP, thetaP, nF, nQ, nG); 
         //Printf("CkovTools segment :ckov%f ", ckov);
         // TODO: later, also add to candidates (i.e., pionCandidates, kaonCandidates...)
         if( ckovPionMin <  ckov & ckov < ckovPionMax ){
@@ -528,6 +534,9 @@ tlineDownGlobal->Draw();
   //localBox->Draw();
   //localRef->SetMarkerColor(kBlue);
 
+
+
+
   localRefMIP->SetMarkerStyle(3);
   localRef->SetMarkerStyle(2);
   localRefUnrot->SetMarkerStyle(2);
@@ -580,16 +589,16 @@ tlineDownGlobal->Draw();
 
 	void local2GlobalRef(double& xL, double& yL)
 	{	  
-	  xL = xL  + xP;
-	  yL = -yL  + yP;	  
+	  xL = xL  + xRad;
+	  yL = yL  + yRad;	  
 	}
 
 
 	std::pair<double, double> local2Global(double xL, double yL)
 	{
 	  
-	  const auto x = xL  + xP;
-	  const auto y = -yL  + yP;	  
+	  const auto x = xL  + xRad;
+	  const auto y = yL  + yRad;	  
 	  return {x, y};
 	}
 
@@ -598,8 +607,8 @@ tlineDownGlobal->Draw();
 	
 	  //mTheta.RotateY
 	  
-	  const auto x = xG - xP;
-	  const auto y = - yG + yP;
+	  const auto x =  xG - xRad;
+	  const auto y =  yG - yRad;
 	  return std::make_pair(x, y);
 	}
 
@@ -941,22 +950,30 @@ tlineDownGlobal->Draw();
 	}
 
 
-	double getCkovFromCoords(double xP, double yP, double xL, double yL, double phiP, double thetaP, float nF, float nQ, float nG, double etaC)
+	double getCkovFromCoords(double xL, double yL, double phiP, double thetaP, float nF, float nQ, float nG, double etaC)
 	{       
-    const auto infString = Form("localRefCk xP %.2f yP %.2f",xP,yP);
+
+
+    Printf("ReconG findCkov: cluX %.3f > fPCX %.3f >  cluY %.3f > fPCY %.3f  ", xL, xRad + xMipLocal,yL, yRad + yMipLocal);
+    
+
+Printf("ReconG findCkov: cluX %.3f > fPCX %.3f >  cluY %.3f > fPCY %.3f  ", xL, xRad + xMipLocal,yL, yRad + yMipLocal);
+
+    const auto infString = Form("localRefCk xRad%.2f yRad%.2f",xRad,yRad);
     TH2F *localRefCk = new TH2F("localRefCk ", infString,40,-20.,20.,40,-20,20);
 
 
-    const auto infString2 = Form("localRefCk2 xP %.2f yP %.2f",xP,yP);
+    const auto infString2 = Form("localRefCk2 xRad%.2f yRad%.2f",xRad,yRad);
     TH2F *localRefCk2 = new TH2F("localRefCk2 ", infString2,40,-20.,20.,40,-20,20);
 
-    const auto infString3 = Form("localRefCk3 xP %.2f yP %.2f",xP,yP);
+    const auto infString3 = Form("localRefCk3 xRad%.2f yRad%.2f",xRad,yRad);
     TH2F *localRefCk3 = new TH2F("localRefCk3 ", infString3,40,-20.,20.,40,-20,20);
 
-    localRefCk->Fill(xL,L);
-    const auto& coords = local2Global(xL, yL);
-    const auto x = coords.first;
-		const auto y = coords.second;
+    localRefCk->Fill(xL,yL);
+    //const auto& coords = local2Global(xL, yL);
+
+
+    
 
 		double phiF = 0;
 		double thetaF1,thetaF2,thetaF=0,thetaLimite;
@@ -967,9 +984,10 @@ tlineDownGlobal->Draw();
 		float deltaX = (rW-L+qW+tGap)*tanThetaP*cosPhiP;
 		float deltaY = (rW-L+qW+tGap)*tanThetaP*sinPhiP;
 			
-		xPi = xP - deltaX;
-		yPi = yP - deltaY;
-
+		xPi = xRad;// - deltaX;
+		yPi = yRad;// - deltaY;
+    const auto x = xL - deltaX;//coords.first;
+    const auto y = yL - deltaY;//coords.second;
 		TVector3 v2(x-xPi-L*tanThetaP*cosPhiP, y-yPi-L*tanThetaP*sinPhiP,rW+qW+tGap-L); 
 
 		phiF = v2.Phi();      
@@ -1079,7 +1097,7 @@ tlineDownGlobal->Draw();
 
 		DegPhiCherenkov = 180*PhiCherenkov/(TMath::Pi());
 
-                const auto infString4 = Form("bg meth: xP %.2f yP %.2f | Actual Ckov : %.3f | Reconstructed Ckov1 = %.3f, Ckov2 = %.3f, avgRecCkov = %.3f",xP,yP, etaC, thetaF, vF.Theta(), thetaF/2 + vF.Theta()/2);
+                const auto infString4 = Form("bg meth: xRad%.2f yRad%.2f | Actual Ckov : %.3f | Reconstructed Ckov1 = %.3f, Ckov2 = %.3f, avgRecCkov = %.3f",xRad,yRad, etaC, thetaF, vF.Theta(), thetaF/2 + vF.Theta()/2);
  
 
 
@@ -1093,13 +1111,13 @@ tlineDownGlobal->Draw();
 		tcanv->cd();
 
 
-	        localRefCk->SetTitle(infString4);
-	        localRefCk->Draw();
+    localRefCk->SetTitle(infString4);
+    localRefCk->Draw();
 
-	        localRefCk2->SetMarkerColor(kRed);
-	        localRefCk2->Draw("same");
-	        localRefCk3->SetMarkerColor(kBlue);
-	        localRefCk3->Draw("same");
+    localRefCk2->SetMarkerColor(kRed);
+    localRefCk2->Draw("same");
+    localRefCk3->SetMarkerColor(kBlue);
+    localRefCk3->Draw("same");
 
 
 		if(DegPhiCherenkov<0) DegPhiCherenkov+=360;

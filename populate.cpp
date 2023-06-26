@@ -6,14 +6,30 @@
 #include <TRandom.h>
 #include <vector>
 
-class Recon {
+class Populate {
 private:
-    /*TVector3 fTrkPos; // not defined in the provided code, declaration added for compilation
-    TVector3 fTrkDir; // not defined in the provided code, declaration added for compilation
-    Param *fParam;    // not defined in the provided code, declaration added for compilation
-    */ 
-   
+
+
+    TVector2 fTrkPos; // track pos in LORS at RAD // xRad, yRad
+    TVector3 fTrkDir; // track position in LORS at RAD // setMagThetaPhi(1, thetaP, phiP)
+
+
+    double nF;	     // refIdnex of freon
+
 public:
+    TVector2 fPc; // track pos at PC
+    Populate(TVector2 trkPos, TVector3 trkDir, double _nF) : fTrkPos(trkPos),  fTrkDir(trkDir), nF(_nF) 
+    {
+
+       
+      //fPc.setX()
+      Printf("init Populate class");
+
+      Printf("Track pos at RAD : x %.3f y %.3f ", trkPos.X(), trkPos.Y());
+      Printf("Track dir at RAD : theta %.3f phi %.3f ", trkDir.Theta(), trkDir.Phi());
+      //fPc(trkPos.X())
+    }
+
     TVector2 tracePhot(double ckovThe, double ckovPhi) const {
         double theta, phi;
         TVector3 dirTRS, dirLORS;
@@ -41,19 +57,28 @@ public:
         }
     }
 
+
+
+
     TVector2 traceForward(TVector3 dirCkov) const {
+
+
+	auto winThick = 0.5, radThick = 1.5; int gapThick = 8;
+	auto getRefIdx = nF,  gapIdx = 1.0005, winIdx = 1.5787;
+
         TVector2 pos(-999, -999);
         double thetaCer = dirCkov.Theta();
-        if (thetaCer > TMath::ASin(1. / fParam->getRefIdx())) {
+        if (thetaCer > TMath::ASin(1. / getRefIdx)) {
             return pos;
         }
-        double zRad = -0.5 * fParam->radThick() - 0.5 * fParam->winThick();
+
+        double zRad = -0.5 * radThick - 0.5 * winThick;
         TVector3 posCkov(fTrkPos.X(), fTrkPos.Y(), zRad);
-        propagate(dirCkov, posCkov, -0.5 * fParam->winThick());
-        refract(dirCkov, fParam->getRefIdx(), fParam->winIdx());
-        propagate(dirCkov, posCkov, 0.5 * fParam->winThick());
-        refract(dirCkov, fParam->winIdx(), fParam->gapIdx());
-        propagate(dirCkov, posCkov, 0.5 * fParam->winThick() + fParam->gapThick());
+        propagate(dirCkov, posCkov, -0.5 * winThick);
+        refract(dirCkov, getRefIdx, winIdx);
+        propagate(dirCkov, posCkov, 0.5 * winThick);
+        refract(dirCkov, winIdx, gapIdx);
+        propagate(dirCkov, posCkov, 0.5 * winThick + gapThick);
         pos.Set(posCkov.X(), posCkov.Y());
         return pos;
     }
