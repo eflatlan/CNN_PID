@@ -27,6 +27,7 @@
 #include "RandomValues.cpp"
 #include "ParticleUtils.cpp"
 #include "CkovTools.cpp"
+#include "populate.cpp"
 // sudo yum install hdf5-devel
 #include <HMPIDBase/Param.h>
 
@@ -61,8 +62,8 @@ public:
     float energy;
     float refractiveIndex;
     float ckov;
-    float xP;
-    float yP;
+    float xRad;
+    float yRad;
     float thetaP;
     float phiP;
     TH2F* map;
@@ -166,9 +167,6 @@ const float defaultPhotonEnergy = 6.75;
 const float refIndexFreon = GetFreonIndexOfRefraction(defaultPhotonEnergy);
 const float refIndexQuartz = GetQuartzIndexOfRefraction(defaultPhotonEnergy);
 const float  refIndexCH4 = 1.00; 
-
-double getCkovFromCoords(double xP, double yP, double x, double y, double phiP, double thetaP, float nF, float nQ, float nG);
-
 
 
 std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBins, float occupancy, RandomValues& randomValue, ParticleInfo& particle);
@@ -324,7 +322,7 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0, do
     i++;
 
     
-     // ParticleInfo Has to be extended to also contain xP, yP, (xMIP, yMIP?), thetaP, phiP 
+     // ParticleInfo Has to be extended to also contain xRad, yP, (xMIP, yMIP?), thetaP, phiP 
 
      particleVector.emplace_back(particle);
 
@@ -362,7 +360,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
 
   // number of cherenkov photons in the cherenkov ring:
-  const auto numberOfCkovPhotons = rndP->Poisson(13);
+  const auto numberOfCkovPhotons = rndP->Poisson(130);
 
   photonCandidates.clear();
   float ThetaP = 0; // [rad]  // endre denne
@@ -394,7 +392,18 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
   //TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",1000,-25.,25.,1000,-25.,25.);
 
-  TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160,0.,159.,144,0,143);
+  TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
+
+  TH2F *hSignalMIP = new TH2F("hmip ", "hmip ; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
+  TH2F *hSignalMIPpc = new TH2F("hmip pc", "hmip pc; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
+
+
+  hSignalMIP->SetMarkerStyle(3);
+  hSignalMIPpc->SetMarkerStyle(3);
+
+  hSignalMIPpc->SetMarkerColor(kRed);
+  hSignalAndNoiseMap->SetMarkerStyle(2);
+
 
   float mapArray[40][40]{};
       
@@ -416,43 +425,66 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
          
 
 
- // place the impact point in x[10..150] and y[10..134]
- double xP = static_cast<float>((160-10)*(1*gRandom->Rndm())+10);
- double yP = static_cast<float>((144-10)*(1*gRandom->Rndm())+10);
+ // place the impact point on rad : in x[10..150] and y[10..134]
+
+ auto diff = 40;
+ double xRad = static_cast<float>((160-diff)*(1*gRandom->Rndm())+diff);
+ double yRad = static_cast<float>((144-diff)*(1*gRandom->Rndm())+diff);
+ auto winThick = 0.5, radThick = 1.5; int gapThick = 8;
+ auto getRefIdx = static_cast<double>(nF),  gapIdx = 1.0005, winIdx = 1.5787;
+
+  auto delta = (radThick + winThick + gapThick)*TMath::Tan(thetaP);
+  auto xPC =  xRad + delta*TMath::Cos(phiP);
+  auto yPC =  yRad + delta*TMath::Sin(phiP);
+
+
+  hSignalMIP->Fill(xRad, yRad);
+  hSignalMIPpc->Fill(xPC, yPC);
+
 
 
  double L = static_cast<float>((rW)*(0.8*gRandom->Rndm()+0.1));
+
+
+
 
  // make instance of CkovTools
 
  // ckovHyps, nF, nQ, nG,
 
   
-  double pc[5] = {xP,yP,L,thetaP, phiP};
+  double radParams[5] = {xRad,yRad,L,thetaP, phiP};
   double refIndexes[3] = {nF, nQ, nG};
 
-  CkovTools ckovTools(pc, refIndexes, ckovHyps, occupancy, ckovAngle);
+  CkovTools ckovTools(radParams, refIndexes, ckovHyps, occupancy, ckovAngle);
 
 
 
-  Printf("bgstudy segment : phiP %f thetaP %f xP %f yP %f ", phiP, thetaP, xP, yP);
+  Printf("bgstudy segment : phiP %f thetaP %f xRad %f yP %f ", phiP, thetaP, xRad, yRad);
 
 
   Printf(" backgroundStudy : enter  numberOfCkovPhotons loop"); 
   Printf(" backgroundStudy : numberOfCkovPhotons %d", numberOfCkovPhotons); 
  std::vector<std::array<double, 3>> cherenkovPhotons(numberOfCkovPhotons);
 
+ //Populate populate()
 
+ TVector2 trkPos(xRad, yRad);
+ TVector3 trkDir; trkDir.SetMagThetaPhi(1, thetaP, phiP);
+
+ // TVector2 trkPos, TVector3 trkDir, doble _nF
+ Populate populate(trkPos, trkDir, 1.3);
 
  int photonCount = 0;
  for(photonCount=0; photonCount < numberOfCkovPhotons; photonCount++) {
    
    // TODO: endre std-dev her til å følge prob-dist?!
-   float etaC = rnd->Gaus(ckovAngle, 0.008);		    // random CkovAngle, with 0.012 std-dev
+   float etaC = rnd->Gaus(ckovAngle, 0.00008);		    // random CkovAngle, with 0.012 std-dev
 
    float phiL = static_cast<float>((3.14159265)*(1-2*gRandom->Rndm(1)));
    // angle around ckov Cone of photon
-    
+   TVector2 phot = populate.tracePhot(etaC, phiL); // tracePhot(double ckovThe, double ckovPhi)
+   Printf("made photon using populate.tracePhot | x %.3f, y %.3f ", phot.X(), phot.Y());
 	 
    // populate map with cherenkov photon
 
@@ -460,14 +492,16 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   Printf(" backgroundStudy : enter  ckovTools.makeCkovPhoton"); 	 
    const auto& ckovPhotonCoordinates = ckovTools.makeCkovPhoton(phiL, etaC);
    
-   std::array<double, 3> cand = {ckovPhotonCoordinates.first,ckovPhotonCoordinates.second , etaC};
+   //std::array<double, 3> cand = {ckovPhotonCoordinates.first,ckovPhotonCoordinates.second , etaC};
 
+
+   std::array<double, 3> cand = {phot.X(), phot.Y() , etaC};
   
   //cherenkovPhotons.emplace_back(cand);
   cherenkovPhotons[photonCount] = cand;
 
-   Printf(" backgroundStudy : ckovTools.makeCkovPhoton returned x %f y%f", ckovPhotonCoordinates.first, ckovPhotonCoordinates.second); 	 
-	 
+   Printf(" backgroundStudy : ckovTools.makeCkovPhoton returned x %f y%f", ckovPhotonCoordinates.first + xRad, ckovPhotonCoordinates.second + yRad); 	 
+	 hSignalAndNoiseMap->Fill(phot.X(), phot.Y());
 
   } 
 
@@ -491,11 +525,12 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   Printf(" backgroundStudy : num photonCandidatesCoords %zu", photonCandidatesCoords.size()); 	 
   for(const auto& photons : photonCandidatesCoords){
     //Printf("photon x %f y %f", photons.first, photons.second);
-    hSignalAndNoiseMap->Fill(photons.first, photons.second);
+    //hSignalAndNoiseMap->Fill(photons.first, photons.second);
   }
   TCanvas *thSignalAndNoiseMap = new TCanvas("hSignalAndNoiseMap","hSignalAndNoiseMap",800,800);  
   thSignalAndNoiseMap->cd();
   hSignalAndNoiseMap->Draw();
+hSignalMIP->Draw("same");hSignalMIPpc->Draw("same");
   //hSignalAndNoiseMap->Show();
   thSignalAndNoiseMap->SaveAs("thSignalAndNoiseMap.png");
   	thSignalAndNoiseMap->Show();
@@ -514,8 +549,8 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 	particle.energy = randomValue.energy;
 	particle.refractiveIndex = randomValue.refractiveIndex;
 	particle.ckov = ckov;
-	particle.xP = xP;
-	particle.yP = yP;
+	particle.xRad = xRad;
+	particle.yRad = yRad;
 	particle.thetaP = thetaP;
 	particle.phiP = phiP;
   particle.map = hSignalAndNoiseMap;  
