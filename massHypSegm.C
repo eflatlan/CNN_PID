@@ -346,7 +346,15 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
    const auto& ckov = calcCkovFromMass(randomValue.momentum, randomValue.refractiveIndex, randomValue.mass); //  calcCkovFromMass(momentum, n, mass)
      
    // theoretical ckov angles : 
-  const auto& ckovHyps = calcCherenkovHyp(randomValue.momentum, randomValue.refractiveIndex); 
+
+  // TODO: fjern denne ighen
+  auto momentum = .5; // 
+  const auto& ckovHyps = calcCherenkovHyp(momentum, randomValue.refractiveIndex); 
+  
+  const auto& ckovHyps2 = calcCherenkovHyp(randomValue.momentum, randomValue.refractiveIndex); 
+
+
+
 
   if(particle.energy < 5) particle.energy = 6.75; 
   auto ckovAngle = ckov;
@@ -464,7 +472,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  // ckovHyps, nF, nQ, nG,
 
   
-  double radParams[5] = {xRad,yRad,L,thetaP, phiP};
+  double radParams[6] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum};
   double refIndexes[3] = {nF, nQ, nG};
 
   CkovTools ckovTools(radParams, refIndexes, ckovHyps, occupancy, ckovAngle);
