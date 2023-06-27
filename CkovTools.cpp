@@ -14,6 +14,11 @@ class CkovTools {
 
  private: 
 
+  using segType = std::vector<std::pair<double, double>>;
+  segType segPionLocal = {{}};
+  
+
+  //TLine* tlinePion;
 
   static constexpr double PI = M_PI;
   static constexpr double halfPI = M_PI/2;
@@ -76,39 +81,39 @@ public:
 
   //   double pc[5] = {xRad,yRad,L,thetaP, phiP};
   double refIndexes[3] = {nF, nQ, nG};
-
+  
 
   CkovTools (double radParams[5], double refIndexes[3], 
              std::array<float, 3> ckovHyps, double occupancy, float trackCkov)
     : 
       ckovHyps(ckovHyps), occupancy(occupancy) , trackCkov(trackCkov) {
-			  xRad= radParams[0];
-			  yRad= radParams[1];
-			  L = radParams[2]; 
-			  thetaP = radParams[3];
-			  phiP = radParams[4];
-			  
-			  nF = refIndexes[0];
-			  nQ = refIndexes[1];
-			  nG = refIndexes[2];
+	  xRad= radParams[0];
+	  yRad= radParams[1];
+	  L = radParams[2]; 
+	  thetaP = radParams[3];
+	  phiP = radParams[4];
+	  
+	  nF = refIndexes[0];
+	  nQ = refIndexes[1];
+	  nG = refIndexes[2];
 
-			  ckovPionMin = ckovHyps[0] - 3 * stdDevPion;
-			  ckovPionMax = ckovHyps[0] + 3 * stdDevPion;
+	  ckovPionMin = ckovHyps[0] - 3 * stdDevPion;
+	  ckovPionMax = ckovHyps[0] + 3 * stdDevPion;
 
 
 
-			  ckovKaonMin = ckovHyps[1] - 3 * stdDevKaon;
-			  ckovKaonMax = ckovHyps[1] + 3 * stdDevKaon;
+	  ckovKaonMin = ckovHyps[1] - 3 * stdDevKaon;
+	  ckovKaonMax = ckovHyps[1] + 3 * stdDevKaon;
 
-			  ckovProtonMin = ckovHyps[2] - 3 * stdDevProton;
-			  ckovProtonMax = ckovHyps[2] + 3 * stdDevProton;
+	  ckovProtonMin = ckovHyps[2] - 3 * stdDevProton;
+	  ckovProtonMax = ckovHyps[2] + 3 * stdDevProton;
 
       	cosThetaP = TMath::Cos(thetaP);
-				sinThetaP = TMath::Sin(thetaP);
-				tanThetaP = TMath::Tan(thetaP);
+	sinThetaP = TMath::Sin(thetaP);
+	tanThetaP = TMath::Tan(thetaP);
 
-				cosPhiP = TMath::Cos(phiP);
-				sinPhiP = TMath::Sin(phiP);
+	cosPhiP = TMath::Cos(phiP);
+	sinPhiP = TMath::Sin(phiP);
 
 
 	TRotation rotZ; rotZ.RotateZ(phiP);
@@ -127,13 +132,13 @@ public:
         // constructor body goes here, if needed
 
 
-				mRMax = getR_Lmax(ckovPionMax, halfPI);
-				mL2Max = getR_Lmax(ckovPionMax, 0);
-				mL1Max = getR_Lmax(ckovPionMax, PI);
+	mRMax = getR_Lmax(ckovPionMax, halfPI);
+	mL2Max = getR_Lmax(ckovPionMax, 0);
+	mL1Max = getR_Lmax(ckovPionMax, PI);
 
 
-				// needs to be changed if to be used! now uses L = lMax
-				mRMin = getR_Lmax(ckovProtonMin, halfPI);
+	// needs to be changed if to be used! now uses L = lMax
+	mRMin = getR_Lmax(ckovProtonMin, halfPI);
         mL1Min = getR_Lmax(ckovProtonMin, PI);
         mL2Min = getR_Lmax(ckovProtonMin, 0);
 			
@@ -144,6 +149,75 @@ public:
 					Printf("init CkovTools : CkovHyRad%f, R %f, l1 %f l2 %f", c, R, l2, l1);
         }   
   }
+
+
+
+
+  /*void setSegLines(TLine* l1, TLine* l2, TLine* l3, TLine* l4)
+  {
+		    
+  }*/
+
+  void setSegment(const segType& segPion, segType& segPionRot)
+  {
+    Printf("Ckovtools : enter setsegment!");
+    // segType segPionRot; 
+    // segPionRot.resize(segPion.length());
+
+
+    /*
+    auto sX = segPion[0].first, sY = segPion[0].second;
+    auto eX = segPion[0].first, eY = segPion[0].second;
+    local2PhiRing(sX, sY, xMipLocal, yMipLocal);
+
+    local2PhiRing(eX, eY, xMipLocal, yMipLocal);
+		tlinePion->SetX1(sX); tlinePion->SetY1(sY); 
+		tlinePion->SetX1(eX); tlinePion->SetY1(eY); */ 
+
+    int i = 0;
+		for(const auto& p : segPion) 
+    {
+      auto x = p.first, y = p.second;
+      local2PhiRing(x, y, xMipLocal, yMipLocal);
+			segPionRot[i] = std::make_pair(x,y);
+			segPionLocal[i] = std::make_pair(x,y);
+       Printf("Ckovtools : segment! x %.2f y %.2f", x, y);
+			i++;
+    }    
+    Printf("Ckovtools : exit setsegment!");
+  }
+
+
+  double getMinCkovKaon()
+  {
+    return ckovKaonMin;
+  }
+
+  double getMaxCkovKaon()
+  {
+    return ckovKaonMax;
+  }
+
+  double getMinCkovPion()
+  {
+    return ckovPionMin;
+  }
+
+  double getMaxCkovPion()
+  {
+    return ckovPionMax;
+  }
+
+  double getMinCkovProton()
+  {
+    return ckovProtonMin;
+  }
+
+  double getMaxCkovProton()
+  {
+    return ckovProtonMax;
+  }
+
 
   double getPhiP()
   {
@@ -167,14 +241,27 @@ public:
 
  std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>>& cherenkovPhotons, MapType& bins) { 
      
-
+    Printf("ckovTools enter  ckovTools.segment"); 	 
     const auto infString = Form("localRef #Theta_{p}  = %.4f #Phi_{p} = %.4f L = %.2f \n #Theta_{C} = %.4f maxCkov = %.4f \n maxR = %.1f | l1 = %.1f | l2 = %.1f; x [cm]; y [cm]", thetaP,phiP, L,trackCkov,ckovPionMax, mRMax, mL1Max, mL2Max); 
 
-    TH2F *localRefMIP = new TH2F("localRefMIP ", infString,400,-20.,20.,400,-20,20);
-    TH2F *localRefMIPUnrot = new TH2F("localRefMIPUnrot ", infString,400,-20.,20.,400,-20,20);
-    TH2F *localRefUnrot = new TH2F("localRef ", infString,400,-20.,20.,400,-20,20);
-    TH2F *localRef = new TH2F("localRef ", infString,400,-20.,20.,400,-20,20);  
-    TH2F *localRefBG = new TH2F("localRefBG ", infString,400,-20.,20.,400,-20,20);
+    TH2F *localRefMIP = new TH2F("localRefMIP ", infString,800,-40.,-40.,900,-40.,40.);
+    TH2F *localRefMIPUnrot = new TH2F("localRefMIPUnrot ", infString,800,-40.,-40.,800,-40,40);
+    TH2F *localRefUnrot = new TH2F("localRef ", infString,800,-40.,-40.,800,-40.,40.);
+    TH2F *localRef = new TH2F("localRef ", infString,800,-40.,-40.,800,-40.,40.);  
+    TH2F *localRefBG = new TH2F("localRefBG ", infString,800,-40.,-40.,800,-40.,40.);
+
+
+    TH2F *localPion = new TH2F("pion ", "pion",800,-40.,-40.,800,-40.,40.);
+
+
+    Printf("ckovTools segment : enter const auto& p : segPionLocal"); 	 
+    for(const auto& p : segPionLocal) {
+			localPion->Fill(p.first, p.second);
+
+	    Printf(" ckovTools segment | x %.3f, y %.3f ", p.first, p.second);
+    }
+
+    Printf("ckovTools segment : exit const auto& p : segPionLocal"); 	 
 
     // TODO: ckovHyps : get std-dev for Theta_ckov of pion kaon and proton from the values theta_i
 
@@ -187,7 +274,7 @@ public:
    local2GlobalRef(xPC, yPC);
 
   // ReconG(double _theta, double _phi, double _xRad, double _yRad, double _xPC, double _yPC, double n, double _etaC) : refIdx(n), etaC(_etaC)
-   ReconG reconG(thetaP, phiP, xRad , yRad, xRad + xMipLocal,  yRad + yMipLocal, nF);
+   //ReconG reconG(thetaP, phiP, xRad , yRad, xRad + xMipLocal,  yRad + yMipLocal, nF);
 
    Printf("dX %f dY %f ", xMipLocal, yMipLocal);
 
@@ -231,45 +318,6 @@ public:
 		phiRing2Local(xRD, yRD, xMipLocal,yMipLocal);
 		phiRing2Local(xLD, yLD, xMipLocal,yMipLocal);
 
-
-    /*
-    const auto coordsMinPhi0 = makeCkovPhoton(0., ckovProtonMin);
-    const auto xMinPhi0 = coordsMinPhi0.first;
-    const auto yMinPhi0 = coordsMinPhi0.second;
-
-    // these are in local coordinate system
-    const auto coordsMinPhiPi = makeCkovPhoton(static_cast<double>(3.1415), ckovProtonMin);
-    
-    const auto xMinPhiPi = coordsMinPhiPi.first;
-    const auto yMinPhiPi = coordsMinPhiPi.second;
-
-    const auto l1Min = mL1Min;//TMath::Sqrt((xMinPhiPi-  xMipLocal)*(xMinPhiPi-xMipLocal) + (yMinPhiPi-yMipLocal)*(yMinPhiPi-yMipLocal));
-    const auto l2Min = mL2Min;//TMath::Sqrt((xMinPhi0-xMipLocal)*(xMinPhi0-xMipLocal) + (yMinPhi0-yMipLocal)*(yMinPhi0-yMipLocal));
-    //const auto rMin = getR_Lmax(ckovProtonMin);
-
-    // these are in local coordinate system
-    // create bbox of maximal possible ckov
-    // Proton with eta_c = theta_c_pion + 3*std_dev_pion
-    auto coordsMaxPhi0 = makeCkovPhoton(0, ckovPionMax);
-    
-    auto xMaxPhi0 = coordsMaxPhi0.first;
-    auto yMaxPhi0 = coordsMaxPhi0.second;
-
-    // these are in local coordinate system
-    auto coordsMaxPhiPi = makeCkovPhoton(3.1415, ckovPionMax);
-    auto xMaxPhiPi = coordsMaxPhiPi.first;
-    auto yMaxPhiPi = coordsMaxPhiPi.second;
-    
-    local2PhiRing(xMaxPhiPi, yMaxPhiPi, xMipLocal,yMipLocal);
-    local2PhiRing(xMaxPhi0, yMaxPhi0, xMipLocal,yMipLocal);
-    double xMipRing = xMipLocal, yMipRing = yMipLocal;
-    local2PhiRing(xMipRing, yMipRing, xMipRing, yMipRing); 
-    //Printf("CkovTools segment : phiP %f thetaP %f xRad%f yRad%f ", phiP, thetaP, xRad, yP); 
-  */ 
-
-    //Printf("CkovTools segment : xMaxPhiPi %f xMipLocal %f yMaxPhiPi %f yMipLocal %f ", xMaxPhiPi, xMipLocal, yMaxPhiPi, yMipLocal);
-
-    // all retusn -nan?
     
     const auto l1Max = mL1Max;//TMath::Sqrt((xMaxPhiPi-xMipRing)*(xMaxPhiPi-xMipRing) + (yMaxPhiPi-yMipRing)*(yMaxPhiPi-yMipRing));
     const auto l2Max = mL2Max;//TMath::Sqrt((xMaxPhi0-xMipRing)*(xMaxPhi0-xMipRing) + (yMaxPhi0-yMipRing)*(yMaxPhi0-yMipRing)); 
@@ -314,19 +362,19 @@ public:
       TLine *tlineDownLocal = new TLine(-mL1Max,-mRMax, mL2Max, -mRMax);
 
 
-			auto l1 = mL1Max; auto r1 = mRMax; auto r2 = mRMax; auto l2 = mL2Max;
-			phiRing2Local(l1,r1,xMipLocal,yMipLocal);
-			phiRing2Local(l2,r2,xMipLocal,yMipLocal);
-      TLine *tlineUpLocalR = new TLine(-l1, r1,l2,r1);
-      TLine *tlineDownLocalR = new TLine(-l1,-r2,l2,-r2);
+		auto l1 = mL1Max; auto r1 = mRMax; auto r2 = mRMax; auto l2 = mL2Max;
+		phiRing2Local(l1,r1,xMipLocal,yMipLocal);
+		phiRing2Local(l2,r2,xMipLocal,yMipLocal);
+    TLine *tlineUpLocalR = new TLine(-l1, r1,l2,r1);
+    TLine *tlineDownLocalR = new TLine(-l1,-r2,l2,-r2);
 
-		  tlineUpLocal->SetLineColor(kGreen);
-		  tlineDownLocal->SetLineColor(kBlue);
-		
-		  tlineUpLocalR->SetLineColor(kGreen);
-		  tlineDownLocalR->SetLineColor(kBlue);
+	  tlineUpLocal->SetLineColor(kGreen);
+	  tlineDownLocal->SetLineColor(kBlue);
+	
+	  tlineUpLocalR->SetLineColor(kGreen);
+	  tlineDownLocalR->SetLineColor(kBlue);
       
-       const auto rMax2 = getR_Lmax3(ckovPionMax);
+    const auto rMax2 = r2;
     //Printf("rMax2 = %f w ckov = %f", rMax2, ckovPionMax);
     // populate with background:
     const auto area = mRMax*2*(mL1Max+mL2Max);
@@ -341,7 +389,12 @@ public:
     std::random_device rd;
     std::mt19937 gen(rd());
 
+
+
+
+    // TODO : based on ckovMaxProton, add bg here : 
     // in  phiRing ref sys
+
     std::uniform_real_distribution<> dis1(-mL1Max, mL2Max);
     std::uniform_real_distribution<> dis2(-mRMax, mRMax);
 
@@ -412,16 +465,19 @@ public:
         // TODO : check if this method is wrong??
         // use here instead method from Recon.cxx
 
-        reconG.findPhotCkov(xG, yG, thetaCer, phiCer, etaC);	
-        auto ckov = thetaCer;
-        const auto& ckov2 = getCkovFromCoords(xG, yG, phiP, thetaP, nF, nQ, nG, etaC);      
-        Printf("CkovTools segment | actual ckov = %.3f | bgstdy method:  %.3f | ReconMEthods:  thetaCer %f phiCer %f ", etaC, ckov2,  thetaCer, phiCer);
+        //reconG.findPhotCkov(xG, yG, thetaCer, phiCer, etaC);	
+        //auto ckov = thetaCer;
+        //const auto& ckov2 = getCkovFromCoords(xG, yG, phiP, thetaP, nF, nQ, nG, etaC);      
+        //Printf("CkovTools segment | actual ckov = %.3f | bgstdy method:  %.3f | ReconMEthods:  thetaCer %f phiCer %f ", etaC, ckov2,  thetaCer, phiCer);
 
 
        // Printf("CkovTools segment ckov %f", ckov);
         //Printf("CkovTools segment ckovPionMin %f ckovPionMax %f", ckovPionMin, ckovPionMax);
-   
+    
+
+				
         // TODO: later, also add to candidates (i.e., pionCandidates, kaonCandidates...)
+        /*
         if( ckovPionMin <  ckov & ckov < ckovPionMax ){
           withinRange = true;
         }
@@ -432,13 +488,12 @@ public:
         
         if( ckovProtonMin <  ckov & ckov < ckovProtonMax ){
           withinRange = true;
-        }
+        } */
         
         if(withinRange){
           // transform to global coordinates:
           filledBins.push_back(std::make_pair(xG, yG));
           hSignalMap->Fill(xG, yG);
-
     	  //Printf("CkovTools segment : x%f y%f --> xG %f yG %f ", x,y, coords.first, coords.second); 
         } // end if withinRange
           
@@ -452,11 +507,11 @@ public:
       const auto& y = photons.second;
         //Printf("CkovTools segment : backGroundPhotons %f x", x);
 
-          auto X = x, Y = y;
-			    local2PhiRing(X, Y, xMipLocal, yMipLocal);
+      auto X = x, Y = y;
+      local2PhiRing(X, Y, xMipLocal, yMipLocal);
       
-
-      if(X > -mL1Max && X < mL2Max && Y > -mRMax  && Y < mRMax){
+      if(true){
+      //if(X > -mL1Max && X < mL2Max && Y > -mRMax  && Y < mRMax){
         bool withinRange = true; 
         // check if the coordinates also corresponds to one of the possible cherenkov candidates
 
@@ -465,7 +520,8 @@ public:
         //const auto& ckov = getCkovFromCoords(xRad, yRad, x, y, phiP, thetaP, nF, nQ, nG); 
         //Printf("CkovTools segment :ckov%f ", ckov);
         // TODO: later, also add to candidates (i.e., pionCandidates, kaonCandidates...)
-        if( ckovPionMin <  ckov & ckov < ckovPionMax ){
+				/*        
+				if( ckovPionMin <  ckov & ckov < ckovPionMax ){
           withinRange = true;
         }
         
@@ -475,21 +531,21 @@ public:
         
         if( ckovProtonMin <  ckov & ckov < ckovProtonMax ){
           withinRange = true;
-        }
+        } */ 
         
         if(withinRange){
 
-			    // transform to phiRing ref-system
+	    		// transform to phiRing ref-system
 
 
-					localRefBG->Fill(X,Y);
+	  			localRefBG->Fill(X,Y);
 
 
 
           // transform to global coordinates:
           const auto coords = local2Global(x, y);
     	    //Printf("CkovTools segment : x%f y%f --> xG %f yG %f ", x,y, coords.first, coords.second);    
-	        hNoiseMap->Fill(coords.first,coords.second);
+	  hNoiseMap->Fill(coords.first,coords.second);
           filledBins.push_back(coords);
           //Printf("CkovTools segment backGroundPhotons  x %f y %f", x,y);
         }      
@@ -500,7 +556,7 @@ public:
     //	Printf("CkovTools segment candidates: x%f y%f", pair.first, pair.second);    
 
   hNoiseMap->SetMarkerColor(kRed);
-    Printf("CkovTools segment filledBins Size %zu", filledBins.size());
+  Printf("CkovTools segment filledBins Size %zu", filledBins.size());
 
   TCanvas *thSignalNoiseMap = new TCanvas("hSignalNoiseMap","hSignalNoiseMap",800,800);  // thSignalNoiseMap->Divide(2,1);
   thSignalNoiseMap->cd(1);
@@ -511,30 +567,31 @@ public:
 
 
   hSignalMap->SetMarkerStyle(2);
+  hNoiseMap->SetMarkerStyle(2);
+
   hSignalMap->Draw();
   globalREfMIP->Draw("same");
-
-  hNoiseMap->SetMarkerStyle(2);
   hNoiseMap->Draw("same");
-tlineUpGlobal->Draw();
-tlineRightGlobal->Draw();
-tlineDownGlobal->Draw();
-  tlineLeftGlobal->Draw();
+
+  /*
+  tlineUpGlobal->Draw();
+  tlineRightGlobal->Draw();
+  tlineDownGlobal->Draw();
+  tlineLeftGlobal->Draw(); */
+
   //hSignalAndNoiseMap->Show();
   /*thSignalNoiseMap->cd(2);
   //globalBoxSignal->Draw();
   hNoiseMap->Draw("same");*/
   thSignalNoiseMap->SaveAs("hSignalNoiseMap.png");
-  thSignalNoiseMap->Show();
-	tlineUpGlobal->Draw();
-	tlineDownGlobal->Draw();
+  thSignalNoiseMap->Show();/*
+  tlineUpGlobal->Draw();
+  tlineDownGlobal->Draw();*/
 
   TCanvas *thLocal = new TCanvas("thLocal","thLocal",800,800);  
   thLocal->cd();
   //localBox->Draw();
   //localRef->SetMarkerColor(kBlue);
-
-
 
 
   localRefMIP->SetMarkerStyle(3);
@@ -545,16 +602,20 @@ tlineDownGlobal->Draw();
   localRefBG->SetMarkerStyle(2);
   localRefMIPUnrot->SetMarkerColor(kBlue);
   localRefMIPUnrot->SetMarkerStyle(3);
-  localRefMIPUnrot->Draw("same");   
+  localRefMIPUnrot->Draw("same");
+   
   localRef->Draw();
   localRefBG->Draw("same");
   localRefUnrot->Draw("same");
-    
-  localRefMIP->Draw("same");
+
+  Printf("ckovtools segment : localPion->Draw()");
+  localPion->Draw("same");    
+  localRefMIP->Draw("same");/*
   tlineUpLocal->Draw();
 	tlineDownLocal->Draw();
 	tlineUpLocalR->Draw();
-	tlineDownLocalR->Draw();
+	tlineDownLocalR->Draw();*/
+  Printf("ckovtools segment : localPion->Draw()");
 	gPad->Update();
 
   return filledBins;
@@ -613,93 +674,6 @@ tlineDownGlobal->Draw();
 	}
 
 
- // get R at phiLocal = pi/2 V = 3pi/2
-	double getR_Lmax3(double etaC)
-	{
-		const auto cosEtaC = TMath::Cos(etaC);
-		const auto sinEtaC = TMath::Sin(etaC);
-
-		const auto rwlDeltaR = (rW - L)/(TMath::Sqrt(1-sinEtaC*sinEtaC));
-
-		const auto qwDeltaR = (qW*nF)/(TMath::Sqrt(nQ*nQ-sinEtaC*sinEtaC*nF*nF));
-
-		const auto tGapDeltaR = (tGap*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
-
-		const auto R = sinEtaC*(rwlDeltaR+qwDeltaR+tGapDeltaR)/cosThetaP;
-    /*Printf("getR_Lmax2 rwlDeltaR %f qwDeltaR %f tGapDeltaR %f", rwlDeltaR, qwDeltaR, tGapDeltaR);
-    Printf("getR_Lmax2 rW%f L %f qW %f tGap %f", rW, L, qW, tGap);
-    Printf("getR_Lmax2 nF %f nG %f nQ %f", nF, nG, nQ);*/
-		return R;
-	}
-
-// get Radiu
-	double getR_Lmaxadius(double etaC, double phiL)
-	{
-         
-		const auto cosPhiL = TMath::Cos(phiL); // phiLocal = pi/2
-		const auto sinPhiL = TMath::Sin(phiL); // --||-- 
-		
-		const auto cosEtaC = TMath::Cos(etaC);
-		const auto sinEtaC = TMath::Sin(etaC);
-
-		const auto rwlDeltaR = (rW - L)/(TMath::Sqrt(1-sinEtaC*sinEtaC));
-
-		const auto qwDeltaR = (qW*nF)/(TMath::Sqrt(nQ*nQ-sinEtaC*sinEtaC*nF*nF));
-
-		const auto num = (tGap + tanThetaP*cosPhiL*sinEtaC * (rwlDeltaR + qwDeltaR));
-
-
-   // ef :error was on this line :
-   // 		const auto denum = 1- (tanThetaP*cosPhiL*sinPhiP*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
-
-		const auto denum = 1 - (tanThetaP*cosPhiL*sinEtaC*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
-
-		const auto tZ = num/denum;
-
-		const auto Lz = (rW-L) + qW + tZ;
-
-		const auto tGapDeltaR = (tZ*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
-
-
-
-		const auto R = sinEtaC*(rwlDeltaR+qwDeltaR+tGapDeltaR)/cosThetaP;
-		return R;
-	}
-
-// get R at phiLocal = pi/2 V = 3pi/2
-	double getR_Lmax2(double etaC)
-	{
-         
-		const auto cosPhiL = 1; // phiLocal = pi/2
-		const auto sinPhiL = 0; // --||-- 
-		
-		const auto cosEtaC = TMath::Cos(etaC);
-		const auto sinEtaC = TMath::Sin(etaC);
-
-		const auto rwlDeltaR = (rW - L)/(TMath::Sqrt(1-sinEtaC*sinEtaC));
-
-		const auto qwDeltaR = (qW*nF)/(TMath::Sqrt(nQ*nQ-sinEtaC*sinEtaC*nF*nF));
-
-		const auto num = (tGap + tanThetaP*cosPhiL*sinEtaC * (rwlDeltaR + qwDeltaR));
-
-
-   // ef :error was on this line :
-   // 		const auto denum = 1- (tanThetaP*cosPhiL*sinPhiP*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
-
-		const auto denum = 1 - (tanThetaP*cosPhiL*sinEtaC*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
-
-		const auto tZ = num/denum;
-
-		const auto Lz = (rW-L) + qW + tZ;
-
-		const auto tGapDeltaR = (tZ*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
-
-
-
-		const auto R = sinEtaC*(rwlDeltaR+qwDeltaR+tGapDeltaR)/cosThetaP;
-    //Printf("getR_Lmax : R %f |  wlGap %f qwDeltaR %f tGapDeltaR %f", R, rwlDeltaR,qwDeltaR,tGapDeltaR);
-		return R;
-	}
 
 
   // NB! not uses L by simulation here!
@@ -769,108 +743,6 @@ tlineDownGlobal->Draw();
 		return R;
 	}
 
-
-
-  // populate map in local reference system
-	// based on one etaC value (i.e., one photon at a time)
-	const std::pair<double, double> makeCkovPhoton2(double phiL, double etaC)
-	{
-
-	auto thetaL=phiL;
-	  //Printf("\nmakeCkovPhoton : phiL %f etaC %f", phiL, etaC);
-		const auto cosPhiL = TMath::Cos(phiL);
-		const auto sinPhiL = TMath::Sin(phiL);
-		
-    // if isNan; find etaC that corresponds to rwlDeltaR ^ qwDeltaR NOT nan
-    //if(isNan){}
-    
-		const auto cosEtaC = TMath::Cos(etaC);
-		const auto sinEtaC = TMath::Sin(etaC);
-
-    auto thetaC = etaC;
-    double firstTerm = ((rW - L) / std::cos(thetaP)) * std::tan(thetaC / 2.0);
-    double secondTerm = (qW / std::cos(thetaP)) * std::tan(std::asin(std::sin(thetaC) * nF * nG / (nQ * nG)) / 2.0);
-    double thirdTerm = ((rW - L + qW + tGap - rW + L - qW) / std::cos(thetaP)) * std::tan(std::asin((std::sin(thetaC) * nF) / nG) / 2.0);
-		
-		double R = firstTerm + secondTerm + thirdTerm;
-		
-		double x = R * std::cos(thetaL) * std::cos(phiP) * std::cos(thetaP) - R * std::sin(thetaL) * std::sin(thetaP);
-		double y = R * std::cos(thetaL) * std::cos(phiP) * std::sin(thetaP) + R * std::sin(thetaL) * std::cos(thetaP);
-		double z = R*std::cos(thetaL)*std::cos(phiP)*std::sin(thetaP) + R*std::sin(thetaL)*std::cos(thetaP);
-			
-		/*
-		z = R*cos(thetaL)*sin(phiP) + l
-		x = R*cos(thetaL)*cos(phiP)cos(thetaP) - Rsin(thetaL)sin(thetaP)
-		y = Rcos(thetaL)*cos(phiP)sin(thetaP) + Rsin(thetaL)*cos(thetaP)*/
-															
-		//Printf("makeCkovPhoton : Lz %f tGapDeltaR %f T %f", Lz, tGapDeltaR, T);
-		//Printf("makeCkovPhoton : x %f, y %f %z || z != %f \n", x, y, z, rW - L + tGap + qW);
-				
-		//		return std::make_pair(x, y);
-		return std::make_pair(x,y);
-	}
-
-
-	// populate map in local reference system
-	// based on one etaC value (i.e., one photon at a time)
-	const std::pair<double, double> makeCkovPhoton4(double phiL, double etaC)
-	{
-
-	  //Printf("\nmakeCkovPhoton : phiL %f etaC %f", phiL, etaC);
-		const auto cosPhiL = TMath::Cos(phiL);
-		const auto sinPhiL = TMath::Sin(phiL);
-		
-    // if isNan; find etaC that corresponds to rwlDeltaR ^ qwDeltaR NOT nan
-    //if(isNan){}
-    
-		const auto cosEtaC = TMath::Cos(etaC);
-		const auto sinEtaC = TMath::Sin(etaC);
-
-		const auto Lz = (rW-L) + qW + tGap;
-
-		const auto rwlDeltaR = (rW - L)/(TMath::Sqrt(1-sinEtaC*sinEtaC));
-		const auto qwDeltaR = (qW*nF)/(TMath::Sqrt(nQ*nQ-sinEtaC*sinEtaC*nF*nF));
-		const auto tGapDeltaR = (tGap*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
-
-		const auto T = sinEtaC*(rwlDeltaR+qwDeltaR+tGapDeltaR);
-
-
-    // stemte når denne var + ??
-		auto z = - T*tanThetaP * cosPhiL + Lz;
-    TRotation mZ1;
-    mZ1.RotateZ(phiP);
-
-    TRotation my;
-    my.RotateY(thetaP);
-
-    TRotation mZ2;
-    mZ2.RotateZ(phiL);
-
-    TVector3 vz(0,0,Lz); TVector3 vx(T,0,0);
-    
-    TVector3 pos; pos =  vz + mZ2 * vx;
-    TVector3 posOut; posOut = mZ1*my*pos*(1/cosThetaP);
-    
-		const auto x = T*(cosPhiP*cosPhiL - sinPhiP*sinPhiL/cosThetaP) + Lz*tanThetaP*cosPhiP;
-
-		const auto y = T*(sinPhiP*cosPhiL + cosPhiP*sinPhiL/cosThetaP) + Lz*tanThetaP*sinPhiP;
-
-		/*
-    Printf("makeCkovPhoton : Lz %f tGapDeltaR %f T %f", Lz, tGapDeltaR, T);
-
-		Printf("makeCkovPhoton Rot x %f, y %f z %f || z != %f", posOut.Px(),posOut.Py(),posOut.Pz(), rW-L+tGap+qW);
-		Printf("makeCkovPhoton Harcoded x %f, y %f z %f || z != %f \n", x,y,z, rW-L+tGap+qW);*/
-		/*
-		const auto xR = T*(cosPhiP*cosPhiL - sinPhiP*sinPhiL/cosThetaP) + Lz*tanThetaP*cosPhiP;
-
-		const auto y = T*(sinPhiP*cosPhiL - cosPhiP*sinPhiL/cosThetaP) + Lz*tanThetaP*sinPhiP;*/
-				                            
-
-    //Printf("makeCkovPhoton : x %f, y %f || rot : x %f y %f \n", x, y, posOut.Px(), posOut.Py());
-        
-    //return std::make_pair(x, y);
-		return std::make_pair(posOut.Px(), posOut.Py());
-	}
   
 
 	// populate map in local reference system
