@@ -17,7 +17,7 @@ class CkovTools {
   using segType = std::vector<std::pair<double, double>>;
   segType segPionLocal = {{}};
   
-
+  bool kaonStatus, pionStatus, protonStatus = true;
   //TLine* tlinePion;
 
   static constexpr double PI = M_PI;
@@ -54,7 +54,14 @@ float thetaP, phiP, xPC, yPC, xRad, yRad;
    std::array<float, 3> ckovHyps;
    std::vector<std::pair<double, double>> photons;
 
-	 double ckovPionMin, ckovPionMax, ckovKaonMin, ckovKaonMax, ckovProtonMin,ckovProtonMax, mRMax, mL1Max, mL2Max, mRMin, mL1Min, mL2Min;
+
+	 // instantiate ckovhyp boundaries to "invalid values" 
+   // --> later set them if they exceed momentum threshold
+	 double ckovPionMin = 999, ckovPionMax = 0, ckovKaonMin = 999, ckovKaonMax = 0, ckovProtonMin = 999,ckovProtonMax = 0;
+
+	 double mRMax, mL1Max, mL2Max, mRMin, mL1Min, mL2Min;
+
+   double momentum;
 
    float cosThetaP, sinThetaP, tanThetaP;
    float cosPhiP, sinPhiP, tanPhiP;
@@ -83,34 +90,52 @@ public:
   double refIndexes[3] = {nF, nQ, nG};
   
 
-  CkovTools (double radParams[5], double refIndexes[3], 
+  CkovTools (double radParams[6], double refIndexes[3], 
              std::array<float, 3> ckovHyps, double occupancy, float trackCkov)
     : 
       ckovHyps(ckovHyps), occupancy(occupancy) , trackCkov(trackCkov) {
+
 	  xRad= radParams[0];
 	  yRad= radParams[1];
 	  L = radParams[2]; 
 	  thetaP = radParams[3];
 	  phiP = radParams[4];
-	  
+	  momentum = radParams[5];	  
+
 	  nF = refIndexes[0];
 	  nQ = refIndexes[1];
 	  nG = refIndexes[2];
+   
+    Printf(" CkovTools momentum = %.2f, refFreon = %.2f; ckovHyps : %.2f %.2f %.2f", momentum, nF, ckovHyps[0], ckovHyps[1], ckovHyps[2]);
 
-	  ckovPionMin = ckovHyps[0] - 3 * stdDevPion;
-	  ckovPionMax = ckovHyps[0] + 3 * stdDevPion;
+		if(TMath::IsNaN(ckovHyps[0])){
+			Printf("Pion CkovHyps is Nan!");
+			setPionStatus(false);
+		  // setIsNan()?
+		} if(TMath::IsNaN(ckovHyps[1])){
+			Printf("Kaon CkovHyps is Nan!");
+			setKaonStatus(false);
+		  // setIsNan()?
+		} if(TMath::IsNaN(ckovHyps[2])){
+			Printf("Proton CkovHyps is Nan!");
+			setProtonStatus(false);
+		  // setIsNan()?
+		} 
 
+		if(getPionStatus()){
+		  ckovPionMin = ckovHyps[0] - 3 * stdDevPion;
+		  ckovPionMax = ckovHyps[0] + 3 * stdDevPion;
+    }	if(getKaonStatus()){
+		  ckovKaonMin = ckovHyps[1] - 3 * stdDevKaon;
+	  	ckovKaonMax = ckovHyps[1] + 3 * stdDevKaon;
+    } if(getProtonStatus()){
+			ckovProtonMin = ckovHyps[2] - 3 * stdDevProton;
+			ckovProtonMax = ckovHyps[2] + 3 * stdDevProton;
+		}
 
-
-	  ckovKaonMin = ckovHyps[1] - 3 * stdDevKaon;
-	  ckovKaonMax = ckovHyps[1] + 3 * stdDevKaon;
-
-	  ckovProtonMin = ckovHyps[2] - 3 * stdDevProton;
-	  ckovProtonMax = ckovHyps[2] + 3 * stdDevProton;
-
-      	cosThetaP = TMath::Cos(thetaP);
-	sinThetaP = TMath::Sin(thetaP);
-	tanThetaP = TMath::Tan(thetaP);
+   	cosThetaP = TMath::Cos(thetaP);
+	  sinThetaP = TMath::Sin(thetaP);
+	  tanThetaP = TMath::Tan(thetaP);
 
 	cosPhiP = TMath::Cos(phiP);
 	sinPhiP = TMath::Sin(phiP);
@@ -142,12 +167,12 @@ public:
         mL1Min = getR_Lmax(ckovProtonMin, PI);
         mL2Min = getR_Lmax(ckovProtonMin, 0);
 			
-				for(const auto& c : ckovHyps) {
+				/*for(const auto& c : ckovHyps) {
 					auto R = getR_Lmax(c, halfPI);
 					auto l2 = getR_Lmax(c, 0);
 					auto l1 = getR_Lmax(c, PI);
-					Printf("init CkovTools : CkovHyRad%f, R %f, l1 %f l2 %f", c, R, l2, l1);
-        }   
+					Printf(" CkovTools : CkovHyp %f, R %f, l1 %f l2 %f", c, R, l2, l1);
+        } */  
   }
 
 
@@ -181,10 +206,40 @@ public:
       local2PhiRing(x, y, xMipLocal, yMipLocal);
 			segPionRot[i] = std::make_pair(x,y);
 			segPionLocal[i] = std::make_pair(x,y);
-       Printf("Ckovtools : segment! x %.2f y %.2f", x, y);
+      Printf("Ckovtools : segment! x %.2f y %.2f", x, y);
 			i++;
     }    
     Printf("Ckovtools : exit setsegment!");
+  }
+
+  void setPionStatus(bool status)
+  { 
+    pionStatus = status;
+  }
+
+  bool getPionStatus() const
+  {
+    return pionStatus;
+  }
+
+  void setKaonStatus(bool status)
+  { 
+    kaonStatus = status;
+  }
+
+  bool getKaonStatus() const
+  {
+    return kaonStatus;
+  }
+
+  void setProtonStatus(bool status)
+  { 
+    protonStatus = status;
+  }
+
+  bool getProtonStatus() const
+  {
+    return protonStatus;
   }
 
 
@@ -609,7 +664,7 @@ public:
   localRefUnrot->Draw("same");
 
   Printf("ckovtools segment : localPion->Draw()");
-  localPion->Draw("same");    
+  //localPion->Draw("same");    
   localRefMIP->Draw("same");/*
   tlineUpLocal->Draw();
 	tlineDownLocal->Draw();
