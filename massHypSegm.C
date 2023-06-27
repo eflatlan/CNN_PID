@@ -398,6 +398,17 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   TH2F *hSignalMIPpc = new TH2F("hmip pc", "hmip pc; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
 
 
+
+  TH2F *hMaxProton = new TH2F("maxPoss Ckov Proton", "maxPoss Ckov Proton; x [cm]; y [cm]",160*100,0.,159.,144*100,0,143);
+
+  TH2F *hMaxPion = new TH2F("maxPoss Ckov Pion", "maxPoss Ckov Pion; x [cm]; y [cm]",160*100,0.,159.,144*100,0,143);
+
+  TH2F *hMaxKaon = new TH2F("maxPoss Ckov Kaon", "maxPoss Ckov Kaon; x [cm]; y [cm]",160*100,0.,159.,144*100,0,143);
+
+  hMaxProton->SetMarkerColor(kGreen);
+  hMaxPion->SetMarkerColor(kBlue);
+  hMaxKaon->SetMarkerColor(kOrange);
+
   hSignalMIP->SetMarkerStyle(3);
   hSignalMIPpc->SetMarkerStyle(3);
 
@@ -427,7 +438,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
  // place the impact point on rad : in x[10..150] and y[10..134]
 
- auto diff = 40;
+ auto diff = 10;
  double xRad = static_cast<float>((160-diff)*(1*gRandom->Rndm())+diff);
  double yRad = static_cast<float>((144-diff)*(1*gRandom->Rndm())+diff);
  auto winThick = 0.5, radThick = 1.5; int gapThick = 8;
@@ -473,13 +484,80 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  TVector3 trkDir; trkDir.SetMagThetaPhi(1, thetaP, phiP);
 
  // TVector2 trkPos, TVector3 trkDir, doble _nF
- Populate populate(trkPos, trkDir, 1.3);
+ Populate populate(trkPos, trkDir, nF);
+
+ 
+  
+ // etaC 
+
+ //const auto ckovMax 
+ 
+
+ // TODO: pass this to func?
+ int level = 5;
+ int kN = 50 * level; 
+ 
+
+ const auto& p1S = populate.tracePhot(ckovTools.getMaxCkovProton(), 0);
+ const auto& p2S = populate.tracePhot(ckovTools.getMaxCkovProton()*1.1, 0);
+
+
+
+ const auto& p1E = populate.tracePhot(ckovTools.getMaxCkovProton(), TMath::Pi());
+ const auto& p2E = populate.tracePhot(ckovTools.getMaxCkovProton()*1.1, TMath::Pi());
+
+
+ const auto& p3S = populate.tracePhot(ckovTools.getMaxCkovProton(), TMath::Pi()*1.5);
+ const auto& p3E = populate.tracePhot(ckovTools.getMaxCkovProton()*1.1, TMath::Pi()*0.5);
+
+ TLine *l1 = new TLine(p1S.X(), p1S.Y(), p1E.X(), p1E.Y());
+ l1->SetLineColor(kOrange);
+
+ TLine *l2 = new TLine(p2S.X(), p2S.Y(), p2E.X(), p2E.Y());
+ l2->SetLineColor(kGreen);
+
+ TLine *l3 = new TLine(p3S.X(), p3S.Y(), p3E.X(), p3E.Y());
+ l3->SetLineColor(kRed);
+
+
+ TLine *l4 = new TLine(p1S.X(), p1S.Y(), p3E.X(), p3E.Y());
+ l4->SetLineColor(kBlue);
+
+
+ std::vector<std::pair<double, double>> maxPionVec, maxKaonVec, maxProtonVec;
+  
+ maxPionVec.resize(kN); maxKaonVec.resize(kN); maxProtonVec.resize(kN);
+
+ for(int i = 0; i < kN; i++){
+    const auto& maxProton = populate.tracePhot(ckovTools.getMaxCkovProton(), Double_t(TMath::Pi()*(i+1)/(2*kN)));
+    hMaxProton->Fill(maxProton.X(), maxProton.Y());
+		maxProtonVec[i] = std::make_pair(maxProton.X(), maxProton.Y());
+	  
+
+    const auto& maxKaon = populate.tracePhot(ckovTools.getMaxCkovKaon(), Double_t(TMath::Pi()*(i+1)/kN));
+    hMaxKaon->Fill(maxKaon.X(), maxKaon.Y());
+    maxKaonVec[i] = std::make_pair(maxKaon.X(), maxKaon.Y());
+
+    const auto& maxPion = populate.tracePhot(ckovTools.getMaxCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN));
+    hMaxPion->Fill(maxPion.X(), maxPion.Y());
+    maxPionVec[i] = std::make_pair(maxPion.X(), maxPion.Y());
+ }
+
+
+ Printf("enter setsegment!");
+ std::vector<std::pair<double, double>> maxPionVecRot; maxPionVecRot.resize(kN);
+ ckovTools.setSegment(maxPionVec, maxPionVecRot);
+
+
+ // 
+ // ckovTools.setSegments(maxPionVec, maxKaonVec, maxProtonVec);  
+
 
  int photonCount = 0;
  for(photonCount=0; photonCount < numberOfCkovPhotons; photonCount++) {
    
    // TODO: endre std-dev her til å følge prob-dist?!
-   float etaC = rnd->Gaus(ckovAngle, 0.00008);		    // random CkovAngle, with 0.012 std-dev
+   float etaC = rnd->Gaus(ckovAngle, 0.008);		    // random CkovAngle, with 0.012 std-dev
 
    float phiL = static_cast<float>((3.14159265)*(1-2*gRandom->Rndm(1)));
    // angle around ckov Cone of photon
@@ -489,8 +567,8 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
    // populate map with cherenkov photon
 
    // later change below fcn to take valeus from setPhoton:
-  Printf(" backgroundStudy : enter  ckovTools.makeCkovPhoton"); 	 
-   const auto& ckovPhotonCoordinates = ckovTools.makeCkovPhoton(phiL, etaC);
+   //Printf(" backgroundStudy : enter  ckovTools.makeCkovPhoton"); 	 
+   //const auto& ckovPhotonCoordinates = ckovTools.makeCkovPhoton(phiL, etaC);
    
    //std::array<double, 3> cand = {ckovPhotonCoordinates.first,ckovPhotonCoordinates.second , etaC};
 
@@ -500,7 +578,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   //cherenkovPhotons.emplace_back(cand);
   cherenkovPhotons[photonCount] = cand;
 
-   Printf(" backgroundStudy : ckovTools.makeCkovPhoton returned x %f y%f", ckovPhotonCoordinates.first + xRad, ckovPhotonCoordinates.second + yRad); 	 
+   //Printf(" backgroundStudy : ckovTools.makeCkovPhoton returned x %f y%f", ckovPhotonCoordinates.first + xRad, ckovPhotonCoordinates.second + yRad); 	 
 	 hSignalAndNoiseMap->Fill(phot.X(), phot.Y());
 
   } 
@@ -531,9 +609,16 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   thSignalAndNoiseMap->cd();
   hSignalAndNoiseMap->Draw();
 hSignalMIP->Draw("same");hSignalMIPpc->Draw("same");
+
+  hMaxProton->Draw("same"); 
+
+  hMaxPion->Draw("same"); 
+  hMaxKaon->Draw("same"); 
+
+  l4->Draw("same");l3->Draw("same");l2->Draw("same");l1->Draw("same");
   //hSignalAndNoiseMap->Show();
   thSignalAndNoiseMap->SaveAs("thSignalAndNoiseMap.png");
-  	thSignalAndNoiseMap->Show();
+	thSignalAndNoiseMap->Show();
 	
   int cnt = 0;
   for(auto& b : mapBins) {/*Printf("xval %f", b.x);*/ cnt++;}

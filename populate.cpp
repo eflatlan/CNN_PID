@@ -30,7 +30,7 @@ public:
       //fPc(trkPos.X())
     }
 
-    TVector2 tracePhot(double ckovThe, double ckovPhi) const {
+    TVector2 tracePhot(const double& ckovThe, const double& ckovPhi) const {
         double theta, phi;
         TVector3 dirTRS, dirLORS;
         dirTRS.SetMagThetaPhi(1, ckovThe, ckovPhi); // photon in TRS
@@ -39,7 +39,7 @@ public:
         return traceForward(dirLORS);          // now foward tracing
     }
 
-    void propagate(const TVector3 dir, TVector3& pos, double z) const {
+    void propagate(const TVector3& dir, TVector3& pos, double z) const {
         static TVector3 nrm(0, 0, 1);
         TVector3 pnt(0, 0, z);
 
@@ -48,7 +48,7 @@ public:
         pos += sint * dir;
     }
 
-    void refract(TVector3& dir, double n1, double n2) const {
+    void refract(TVector3& dir, const double& n1, const double& n2) const {
         double sinref = (n1 / n2) * TMath::Sin(dir.Theta());
         if (TMath::Abs(sinref) > 1.) {
             dir.SetXYZ(-999, -999, -999);
@@ -60,7 +60,7 @@ public:
 
 
 
-    TVector2 traceForward(TVector3 dirCkov) const {
+    TVector2 traceForward(TVector3& dirCkov) const {
 
 
 	auto winThick = 0.5, radThick = 1.5; int gapThick = 8;
@@ -83,7 +83,7 @@ public:
         return pos;
     }
 
-    void lors2Trs(TVector3 dirCkov, double& thetaCer, double& phiCer) const {
+    void lors2Trs(const TVector3& dirCkov, double& thetaCer, double& phiCer) const {
         TRotation mtheta;
         mtheta.RotateY(-fTrkDir.Theta());
 
@@ -98,7 +98,7 @@ public:
         thetaCer = dirCkovTRS.Theta(); // actual value of thetaCerenkov of the photon
     }
 
-    void trs2Lors(TVector3 dirCkov, double& thetaCer, double& phiCer) const {
+    void trs2Lors(const TVector3& dirCkov, double& thetaCer, double& phiCer) const {
         TRotation mtheta;
         mtheta.RotateY(fTrkDir.Theta());
 
