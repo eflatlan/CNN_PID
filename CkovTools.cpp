@@ -200,16 +200,20 @@ public:
 		tlinePion->SetX1(eX); tlinePion->SetY1(eY); */ 
 
     int i = 0;
-		for(const auto& p : segPion) 
+    segPionLocal.reserve(segPion.size());
+    segPionLocal.resize(segPion.size());
+    Printf("sizes = %zu 1 %zu!", segPionRot.size(), segPionLocal.size());
+    for(const auto& p : segPion) 
     {
       auto x = p.first, y = p.second;
       local2PhiRing(x, y, xMipLocal, yMipLocal);
-			segPionRot[i] = std::make_pair(x,y);
-			segPionLocal[i] = std::make_pair(x,y);
-      Printf("Ckovtools : segment! x %.2f y %.2f", x, y);
+      segPionRot[i] = std::make_pair(x,y);
+      segPionLocal[i] = std::make_pair(x,y);
+      Printf("Ckovtools : setsegment! x %.2f y %.2f", x, y);
 			i++;
     }    
     Printf("Ckovtools : exit setsegment!");
+    Printf("sizes = %zu %zu!", segPionRot.size(), segPionLocal.size());
   }
 
   void setPionStatus(bool status)
@@ -613,6 +617,8 @@ public:
   hNoiseMap->SetMarkerColor(kRed);
   Printf("CkovTools segment filledBins Size %zu", filledBins.size());
 
+
+  /*
   TCanvas *thSignalNoiseMap = new TCanvas("hSignalNoiseMap","hSignalNoiseMap",800,800);  // thSignalNoiseMap->Divide(2,1);
   thSignalNoiseMap->cd(1);
   //globalBoxSignal->Draw();
@@ -632,16 +638,16 @@ public:
   tlineUpGlobal->Draw();
   tlineRightGlobal->Draw();
   tlineDownGlobal->Draw();
-  tlineLeftGlobal->Draw(); */
+  tlineLeftGlobal->Draw(); * /
 
   //hSignalAndNoiseMap->Show();
   /*thSignalNoiseMap->cd(2);
   //globalBoxSignal->Draw();
-  hNoiseMap->Draw("same");*/
+  hNoiseMap->Draw("same");* /
   thSignalNoiseMap->SaveAs("hSignalNoiseMap.png");
   thSignalNoiseMap->Show();/*
   tlineUpGlobal->Draw();
-  tlineDownGlobal->Draw();*/
+  tlineDownGlobal->Draw();* /
 
   TCanvas *thLocal = new TCanvas("thLocal","thLocal",800,800);  
   thLocal->cd();
@@ -669,10 +675,10 @@ public:
   tlineUpLocal->Draw();
 	tlineDownLocal->Draw();
 	tlineUpLocalR->Draw();
-	tlineDownLocalR->Draw();*/
+	tlineDownLocalR->Draw();* /
   Printf("ckovtools segment : localPion->Draw()");
-	gPad->Update();
-
+gPad->Update();
+  */ 
   return filledBins;
   } // end segment
 
