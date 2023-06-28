@@ -307,10 +307,10 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0, do
      ParticleInfo particle;
 
      Printf(" enter backgroundStudy"); 
-     const auto& filledBins = backgroundStudy(mapBins, occupancy, randomValue, particle); 
+     const auto filledBins = backgroundStudy(mapBins, occupancy, randomValue, particle); 
      
-          Printf(" exit backgroundStudy"); 
-
+     Printf(" exit backgroundStudy"); 
+     Printf("testRandomMomentum():  mapBins.size = %.2f", mapBins.size()); 
     
       // TODO : hSignalAndNoiseMap just placeholder, make instead a TH2F from the filledBins?
      const auto& map =  new TH2F("Signal and Noise2 ", "Signal and Noise2 ; x [cm]; y [cm]",160,0.,159.,144,0,143);
@@ -368,7 +368,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
 
   // number of cherenkov photons in the cherenkov ring:
-  const auto numberOfCkovPhotons = rndP->Poisson(130);
+  const auto numberOfCkovPhotons = rndP->Poisson(13);
 
   photonCandidates.clear();
   float ThetaP = 0; // [rad]  // endre denne
@@ -407,11 +407,11 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
 
 
-  TH2F *hMaxProton = new TH2F("maxPoss Ckov Proton", "maxPoss Ckov Proton; x [cm]; y [cm]",160*100,0.,159.,144*100,0,143);
+  TH2F *hMaxProton = new TH2F("maxPoss Ckov Proton", "maxPoss Ckov Proton; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
 
-  TH2F *hMaxPion = new TH2F("maxPoss Ckov Pion", "maxPoss Ckov Pion; x [cm]; y [cm]",160*100,0.,159.,144*100,0,143);
+  TH2F *hMaxPion = new TH2F("maxPoss Ckov Pion", "maxPoss Ckov Pion; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
 
-  TH2F *hMaxKaon = new TH2F("maxPoss Ckov Kaon", "maxPoss Ckov Kaon; x [cm]; y [cm]",160*100,0.,159.,144*100,0,143);
+  TH2F *hMaxKaon = new TH2F("maxPoss Ckov Kaon", "maxPoss Ckov Kaon; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
 
   hMaxProton->SetMarkerColor(kGreen);
   hMaxPion->SetMarkerColor(kBlue);
@@ -472,7 +472,9 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  // ckovHyps, nF, nQ, nG,
 
   
-  double radParams[6] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum};
+  // TODO; change back to:
+  // double radParams[6] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum};
+  double radParams[6] = {xRad,yRad,L,thetaP, phiP, momentum};
   double refIndexes[3] = {nF, nQ, nG};
 
   CkovTools ckovTools(radParams, refIndexes, ckovHyps, occupancy, ckovAngle);
@@ -502,10 +504,12 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  
 
  // TODO: pass this to func?
- int level = 5;
+ int level = 1;
  int kN = 50 * level; 
  
 
+
+ Printf(" backgroundStudy : populating lines"); 
  const auto& p1S = populate.tracePhot(ckovTools.getMaxCkovProton(), 0);
  const auto& p2S = populate.tracePhot(ckovTools.getMaxCkovProton()*1.1, 0);
 
@@ -534,26 +538,37 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
  std::vector<std::pair<double, double>> maxPionVec, maxKaonVec, maxProtonVec;
   
+  
+ maxPionVec.reserve(kN); maxKaonVec.reserve(kN); maxProtonVec.reserve(kN); 
  maxPionVec.resize(kN); maxKaonVec.resize(kN); maxProtonVec.resize(kN);
-
- for(int i = 0; i < kN; i++){
-    const auto& maxProton = populate.tracePhot(ckovTools.getMaxCkovProton(), Double_t(TMath::Pi()*(i+1)/(2*kN)));
-    hMaxProton->Fill(maxProton.X(), maxProton.Y());
-		maxProtonVec[i] = std::make_pair(maxProton.X(), maxProton.Y());
-	  
-
-    const auto& maxKaon = populate.tracePhot(ckovTools.getMaxCkovKaon(), Double_t(TMath::Pi()*(i+1)/kN));
-    hMaxKaon->Fill(maxKaon.X(), maxKaon.Y());
-    maxKaonVec[i] = std::make_pair(maxKaon.X(), maxKaon.Y());
-
+ Printf(" backgroundStudy : populating loop"); 
+ 
+ for(int i = 0; i < maxPionVec.size(); i++){
     const auto& maxPion = populate.tracePhot(ckovTools.getMaxCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN));
     hMaxPion->Fill(maxPion.X(), maxPion.Y());
     maxPionVec[i] = std::make_pair(maxPion.X(), maxPion.Y());
+    Printf("maxPion loop i = %d, maxSize = %zu", i, maxPionVec.size()); 
  }
-
+ 
+ for(int i = 0; i < maxProtonVec.size(); i++){
+    const auto& maxProton = populate.tracePhot(ckovTools.getMaxCkovProton(), Double_t(TMath::Pi()*(i+1)/(2*kN)));
+    hMaxProton->Fill(maxProton.X(), maxProton.Y());
+		maxProtonVec[i] = std::make_pair(maxProton.X(), maxProton.Y());
+ }
+ 
+ for(int i = 0; i < maxKaonVec.size(); i++){
+    const auto& maxKaon = populate.tracePhot(ckovTools.getMaxCkovKaon(), Double_t(TMath::Pi()*(i+1)/kN));
+    hMaxKaon->Fill(maxKaon.X(), maxKaon.Y());
+    maxKaonVec[i] = std::make_pair(maxKaon.X(), maxKaon.Y());
+ }
+ 
+ 
+  Printf(" backgroundStudy : exit populating loop"); 
+ Printf("		sizes = kN %zu | %zu %zu %zu", kN, maxPionVec.size(), maxKaonVec.size(), maxProtonVec.size()); 
 
  Printf("enter setsegment!");
- std::vector<std::pair<double, double>> maxPionVecRot; maxPionVecRot.resize(kN);
+ std::vector<std::pair<double, double>> maxPionVecRot(kN); 
+ maxPionVecRot.reserve(kN); maxPionVecRot.resize(kN);
  ckovTools.setSegment(maxPionVec, maxPionVecRot);
 
 
@@ -567,7 +582,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
    // TODO: endre std-dev her til å følge prob-dist?!
    float etaC = rnd->Gaus(ckovAngle, 0.008);		    // random CkovAngle, with 0.012 std-dev
 
-   float phiL = static_cast<float>((3.14159265)*(1-2*gRandom->Rndm(1)));
+   float phiL = static_cast<float>((TMath::Pi())*(1-2*gRandom->Rndm(1)));
    // angle around ckov Cone of photon
    TVector2 phot = populate.tracePhot(etaC, phiL); // tracePhot(double ckovThe, double ckovPhi)
    Printf("made photon using populate.tracePhot | x %.3f, y %.3f ", phot.X(), phot.Y());
@@ -583,11 +598,11 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
    std::array<double, 3> cand = {phot.X(), phot.Y() , etaC};
   
-  //cherenkovPhotons.emplace_back(cand);
-  cherenkovPhotons[photonCount] = cand;
+   //cherenkovPhotons.emplace_back(cand);
+   cherenkovPhotons[photonCount] = cand;
 
    //Printf(" backgroundStudy : ckovTools.makeCkovPhoton returned x %f y%f", ckovPhotonCoordinates.first + xRad, ckovPhotonCoordinates.second + yRad); 	 
-	 hSignalAndNoiseMap->Fill(phot.X(), phot.Y());
+	 //hSignalAndNoiseMap->Fill(phot.X(), phot.Y());
 
   } 
 
@@ -603,31 +618,38 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
  
 
-  Printf(" backgroundStudy : enter  ckovTools.segment"); 	 
+  Printf(" backgroundStudy : enter  ckovTools.segment");
   const auto photonCandidatesCoords = ckovTools.segment(cherenkovPhotons, temp); // temp --> mapBins
 
 
 
   Printf(" backgroundStudy : num photonCandidatesCoords %zu", photonCandidatesCoords.size()); 	 
   for(const auto& photons : photonCandidatesCoords){
-    //Printf("photon x %f y %f", photons.first, photons.second);
-    //hSignalAndNoiseMap->Fill(photons.first, photons.second);
+    Printf("photon x %f y %f", photons.first, photons.second);
+    hSignalAndNoiseMap->Fill(photons.first, photons.second);
   }
+    Printf("backgroundStudy() exit const auto& photons : photonCandidatesCoords");
+  
+  
   TCanvas *thSignalAndNoiseMap = new TCanvas("hSignalAndNoiseMap","hSignalAndNoiseMap",800,800);  
   thSignalAndNoiseMap->cd();
   hSignalAndNoiseMap->Draw();
-hSignalMIP->Draw("same");hSignalMIPpc->Draw("same");
+  hSignalMIP->Draw("same");
+  hSignalMIPpc->Draw("same");
 
-  hMaxProton->Draw("same"); 
+  hMaxProton->Draw("same");   Printf("backgroundStudy()  hMaxProton->Draw");
+  hMaxPion->Draw("same");       Printf("backgroundStudy()  hMaxPion->Draw");
+  hMaxKaon->Draw("same");     Printf("backgroundStudy()  hMaxKaon->Draw");
 
-  hMaxPion->Draw("same"); 
-  hMaxKaon->Draw("same"); 
+
+
 
   l4->Draw("same");l3->Draw("same");l2->Draw("same");l1->Draw("same");
+  Printf("backgroundStudy()  l1->Draw()");
   //hSignalAndNoiseMap->Show();
   thSignalAndNoiseMap->SaveAs("thSignalAndNoiseMap.png");
 	thSignalAndNoiseMap->Show();
-	
+	gPad->Update();
   int cnt = 0;
   for(auto& b : mapBins) {/*Printf("xval %f", b.x);*/ cnt++;}
   Printf(" mapBins size = %zu", mapBins.size());
@@ -648,9 +670,11 @@ hSignalMIP->Draw("same");hSignalMIPpc->Draw("same");
 	particle.phiP = phiP;
   particle.map = hSignalAndNoiseMap;  
 
+
+  Printf("end backgroundStudy()");
   return photonCandidatesCoords;
  
-} // end backgroundStudy()
+} // 
 //**********************************************************************************************************************************************************************************************************
 float GetFreonIndexOfRefraction(float photonEnergy)
 {
@@ -782,7 +806,7 @@ std::array<float, 3> calcCherenkovHyp(float p, float n)
   const float ckovAngleKaon = static_cast<float>(TMath::ACos(cos_ckov_Kaon)); 
   const float ckovAngleProton = static_cast<float>(TMath::ACos(cos_ckov_Proton)); 
 
-  Printf("Pion %.3f Kaon %.3f Proton %.3f", ckovAnglePion, ckovAngleKaon, ckovAngleProton);
+  //Printf("Pion %.3f Kaon %.3f Proton %.3f", ckovAnglePion, ckovAngleKaon, ckovAngleProton);
 
   return {ckovAnglePion, ckovAngleKaon, ckovAngleProton};
 }
