@@ -863,11 +863,11 @@ incL->Draw("same");incL->SetMarkerStyle(2);
   particle.mass = randomValue.mass;
   particle.energy = randomValue.energy;
   particle.refractiveIndex = randomValue.refractiveIndex;
-	particle.ckov = ckov;
-	particle.xRad = xRad;
-	particle.yRad = yRad;
-	particle.thetaP = thetaP;
-	particle.phiP = phiP;
+  particle.ckov = ckov;
+  particle.xRad = xRad;
+  particle.yRad = yRad;
+  particle.thetaP = thetaP;
+  particle.phiP = phiP;
   particle.map = hSignalAndNoiseMap;  
 
 
