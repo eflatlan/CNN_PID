@@ -411,11 +411,16 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
   TH2F *hMaxPion = new TH2F("maxPoss Ckov Pion", "maxPoss Ckov Pion; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
 
+  TH2F *hMaxPionMinL = new TH2F("maxPoss Ckov Pion min L", "maxPoss Ckov Pion min L; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
+
+
+  TH2F *hMinPionMaxL = new TH2F("minPoss Ckov Pion max L", "minPoss Ckov Pion max L; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
+
   TH2F *hMaxKaon = new TH2F("maxPoss Ckov Kaon", "maxPoss Ckov Kaon; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
 
 
   hMaxProton->SetMarkerColor(kGreen+3);
-  hMaxPion->SetMarkerColor(kBlue);
+
   hMaxKaon->SetMarkerColor(kRed);
 
   TH2F *hMinProton = new TH2F("minPoss Ckov Proton", "minPoss Ckov Proton; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
@@ -425,8 +430,22 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   TH2F *hMinKaon = new TH2F("minPoss Ckov Kaon", "minPoss Ckov Kaon; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
 
   hMinProton->SetMarkerColor(kGreen+3);
-  hMinPion->SetMarkerColor(kBlue);
+
   hMinKaon->SetMarkerColor(kRed);
+
+
+
+
+  hMaxPion->SetMarkerColor(kBlue + 4);    // max ckov max L
+  hMinPion->SetMarkerColor(kBlue); 				// min ckov min L
+  hMinPionMaxL->SetMarkerColor(kBlue); 		// min ckov max L
+  hMaxPionMinL->SetMarkerColor(kBlue + 4);// max ckov min L
+
+  hMaxPion->SetMarkerStyle(3);
+  hMinPionMaxL->SetMarkerStyle(3);
+
+  hSignalMIPpc->SetMarkerStyle(3);
+
 
 
   hSignalMIP->SetMarkerStyle(3);
@@ -482,8 +501,8 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
 
 
-   // TODO; change back to:
-  double L = 0.75;//static_cast<float>((rW)*(gRandom->Rndm()));
+   // TODO; change back to per each photon?
+  double L = static_cast<float>((rW)*(gRandom->Rndm()));
   
   // TODO; change back to:
   // double radParams[6] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum};
@@ -568,7 +587,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovProton()); 
 
  for(int i = 0; i < maxPionVec.size(); i++){
-    const auto& maxPion = populate.tracePhot(ckovTools.getMaxCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN), lMax);
+    const auto& maxPion = populate.tracePhot(ckovTools.getMaxCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN), lMin);
 
     if(maxPion.X() > 0 && maxPion.X() < 156.0 && maxPion.Y() > 0 && maxPion.Y() < 144) {
       hMaxPion->Fill(maxPion.X(), maxPion.Y());
@@ -578,7 +597,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
  }
  
  for(int i = 0; i < maxProtonVec.size(); i++){
-    const auto& maxProton = populate.tracePhot(ckovTools.getMaxCkovProton(), Double_t(TMath::TwoPi()*(i+1)/(kN)), lMax);
+    const auto& maxProton = populate.tracePhot(ckovTools.getMaxCkovProton(), Double_t(TMath::TwoPi()*(i+1)/(kN)), lMin);
     if(maxProton.X() > 0 && maxProton.X() < 156.0 && maxProton.Y() > 0 && maxProton.Y() < 144) {
       hMaxProton->Fill(maxProton.X(), maxProton.Y());
 		  maxProtonVec[i] = std::make_pair(maxProton.X(), maxProton.Y()); 
@@ -586,7 +605,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
  }
  
  for(int i = 0; i < maxKaonVec.size(); i++){
-    const auto& maxKaon = populate.tracePhot(ckovTools.getMaxCkovKaon(), Double_t(TMath::TwoPi()*(i+1)/kN), lMax);
+    const auto& maxKaon = populate.tracePhot(ckovTools.getMaxCkovKaon(), Double_t(TMath::TwoPi()*(i+1)/kN), lMin);
     if(maxKaon.X() > 0 && maxKaon.X() < 156.0 && maxKaon.Y() > 0 && maxKaon.Y() < 144) {
       hMaxKaon->Fill(maxKaon.X(), maxKaon.Y());
       maxKaonVec[i] = std::make_pair(maxKaon.X(), maxKaon.Y());
@@ -602,9 +621,28 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
  
 
 
+ // max etaC, min L
+ for(int i = 0; i < minPionVec.size(); i++){
+    const auto& minPion = populate.tracePhot(ckovTools.getMaxCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN), lMin);
+
+    if(minPion.X() > 0 && minPion.X() < 156.0 && minPion.Y() > 0 && minPion.Y() < 144) {
+      hMaxPionMinL->Fill(minPion.X(), minPion.Y());
+    }
+ }
+
+
+ // min etaC, max L
+ for(int i = 0; i < minPionVec.size(); i++){
+    const auto& minPion = populate.tracePhot(ckovTools.getMinCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN), lMax);
+
+    if(minPion.X() > 0 && minPion.X() < 156.0 && minPion.Y() > 0 && minPion.Y() < 144) {
+      hMinPionMaxL->Fill(minPion.X(), minPion.Y());
+    }
+ }
+
 
  for(int i = 0; i < minPionVec.size(); i++){
-    const auto& minPion = populate.tracePhot(ckovTools.getMinCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN), lMin);
+    const auto& minPion = populate.tracePhot(ckovTools.getMinCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN), lMax);
 
     if(minPion.X() > 0 && minPion.X() < 156.0 && minPion.Y() > 0 && minPion.Y() < 144) {
       hMinPion->Fill(minPion.X(), minPion.Y());
@@ -614,7 +652,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
  }
  
  for(int i = 0; i < minProtonVec.size(); i++){
-    const auto& minProton = populate.tracePhot(ckovTools.getMinCkovProton(), Double_t(TMath::TwoPi()*(i+1)/(kN)), lMin);
+    const auto& minProton = populate.tracePhot(ckovTools.getMinCkovProton(), Double_t(TMath::TwoPi()*(i+1)/(kN)), lMax);
     if(minProton.X() > 0 && minProton.X() < 156.0 && minProton.Y() > 0 && minProton.Y() < 144) {
 		  hMinProton->Fill(minProton.X(), minProton.Y());
 			minProtonVec[i] = std::make_pair(minProton.X(), minProton.Y());
@@ -622,7 +660,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
  }
  
  for(int i = 0; i < minKaonVec.size(); i++){
-    const auto& minKaon = populate.tracePhot(ckovTools.getMinCkovKaon(), Double_t(TMath::TwoPi()*(i+1)/kN), lMin);
+    const auto& minKaon = populate.tracePhot(ckovTools.getMinCkovKaon(), Double_t(TMath::TwoPi()*(i+1)/kN), lMax);
     if(minKaon.X() > 0 && minKaon.X() < 156.0 && minKaon.Y() > 0 && minKaon.Y() < 144) {
 			hMinKaon->Fill(minKaon.X(), minKaon.Y());
 	    minKaonVec[i] = std::make_pair(minKaon.X(), minKaon.Y());
@@ -723,13 +761,22 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
   hSignalMIP->Draw("same");
   hSignalMIPpc->Draw("same");
 
-  hMaxProton->Draw("same");   Printf("backgroundStudy()  hMaxProton->Draw");
-  hMaxPion->Draw("same");       Printf("backgroundStudy()  hMaxPion->Draw");
-  hMaxKaon->Draw("same");     Printf("backgroundStudy()  hMaxKaon->Draw");
 
+  hMaxPion->Draw("same");       Printf("backgroundStudy()  hMaxPion->Draw");
+  hMinPion->Draw("same");
+  hMaxProton->Draw("same");   Printf("backgroundStudy()  hMaxProton->Draw");
   hMinProton->Draw("same");
   hMinKaon->Draw("same");
-  hMinPion->Draw("same");
+  hMaxKaon->Draw("same");
+
+
+  /*
+	hMinPionMaxL->Draw("same");
+	hMaxPionMinL->Draw("same");*/
+
+
+
+
 
 
   l4->Draw("same");l3->Draw("same");l2->Draw("same");l1->Draw("same");
