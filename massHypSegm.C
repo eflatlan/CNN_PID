@@ -174,13 +174,13 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
 
 const float CH4GapWidth = 8;
-const float  RadiatorWidth = 1.;
+const float  RadiatorWidth = 1.5; // ? was 1
 const float  QuartzWindowWidth = 0.5;
 const float  EmissionLenght = RadiatorWidth/2;
 
 
 const float tGap = 8;
-const float  rW = 1.;
+const float  rW = 1.5; // ? was 1
 const float  qW = 0.5;
 const float  L = rW/2;
 
@@ -349,9 +349,9 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
   // TODO: fjern denne ighen
   auto momentum = .5; // 
-  const auto& ckovHyps = calcCherenkovHyp(momentum, randomValue.refractiveIndex); 
+  const auto& ckovHyps2 = calcCherenkovHyp(momentum, randomValue.refractiveIndex); 
   
-  const auto& ckovHyps2 = calcCherenkovHyp(randomValue.momentum, randomValue.refractiveIndex); 
+  const auto& ckovHyps = calcCherenkovHyp(randomValue.momentum, randomValue.refractiveIndex); 
 
 
 
@@ -400,22 +400,34 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
   //TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",1000,-25.,25.,1000,-25.,25.);
 
-  TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
+  TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
 
-  TH2F *hSignalMIP = new TH2F("hmip ", "hmip ; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
-  TH2F *hSignalMIPpc = new TH2F("hmip pc", "hmip pc; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
+  TH2F *hSignalMIP = new TH2F("hmip ", "hmip ; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
+  TH2F *hSignalMIPpc = new TH2F("hmip pc", "hmip pc; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
 
 
 
-  TH2F *hMaxProton = new TH2F("maxPoss Ckov Proton", "maxPoss Ckov Proton; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
+  TH2F *hMaxProton = new TH2F("maxPoss Ckov Proton", "maxPoss Ckov Proton; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
 
-  TH2F *hMaxPion = new TH2F("maxPoss Ckov Pion", "maxPoss Ckov Pion; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
+  TH2F *hMaxPion = new TH2F("maxPoss Ckov Pion", "maxPoss Ckov Pion; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
 
-  TH2F *hMaxKaon = new TH2F("maxPoss Ckov Kaon", "maxPoss Ckov Kaon; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
+  TH2F *hMaxKaon = new TH2F("maxPoss Ckov Kaon", "maxPoss Ckov Kaon; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
 
-  hMaxProton->SetMarkerColor(kGreen);
+
+  hMaxProton->SetMarkerColor(kGreen+3);
   hMaxPion->SetMarkerColor(kBlue);
-  hMaxKaon->SetMarkerColor(kOrange);
+  hMaxKaon->SetMarkerColor(kRed);
+
+  TH2F *hMinProton = new TH2F("minPoss Ckov Proton", "minPoss Ckov Proton; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
+
+  TH2F *hMinPion = new TH2F("minPoss Ckov Pion", "minPoss Ckov Pion; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
+
+  TH2F *hMinKaon = new TH2F("minPoss Ckov Kaon", "minPoss Ckov Kaon; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
+
+  hMinProton->SetMarkerColor(kGreen+3);
+  hMinPion->SetMarkerColor(kBlue);
+  hMinKaon->SetMarkerColor(kRed);
+
 
   hSignalMIP->SetMarkerStyle(3);
   hSignalMIPpc->SetMarkerStyle(3);
@@ -459,22 +471,23 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
   hSignalMIP->Fill(xRad, yRad);
   hSignalMIPpc->Fill(xPC, yPC);
+ 
 
-
-
- double L = static_cast<float>((rW)*(0.8*gRandom->Rndm()+0.1));
-
-
-
+ const auto lMax = 1.5, lMin = 0.0;
 
  // make instance of CkovTools
 
  // ckovHyps, nF, nQ, nG,
 
+
+
+
+   // TODO; change back to:
+  double L = 0.75;//static_cast<float>((rW)*(gRandom->Rndm()));
   
   // TODO; change back to:
   // double radParams[6] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum};
-  double radParams[6] = {xRad,yRad,L,thetaP, phiP, momentum};
+  double radParams[6] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum};
   double refIndexes[3] = {nF, nQ, nG};
 
   CkovTools ckovTools(radParams, refIndexes, ckovHyps, occupancy, ckovAngle);
@@ -495,32 +508,39 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
  // TVector2 trkPos, TVector3 trkDir, doble _nF
  Populate populate(trkPos, trkDir, nF);
-
- 
   
+ const TVector2& posMaxProton = populate.tracePhot(ckovTools.getMaxCkovProton(), 0, lMax);
+ 
+ 
+ // maximum possible radius between points
+ // TODO : change to be restricted by ckovHyps! (exceeding p-threshold)
+ const auto rMax = (populate.getPcImp() - posMaxProton).Mod();
+ Printf("posMaxProton --> rMax %.2f", rMax);
+
+
  // etaC 
 
  //const auto ckovMax 
  
 
  // TODO: pass this to func?
- int level = 1;
+ int level = 4;
  int kN = 50 * level; 
  
 
 
  Printf(" backgroundStudy : populating lines"); 
- const auto& p1S = populate.tracePhot(ckovTools.getMaxCkovProton(), 0);
- const auto& p2S = populate.tracePhot(ckovTools.getMaxCkovProton()*1.1, 0);
+ const auto& p1S = populate.tracePhot(ckovTools.getMaxCkovProton(), 0, lMax);
+ const auto& p2S = populate.tracePhot(ckovTools.getMaxCkovProton()*1.1, 0, lMax);
 
 
 
- const auto& p1E = populate.tracePhot(ckovTools.getMaxCkovProton(), TMath::Pi());
- const auto& p2E = populate.tracePhot(ckovTools.getMaxCkovProton()*1.1, TMath::Pi());
+ const auto& p1E = populate.tracePhot(ckovTools.getMaxCkovProton(), TMath::Pi(), lMax);
+ const auto& p2E = populate.tracePhot(ckovTools.getMaxCkovProton()*1.1, TMath::Pi(), lMax);
 
 
- const auto& p3S = populate.tracePhot(ckovTools.getMaxCkovProton(), TMath::Pi()*1.5);
- const auto& p3E = populate.tracePhot(ckovTools.getMaxCkovProton()*1.1, TMath::Pi()*0.5);
+ const auto& p3S = populate.tracePhot(ckovTools.getMaxCkovProton(), TMath::Pi()*1.5, lMax);
+ const auto& p3E = populate.tracePhot(ckovTools.getMaxCkovProton()*1.1, TMath::Pi()*0.5, lMax);
 
  TLine *l1 = new TLine(p1S.X(), p1S.Y(), p1E.X(), p1E.Y());
  l1->SetLineColor(kOrange);
@@ -543,28 +563,75 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  maxPionVec.resize(kN); maxKaonVec.resize(kN); maxProtonVec.resize(kN);
  Printf(" backgroundStudy : populating loop"); 
  
+
+ Printf(" backgroundStudy : ckovHyps = <%.3f, %.3f> | <%.3f, %.3f> | <%.3f, %.3f>", ckovTools.getMinCkovPion(),ckovTools.getMaxCkovPion(),ckovTools.getMinCkovKaon(),
+ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovProton()); 
+
  for(int i = 0; i < maxPionVec.size(); i++){
-    const auto& maxPion = populate.tracePhot(ckovTools.getMaxCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN));
-    hMaxPion->Fill(maxPion.X(), maxPion.Y());
-    maxPionVec[i] = std::make_pair(maxPion.X(), maxPion.Y());
-    Printf("maxPion loop i = %d, maxSize = %zu", i, maxPionVec.size()); 
+    const auto& maxPion = populate.tracePhot(ckovTools.getMaxCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN), lMax);
+
+    if(maxPion.X() > 0 && maxPion.X() < 156.0 && maxPion.Y() > 0 && maxPion.Y() < 144) {
+      hMaxPion->Fill(maxPion.X(), maxPion.Y());
+      maxPionVec[i] = std::make_pair(maxPion.X(), maxPion.Y());
+      Printf("maxPion loop i = %d, maxSize = %zu", i, maxPionVec.size()); 
+    }
  }
  
  for(int i = 0; i < maxProtonVec.size(); i++){
-    const auto& maxProton = populate.tracePhot(ckovTools.getMaxCkovProton(), Double_t(TMath::Pi()*(i+1)/(2*kN)));
-    hMaxProton->Fill(maxProton.X(), maxProton.Y());
-		maxProtonVec[i] = std::make_pair(maxProton.X(), maxProton.Y());
+    const auto& maxProton = populate.tracePhot(ckovTools.getMaxCkovProton(), Double_t(TMath::TwoPi()*(i+1)/(kN)), lMax);
+    if(maxProton.X() > 0 && maxProton.X() < 156.0 && maxProton.Y() > 0 && maxProton.Y() < 144) {
+      hMaxProton->Fill(maxProton.X(), maxProton.Y());
+		  maxProtonVec[i] = std::make_pair(maxProton.X(), maxProton.Y()); 
+    }
  }
  
  for(int i = 0; i < maxKaonVec.size(); i++){
-    const auto& maxKaon = populate.tracePhot(ckovTools.getMaxCkovKaon(), Double_t(TMath::Pi()*(i+1)/kN));
-    hMaxKaon->Fill(maxKaon.X(), maxKaon.Y());
-    maxKaonVec[i] = std::make_pair(maxKaon.X(), maxKaon.Y());
+    const auto& maxKaon = populate.tracePhot(ckovTools.getMaxCkovKaon(), Double_t(TMath::TwoPi()*(i+1)/kN), lMax);
+    if(maxKaon.X() > 0 && maxKaon.X() < 156.0 && maxKaon.Y() > 0 && maxKaon.Y() < 144) {
+      hMaxKaon->Fill(maxKaon.X(), maxKaon.Y());
+      maxKaonVec[i] = std::make_pair(maxKaon.X(), maxKaon.Y());
+    }
  }
  
+
+
+ std::vector<std::pair<double, double>> minPionVec, minKaonVec, minProtonVec;
+ minPionVec.reserve(kN); minKaonVec.reserve(kN); minProtonVec.reserve(kN); 
+ minPionVec.resize(kN); minKaonVec.resize(kN); minProtonVec.resize(kN);
+ Printf(" backgroundStudy : populating loop"); 
  
-  Printf(" backgroundStudy : exit populating loop"); 
- Printf("		sizes = kN %zu | %zu %zu %zu", kN, maxPionVec.size(), maxKaonVec.size(), maxProtonVec.size()); 
+
+
+
+ for(int i = 0; i < minPionVec.size(); i++){
+    const auto& minPion = populate.tracePhot(ckovTools.getMinCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN), lMin);
+
+    if(minPion.X() > 0 && minPion.X() < 156.0 && minPion.Y() > 0 && minPion.Y() < 144) {
+      hMinPion->Fill(minPion.X(), minPion.Y());
+      minPionVec[i] = std::make_pair(minPion.X(), minPion.Y());
+      Printf("minPion loop i = %d, minSize = %zu", i, minPionVec.size()); 
+    }
+ }
+ 
+ for(int i = 0; i < minProtonVec.size(); i++){
+    const auto& minProton = populate.tracePhot(ckovTools.getMinCkovProton(), Double_t(TMath::TwoPi()*(i+1)/(kN)), lMin);
+    if(minProton.X() > 0 && minProton.X() < 156.0 && minProton.Y() > 0 && minProton.Y() < 144) {
+		  hMinProton->Fill(minProton.X(), minProton.Y());
+			minProtonVec[i] = std::make_pair(minProton.X(), minProton.Y());
+		}
+ }
+ 
+ for(int i = 0; i < minKaonVec.size(); i++){
+    const auto& minKaon = populate.tracePhot(ckovTools.getMinCkovKaon(), Double_t(TMath::TwoPi()*(i+1)/kN), lMin);
+    if(minKaon.X() > 0 && minKaon.X() < 156.0 && minKaon.Y() > 0 && minKaon.Y() < 144) {
+			hMinKaon->Fill(minKaon.X(), minKaon.Y());
+	    minKaonVec[i] = std::make_pair(minKaon.X(), minKaon.Y());
+		}
+ }
+
+ 
+ Printf(" backgroundStudy : exit populating loop"); 
+ Printf("		sizes = kN %d | %d %d %d", kN, maxPionVec.size(),    maxKaonVec.size(), maxProtonVec.size()); 
 
  Printf("enter setsegment!");
  std::vector<std::pair<double, double>> maxPionVecRot(kN); 
@@ -576,17 +643,34 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  // ckovTools.setSegments(maxPionVec, maxKaonVec, maxProtonVec);  
 
 
+ auto deltaPcRad = (populate.getPcImp() - populate.getTrackPos());
+ //else diff = vec.Phi() - phiL;
+ Printf("deltaPhi (rad->pc) %.4f | phiP  %.4f ", deltaPcRad.Phi(), phiP);
+
  int photonCount = 0;
  for(photonCount=0; photonCount < numberOfCkovPhotons; photonCount++) {
    
    // TODO: endre std-dev her til å følge prob-dist?!
+   // TODO: change back to 0.008
    float etaC = rnd->Gaus(ckovAngle, 0.008);		    // random CkovAngle, with 0.012 std-dev
 
    float phiL = static_cast<float>((TMath::Pi())*(1-2*gRandom->Rndm(1)));
    // angle around ckov Cone of photon
-   TVector2 phot = populate.tracePhot(etaC, phiL); // tracePhot(double ckovThe, double ckovPhi)
-   Printf("made photon using populate.tracePhot | x %.3f, y %.3f ", phot.X(), phot.Y());
+
+
+
+   TVector2 phot = populate.tracePhot(etaC, phiL, L); // tracePhot(double ckovThe, double ckovPhi)
+   Printf("made photon using populate.tracePhot | L = %.3f, etaC = %.4f, ckovAngle = %.4f | x %.3f, y %.3f ", L, etaC, ckovAngle, phot.X(), phot.Y());
 	 
+   //auto vec = phot - populate.getImpPc();     
+   auto vec = phot - populate.getTrackPos();
+
+
+   float diff;
+   if(phiL <  0) diff = TMath::TwoPi() - (vec.Phi() - phiL);
+   else diff = vec.Phi() - phiL;
+   Printf("phiL %.4f | phiRingAngle  %.4f | diff %.4f | phiP %.4f ", phiL, vec.Phi(), diff,  phiP);
+
    // populate map with cherenkov photon
 
    // later change below fcn to take valeus from setPhoton:
@@ -596,13 +680,15 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
    //std::array<double, 3> cand = {ckovPhotonCoordinates.first,ckovPhotonCoordinates.second , etaC};
 
 
+	 // photX photY are "ideal" values, should add some uncertainty to them...
    std::array<double, 3> cand = {phot.X(), phot.Y() , etaC};
   
+
    //cherenkovPhotons.emplace_back(cand);
    cherenkovPhotons[photonCount] = cand;
 
-   //Printf(" backgroundStudy : ckovTools.makeCkovPhoton returned x %f y%f", ckovPhotonCoordinates.first + xRad, ckovPhotonCoordinates.second + yRad); 	 
-	 //hSignalAndNoiseMap->Fill(phot.X(), phot.Y());
+   //Printf(" backgroundStudy : ckovTools.makeCkovPhoton returned x %f y%f", ckovPhotonCoordinates.first + xRad, ckovPhotonCoordinates.second + yRad); 	    
+   hSignalAndNoiseMap->Fill(phot.X(), phot.Y());
 
   } 
 
@@ -626,7 +712,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   Printf(" backgroundStudy : num photonCandidatesCoords %zu", photonCandidatesCoords.size()); 	 
   for(const auto& photons : photonCandidatesCoords){
     Printf("photon x %f y %f", photons.first, photons.second);
-    hSignalAndNoiseMap->Fill(photons.first, photons.second);
+    //hSignalAndNoiseMap->Fill(photons.first, photons.second);
   }
     Printf("backgroundStudy() exit const auto& photons : photonCandidatesCoords");
   
@@ -641,7 +727,9 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   hMaxPion->Draw("same");       Printf("backgroundStudy()  hMaxPion->Draw");
   hMaxKaon->Draw("same");     Printf("backgroundStudy()  hMaxKaon->Draw");
 
-
+  hMinProton->Draw("same");
+  hMinKaon->Draw("same");
+  hMinPion->Draw("same");
 
 
   l4->Draw("same");l3->Draw("same");l2->Draw("same");l1->Draw("same");

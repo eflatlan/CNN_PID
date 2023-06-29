@@ -62,7 +62,7 @@ class ReconG {
   
     const double radThick = 1.5;
     const double winThick = 0.5;
-    const double gapThick = 0.5;
+    const double gapThick = 8;
     const double winIdx = 1.5787;
     const double gapIdx = 1.0005;
     double etaC;
@@ -110,9 +110,15 @@ bool findPhotCkov(double cluX, double cluY, double& thetaCer, double& phiCer, do
 
     TVector3 dirCkov;
         
-    double zRad = -0.5 * radThick - 0.5 * winThick;   // z position of middle of RAD
+
+    double zRad = -0.5 * radThick;   // z position of middle of RAD
+    //double zRad = -0.5 * radThick - 0.5 * winThick;   // z position of middle of RAD
     TVector3 rad(fTrkPos.X(), fTrkPos.Y(), zRad);                         // impact point at middle of RAD
-    TVector3 pc(cluX, cluY, 0.5 * winThick + gapIdx); // mip at PC
+
+
+    // TODO : this was changed:
+    TVector3 pc(cluX, cluY, 0.5 * radThick + winThick + gapThick); // mip at PC
+    // TVector3 pc(cluX, cluY, 0.5 * winThick + gapIdx); // mip at PC
     double cluR = TMath::Sqrt((cluX - fPc.X()) * (cluX - fPc.X()) +
                                 (cluY - fPc.Y()) * (cluY - fPc.Y())); // ref. distance impact RAD-CLUSTER
     double phi = (pc - rad).Phi();                                  // phi of photon
@@ -200,7 +206,17 @@ tCkovReconGGraph->Draw("AP");
     double thetaCer = dirCkov.Theta();
     if (thetaCer > TMath::ASin(1. / refIdx)) {
         return pos;
-    }                                                                           // total refraction on WIN-GAP boundary
+    }                                                       
+
+
+    // radThick value is value to change for varying L
+                    // total refraction on WIN-GAP boundary
+
+
+
+
+    // radThick' = (radThick - L)
+    // double zRad = - radThick' - 0.5 * winThick;
     double zRad = -0.5 * radThick - 0.5 * winThick;         // z position of middle of RAD
     TVector3 posCkov(fTrkPos.X(), fTrkPos.Y(), zRad);                           // RAD: photon position is track position @ middle of RAD
     propagate(dirCkov, posCkov, -0.5 * winThick);                     // go to RAD-WIN boundary
@@ -283,7 +299,7 @@ tCkovReconGGraph->Draw("AP");
 
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    void refract(TVector3& dir, double n1, double n2) const
+    void refract(TVector3& dir, const double n1, double n2) const
     {
     // Refract direction vector according to Snell law
     // Arguments:

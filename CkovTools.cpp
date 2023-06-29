@@ -29,13 +29,13 @@ class CkovTools {
   static constexpr double stdDevKaon = 0.008; 
   static constexpr double stdDevProton = 0.008;
   static constexpr float tGap = 8;
-  static constexpr float  rW = 1.; 
+  static constexpr float  rW = 1.5; // was 1?
   static constexpr float  qW = 0.5;
   static constexpr float lMax = 1;
 
 
   static constexpr float CH4GapWidth = 8;
-  static constexpr float  RadiatorWidth = 1.;
+  static constexpr float  RadiatorWidth = 1.5; // was 1?
   static constexpr float  QuartzWindowWidth = 0.5;
 
 
@@ -109,28 +109,31 @@ public:
     Printf(" CkovTools momentum = %.2f, refFreon = %.2f; ckovHyps : %.2f %.2f %.2f", momentum, nF, ckovHyps[0], ckovHyps[1], ckovHyps[2]);
 
 		if(TMath::IsNaN(ckovHyps[0])){
-			Printf("Pion CkovHyps is Nan!");
-			setPionStatus(false);
+	   	  Printf("Pion CkovHyps is Nan!");
+		  setPionStatus(false);
 		  // setIsNan()?
 		} if(TMath::IsNaN(ckovHyps[1])){
-			Printf("Kaon CkovHyps is Nan!");
-			setKaonStatus(false);
+		  Printf("Kaon CkovHyps is Nan!");
+	   	  setKaonStatus(false);
 		  // setIsNan()?
-		} if(TMath::IsNaN(ckovHyps[2])){
-			Printf("Proton CkovHyps is Nan!");
-			setProtonStatus(false);
-		  // setIsNan()?
-		} 
+		} else { 
+		  //setMaxRadius();
+                } if(TMath::IsNaN(ckovHyps[2])){
+          	  Printf("Proton CkovHyps is Nan!");
+		  setProtonStatus(false);
+		} else {
+  		  //setMaxRadius();
+		}
 
 		if(getPionStatus()){
-		  ckovPionMin = ckovHyps[0] - 3 * stdDevPion;
-		  ckovPionMax = ckovHyps[0] + 3 * stdDevPion;
+		  ckovPionMin = ckovHyps[0] - 4 * stdDevPion;
+		  ckovPionMax = ckovHyps[0] + 4 * stdDevPion;
     }	if(getKaonStatus()){
-		  ckovKaonMin = ckovHyps[1] - 3 * stdDevKaon;
-	  	ckovKaonMax = ckovHyps[1] + 3 * stdDevKaon;
+		  ckovKaonMin = ckovHyps[1] - 4 * stdDevKaon;
+	  	ckovKaonMax = ckovHyps[1] + 4 * stdDevKaon;
     } if(getProtonStatus()){
-			ckovProtonMin = ckovHyps[2] - 3 * stdDevProton;
-			ckovProtonMax = ckovHyps[2] + 3 * stdDevProton;
+			ckovProtonMin = ckovHyps[2] - 4 * stdDevProton;
+			ckovProtonMax = ckovHyps[2] + 4 * stdDevProton;
 		}
 
    	cosThetaP = TMath::Cos(thetaP);
@@ -333,11 +336,11 @@ public:
    local2GlobalRef(xPC, yPC);
 
   // ReconG(double _theta, double _phi, double _xRad, double _yRad, double _xPC, double _yPC, double n, double _etaC) : refIdx(n), etaC(_etaC)
-   //ReconG reconG(thetaP, phiP, xRad , yRad, xRad + xMipLocal,  yRad + yMipLocal, nF);
+   ReconG reconG(thetaP, phiP, xRad , yRad, xRad + xMipLocal,  yRad + yMipLocal, nF);
 
    Printf("dX %f dY %f ", xMipLocal, yMipLocal);
 
-   TH2F *hNoiseMap = new TH2F("  Noise ", "  Noise ; x [cm]; y [cm]",160,0.,159.,144,0,143);
+   TH2F *hNoiseMap = new TH2F(" Noise ", " Noise ; x [cm]; y [cm]",160,0.,159.,144,0,143);
    int numPhotons= 0;
     for(const auto& p :cherenkovPhotons){
 
@@ -448,9 +451,6 @@ public:
     std::random_device rd;
     std::mt19937 gen(rd());
 
-
-
-
     // TODO : based on ckovMaxProton, add bg here : 
     // in  phiRing ref sys
 
@@ -476,13 +476,44 @@ public:
       localRefMIPUnrot->Fill(xMipLocal, yMipLocal);
       local2PhiRing(xML,yML,xML,yML);  
       localRefMIP->Fill(xML,yML);
+
+
+    std::random_device rd2;
+    std::mt19937 genUnc(rd2());
+    const float sx = 0.8, sy = 0.84;
+    const float uncX = 0*sx/TMath::Sqrt(12), uncY = 0*sy/TMath::Sqrt(12);
+    // TODO: should this value be divided by two (four?)?
+    //
+
+
+    // within the ~1mm unc range, generate a value +- unc to add to 
+    // ideal cluster-position
+    std::uniform_real_distribution<> disX(-uncX, uncX);
+    std::uniform_real_distribution<> disY(-uncY, uncY);
+
     // here : loop through all backGroundPhotons and cherenkovPhotons
     for(const auto& photons : cherenkovPhotons) {  
-      auto x = photons[0];
-      auto y = photons[1];
+
+
+	
+      // photX photY are "ideal" values, should add some uncertainty to them... 
+      auto dX = disX(genUnc);
+      auto dY = disY(genUnc);
+      auto x = photons[0] + dX;
+      auto y = photons[1] + dY;
+      Printf("ckovloop Unc | xIdeal %.2f, uncX %.2f , genX = %.2f", photons[0], dX, x);
+      Printf("ckovloop Unc | yIdeal %.2f, uncY %.2f , genY = %.2f", photons[1], dY, y);
+      
+
+
+
+      if(!(x > 0 && x < 156.0 && y > 0 && y < 144)) {
+	Printf("Photon outside of chamber dimensions!");
+      }
+
       const auto& etaC = photons[2];
 
-      double xG = photons[0], yG = photons[1];
+      double xG = x, yG = y;
       localRefUnrot->Fill(x,y);
 
       // transform to phiRing ref-system
@@ -524,10 +555,10 @@ public:
         // TODO : check if this method is wrong??
         // use here instead method from Recon.cxx
 
-        //reconG.findPhotCkov(xG, yG, thetaCer, phiCer, etaC);	
-        //auto ckov = thetaCer;
-        //const auto& ckov2 = getCkovFromCoords(xG, yG, phiP, thetaP, nF, nQ, nG, etaC);      
-        //Printf("CkovTools segment | actual ckov = %.3f | bgstdy method:  %.3f | ReconMEthods:  thetaCer %f phiCer %f ", etaC, ckov2,  thetaCer, phiCer);
+        reconG.findPhotCkov(xG, yG, thetaCer, phiCer, etaC);	
+        auto ckov = thetaCer;
+        const auto& ckov2 = getCkovFromCoords(xG, yG, phiP, thetaP, nF, nQ, nG, etaC);      
+        Printf("CkovTools segment | actual ckov = %.3f | bgstdy method:  %.3f | ReconMEthods:  thetaCer %f phiCer %f ", etaC, ckov2,  thetaCer, phiCer);
 
 
        // Printf("CkovTools segment ckov %f", ckov);
@@ -611,14 +642,14 @@ public:
       } // end if    
     } // end for
     
-    //for(const auto& pair: filledBins)
-    //	Printf("CkovTools segment candidates: x%f y%f", pair.first, pair.second);    
+  //for(const auto& pair: filledBins)
+  //	Printf("CkovTools segment candidates: x%f y%f", pair.first, pair.second);    
 
   hNoiseMap->SetMarkerColor(kRed);
   Printf("CkovTools segment filledBins Size %zu", filledBins.size());
 
 
-  /*
+  
   TCanvas *thSignalNoiseMap = new TCanvas("hSignalNoiseMap","hSignalNoiseMap",800,800);  // thSignalNoiseMap->Divide(2,1);
   thSignalNoiseMap->cd(1);
   //globalBoxSignal->Draw();
@@ -638,16 +669,17 @@ public:
   tlineUpGlobal->Draw();
   tlineRightGlobal->Draw();
   tlineDownGlobal->Draw();
-  tlineLeftGlobal->Draw(); * /
+  tlineLeftGlobal->Draw(); */
 
   //hSignalAndNoiseMap->Show();
-  /*thSignalNoiseMap->cd(2);
+  //
+  thSignalNoiseMap->cd(2);
   //globalBoxSignal->Draw();
-  hNoiseMap->Draw("same");* /
+  hNoiseMap->Draw("same");//* /
   thSignalNoiseMap->SaveAs("hSignalNoiseMap.png");
   thSignalNoiseMap->Show();/*
   tlineUpGlobal->Draw();
-  tlineDownGlobal->Draw();* /
+  tlineDownGlobal->Draw();*/
 
   TCanvas *thLocal = new TCanvas("thLocal","thLocal",800,800);  
   thLocal->cd();
@@ -671,14 +703,14 @@ public:
 
   Printf("ckovtools segment : localPion->Draw()");
   //localPion->Draw("same");    
-  localRefMIP->Draw("same");/*
+  localRefMIP->Draw("same");//*
   tlineUpLocal->Draw();
-	tlineDownLocal->Draw();
-	tlineUpLocalR->Draw();
-	tlineDownLocalR->Draw();* /
+  tlineDownLocal->Draw();
+  tlineUpLocalR->Draw();
+  tlineDownLocalR->Draw();//* /
   Printf("ckovtools segment : localPion->Draw()");
 gPad->Update();
-  */ 
+  //*/ 
   return filledBins;
   } // end segment
 
