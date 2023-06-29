@@ -643,7 +643,7 @@ public:
 
           // transform to global coordinates:
           const auto coords = local2Global(x, y);
-    	    //Printf("CkovTools segment : x%f y%f --> xG %f yG %f ", x,y, coords.first, coords.second);    
+    	  //Printf("CkovTools segment : x%f y%f --> xG %f yG %f ", x,y, coords.first, coords.second);    
 	  hNoiseMap->Fill(coords.first,coords.second);
           filledBins.push_back(coords);
           //Printf("CkovTools segment backGroundPhotons  x %f y %f", x,y);
