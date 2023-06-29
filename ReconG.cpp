@@ -210,9 +210,7 @@ tCkovReconGGraph->Draw("AP");
 
 
     // radThick value is value to change for varying L
-                    // total refraction on WIN-GAP boundary
-
-
+    // total refraction on WIN-GAP boundary
 
 
     // radThick' = (radThick - L)

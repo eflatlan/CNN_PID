@@ -41,12 +41,17 @@ private:
     double tanThetaRa;
     double deltaX, deltaY;
 
+
+    TVector2 fTrkPos2D;
 public:
 
     Populate(TVector2 trkPos, TVector3 trkDir, double _nF) : fTrkPos(trkPos),  fTrkDir(trkDir), nF(_nF) 
     {
 
-       
+
+      fTrkPos2D.setX(trkPos.X()); 
+      fTrkPos2D.setY(trkPos.Y()); 
+
       //fPc.setX()
       Printf("init Populate class");
 
@@ -60,14 +65,88 @@ public:
 		
 
 			// xRa = xPC - deltaX
-      deltaX = (radThick + winThick + gapThick) * tanThetaRa * cosPhiRa;
-      deltaY = (radThick + winThick + gapThick) * tanThetaRa * sinPhiRa;		
+
+
+
+      // should be radThick/2 here if assuming half em-length 
+      deltaX = (radThick/2 + winThick + gapThick) * tanThetaRa * cosPhiRa;
+      deltaY = (radThick/2 + winThick + gapThick) * tanThetaRa * sinPhiRa;		
 			
-			setPcImp(fTrkPos.X() + deltaX, fTrkPos.Y() + deltaY);
+
+      // NB! TODO: here PC impact point based on L = rW/2!!
+      setPcImp(fTrkPos.X() + deltaX, fTrkPos.Y() + deltaY);
       Printf("Track pos at PC : x %.3f y %.3f ", fPc.X(), fPc.Y());
 
       Printf("Track dir at RAD : theta %.3f phi %.3f ", trkDir.Theta(), trkDir.Phi());
 				
+    }
+
+
+   checkRangeAbove
+
+    // check if   rMin < r_photon  for a given photon {x,y} -->Phi in LORS
+    bool checkRangeAbove(const TVector2& photonPos, const double& etaMin)
+    {
+
+      const auto rPhoton (photonPos - fPc).Mag();
+
+      // TODO: better to use MIP-pos than fPC? 
+      auto lMax = 1.5; 
+      auto rMin = getRatPhi(photonPos, lMax, etaMin);
+      Printf("CheckRangeAbove : rMin %.3f < rPhoton %.3f", rMin, rPhoton);
+      return (rMin < rPhoton);
+    }
+
+
+
+    // check if   r_photon  < rMax  for a given photon {x,y} -->Phi in LORS
+    bool checkRangeBelow(const TVector2& photonPos, const double& etaMax)
+    {
+      const auto rPhoton (photonPos - fPc).Mag();
+      // TODO: better to use MIP-pos than fPC? 
+      auto lMin = 0; 
+      auto rMax = getRatPhi(photonPos, lMin, etaMax);
+      Printf("CheckRangeAbove : rPhoton %.3f, rMax %.3f", rPhoton, rMax);
+      return (rPhoton < rMax);
+    }
+
+    // check if   rMin < r_photon  < rMax for a given photon {x,y} -->Phi in LORS
+    bool checkRange2(const TVector2& photonPos, const double& etaMax, const double& etaMin)
+    {
+
+      const auto rPhoton (photonPos - fPc).Mag();
+
+      // TODO: better to use MIP-pos than fPC? 
+      auto lMin = 0.0, lMax = 1.5; 
+      auto rMax = getRatPhi(photonPos, lMin, etaMax);
+      auto rMin = getRatPhi(photonPos, lMax, etaMin);
+      Printf("CheckRange : rMin %.3f < rPhoton %.3f, rMax %.3f", rMin, rPhoton, rMax);
+      return (rMin < rPhoton && rPhoton < rMax);
+    }
+
+
+    // find R at specific value of Phi to apply mass-hyp
+    double getRatPhi(const TVector2& photonPos, const double& eta, const double& L)
+    {
+
+
+      // TODO: better to use MIP-pos than fPC? 
+      const auto phi = (fTrkPos2D - photonPos).Phi();
+      TVector2 dirPhotonR;
+
+
+      // set max/min etaC value
+      dirPhotonR.setMagThetaPhi(1, eta, phi);
+
+      // set max/min L value 	
+      auto rPos = traceForward(dirLors, L);  
+      // for the given phi value in local-ref-system, L{min/max}, eta{min/max}, 
+      // create the point for the mass-hyp
+      
+
+      // as for findphotckov : cluR = sqrt([cluX - fPc.X()]^2 [y..])
+      auto dist = (rPos - fPc).Mag();
+      return dist;
     }
 
 
@@ -165,9 +244,15 @@ public:
         dirCkovLORS = mrot * dirCkov;
 	
 
+        Polar3D dirCkovLORS2;
+        dirCkovLORS2 = mrot * dirCkov;
+
         phiCer = dirCkovLORS.Phi();     // actual value of the phi of the photon
         thetaCer = dirCkovLORS.Theta(); // actual value of thetaCerenkov of the photon
 
+	Printf("trs2Lors");
+	Printf("	old : phi %.3f, theta %.3f", phiCer, thetaCer);
+	Printf("	new : phi %.3f, theta %.3f", dirCkovLORS2.Phi(), dirCkovLORS2.Theta());
     }
 
 
