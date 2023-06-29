@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cmath>
 #include <random>
-
+#include "populate.cpp"
 #include <math.h>
 //#include "ReconE.cpp"
 #include "ReconG.cpp"
@@ -508,21 +508,20 @@ public:
       Printf("ckovloop Unc | xIdeal %.2f, uncX %.2f , genX = %.2f", photons[0], dX, x);
       Printf("ckovloop Unc | yIdeal %.2f, uncY %.2f , genY = %.2f", photons[1], dY, y);
       
-
-
-
       if(!(x > 0 && x < 156.0 && y > 0 && y < 144)) {
 	Printf("Photon outside of chamber dimensions!");
+	continue;
       }
 
       const auto& etaC = photons[2];
 
+
+      double xL = x, yL = y;
       double xG = x, yG = y;
       localRefUnrot->Fill(x,y);
-
       // transform to phiRing ref-system
-      local2PhiRing(x, y, xMipLocal, yMipLocal);
-      localRef->Fill(x,y);
+      local2PhiRing(xL, yL, xMipLocal, yMipLocal);
+      localRef->Fill(xL, yL);
 
 
 			/*
@@ -577,52 +576,69 @@ public:
 				
         // TODO: later, also add to candidates (i.e., pionCandidates, kaonCandidates...)
         
+         
+        TVector2 trkPos(xRad, yRad);
+        TVector3 trkDir; trkDir.SetMagThetaPhi(1, thetaP, phiP);
 
-
-
+        Populate populate(trkPos, trkDir, nF);
         // check if inside pionMax and outside protonMin
-        bool isInGlobalBound = populate.checkRange2(posPhoton, getMaxCkovPion(), getMinCkovProton());
 
-        if(!isInGlobalBound){
-	  Printf("!isInGlobalBound NOT : ");
-          continue;
-        } else {   // range is ok, can check other candidates
-	    // check if ckov > ckovMaxPion
-	    if(populate.checkRangeAbove(posPhoton, getMinCkovPion())) {
-	      // add candidate to pions 
-	      // pionCandidates.push_back()
-	      Printf("pionCand found ");
-          } if(populate.checkRangeBelow(posPhoton, getMaxCkovProton())) {
-	      // ckov > ckovProtonMin --> add cand to proton
-	      // protonCandidates.push_back()
-	      Printf("protonCand found ");			    
-          } if (populate.checkRange2(posPhoton, getMaxCkovKaon(), getMinCkovKaon()))
+	Printf("\n\n");
+  bool isInGlobalBound = populate.checkRange2(posPhoton, getMaxCkovPion(), getMinCkovProton());
+
+	bool pionBelow = populate.checkRangeBelow(posPhoton, getMaxCkovPion());        
+	bool protonBelow = populate.checkRangeBelow(posPhoton, getMinCkovProton());
+
+
+	// if not inside ckovMaxPion, continue loop
+  if(!pionBelow){
+	  Printf("!pionBelow");
+  	continue;
+  } if(protonBelow == false && getProtonStatus() == true){
+	  Printf("protonBelow = 0 && getProtonStatus() = 1");
+    continue;
+  }
+  // global bounds ok, can check candidates 
+  else {
+	  // check Pion
+	  if(getPionStatus()){ // shouldt really be possible in this case but..   
+			  Printf("Region: minProton < ckov < maxProton ok");
+			  if(populate.checkRangeAbove(posPhoton, getMinCkovPion())) {
+			    // add candidate to pions 
+			    // pionCandidates.push_back()
+			    Printf("pionCand found ");
+					filledBins.push_back(std::make_pair(xG, yG));
+        	hSignalMap->Fill(xG, yG);
+			  	// range is ok, can check other candidates
+			  	// check if ckov > ckovMaxPion
+	      }
+    }
+	  if(getKaonStatus()){ // shouldt really be possible in this case but..   		    
+      if (populate.checkRange2(posPhoton, getMaxCkovKaon(), getMinCkovKaon()))
+			{	
 	      Printf("kaonCand found ");			    
-            // kaon range ok:
+        // kaon range ok:
 	    // kaonCandidates.push_back()
-	  }
-        }
-        
-        
-        if(withinRange){
-          // transform to global coordinates:
-          filledBins.push_back(std::make_pair(xG, yG));
-          hSignalMap->Fill(xG, yG);
-    	  //Printf("CkovTools segment : x%f y%f --> xG %f yG %f ", x,y, coords.first, coords.second); 
-        } // end if withinRange
-          
-        // Fill map
-        //hSignalAndNoiseMap->Fill(Xcen[n1], Ycen[n1]);
-      } // end bbox if
-    } // end for
+	    }
+    } 
+    if (getProtonStatus()) {
+			if(populate.checkRangeBelow(posPhoton, getMaxCkovProton())) {
+			  Printf("protonCand found ");			    
+        // proton range ok:
+	      // protonCandidates.push_back()
+			}
+    } 
+   } // end else 
+	 Printf("\n\n");     
+   } // end else
+   } // end for
 
     for(const auto& photons : backGroundPhotons) {  
       const auto& x = photons.first;
       const auto& y = photons.second;
         //Printf("CkovTools segment : backGroundPhotons %f x", x);
 
-      auto X = x, Y = y;
-      local2PhiRing(X, Y, xMipLocal, yMipLocal);
+
       
       if(true){
       //if(X > -mL1Max && X < mL2Max && Y > -mRMax  && Y < mRMax){
@@ -638,8 +654,13 @@ public:
         
         if(withinRange){
 	// transform to phiRing ref-system
+      	  double xL = x, yL = y;
+          double xG = x, yG = y;
 
-	  			localRefBG->Fill(X,Y);
+          local2PhiRing(xL, yL, xMipLocal, yMipLocal);
+
+
+	  localRefBG->Fill(xL,yL);
 
           // transform to global coordinates:
           const auto coords = local2Global(x, y);

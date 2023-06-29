@@ -1,5 +1,7 @@
-// populate.cpp
 
+#ifndef TEST_POPULATE
+#define TEST_POPULATE
+// populate.cpp
 #include <TVector2.h>
 #include <TVector3.h>
 #include <TRotation.h>
@@ -49,8 +51,8 @@ public:
     {
 
 
-      fTrkPos2D.setX(trkPos.X()); 
-      fTrkPos2D.setY(trkPos.Y()); 
+      fTrkPos2D.Set(trkPos.X(), trkPos.Y()); 
+
 
       //fPc.setX()
       Printf("init Populate class");
@@ -82,14 +84,13 @@ public:
     }
 
 
-   checkRangeAbove
+
 
     // check if   rMin < r_photon  for a given photon {x,y} -->Phi in LORS
     bool checkRangeAbove(const TVector2& photonPos, const double& etaMin)
     {
 
-      const auto rPhoton (photonPos - fPc).Mag();
-
+      const auto rPhoton = (photonPos - fPc).Mod();
       // TODO: better to use MIP-pos than fPC? 
       auto lMax = 1.5; 
       auto rMin = getRatPhi(photonPos, lMax, etaMin);
@@ -102,7 +103,7 @@ public:
     // check if   r_photon  < rMax  for a given photon {x,y} -->Phi in LORS
     bool checkRangeBelow(const TVector2& photonPos, const double& etaMax)
     {
-      const auto rPhoton (photonPos - fPc).Mag();
+      const auto rPhoton = (photonPos - fPc).Mod();
       // TODO: better to use MIP-pos than fPC? 
       auto lMin = 0; 
       auto rMax = getRatPhi(photonPos, lMin, etaMax);
@@ -114,12 +115,12 @@ public:
     bool checkRange2(const TVector2& photonPos, const double& etaMax, const double& etaMin)
     {
 
-      const auto rPhoton (photonPos - fPc).Mag();
-
+      const auto rPhoton = (photonPos - fPc).Mod();
       // TODO: better to use MIP-pos than fPC? 
       auto lMin = 0.0, lMax = 1.5; 
-      auto rMax = getRatPhi(photonPos, lMin, etaMax);
-      auto rMin = getRatPhi(photonPos, lMax, etaMin);
+      auto rMax = getRatPhi(photonPos, etaMax, lMin);
+      auto rMin = getRatPhi(photonPos, etaMin, lMax);
+      Printf("CheckRange : etaMax %.3f , etaMin %.3f", etaMax, etaMin);
       Printf("CheckRange : rMin %.3f < rPhoton %.3f, rMax %.3f", rMin, rPhoton, rMax);
       return (rMin < rPhoton && rPhoton < rMax);
     }
@@ -132,20 +133,20 @@ public:
 
       // TODO: better to use MIP-pos than fPC? 
       const auto phi = (fTrkPos2D - photonPos).Phi();
-      TVector2 dirPhotonR;
+      TVector3 dirPhotonR;
 
 
       // set max/min etaC value
-      dirPhotonR.setMagThetaPhi(1, eta, phi);
+      dirPhotonR.SetMagThetaPhi(1, eta, phi);
 
       // set max/min L value 	
-      auto rPos = traceForward(dirLors, L);  
+      auto rPos = traceForward(dirPhotonR, L);  
       // for the given phi value in local-ref-system, L{min/max}, eta{min/max}, 
       // create the point for the mass-hyp
       
-
+      Printf("getRatPhi : fPC: x %.2f y %.2f | Photon  x %.2f y %.2f | rPos x %.2f y %.2f", fPc.X(), fPc.Y(), photonPos.X(), photonPos.Y(), rPos.X(), rPos.Y());
       // as for findphotckov : cluR = sqrt([cluX - fPc.X()]^2 [y..])
-      auto dist = (rPos - fPc).Mag();
+      auto dist = (rPos - fPc).Mod();
       return dist;
     }
 
@@ -225,17 +226,11 @@ public:
 
     void trs2Lors(const TVector3& dirCkov, double& thetaCer, double& phiCer) const {
 
-
-
-
         TRotation mtheta;
         mtheta.RotateY(fTrkDir.Theta());
 
-
-
         TRotation mphi;
         mphi.RotateZ(fTrkDir.Phi());
-
 
         TRotation mrot = mphi * mtheta;
 
@@ -244,15 +239,15 @@ public:
         dirCkovLORS = mrot * dirCkov;
 	
 
-        Polar3D dirCkovLORS2;
-        dirCkovLORS2 = mrot * dirCkov;
+        //Polar3D dirCkovLORS2;
+        //dirCkovLORS2 = mrot * dirCkov;
 
         phiCer = dirCkovLORS.Phi();     // actual value of the phi of the photon
         thetaCer = dirCkovLORS.Theta(); // actual value of thetaCerenkov of the photon
 
-	Printf("trs2Lors");
+	/*Printf("trs2Lors");
 	Printf("	old : phi %.3f, theta %.3f", phiCer, thetaCer);
-	Printf("	new : phi %.3f, theta %.3f", dirCkovLORS2.Phi(), dirCkovLORS2.Theta());
+	Printf("	new : phi %.3f, theta %.3f", dirCkovLORS2.Phi(), dirCkovLORS2.Theta());*/
     }
 
 
@@ -301,5 +296,7 @@ public:
 
 		// track pos in pc 2 rad
     void pc2rad(const TVector& pc) */ 
-    
+    ClassDefNV(Populate, 0);
 };
+
+#endif
