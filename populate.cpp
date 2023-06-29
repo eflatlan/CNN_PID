@@ -12,12 +12,19 @@ private:
 
     TVector2 fTrkPos; // track pos in LORS at RAD // xRad, yRad
     TVector3 fTrkDir; // track position in LORS at RAD // setMagThetaPhi(1, thetaP, phiP)
-
+    TVector2 fPc; // track pos at PC
 
     double nF;	     // refIdnex of freon
 
+    const double winThick = 0.5, radThick = 1.5; const int gapThick = 8;
+    const double getRefIdx = nF,  gapIdx = 1.0005, winIdx = 1.5787;
+
+    double cosPhiRa, sinPhiRa;
+    double tanThetaRa;
+    double deltaX, deltaY;
+
 public:
-    TVector2 fPc; // track pos at PC
+
     Populate(TVector2 trkPos, TVector3 trkDir, double _nF) : fTrkPos(trkPos),  fTrkDir(trkDir), nF(_nF) 
     {
 
@@ -26,17 +33,34 @@ public:
       Printf("init Populate class");
 
       Printf("Track pos at RAD : x %.3f y %.3f ", trkPos.X(), trkPos.Y());
+
+      
+
+    tanThetaRa = TMath::Tan(trkDir.Theta());
+			cosPhiRa = TMath::Cos(trkDir.Phi());		
+			sinPhiRa = TMath::Sin(trkDir.Phi());	
+		
+
+			// xRa = xPC - deltaX
+      deltaX = (radThick + winThick + gapThick) * tanThetaRa * cosPhiRa;
+      deltaY = (radThick + winThick + gapThick) * tanThetaRa * sinPhiRa;		
+			
+			setPcImp(fTrkPos.X() + deltaX, fTrkPos.Y() + deltaY);
+      Printf("Track pos at PC : x %.3f y %.3f ", fPc.X(), fPc.Y());
+
       Printf("Track dir at RAD : theta %.3f phi %.3f ", trkDir.Theta(), trkDir.Phi());
-      //fPc(trkPos.X())
+				
     }
 
-    TVector2 tracePhot(const double& ckovThe, const double& ckovPhi) const {
+
+    // L here is "simulated" within 0..1.5 range
+    TVector2 tracePhot(const double& ckovThe, const double& ckovPhi, const double & L) const {
         double theta, phi;
         TVector3 dirTRS, dirLORS;
         dirTRS.SetMagThetaPhi(1, ckovThe, ckovPhi); // photon in TRS
         trs2Lors(dirTRS, theta, phi);
         dirLORS.SetMagThetaPhi(1, theta, phi); // photon in LORS
-        return traceForward(dirLORS);          // now foward tracing
+        return traceForward(dirLORS, L);          // now foward tracing
     }
 
     void propagate(const TVector3& dir, TVector3& pos, double z) const {
@@ -60,11 +84,9 @@ public:
 
 
 
-    TVector2 traceForward(TVector3& dirCkov) const {
+    TVector2 traceForward(TVector3& dirCkov, const double& L) const {
 
-
-	auto winThick = 0.5, radThick = 1.5; int gapThick = 8;
-	auto getRefIdx = nF,  gapIdx = 1.0005, winIdx = 1.5787;
+	auto getRefIdx = nF;
 
         TVector2 pos(-999, -999);
         double thetaCer = dirCkov.Theta();
@@ -72,9 +94,15 @@ public:
             return pos;
         }
 
-        double zRad = -0.5 * radThick - 0.5 * winThick;
+	// change radThick to other value to change L
+ 	// auto radThick' = (radThick - L);
+        // double zRad = - radThick' - 0.5 * winThick;
+        double zRad = - (radThick - L) - 0.5 * winThick; 
+  
+	// TODO: which value should be changed??
+
         TVector3 posCkov(fTrkPos.X(), fTrkPos.Y(), zRad);
-        propagate(dirCkov, posCkov, -0.5 * winThick);
+        propagate(dirCkov, posCkov, -0.5 * winThick); // TODO giacomo spm :er ikke dette også feil!
         refract(dirCkov, getRefIdx, winIdx);
         propagate(dirCkov, posCkov, 0.5 * winThick);
         refract(dirCkov, winIdx, gapIdx);
@@ -113,4 +141,52 @@ public:
         phiCer = dirCkovLORS.Phi();     // actual value of the phi of the photon
         thetaCer = dirCkovLORS.Theta(); // actual value of thetaCerenkov of the photon
     }
+
+
+    // getter and setter functions
+
+    void setTrackPos(double x, double y)
+    {
+			fTrkPos.SetX(x); 
+ 			fTrkPos.SetY(y); 
+    }
+
+    void setTrackPos(const TVector2& fTrkIn)
+    {
+			fTrkPos = fTrkIn;
+    }
+    
+    TVector2 getTrackPos() const
+    {
+			return fTrkPos;
+    }
+
+
+    void setPcImp(double x, double y)
+    {
+			fPc.SetX(x); 
+ 			fPc.SetY(y); 
+    }
+
+    void setPcImp(const TVector2& fPcImpIn)
+    {
+			fPc = fPcImpIn;
+    }
+    
+    TVector2 getPcImp() const
+    {
+			return fPc;
+    }
+
+
+		/*
+		// track pos in rad 2 pc
+    void rad2pc(const TVector& rad)
+    {
+			
+    }
+
+		// track pos in pc 2 rad
+    void pc2rad(const TVector& pc) */ 
+    
 };
