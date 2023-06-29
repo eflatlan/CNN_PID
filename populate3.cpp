@@ -72,7 +72,7 @@ public:
 
 
     // L here is "simulated" within 0..1.5 range
-    TVector2 tracePhot(const double& ckovThe, const double& ckovPhi, const double & L) const {
+    ROOT::Math::Z tracePhot(const double& ckovThe, const double& ckovPhi, const double & L) const {
         double theta, phi;
         TVector3 dirTRS, dirLORS;
         dirTRS.SetMagThetaPhi(1, ckovThe, ckovPhi); // photon in TRS
@@ -146,28 +146,37 @@ public:
 
     void trs2Lors(const TVector3& dirCkov, double& thetaCer, double& phiCer) const {
 
-
-
-
         TRotation mtheta;
         mtheta.RotateY(fTrkDir.Theta());
-
-
+	RotationY rotY(fTrkDir.Theta());
 
         TRotation mphi;
         mphi.RotateZ(fTrkDir.Phi());
-
+	RotationZ rotZ(fTrkDir.Phi());
 
         TRotation mrot = mphi * mtheta;
-
+        Rotation3D mrot2 = rotZ * rotY;
 
         TVector3 dirCkovLORS;
         dirCkovLORS = mrot * dirCkov;
 	
+	Polar3D dirCkov2(dirCkov.Mag(), dirCkov.Theta(), dirCkov.Phi());	
+
+        Polar3D dirCkovLORS2;
+        dirCkovLORS2 = mrot2 * dirCkov2;
 
         phiCer = dirCkovLORS.Phi();     // actual value of the phi of the photon
         thetaCer = dirCkovLORS.Theta(); // actual value of thetaCerenkov of the photon
 
+
+	
+	Printf("trs2Lors");
+
+	Printf("	old : rotZ %.3f, rotY %.3f", mrot.);
+	Printf("	new : rotZ %.3f, rotY %.3f", mrot2);
+
+	Printf("	old : phi %.3f, theta %.3f", phiCer, thetaCer);
+	Printf("	new : phi %.3f, theta %.3f", dirCkovLORS2.Phi(), dirCkovLORS2.Theta());
     }
 
 

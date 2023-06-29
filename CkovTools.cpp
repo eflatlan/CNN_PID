@@ -481,9 +481,11 @@ public:
     std::random_device rd2;
     std::mt19937 genUnc(rd2());
     const float sx = 0.8, sy = 0.84;
-    const float uncX = 0*sx/TMath::Sqrt(12), uncY = 0*sy/TMath::Sqrt(12);
+    const float uncX = sx/TMath::Sqrt(12), uncY = sy/TMath::Sqrt(12);
     // TODO: should this value be divided by two (four?)?
     //
+
+    // TODO: add sqrt(uncX^2 + uncY^2) to radius of ckov hyps?
 
 
     // within the ~1mm unc range, generate a value +- unc to add to 

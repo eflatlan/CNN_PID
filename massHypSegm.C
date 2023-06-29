@@ -441,8 +441,10 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   hMinPionMaxL->SetMarkerColor(kBlue); 		// min ckov max L
   hMaxPionMinL->SetMarkerColor(kBlue + 4);// max ckov min L
 
+
+  /*
   hMaxPion->SetMarkerStyle(3);
-  hMinPionMaxL->SetMarkerStyle(3);
+  hMinPionMaxL->SetMarkerStyle(3);*/
 
   hSignalMIPpc->SetMarkerStyle(3);
 
@@ -452,6 +454,8 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   hSignalMIPpc->SetMarkerStyle(3);
 
   hSignalMIPpc->SetMarkerColor(kRed);
+
+
   hSignalAndNoiseMap->SetMarkerStyle(2);
 
 
@@ -477,11 +481,12 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
  // place the impact point on rad : in x[10..150] and y[10..134]
 
- auto diff = 10;
- double xRad = static_cast<float>((160-diff)*(1*gRandom->Rndm())+diff);
- double yRad = static_cast<float>((144-diff)*(1*gRandom->Rndm())+diff);
- auto winThick = 0.5, radThick = 1.5; int gapThick = 8;
- auto getRefIdx = static_cast<double>(nF),  gapIdx = 1.0005, winIdx = 1.5787;
+  auto diff = 10;
+  double xRad = static_cast<float>((160-diff)*(1*gRandom->Rndm())+diff);
+  double yRad = static_cast<float>((144-diff)*(1*gRandom->Rndm())+diff);
+ 
+  auto winThick = 0.5, radThick = 1.5; int gapThick = 8;
+  auto getRefIdx = static_cast<double>(nF),  gapIdx = 1.0005, winIdx = 1.5787;
 
   auto delta = (radThick + winThick + gapThick)*TMath::Tan(thetaP);
   auto xPC =  xRad + delta*TMath::Cos(phiP);
@@ -546,6 +551,55 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  int level = 4;
  int kN = 50 * level; 
  
+
+ // std::vector<TLine*> sLine, eLine;
+
+
+ //auto sLine = std::make_unique<std::unique_ptr<TLine>[]>(37); 
+ std::vector<std::pair<double, double>> tmp;
+ //std::vector<std::unique_ptr<TLine>> sLine;
+ std::vector<TLine*> sLine;
+
+
+ 
+ int lim = 10;
+ for(int i = 0; i < lim; i++)
+ {
+
+   auto angle = TMath::TwoPi() / lim * i;
+   const auto& s = populate.tracePhot(ckovTools.getMaxCkovProton(), angle, lMax);
+   const auto& e = populate.tracePhot(ckovTools.getMinCkovProton(),  TMath::Pi() + angle, lMax);
+   
+   //TLine *tL = new TLine(s.X(), s.Y(), e.X(), e.Y());
+   //tL->SetLineColor(kBlack);
+   
+   //sLine.push_back(std::make_unique<TLine>(s.X(), s.Y(), e.X(), e.Y()));//
+   sLine.push_back( new TLine(s.X(), s.Y(), e.X(), e.Y()));//
+
+   // tmp.push_back(s);
+   // tmp.push_back(s);
+
+ }
+
+
+ const auto incL =  new TH2F("incL ", "incL ; x [cm]; y [cm]",160,0.,159.,144,0,143);
+ const auto incL2 =  new TH2F("incL2 ", "incL ; x [cm]; y [cm]",160,0.,159.,144,0,143);
+
+ for(int i = 0; i < lim; i++)
+ {
+
+   auto angle = 10;
+   const auto& s = populate.tracePhot(ckovTools.getMaxCkovProton()*i/lim, angle, lMax);
+   const auto& e = populate.tracePhot(ckovTools.getMinCkovProton()*i/lim,  angle, lMin);
+
+   incL->Fill(s.X(), s.Y());
+   incL2->Fill(e.X(), e.Y());
+   // sLine.push_back( new TLine(s.X(), s.Y(), e.X(), e.Y()));//
+   // tmp.push_back(s);
+   // tmp.push_back(s);
+
+ }
+
 
 
  Printf(" backgroundStudy : populating lines"); 
@@ -762,6 +816,12 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
   hSignalMIPpc->Draw("same");
 
 
+  
+  for(const auto& s : sLine) 
+  { 
+    // s->Draw();
+  }
+
   hMaxPion->Draw("same");       Printf("backgroundStudy()  hMaxPion->Draw");
   hMinPion->Draw("same");
   hMaxProton->Draw("same");   Printf("backgroundStudy()  hMaxProton->Draw");
@@ -770,21 +830,26 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
   hMaxKaon->Draw("same");
 
 
+
+/*
+incL->SetMarkerColor(kRed);
+incL2->SetMarkerColor(kRed);
+incL2->Draw("same"); incL2->SetMarkerStyle(3);
+incL->Draw("same");incL->SetMarkerStyle(2);
+*/
   /*
 	hMinPionMaxL->Draw("same");
 	hMaxPionMinL->Draw("same");*/
 
 
 
-
-
-
-  l4->Draw("same");l3->Draw("same");l2->Draw("same");l1->Draw("same");
+  //l4->Draw("same");l3->Draw("same");
+  l2->Draw("same");//l1->Draw("same");
   Printf("backgroundStudy()  l1->Draw()");
   //hSignalAndNoiseMap->Show();
   thSignalAndNoiseMap->SaveAs("thSignalAndNoiseMap.png");
-	thSignalAndNoiseMap->Show();
-	gPad->Update();
+  thSignalAndNoiseMap->Show();
+  gPad->Update();
   int cnt = 0;
   for(auto& b : mapBins) {/*Printf("xval %f", b.x);*/ cnt++;}
   Printf(" mapBins size = %zu", mapBins.size());
@@ -793,11 +858,11 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
  
  /*auto ckovAnglePredicted = houghResponse(photonCandidates,  Hwidth); */
 
-	particle.filledBins = mapBins;
-	particle.momentum = randomValue.momentum;
-	particle.mass = randomValue.mass;
-	particle.energy = randomValue.energy;
-	particle.refractiveIndex = randomValue.refractiveIndex;
+  particle.filledBins = mapBins;
+  particle.momentum = randomValue.momentum;
+  particle.mass = randomValue.mass;
+  particle.energy = randomValue.energy;
+  particle.refractiveIndex = randomValue.refractiveIndex;
 	particle.ckov = ckov;
 	particle.xRad = xRad;
 	particle.yRad = yRad;
