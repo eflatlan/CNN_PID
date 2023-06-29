@@ -151,23 +151,29 @@ public:
 
         TRotation mtheta;
         mtheta.RotateY(fTrkDir.Theta());
-
+	RotationY rotY(fTrkDir.Theta());
 
 
         TRotation mphi;
         mphi.RotateZ(fTrkDir.Phi());
-
+	RotationZ rotz(fTrkDir.Phi());
 
         TRotation mrot = mphi * mtheta;
-
+        Rotation3D mrot2 = rotz * rotY;
 
         TVector3 dirCkovLORS;
         dirCkovLORS = mrot * dirCkov;
 	
 
+        Polar3D dirCkovLORS2;
+        dirCkovLORS2 = mrot * dirCkov;
+
         phiCer = dirCkovLORS.Phi();     // actual value of the phi of the photon
         thetaCer = dirCkovLORS.Theta(); // actual value of thetaCerenkov of the photon
 
+	Printf("trs2Lors");
+	Printf("	old : phi %.3f, theta %.3f", phiCer, thetaCer);
+	Printf("	new : phi %.3f, theta %.3f", dirCkovLORS2.Phi(), dirCkovLORS2.Theta());
     }
 
 
