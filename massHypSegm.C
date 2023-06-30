@@ -471,13 +471,13 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  // TODO: change phiP back again
  // setting phiP of track
  double phiP = TMath::Pi()/4;// static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
- phiP = 0*static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
+ phiP = 1*static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
 
 
 
  // setting thetaP of track
  // MIP polar angle:
- double thetaP = 0*scaleThetaP*getThetaP(randomValue.momentum);// = static_cast<float>(0.1*(1-2*gRandom->Rndm(1)));
+ double thetaP = 1*scaleThetaP*getThetaP(randomValue.momentum);// = static_cast<float>(0.1*(1-2*gRandom->Rndm(1)));
   
          
 

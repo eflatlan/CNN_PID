@@ -135,9 +135,16 @@ public:
       
 
       // TODO: better to use MIP-pos than fPC? 
-      const auto phi = (fTrkPos2D - photonPos).Phi();
+
+      // denne skal nok vaere saann:
+      const auto phi = (photonPos - fTrkPos2D).Phi();
       TVector3 dirPhotonR;
 
+
+
+
+      
+      // denne skal nok ogsaa vaere saann:
       auto cosTheta = (TMath::Cos(eta) - sinThetaP * TMath::Cos(phi-phiP))/cosThetaP;
       auto theta = TMath::ACos(cosTheta);
 
@@ -159,8 +166,6 @@ public:
       
       Printf("getRatPhi : fPC: x %.2f y %.2f | Photon  x %.2f y %.2f | rPos x %.2f y %.2f", fPc.X(), fPc.Y(), photonPos.X(), photonPos.Y(), rPos.X(), rPos.Y());
       
-
-
 	
       // as for findphotckov : cluR = sqrt([cluX - fPc.X()]^2 [y..])
       auto dist = (rPos - fPc).Mod();     Printf("getRatPhi : dist %.2f", dist);
