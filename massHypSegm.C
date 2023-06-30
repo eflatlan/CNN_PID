@@ -507,7 +507,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
 
    // TODO; change back to per each photon?
-  double L = static_cast<float>((rW)*(gRandom->Rndm()));
+  double L = 0.75;//static_cast<float>((rW)*(gRandom->Rndm()));
   
   // TODO; change back to:
   // double radParams[6] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum};
@@ -773,7 +773,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
    //std::array<double, 3> cand = {ckovPhotonCoordinates.first,ckovPhotonCoordinates.second , etaC};
 
 
-	 // photX photY are "ideal" values, should add some uncertainty to them...
+   // photX photY are "ideal" values, should add some uncertainty to them...
    std::array<double, 3> cand = {phot.X(), phot.Y() , etaC};
   
 

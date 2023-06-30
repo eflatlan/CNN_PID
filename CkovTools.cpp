@@ -302,11 +302,15 @@ public:
  // x, y, etaC
 
  std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>>& cherenkovPhotons, MapType& bins) { 
-     
+    MapType pionCandidates, kaonCandidates, protonCandidates;
+    
     Printf("ckovTools enter  ckovTools.segment"); 	 
     const auto infString = Form("localRef #Theta_{p}  = %.4f #Phi_{p} = %.4f L = %.2f \n #Theta_{C} = %.4f maxCkov = %.4f \n maxR = %.1f | l1 = %.1f | l2 = %.1f; x [cm]; y [cm]", thetaP,phiP, L,trackCkov,ckovPionMax, mRMax, mL1Max, mL2Max); 
 
     TH2F *localRefMIP = new TH2F("localRefMIP ", infString,800,-40.,-40.,900,-40.,40.);
+
+
+
     TH2F *localRefMIPUnrot = new TH2F("localRefMIPUnrot ", infString,800,-40.,-40.,800,-40,40);
     TH2F *localRefUnrot = new TH2F("localRef ", infString,800,-40.,-40.,800,-40.,40.);
     TH2F *localRef = new TH2F("localRef ", infString,800,-40.,-40.,800,-40.,40.);  
@@ -314,9 +318,27 @@ public:
 
 
 
+    TH2F *localRefMIP2 = new TH2F("localRefMIP2 ", infString,1600, 0., 159., 1440, 0., 143.);
 
-   TH2F *mapPion = new TH2F("mapPion ", "mapPion",800,-40.,-40.,800,-40.,40.);
 
+   TH2F *mapPhotons = new TH2F("mapPhotons ", "mapPhotons",1600, 0., 159., 1440, 0., 143.);
+ 
+   TH2F *mapProtonMin = new TH2F("mapProtonMin ", "mapProtonMin",1600, 0., 159., 1440, 0., 143.);
+   TH2F *mapProtonMax = new TH2F("mapProtonMax ", "mapProtonMax",1600, 0., 159., 1440, 0., 143.);
+
+
+
+ TH2F *mapKaon = new TH2F("mapKaon ", "mapKaon",1600, 0., 159., 1440, 0., 143.);
+
+   TH2F *mapKaonMin = new TH2F("mapKaonMin ", "mapKaonMin",1600, 0., 159., 1440, 0., 143.);
+   TH2F *mapKaonMax = new TH2F("mapKaonMax ", "mapKaonMax",1600, 0., 159., 1440, 0., 143.);
+
+
+   TH2F *mapPionMin = new TH2F("mapPionMin ", "mapPionMin",1600, 0., 159., 1440, 0., 143.);
+   TH2F *mapPionMax = new TH2F("mapPionMax ", "mapPionMax",1600, 0., 159., 1440, 0., 143.);
+
+   TH2F *mapPion = new TH2F("mapPion ", "mapPion",1600, 0., 159., 1440, 0., 143.);
+   TH2F *mapProton = new TH2F("mapProton ", "mapProton",1600, 0., 159., 1440, 0., 143.);
 
 
     TH2F *localPion = new TH2F("pion ", "pion",800,-40.,-40.,800,-40.,40.);
@@ -481,11 +503,11 @@ public:
       localRefMIPUnrot->Fill(xMipLocal, yMipLocal);
       local2PhiRing(xML,yML,xML,yML);  
       localRefMIP->Fill(xML,yML);
-
+      localRefMIP2->Fill(xML,yML);
 
 
     // change datatype, should hold at least x, y..+? {later + cluster-size...}
-    std::vector<double> pionCandidates, kaonCandidates, protonCandidates;
+
 
 
     std::random_device rd2;
@@ -588,12 +610,35 @@ public:
 
         TVector2 rPosPion;
         bool pionBelow = populate.checkRangeBelow(posPhoton, getMaxCkovPion(), rPosPion);
-        mapPion.Fill(rPosPion.X(), rPosPion.Y());
 
 
-        TVector2 rPosProton;
+ 	TVector2 rPosPionMin;
+        populate.checkRangeBelow(posPhoton, getMinCkovPion(), rPosPionMin);
+
+        mapPhotons->Fill(posPhoton.X(), posPhoton.Y());
+        mapPionMax->Fill(rPosPion.X(), rPosPion.Y());
+        mapPionMin->Fill(rPosPionMin.X(), rPosPionMin.Y());
+
+
+
+        TVector2 rPosKaonMin, rPosKaonMax;
+	populate.checkRangeBelow(posPhoton, getMinCkovKaon(), rPosKaonMin);
+	populate.checkRangeBelow(posPhoton, getMaxCkovKaon(), rPosKaonMax);
+        mapKaonMax->Fill(rPosKaonMax.X(), rPosKaonMax.Y());
+        mapKaonMin->Fill(rPosKaonMin.X(), rPosKaonMin.Y());
+
+
+        TVector2 rPosProtonMin, rPosProtonMax;
+	populate.checkRangeBelow(posPhoton, getMinCkovProton(), rPosProtonMin);
+	populate.checkRangeBelow(posPhoton, getMaxCkovProton(), rPosProtonMax);
+        mapProtonMax->Fill(rPosProtonMax.X(), rPosProtonMax.Y());
+        mapProtonMin->Fill(rPosProtonMin.X(), rPosProtonMin.Y());
+
+
+        TVector2 rPosProton, temp;
         bool protonBelow = populate.checkRangeBelow(posPhoton, getMinCkovProton(), rPosProton);
-        mapProton.Fill(rPosProton.X(), rPosProton.Y());
+
+
 
 
         // if not inside ckovMaxPion, continue loop
@@ -608,15 +653,16 @@ public:
         else {
           // check Pion
           if(getPionStatus()){ // shouldt really be possible in this case but..   
-              Printf("Region: minProton < ckov < maxProton ok");
+              Printf("\n\n ------------ \n\n Region: minProton < ckov < maxProton ok");
               TVector2 rPosPionB;
               bool pionBelow = populate.checkRangeBelow(posPhoton, getMaxCkovPion(), rPosPionB);
-              mapPion.Fill(rPosPionB.X(), rPosPionB.Y());
-              if(populate.checkRangeAbove(posPhoton, getMinCkovPion())) {
-                
 
+
+              Printf("getPionStatus Ok --> checkRangeAbove getMinCkovPion %.2f ", getMinCkovPion());
+              if(populate.checkRangeAbove(posPhoton, getMinCkovPion(), rPosPionB)) {
+                mapPion->Fill(xG, yG);
                 // add candidate to pions 
-                // pionCandidates.push_back()
+                pionCandidates.push_back(std::make_pair(xG, yG));
                 Printf("pionCand found ");
                 filledBins.push_back(std::make_pair(xG, yG));
                 hSignalMap->Fill(xG, yG);
@@ -625,18 +671,25 @@ public:
               }
           }
           if(getKaonStatus()){ // shouldt really be possible in this case but..   		    
-            if (populate.checkRange2(posPhoton, getMaxCkovKaon(), getMinCkovKaon()))
+
+
+            Printf("\n getKaonStatus Ok --> checkRange2 getMinCkovKaon %.2f, getMaxCkovKaon %.2f ", getMaxCkovKaon());
+
+            if (populate.checkRange2(posPhoton, getMaxCkovKaon(), getMinCkovKaon(), temp))
             {	
               Printf("kaonCand found ");			    
               // kaon range ok:
-            // kaonCandidates.push_back()
+              kaonCandidates.push_back(std::make_pair(xG, yG));
+              mapKaon->Fill(xG, yG);
             }
           } 
           if (getProtonStatus()) {
-            if(populate.checkRangeBelow(posPhoton, getMaxCkovProton())) {
+	    Printf("\n getProtonStatus Ok --> checkRangeAbove getMaxCkovProton %.2f ", getMinCkovPion());
+            if(populate.checkRangeBelow(posPhoton, getMaxCkovProton(), temp)) {
               Printf("protonCand found ");			    
               // proton range ok:
-              // protonCandidates.push_back()
+              mapProton->Fill(xG, yG);
+              protonCandidates.push_back(std::make_pair(xG, yG));
             }
           } 
         }  // end else / if pionBelow 
@@ -644,6 +697,9 @@ public:
 
       } // end else ifTrue
     } // end for ckovPhotons
+
+    Printf("number of candidates : proton %d, kaon %d, pion %d", protonCandidates.size(), kaonCandidates.size(), pionCandidates.size());
+   
 
     for(const auto& photons : backGroundPhotons) {  
       const auto& x = photons.first;
@@ -726,18 +782,73 @@ public:
 
 
 
+  localRefMIP2->SetMarkerStyle(3);
+  localRefMIP2->SetMarkerColor(kRed);
 
-  TCanvas *segm = new TCanvas("semg","semg",800,800);  
-  segm->cd();
-  mapPion->SetMarkerColor(kBLue);
+
+  mapPion->SetMarkerStyle(2);  
+  mapProton->SetMarkerStyle(2);
+  mapPion->SetMarkerColor(kBlue);
+
+
+  mapPionMax->SetMarkerStyle(3); 
+  mapPionMax->SetMarkerColor(kRed);
+
+  mapPionMin->SetMarkerStyle(3); 
+  mapPionMin->SetMarkerColor(kGreen);
+
+
+  mapProtonMax->SetMarkerStyle(3); 
+  mapProtonMax->SetMarkerColor(kRed);
+
+  mapProtonMin->SetMarkerStyle(3); 
+  mapProtonMin->SetMarkerColor(kGreen);
+
+
+
+  mapKaonMax->SetMarkerStyle(3); 
+  mapKaonMax->SetMarkerColor(kRed);
+
+  mapKaonMin->SetMarkerStyle(3); 
+  mapKaonMin->SetMarkerColor(kGreen);
+  mapKaon->SetMarkerColor(kGreen + 4);
+
+
   mapProton->SetMarkerColor(kGreen + 4);
 
-  localRefMIP->SetMarkerStyle(3);
-  localRefMIP->SetMarkerColor(kRed);
+
+  TCanvas *segm = new TCanvas("semg","semg",800,800);  
+  segm->Divide(2,2);
+
+  segm->cd(1);
+  mapPhotons->SetMarkerStyle(2); 
+
+  mapPhotons->Draw();
+  localRefMIP2->Draw("same");  
+
+
+
+  segm->cd(2);
   mapPion->Draw();
+  mapPhotons->Draw("same");
+  localRefMIP2->Draw("same");
+  mapPionMin->Draw("same");
+  mapPionMax->Draw("same");
+
+  segm->cd(3);
+  mapKaon->Draw();
+  mapPhotons->Draw("same");
+  mapKaonMin->Draw("same");
+  mapKaonMax->Draw("same");
+
+  segm->cd(4);
   mapProton->Draw();
-  gPad->Update()
-  segm->Show()
+  mapPhotons->Draw("same");
+  mapProtonMin->Draw("same");
+  mapProtonMax->Draw("same");
+
+  gPad->Update();
+  segm->Show();
 
 
 
