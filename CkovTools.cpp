@@ -313,6 +313,12 @@ public:
     TH2F *localRefBG = new TH2F("localRefBG ", infString,800,-40.,-40.,800,-40.,40.);
 
 
+
+
+   TH2F *mapPion = new TH2F("mapPion ", "mapPion",800,-40.,-40.,800,-40.,40.);
+
+
+
     TH2F *localPion = new TH2F("pion ", "pion",800,-40.,-40.,800,-40.,40.);
 
 
@@ -509,8 +515,8 @@ public:
       Printf("ckovloop Unc | yIdeal %.2f, uncY %.2f , genY = %.2f", photons[1], dY, y);
       
       if(!(x > 0 && x < 156.0 && y > 0 && y < 144)) {
-	Printf("Photon outside of chamber dimensions!");
-	continue;
+	      Printf("Photon outside of chamber dimensions!");
+	      continue;
       }
 
       const auto& etaC = photons[2];
@@ -529,7 +535,7 @@ public:
       Printf("ckovtools cherenkov photons x  %f > xMaxPhiPi %f && x %f < xMaxPhi0 %f && y %f > yMaxPhiPi  %f && y %f < yMaxPhi0 %f",  x, xMaxPhiPi, x , xMaxPhi0 , y , yMaxPhiPi , y , yMaxPhi0);*/
       
 		
-	Printf("\nckovtools cherenkov photons x  %f > -mL1Max %f && x %f < mL2Max %f && y %f > -mRMax  %f && y %f < mRMax %f\n",  x, -mL1Max, x , mL2Max , y , -mRMax , y , mRMax);
+	    Printf("\nckovtools cherenkov photons x  %f > -mL1Max %f && x %f < mL2Max %f && y %f > -mRMax  %f && y %f < mRMax %f\n",  x, -mL1Max, x , mL2Max , y , -mRMax , y , mRMax);
 
       double thetaCer, phiCer;
       //local2GlobalRef(xG, yG);
@@ -542,16 +548,16 @@ public:
       auto xAbs = TMath::Abs(x);
       auto yAbs = TMath::Abs(y);
 
-	Printf("\nckovtools cherenkov photons xAbs  %f > mL1Max %f && x %f < mL2Max %f && yAbs %f > mRMax  %f && y %f < mRMax %f\n",  x, mL1Max, xAbs , mL2Max , yAbs , mRMax , y , mRMax);
+	    Printf("\nckovtools cherenkov photons xAbs  %f > mL1Max %f && x %f < mL2Max %f && yAbs %f > mRMax  %f && y %f < mRMax %f\n",  x, mL1Max, xAbs , mL2Max , yAbs , mRMax , y , mRMax);
 
 
       // not really helpful? 
       if(true){
       //if(x > -mL1Max && x < mL2Max && y > -mRMax  && y < mRMax){
 
-	//double thetaCer, phiCer;
-	//reconG.findPhotCkov(xG, yG, thetaCer, phiCer);	
-	//auto ckov = thetaCer;
+      //double thetaCer, phiCer;
+      //reconG.findPhotCkov(xG, yG, thetaCer, phiCer);	
+      //auto ckov = thetaCer;
 
 	
         bool withinRange = true; 
@@ -566,72 +572,78 @@ public:
         const auto& ckov2 = getCkovFromCoords(xG, yG, phiP, thetaP, nF, nQ, nG, etaC);      
         Printf("CkovTools segment | actual ckov = %.3f | bgstdy method:  %.3f | ReconMEthods:  thetaCer %f phiCer %f ", etaC, ckov2,  thetaCer, phiCer);
 
-
-       // Printf("CkovTools segment ckov %f", ckov);
+        // Printf("CkovTools segment ckov %f", ckov);
         //Printf("CkovTools segment ckovPionMin %f ckovPionMax %f", ckovPionMin, ckovPionMax);
     
-
-	// Make posPhoton to send to checkRange
-	const TVector2 posPhoton(x, y);
-				
-        // TODO: later, also add to candidates (i.e., pionCandidates, kaonCandidates...)
-        
-         
+        // Make posPhoton to send to checkRange
+        const TVector2 posPhoton(x, y);
         TVector2 trkPos(xRad, yRad);
         TVector3 trkDir; trkDir.SetMagThetaPhi(1, thetaP, phiP);
 
         Populate populate(trkPos, trkDir, nF);
         // check if inside pionMax and outside protonMin
 
-	Printf("\n\n");
-  bool isInGlobalBound = populate.checkRange2(posPhoton, getMaxCkovPion(), getMinCkovProton());
-
-	bool pionBelow = populate.checkRangeBelow(posPhoton, getMaxCkovPion());        
-	bool protonBelow = populate.checkRangeBelow(posPhoton, getMinCkovProton());
+        Printf("\n\n");
 
 
-	// if not inside ckovMaxPion, continue loop
-  if(!pionBelow){
-	  Printf("!pionBelow");
-  	continue;
-  } if(protonBelow == false && getProtonStatus() == true){
-	  Printf("protonBelow = 0 && getProtonStatus() = 1");
-    continue;
-  }
-  // global bounds ok, can check candidates 
-  else {
-	  // check Pion
-	  if(getPionStatus()){ // shouldt really be possible in this case but..   
-			  Printf("Region: minProton < ckov < maxProton ok");
-			  if(populate.checkRangeAbove(posPhoton, getMinCkovPion())) {
-			    // add candidate to pions 
-			    // pionCandidates.push_back()
-			    Printf("pionCand found ");
-					filledBins.push_back(std::make_pair(xG, yG));
-        	hSignalMap->Fill(xG, yG);
-			  	// range is ok, can check other candidates
-			  	// check if ckov > ckovMaxPion
-	      }
-    }
-	  if(getKaonStatus()){ // shouldt really be possible in this case but..   		    
-      if (populate.checkRange2(posPhoton, getMaxCkovKaon(), getMinCkovKaon()))
-			{	
-	      Printf("kaonCand found ");			    
-        // kaon range ok:
-	    // kaonCandidates.push_back()
-	    }
-    } 
-    if (getProtonStatus()) {
-			if(populate.checkRangeBelow(posPhoton, getMaxCkovProton())) {
-			  Printf("protonCand found ");			    
-        // proton range ok:
-	      // protonCandidates.push_back()
-			}
-    } 
-   } // end else 
-	 Printf("\n\n");     
-   } // end else
-   } // end for
+        TVector2 rPosPion;
+        bool pionBelow = populate.checkRangeBelow(posPhoton, getMaxCkovPion(), rPosPion);
+        mapPion.Fill(rPosPion.X(), rPosPion.Y());
+
+
+        TVector2 rPosProton;
+        bool protonBelow = populate.checkRangeBelow(posPhoton, getMinCkovProton(), rPosProton);
+        mapProton.Fill(rPosProton.X(), rPosProton.Y());
+
+
+        // if not inside ckovMaxPion, continue loop
+        if(!pionBelow){
+          Printf("!pionBelow");
+          continue;
+        } if(protonBelow == false && getProtonStatus() == true){
+          Printf("protonBelow = 0 && getProtonStatus() = 1");
+          continue;
+        }
+        // global bounds ok, can check candidates 
+        else {
+          // check Pion
+          if(getPionStatus()){ // shouldt really be possible in this case but..   
+              Printf("Region: minProton < ckov < maxProton ok");
+              TVector2 rPosPionB;
+              bool pionBelow = populate.checkRangeBelow(posPhoton, getMaxCkovPion(), rPosPionB);
+              mapPion.Fill(rPosPionB.X(), rPosPionB.Y());
+              if(populate.checkRangeAbove(posPhoton, getMinCkovPion())) {
+                
+
+                // add candidate to pions 
+                // pionCandidates.push_back()
+                Printf("pionCand found ");
+                filledBins.push_back(std::make_pair(xG, yG));
+                hSignalMap->Fill(xG, yG);
+                // range is ok, can check other candidates
+                // check if ckov > ckovMaxPion
+              }
+          }
+          if(getKaonStatus()){ // shouldt really be possible in this case but..   		    
+            if (populate.checkRange2(posPhoton, getMaxCkovKaon(), getMinCkovKaon()))
+            {	
+              Printf("kaonCand found ");			    
+              // kaon range ok:
+            // kaonCandidates.push_back()
+            }
+          } 
+          if (getProtonStatus()) {
+            if(populate.checkRangeBelow(posPhoton, getMaxCkovProton())) {
+              Printf("protonCand found ");			    
+              // proton range ok:
+              // protonCandidates.push_back()
+            }
+          } 
+        }  // end else / if pionBelow 
+        Printf("\n\n");   
+
+      } // end else ifTrue
+    } // end for ckovPhotons
 
     for(const auto& photons : backGroundPhotons) {  
       const auto& x = photons.first;
@@ -711,6 +723,24 @@ public:
   tlineUpGlobal->Draw();
   tlineDownGlobal->Draw();*/
 
+
+
+
+
+  TCanvas *segm = new TCanvas("semg","semg",800,800);  
+  segm->cd();
+  mapPion->SetMarkerColor(kBLue);
+  mapProton->SetMarkerColor(kGreen + 4);
+
+  localRefMIP->SetMarkerStyle(3);
+  localRefMIP->SetMarkerColor(kRed);
+  mapPion->Draw();
+  mapProton->Draw();
+  gPad->Update()
+  segm->Show()
+
+
+
   TCanvas *thLocal = new TCanvas("thLocal","thLocal",800,800);  
   thLocal->cd();
   //localBox->Draw();
@@ -739,7 +769,7 @@ public:
   tlineUpLocalR->Draw();
   tlineDownLocalR->Draw();//* /
   Printf("ckovtools segment : localPion->Draw()");
-gPad->Update();
+  gPad->Update();
   //*/ 
   return filledBins;
   } // end segment
@@ -831,9 +861,6 @@ gPad->Update();
 		return R;
 	}
 
-
-
-
   	// get radius from MIP to a specific phiL, etaC pair
 	double getR_Lmax(double etaC, double phiL)
 	{ 
@@ -849,14 +876,8 @@ gPad->Update();
 		const auto qwDeltaR = (qW*nF)/(TMath::Sqrt(nQ*nQ-sinEtaC*sinEtaC*nF*nF));
 		const auto num = (tGap + tanThetaP*cosPhiL*sinEtaC * (rwlDeltaR + qwDeltaR));
 
-
-   // ef :error was on this line :
-   // 		const auto denum = 1- (tanThetaP*cosPhiL*sinPhiP*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
-
 		const auto denum = 1 - (tanThetaP*cosPhiL*sinEtaC*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
-
 		const auto tZ = num/denum;
-
 		const auto Lz = (rW-lMax) + qW + tZ;
 
 		const auto tGapDeltaR = (tZ*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
@@ -907,7 +928,6 @@ gPad->Update();
 		const auto T = sinEtaC*(rwlDeltaR+qwDeltaR+tGapDeltaR);
 
 
-    // stemte når denne var + ??
 		auto z = - T*tanThetaP * cosPhiL + Lz;
     TRotation mZ1;
     mZ1.RotateZ(phiP);
@@ -1120,4 +1140,3 @@ Printf("ReconG findCkov: cluX %.3f > fPCX %.3f >  cluY %.3f > fPCY %.3f  ", xL, 
 	}
 
 };
-
