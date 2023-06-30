@@ -664,23 +664,23 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
     }
  }
  
- for(int i = 0; i < maxProtonVec.size(); i++){
-    const auto& maxProton = populate->tracePhot(ckovTools.getMaxCkovProton(), Double_t(TMath::TwoPi()*(i+1)/(kN)), lMin);
-    if(maxProton.X() > 0 && maxProton.X() < 156.0 && maxProton.Y() > 0 && maxProton.Y() < 144) {
-      hMaxProton->Fill(maxProton.X(), maxProton.Y());
-		  maxProtonVec[i] = std::make_pair(maxProton.X(), maxProton.Y()); 
-    }
- }
+
  
  for(int i = 0; i < maxKaonVec.size(); i++){
-    const auto& maxKaon = populate->tracePhot(ckovTools.getMaxCkovKaon(), Double_t(TMath::TwoPi()*(i+1)/kN), lMin);
+    const auto& maxKaon = populate->tracePhot(ckovTools.getMaxCkovKaon(), Double_t(TMath::Pi()*(i+1)/kN), lMin);
     if(maxKaon.X() > 0 && maxKaon.X() < 156.0 && maxKaon.Y() > 0 && maxKaon.Y() < 144) {
       hMaxKaon->Fill(maxKaon.X(), maxKaon.Y());
       maxKaonVec[i] = std::make_pair(maxKaon.X(), maxKaon.Y());
     }
  }
  
-
+ for(int i = 0; i < maxProtonVec.size(); i++){
+    const auto& maxProton = populate->tracePhot(ckovTools.getMaxCkovProton(), Double_t(TMath::Pi()*(i+1)/(kN*2)), lMin);
+    if(maxProton.X() > 0 && maxProton.X() < 156.0 && maxProton.Y() > 0 && maxProton.Y() < 144) {
+      hMaxProton->Fill(maxProton.X(), maxProton.Y());
+		  maxProtonVec[i] = std::make_pair(maxProton.X(), maxProton.Y()); 
+    }
+ }
 
  std::vector<std::pair<double, double>> minPionVec, minKaonVec, minProtonVec;
  minPionVec.reserve(kN); minKaonVec.reserve(kN); minProtonVec.reserve(kN); 
@@ -1446,6 +1446,83 @@ void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector) {
     // works good
     Printf("\n\n Reading from file now...");
     readParticleInfoFromROOT();
+}
+
+
+// find the phiL!
+double switchLogic(const double& thetaP, const double& theta, const double& phiP, const double& phi, const double& eta, std::vector<double>& phiLVector, std::vector<double>& phiVector)
+{
+  // symbols followed by capital L denotes "TRS" values
+  
+ 
+  // assign case and IVs : 
+  double  phiNewL; // value to be returned; the estimated phi of rMin/rMax in TRS
+  // this value is later used in tracePhoton to find the radius at same 
+  // phi value as photon
+
+  //, phiNew;
+  double phi1, phiL1;  // LORS, TRS 
+  double phi2, phiL2;  // LORS, TRS
+
+
+  bool A;
+  if(phi < phiP + TMath::Pi()) { // Case A: phi1 CCW (+it), phi2 CW (-it)
+    phi1L = 0;
+    A = true;
+  } else {  			 // Case B: phi1 CW (-it), phi2 CCW (+it)
+    phi1L = TMath::TwoPi();
+    A = false;
+  }
+
+
+  // A : phiNewL = (0 + 1)Pi/2 = pi/2
+  // B : phiNewL = (2 + 1)Pi/2 = 3pi/2
+
+  int cnt = 0;
+  float limit = 0.0000001;
+  while(diff > limit and cnt < 100000000) {
+    phiNewL = (phi2L + phi1L)/2;
+
+    phiLVector.push_back(phiNewL); // to keep track of convergence
+
+
+    double phiNew;
+    TVector3 temp;
+    temp.SetMagThetaPhi(1, eta, phiNewL);
+
+    double thetaTemp; // trivial value, not really needed
+
+    // phiNew pass by ref, will be new value of phi1 or phi2
+    trs2Lors(temp, thetaTemp, phiNew);
+    phiVector.push_back(phiNew);  // to keep track of convergence
+
+    
+    if(A and phiNew > phi) {
+      phi2 = phiNew; 
+      phi2L = phiNewL;
+    } else if(A and phiNew < phi) {
+      phi1 = phiNew; 
+      phi1L = phiNewL;
+    } else if(!A and phiNew > phi) {
+      phi1 = phiNew; 
+      phi1L = phiNewL;
+    } else if(!A and phiNew < phi) {
+      phi2 = phiNew; 
+      phi2L = phiNewL;
+    } else if(phi == phi2 or phi == phi1) {
+      Printf("SLogic : phi %.2f == phi2 %.2f or phi %.2f == phi1 %.2f", phi, phi2, phi, phi1); 
+    } else {
+      Printf("SLogic: I dont know why this else-statemtnt is invoked :( !!"); 
+    }
+    auto diff1 = std::abs(phi - phi1); // needs cmath!
+    auto diff2 = std::(phi - phi2);
+    diff = std::min(phi - phi1);
+    Printf("SLogic : phi %.2f, phi1 %.2f, phi2 %.2f | diff = %.4f", phi, phi1, phi2, diff); 
+    cnt++;
+  }
+
+  return phiNewL;
+
 }
 
 
