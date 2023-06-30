@@ -34,6 +34,8 @@ private:
     TVector3 fTrkDir; // track position in LORS at RAD // setMagThetaPhi(1, thetaP, phiP)
     TVector2 fPc; // track pos at PC
 
+    TVector2 fMipPos; // MIP-pos at PC
+
     double nF;	     // refIdnex of freon
 
     const double winThick = 0.5, radThick = 1.5; const int gapThick = 8;
@@ -139,9 +141,6 @@ public:
       // denne skal nok vaere saann:
       const auto phi = (photonPos - fTrkPos2D).Phi();
       TVector3 dirPhotonR;
-
-
-
 
       
       // denne skal nok ogsaa vaere saann:

@@ -542,7 +542,9 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  TVector2 trkPos(xRad, yRad);
  TVector3 trkDir; trkDir.SetMagThetaPhi(1, thetaP, phiP);
 
- // TVector2 trkPos, TVector3 trkDir, doble _nF
+
+
+
 
  Populate* populate = new Populate(trkPos, trkDir, nF);
  const TVector2& posMaxProton = populate->tracePhot(ckovTools.getMaxCkovProton(), 0, lMax);
