@@ -311,6 +311,13 @@ public:
 
 
 
+    TVector2 trkPos(xRad, yRad);
+    TVector3 trkDir; 
+    trkDir.SetMagThetaPhi(1, thetaP, phiP);
+    Populate populate(trkPos, trkDir, nF);
+
+
+
     TH2F *localRefMIPUnrot = new TH2F("localRefMIPUnrot ", infString,800,-40.,-40.,800,-40,40);
     TH2F *localRefUnrot = new TH2F("localRef ", infString,800,-40.,-40.,800,-40.,40.);
     TH2F *localRef = new TH2F("localRef ", infString,800,-40.,-40.,800,-40.,40.);  
@@ -508,6 +515,9 @@ public:
 
     // change datatype, should hold at least x, y..+? {later + cluster-size...}
 
+    // Make posPhoton to send to checkRange
+
+
 
 
     std::random_device rd2;
@@ -524,6 +534,7 @@ public:
     // ideal cluster-position
     std::uniform_real_distribution<> disX(-uncX, uncX);
     std::uniform_real_distribution<> disY(-uncY, uncY);
+
 
     // here : loop through all backGroundPhotons and cherenkovPhotons
     for(const auto& photons : cherenkovPhotons) {  
@@ -573,6 +584,8 @@ public:
 	    Printf("\nckovtools cherenkov photons xAbs  %f > mL1Max %f && x %f < mL2Max %f && yAbs %f > mRMax  %f && y %f < mRMax %f\n",  x, mL1Max, xAbs , mL2Max , yAbs , mRMax , y , mRMax);
 
 
+
+
       // not really helpful? 
       if(true){
       //if(x > -mL1Max && x < mL2Max && y > -mRMax  && y < mRMax){
@@ -597,17 +610,12 @@ public:
         // Printf("CkovTools segment ckov %f", ckov);
         //Printf("CkovTools segment ckovPionMin %f ckovPionMax %f", ckovPionMin, ckovPionMax);
     
-        // Make posPhoton to send to checkRange
-        const TVector2 posPhoton(x, y);
-        TVector2 trkPos(xRad, yRad);
-        TVector3 trkDir; trkDir.SetMagThetaPhi(1, thetaP, phiP);
 
-        Populate populate(trkPos, trkDir, nF);
         // check if inside pionMax and outside protonMin
 
         Printf("\n\n");
 
-
+        const TVector2 posPhoton(x, y);
         TVector2 rPosPion;
         bool pionBelow = populate.checkRangeBelow(posPhoton, getMaxCkovPion(), rPosPion);
 
@@ -767,6 +775,23 @@ public:
   globalREfMIP->Draw("same");
   hNoiseMap->Draw("same");
 
+
+
+
+
+
+
+  // get impact points of track @ RAD and PC
+  const auto trkPC = populate.getPcImp();
+  const auto trkRad = populate.getTrackPos();
+  TH2F* trkPCMap = new TH2F("trkPCMap ", "trkPCMap; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
+  TH2F* trkRadMap = new TH2F("trkRadMap ", "trkRadMap; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
+  trkRadMap->Fill(trkRad.X(), trkRad.Y());
+  trkPCMap->Fill(trkPC.X(), trkPC.Y());
+
+  trkRadMap->SetMarkerStyle(3);  trkRadMap->SetMarkerColor(kGreen+4);
+  trkPCMap->SetMarkerStyle(3);  trkPCMap->SetMarkerColor(kGreen+2);
+
   /*
   tlineUpGlobal->Draw();
   tlineRightGlobal->Draw();
@@ -795,31 +820,33 @@ public:
   mapPion->SetMarkerColor(kBlue);
 
 
-  mapPionMax->SetMarkerStyle(3); 
+  mapPionMax->SetMarkerStyle(2); 
   mapPionMax->SetMarkerColor(kRed);
 
-  mapPionMin->SetMarkerStyle(3); 
+  mapPionMin->SetMarkerStyle(2); 
   mapPionMin->SetMarkerColor(kGreen);
 
 
-  mapProtonMax->SetMarkerStyle(3); 
+  mapProtonMax->SetMarkerStyle(2); 
   mapProtonMax->SetMarkerColor(kRed);
 
-  mapProtonMin->SetMarkerStyle(3); 
+  mapProtonMin->SetMarkerStyle(2); 
   mapProtonMin->SetMarkerColor(kGreen);
 
 
 
-  mapKaonMax->SetMarkerStyle(3); 
+  mapKaonMax->SetMarkerStyle(2); 
   mapKaonMax->SetMarkerColor(kRed);
 
-  mapKaonMin->SetMarkerStyle(3); 
+  mapKaonMin->SetMarkerStyle(2); 
   mapKaonMin->SetMarkerColor(kGreen);
   mapKaon->SetMarkerColor(kGreen + 4);
 
 
   mapProton->SetMarkerColor(kGreen + 4);
 
+  
+  localRefMIP2->Draw("same");  
 
   TCanvas *segm = new TCanvas("semg","semg",800,800);  
   segm->Divide(2,2);
@@ -829,7 +856,7 @@ public:
 
   mapPhotons->Draw();
   localRefMIP2->Draw("same");  
-
+  trkPCMap->Draw("same"); trkRadMap->Draw("same"); 
 
 
   segm->cd(2);
@@ -839,6 +866,7 @@ public:
   localRefMIP2->Draw("same");
   mapPionMin->Draw("same");
   mapPionMax->Draw("same");
+  trkPCMap->Draw("same"); trkRadMap->Draw("same"); 
 
   segm->cd(3);
 
@@ -847,6 +875,7 @@ public:
   mapPhotons->Draw("same");
   mapKaonMin->Draw("same");
   mapKaonMax->Draw("same");
+  trkPCMap->Draw("same"); trkRadMap->Draw("same"); 
 
   segm->cd(4);
   mapProton->SetTitle(Form("mapProton : min%d max%d photons%d", mapProtonMin->GetEntries(), mapProtonMax->GetEntries(), mapPhotons->GetEntries()));
@@ -855,6 +884,7 @@ public:
   mapPhotons->Draw("same");
   mapProtonMin->Draw("same");
   mapProtonMax->Draw("same");
+  trkPCMap->Draw("same"); trkRadMap->Draw("same"); 
 
   gPad->Update();
   segm->Show();
