@@ -43,6 +43,8 @@ private:
     double tanThetaRa;
     double deltaX, deltaY;
 
+    double phiP, sinThetaP, cosThetaP;
+
 
     TVector2 fTrkPos2D;
 public:
@@ -65,6 +67,10 @@ public:
 			cosPhiRa = TMath::Cos(trkDir.Phi());		
 			sinPhiRa = TMath::Sin(trkDir.Phi());	
 		
+    phiP = trkDir.Phi();
+    cosThetaP = TMath::Cos(trkDir.Theta());		
+    sinThetaP = TMath::Sin(trkDir.Theta());
+
 
 			// xRa = xPC - deltaX
 
@@ -83,9 +89,6 @@ public:
 				
     }
 
-
-
-
     // check if   rMin < r_photon  for a given photon {x,y} -->Phi in LORS
     bool checkRangeAbove(const TVector2& photonPos, const double& etaMin,  TVector2& rPos)
     {
@@ -93,12 +96,11 @@ public:
       const auto rPhoton = (photonPos - fPc).Mod();
       // TODO: better to use MIP-pos than fPC? 
       auto lMax = 1.5; 
-      auto rMin = getRatPhi(photonPos, lMax, etaMin);
-      Printf("CheckRangeAbove : rMin %.3f < rPhoton %.3f", rMin, rPhoton);
+      Printf("checkRangeAbove : etaMin %.3f ---> enter getRatPhi() ", etaMin);
+      auto rMin = getRatPhi(photonPos,  etaMin, lMax, rPos);
+      Printf("CheckRangeAbove : rMin %.3f < rPhoton %.3f \n", rMin, rPhoton);
       return (rMin < rPhoton);
     }
-
-
 
     // check if   r_photon  < rMax  for a given photon {x,y} -->Phi in LORS
     bool checkRangeBelow(const TVector2& photonPos, const double& etaMax, TVector2& rPos)
@@ -106,8 +108,9 @@ public:
       const auto rPhoton = (photonPos - fPc).Mod();
       // TODO: better to use MIP-pos than fPC? 
       auto lMin = 0; 
-      auto rMax = getRatPhi(photonPos, lMin, etaMax);
-      Printf("CheckRangeAbove : rPhoton %.3f, rMax %.3f", rPhoton, rMax);
+      Printf("checkRangeBelow : etaMax %.3f ---> enter getRatPhi()", etaMax);
+      auto rMax = getRatPhi(photonPos, etaMax, lMin, rPos);
+      Printf("checkRangeBelow : rPhoton %.3f, rMax %.3f \n", rPhoton, rMax);
       return (rPhoton < rMax);
     }
 
@@ -118,7 +121,7 @@ public:
       const auto rPhoton = (photonPos - fPc).Mod();
       // TODO: better to use MIP-pos than fPC? 
       auto lMin = 0.0, lMax = 1.5; 
-      auto rMax = getRatPhi(photonPos, etaMax, lMin);
+      auto rMax = getRatPhi(photonPos, etaMax, lMin, rPos);
       auto rMin = getRatPhi(photonPos, etaMin, lMax, rPos);
       Printf("CheckRange : etaMax %.3f , etaMin %.3f", etaMax, etaMin);
       Printf("CheckRange : rMin %.3f < rPhoton %.3f, rMax %.3f", rMin, rPhoton, rMax);
@@ -129,15 +132,25 @@ public:
     // find R at specific value of Phi to apply mass-hyp
     double getRatPhi(const TVector2& photonPos, const double& eta, const double& L, TVector2& rPos)
     {
-
+      
 
       // TODO: better to use MIP-pos than fPC? 
       const auto phi = (fTrkPos2D - photonPos).Phi();
       TVector3 dirPhotonR;
 
+      auto cosTheta = (TMath::Cos(eta) - sinThetaP * TMath::Cos(phi-phiP))/cosThetaP;
+      auto theta = TMath::ACos(cosTheta);
+
+
+     Printf("eta %.2f , Math::Cos(eta) %.2f | sinThetaP * TMath::Cos(phi-phiP) %.2f | cosThetaP %.2f", eta, TMath::Cos(eta), sinThetaP * TMath::Cos(phi-phiP), cosThetaP);
+
+
+     Printf("cosTheta %.2f | theta %.2f",cosTheta, theta);
+
 
       // set max/min etaC value
-      dirPhotonR.SetMagThetaPhi(1, eta, phi);
+      // dirPhotonR.SetMagThetaPhi(1, eta, phi);
+      dirPhotonR.SetMagThetaPhi(1, theta, phi);
 
       // set max/min L value 	
       rPos = traceForward(dirPhotonR, L);  
@@ -145,8 +158,12 @@ public:
       // create the point for the mass-hyp
       
       Printf("getRatPhi : fPC: x %.2f y %.2f | Photon  x %.2f y %.2f | rPos x %.2f y %.2f", fPc.X(), fPc.Y(), photonPos.X(), photonPos.Y(), rPos.X(), rPos.Y());
+      
+
+
+	
       // as for findphotckov : cluR = sqrt([cluX - fPc.X()]^2 [y..])
-      auto dist = (rPos - fPc).Mod();
+      auto dist = (rPos - fPc).Mod();     Printf("getRatPhi : dist %.2f", dist);
       return dist;
     }
 
