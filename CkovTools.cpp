@@ -103,7 +103,7 @@ public:
 	  momentum = radParams[5];	  
 
 	  nF = refIndexes[0];
-	  nQ = refIndexes[1];
+	  nQ =refIndexes[1]; // ??? 1.5787;// TODO: check this !
 	  nG = refIndexes[2];
    
     Printf(" CkovTools momentum = %.2f, refFreon = %.2f; ckovHyps : %.2f %.2f %.2f", momentum, nF, ckovHyps[0], ckovHyps[1], ckovHyps[2]);
