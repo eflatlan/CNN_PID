@@ -469,12 +469,15 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  // MIP azimuthal angle:
 
  // TODO: change phiP back again
- //double phiP = 0;//static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
- double phiP = static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
+ // setting phiP of track
+ double phiP = TMath::Pi()/4;// static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
+ phiP = 0*static_cast<float>((3.14159)*(1-2*gRandom->Rndm(1)));
 
+
+
+ // setting thetaP of track
  // MIP polar angle:
- // a.o.n; only between +- 5 deg
- double thetaP = scaleThetaP*getThetaP(randomValue.momentum);// = static_cast<float>(0.1*(1-2*gRandom->Rndm(1)));
+ double thetaP = 0*scaleThetaP*getThetaP(randomValue.momentum);// = static_cast<float>(0.1*(1-2*gRandom->Rndm(1)));
   
          
 
@@ -482,13 +485,19 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  // place the impact point on rad : in x[10..150] and y[10..134]
 
   auto diff = 10;
-  double xRad = static_cast<float>((160-diff)*(1*gRandom->Rndm())+diff);
-  double yRad = static_cast<float>((144-diff)*(1*gRandom->Rndm())+diff);
+
+
+  // TODO: change back
+  // setting radiator impact point of track
+  double xRad = 1*static_cast<float>((160-diff)*(1*gRandom->Rndm())+diff);
+  double yRad = 1*static_cast<float>((144-diff)*(1*gRandom->Rndm())+diff);
  
   auto winThick = 0.5, radThick = 1.5; int gapThick = 8;
   auto getRefIdx = static_cast<double>(nF),  gapIdx = 1.0005, winIdx = 1.5787;
 
-  auto delta = (radThick + winThick + gapThick)*TMath::Tan(thetaP);
+
+  // assumming L = 0.5*rW
+  auto delta = (radThick*0.5 + winThick + gapThick)*TMath::Tan(thetaP);
   auto xPC =  xRad + delta*TMath::Cos(phiP);
   auto yPC =  yRad + delta*TMath::Sin(phiP);
 
@@ -506,8 +515,10 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
 
 
-   // TODO; change back to per each photon?
-  double L = 0.75;//static_cast<float>((rW)*(gRandom->Rndm()));
+  // TODO; change back to per each photon?
+  // setting emission-length of track
+  double L = 0.75;
+  //L = static_cast<float>((rW)*(gRandom->Rndm()));
   
   // TODO; change back to:
   // double radParams[6] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum};
