@@ -829,6 +829,7 @@ public:
 
 
   segm->cd(2);
+  mapPion->SetTitle(Form("mapPion : min%d max%d photons%d", mapPionMin->GetEntries(), mapPionMax->GetEntries(), mapPhotons->GetEntries()));
   mapPion->Draw();
   mapPhotons->Draw("same");
   localRefMIP2->Draw("same");
@@ -836,13 +837,17 @@ public:
   mapPionMax->Draw("same");
 
   segm->cd(3);
+
+  mapKaon->SetTitle(Form("mapKaon: min%d max%d photons%d", mapKaonMin->GetEntries(), mapKaonMax->GetEntries(), mapPhotons->GetEntries()));
   mapKaon->Draw();
   mapPhotons->Draw("same");
   mapKaonMin->Draw("same");
   mapKaonMax->Draw("same");
 
   segm->cd(4);
+  mapProton->SetTitle(Form("mapProton : min%d max%d photons%d", mapProtonMin->GetEntries(), mapProtonMax->GetEntries(), mapPhotons->GetEntries()));
   mapProton->Draw();
+ 
   mapPhotons->Draw("same");
   mapProtonMin->Draw("same");
   mapProtonMax->Draw("same");
