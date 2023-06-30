@@ -669,7 +669,6 @@ public:
               TVector2 rPosPionB;
               bool pionBelow = populate.checkRangeBelow(posPhoton, getMaxCkovPion(), rPosPionB);
 
-
               Printf("getPionStatus Ok --> checkRangeAbove getMinCkovPion %.2f ", getMinCkovPion());
               if(populate.checkRangeAbove(posPhoton, getMinCkovPion(), rPosPionB)) {
                 mapPion->Fill(xG, yG);

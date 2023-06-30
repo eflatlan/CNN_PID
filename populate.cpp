@@ -41,8 +41,10 @@ private:
     const double winThick = 0.5, radThick = 1.5; const int gapThick = 8;
     const double getRefIdx = nF,  gapIdx = 1.0005, winIdx = 1.5787;
 
-    double cosPhiRa, sinPhiRa;
-    double tanThetaRa;
+    const double nQ = winIdx, nG = gapIdx;
+
+    double cosPhiP, sinPhiP;
+    double tanThetaP;
     double deltaX, deltaY;
 
     double phiP, sinThetaP, cosThetaP;
@@ -65,9 +67,9 @@ public:
 
       
 
-    tanThetaRa = TMath::Tan(trkDir.Theta());
-			cosPhiRa = TMath::Cos(trkDir.Phi());		
-			sinPhiRa = TMath::Sin(trkDir.Phi());	
+    tanThetaP = TMath::Tan(trkDir.Theta());
+			cosPhiP = TMath::Cos(trkDir.Phi());		
+			sinPhiP = TMath::Sin(trkDir.Phi());	
 		
     phiP = trkDir.Phi();
     cosThetaP = TMath::Cos(trkDir.Theta());		
@@ -79,8 +81,8 @@ public:
 
 
       // should be radThick/2 here if assuming half em-length 
-      deltaX = (radThick/2 + winThick + gapThick) * tanThetaRa * cosPhiRa;
-      deltaY = (radThick/2 + winThick + gapThick) * tanThetaRa * sinPhiRa;		
+      deltaX = (radThick/2 + winThick + gapThick) * tanThetaP * cosPhiP;
+      deltaY = (radThick/2 + winThick + gapThick) * tanThetaP * sinPhiP;		
 			
 
       // NB! TODO: here PC impact point based on L = rW/2!!
@@ -140,18 +142,39 @@ public:
 
       // denne skal nok vaere saann:
       const auto phi = (photonPos - fTrkPos2D).Phi();
+
+
+      const auto sinPhi = TMath::Sin(phi);
+      const auto cosPhi = TMath::Cos(phi);
+
       TVector3 dirPhotonR;
 
       
       // denne skal nok ogsaa vaere saann:
-      auto cosTheta = (TMath::Cos(eta) - sinThetaP * TMath::Cos(phi-phiP))/cosThetaP;
-      auto theta = TMath::ACos(cosTheta);
+      const auto cosTheta = (TMath::Cos(eta) - sinThetaP * TMath::Cos(phi-phiP))/cosThetaP;
+      const auto theta = TMath::ACos(cosTheta);
+
+      // must scale a, b here !(?:)) :
+
+      const auto tanTheta = TMath::Tan(theta);
+      const auto sinTheta = TMath::Sin(theta);
+
+      const auto a = (radThick - L + winThick + gapThick)*tanThetaP;
+
+
+      const auto nFSinSq = nF*nF*sinTheta*sinTheta;
+      
+      const auto b = (radThick - L)*tanTheta + winThick * nF * sinTheta/TMath::Sqrt(nQ*nQ - nFSinSq) + gapThick * nF * sinTheta/TMath::Sqrt(nG*nG - nFSinSq);
+
+      const auto xDiff = (a*cosPhiP - b*cosPhi);
+      const auto yDiff = (a*sinPhiP - b*sinPhi);
+      const auto R = TMath::Sqrt(xDiff*xDiff + yDiff*yDiff);
 
 
      Printf("eta %.2f , Math::Cos(eta) %.2f | sinThetaP * TMath::Cos(phi-phiP) %.2f | cosThetaP %.2f", eta, TMath::Cos(eta), sinThetaP * TMath::Cos(phi-phiP), cosThetaP);
 
 
-     Printf("cosTheta %.2f | theta %.2f",cosTheta, theta);
+     Printf("cosTheta %.2f | theta %.2f | L %.2f",cosTheta, theta, L);
 
 
       // set max/min etaC value
@@ -164,11 +187,13 @@ public:
       // create the point for the mass-hyp
       
       Printf("getRatPhi : fPC: x %.2f y %.2f | Photon  x %.2f y %.2f | rPos x %.2f y %.2f", fPc.X(), fPc.Y(), photonPos.X(), photonPos.Y(), rPos.X(), rPos.Y());
-      
-	
+     	
       // as for findphotckov : cluR = sqrt([cluX - fPc.X()]^2 [y..])
-      auto dist = (rPos - fPc).Mod();     Printf("getRatPhi : dist %.2f", dist);
-      return dist;
+      auto dist = (rPos - fPc).Mod();    
+
+      Printf("getRatPhi : dist = %.2f | R(a,b) = %.2f", dist, R);
+
+      return R; // TODO : change back to return dist?	
     }
 
 

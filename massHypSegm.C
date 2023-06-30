@@ -517,8 +517,8 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
   // TODO; change back to per each photon?
   // setting emission-length of track
-  double L = 0.75;
-  //L = static_cast<float>((rW)*(gRandom->Rndm()));
+  double L = 0;
+  L = static_cast<float>((rW)*(gRandom->Rndm()));
   
   // TODO; change back to:
   // double radParams[6] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum};
