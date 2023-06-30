@@ -87,7 +87,7 @@ public:
 
 
     // check if   rMin < r_photon  for a given photon {x,y} -->Phi in LORS
-    bool checkRangeAbove(const TVector2& photonPos, const double& etaMin)
+    bool checkRangeAbove(const TVector2& photonPos, const double& etaMin,  TVector2& rPos)
     {
 
       const auto rPhoton = (photonPos - fPc).Mod();
@@ -101,7 +101,7 @@ public:
 
 
     // check if   r_photon  < rMax  for a given photon {x,y} -->Phi in LORS
-    bool checkRangeBelow(const TVector2& photonPos, const double& etaMax)
+    bool checkRangeBelow(const TVector2& photonPos, const double& etaMax, TVector2& rPos)
     {
       const auto rPhoton = (photonPos - fPc).Mod();
       // TODO: better to use MIP-pos than fPC? 
@@ -112,14 +112,14 @@ public:
     }
 
     // check if   rMin < r_photon  < rMax for a given photon {x,y} -->Phi in LORS
-    bool checkRange2(const TVector2& photonPos, const double& etaMax, const double& etaMin)
+    bool checkRange2(const TVector2& photonPos, const double& etaMax, const double& etaMin, TVector2& rPos)
     {
 
       const auto rPhoton = (photonPos - fPc).Mod();
       // TODO: better to use MIP-pos than fPC? 
       auto lMin = 0.0, lMax = 1.5; 
       auto rMax = getRatPhi(photonPos, etaMax, lMin);
-      auto rMin = getRatPhi(photonPos, etaMin, lMax);
+      auto rMin = getRatPhi(photonPos, etaMin, lMax, rPos);
       Printf("CheckRange : etaMax %.3f , etaMin %.3f", etaMax, etaMin);
       Printf("CheckRange : rMin %.3f < rPhoton %.3f, rMax %.3f", rMin, rPhoton, rMax);
       return (rMin < rPhoton && rPhoton < rMax);
@@ -127,7 +127,7 @@ public:
 
 
     // find R at specific value of Phi to apply mass-hyp
-    double getRatPhi(const TVector2& photonPos, const double& eta, const double& L)
+    double getRatPhi(const TVector2& photonPos, const double& eta, const double& L, TVector2& rPos)
     {
 
 
@@ -140,7 +140,7 @@ public:
       dirPhotonR.SetMagThetaPhi(1, eta, phi);
 
       // set max/min L value 	
-      auto rPos = traceForward(dirPhotonR, L);  
+      rPos = traceForward(dirPhotonR, L);  
       // for the given phi value in local-ref-system, L{min/max}, eta{min/max}, 
       // create the point for the mass-hyp
       
