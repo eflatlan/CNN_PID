@@ -646,6 +646,9 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  std::vector<std::pair<double, double>> maxPionVec, maxKaonVec, maxProtonVec;
   
   
+
+ std::vector<std::array<double>, 3> arrMaxPion, arrMaxKaon, arrMaxProton;
+
  maxPionVec.reserve(kN); maxKaonVec.reserve(kN); maxProtonVec.reserve(kN); 
  maxPionVec.resize(kN); maxKaonVec.resize(kN); maxProtonVec.resize(kN);
  Printf(" backgroundStudy : populating loop"); 
@@ -654,9 +657,22 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  Printf(" backgroundStudy : ckovHyps = <%.3f, %.3f> | <%.3f, %.3f> | <%.3f, %.3f>", ckovTools.getMinCkovPion(),ckovTools.getMaxCkovPion(),ckovTools.getMinCkovKaon(),
 ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovProton()); 
 
- for(int i = 0; i < maxPionVec.size(); i++){
-    const auto& maxPion = populate->tracePhot(ckovTools.getMaxCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN), lMin);
 
+ // track hit at PC in LORS : 
+ const auto posPC = populate->getPcImp();
+ for(int i = 0; i < maxPionVec.size(); i++){
+
+    const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
+    TVector3 dirTRS, dirLORS;
+    dirTrs.SetMagThetaPhi(1, ckovTools.getMaxCkovPion(), phiL);
+    double theta, phiR; // phiR is value of phi @ estimated R in LORS
+    trs2Lors(dirTrs, thetaR, phiR);
+    dirLORS.SetMagThetaPhi(1, thetaR, phiR);
+
+    const auto& maxPion = populate->traceForward(dirLORS, lMin);
+
+    const auto r = (maxPion - posPC).Mod();
+    arrMaxPion.emplace_back(phiL, phiR, r);
     if(maxPion.X() > 0 && maxPion.X() < 156.0 && maxPion.Y() > 0 && maxPion.Y() < 144) {
       hMaxPion->Fill(maxPion.X(), maxPion.Y());
       maxPionVec[i] = std::make_pair(maxPion.X(), maxPion.Y());
@@ -1449,6 +1465,11 @@ void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector) {
 }
 
 
+
+/*
+
+// TODO! nb!!! naa har ikke tatt hoyde for phi' = phi - phiP;
+
 // find the phiL!
 double switchLogic(const double& thetaP, const double& theta, const double& phiP, const double& phi, const double& eta, std::vector<double>& phiLVector, std::vector<double>& phiVector)
 {
@@ -1523,6 +1544,6 @@ double switchLogic(const double& thetaP, const double& theta, const double& phiP
 
   return phiNewL;
 
-}
+} */
 
 
