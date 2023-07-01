@@ -315,8 +315,10 @@ public:
     TVector3 trkDir; 
     trkDir.SetMagThetaPhi(1, thetaP, phiP);
     Populate populate(trkPos, trkDir, nF);
+    
 
-
+    // get track impacrt point at PC
+    const auto trkPC = populate.getPcImp();
 
     TH2F *localRefMIPUnrot = new TH2F("localRefMIPUnrot ", infString,800,-40.,-40.,800,-40,40);
     TH2F *localRefUnrot = new TH2F("localRef ", infString,800,-40.,-40.,800,-40.,40.);
@@ -607,18 +609,66 @@ public:
         const auto& ckov2 = getCkovFromCoords(xG, yG, phiP, thetaP, nF, nQ, nG, etaC);      
         Printf("CkovTools segment | actual ckov = %.3f | bgstdy method:  %.3f | ReconMEthods:  thetaCer %f phiCer %f ", etaC, ckov2,  thetaCer, phiCer);
 
+
+
+	const TVector2 posPhoton(x, y);
+
+	// find reference  radius to be compared to segmetation radiuses 
+	const auto rPhoton = (posPhoton - trkPC).Mod();
+	const auto phiPhoton = (posPhoton - trkPC).Phi();
+
         // Printf("CkovTools segment ckov %f", ckov);
         //Printf("CkovTools segment ckovPionMin %f ckovPionMax %f", ckovPionMin, ckovPionMax);
-    
 
-        // check if inside pionMax and outside protonMin
+	// double switchLogic(const double& thetaP, const double& theta, const double& phiP, const double& phi, const double& eta, vector<double>& phiLVector, vector<double>& phiVector
+        
 
-        Printf("\n\n");
 
-        const TVector2 posPhoton(x, y);
+		/*
+		***************************************************************************
+		***************************************************************************
+		***************************************************************************
+		***************************************************************************
+		***************************************************************************
+		***************************************************************************
+		***************************************************************************
+		***************************************************************************
+		*/ 
+
+    // iteration phiL approach init
+		// checking if inside outer pionRadius (Lmin, etaMax)
+		if(getPionStatus()) {
+			bool above = false;
+			//checkCond(above,  maxPionVecL)
+		}
+		// phiL, phi, R of maxPionVec vector
+
+
+
+		/*
+		***************************************************************************
+		***************************************************************************
+		***************************************************************************
+		***************************************************************************
+		***************************************************************************
+		***************************************************************************
+		***************************************************************************
+		***************************************************************************
+		*/ 
+
+    // "Closed form approch" init    
+
+    // check if inside pionMax and outside protonMin
+
+    Printf("\n\n");
+
+
         TVector2 rPosPion;
         bool pionBelow = populate.checkRangeBelow(posPhoton, getMaxCkovPion(), rPosPion);
 
+
+
+	
 
  	TVector2 rPosPionMin;
         populate.checkRangeBelow(posPhoton, getMinCkovPion(), rPosPionMin);
@@ -664,7 +714,8 @@ public:
         // global bounds ok, can check candidates 
         else {
           // check Pion
-          if(getPionStatus()){ // shouldt really be possible in this case but..   
+          if(getPionStatus()){ // shouldt really be possible in this case but.. 
+  
               Printf("\n\n ------------ \n\n Region: minProton < ckov < maxProton ok");
               TVector2 rPosPionB;
               bool pionBelow = populate.checkRangeBelow(posPhoton, getMaxCkovPion(), rPosPionB);
@@ -781,7 +832,7 @@ public:
 
 
   // get impact points of track @ RAD and PC
-  const auto trkPC = populate.getPcImp();
+  //const auto trkPC = populate.getPcImp();
   const auto trkRad = populate.getTrackPos();
   TH2F* trkPCMap = new TH2F("trkPCMap ", "trkPCMap; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
   TH2F* trkRadMap = new TH2F("trkRadMap ", "trkRadMap; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
