@@ -130,6 +130,7 @@ public:
 					// phiL1, phiL2 also passed by ref
 
 					splitPhi(phiMax, phiLmax, phiMin, phiLmin, etaCkov, phiPhoton); // 
+					Printf(=
 					rMax = getR(etaCkov, phiLmax, L);
 					rMin = getR(etaCkov, phiLmin, L);
 				} else {

@@ -737,7 +737,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
     if(minPion.X() > 0 && minPion.X() < 156.0 && minPion.Y() > 0 && minPion.Y() < 144) {
       hMinPion->Fill(minPion.X(), minPion.Y());
       minPionVec[i] = std::make_pair(minPion.X(), minPion.Y());
-      Printf("minPion loop i = %d, minSize = %zu", i, minPionVec.size()); 
+      //Printf("minPion loop i = %d, minSize = %zu", i, minPionVec.size()); 
     }
  }
  

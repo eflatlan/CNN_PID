@@ -338,7 +338,8 @@ public:
     }
 
 
-
+  // if getAbove == true; check if posPhoton is outside of radius
+ 
 	void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& phiPhoton, bool getAbove, vecArray3& vec, const double& etaCkov) {
 		// vec : contains phiL, phi, R w etaMin/etaMax for hadron species
 
@@ -382,7 +383,7 @@ public:
 		}
 
 		// TODO: this has to be changed if inc = -1?
-		int index = iCnt -1;
+		int index = iCnt - 1;
 
 
 		//double phiL1 = vec.at(index).at(0);
@@ -397,7 +398,10 @@ public:
 		double r2 = vec[index+1][2];
 
 		// correct indexes are found 
-		Printf("phiPhoton %.2f| phiPhoton -  1 %.2f, phiPhoton + 1 %.2f", phiPhoton, vec[initValue + iCnt][1], vec[initValue + iCnt+ 1][1]);
+
+		Printf("checkCond() -->  kN %d | initValue %d | phiPhoton %.2f, phiP %.2f, phiC %.2f, phi1 %.2f,", kN, initValue, phiPhoton, phiP, phiC, phi1);
+
+		Printf("phiPhoton %.2f| vec[initValue + iCnt - 1] %.2f,  vec[initValue + iCnt] %.2f, vec[initValue + iCnt + 1] %.2f", phiPhoton, vec[initValue + iCnt-1][1],  vec[initValue + iCnt][1], vec[initValue + iCnt+ 1][1]);
 		
 				
 
@@ -424,8 +428,11 @@ public:
 
 
 		// check if under a radius 
+		// 
 		if(getAbove) {
 			while(noDecisionTaken) {
+				Printf("getAbove == true | rPhoton = %.2f, rMax = %.2f, rMin = %.2f", rPhoton, rMax, rMin);
+Printf("phiMax = %.2f, phiLmax = %.2f, phiMin = %.2f, phiLmin = %.2f, etaCkov %.2f, phiPhoton %.2f",phiMax, phiLmax, phiMin, phiLmin, etaCkov, phiPhoton);
 				if((rPhoton > rMax)) {
 					// stop iterating, condition is false
 					noDecisionTaken = true;
