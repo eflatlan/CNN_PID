@@ -119,18 +119,26 @@ CkovTools (double radParams[6], double refIndexes[3],
   Printf(" CkovTools momentum = %.2f, refFreon = %.2f; ckovHyps : %.2f %.2f %.2f", momentum, nF, ckovHyps[0], ckovHyps[1], ckovHyps[2]);
 
 	if(TMath::IsNaN(ckovHyps[0])){
-   	  Printf("Pion CkovHyps is Nan!");
+ 	  Printf("Pion CkovHyps is Nan!");
 	  setPionStatus(false);
 	  // setIsNan()?
-	} if(TMath::IsNaN(ckovHyps[1])){
+	} else {
+		setPionStatus(true);
+ 	  Printf("Pion CkovHyps %.2f", ckovHyps[0]);
+  }
+
+  if(TMath::IsNaN(ckovHyps[1])){
 	  Printf("Kaon CkovHyps is Nan!");
-   	  setKaonStatus(false);
+   	setKaonStatus(false);
 	  // setIsNan()?
-	} else { 
-	  //setMaxRadius();
-              } if(TMath::IsNaN(ckovHyps[2])){
-        	  Printf("Proton CkovHyps is Nan!");
-	  setProtonStatus(false);
+	} 
+	else { 
+	  	//setMaxRadius();
+  }
+
+  if(TMath::IsNaN(ckovHyps[2])){
+  	  Printf("Proton CkovHyps is Nan!");
+	  	setProtonStatus(false);
 	} else {
 		  //setMaxRadius();
 	}
@@ -138,7 +146,12 @@ CkovTools (double radParams[6], double refIndexes[3],
 	if(getPionStatus()){
 	  ckovPionMin = ckovHyps[0] - 4 * stdDevPion;
 	  ckovPionMax = ckovHyps[0] + 4 * stdDevPion;
-  }	if(getKaonStatus()){
+ 	  Printf("init CkovTools constructor : getPionStatus() true ! minPion %.2f, maxPion %.2f ", ckovPionMin, ckovPionMax);
+  }	else {
+ 	  Printf("init CkovTools constructor : getPionStatus() was false !");
+  }
+  
+  if(getKaonStatus()){
 	  ckovKaonMin = ckovHyps[1] - 4 * stdDevKaon;
   	ckovKaonMax = ckovHyps[1] + 4 * stdDevKaon;
   } if(getProtonStatus()){
@@ -339,7 +352,10 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 	vecArray3 arrMaxPion(kN);
 	arrMaxPion.reserve(kN);
 	arrMaxPion.resize(kN);
-  
+
+
+  Printf("calling setArrayMax w getMaxCkovPion() = %.2f", getMaxCkovPion());
+
   setArrayMax(populate__, getMaxCkovPion(), arrMaxPion);
 
   Populate2* populate2 = new Populate2(trkPos, trkDir, nF);
@@ -664,8 +680,16 @@ const auto phiPhoton = (posPhoton - trkPC).Phi();
  
   // iteration phiL approach init
 	// checking if inside outer pionRadius (Lmin, etaMax)
+
+	/*
+
+void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& phiPhoton, bool getAbove, vecArray3& vec, const double& etaCkov)
+  */ 
+	
 	if(getPionStatus()) {
-		bool above = false;
+		bool above = true;
+		Printf("populate2->checkCond(posPhoton, rPhoton, phiPhoton, above, arrMaxPion, getMaxCkovPion());");
+		// check if rPhoton > rMax(@ phiEstimated = phiPhoton)
   	populate2->checkCond(posPhoton, rPhoton, phiPhoton, above, arrMaxPion, getMaxCkovPion());
 
 		//checkCond(above,  maxPionVecL)
@@ -1374,13 +1398,16 @@ void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector)
 {
   const size_t kN = inPutVector.size();
   const auto lMin = 1.5;
+
+
+  Printf("setArrayMax() enter --> kN %d, etaTRS %.2f", kN, etaTRS);
 	for(int i = 0; i < kN; i++){
 
 		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
 		TVector3 dirTrs, dirLORS;
 		dirTrs.SetMagThetaPhi(1, etaTRS, phiL);
 		double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
-
+		
 		// make this fcn in populate instead?		
 		populate->trs2Lors(dirTrs, thetaR, phiR);
 		dirLORS.SetMagThetaPhi(1, thetaR, phiR);
@@ -1389,8 +1416,11 @@ void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector)
 
 		const auto r = (max - trkPC).Mod();
 
-		inPutVector.emplace_back(std::array<double, 3>{phiL, phiR, r});
+		// phiR in [-pi, pi]? set to 0..2pi?
+		// inPutVector.emplace_back(std::array<double, 3>{phiL, phiR, r});
 
+    inPutVector[i] = {phiL, phiR, r};
+    // Printf("setArrayMax() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
 
 		/*if(maxPion.X() > 0 && maxPion.X() < 156.0 && maxPion.Y() > 0 && maxPion.Y() < 144) {
 			// hMaxPion->Fill(maxPion.X(), maxPion.Y());
@@ -1398,6 +1428,13 @@ void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector)
 			Printf("maxPion loop i = %d, maxSize = %zu", i, maxPionVec.size()); 
 		}*/
 	}
+  /*
+	for(const auto& ip : inPutVector) {
+			const auto& phiL_ = ip[0];
+			const auto& phiR_ = ip[2]; 
+			const auto& r_ = ip[1];  
+			Printf("setArrayMax() --> checking inputVector | : phiL %.2f, phiR %.2f, r %.2f", phiL_, phiR_, r_);
+  } */ 
 }
 
 
@@ -1420,7 +1457,6 @@ void setArrayMin(Populate* populate, double etaTRS, vecArray3& inPutVector)
 
 		const auto r = (max - trkPC).Mod();
 		inPutVector[i] = {phiL, phiR, r};
-
 
 		/*if(maxPion.X() > 0 && maxPion.X() < 156.0 && maxPion.Y() > 0 && maxPion.Y() < 144) {
 			// hMaxPion->Fill(maxPion.X(), maxPion.Y());
