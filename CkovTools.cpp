@@ -1418,7 +1418,9 @@ void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector)
 
 		// phiR in [-pi, pi]? set to 0..2pi?
 		// inPutVector.emplace_back(std::array<double, 3>{phiL, phiR, r});
-
+		if(phiR < 0) {
+			phiR = TMath::TwoPi() + phiR;
+    }
     inPutVector[i] = {phiL, phiR, r};
     // Printf("setArrayMax() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
 
@@ -1428,13 +1430,13 @@ void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector)
 			Printf("maxPion loop i = %d, maxSize = %zu", i, maxPionVec.size()); 
 		}*/
 	}
-  /*
+  
 	for(const auto& ip : inPutVector) {
 			const auto& phiL_ = ip[0];
-			const auto& phiR_ = ip[2]; 
-			const auto& r_ = ip[1];  
+			const auto& phiR_ = ip[1]; 
+			const auto& r_ = ip[2];  
 			Printf("setArrayMax() --> checking inputVector | : phiL %.2f, phiR %.2f, r %.2f", phiL_, phiR_, r_);
-  } */ 
+  } 
 }
 
 
