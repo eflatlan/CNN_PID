@@ -352,6 +352,11 @@ public:
     int initValue;
 		
 		auto phiC = phiPhoton - phiP;
+		
+		if(phiC > TMath::TwoPi()){
+			phiC = phiC - TMath::TwoPi();
+    }
+
 
 		if (phiC < TMath::Pi()/2)
 			initValue = 0;
@@ -366,36 +371,42 @@ public:
 			Printf("phiC %.2f", phiC);
 			throw std::invalid_argument("wtf value does phiC have?");
 		} 
+		// TODO: set iv back to reasonable"" value:)
+ 		initValue = 0;
 
 		int iCnt = 0;
-		auto phi1 = vec[initValue][1]; // 
+		auto phi2 = vec[initValue][1]; // 
 
+	  Printf("initValue = %d \n  vec[initValue-1][1] = %.2f || phi2 = vec[initValue][1] =  %.2f |  vec[initValue+1][1] = %.2f;",initValue, vec[initValue-1][1], vec[initValue][1], vec[initValue+1][1]);
 
 		// set increment opposite way if phi1 > phiPhoton
 		int inc = 1;
-		if (phi1 > phiPhoton)
+		if (phi2 > phiPhoton)
 			inc = -1;		
 
 		// accesing the correct phi
-		while(phi1 < phiPhoton) {
-			phi1 = vec[initValue + iCnt][1];
+		while(phi2 < phiPhoton) {
+			Printf("while(phi1 < phiPhoton) {  || phi2 %.4f phiPhoton %.4f, iCnt %d, initValue + iCnt = %d", phi2, phiPhoton, iCnt, initValue + iCnt);
+			phi2 = vec[initValue + iCnt][1];
+			if(phi2 > phiPhoton) { break; }
 			iCnt += inc;
 		}
 
 		// TODO: this has to be changed if inc = -1?
 		int index = iCnt - 1;
 
-
 		//double phiL1 = vec.at(index).at(0);
-		double phiL1 = vec[index][0];
-		double phiL2 = vec[index+1][0];
+		double phiL1 = vec[initValue + iCnt -1][0];
+		double phiL2 = vec[initValue + iCnt][0];
 		
-		phi1 = vec[index][1];
-		double phi2 = vec[index+1][1];
+
+		// was index
+		double phi1 = vec[initValue + iCnt -1][1];
+		phi2 = vec[initValue + iCnt][1]; // iCnt
 
 		// get radiuses
-		double r1 = vec[index][2];
-		double r2 = vec[index+1][2];
+		double r1 = vec[initValue + iCnt -1][2];
+		double r2 = vec[initValue + iCnt][2];
 
 		// correct indexes are found 
 
