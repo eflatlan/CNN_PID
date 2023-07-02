@@ -53,10 +53,10 @@ static constexpr float  QuartzWindowWidth = 0.5;
 float L = rW/2;
 
 
-// L value for reconstruction
-static constexpr float  EmissionLenght = RadiatorWidth/2;
+  // L value for reconstruction
+  static constexpr float  EmissionLenght = RadiatorWidth/2;
 
-float thetaP, phiP, xPC, yPC, xRad, yRad; 
+  float thetaP, phiP, xPC, yPC, xRad, yRad; 
  float nF, nQ, nG;  
  double occupancy;
  std::array<float, 3> ckovHyps;
@@ -104,7 +104,10 @@ CkovTools (double radParams[6], double refIndexes[3],
            std::array<float, 3> ckovHyps, double occupancy, float trackCkov)
   : 
     ckovHyps(ckovHyps), occupancy(occupancy) , trackCkov(trackCkov) {
+  
 
+
+  
   xRad= radParams[0];
   yRad= radParams[1];
   L = radParams[2]; 
@@ -170,7 +173,7 @@ sinPhiP = TMath::Sin(phiP);
 TRotation rotZ; rotZ.RotateZ(phiP);
 TRotation rotY; rotY.RotateY(thetaP);
 
-      TVector3 ip(0,0,rW-L+tGap+qW);
+TVector3 ip(0,0,rW-L+tGap+qW);
 TVector3 op; op = rotZ*rotY*ip;
 
 xMipLocal = tanThetaP*cosPhiP*(rW-L + tGap + qW);
@@ -179,7 +182,13 @@ yMipLocal = tanThetaP*sinPhiP*(rW-L + tGap + qW);
 xPC = xMipLocal + xRad;
 yPC = yMipLocal + yRad;
 
+trkPC.Set(xPC, yPC); // TODO :check it equals populate.getPcImp();
+
+
 Printf("init Ckovtools \n MIP Root : %f %f %f \n MIP local %f %f",op.Px(),op.Py(),op.Pz(),xMipLocal,yMipLocal);
+      // constructor body goes here, if needed
+
+Printf("Ckovtools :: trkPC %.2f %.2f",trkPC.X(), trkPC.Y());
       // constructor body goes here, if needed
 
 
@@ -362,7 +371,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 
 
   // get track impacrt point at PC
-  trkPC = populate.getPcImp();
+
 
   TH2F *localRefMIPUnrot = new TH2F("localRefMIPUnrot ", infString,800,-40.,-40.,800,-40,40);
   TH2F *localRefUnrot = new TH2F("localRef ", infString,800,-40.,-40.,800,-40.,40.);
@@ -659,7 +668,23 @@ const TVector2 posPhoton(x, y);
 
 // find reference  radius to be compared to segmetation radiuses 
 const auto rPhoton = (posPhoton - trkPC).Mod();
+
 const auto phiPhoton = (posPhoton - trkPC).Phi();
+
+
+
+
+
+// mmmm trkPC here 0! 
+Printf("CkovTools segment() : phiPhoton  %.2f, rPhoton  %.2f  |  posPhoton {x %.2f, y %.2f} - trkPC {x %.2f, y %.2f} " , phiPhoton, rPhoton, posPhoton.X(), posPhoton.Y(), trkPC.X(), trkPC.Y());
+
+
+
+const auto pc = populate__->getPcImp();
+Printf("CkovTools segment() : phiPhoton  %.2f, rPhoton  %.2f  |  posPhoton {x %.2f, y %.2f} - trkPC2 {x %.2f, y %.2f} " , phiPhoton, rPhoton, posPhoton.X(), posPhoton.Y(), pc.X(), pc.Y());
+
+
+
 
       // Printf("CkovTools segment ckov %f", ckov);
       //Printf("CkovTools segment ckovPionMin %f ckovPionMax %f", ckovPionMin, ckovPionMax);
@@ -1398,23 +1423,33 @@ void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector)
 {
   const size_t kN = inPutVector.size();
   const auto lMin = 1.5;
+  const auto trkPC2 = populate->getPcImp();
 
-
-  Printf("setArrayMax() enter --> kN %d, etaTRS %.2f", kN, etaTRS);
+  Printf("\n\n setArrayMax() enter --> kN %d, etaTRS %.2f", kN, etaTRS);
 	for(int i = 0; i < kN; i++){
 
 		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
 		TVector3 dirTrs, dirLORS;
+
+		// set TRS values :
 		dirTrs.SetMagThetaPhi(1, etaTRS, phiL);
+
 		double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
-		
+
 		// make this fcn in populate instead?		
 		populate->trs2Lors(dirTrs, thetaR, phiR);
 		dirLORS.SetMagThetaPhi(1, thetaR, phiR);
 
-		const auto& max = populate->traceForward(dirLORS, lMin);
+		Printf("setArrayMax() dirLORS {x %.2f y %.2f z %.2f}", dirLORS.X(), dirLORS.Y(), dirLORS.Z());
 
-		const auto r = (max - trkPC).Mod();
+		const auto& max = populate->traceForward(dirLORS, lMin);
+		// add protection if traceForward returns 0 or -999?
+		const auto r = (max - trkPC2).Mod();
+
+ 		Printf("setArrayMax() --> i %d, {x %.2f y %.2f} - MIP {x %.2f y %.2f}", i, max.X(), max.Y(), trkPC.X(), trkPC.Y());
+
+		Printf("setArrayMax2() --> i %d, {x %.2f y %.2f} - MIP {x %.2f y %.2f}", i, max.X(), max.Y(), trkPC2.X(), trkPC2.Y());
+
 
 		// phiR in [-pi, pi]? set to 0..2pi?
 		// inPutVector.emplace_back(std::array<double, 3>{phiL, phiR, r});
