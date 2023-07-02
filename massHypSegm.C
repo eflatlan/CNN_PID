@@ -542,8 +542,8 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  TVector2 trkPos(xRad, yRad);
  TVector3 trkDir; trkDir.SetMagThetaPhi(1, thetaP, phiP);
 
-
-
+ // getR* getr = new getR(trkPos, trkDir, nF);
+ 
 
 
  Populate* populate = new Populate(trkPos, trkDir, nF);
@@ -647,7 +647,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   
   
 
- std::vector<std::array<double>, 3> arrMaxPion, arrMaxKaon, arrMaxProton;
+ std::vector<std::array<double, 3>> arrMaxPion, arrMaxKaon, arrMaxProton;
 
  maxPionVec.reserve(kN); maxKaonVec.reserve(kN); maxProtonVec.reserve(kN); 
  maxPionVec.resize(kN); maxKaonVec.resize(kN); maxProtonVec.resize(kN);
@@ -660,8 +660,10 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
 
  // track hit at PC in LORS : 
  const auto posPC = populate->getPcImp();
- for(int i = 0; i < maxPionVec.size(); i++){
 
+
+ for(int i = 0; i < maxPionVec.size(); i++){
+    /*
     const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
     TVector3 dirTRS, dirLORS;
     dirTrs.SetMagThetaPhi(1, ckovTools.getMaxCkovPion(), phiL);
@@ -677,9 +679,13 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
       hMaxPion->Fill(maxPion.X(), maxPion.Y());
       maxPionVec[i] = std::make_pair(maxPion.X(), maxPion.Y());
       Printf("maxPion loop i = %d, maxSize = %zu", i, maxPionVec.size()); 
-    }
+    } */ 
  }
  
+
+
+ // set segm arrays
+ // ckovTools.setArrays(arrMaxPion);
 
  
  for(int i = 0; i < maxKaonVec.size(); i++){
