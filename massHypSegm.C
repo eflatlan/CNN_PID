@@ -759,7 +759,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
 
  
  Printf(" backgroundStudy : exit populating loop"); 
- Printf("		sizes = kN %d | %d %d %d", kN, maxPionVec.size(),    maxKaonVec.size(), maxProtonVec.size()); 
+ Printf("		sizes = kN %d | %zu %zu %zu", kN, maxPionVec.size(),    maxKaonVec.size(), maxProtonVec.size()); 
 
  Printf("enter setsegment!");
  std::vector<std::pair<double, double>> maxPionVecRot(kN); 
@@ -820,7 +820,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
 
   } 
 
-   Printf(" backgroundStudy : Number of photons created :  %f ", photonCount); 
+   Printf(" backgroundStudy : Number of photons created :  %d ", photonCount); 
 
 	
   // local coordinates are transformed to global here : 

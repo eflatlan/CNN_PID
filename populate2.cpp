@@ -105,9 +105,9 @@ public:
       const auto rPhoton = (photonPos - fPc).Mod();
       // TODO: better to use MIP-pos than fPC? 
       auto lMax = 1.5; 
-      Printf("checkRangeAbove : etaMin %.3f ---> enter getRatPhi() ", etaMin);
+      // Printf("checkRangeAbove : etaMin %.3f ---> enter getRatPhi() ", etaMin);
       auto rMin = getRatPhi(photonPos,  etaMin, lMax, rPos);
-      Printf("CheckRangeAbove : rMin %.3f < rPhoton %.3f \n", rMin, rPhoton);
+      // Printf("CheckRangeAbove : rMin %.3f < rPhoton %.3f \n", rMin, rPhoton);
       return (rMin < rPhoton);
     }
 
@@ -117,9 +117,9 @@ public:
       const auto rPhoton = (photonPos - fPc).Mod();
       // TODO: better to use MIP-pos than fPC? 
       auto lMin = 0; 
-      Printf("checkRangeBelow : etaMax %.3f ---> enter getRatPhi()", etaMax);
+      // Printf("checkRangeBelow : etaMax %.3f ---> enter getRatPhi()", etaMax);
       auto rMax = getRatPhi(photonPos, etaMax, lMin, rPos);
-      Printf("checkRangeBelow : rPhoton %.3f, rMax %.3f \n", rPhoton, rMax);
+      // Printf("checkRangeBelow : rPhoton %.3f, rMax %.3f \n", rPhoton, rMax);
       return (rPhoton < rMax);
     }
 
@@ -132,8 +132,8 @@ public:
       auto lMin = 0.0, lMax = 1.5; 
       auto rMax = getRatPhi(photonPos, etaMax, lMin, rPos);
       auto rMin = getRatPhi(photonPos, etaMin, lMax, rPos);
-      Printf("CheckRange : etaMax %.3f , etaMin %.3f", etaMax, etaMin);
-      Printf("CheckRange : rMin %.3f < rPhoton %.3f, rMax %.3f", rMin, rPhoton, rMax);
+      //Printf("CheckRange : etaMax %.3f , etaMin %.3f", etaMax, etaMin);
+      //Printf("CheckRange : rMin %.3f < rPhoton %.3f, rMax %.3f", rMin, rPhoton, rMax);
       return (rMin < rPhoton && rPhoton < rMax);
     }
 
@@ -176,10 +176,10 @@ public:
       const auto R = TMath::Sqrt(xDiff*xDiff + yDiff*yDiff);
 
 
-     Printf("eta %.2f , Math::Cos(eta) %.2f | sinThetaP * TMath::Cos(phi-phiP) %.2f | cosThetaP %.2f", eta, TMath::Cos(eta), sinThetaP * TMath::Cos(phi-phiP), cosThetaP);
+     /*Printf("eta %.2f , Math::Cos(eta) %.2f | sinThetaP * TMath::Cos(phi-phiP) %.2f | cosThetaP %.2f", eta, TMath::Cos(eta), sinThetaP * TMath::Cos(phi-phiP), cosThetaP);
 
 
-     Printf("cosTheta %.2f | theta %.2f | L %.2f",cosTheta, theta, L);
+     Printf("cosTheta %.2f | theta %.2f | L %.2f",cosTheta, theta, L);*/
 
 
       // set max/min etaC value
@@ -191,12 +191,19 @@ public:
       // for the given phi value in local-ref-system, L{min/max}, eta{min/max}, 
       // create the point for the mass-hyp
       
-      Printf("getRatPhi : fPC: x %.2f y %.2f | Photon  x %.2f y %.2f | rPos x %.2f y %.2f", fPc.X(), fPc.Y(), photonPos.X(), photonPos.Y(), rPos.X(), rPos.Y());
+
+
      	
       // as for findphotckov : cluR = sqrt([cluX - fPc.X()]^2 [y..])
       auto dist = (rPos - fPc).Mod();    
 
-      Printf("getRatPhi : dist = %.2f | R(a,b) = %.2f", dist, R);
+
+
+			/*
+      Printf("getRatPhi : fPC: x %.2f y %.2f | Photon  x %.2f y %.2f | rPos x %.2f y %.2f", fPc.X(), fPc.Y(), photonPos.X(), photonPos.Y(), rPos.X(), rPos.Y());
+
+
+      Printf("getRatPhi : dist = %.2f | R(a,b) = %.2f", dist, R);*/
 
       return R; // TODO : change back to return dist?	
     }
@@ -260,6 +267,14 @@ public:
         refract(dirCkov, winIdx, gapIdx);
         propagate(dirCkov, posCkov, 0.5 * winThick + gapThick);
         pos.Set(posCkov.X(), posCkov.Y());
+
+
+				if(pos.X() == -999) {
+					Printf("	traceForward() : pos.X() = -999!");
+				}	if(pos.Y() == -999) {
+					Printf("	traceForward() : pos.Y() = -999!");
+				}
+
         return pos;
     }
 
@@ -359,7 +374,9 @@ public:
 		if(phiC > TMath::TwoPi()){
 			phiC = phiC - TMath::TwoPi();
     }
+		
 
+		Printf("enter checkCond() phiPhoton %.4f, phiP %.4f",  phiPhoton, phiP);
 
 		if (phiC < TMath::Pi()/2)
 			initValue = 0;
@@ -380,28 +397,53 @@ public:
 		int iCnt = 0;
 		auto phi2 = vec[initValue][1]; // 
 
-	  Printf("initValue = %d \n  vec[initValue-1][1] = %.2f || phi2 = vec[initValue][1] =  %.2f |  vec[initValue+1][1] = %.2f;",initValue, vec[initValue-1][1], vec[initValue][1], vec[initValue+1][1]);
+	  Printf("\n\n Enter checkCond() \n initValue = %d \n  vec[initValue-1][1] = %.3f || phi2 = vec[initValue][1] =  %.3f |  vec[initValue+1][1] = %.3f;",initValue, vec[initValue-1][1], vec[initValue][1], vec[initValue+1][1]);
 
 		// set increment opposite way if phi1 > phiPhoton
 		int inc = 1;
+
+
+
+		/* iterate backwards?
 		if (phi2 > phiPhoton)
-			inc = -1;		
+			inc = -1;		*/ 
 
 		// accesing the correct phi
 
 
-		auto prev = 0.;
-		while(phi2 < phiPhoton) {
-			Printf("while(phi1 < phiPhoton) {  || phi2 %.4f phiPhoton %.4f, iCnt %d, initValue + iCnt = %d", phi2, phiPhoton, iCnt, initValue + iCnt);
-			phi2 = vec[initValue + iCnt][1];
+		// TODO: change back to being 0?
+		double prev = 0.;// vec[initValue-1][1];
+		while(/*phi2 < phiPhoton*/ true) {
 
+			phi2 = vec[initValue + iCnt][1];
+			Printf("	while(phi12< phiPhoton) {  || phi2 %.4f, prev %.4f phiPhoton %.4f, iCnt %d, initValue + iCnt = %d", phi2, prev, phiPhoton, iCnt, initValue + iCnt);
+
+
+
+			// these 2 ifs deals with "going around"
 			// this means phi2 went "around" and went from 6.xx to 0.xx
 			// then phi2  = 0.xx, prev = 6.xx and phiPhoton is in this range
-			if(prev > phi2) {
-				Printf("prev %.2f > phi2 %.2f, exit!", prev, phi2);
+			if(prev > phi2 && prev < phiPhoton && phi2 < phiPhoton) {
+				Printf("\n prev %.3f > phi2 %.3f && phi2 %.3f < phiPhoton  %.3fexit! \n", prev, phi2, phi2, phiPhoton);
+				break;
+			} 
+			if(prev > phi2 && phi2 > phiPhoton) {
+				Printf("\n prev %.3f > phi2 %.3f && phi2 %.3f > phiPhoton %.3f, exit! \n", prev, phi2,phi2, phiPhoton);
+				break;
 			}
 
-			if(phi2 > phiPhoton) { break; }
+
+			/*denne stmmer vel ikke?:
+			if(prev > phiPhoton && phiPhoton > phi2) {
+				Printf("\n prev %.3f > phi2 %.3f, exit! \n", prev, phi2);
+				break;
+			} */  
+
+			// not break if prev = 0, phi2 > phiPhoton at 1st element
+			if(phi2 > phiPhoton && prev < phiPhoton && prev != 0) {
+				Printf("\n phi2 %.3f > phiPhoton %.3f && prev %.3f < phiPhoton %.3f: exit!\n",  phi2, phiPhoton, prev, phiPhoton);
+			 	break; 	
+			}
 			iCnt += inc;
 			prev = phi2;
 		}
@@ -424,7 +466,7 @@ public:
 
 		// correct indexes are found 
 
-		Printf("checkCond() -->  kN %d | initValue %d | phiPhoton %.2f, phiP %.2f, phiC %.2f, phi1 %.2f,", kN, initValue, phiPhoton, phiP, phiC, phi1);
+		Printf("	checkCond() -->  kN %d | initValue %d | phiPhoton %.3f, phiP %.3f, phiC %.3f, phi2 %.3f, phi1 %.3f,", kN, initValue, phiPhoton, phiP, phiC, phi2, phi1);
 
 		//Printf("phiPhoton %.2f| vec[initValue + iCnt - 1] %.2f,  vec[initValue + iCnt] %.2f, vec[initValue + iCnt + 1] %.2f", phiPhoton, vec[initValue + iCnt-1][1],  vec[initValue + iCnt][1], vec[initValue + iCnt+ 1][1]);
 		
@@ -432,6 +474,10 @@ public:
 
 		// eta is min/max ckovHyps +- 3 std-dev
 		
+
+
+		// TODO: change also logic behind?
+
 	  double rMin, rMax, phiMin, phiMax, phiLmin, phiLmax;
 		if(r2 > r1) {
 			rMin = r1;
@@ -451,15 +497,15 @@ public:
 			phiLmin = phiL2;
 		}
 
-		Printf("getAbove == %d | rPhoton = %.2f, rMax = %.2f, rMin = %.2f", getAbove, rPhoton, rMax, rMin);
+		Printf("	getAbove == %d | rPhoton = %.2f, rMax = %.2f, rMin = %.2f", getAbove, rPhoton, rMax, rMin);
 
 		// check if under a radius 
 		// 
 		if(getAbove) {
 			while(!decisionTaken) {
-				Printf("getAbove == %d  | rPhoton = %.2f, rMax = %.2f, rMin = %.2f", getAbove,  rPhoton, rMax, rMin);
+				Printf("	getAbove == %d  | rPhoton = %.2f, rMax = %.2f, rMin = %.2f", getAbove,  rPhoton, rMax, rMin);
 
-Printf("phiMax = %.2f, phiLmax = %.2f, phiMin = %.2f, phiLmin = %.2f, etaCkov %.2f, phiPhoton %.2f",phiMax, phiLmax, phiMin, phiLmin, etaCkov, phiPhoton);
+Printf("	phiMax = %.3f, phiLmax = %.3f, phiMin = %.3f, phiLmin = %.3f, etaCkov %.2f, phiPhoton %.3f",phiMax, phiLmax, phiMin, phiLmin, etaCkov, phiPhoton);
 				if((rPhoton > rMax)) {
 					// stop iterating, condition is false
 					decisionTaken = true;
@@ -479,7 +525,7 @@ Printf("phiMax = %.2f, phiLmax = %.2f, phiMin = %.2f, phiLmin = %.2f, etaCkov %.
 					splitPhi(phiMax, phiLmax, phiMin, phiLmin, etaCkov, phiPhoton); // 
 					rMax = getR(etaCkov, phiLmax, lMin);
 					rMin = getR(etaCkov, phiLmin, lMin); // TODO: should it be lMin here?
-					Printf("checkCond() | rMin = %.2f , rMax = %.2f,  ",  rMin, rMax);
+					Printf("	checkCond() | rMin = %.2f , rMax = %.2f,  ",  rMin, rMax);
 
 				} else {
 					throw std::invalid_argument("decisionTaken???");
@@ -490,7 +536,7 @@ Printf("phiMax = %.2f, phiLmax = %.2f, phiMin = %.2f, phiLmin = %.2f, etaCkov %.
 		// check if outside of radius
 		else {
 			while(!decisionTaken) {
-				Printf("getAbove = %d | rPhoton = %.2f, rMax = %.2f, rMin = %.2f", getAbove, rPhoton, rMax, rMin);
+				Printf("	getAbove = %d | rPhoton = %.2f, rMax = %.2f, rMin = %.2f", getAbove, rPhoton, rMax, rMin);
 				if((rPhoton > rMax)) {
 					// stop iterating, condition is true
 					decisionTaken = true;
@@ -505,7 +551,7 @@ Printf("phiMax = %.2f, phiLmax = %.2f, phiMin = %.2f, phiLmin = %.2f, etaCkov %.
 					splitPhi(phiMax, phiLmax, phiMin, phiLmin, etaCkov, phiPhoton); // 
 					rMax = getR(etaCkov, phiLmax, lMax);
 					rMin = getR(etaCkov, phiLmin, lMax);
-					Printf("checkCond() | rMin = %.2f , rMax = %.2f,  ",  rMin, rMax);
+					Printf("	checkCond() | rMin = %.2f , rMax = %.2f,  ",  rMin, rMax);
 				} else {
 					throw std::invalid_argument("decisionTaken???");
 				}
@@ -513,7 +559,9 @@ Printf("phiMax = %.2f, phiLmax = %.2f, phiMin = %.2f, phiLmin = %.2f, etaCkov %.
 		} 
 		Printf("exit checkCond() with condition = %d|  rMin = %.2f , rMax = %.2f, rPhoton = %.2f ", condition, rMin, rMax, rPhoton);
 
-		if(rMin > rMax ) {Printf("NB!!!!!!!! exit heckCond() :: rMin %.2f > rMax %.2f ", rMin, rMax);}
+Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, phiMax);
+
+		if(rMin > rMax ) {Printf("NB!!!!!!!! exit checkCond() :: rMin %.2f > rMax %.2f ", rMin, rMax);}
 	}
 
 	double getR(const double& etaTRS, const double& phiTRS, const double& L)
@@ -545,35 +593,37 @@ Printf("\n enter  getR()  rPosLORS {x %.2f y %.2f} - MIP {x %.2f y %.2f}",  rPos
 		const auto& phiNew = dirNewTrs.Phi();
 		
 
-    Printf("\n enter : splitPhi() : etaCkov %.2f | phiNew %.2f | phiP %.2f | thetaP %.2f | phiPhoton %.2f ", etaCkov, phiNew, phiP, thetaP, phiPhoton);
+    Printf("\n enter : splitPhi() \n phiMax %.2f , phiMin  %.2f ", phiMax, phiMin); 
 
-    Printf("splitPhi : phiLmax %.2f | phiLmin %.2f ");
+   Printf("	splitPhi() etaCkov %.2f | phiNew %.2f | phiP %.2f | thetaP %.2f | phiPhoton %.2f ", etaCkov, phiNew, phiP, thetaP, phiPhoton);
+
+    Printf("	splitPhi : phiLmax %.2f | phiLmin %.2f ", phiLmax, phiLmin);
 		if((phiPhoton) < TMath::Pi() + phiP){
 			
 			if((phiNew-phiP) > (phiPhoton-phiP)) {
 				phiMin = phiNew; 
 				phiLmin = phiNewL;		 
-				Printf("splitPhi : if((phiPhoton) < TMath::Pi() + phiP --> (phiNew-phiP) > (phiPhoton-phiP)");
+				Printf("	splitPhi : if((phiPhoton) < TMath::Pi() + phiP --> (phiNew-phiP) > (phiPhoton-phiP)");
 			} else {
 				phiMax = phiNew;
 				phiLmax = phiNewL;
-Printf("splitPhi : if((phiPhoton) < TMath::Pi() + phiP --> else()");
+Printf("	splitPhi : if((phiPhoton) < TMath::Pi() + phiP --> else()");
 			}
 		} 
 		else {
 			if((phiNew-phiP) < (phiPhoton-phiP)) {
-        Printf("splitPhi : if((phiPhoton) > TMath::Pi() + phiP --> (phiNew-phiP) < (phiPhoton-phiP)");
+        Printf("	splitPhi : if((phiPhoton) > TMath::Pi() + phiP --> (phiNew-phiP) < (phiPhoton-phiP)");
 				phiMin = phiNew; 
 				phiLmin = phiNewL; 
 			} else {
-				Printf("splitPhi : if((phiPhoton) > TMath::Pi() + phiP --> else");
+				Printf("	splitPhi : if((phiPhoton) > TMath::Pi() + phiP --> else");
 				phiMax = phiNew;
 				phiLmax = phiNewL; 
 			}
 		}		
 
-		Printf("splitPhi : ");
-    Printf("\n splitPhi Exit : phiLmax %.2f | phiLmin %.2f ");
+		Printf("	splitPhi : ");
+    Printf("\n splitPhi Exit : phiLmax %.2f | phiLmin %.2f ", phiLmax, phiLmin);
 
 	} // end splitPhi()
 

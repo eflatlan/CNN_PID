@@ -100,9 +100,9 @@ public:
       const auto rPhoton = (photonPos - fPc).Mod();
       // TODO: better to use MIP-pos than fPC? 
       auto lMax = 1.5; 
-      Printf("checkRangeAbove : etaMin %.3f ---> enter getRatPhi() ", etaMin);
+      //Printf("checkRangeAbove : etaMin %.3f ---> enter getRatPhi() ", etaMin);
       auto rMin = getRatPhi(photonPos,  etaMin, lMax, rPos);
-      Printf("CheckRangeAbove : rMin %.3f < rPhoton %.3f \n", rMin, rPhoton);
+      //Printf("CheckRangeAbove : rMin %.3f < rPhoton %.3f \n", rMin, rPhoton);
       return (rMin < rPhoton);
     }
 
@@ -112,9 +112,9 @@ public:
       const auto rPhoton = (photonPos - fPc).Mod();
       // TODO: better to use MIP-pos than fPC? 
       auto lMin = 0; 
-      Printf("checkRangeBelow : etaMax %.3f ---> enter getRatPhi()", etaMax);
+      //Printf("checkRangeBelow : etaMax %.3f ---> enter getRatPhi()", etaMax);
       auto rMax = getRatPhi(photonPos, etaMax, lMin, rPos);
-      Printf("checkRangeBelow : rPhoton %.3f, rMax %.3f \n", rPhoton, rMax);
+      //Printf("checkRangeBelow : rPhoton %.3f, rMax %.3f \n", rPhoton, rMax);
       return (rPhoton < rMax);
     }
 
@@ -127,8 +127,8 @@ public:
       auto lMin = 0.0, lMax = 1.5; 
       auto rMax = getRatPhi(photonPos, etaMax, lMin, rPos);
       auto rMin = getRatPhi(photonPos, etaMin, lMax, rPos);
-      Printf("CheckRange : etaMax %.3f , etaMin %.3f", etaMax, etaMin);
-      Printf("CheckRange : rMin %.3f < rPhoton %.3f, rMax %.3f", rMin, rPhoton, rMax);
+      //Printf("CheckRange : etaMax %.3f , etaMin %.3f", etaMax, etaMin);
+      //Printf("CheckRange : rMin %.3f < rPhoton %.3f, rMax %.3f", rMin, rPhoton, rMax);
       return (rMin < rPhoton && rPhoton < rMax);
     }
 
