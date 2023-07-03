@@ -748,9 +748,9 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
   	populate2->checkCond(posPhoton, rPhoton, phiPhoton, !above, arrMinPion, getMinCkovPion());
 	}*/ 
 	
-	
+	// we should first check if 
 	if(getProtonStatus()) {
-		bool above = true;
+		bool above = false;
 		Printf("populate2->checkCond(posPhoton, rPhoton, phiPhoton, above, arrMinProton, getMinCkovProton());");
 		// verify thatrPhoton > rMinProton(@ phiEstimated = phiPhoton)
   	populate2->checkCond(posPhoton, rPhoton, phiPhoton, above, arrMinProton, getMinCkovProton());
@@ -758,7 +758,7 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 		/*
 		Printf("populate2->checkCond(posPhoton, rPhoton, phiPhoton, !above, arrMinPion, getMinCkovPion());");
 		// check if rPhoton < rMin(@ phiEstimated = phiPhoton)
-  	populate2->checkCond(posPhoton, rPhoton, phiPhoton, !above, arrMinPion, getMinCkovPion());/
+  	populate2->checkCond(posPhoton, rPhoton, phiPhoton, !above, arrMinPion, getMinCkovPion());*/
 	} 
 	
 	
@@ -878,8 +878,8 @@ populate.checkRangeBelow(posPhoton, getMaxCkovProton(), rPosProtonMax);
       }  // end else / if pionBelow 
       Printf("\n\n");   
 
-    } // end else ifTrue
-  } // end for ckovPhotons
+    }// end else ifTrue
+  }  // end for ckovPhotons
 
   Printf("number of candidates : proton %d, kaon %d, pion %d", protonCandidates.size(), kaonCandidates.size(), pionCandidates.size());
  
@@ -1465,7 +1465,7 @@ Printf("ReconG findCkov: cluX %.3f > fPCX %.3f >  cluY %.3f > fPCY %.3f  ", xL, 
 void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector, const size_t kN)
 {
   // const size_t kN = inPutVector.size();
-  const auto lMin = 0;
+  const float lMin = 0.;
   const auto trkPC2 = populate->getPcImp();
 
   Printf("\n\n setArrayMax() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
