@@ -54,10 +54,10 @@ static constexpr float arrWaveLenDefault[30] = {
 static constexpr float nm2eV = 1239.842609;
 
 
-/*
+
 using namespace o2;
 using namespace o2::hmpid;
-*/ 
+
 
 
 class ParticleInfo : public TObject {
@@ -176,7 +176,6 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
 
 
-/*
 const float defaultPhotonEnergy = 6.75; 
 const float refIndexFreon = GetFreonIndexOfRefraction(defaultPhotonEnergy);
 const float refIndexQuartz = GetQuartzIndexOfRefraction(defaultPhotonEnergy);
@@ -190,7 +189,7 @@ const float  EmissionLenght = RadiatorWidth/2;
 const float tGap = 8;
 const float  rW = 1.5; // ? was 1
 const float  qW = 0.5;
-const float  L = rW/2;*/
+const float  L = rW/2;
 
 
 TH1* getMaxInRange(TH1* th1, float& up, float mid, float width);
@@ -318,7 +317,7 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0, do
      const auto filledBins = backgroundStudy(mapBins, occupancy, randomValue, particle); 
      
      Printf(" exit backgroundStudy"); 
-     Printf("testRandomMomentum():  mapBins.size = %.2f", mapBins.size()); 
+     Printf("testRandomMomentum():  mapBins.size = %.2zu", mapBins.size()); 
     
       // TODO : hSignalAndNoiseMap just placeholder, make instead a TH2F from the filledBins?
      const auto& map =  new TH2F("Signal and Noise2 ", "Signal and Noise2 ; x [cm]; y [cm]",160,0.,159.,144,0,143);
