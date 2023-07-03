@@ -39,10 +39,12 @@ private:
     double nF;	     // refIdnex of freon
 
     const double winThick = 0.5, radThick = 1.5; const int gapThick = 8;
-    const double getRefIdx = nF,  gapIdx = 1.0005, winIdx = 1.5787;
+    const double gapIdx = 1.0005, winIdx = 1.5787;
 
     const double nQ = winIdx, nG = gapIdx;
 
+
+		double getRefIdx;//     getRefIdx = nF;  
     double cosPhiP, sinPhiP;
     double tanThetaP;
     double deltaX, deltaY;
@@ -56,7 +58,7 @@ public:
     Populate(TVector2 trkPos, TVector3 trkDir, double _nF) : fTrkPos(trkPos),  fTrkDir(trkDir), nF(_nF) 
     {
 
-
+			getRefIdx = nF;
       fTrkPos2D.Set(trkPos.X(), trkPos.Y()); 
 
 
@@ -66,7 +68,7 @@ public:
       Printf("Track pos at RAD : x %.3f y %.3f ", trkPos.X(), trkPos.Y());
 
       
-
+    getRefIdx = nF;  
     tanThetaP = TMath::Tan(trkDir.Theta());
 			cosPhiP = TMath::Cos(trkDir.Phi());		
 			sinPhiP = TMath::Sin(trkDir.Phi());	
@@ -199,6 +201,7 @@ public:
 
     // L here is "simulated" within 0..1.5 range
     TVector2 tracePhot(const double& ckovThe, const double& ckovPhi, const double & L) const {
+    		Printf("populate : tracePhot()");
         double theta, phi;
         TVector3 dirTRS, dirLORS;
         dirTRS.SetMagThetaPhi(1, ckovThe, ckovPhi); // photon in TRS
@@ -230,11 +233,11 @@ public:
 
     TVector2 traceForward(TVector3& dirCkov, const double& L) const {
 
-	auto getRefIdx = nF;
-
         TVector2 pos(-999, -999);
         double thetaCer = dirCkov.Theta();
         if (thetaCer > TMath::ASin(1. / getRefIdx)) {
+						Printf("populate : traceForward() INVOKED thetaCer > TMath::ASin(1. / getRefIdx))");
+						Printf("getRefIdx (=nF) = %.2f, thetaCer %.2f", getRefIdx, thetaCer);
             return pos;
         }
 
@@ -252,6 +255,13 @@ public:
         refract(dirCkov, winIdx, gapIdx);
         propagate(dirCkov, posCkov, 0.5 * winThick + gapThick);
         pos.Set(posCkov.X(), posCkov.Y());
+				if(pos.X() == -999) {
+					Printf("	traceForward() : pos.X() = -999!");
+				}
+				if(pos.Y() == -999) {
+					Printf("	traceForward() : pos.Y() = -999!");
+				}
+
         return pos;
     }
 
