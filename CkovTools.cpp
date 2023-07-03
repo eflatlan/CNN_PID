@@ -244,7 +244,7 @@ void setSegment(const segType& segPion, segType& segPionRot)
     local2PhiRing(x, y, xMipLocal, yMipLocal);
     segPionRot[i] = std::make_pair(x,y);
     segPionLocal[i] = std::make_pair(x,y);
-    Printf("Ckovtools : setsegment! x %.2f y %.2f", x, y);
+    //Printf("Ckovtools : setsegment! x %.2f y %.2f", x, y);
 		i++;
   }    
   Printf("Ckovtools : exit setsegment!");
@@ -358,14 +358,15 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 	//array<array<double, 3> ,kN> arrMaxPion; 
 
   
-	vecArray3 arrMaxPion(kN);
-	arrMaxPion.reserve(kN);
-	arrMaxPion.resize(kN);
+	vecArray3 arrMaxPion;
 
+	// do not reserve size? 
+	arrMaxPion.reserve(kN);
+	// arrMaxPion.resize(kN);
 
   Printf("calling setArrayMax w getMaxCkovPion() = %.2f", getMaxCkovPion());
 
-  setArrayMax(populate__, getMaxCkovPion(), arrMaxPion);
+  setArrayMax(populate__, getMaxCkovPion(), arrMaxPion, kN);
 
   Populate2* populate2 = new Populate2(trkPos, trkDir, nF);
 
@@ -410,7 +411,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
   for(const auto& p : segPionLocal) {
 		localPion->Fill(p.first, p.second);
 
-    Printf(" ckovTools segment | x %.3f, y %.3f ", p.first, p.second);
+    //Printf(" ckovTools segment | x %.3f, y %.3f ", p.first, p.second);
   }
 
   Printf("ckovTools segment : exit const auto& p : segPionLocal"); 	 
@@ -599,8 +600,8 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
     auto dY = disY(genUnc);
     auto x = photons[0] + dX;
     auto y = photons[1] + dY;
-    Printf("ckovloop Unc | xIdeal %.2f, uncX %.2f , genX = %.2f", photons[0], dX, x);
-    Printf("ckovloop Unc | yIdeal %.2f, uncY %.2f , genY = %.2f", photons[1], dY, y);
+    //Printf("ckovloop Unc | xIdeal %.2f, uncX %.2f , genX = %.2f", photons[0], dX, x);
+    //Printf("ckovloop Unc | yIdeal %.2f, uncY %.2f , genY = %.2f", photons[1], dY, y);
     
     if(!(x > 0 && x < 156.0 && y > 0 && y < 144)) {
       Printf("Photon outside of chamber dimensions!");
@@ -660,7 +661,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
       reconG.findPhotCkov(xG, yG, thetaCer, phiCer, etaC);	
       auto ckov = thetaCer;
       const auto& ckov2 = getCkovFromCoords(xG, yG, phiP, thetaP, nF, nQ, nG, etaC);      
-      Printf("CkovTools segment | actual ckov = %.3f | bgstdy method:  %.3f | ReconMEthods:  thetaCer %f phiCer %f ", etaC, ckov2,  thetaCer, phiCer);
+      // Printf("CkovTools segment | actual ckov = %.3f | bgstdy method:  %.3f | ReconMEthods:  thetaCer %f phiCer %f ", etaC, ckov2,  thetaCer, phiCer);
 
 
 
@@ -676,12 +677,12 @@ const auto phiPhoton = (posPhoton - trkPC).Phi();
 
 
 // mmmm trkPC here 0! 
-Printf("CkovTools segment() : phiPhoton  %.2f, rPhoton  %.2f  |  posPhoton {x %.2f, y %.2f} - trkPC {x %.2f, y %.2f} " , phiPhoton, rPhoton, posPhoton.X(), posPhoton.Y(), trkPC.X(), trkPC.Y());
+//Printf("CkovTools segment() : phiPhoton  %.2f, rPhoton  %.2f  |  posPhoton {x %.2f, y %.2f} - trkPC {x %.2f, y %.2f} " , phiPhoton, rPhoton, posPhoton.X(), posPhoton.Y(), trkPC.X(), trkPC.Y());
 
 
 
 const auto pc = populate__->getPcImp();
-Printf("CkovTools segment() : phiPhoton  %.2f, rPhoton  %.2f  |  posPhoton {x %.2f, y %.2f} - trkPC2 {x %.2f, y %.2f} " , phiPhoton, rPhoton, posPhoton.X(), posPhoton.Y(), pc.X(), pc.Y());
+///Printf("CkovTools segment() : phiPhoton  %.2f, rPhoton  %.2f  |  posPhoton {x %.2f, y %.2f} - trkPC2 {x %.2f, y %.2f} " , phiPhoton, rPhoton, posPhoton.X(), posPhoton.Y(), pc.X(), pc.Y());
 
 
 
@@ -1419,9 +1420,9 @@ Printf("ReconG findCkov: cluX %.3f > fPCX %.3f >  cluY %.3f > fPCY %.3f  ", xL, 
 
 
 // placeholder...
-void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector)
+void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector, const size_t kN)
 {
-  const size_t kN = inPutVector.size();
+  // const size_t kN = inPutVector.size();
   const auto lMin = 1.5;
   const auto trkPC2 = populate->getPcImp();
 
@@ -1456,6 +1457,33 @@ void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector)
 		if(phiR < 0) {
 			phiR = TMath::TwoPi() + phiR;
     }
+
+		// protections if r > value?
+		//if(r > )
+
+
+		// TODO: if it goes out of map, find intersection with chamber-edges??
+		// really jsut check wether TraceForward returned x, y = -999.
+ 		// to set points out of the map here is fine	
+		if(max.X() < -500) {
+			// placeholder, find better solution? s
+			Printf("setArrayMax() max.X() %.1f < -500", max.X());
+    } 
+		if(max.X() == -999) {
+			// placeholder, find better solution? s
+			Printf("setArrayMax() max.X() %.1f == -999", max.X());
+    } 
+
+
+		if(max.Y() < -500) {
+			// placeholder, find better solution? s
+			Printf("setArrayMax() max.Y() %.1f < -500", max.Y());
+    } 
+		if(max.Y() == -999) {
+			// placeholder, find better solution? s
+			Printf("setArrayMax() max.Y() %.1f == -999", max.Y());
+    } 
+
     inPutVector[i] = {phiL, phiR, r};
     // Printf("setArrayMax() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
 
@@ -1465,12 +1493,12 @@ void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector)
 			Printf("maxPion loop i = %d, maxSize = %zu", i, maxPionVec.size()); 
 		}*/
 	}
-  
+  	Printf("\n");
 	for(const auto& ip : inPutVector) {
-			const auto& phiL_ = ip[0];
-			const auto& phiR_ = ip[1]; 
-			const auto& r_ = ip[2];  
-			Printf("setArrayMax() --> checking inputVector | : phiL %.2f, phiR %.2f, r %.2f", phiL_, phiR_, r_);
+		const auto& phiL_ = ip[0];
+		const auto& phiR_ = ip[1]; 
+		const auto& r_ = ip[2];  
+		Printf("setArrayMax() --> checking inputVector | : phiL %.2f, phiR %.2f, r %.2f", phiL_, phiR_, r_);
   } 
 }
 
