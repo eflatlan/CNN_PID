@@ -54,6 +54,12 @@ static constexpr float arrWaveLenDefault[30] = {
 static constexpr float nm2eV = 1239.842609;
 
 
+/*
+using namespace o2;
+using namespace o2::hmpid;
+*/ 
+
+
 class ParticleInfo : public TObject {
 public:
     // Your data members here
@@ -92,8 +98,6 @@ struct ParticleInfo {
 float arrW[750]= {0.};
 
 
-using namespace o2;
-using namespace o2::hmpid;
 
 
 void setStyleInd(TH2* th1f, float ratio = 1.2);
@@ -146,9 +150,11 @@ int nChannels = (int)(kThetaMax / fDTheta + 0.5);
 void setStyle();
 
 
-auto phots = new TH1D("Photon Candidates", "Photon Candidates;angle [rad]; counts/1 mrad", nChannels, 0, kThetaMax);
-auto photsw = new TH1D("Photon Weights", "Photon Weights;angle [rad]; counts/1 mrad", nChannels, 0, kThetaMax);
-auto resultw = new TH1D("Sum of Weights in Window at Bin", "Sum of Weights in Window at bin;angle [rad]; counts/1 mrad", nChannels, 0, kThetaMax);
+
+
+TH1D* phots = new TH1D("Photon Candidates", "Photon Candidates;angle [rad]; counts/1 mrad", nChannels, 0, kThetaMax);
+TH1D* photsw = new TH1D("Photon Weights", "Photon Weights;angle [rad]; counts/1 mrad", nChannels, 0, kThetaMax);
+TH1D* resultw = new TH1D("Sum of Weights in Window at Bin", "Sum of Weights in Window at bin;angle [rad]; counts/1 mrad", nChannels, 0, kThetaMax);
 TH1F *hTheta = new TH1F("Background","Background; angle [rad]; counts/1 mrad",750,0.,0.75); 
 
 TH1F *hThetaCh = new TH1F("Cherenkov Photons","Cherenkov Photons; angle [rad]; counts/1 mrad",750,0.,0.75); 
@@ -163,16 +169,18 @@ float /*std::array<TH1D*, 3>*/ houghResponse(std::vector<float>& photonCandidate
 
 
 
-const float defaultPhotonEnergy = 6.75; 
-const float refIndexFreon = GetFreonIndexOfRefraction(defaultPhotonEnergy);
-const float refIndexQuartz = GetQuartzIndexOfRefraction(defaultPhotonEnergy);
-const float  refIndexCH4 = 1.00; 
+
 
 
 std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBins, float occupancy, RandomValues& randomValue, ParticleInfo& particle);
 
 
 
+/*
+const float defaultPhotonEnergy = 6.75; 
+const float refIndexFreon = GetFreonIndexOfRefraction(defaultPhotonEnergy);
+const float refIndexQuartz = GetQuartzIndexOfRefraction(defaultPhotonEnergy);
+const float  refIndexCH4 = 1.00; 
 const float CH4GapWidth = 8;
 const float  RadiatorWidth = 1.5; // ? was 1
 const float  QuartzWindowWidth = 0.5;
@@ -182,7 +190,7 @@ const float  EmissionLenght = RadiatorWidth/2;
 const float tGap = 8;
 const float  rW = 1.5; // ? was 1
 const float  qW = 0.5;
-const float  L = rW/2;
+const float  L = rW/2;*/
 
 
 TH1* getMaxInRange(TH1* th1, float& up, float mid, float width);
