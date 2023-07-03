@@ -1426,7 +1426,7 @@ void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector, cons
   const auto lMin = 1.5;
   const auto trkPC2 = populate->getPcImp();
 
-  Printf("\n\n setArrayMax() enter --> kN %d, etaTRS %.2f", kN, etaTRS);
+  Printf("\n\n setArrayMax() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
 	for(int i = 0; i < kN; i++){
 
 		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
@@ -1435,15 +1435,34 @@ void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector, cons
 		// set TRS values :
 		dirTrs.SetMagThetaPhi(1, etaTRS, phiL);
 
+		Printf("\n setArrayMax() dirTrs.SetMagThetaPhi(1, etaTRS = x %.2f, phiL = x %.2f); ", etaTRS, phiL);
+		
+
 		double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
 
 		// make this fcn in populate instead?		
 		populate->trs2Lors(dirTrs, thetaR, phiR);
+		
+		Printf("setArrayMax() called trs2Lors on dirTRS : return { thetaR = %.2f, phiR = %.2f}", thetaR, phiR);
+		
+
 		dirLORS.SetMagThetaPhi(1, thetaR, phiR);
 
 		Printf("setArrayMax() dirLORS {x %.2f y %.2f z %.2f}", dirLORS.X(), dirLORS.Y(), dirLORS.Z());
 
+
+		// temp
+		// ckovThe, const double& ckovPhi, const double & L
+		// this should return the same as max
+		const auto t = populate->tracePhot(etaTRS, phiL, lMin);
+		Printf("setArrayMax() tracePhot returned TVector2 {x %.2f y %.2f}", t.X(), t.Y());
+		// temp
+		
+		Printf("setArrayMax() called  populate->traceForward(dirLORS (thetaR %.2f, phiR %.2f) lMin =  %.2f", thetaR, phiR, lMin);
 		const auto& max = populate->traceForward(dirLORS, lMin);
+		
+		Printf("setArrayMax() traceForward returned TVector2 {x %.2f y %.2f}", max.X(), max.Y());
+		
 		// add protection if traceForward returns 0 or -999?
 		const auto r = (max - trkPC2).Mod();
 
@@ -1465,26 +1484,21 @@ void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector, cons
 		// TODO: if it goes out of map, find intersection with chamber-edges??
 		// really jsut check wether TraceForward returned x, y = -999.
  		// to set points out of the map here is fine	
-		if(max.X() < -500) {
-			// placeholder, find better solution? s
-			Printf("setArrayMax() max.X() %.1f < -500", max.X());
-    } 
-		if(max.X() == -999) {
-			// placeholder, find better solution? s
-			Printf("setArrayMax() max.X() %.1f == -999", max.X());
-    } 
 
 
-		if(max.Y() < -500) {
+		if((max.Y() == -999) or (max.X() == -999)) {
 			// placeholder, find better solution? s
-			Printf("setArrayMax() max.Y() %.1f < -500", max.Y());
-    } 
-		if(max.Y() == -999) {
-			// placeholder, find better solution? s
-			Printf("setArrayMax() max.Y() %.1f == -999", max.Y());
-    } 
-
-    inPutVector[i] = {phiL, phiR, r};
+			if(max.Y() == -999) {
+				Printf("setArrayMax() max.Y() %.1f == -999", max.Y());
+			}
+			if(max.X() == -999) {
+				Printf("setArrayMax() max.X() %.1f == -999", max.X());
+			}
+    } else {
+    	inPutVector.emplace_back(std::array<double,3>{phiL, phiR, r});
+    	Printf("setArrayMax() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
+    }
+    	//inPutVector[i] = {phiL, phiR, r};
     // Printf("setArrayMax() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
 
 		/*if(maxPion.X() > 0 && maxPion.X() < 156.0 && maxPion.Y() > 0 && maxPion.Y() < 144) {

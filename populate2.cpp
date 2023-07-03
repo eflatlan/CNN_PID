@@ -211,6 +211,7 @@ public:
 
     // L here is "simulated" within 0..1.5 range
     TVector2 tracePhot(const double& ckovThe, const double& ckovPhi, const double & L) const {
+    		Printf("populate2 : tracePhot()");
         double theta, phi;
         TVector3 dirTRS, dirLORS;
         dirTRS.SetMagThetaPhi(1, ckovThe, ckovPhi); // photon in TRS
@@ -248,8 +249,8 @@ public:
         TVector2 pos(-999, -999);
         double thetaCer = dirCkov.Theta();
         if (thetaCer > TMath::ASin(1. / getRefIdx)) {
-						Printf("traceForward() INVOKED thetaCer > TMath::ASin(1. / getRefIdx))");
-						Printf("getRefIdx (=nF) = %.2f, thetaCer %.2f");
+						Printf("populate2: traceForward() INVOKED thetaCer > TMath::ASin(1. / getRefIdx))");
+						Printf("getRefIdx (=nF) = %.2f, thetaCer %.2f", getRefIdx, thetaCer);
             return pos;
         }
 
@@ -412,10 +413,12 @@ public:
 
 
 		// TODO: change back to being 0?
-		double prev = 0.;// vec[initValue-1][1];
+		// double prev = 0.;// vec[initValue-1][1];
+
+		double prev = vec[initValue][1];
 		while(/*phi2 < phiPhoton*/ true) {
 
-			phi2 = vec[initValue + iCnt][1];
+			phi2 = vec[initValue + iCnt +1][1]; // waas not +1_
 			Printf("	while(phi12< phiPhoton) {  || phi2 %.4f, prev %.4f phiPhoton %.4f, iCnt %d, initValue + iCnt = %d", phi2, prev, phiPhoton, iCnt, initValue + iCnt);
 
 
@@ -452,17 +455,17 @@ public:
 		int index = iCnt - 1;
 
 		//double phiL1 = vec.at(index).at(0);
-		double phiL1 = vec[initValue + iCnt -1][0];
-		double phiL2 = vec[initValue + iCnt][0];
+		double phiL1 = vec[initValue + iCnt][0];
+		double phiL2 = vec[initValue + iCnt+1][0];
 		
 
 		// was index
-		double phi1 = vec[initValue + iCnt -1][1];
-		phi2 = vec[initValue + iCnt][1]; // iCnt
+		double phi1 = vec[initValue + iCnt][1];
+		phi2 = vec[initValue + iCnt + 1][1]; // iCnt
 
 		// get radiuses
-		double r1 = vec[initValue + iCnt -1][2];
-		double r2 = vec[initValue + iCnt][2];
+		double r1 = vec[initValue + iCnt][2];
+		double r2 = vec[initValue + iCnt+1][2];
 
 		// correct indexes are found 
 
@@ -505,7 +508,7 @@ public:
 			while(!decisionTaken) {
 				Printf("	getAbove == %d  | rPhoton = %.2f, rMax = %.2f, rMin = %.2f", getAbove,  rPhoton, rMax, rMin);
 
-Printf("	phiMax = %.3f, phiLmax = %.3f, phiMin = %.3f, phiLmin = %.3f, etaCkov %.2f, phiPhoton %.3f",phiMax, phiLmax, phiMin, phiLmin, etaCkov, phiPhoton);
+Printf("	phiMax = %.4f, phiLmax = %.4f, phiMin = %.4f, phiLmin = %.4f, etaCkov %.4f, phiPhoton %.4f",phiMax, phiLmax, phiMin, phiLmin, etaCkov, phiPhoton);
 				if((rPhoton > rMax)) {
 					// stop iterating, condition is false
 					decisionTaken = true;
@@ -590,8 +593,10 @@ Printf("\n enter  getR()  rPosLORS {x %.2f y %.2f} - MIP {x %.2f y %.2f}",  rPos
 		
 		trs2Lors(dirNewTrs, thetaP, phiP); 
 		
-		const auto& phiNew = dirNewTrs.Phi();
-		
+		auto phiNew = dirNewTrs.Phi();
+		if (phiNew < 0) {
+			phiNew = TMath::TwoPi() + phiNew;
+		}
 
     Printf("\n enter : splitPhi() \n phiMax %.2f , phiMin  %.2f ", phiMax, phiMin); 
 

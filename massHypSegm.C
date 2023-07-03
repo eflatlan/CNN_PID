@@ -326,7 +326,7 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0, do
 
      particleVector.emplace_back(particle);
 
-     Printf("CkovAngle %f Mass %f RefIndex %f Momentum %f | Num Entries in Map : %d", particle.ckov, particle.mass, particle.refractiveIndex, particle.momentum, particle.filledBins.size()); 
+     Printf("CkovAngle %f Mass %f RefIndex %f Momentum %f | Num Entries in Map : %zu", particle.ckov, particle.mass, particle.refractiveIndex, particle.momentum, particle.filledBins.size()); 
      //map->SaveAs(Form("map%d.root", i));
   }
 
@@ -618,16 +618,16 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
  Printf(" backgroundStudy : populating lines"); 
  const auto& p1S = populate->tracePhot(ckovTools.getMaxCkovProton(), 0, lMax);
- const auto& p2S = populate->tracePhot(ckovTools.getMaxCkovProton()*1.1, 0, lMax);
+ const auto& p2S = populate->tracePhot(ckovTools.getMaxCkovProton(), 0, lMax);
 
 
 
  const auto& p1E = populate->tracePhot(ckovTools.getMaxCkovProton(), TMath::Pi(), lMax);
- const auto& p2E = populate->tracePhot(ckovTools.getMaxCkovProton()*1.1, TMath::Pi(), lMax);
+ const auto& p2E = populate->tracePhot(ckovTools.getMaxCkovProton(), TMath::Pi(), lMax);
 
 
  const auto& p3S = populate->tracePhot(ckovTools.getMaxCkovProton(), TMath::Pi()*1.5, lMax);
- const auto& p3E = populate->tracePhot(ckovTools.getMaxCkovProton()*1.1, TMath::Pi()*0.5, lMax);
+ const auto& p3E = populate->tracePhot(ckovTools.getMaxCkovProton(), TMath::Pi()*0.5, lMax);
 
  TLine *l1 = new TLine(p1S.X(), p1S.Y(), p1E.X(), p1E.Y());
  l1->SetLineColor(kOrange);
@@ -710,7 +710,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
  Printf(" backgroundStudy : populating loop"); 
  
 
-
+ Printf(" minPionVec : populating loop"); 
  // max etaC, min L
  for(int i = 0; i < minPionVec.size(); i++){
     const auto& minPion = populate->tracePhot(ckovTools.getMaxCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN), lMin);
@@ -720,7 +720,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
     }
  }
 
-
+ Printf(" maxPionVec : populating loop"); 
  // min etaC, max L
  for(int i = 0; i < minPionVec.size(); i++){
     const auto& minPion = populate->tracePhot(ckovTools.getMinCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN), lMax);
@@ -740,7 +740,10 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
       //Printf("minPion loop i = %d, minSize = %zu", i, minPionVec.size()); 
     }
  }
- 
+
+
+
+  Printf(" minProtonVec : populating loop"); 
  for(int i = 0; i < minProtonVec.size(); i++){
     const auto& minProton = populate->tracePhot(ckovTools.getMinCkovProton(), Double_t(TMath::TwoPi()*(i+1)/(kN)), lMax);
     if(minProton.X() > 0 && minProton.X() < 156.0 && minProton.Y() > 0 && minProton.Y() < 144) {
@@ -749,6 +752,8 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
 		}
  }
  
+
+  Printf(" minKaonVec : populating loop"); 
  for(int i = 0; i < minKaonVec.size(); i++){
     const auto& minKaon = populate->tracePhot(ckovTools.getMinCkovKaon(), Double_t(TMath::TwoPi()*(i+1)/kN), lMax);
     if(minKaon.X() > 0 && minKaon.X() < 156.0 && minKaon.Y() > 0 && minKaon.Y() < 144) {
