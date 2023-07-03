@@ -12,6 +12,9 @@
 
 //namespace ParticleUtils
 using namespace o2;
+
+
+
 class CkovTools {
 
 
@@ -358,15 +361,34 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 	//array<array<double, 3> ,kN> arrMaxPion; 
 
   
-	vecArray3 arrMaxPion;
+	vecArray3 arrMaxPion, arrMinPion, arrMinProton, arrMaxProton;
 
-	// do not reserve size? 
+	// do not reserve size? NO prob just dont resize :) 
 	arrMaxPion.reserve(kN);
+	arrMinPion.reserve(kN);
+
 	// arrMaxPion.resize(kN);
-
+	
+	
+	// check if candidate can be proton (i.e., that it exceeds momentum threshold)
+	if(getProtonStatus()) {
+		arrMaxProton.reserve(kN);
+		arrMinProton.reserve(kN);
+		
+		
+		// also later add max, i forste runde sjekk at ckov i {minProton, maxPion}
+		Printf("calling setArrayMin w getMinCkovProton() = %.2f", getMinCkovProton());
+  	setArrayMin(populate__, getMinCkovProton(), arrMinProton, kN);
+	}
+	
+	/*
   Printf("calling setArrayMax w getMaxCkovPion() = %.2f", getMaxCkovPion());
+  setArrayMax(populate__, getMaxCkovPion(), arrMaxPion, kN);*/
 
-  setArrayMax(populate__, getMaxCkovPion(), arrMaxPion, kN);
+
+
+  Printf("calling setArrayMin w getMinCkovPion() = %.2f", getMinCkovPion());
+  setArrayMin(populate__, getMinCkovPion(), arrMinPion, kN);
 
   Populate2* populate2 = new Populate2(trkPos, trkDir, nF);
 
@@ -712,14 +734,34 @@ const auto pc = populate__->getPcImp();
 void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& phiPhoton, bool getAbove, vecArray3& vec, const double& etaCkov)
   */ 
 	
+	
+	/*
 	if(getPionStatus()) {
 		bool above = true;
 		Printf("populate2->checkCond(posPhoton, rPhoton, phiPhoton, above, arrMaxPion, getMaxCkovPion());");
 		// check if rPhoton > rMax(@ phiEstimated = phiPhoton)
-  	populate2->checkCond(posPhoton, rPhoton, phiPhoton, above, arrMaxPion, getMaxCkovPion());
+  	//populate2->checkCond(posPhoton, rPhoton, phiPhoton, above, arrMaxPion, getMaxCkovPion());
+  	
 
-		//checkCond(above,  maxPionVecL)
-	}
+		Printf("populate2->checkCond(posPhoton, rPhoton, phiPhoton, !above, arrMinPion, getMinCkovPion());");
+		// check if rPhoton < rMin(@ phiEstimated = phiPhoton)
+  	populate2->checkCond(posPhoton, rPhoton, phiPhoton, !above, arrMinPion, getMinCkovPion());
+	}*/ 
+	
+	
+	if(getProtonStatus()) {
+		bool above = true;
+		Printf("populate2->checkCond(posPhoton, rPhoton, phiPhoton, above, arrMinProton, getMinCkovProton());");
+		// verify thatrPhoton > rMinProton(@ phiEstimated = phiPhoton)
+  	populate2->checkCond(posPhoton, rPhoton, phiPhoton, above, arrMinProton, getMinCkovProton());
+  	
+		/*
+		Printf("populate2->checkCond(posPhoton, rPhoton, phiPhoton, !above, arrMinPion, getMinCkovPion());");
+		// check if rPhoton < rMin(@ phiEstimated = phiPhoton)
+  	populate2->checkCond(posPhoton, rPhoton, phiPhoton, !above, arrMinPion, getMinCkovPion());/
+	} 
+	
+	
 	// phiL, phi, R of maxPionVec vectorh
 
 
@@ -1423,7 +1465,7 @@ Printf("ReconG findCkov: cluX %.3f > fPCX %.3f >  cluY %.3f > fPCY %.3f  ", xL, 
 void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector, const size_t kN)
 {
   // const size_t kN = inPutVector.size();
-  const auto lMin = 1.5;
+  const auto lMin = 0;
   const auto trkPC2 = populate->getPcImp();
 
   Printf("\n\n setArrayMax() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
@@ -1517,8 +1559,111 @@ void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector, cons
 }
 
 
+
+
 // placeholder...
-void setArrayMin(Populate* populate, double etaTRS, vecArray3& inPutVector)
+void setArrayMin(Populate* populate, double etaTRS, vecArray3& inPutVector, const size_t kN)
+{
+  // const size_t kN = inPutVector.size();
+
+  // higher L == > lower radius
+  const auto lMax = 1.5;
+  const auto trkPC2 = populate->getPcImp();
+
+  Printf("\n\n setArrayMin() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
+	for(int i = 0; i < kN; i++){
+
+		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
+		TVector3 dirTrs, dirLORS;
+
+		// set TRS values :
+		dirTrs.SetMagThetaPhi(1, etaTRS, phiL);
+
+		Printf("\n setArrayMin() dirTrs.SetMagThetaPhi(1, etaTRS = x %.2f, phiL = x %.2f); ", etaTRS, phiL);
+		
+
+		double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
+
+		// make this fcn in populate instead?		
+		populate->trs2Lors(dirTrs, thetaR, phiR);
+		
+		Printf("setArrayMin() called trs2Lors on dirTRS : return { thetaR = %.2f, phiR = %.2f}", thetaR, phiR);
+		
+
+		dirLORS.SetMagThetaPhi(1, thetaR, phiR);
+
+		Printf("setArrayMin() dirLORS {x %.2f y %.2f z %.2f}", dirLORS.X(), dirLORS.Y(), dirLORS.Z());
+
+
+		// temp
+		// ckovThe, const double& ckovPhi, const double & L
+		// this should return the same as max
+		const auto t = populate->tracePhot(etaTRS, phiL, lMax);
+		Printf("setArrayMin() tracePhot returned TVector2 {x %.2f y %.2f}", t.X(), t.Y());
+		// temp
+		
+		Printf("setArrayMin() called  populate->traceForward(dirLORS (thetaR %.2f, phiR %.2f) lMax =  %.2f", thetaR, phiR, lMax);
+		const auto& max = populate->traceForward(dirLORS, lMax);
+		
+		Printf("setArrayMin() traceForward returned TVector2 {x %.2f y %.2f}", max.X(), max.Y());
+		
+		// add protection if traceForward returns 0 or -999?
+		const auto r = (max - trkPC2).Mod();
+
+ 		Printf("setArrayMin() --> i %d, {x %.2f y %.2f} - MIP {x %.2f y %.2f}", i, max.X(), max.Y(), trkPC.X(), trkPC.Y());
+
+		Printf("setArrayMin2() --> i %d, {x %.2f y %.2f} - MIP {x %.2f y %.2f}", i, max.X(), max.Y(), trkPC2.X(), trkPC2.Y());
+
+
+		// phiR in [-pi, pi]? set to 0..2pi?
+		// inPutVector.emplace_back(std::array<double, 3>{phiL, phiR, r});
+		if(phiR < 0) {
+			phiR = TMath::TwoPi() + phiR;
+    }
+
+		// protections if r > value?
+		//if(r > )
+
+
+		// TODO: if it goes out of map, find intersection with chamber-edges??
+		// really jsut check wether TraceForward returned x, y = -999.
+ 		// to set points out of the map here is fine	
+
+
+		if((max.Y() == -999) or (max.X() == -999)) {
+			// placeholder, find better solution? s
+			if(max.Y() == -999) {
+				Printf("setArrayMin() max.Y() %.1f == -999", max.Y());
+			}
+			if(max.X() == -999) {
+				Printf("setArrayMin() max.X() %.1f == -999", max.X());
+			}
+    } else {
+    	inPutVector.emplace_back(std::array<double,3>{phiL, phiR, r});
+    	Printf("setArrayMin() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
+    }
+    	//inPutVector[i] = {phiL, phiR, r};
+    // Printf("setArrayMin() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
+
+		/*if(maxPion.X() > 0 && maxPion.X() < 156.0 && maxPion.Y() > 0 && maxPion.Y() < 144) {
+			// hMaxPion->Fill(maxPion.X(), maxPion.Y());
+			// maxPionVec[i] = std::make_pair(maxPion.X(), maxPion.Y());
+			Printf("maxPion loop i = %d, maxSize = %zu", i, maxPionVec.size()); 
+		}*/
+	}
+  	Printf("\n");
+	for(const auto& ip : inPutVector) {
+		const auto& phiL_ = ip[0];
+		const auto& phiR_ = ip[1]; 
+		const auto& r_ = ip[2];  
+		Printf("setArrayMin() --> checking inputVector | : phiL %.2f, phiR %.2f, r %.2f", phiL_, phiR_, r_);
+  } 
+}
+
+
+
+// placeholder...
+void setArrayMin2(Populate* populate, double etaTRS, vecArray3& inPutVector)
 {
   const size_t kN = inPutVector.size();
   const auto lMax = 1.5;
