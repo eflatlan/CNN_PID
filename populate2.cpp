@@ -51,6 +51,11 @@ private:
 
 
     TVector2 fTrkPos2D;
+
+
+		// unc in HMPI in mm (should prob be 2*sqrt(2) or 1*sqrt(2))
+		static constexpr float uncSquared = .2;
+
 public:
 
     Populate2(TVector2 trkPos, TVector3 trkDir, double _nF) : fTrkPos(trkPos),  fTrkDir(trkDir), nF(_nF) 
@@ -575,6 +580,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 	bool checkOver(const TVector2& posPhoton, const double& rPhoton, const double& phiPhoton, vecArray3& vec, const double& etaCkov, const char* hadronType) {
 		// vec : contains phiL, phi, R w etaMin/etaMax for hadron species
 
+		
 		const double lMin = 0.;//, lMax = 1.5;
     bool decisionTaken = false, condition = false;
 
@@ -722,15 +728,17 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 			Printf("	| rPhoton = %.2f, rMax = %.2f, rMin = %.2f",  rPhoton, rMax, rMin);
 
 			Printf("	phiMax = %.4f, phiLmax = %.4f, phiMin = %.4f, phiLmin = %.4f, etaCkov %.4f, phiPhoton %.4f",phiMax, phiLmax, phiMin, phiLmin, etaCkov, phiPhoton);
-			if((rPhoton > rMax)) {
-				// stop iterating, condition is false
-				decisionTaken = true;
-				condition = false;
-				break; // just tbs
-			} else if((rPhoton < rMin)) {
+
+			if((rPhoton < rMin + uncSquared)) {
 				// stop iterating, condition is ok!
 				decisionTaken = true;
 				condition = true;
+				break; // just tbs
+			}
+			else if((rPhoton > rMax + uncSquared)) {
+				// stop iterating, condition is false
+				decisionTaken = true;
+				condition = false;
 				break; // just tbs
 			} else if((rPhoton > rMin && rPhoton < rMax)) {
 				// iterate by splitting r1, r2 -> phi1 phi2
@@ -910,11 +918,11 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 
 		while(!decisionTaken) {
 			Printf("	rPhoton = %.2f, rMax = %.2f, rMin = %.2f", rPhoton, rMax, rMin);
-			if((rPhoton > rMax)) {
+			if((rPhoton + uncSquared >  rMax)) {
 				// stop iterating, condition is true
 				decisionTaken = true;
 				condition = true;
-			} else if((rPhoton < rMin)) {
+			} else if((rPhoton + uncSquared < rMin)) {
 				// stop iterating, condition is false!
 				decisionTaken = true;
 				condition = false;
