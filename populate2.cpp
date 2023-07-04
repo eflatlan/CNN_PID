@@ -572,10 +572,10 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 
 
 
-	bool checkOver(const TVector2& posPhoton, const double& rPhoton, const double& phiPhoton, vecArray3& vec, const double& etaCkov) {
+	bool checkOver(const TVector2& posPhoton, const double& rPhoton, const double& phiPhoton, vecArray3& vec, const double& etaCkov, const char* hadronType) {
 		// vec : contains phiL, phi, R w etaMin/etaMax for hadron species
 
-		const double lMin = 0., lMax = 1.5;
+		const double lMin = 0.;//, lMax = 1.5;
     bool decisionTaken = false, condition = false;
 
     //const std::array<double, 3>	fst = vec[index];	
@@ -590,7 +590,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
     }
 		
 
-		Printf("enter checkOver() phiPhoton %.4f, phiP %.4f",  phiPhoton, phiP);
+		Printf("\n\n enter checkOver(%s) phiPhoton %.4f, phiP %.4f", hadronType, phiPhoton, phiP);
 
 		if (phiC < TMath::Pi()/2)
 			initValue = 0;
@@ -611,7 +611,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		int iCnt = 0;
 		auto phi2 = vec[initValue][1]; // 
 
-	  Printf("\n\n Enter checkOver() \n initValue = %d \n  vec[initValue-1][1] = %.3f || phi2 = vec[initValue][1] =  %.3f |  vec[initValue+1][1] = %.3f;",initValue, vec[initValue-1][1], vec[initValue][1], vec[initValue+1][1]);
+	  Printf(" Enter checkOver(%s) \n initValue = %d \n  vec[initValue-1][1] = %.3f || phi2 = vec[initValue][1] =  %.3f |  vec[initValue+1][1] = %.3f;", hadronType,initValue, vec[initValue-1][1], vec[initValue][1], vec[initValue+1][1]);
 
 		// set increment opposite way if phi1 > phiPhoton
 		int inc = 1;
@@ -682,7 +682,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 
 		// correct indexes are found 
 
-		Printf("	checkOver() -->  kN %d | initValue %d | phiPhoton %.3f, phiP %.3f, phiC %.3f, phi2 %.3f, phi1 %.3f,", kN, initValue, phiPhoton, phiP, phiC, phi2, phi1);
+		Printf("	checkOver(%s) -->  kN %d | initValue %d | phiPhoton %.3f, phiP %.3f, phiC %.3f, phi2 %.3f, phi1 %.3f,", hadronType, kN, initValue, phiPhoton, phiP, phiC, phi2, phi1);
 
 		//Printf("phiPhoton %.2f| vec[initValue + iCnt - 1] %.2f,  vec[initValue + iCnt] %.2f, vec[initValue + iCnt + 1] %.2f", phiPhoton, vec[initValue + iCnt-1][1],  vec[initValue + iCnt][1], vec[initValue + iCnt+ 1][1]);
 		
@@ -741,7 +741,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 				splitPhi(phiMax, phiLmax, phiMin, phiLmin, etaCkov, phiPhoton); // 
 				rMax = getR(etaCkov, phiLmax, lMin);
 				rMin = getR(etaCkov, phiLmin, lMin); // TODO: should it be lMin here?
-				Printf("	checkOver() | rMin = %.2f , rMax = %.2f,  ",  rMin, rMax);
+				Printf("	checkOver(%s) | rMin = %.2f , rMax = %.2f,  \n",hadronType,  rMin, rMax);
 
 			} else {
 				throw std::invalid_argument("decisionTaken???");
@@ -749,11 +749,11 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		}
 	
 
-		Printf("exit checkOver() with condition = %d|  rMin = %.2f , rMax = %.2f, rPhoton = %.2f ", condition, rMin, rMax, rPhoton);
+		Printf("exit checkOver(%s) with condition = %d|  rMin = %.2f , rMax = %.2f, rPhoton = %.2f | L used for lim : ", hadronType, condition, rMin, rMax, rPhoton, lMin);
 
 Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, phiMax);
 
-		if(rMin > rMax ) {Printf("NB!!!!!!!! exit checkOver() :: rMin %.2f > rMax %.2f ", rMin, rMax);}
+		if(rMin > rMax ) {Printf("NB!!!!!!!! exit checkOver(%s) :: rMin %.2f > rMax %.2f ", hadronType, rMin, rMax);}
 
 
 		// the condition to be evaluated {false/true}
@@ -762,10 +762,11 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 
 
 
-	bool checkUnder(const TVector2& posPhoton, const double& rPhoton, const double& phiPhoton, vecArray3& vec, const double& etaCkov) {
+	bool checkUnder(const TVector2& posPhoton, const double& rPhoton, const double& phiPhoton, vecArray3& vec, const double& etaCkov, const char* hadronType) {
 		// vec : contains phiL, phi, R w etaMin/etaMax for hadron species
 
-		const double lMin = 0., lMax = 1.5;
+		//const double lMin = 0., 
+		const double lMax = 1.5;
     bool decisionTaken = false, condition = false;
 
     //const std::array<double, 3>	fst = vec[index];	
@@ -780,7 +781,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
     }
 		
 
-		Printf("enter checkUnder() phiPhoton %.4f, phiP %.4f",  phiPhoton, phiP);
+		Printf("\n\n enter checkUnder(%s) phiPhoton %.4f, phiP %.4f",  hadronType, phiPhoton, phiP);
 
 		if (phiC < TMath::Pi()/2)
 			initValue = 0;
@@ -801,7 +802,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		int iCnt = 0;
 		auto phi2 = vec[initValue][1]; // 
 
-	  Printf("\n\n Enter checkUnder() \n initValue = %d \n  vec[initValue-1][1] = %.3f || phi2 = vec[initValue][1] =  %.3f |  vec[initValue+1][1] = %.3f;",initValue, vec[initValue-1][1], vec[initValue][1], vec[initValue+1][1]);
+	  Printf(" Enter checkUnder(%s) \n initValue = %d \n  vec[initValue-1][1] = %.3f || phi2 = vec[initValue][1] =  %.3f |  vec[initValue+1][1] = %.3f;", hadronType,initValue, vec[initValue-1][1], vec[initValue][1], vec[initValue+1][1]);
 
 		// set increment opposite way if phi1 > phiPhoton
 		int inc = 1;
@@ -872,7 +873,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 
 		// correct indexes are found 
 
-		Printf("	checkUnder() -->  kN %d | initValue %d | phiPhoton %.3f, phiP %.3f, phiC %.3f, phi2 %.3f, phi1 %.3f,", kN, initValue, phiPhoton, phiP, phiC, phi2, phi1);
+		Printf("	checkUnder(%s) -->  kN %d | initValue %d | phiPhoton %.3f, phiP %.3f, phiC %.3f, phi2 %.3f, phi1 %.3f,", hadronType, kN, initValue, phiPhoton, phiP, phiC, phi2, phi1);
 
 		//Printf("phiPhoton %.2f| vec[initValue + iCnt - 1] %.2f,  vec[initValue + iCnt] %.2f, vec[initValue + iCnt + 1] %.2f", phiPhoton, vec[initValue + iCnt-1][1],  vec[initValue + iCnt][1], vec[initValue + iCnt+ 1][1]);
 		
@@ -923,17 +924,17 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 				splitPhi(phiMax, phiLmax, phiMin, phiLmin, etaCkov, phiPhoton); // 
 				rMax = getR(etaCkov, phiLmax, lMax);
 				rMin = getR(etaCkov, phiLmin, lMax);
-				Printf("	checkUnder() | rMin = %.2f , rMax = %.2f,  ",  rMin, rMax);
+				Printf("	checkUnder(%s) | rMin = %.2f , rMax = %.2f,  ",hadronType,  rMin, rMax);
 			} else {
 				throw std::invalid_argument("decisionTaken???");
 			}
 		}
 
-		Printf("exit checkUnder() with condition = %d|  rMin = %.2f , rMax = %.2f, rPhoton = %.2f ", condition, rMin, rMax, rPhoton);
+		Printf("exit checkUnder(%s) with condition = %d|  rMin = %.2f , rMax = %.2f, rPhoton = %.2f | L used for lim = %.2f",hadronType, condition, rMin, rMax, rPhoton, lMax);
 
-Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, phiMax);
+Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f \n, ",phiMin, phiPhoton, phiMax);
 
-		if(rMin > rMax ) {Printf("NB!!!!!!!! exit checkUnder() :: rMin %.2f > rMax %.2f ", rMin, rMax);}
+		if(rMin > rMax ) {Printf("NB!!!!!!!! exit checkUnder(%s) :: rMin %.2f > rMax %.2f ", hadronType, rMin, rMax);}
 
 
 		// the condition to be evaluated {false/true}
