@@ -625,6 +625,9 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
   // TODO: add sqrt(uncX^2 + uncY^2) to radius of ckov hyps?
 
 
+
+	// TODO: here the unc is - unc to + unc, in reality we then add 2* as much as s
+  // it should be
   // within the ~1mm unc range, generate a value +- unc to add to 
   // ideal cluster-position
   std::uniform_real_distribution<> disX(-uncX, uncX);
