@@ -757,7 +757,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		}
 	
 
-		Printf("exit checkOver(%s) with condition = %d|  rMin = %.2f , rMax = %.2f, rPhoton = %.2f | L used for lim : ", hadronType, condition, rMin, rMax, rPhoton, lMin);
+		Printf("exit checkOver(%s) with condition = %d|  rMin = %.2f , rMax = %.2f, rPhoton = %.2f | L used for lim : %.2f, etaC = %.2f", hadronType, condition, rMin, rMax, rPhoton, lMin, etaCkov);
 
 Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, phiMax);
 
@@ -938,7 +938,8 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 			}
 		}
 
-		Printf("exit checkUnder(%s) with condition = %d|  rMin = %.2f , rMax = %.2f, rPhoton = %.2f | L used for lim = %.2f",hadronType, condition, rMin, rMax, rPhoton, lMax);
+		Printf("exit checkUnder(%s) with condition = %d|  rMin = %.2f , rMax = %.2f, rPhoton = %.2f | L used for lim : %.2f, etaC = %.2f", hadronType, condition, rMin, rMax, rPhoton, lMax, etaCkov);
+
 
 Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f \n, ",phiMin, phiPhoton, phiMax);
 

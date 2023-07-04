@@ -20,6 +20,23 @@ class CkovTools {
 
 private: 
 
+
+	// for storing candidates...
+	struct Candidate {
+		double x, y = 0.;
+		double R = 0.;
+		double phiL = 0., phi = 0.;
+		bool isCandidate = false;
+	};
+
+	struct Candidate2 {
+		double x, y = 0.;
+		//double R = 0.;
+		//double phiL = 0., phi = 0.;
+		/*uint32_t*/int candStatus = 0;//(000, 001, 010, 011, 100, 110, 101, 111);
+	};
+
+
 // using array = std::array;
 using vecArray3 = std::vector<std::array<double,3>>;
 // using arrArray3 = std::vector<std::array<double,3>>;
@@ -637,6 +654,19 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
   // here : loop through all backGroundPhotons and cherenkovPhotons
   
   int iPhotCount = 0;
+
+
+
+	// obv change this later to also add bg photons
+	const size_t numPhotonsTemp = cherenkovPhotons.size();
+	std::vector<Candidate> pionCands, kaonCands, protonCands;
+	pionCands.reserve(numPhotonsTemp);
+	kaonCands.reserve(numPhotonsTemp);
+	protonCands.reserve(numPhotonsTemp);
+
+	std::vector<Candidate2> candCombined;
+	candCombined.reserve(numPhotonsTemp);
+
   for(const auto& photons : cherenkovPhotons) {  
 		iPhotCount++;
     // photX photY are "ideal" values, should add some uncertainty to them... 
@@ -946,7 +976,7 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 			bool isMinPionOk = populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMinCkovPion(), "Pion");
 			
 			if(isMinPionOk) {
-				// we have pion candidate 
+				// we have pion candidate
 			} else {
 				Printf("Photon%d could only have been Pion, but didnt fall within radius-range",iPhotCount);
 			}
@@ -969,7 +999,21 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 	Printf("	Photon%d  Candidate: Pion = %d Kaon = %d Proton %d", iPhotCount, isPhotonPionCand, isPhotonKaonCand, isPhotonProtonCand);
 	Printf("===============================================================\n");	
 
+	// struct with x, y, phiLocal, phi, R + bool isCandidate? 
+	// or just x, y, /* phiLocal,*/ phi, R; where x, y... = 0 if !isCandidate
 
+	// better to not store rPhot and phiPhot? this can easily be obtained in ML photon
+	/*pionCands.emplace_back(Candidate{x, y, rPhoton, phiPhoton, isPhotonPionCand});	
+	kaonCands.emplace_back(Candidate{x, y, rPhoton, phiPhoton, isPhotonKaonCand});	
+	protonCands.emplace_back(Candidate{x, y, rPhoton, phiPhoton, isPhotonProtonCand});
+	*/ 
+
+
+	int cStatus = 4*static_cast<int>(isPhotonPionCand) + 2*static_cast<int>(isPhotonKaonCand) + 1*static_cast<int>(isPhotonProtonCand);
+	candCombined.emplace_back(Candidate2{x, y, cStatus});
+
+	// or store as 1 vector, where candidate status 8 => 2^3 (000, 001, 010, 011, 100, 110, 101, 111)
+	
 	// phiL, phi, R of maxPionVec vectorh
 
 
@@ -1088,6 +1132,16 @@ populate.checkRangeBelow(posPhoton, getMaxCkovProton(), rPosProtonMax);
 
     }// end else ifTrue
   }  // end for ckovPhotons
+
+
+	// iterate through photons to check : 
+
+	int cntTemp = 0;
+  for(const auto& c : candCombined){
+		Printf("Phot%d : x = %.2f, y = %.2f || statusCand = %d", cntTemp++, c.x, c.y, c.candStatus); 
+	}
+
+
 
   Printf("number of candidates : proton %d, kaon %d, pion %d", protonCandidates.size(), kaonCandidates.size(), pionCandidates.size());
  
