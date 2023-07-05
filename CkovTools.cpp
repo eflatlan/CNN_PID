@@ -45,7 +45,7 @@ using vecArray3 = std::vector<std::array<double,3>>;
 using segType = std::vector<std::pair<double, double>>;
 segType segPionLocal = {{}};
 
-bool kaonStatus, pionStatus, protonStatus = true;
+bool kaonStatus = true, pionStatus = true, protonStatus = true;
 //TLine* tlinePion;
 
 static constexpr double PI = M_PI;
@@ -929,24 +929,29 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 		Printf("Photon%d can be Pion and Kaon from p-hyp", iPhotCount);	
 		// verify that rPhoton > rMinKaon(@ phiEstimated = phiPhoton)
 		Printf("\npopulate2->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinProton, getMinCkovProton());");
-  	auto isMinKaonOk = populate2->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinProton, getMinCkovProton(), "Kaon");
+  	isMinKaonOk = populate2->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinKaon, getMinCkovKaon(), "Kaon");
 
 
 		// this means rProtonMin < rPhoton < rMaxPion
 		if(isMinKaonOk) {
-			
+			isMaxPionOk = populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion");
+
 			if(isMaxPionOk) {
-			
+
+				isMinPionOk = populate2->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion");
+				
 			  //isMinPionOk = ...
 				// this means rPionMin < rPhoton
 				if(isMinPionOk) {
+					isPhotonPionCand = true;	
 					Printf("Photon%d is Pion Candiate", iPhotCount); 
 					// we have pion-candiate
 				}	
 
-			
+				isMaxKaonOk = populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMinKaon, getMinCkovKaon(), "Kaon");
 				// isMaxKaonOk = populate2->
 				if(isMaxKaonOk) {
+					isPhotonKaonCand = true;
 					Printf("Photon%d is Kaon Candiate", iPhotCount); 
 					// we have kaon-candiate
 				}							
@@ -967,16 +972,18 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 
 		Printf("populate2->checkUnder(posPhoton, rPhoton, phiPhotob, arrMaxPion, getMaxCkovPion());",iPhotCount);
 
-		bool isMaxPionOk = populate2->checkUnder(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion(), "Pion");
+		bool isMaxPionOk = populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion(), "Pion");
 		
 		if(isMaxPionOk) {
 
 			Printf("populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMinPion, getMaxCkovPion());",iPhotCount);
 			
-			bool isMinPionOk = populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMinCkovPion(), "Pion");
+			bool isMinPionOk = populate2->checkUnder(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMinCkovPion(), "Pion");
 			
 			if(isMinPionOk) {
 				// we have pion candidate
+				Printf("Photon%d is Pion Candidate", iPhotCount);	
+				isPhotonPionCand = true; 
 			} else {
 				Printf("Photon%d could only have been Pion, but didnt fall within radius-range",iPhotCount);
 			}
@@ -1133,11 +1140,17 @@ populate.checkRangeBelow(posPhoton, getMaxCkovProton(), rPosProtonMax);
 
 	// iterate through photons to check : 
 
+
+	
+	Printf("=========================================================================");
+	Printf("CkovHyps, possible candidates from Momentum | Pion = %d, Kaon = %d, Proton = %d", getPionStatus(), getKaonStatus(), getProtonStatus());
+
+
 	int cntTemp = 0;
   for(const auto& c : candCombined){
 		Printf("Phot%d : x = %.2f, y = %.2f || statusCand = %d", cntTemp++, c.x, c.y, c.candStatus); 
 	}
-
+	Printf("=========================================================================");
 
 
   Printf("number of candidates : proton %d, kaon %d, pion %d", protonCandidates.size(), kaonCandidates.size(), pionCandidates.size());
