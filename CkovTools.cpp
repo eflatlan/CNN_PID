@@ -1029,19 +1029,15 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 	***************************************************************************
 	*/ 
 
+
+	// *<init ClosedForm segm>//		
   // "Closed form approch" init    
 
   // check if inside pionMax and outside protonMin
 
   Printf("\n\n");
-
-
       TVector2 rPosPion;
       bool pionBelow = populate.checkRangeBelow(posPhoton, getMaxCkovPion(), rPosPion);
-
-
-
-
 
 			TVector2 rPosPionMin;
       populate.checkRangeBelow(posPhoton, getMinCkovPion(), rPosPionMin);
@@ -1129,6 +1125,7 @@ populate.checkRangeBelow(posPhoton, getMaxCkovProton(), rPosProtonMax);
         } 
       }  // end else / if pionBelow 
       Printf("\n\n");   
+			//<end ClosedForm segm>//		
 
     }// end else ifTrue
   }  // end for ckovPhotons

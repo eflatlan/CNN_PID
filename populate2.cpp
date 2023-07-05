@@ -740,7 +740,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 				decisionTaken = true;
 				condition = false;
 				break; // just tbs
-			} else if((rPhoton > rMin && rPhoton < rMax)) {
+			} else if((rPhoton > rMin + (uncSquared) && rPhoton < rMax + (uncSquared))) {
 				// iterate by splitting r1, r2 -> phi1 phi2
 			
 				// find new value for eta1, eta2; (passed by ref)
@@ -916,6 +916,14 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 
 		// check if outside of radius
 
+
+		// rA = rPhoton > rMax - uncSq
+		// rB = rPhoton < rMin - uncSq
+		// rC rPhoton > rMin && rPohoton < rMax
+		
+		// rPhoton > r 
+
+
 		while(!decisionTaken) {
 			Printf("	rPhoton = %.2f, rMax = %.2f, rMin = %.2f", rPhoton, rMax, rMin);
 			if((rPhoton + uncSquared >  rMax)) {
@@ -926,7 +934,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 				// stop iterating, condition is false!
 				decisionTaken = true;
 				condition = false;
-			} else if((rPhoton > rMin && rPhoton < rMax)) {
+			} else if((rPhoton + (uncSquared)> rMin && rPhoton + (uncSquared)< rMax)) {
 				// iterate by splitting r1, r2 -> phi1 phi2
 
 				splitPhi(phiMax, phiLmax, phiMin, phiLmin, etaCkov, phiPhoton); // 
@@ -934,6 +942,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 				rMin = getR(etaCkov, phiLmin, lMax);
 				Printf("	checkUnder(%s) | rMin = %.2f , rMax = %.2f,  ",hadronType,  rMin, rMax);
 			} else {
+				//Printf("	checkUnder(%s) | rMin = %.2f , rMax = %.2f,  ",hadronType,  rMin,
 				throw std::invalid_argument("decisionTaken???");
 			}
 		}
