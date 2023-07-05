@@ -350,6 +350,8 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0, do
 std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBins, float occupancy, RandomValues& randomValue, ParticleInfo& particle)  
 {
 
+
+   // randomValue.momentum = 0.6;
    const auto& ckov = calcCkovFromMass(randomValue.momentum, randomValue.refractiveIndex, randomValue.mass); //  calcCkovFromMass(momentum, n, mass)
      
    // theoretical ckov angles : 
@@ -358,6 +360,8 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   auto momentum = 1.5; // 
   const auto& ckovHyps2 = calcCherenkovHyp(momentum, randomValue.refractiveIndex); 
   
+
+  // funker ikke segm på p = .5? / jo, kun at momentum settes til annen verdi enn rV.momentum
   const auto& ckovHyps = calcCherenkovHyp(randomValue.momentum, randomValue.refractiveIndex); 
 
 
@@ -693,6 +697,16 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
 
  // set segm arrays
  // ckovTools.setArrays(arrMaxPion);
+
+
+ for(int i = 0; i < maxPionVec.size(); i++){
+    const auto& maxPion = populate->tracePhot(ckovTools.getMaxCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN), lMin);
+    if(maxPion.X() > 0 && maxPion.X() < 156.0 && maxPion.Y() > 0 && maxPion.Y() < 144) {
+      hMaxPion->Fill(maxPion.X(), maxPion.Y());
+      maxPionVec[i] = std::make_pair(maxPion.X(), maxPion.Y());
+    }
+ }
+ 
 
  
  for(int i = 0; i < maxKaonVec.size(); i++){

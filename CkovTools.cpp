@@ -948,7 +948,7 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 					// we have pion-candiate
 				}	
 
-				isMaxKaonOk = populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMinKaon, getMinCkovKaon(), "Kaon");
+				isMaxKaonOk = populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxKaon, getMaxCkovKaon(), "Kaon");
 				// isMaxKaonOk = populate2->
 				if(isMaxKaonOk) {
 					isPhotonKaonCand = true;
@@ -966,19 +966,23 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 	} // end else if (!getProtonStatus() and getKaonStatus() and getPionStatus())
 
 
+
+	// denne ser litt rar ut?
+
 	// if neither Proton or Kaon is possible because momentum-threshold is not exceeded:
 	else if(!getProtonStatus() and !getKaonStatus() and getPionStatus()) {
 		Printf("Photon%d can be Pion from p-hyp", iPhotCount);	
 
 		Printf("populate2->checkUnder(posPhoton, rPhoton, phiPhotob, arrMaxPion, getMaxCkovPion());",iPhotCount);
 
-		bool isMaxPionOk = populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion(), "Pion");
+		isMaxPionOk = populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion(), "Pion");
+		
 		
 		if(isMaxPionOk) {
 
 			Printf("populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMinPion, getMaxCkovPion());",iPhotCount);
 			
-			bool isMinPionOk = populate2->checkUnder(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMinCkovPion(), "Pion");
+			bool isMinPionOk = populate2->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion");
 			
 			if(isMinPionOk) {
 				// we have pion candidate
