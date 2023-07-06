@@ -397,8 +397,8 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
   
   FreonIndexOfRefraction = GetFreonIndexOfRefraction(particle.energy);
-  QuartzIndexOfRefraction = GetQuartzIndexOfRefraction(particle.energy);
-  CH4IndexOfRefraction = 1.00;
+  QuartzIndexOfRefraction = 1.5787;// GetQuartzIndexOfRefraction(particle.energy);
+  CH4IndexOfRefraction = 1.0005;
   
   
   // TODO: this must be changed??
