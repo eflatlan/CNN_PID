@@ -355,7 +355,7 @@ double getThetaP()
 
 // x, y, etaC
 
-std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>>& cherenkovPhotons, MapType& bins) { 
+std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>>& cherenkovPhotons, MapType& bins, int eventCnt) { 
   MapType pionCandidates, kaonCandidates, protonCandidates;
   
   Printf("ckovTools enter  ckovTools.segment"); 	 
@@ -453,7 +453,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 	bgCandMapOutRange->SetMarkerStyle(2);
 
 
-
+	/*
   TH2F *localRefMIPUnrot = new TH2F("localRefMIPUnrot ", infString,800,-40.,-40.,800,-40,40);
   TH2F *localRefUnrot = new TH2F("localRef ", infString,800,-40.,-40.,800,-40.,40.);
   TH2F *localRef = new TH2F("localRef ", infString,800,-40.,-40.,800,-40.,40.);  
@@ -461,7 +461,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 
 
 
-  TH2F *localRefMIP2 = new TH2F("localRefMIP2 ", infString,160, 0., 159., 140, 0., 143.);
+  TH2F *localRefMIP2 = new TH2F("localRefMIP2 ", infString,160, 0., 159., 140, 0., 143.); */
 
 
  TH2F *mapPhotons = new TH2F("mapPhotons ", "mapPhotons",1600, 0., 159., 1440, 0., 143.);
@@ -484,6 +484,8 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
  TH2F *mapProton = new TH2F("mapProton ", "mapProton",1600, 0., 159., 1440, 0., 143.);
 
 
+
+  /*
   TH2F *localPion = new TH2F("pion ", "pion",800,-40.,-40.,800,-40.,40.);
 
 
@@ -492,7 +494,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 		localPion->Fill(p.first, p.second);
 
     //Printf(" ckovTools segment | x %.3f, y %.3f ", p.first, p.second);
-  }
+  } */ 
 
   Printf("ckovTools segment : exit const auto& p : segPionLocal"); 	 
 
@@ -549,6 +551,8 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
   */ 
 
 
+
+  /*
 	// add background photons here :
   for(const auto& p :cherenkovPhotons){
 
@@ -557,7 +561,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
     auto R = TMath::Sqrt(xDif*xDif+yDif*yDif);
     Printf(" Ckovtools segments cherenkovPhotons : x %f y %f R = %f", p[0], p[1], R);
     numPhotons++;
-  }
+  } */ 
 
   //TH2F *hSignalMap = new TH2F("Signal", Form("Cherenkov Photons = %d  #Theta_{p}  = %f #Phi_{p} = %f ; x [cm]; y [cm]", numPhotons, thetaP,phiP),160,0.,159.,144,0,143);   
 
@@ -569,7 +573,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
   // these are in local coordinate system
   // create bbox of minimal possible ckov
   // Proton with eta_c = theta_c_proton - 3*std_dev_proton
-
+	/*
   double xLU = -mL1Max;
   double yLU = mRMax;
 
@@ -591,7 +595,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
   
   const auto l1Max = mL1Max;//TMath::Sqrt((xMaxPhiPi-xMipRing)*(xMaxPhiPi-xMipRing) + (yMaxPhiPi-yMipRing)*(yMaxPhiPi-yMipRing));
   const auto l2Max = mL2Max;//TMath::Sqrt((xMaxPhi0-xMipRing)*(xMaxPhi0-xMipRing) + (yMaxPhi0-yMipRing)*(yMaxPhi0-yMipRing)); 
-  
+  */ 
     /*
     TBox* localBox = new TBox(xMaxPhi0, yMaxPhiPi - mRMax, xMaxPhiPi, yMaxPhiPi+mRMax);
     localBox->SetLineColor(kGreen);
@@ -603,7 +607,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
     
     TBox* globalBoxSignal = new TBox(coords1.first, coords1.second, coords2.first, coords2.second); */
     
-
+		/*
 		local2GlobalRef(xLU,yLU);
 		local2GlobalRef(xRU,yRU);
 		local2GlobalRef(xLD,yLD);
@@ -620,18 +624,23 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
     TLine *tlineDownGlobal = new TLine(xLD, yLD, xRD, yRD);
     
 	  tlineUpGlobal->SetLineColor(kGreen);
-	  tlineDownGlobal->SetLineColor(kBlue);
+	  tlineDownGlobal->SetLineColor(kBlue); */ 
        
     //globalBoxSignal->SetLineColor(kGreen);
     /*
     TLine *tlineUpLocal = new TLine(xMaxPhi0,yMaxPhi0 - mRMax, xMaxPhiPi, yMaxPhiPi - mRMax);
     TLine *tlineDownLocal = new TLine(xMaxPhi0,yMaxPhi0 + mRMax, xMaxPhiPi, yMaxPhiPi + mRMax);
 		*/
+
+
+  /*
     TLine *tlineUpLocal = new TLine(-mL1Max,mRMax, mL2Max, mRMax);
 
     TLine *tlineDownLocal = new TLine(-mL1Max,-mRMax, mL2Max, -mRMax);
 
 
+
+	
 	auto l1 = mL1Max; auto r1 = mRMax; auto r2 = mRMax; auto l2 = mL2Max;
 	phiRing2Local(l1,r1,xMipLocal,yMipLocal);
 	phiRing2Local(l2,r2,xMipLocal,yMipLocal);
@@ -644,6 +653,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
   tlineDownLocalR->SetLineColor(kBlue);
     
   const auto rMax2 = r2;
+ */ 
   //Printf("rMax2 = %f w ckov = %f", rMax2, ckovPionMax);
   // populate with background:
 
@@ -676,17 +686,17 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
   std::vector<std::pair<double, double>> photonCandidates;
 
 
-  const auto infString2 = Form("globalREf #Theta_{p}  = %f #Phi_{p} = %f ; x [cm]; y [cm]", thetaP,phiP); 
-  TH2F *globalREfMIP = new TH2F("globalREfMIP ", infString2,160,0.,159.,144,0,143);
+  // const auto infString2 = Form("globalREf #Theta_{p}  = %f #Phi_{p} = %f ; x [cm]; y [cm]", thetaP,phiP); 
+  	// TH2F *globalREfMIP = new TH2F("globalREfMIP ", infString2,160,0.,159.,144,0,143);
 
-	 const auto& coordsMIP = local2Global(xMipLocal, yMipLocal);
-	 globalREfMIP->Fill(coordsMIP.first, coordsMIP.second);
+	 // const auto& coordsMIP = local2Global(xMipLocal, yMipLocal);
+	 // globalREfMIP->Fill(coordsMIP.first, coordsMIP.second);
  
     double xML = xMipLocal, yML = yMipLocal;
-    localRefMIPUnrot->Fill(xMipLocal, yMipLocal);
-    local2PhiRing(xML,yML,xML,yML);  
-    localRefMIP->Fill(xML,yML);
-    localRefMIP2->Fill(xML,yML);
+    //localRefMIPUnrot->Fill(xMipLocal, yMipLocal);
+    //local2PhiRing(xML,yML,xML,yML);  
+    //localRefMIP->Fill(xML,yML);
+    //localRefMIP2->Fill(xML,yML);
 
 
   // change datatype, should hold at least x, y..+? {later + cluster-size...}
@@ -783,10 +793,10 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 
     double xL = x, yL = y;
     double xG = x, yG = y;
-    localRefUnrot->Fill(x,y);
+    /*localRefUnrot->Fill(x,y);
     // transform to phiRing ref-system
     local2PhiRing(xL, yL, xMipLocal, yMipLocal);
-    localRef->Fill(xL, yL);
+    localRef->Fill(xL, yL);*/ 
 
 
 		/*
@@ -1124,9 +1134,9 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 
 
 
-
+	
 	// TODO: plot as same in maxPion..Range
-	if( x > 0 && x < 156 && y < 144 && y > 0){
+	if( x > 0 && x < 156 && y < 144 && y > 0) {
 		// this means it falls within range
 		if(cStatus != 0) {
 
@@ -1173,40 +1183,40 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 
 
 
-			/*
-			Printf("\n\n");
-      TVector2 rPosPion;
-      bool pionBelow = populate.checkRangeBelow(posPhoton, getMaxCkovPion(), rPosPion);
+	/*
+	Printf("\n\n");
+  TVector2 rPosPion;
+  bool pionBelow = populate.checkRangeBelow(posPhoton, getMaxCkovPion(), rPosPion);
 
-			TVector2 rPosPionMin;
-      populate.checkRangeBelow(posPhoton, getMinCkovPion(), rPosPionMin);
+	TVector2 rPosPionMin;
+  populate.checkRangeBelow(posPhoton, getMinCkovPion(), rPosPionMin);
 
-      mapPhotons->Fill(posPhoton.X(), posPhoton.Y());
-      mapPionMax->Fill(rPosPion.X(), rPosPion.Y());
-      mapPionMin->Fill(rPosPionMin.X(), rPosPionMin.Y());
+  mapPhotons->Fill(posPhoton.X(), posPhoton.Y());
+  mapPionMax->Fill(rPosPion.X(), rPosPion.Y());
+  mapPionMin->Fill(rPosPionMin.X(), rPosPionMin.Y());
 
-			/	*
-      mapPionMaxRev->Fill(rPosPion.X(), rPosPion.Y());
-      mapPionMinRev->Fill(rPosPionMin.X(), rPosPionMin.Y());
-      * / 
-
-
-      TVector2 rPosKaonMin, rPosKaonMax;
-populate.checkRangeBelow(posPhoton, getMinCkovKaon(), rPosKaonMin);
-populate.checkRangeBelow(posPhoton, getMaxCkovKaon(), rPosKaonMax);
-      mapKaonMax->Fill(rPosKaonMax.X(), rPosKaonMax.Y());
-      mapKaonMin->Fill(rPosKaonMin.X(), rPosKaonMin.Y());
+	/	*
+  mapPionMaxRev->Fill(rPosPion.X(), rPosPion.Y());
+  mapPionMinRev->Fill(rPosPionMin.X(), rPosPionMin.Y());
+  * / 
 
 
-      TVector2 rPosProtonMin, rPosProtonMax;
-populate.checkRangeBelow(posPhoton, getMinCkovProton(), rPosProtonMin);
-populate.checkRangeBelow(posPhoton, getMaxCkovProton(), rPosProtonMax);
-      mapProtonMax->Fill(rPosProtonMax.X(), rPosProtonMax.Y());
-      mapProtonMin->Fill(rPosProtonMin.X(), rPosProtonMin.Y());
+  TVector2 rPosKaonMin, rPosKaonMax;
+	populate.checkRangeBelow(posPhoton, getMinCkovKaon(), rPosKaonMin);
+	populate.checkRangeBelow(posPhoton, getMaxCkovKaon(), rPosKaonMax);
+  mapKaonMax->Fill(rPosKaonMax.X(), rPosKaonMax.Y());
+  mapKaonMin->Fill(rPosKaonMin.X(), rPosKaonMin.Y());
 
 
-      TVector2 rPosProton, temp;
-      bool protonBelow = populate.checkRangeBelow(posPhoton, getMinCkovProton(), rPosProton);
+  TVector2 rPosProtonMin, rPosProtonMax;
+	populate.checkRangeBelow(posPhoton, getMinCkovProton(), rPosProtonMin);
+	populate.checkRangeBelow(posPhoton, getMaxCkovProton(), rPosProtonMax);
+  mapProtonMax->Fill(rPosProtonMax.X(), rPosProtonMax.Y());
+  mapProtonMin->Fill(rPosProtonMin.X(), rPosProtonMin.Y());
+
+
+  TVector2 rPosProton, temp;
+  bool protonBelow = populate.checkRangeBelow(posPhoton, getMinCkovProton(), rPosProton);
 
 
 
@@ -1287,45 +1297,6 @@ populate.checkRangeBelow(posPhoton, getMaxCkovProton(), rPosProtonMax);
 
   Printf("number of candidates : proton %d, kaon %d, pion %d", protonCandidates.size(), kaonCandidates.size(), pionCandidates.size());
  
-
-  for(const auto& photons : backGroundPhotons) {  
-    const auto& x = photons[0];
-    const auto& y = photons[1];
-      //Printf("CkovTools segment : backGroundPhotons %f x", x);
-
-
-    
-    if(true){
-    //if(X > -mL1Max && X < mL2Max && Y > -mRMax  && Y < mRMax){
-      bool withinRange = true; 
-      // check if the coordinates also corresponds to one of the possible cherenkov candidates
-
-      // change to method from Recon.cxx:
-auto ckov = 1;
-      //const auto& ckov = getCkovFromCoords(xRad, yRad, x, y, phiP, thetaP, nF, nQ, nG); 
-      //Printf("CkovTools segment :ckov%f ", ckov);
-      // TODO: later, also add to candidates (i.e., pionCandidates, kaonCandidates...)
-
-      
-      if(withinRange){
-// transform to phiRing ref-system
-    	  double xL = x, yL = y;
-        double xG = x, yG = y;
-
-        local2PhiRing(xL, yL, xMipLocal, yMipLocal);
-
-
-  			localRefBG->Fill(xL,yL);
-
-        // transform to global coordinates:
-        const auto coords = local2Global(x, y);
-  	  //Printf("CkovTools segment : x%f y%f --> xG %f yG %f ", x,y, coords.first, coords.second);    
-  //hNoiseMap->Fill(coords.first,coords.second);
-        filledBins.push_back(coords);
-        //Printf("CkovTools segment backGroundPhotons  x %f y %f", x,y);
-      }      
-    } // end if    
-  } // end for
   
 //for(const auto& pair: filledBins)
 //	Printf("CkovTools segment candidates: x%f y%f", pair.first, pair.second);    
@@ -1353,7 +1324,7 @@ hNoiseMap->Draw("same");
 */ 
 
 
-TCanvas* tcnvRane = new TCanvas("tcnvRane", "tcnvRane", 1600, 800);
+TCanvas* tcnvRane = new TCanvas(Form("tcnvRane%d", eventCnt), Form("tcnvRane%d", eventCnt), 1600, 800);
 
 tcnvRane->cd();
 ckovCandMapRange->Draw();
@@ -1394,9 +1365,10 @@ tlineDownGlobal->Draw(); */
 
 
 
-
+/*
 localRefMIP2->SetMarkerStyle(3);
-localRefMIP2->SetMarkerColor(kRed);
+localRefMIP2->SetMarkerColor(kRed); 
+*/ 
 
 
 mapPion->SetMarkerStyle(2);  
