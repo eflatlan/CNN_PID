@@ -430,6 +430,25 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
   // get track impacrt point at PC
 
 
+	TH2F* ckovCandMapRange = new TH2F("ckovCandMapRange", "ckovCandMapRange", 1600, 0, 159, 1440, 0, 143);
+	TH2F* bgCandMapRange = new TH2F("bgCandMapRange", "bgCandMapRange", 1600, 0, 159, 1440, 0, 143);
+
+	TH2F* ckovCandMapOutRange = new TH2F("ckovCandMapOutRange", "ckovCandMapOutRange", 1600, 0, 159, 1440, 0, 143);
+
+	TH2F* bgCandMapOutRange = new TH2F("bgCandMapOutRange", "bgCandMapOutRange", 1600, 0, 159, 1440, 0, 143);
+
+	ckovCandMapRange->SetMarkerColor(kGreen);
+	ckovCandMapOutRange->SetMarkerColor(kGreen + 4);
+	bgCandMapRange->SetMarkerColor(kRed);
+	bgCandMapOutRange->SetMarkerColor(kRed+4);
+
+	ckovCandMapRange->SetMarkerStyle(2);
+	ckovCandMapOutRange->SetMarkerStyle(2);
+	bgCandMapRange->SetMarkerStyle(2);
+	bgCandMapOutRange->SetMarkerStyle(2);
+
+
+
   TH2F *localRefMIPUnrot = new TH2F("localRefMIPUnrot ", infString,800,-40.,-40.,800,-40,40);
   TH2F *localRefUnrot = new TH2F("localRef ", infString,800,-40.,-40.,800,-40.,40.);
   TH2F *localRef = new TH2F("localRef ", infString,800,-40.,-40.,800,-40.,40.);  
@@ -437,7 +456,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 
 
 
-  TH2F *localRefMIP2 = new TH2F("localRefMIP2 ", infString,1600, 0., 159., 1440, 0., 143.);
+  TH2F *localRefMIP2 = new TH2F("localRefMIP2 ", infString,160, 0., 159., 140, 0., 143.);
 
 
  TH2F *mapPhotons = new TH2F("mapPhotons ", "mapPhotons",1600, 0., 159., 1440, 0., 143.);
@@ -483,12 +502,49 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
  local2GlobalRef(xPC, yPC);
 
 // ReconG(double _theta, double _phi, double _xRad, double _yRad, double _xPC, double _yPC, double n, double _etaC) : refIdx(n), etaC(_etaC)
- ReconG reconG(thetaP, phiP, xRad , yRad, xRad + xMipLocal,  yRad + yMipLocal, nF);
+ //ReconG reconG(thetaP, phiP, xRad , yRad, xRad + xMipLocal,  yRad + yMipLocal, nF);
 
  Printf("dX %f dY %f ", xMipLocal, yMipLocal);
 
  TH2F *hNoiseMap = new TH2F(" Noise ", " Noise ; x [cm]; y [cm]",160,0.,159.,144,0,143);
  int numPhotons= 0;
+
+
+  const auto area = 144*156; 
+ 
+  const auto numBackgroundPhotons = static_cast<int>(area*occupancy); 
+
+  //Printf("CkovTools segment : rMax %f l1Max %f l2Max %f Area %f ", rMax, l1Max, l2Max, area);
+
+
+ // Printf("CkovTools segment backGroundPhotons vector numBackgroundPhotons = %d", numBackgroundPhotons);
+ 
+ 	std::vector<std::array<double, 3>> backGroundPhotons(numBackgroundPhotons);
+  // std::vector<std::pair<double, double>> backGroundPhotons(numBackgroundPhotons);
+   //   Printf("CkovTools segment backGroundPhotons vector created");
+  std::random_device rd;
+  std::mt19937 gen(rd());
+
+  // TODO : based on ckovMaxProton, add bg here : 
+  // in  phiRing ref sys
+
+  std::uniform_real_distribution<> dis1(0, 156);
+  std::uniform_real_distribution<> dis2(0, 144);
+
+  for (auto& pair : backGroundPhotons) {
+    pair[0] = dis1(gen);
+    pair[1] = dis2(gen);
+    pair[2] = 0.;// ph for etaC here 
+     // Printf("CkovTools segment created bg x%f y%f", pair.first, pair.second);
+  }
+
+  /*
+  
+  
+  */ 
+
+
+	// add background photons here :
   for(const auto& p :cherenkovPhotons){
 
     const auto& xDif = p[0] - (xMipLocal + xRad); 
@@ -585,29 +641,32 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
   const auto rMax2 = r2;
   //Printf("rMax2 = %f w ckov = %f", rMax2, ckovPionMax);
   // populate with background:
-  const auto area = mRMax*2*(mL1Max+mL2Max);
-  const auto numBackgroundPhotons = static_cast<int>(area*occupancy); 
+
+ 
+
 
   //Printf("CkovTools segment : rMax %f l1Max %f l2Max %f Area %f ", rMax, l1Max, l2Max, area);
 
 
  // Printf("CkovTools segment backGroundPhotons vector numBackgroundPhotons = %d", numBackgroundPhotons);
-  std::vector<std::pair<double, double>> backGroundPhotons(numBackgroundPhotons);
+  // std::vector<std::pair<double, double>> backGroundPhotons(numBackgroundPhotons);
+  
+  
    //   Printf("CkovTools segment backGroundPhotons vector created");
-  std::random_device rd;
+  /*std::random_device rd;
   std::mt19937 gen(rd());
 
   // TODO : based on ckovMaxProton, add bg here : 
   // in  phiRing ref sys
 
-  std::uniform_real_distribution<> dis1(-mL1Max, mL2Max);
-  std::uniform_real_distribution<> dis2(-mRMax, mRMax);
+  std::uniform_real_distribution<> dis1(0, 156);
+  std::uniform_real_distribution<> dis2(0, 144);
 
   for (auto& pair : backGroundPhotons) {
     pair.first = dis1(gen);
     pair.second = dis2(gen);
      // Printf("CkovTools segment created bg x%f y%f", pair.first, pair.second);
-  }
+  } */ 
 
   std::vector<std::pair<double, double>> photonCandidates;
 
@@ -666,14 +725,46 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 
 	std::vector<Candidate2> candCombined;
 	candCombined.reserve(numPhotonsTemp);
+	
+	//inPutVector.emplace_back(std::array<double, 3>{phiL, phiR, r});
+	
+	
+	std::vector<std::array<double, 3>> ckovAndBackground;
+	
 
+	// add unc to cherenkov photons
   for(const auto& photons : cherenkovPhotons) {  
-		iPhotCount++;
-    // photX photY are "ideal" values, should add some uncertainty to them... 
-    auto dX = disX(genUnc);
+	  auto dX = disX(genUnc);
     auto dY = disY(genUnc);
     auto x = photons[0] + dX;
     auto y = photons[1] + dY;
+    auto etaC = photons[2] ; 
+  	ckovAndBackground.emplace_back(std::array<double, 3>{x, y, etaC});
+	} 
+	
+  for(const auto& p : backGroundPhotons) {
+  	ckovAndBackground.emplace_back(std::array<double, 3>{p});
+	} 
+	
+	Printf("length ckovPhotons %zu length background %zu length total %zu",cherenkovPhotons.size(), backGroundPhotons.size(), ckovAndBackground.size());
+	
+	// gjør dette mer elegant snre
+	
+  // ckovAndBackground
+
+
+  Printf(" enter const auto& photons : ckovAndBackground");
+  for(const auto& photons : ckovAndBackground) {
+		iPhotCount++;
+
+
+  	Printf("%d", iPhotCount);
+    // photX photY are "ideal" values, should add some uncertainty to them... 
+    //auto dX = disX(genUnc);
+    //auto dY = disY(genUnc);
+    const auto& x = photons[0], y = photons[1];
+    //auto x = photons[0] + dX;
+    //auto y = photons[1] + dY;
     //Printf("ckovloop Unc | xIdeal %.2f, uncX %.2f , genX = %.2f", photons[0], dX, x);
     //Printf("ckovloop Unc | yIdeal %.2f, uncY %.2f , genY = %.2f", photons[1], dY, y);
     
@@ -732,9 +823,12 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
       // TODO : check if this method is wrong??
       // use here instead method from Recon.cxx
 
-      reconG.findPhotCkov(xG, yG, thetaCer, phiCer, etaC);	
-      auto ckov = thetaCer;
-      const auto& ckov2 = getCkovFromCoords(xG, yG, phiP, thetaP, nF, nQ, nG, etaC);      
+      //reconG.findPhotCkov(xG, yG, thetaCer, phiCer, etaC);	
+      //auto ckov = thetaCer;
+			//auto ckov2 = ckov;
+      // const auto& ckov2 = getCkovFromCoords(xG, yG, phiP, thetaP, nF, nQ, nG, etaC);      
+
+
       // Printf("CkovTools segment | actual ckov = %.3f | bgstdy method:  %.3f | ReconMEthods:  thetaCer %f phiCer %f ", etaC, ckov2,  thetaCer, phiCer);
 
 
@@ -1023,6 +1117,32 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 	int cStatus = 4*static_cast<int>(isPhotonPionCand) + 2*static_cast<int>(isPhotonKaonCand) + 1*static_cast<int>(isPhotonProtonCand);
 	candCombined.emplace_back(Candidate2{x, y, cStatus});
 
+
+
+
+	// TODO: plot as same in maxPion..Range
+	if( x > 0 && x < 156 && y < 144 && y > 0){
+		// this means it falls within range
+		if(cStatus != 0) {
+
+			// this means  candidate is a ckov-photon
+			if(etaC != 0) {
+				ckovCandMapRange->Fill(x,y);
+			}	else { // falls within range, but is bg
+				bgCandMapRange->Fill(x,y);
+			}
+		}
+		// falls out of range
+		else {
+			// this means  candidate is a ckov-photon, but out of range
+			if(etaC != 0) {
+				ckovCandMapOutRange->Fill(x,y);
+			}	else { // falls out of range, and is bg
+				bgCandMapOutRange->Fill(x,y);			
+			}
+		}
+	}
+
 	// or store as 1 vector, where candidate status 8 => 2^3 (000, 001, 010, 011, 100, 110, 101, 111)
 	
 	// phiL, phi, R of maxPionVec vectorh
@@ -1046,7 +1166,10 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 
   // check if inside pionMax and outside protonMin
 
-  Printf("\n\n");
+
+
+			/*
+			Printf("\n\n");
       TVector2 rPosPion;
       bool pionBelow = populate.checkRangeBelow(posPhoton, getMaxCkovPion(), rPosPion);
 
@@ -1057,10 +1180,10 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
       mapPionMax->Fill(rPosPion.X(), rPosPion.Y());
       mapPionMin->Fill(rPosPionMin.X(), rPosPionMin.Y());
 
-/*
+			/	*
       mapPionMaxRev->Fill(rPosPion.X(), rPosPion.Y());
       mapPionMinRev->Fill(rPosPionMin.X(), rPosPionMin.Y());
-      */ 
+      * / 
 
 
       TVector2 rPosKaonMin, rPosKaonMax;
@@ -1137,7 +1260,7 @@ populate.checkRangeBelow(posPhoton, getMaxCkovProton(), rPosProtonMax);
       }  // end else / if pionBelow 
       Printf("\n\n");   
 			//<end ClosedForm segm>//		
-
+			*/
     }// end else ifTrue
   }  // end for ckovPhotons
 
@@ -1161,8 +1284,8 @@ populate.checkRangeBelow(posPhoton, getMaxCkovProton(), rPosProtonMax);
  
 
   for(const auto& photons : backGroundPhotons) {  
-    const auto& x = photons.first;
-    const auto& y = photons.second;
+    const auto& x = photons[0];
+    const auto& y = photons[1];
       //Printf("CkovTools segment : backGroundPhotons %f x", x);
 
 
@@ -1224,6 +1347,13 @@ hNoiseMap->Draw("same");
 
 
 
+TCanvas* tcnvRane = new TCanvas("tcnvRane", "tcnvRane", 1600, 800);
+
+tcnvRane->cd();
+ckovCandMapRange->Draw();
+ckovCandMapOutRange->Draw("same");
+bgCandMapRange->Draw("same");
+bgCandMapOutRange->Draw("same");
 
 
 
