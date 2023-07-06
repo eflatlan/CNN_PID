@@ -438,13 +438,13 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 	TH2F* bgCandMapOutRange = new TH2F("bgCandMapOutRange", "bgCandMapOutRange", 1600, 0, 159, 1440, 0, 143);
 
 	ckovCandMapRange->SetMarkerColor(kGreen);
-	ckovCandMapOutRange->SetMarkerColor(kGreen + 4);
-	bgCandMapRange->SetMarkerColor(kRed);
-	bgCandMapOutRange->SetMarkerColor(kRed+4);
+	ckovCandMapOutRange->SetMarkerColor(kGreen + 2);
+	bgCandMapRange->SetMarkerColor(kRed-1);
+	bgCandMapOutRange->SetMarkerColor(kRed+2);
 
-	ckovCandMapRange->SetMarkerStyle(2);
+	ckovCandMapRange->SetMarkerStyle(3);
 	ckovCandMapOutRange->SetMarkerStyle(2);
-	bgCandMapRange->SetMarkerStyle(2);
+	bgCandMapRange->SetMarkerStyle(3);
 	bgCandMapOutRange->SetMarkerStyle(2);
 
 
