@@ -865,7 +865,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
 
   Printf(" backgroundStudy : num photonCandidatesCoords %zu", photonCandidatesCoords.size()); 	 
   for(const auto& photons : photonCandidatesCoords){
-    Printf("photon x %f y %f", photons.first, photons.second);
+    //Printf("photon x %f y %f", photons.first, photons.second);
     //hSignalAndNoiseMap->Fill(photons.first, photons.second);
   }
     Printf("backgroundStudy() exit const auto& photons : photonCandidatesCoords");

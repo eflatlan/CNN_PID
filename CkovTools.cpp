@@ -430,12 +430,15 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
   // get track impacrt point at PC
 
 
-	TH2F* ckovCandMapRange = new TH2F("ckovCandMapRange", "ckovCandMapRange", 1600, 0, 159, 1440, 0, 143);
-	TH2F* bgCandMapRange = new TH2F("bgCandMapRange", "bgCandMapRange", 1600, 0, 159, 1440, 0, 143);
+	const int scale = 2;
 
-	TH2F* ckovCandMapOutRange = new TH2F("ckovCandMapOutRange", "ckovCandMapOutRange", 1600, 0, 159, 1440, 0, 143);
+	TH2F* ckovCandMapRange = new TH2F("ckovCandMapRange", "ckovCandMapRange", 160*scale, 0, 159, 144*scale, 0, 143);
 
-	TH2F* bgCandMapOutRange = new TH2F("bgCandMapOutRange", "bgCandMapOutRange", 1600, 0, 159, 1440, 0, 143);
+	TH2F* bgCandMapRange = new TH2F("bgCandMapRange", "bgCandMapRange", 160*scale, 0, 159, 144*scale, 0, 143);
+
+	TH2F* ckovCandMapOutRange = new TH2F("ckovCandMapOutRange", "ckovCandMapOutRange", 160*scale, 0, 159, 144*scale, 0, 143);
+
+	TH2F* bgCandMapOutRange = new TH2F("bgCandMapOutRange", "bgCandMapOutRange", 160*scale, 0, 159, 144*scale, 0, 143);
 
 	ckovCandMapRange->SetMarkerColor(kGreen);
 	ckovCandMapOutRange->SetMarkerColor(kGreen + 2);
@@ -506,7 +509,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 
  Printf("dX %f dY %f ", xMipLocal, yMipLocal);
 
- TH2F *hNoiseMap = new TH2F(" Noise ", " Noise ; x [cm]; y [cm]",160,0.,159.,144,0,143);
+ // TH2F *hNoiseMap = new TH2F(" Noise ", " Noise ; x [cm]; y [cm]",160,0.,159.,144,0,143);
  int numPhotons= 0;
 
 
@@ -554,7 +557,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
     numPhotons++;
   }
 
-  TH2F *hSignalMap = new TH2F("Signal", Form("Cherenkov Photons = %d  #Theta_{p}  = %f #Phi_{p} = %f ; x [cm]; y [cm]", numPhotons, thetaP,phiP),160,0.,159.,144,0,143);   
+  //TH2F *hSignalMap = new TH2F("Signal", Form("Cherenkov Photons = %d  #Theta_{p}  = %f #Phi_{p} = %f ; x [cm]; y [cm]", numPhotons, thetaP,phiP),160,0.,159.,144,0,143);   
 
   Printf("ckovtools segmetns cherenkovPhotons size  = %zu", cherenkovPhotons.size()); 
  
@@ -1310,12 +1313,12 @@ auto ckov = 1;
         local2PhiRing(xL, yL, xMipLocal, yMipLocal);
 
 
-  localRefBG->Fill(xL,yL);
+  			localRefBG->Fill(xL,yL);
 
         // transform to global coordinates:
         const auto coords = local2Global(x, y);
   	  //Printf("CkovTools segment : x%f y%f --> xG %f yG %f ", x,y, coords.first, coords.second);    
-  hNoiseMap->Fill(coords.first,coords.second);
+  //hNoiseMap->Fill(coords.first,coords.second);
         filledBins.push_back(coords);
         //Printf("CkovTools segment backGroundPhotons  x %f y %f", x,y);
       }      
@@ -1325,11 +1328,12 @@ auto ckov = 1;
 //for(const auto& pair: filledBins)
 //	Printf("CkovTools segment candidates: x%f y%f", pair.first, pair.second);    
 
-hNoiseMap->SetMarkerColor(kRed);
+
+// hNoiseMap->SetMarkerColor(kRed);
 Printf("CkovTools segment filledBins Size %zu", filledBins.size());
 
 
-
+/*
 TCanvas *thSignalNoiseMap = new TCanvas("hSignalNoiseMap","hSignalNoiseMap",800,800);  // thSignalNoiseMap->Divide(2,1);
 thSignalNoiseMap->cd(1);
 //globalBoxSignal->Draw();
@@ -1344,7 +1348,7 @@ hNoiseMap->SetMarkerStyle(2);
 hSignalMap->Draw();
 globalREfMIP->Draw("same");
 hNoiseMap->Draw("same");
-
+*/ 
 
 
 TCanvas* tcnvRane = new TCanvas("tcnvRane", "tcnvRane", 1600, 800);
@@ -1377,13 +1381,14 @@ tlineLeftGlobal->Draw(); */
 
 //hSignalAndNoiseMap->Show();
 //
-thSignalNoiseMap->cd(2);
+//thSignalNoiseMap->cd(2);
 //globalBoxSignal->Draw();
-hNoiseMap->Draw("same");//* /
+//hNoiseMap->Draw("same");// 
+/* 
 thSignalNoiseMap->SaveAs("hSignalNoiseMap.png");
-thSignalNoiseMap->Show();/*
+thSignalNoiseMap->Show(); * 
 tlineUpGlobal->Draw();
-tlineDownGlobal->Draw();*/
+tlineDownGlobal->Draw(); */
 
 
 
@@ -1420,9 +1425,9 @@ mapKaonMin->SetMarkerColor(kGreen);
 mapKaon->SetMarkerColor(kGreen + 4);
 
 
+
+/*
 mapProton->SetMarkerColor(kGreen + 4);
-
-
 localRefMIP2->Draw("same");  
 
 TCanvas *segm = new TCanvas("semg","semg",800,800);  
@@ -1490,14 +1495,15 @@ localRefUnrot->Draw("same");
 
 Printf("ckovtools segment : localPion->Draw()");
 //localPion->Draw("same");    
-localRefMIP->Draw("same");//*
+localRefMIP->Draw("same");// *
 tlineUpLocal->Draw();
 tlineDownLocal->Draw();
 tlineUpLocalR->Draw();
-tlineDownLocalR->Draw();//* /
+tlineDownLocalR->Draw();//  /
 Printf("ckovtools segment : localPion->Draw()");
 gPad->Update();
-//*/ 
+// * / 
+*/
 return filledBins;
 } // end segment
 
