@@ -100,6 +100,20 @@ float arrW[750]= {0.};
 
 
 
+
+void populateRegions(Populate* populate, std::vector<std::pair<double, double>>& vecArr, TH2F* map, const double& eta, const double& l) {
+	 
+	 const int kN = vecArr.size();
+	 for(int i = 0; i < vecArr.size(); i++){
+		  const auto& value = populate->tracePhot(eta, Double_t(TMath::TwoPi()*(i+1)/kN), l);
+		  if(value.X() > 0 && value.X() < 156.0 && value.Y() > 0 && value.Y() < 144) {
+		    map->Fill(value.X(), value.Y());
+		    vecArr[i] = std::make_pair(value.X(), value.Y());
+		  }
+	 }
+ 		
+ }
+
 void setStyleInd(TH2* th1f, float ratio = 1.2);
 
 
@@ -417,34 +431,36 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
   //TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",1000,-25.,25.,1000,-25.,25.);
 
-  TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
+  TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
 
-  TH2F *hSignalMIP = new TH2F("hmip ", "hmip ; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
-  TH2F *hSignalMIPpc = new TH2F("hmip pc", "hmip pc; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
-
-
-
-  TH2F *hMaxProton = new TH2F("maxPoss Ckov Proton", "maxPoss Ckov Proton; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
-
-  TH2F *hMaxPion = new TH2F("maxPoss Ckov Pion", "maxPoss Ckov Pion; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
-
-  TH2F *hMaxPionMinL = new TH2F("maxPoss Ckov Pion min L", "maxPoss Ckov Pion min L; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
+  TH2F *hSignalMIP = new TH2F("hmip ", "hmip ; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+  TH2F *hSignalMIPpc = new TH2F("hmip pc", "hmip pc; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
 
 
-  TH2F *hMinPionMaxL = new TH2F("minPoss Ckov Pion max L", "minPoss Ckov Pion max L; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
 
-  TH2F *hMaxKaon = new TH2F("maxPoss Ckov Kaon", "maxPoss Ckov Kaon; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
+	TH2F* arrayMaxMin[8];
+
+  TH2F *hMaxProton = new TH2F("maxPoss Ckov Proton", "maxPoss Ckov Proton; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+
+  TH2F *hMaxPion = new TH2F("maxPoss Ckov Pion", "maxPoss Ckov Pion; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+
+  TH2F *hMaxPionMinL = new TH2F("maxPoss Ckov Pion min L", "maxPoss Ckov Pion min L; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+
+
+  TH2F *hMinPionMaxL = new TH2F("minPoss Ckov Pion max L", "minPoss Ckov Pion max L; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+
+  TH2F *hMaxKaon = new TH2F("maxPoss Ckov Kaon", "maxPoss Ckov Kaon; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
 
 
   hMaxProton->SetMarkerColor(kGreen+3);
 
   hMaxKaon->SetMarkerColor(kRed);
 
-  TH2F *hMinProton = new TH2F("minPoss Ckov Proton", "minPoss Ckov Proton; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
+  TH2F *hMinProton = new TH2F("minPoss Ckov Proton", "minPoss Ckov Proton; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
 
-  TH2F *hMinPion = new TH2F("minPoss Ckov Pion", "minPoss Ckov Pion; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
+  TH2F *hMinPion = new TH2F("minPoss Ckov Pion", "minPoss Ckov Pion; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
 
-  TH2F *hMinKaon = new TH2F("minPoss Ckov Kaon", "minPoss Ckov Kaon; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
+  TH2F *hMinKaon = new TH2F("minPoss Ckov Kaon", "minPoss Ckov Kaon; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
 
   hMinProton->SetMarkerColor(kGreen+3);
 
@@ -579,8 +595,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  
 
  // TODO: pass this to func?
- int level = 4;
- int kN = 50 * level; 
+
  
 
  // std::vector<TLine*> sLine, eLine;
@@ -663,12 +678,12 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  l4->SetLineColor(kBlue); */ 
 
 
+ const int kN = 200;
+
  std::vector<std::pair<double, double>> maxPionVec, maxKaonVec, maxProtonVec;
   
-  
-
  std::vector<std::array<double, 3>> arrMaxPion, arrMaxKaon, arrMaxProton;
-
+ 
  maxPionVec.reserve(kN); maxKaonVec.reserve(kN); maxProtonVec.reserve(kN); 
  maxPionVec.resize(kN); maxKaonVec.resize(kN); maxProtonVec.resize(kN);
  Printf(" backgroundStudy%d : populating loop",eventCnt); 
@@ -677,6 +692,21 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  Printf(" backgroundStudy%d : ckovHyps = <%.3f, %.3f> | <%.3f, %.3f> | <%.3f, %.3f>", ckovTools.getMinCkovPion(),ckovTools.getMaxCkovPion(),ckovTools.getMinCkovKaon(),
 ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovProton(), eventCnt); 
 
+// void populateRegions(std::vector<std::array<double, 3>>& vecArr, TH2F* map, const double& eta, const double& l);
+
+
+
+  std::vector<std::pair<double, double>> minPionVec, minKaonVec, minProtonVec;
+  minPionVec.reserve(kN); minKaonVec.reserve(kN); minProtonVec.reserve(kN); 
+  minPionVec.resize(kN); minKaonVec.resize(kN); minProtonVec.resize(kN);
+  Printf(" backgroundStudy%d : populating loop", eventCnt); 
+
+  populateRegions(populate, maxPionVec, hMaxPion, ckovTools.getMaxCkovPion(), lMin);
+  populateRegions(populate, maxKaonVec, hMaxKaon, ckovTools.getMaxCkovKaon(), lMin);
+  populateRegions(populate, maxProtonVec, hMaxProton, ckovTools.getMaxCkovProton(), lMin);
+  populateRegions(populate, minPionVec, hMinPion, ckovTools.getMinCkovPion(), lMax);
+  populateRegions(populate, minKaonVec, hMinKaon, ckovTools.getMinCkovKaon(), lMax);
+  populateRegions(populate, minProtonVec, hMinProton, ckovTools.getMinCkovProton(), lMax);
 
  // track hit at PC in LORS : 
  const auto posPC = populate->getPcImp();
@@ -708,39 +738,17 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
  // ckovTools.setArrays(arrMaxPion);
 
 
- for(int i = 0; i < maxPionVec.size(); i++){
-    const auto& maxPion = populate->tracePhot(ckovTools.getMaxCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN), lMin);
-    if(maxPion.X() > 0 && maxPion.X() < 156.0 && maxPion.Y() > 0 && maxPion.Y() < 144) {
-      hMaxPion->Fill(maxPion.X(), maxPion.Y());
-      maxPionVec[i] = std::make_pair(maxPion.X(), maxPion.Y());
-    }
- }
- 
+
+ /* 
+ std::vector<std::array<double, 3>> arrMaxPion, arrMaxKaon, arrMaxProton;*/
 
  
- for(int i = 0; i < maxKaonVec.size(); i++){
-    const auto& maxKaon = populate->tracePhot(ckovTools.getMaxCkovKaon(), Double_t(TMath::Pi()*(i+1)/kN), lMin);
-    if(maxKaon.X() > 0 && maxKaon.X() < 156.0 && maxKaon.Y() > 0 && maxKaon.Y() < 144) {
-      hMaxKaon->Fill(maxKaon.X(), maxKaon.Y());
-      maxKaonVec[i] = std::make_pair(maxKaon.X(), maxKaon.Y());
-    }
- }
- 
- for(int i = 0; i < maxProtonVec.size(); i++){
-    const auto& maxProton = populate->tracePhot(ckovTools.getMaxCkovProton(), Double_t(TMath::Pi()*(i+1)/(kN*2)), lMin);
-    if(maxProton.X() > 0 && maxProton.X() < 156.0 && maxProton.Y() > 0 && maxProton.Y() < 144) {
-      hMaxProton->Fill(maxProton.X(), maxProton.Y());
-		  maxProtonVec[i] = std::make_pair(maxProton.X(), maxProton.Y()); 
-    }
- }
 
- std::vector<std::pair<double, double>> minPionVec, minKaonVec, minProtonVec;
- minPionVec.reserve(kN); minKaonVec.reserve(kN); minProtonVec.reserve(kN); 
- minPionVec.resize(kN); minKaonVec.resize(kN); minProtonVec.resize(kN);
- Printf(" backgroundStudy%d : populating loop", eventCnt); 
  
 
  Printf(" minPionVec : populating loop"); 
+
+ /*
  // max etaC, min L
  for(int i = 0; i < minPionVec.size(); i++){
     const auto& minPion = populate->tracePhot(ckovTools.getMaxCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN), lMin);
@@ -758,49 +766,17 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
     if(minPion.X() > 0 && minPion.X() < 156.0 && minPion.Y() > 0 && minPion.Y() < 144) {
       hMinPionMaxL->Fill(minPion.X(), minPion.Y());
     }
- }
+ } */ 
 
 
- for(int i = 0; i < minPionVec.size(); i++){
-    const auto& minPion = populate->tracePhot(ckovTools.getMinCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN), lMax);
-
-    if(minPion.X() > 0 && minPion.X() < 156.0 && minPion.Y() > 0 && minPion.Y() < 144) {
-      hMinPion->Fill(minPion.X(), minPion.Y());
-      minPionVec[i] = std::make_pair(minPion.X(), minPion.Y());
-      //Printf("minPion loop i = %d, minSize = %zu", i, minPionVec.size()); 
-    }
- }
-
-
-
-  Printf(" minProtonVec : populating loop"); 
- for(int i = 0; i < minProtonVec.size(); i++){
-    const auto& minProton = populate->tracePhot(ckovTools.getMinCkovProton(), Double_t(TMath::TwoPi()*(i+1)/(kN)), lMax);
-    if(minProton.X() > 0 && minProton.X() < 156.0 && minProton.Y() > 0 && minProton.Y() < 144) {
-		  hMinProton->Fill(minProton.X(), minProton.Y());
-			minProtonVec[i] = std::make_pair(minProton.X(), minProton.Y());
-		}
- }
- 
-
-  Printf(" minKaonVec : populating loop"); 
- for(int i = 0; i < minKaonVec.size(); i++){
-    const auto& minKaon = populate->tracePhot(ckovTools.getMinCkovKaon(), Double_t(TMath::TwoPi()*(i+1)/kN), lMax);
-    if(minKaon.X() > 0 && minKaon.X() < 156.0 && minKaon.Y() > 0 && minKaon.Y() < 144) {
-			hMinKaon->Fill(minKaon.X(), minKaon.Y());
-	    minKaonVec[i] = std::make_pair(minKaon.X(), minKaon.Y());
-		}
- }
-
- 
  Printf(" backgroundStudy%d : exit populating loop ", eventCnt); 
  Printf("		sizes = kN %d | %zu %zu %zu", kN, maxPionVec.size(),    maxKaonVec.size(), maxProtonVec.size()); 
 
- Printf("enter setsegment!");
- std::vector<std::pair<double, double>> maxPionVecRot(kN); 
- maxPionVecRot.reserve(kN); maxPionVecRot.resize(kN);
- ckovTools.setSegment(maxPionVec, maxPionVecRot);
-
+ //Printf("enter setsegment!");
+ // std::vector<std::pair<double, double>> maxPionVecRot(kN); 
+ //maxPionVecRot.reserve(kN); maxPionVecRot.resize(kN);
+ 
+ // ckovTools.setSegment(maxPionVec, maxPionVecRot);
 
  // 
  // ckovTools.setSegments(maxPionVec, maxKaonVec, maxProtonVec);  
@@ -823,16 +799,16 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
 
 
    TVector2 phot = populate->tracePhot(etaC, phiL, L); // tracePhot(double ckovThe, double ckovPhi)
-   Printf("made photon using populate->tracePhot | L = %.3f, etaC = %.4f, ckovAngle = %.4f | x %.3f, y %.3f ", L, etaC, ckovAngle, phot.X(), phot.Y());
+   //Printf("made photon using populate->tracePhot | L = %.3f, etaC = %.4f, ckovAngle = %.4f | x %.3f, y %.3f ", L, etaC, ckovAngle, phot.X(), phot.Y());
 	 
-   //auto vec = phot - populate->getImpPc();     
+ø   //auto vec = phot - populate->getImpPc();     
    auto vec = phot - populate->getTrackPos();
 
 
    float diff;
    if(phiL <  0) diff = TMath::TwoPi() - (vec.Phi() - phiL);
    else diff = vec.Phi() - phiL;
-   Printf("phiL %.4f | phiRingAngle  %.4f | diff %.4f | phiP %.4f ", phiL, vec.Phi(), diff,  phiP);
+   //Printf("phiL %.4f | phiRingAngle  %.4f | diff %.4f | phiP %.4f ", phiL, vec.Phi(), diff,  phiP);
 
    // populate map with cherenkov photon
 
@@ -854,6 +830,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
    hSignalAndNoiseMap->Fill(phot.X(), phot.Y());
 
   } 
+
 
    Printf(" backgroundStudy%d : Number of photons created :  %d ",eventCnt, photonCount); 
 
