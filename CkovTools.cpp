@@ -1346,30 +1346,6 @@ trkPCMap->Fill(trkPC.X(), trkPC.Y());
 trkRadMap->SetMarkerStyle(3);  trkRadMap->SetMarkerColor(kGreen+4);
 trkPCMap->SetMarkerStyle(3);  trkPCMap->SetMarkerColor(kGreen+2);
 
-/*
-tlineUpGlobal->Draw();
-tlineRightGlobal->Draw();
-tlineDownGlobal->Draw();
-tlineLeftGlobal->Draw(); */
-
-//hSignalAndNoiseMap->Show();
-//
-//thSignalNoiseMap->cd(2);
-//globalBoxSignal->Draw();
-//hNoiseMap->Draw("same");// 
-/* 
-thSignalNoiseMap->SaveAs("hSignalNoiseMap.png");
-thSignalNoiseMap->Show(); * 
-tlineUpGlobal->Draw();
-tlineDownGlobal->Draw(); */
-
-
-
-/*
-localRefMIP2->SetMarkerStyle(3);
-localRefMIP2->SetMarkerColor(kRed); 
-*/ 
-
 
 mapPion->SetMarkerStyle(2);  
 mapProton->SetMarkerStyle(2);
