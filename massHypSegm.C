@@ -185,9 +185,8 @@ float /*std::array<TH1D*, 3>*/ houghResponse(std::vector<float>& photonCandidate
 
 
 
-
-
-std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBins, float occupancy, RandomValues& randomValue, ParticleInfo& particle, int cntEvent);
+// make event number i:
+std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, float occupancy, RandomValues& randomValue, ParticleInfo& particle, int cntEvent);
 
 
 
@@ -322,12 +321,12 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0, do
 
      ParticleInfo particle;
 
-     Printf(" enter backgroundStudy %d", eventCnt); 
-     const auto filledBins = backgroundStudy(mapBins, occupancy, randomValue, particle, eventCnt); 
+     Printf(" enter makeEvent %d", eventCnt); 
+     const auto filledBins = makeEvent(mapBins, occupancy, randomValue, particle, eventCnt); 
 
      eventCnt++;
      
-     Printf(" exit backgroundStudy %d", eventCnt); 
+     Printf(" exit makeEvent %d", eventCnt); 
      Printf("testRandomMomentum():  mapBins.size = %zu", mapBins.size()); 
     
       // TODO : hSignalAndNoiseMap just placeholder, make instead a TH2F from the filledBins?
@@ -360,7 +359,7 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0, do
 
 
 
-std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBins, float occupancy, RandomValues& randomValue, ParticleInfo& particle, int eventCnt)  
+std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, float occupancy, RandomValues& randomValue, ParticleInfo& particle, int eventCnt)  
 {
 
 
@@ -552,8 +551,8 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
   Printf("bgstudy segment : phiP %f thetaP %f xRad %f yP %f ", phiP, thetaP, xRad, yRad);
 
 
-  Printf(" backgroundStudy%d : enter  numberOfCkovPhotons loop",eventCnt); 
-  Printf(" backgroundStudy%d : numberOfCkovPhotons %d", eventCnt, numberOfCkovPhotons); 
+  Printf(" makeEvent%d : enter  numberOfCkovPhotons loop",eventCnt); 
+  Printf(" makeEvent%d : numberOfCkovPhotons %d", eventCnt, numberOfCkovPhotons); 
  std::vector<std::array<double, 3>> cherenkovPhotons(numberOfCkovPhotons);
 
  //Populate populate()
@@ -590,10 +589,10 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  
  maxPionVec.reserve(kN); maxKaonVec.reserve(kN); maxProtonVec.reserve(kN); 
  maxPionVec.resize(kN); maxKaonVec.resize(kN); maxProtonVec.resize(kN);
- Printf(" backgroundStudy%d : populating loop",eventCnt); 
+ Printf(" makeEvent%d : populating loop",eventCnt); 
  
 
- Printf(" backgroundStudy%d : ckovHyps = <%.3f, %.3f> | <%.3f, %.3f> | <%.3f, %.3f>", eventCnt, ckovTools.getMinCkovPion(),ckovTools.getMaxCkovPion(),ckovTools.getMinCkovKaon(),
+ Printf(" makeEvent%d : ckovHyps = <%.3f, %.3f> | <%.3f, %.3f> | <%.3f, %.3f>", eventCnt, ckovTools.getMinCkovPion(),ckovTools.getMaxCkovPion(),ckovTools.getMinCkovKaon(),
 ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovProton(), eventCnt); 
 
 // void populateRegions(std::vector<std::array<double, 3>>& vecArr, TH2F* map, const double& eta, const double& l);
@@ -603,7 +602,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
   std::vector<std::pair<double, double>> minPionVec, minKaonVec, minProtonVec;
   minPionVec.reserve(kN); minKaonVec.reserve(kN); minProtonVec.reserve(kN); 
   minPionVec.resize(kN); minKaonVec.resize(kN); minProtonVec.resize(kN);
-  Printf(" backgroundStudy%d : populating loop", eventCnt); 
+  Printf(" makeEvent%d : populating loop", eventCnt); 
 
   populateRegions(populate, maxPionVec, hMaxPion, ckovTools.getMaxCkovPion(), lMin);
   populateRegions(populate, maxKaonVec, hMaxKaon, ckovTools.getMaxCkovKaon(), lMin);
@@ -616,75 +615,8 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
  const auto posPC = populate->getPcImp();
 
 
- for(int i = 0; i < maxPionVec.size(); i++){
-    /*
-    const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
-    TVector3 dirTRS, dirLORS;
-    dirTrs.SetMagThetaPhi(1, ckovTools.getMaxCkovPion(), phiL);
-    double theta, phiR; // phiR is value of phi @ estimated R in LORS
-    trs2Lors(dirTrs, thetaR, phiR);
-    dirLORS.SetMagThetaPhi(1, thetaR, phiR);
-
-    const auto& maxPion = populate->traceForward(dirLORS, lMin);
-
-    const auto r = (maxPion - posPC).Mod();
-    arrMaxPion.emplace_back(phiL, phiR, r);
-    if(maxPion.X() > 0 && maxPion.X() < 156.0 && maxPion.Y() > 0 && maxPion.Y() < 144) {
-      hMaxPion->Fill(maxPion.X(), maxPion.Y());
-      maxPionVec[i] = std::make_pair(maxPion.X(), maxPion.Y());
-      Printf("maxPion loop i = %d, maxSize = %zu", i, maxPionVec.size()); 
-    } */ 
- }
- 
-
-
- // set segm arrays
- // ckovTools.setArrays(arrMaxPion);
-
-
-
- /* 
- std::vector<std::array<double, 3>> arrMaxPion, arrMaxKaon, arrMaxProton;*/
-
- 
-
- 
-
- Printf(" minPionVec : populating loop"); 
-
- /*
- // max etaC, min L
- for(int i = 0; i < minPionVec.size(); i++){
-    const auto& minPion = populate->tracePhot(ckovTools.getMaxCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN), lMin);
-
-    if(minPion.X() > 0 && minPion.X() < 156.0 && minPion.Y() > 0 && minPion.Y() < 144) {
-      hMaxPionMinL->Fill(minPion.X(), minPion.Y());
-    }
- }
-
- Printf(" maxPionVec : populating loop"); 
- // min etaC, max L
- for(int i = 0; i < minPionVec.size(); i++){
-    const auto& minPion = populate->tracePhot(ckovTools.getMinCkovPion(), Double_t(TMath::TwoPi()*(i+1)/kN), lMax);
-
-    if(minPion.X() > 0 && minPion.X() < 156.0 && minPion.Y() > 0 && minPion.Y() < 144) {
-      hMinPionMaxL->Fill(minPion.X(), minPion.Y());
-    }
- } */ 
-
-
- Printf(" backgroundStudy%d : exit populating loop ", eventCnt); 
+ Printf(" makeEvent%d : exit populating loop ", eventCnt); 
  Printf("		sizes = kN %d | %zu %zu %zu", kN, maxPionVec.size(),    maxKaonVec.size(), maxProtonVec.size()); 
-
- //Printf("enter setsegment!");
- // std::vector<std::pair<double, double>> maxPionVecRot(kN); 
- //maxPionVecRot.reserve(kN); maxPionVecRot.resize(kN);
- 
- // ckovTools.setSegment(maxPionVec, maxPionVecRot);
-
- // 
- // ckovTools.setSegments(maxPionVec, maxKaonVec, maxProtonVec);  
-
 
  auto deltaPcRad = (populate->getPcImp() - populate->getTrackPos());
  //else diff = vec.Phi() - phiL;
@@ -717,7 +649,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
    // populate map with cherenkov photon
 
    // later change below fcn to take valeus from setPhoton:
-   //Printf(" backgroundStudy : enter  ckovTools.makeCkovPhoton"); 	 
+   //Printf(" makeEvent : enter  ckovTools.makeCkovPhoton"); 	 
    //const auto& ckovPhotonCoordinates = ckovTools.makeCkovPhoton(phiL, etaC);
    
    //std::array<double, 3> cand = {ckovPhotonCoordinates.first,ckovPhotonCoordinates.second , etaC};
@@ -730,35 +662,35 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
    //cherenkovPhotons.emplace_back(cand);
    cherenkovPhotons[photonCount] = cand;
 
-   //Printf(" backgroundStudy : ckovTools.makeCkovPhoton returned x %f y%f", ckovPhotonCoordinates.first + xRad, ckovPhotonCoordinates.second + yRad); 	    
+   //Printf(" makeEvent : ckovTools.makeCkovPhoton returned x %f y%f", ckovPhotonCoordinates.first + xRad, ckovPhotonCoordinates.second + yRad); 	    
    hSignalAndNoiseMap->Fill(phot.X(), phot.Y());
 
   } 
 
 
-   Printf(" backgroundStudy%d : Number of photons created :  %d ",eventCnt, photonCount); 
+   Printf(" makeEvent%d : Number of photons created :  %d ",eventCnt, photonCount); 
 
 	
   // local coordinates are transformed to global here : 
   // also population of noise is done here
 
-  //Printf(" backgroundStudy : num cherenkovPhotons %f", cherenkovPhotons.size()); 
+  //Printf(" makeEvent : num cherenkovPhotons %f", cherenkovPhotons.size()); 
   typedef std::vector<std::pair<double, double>> MapType;
   MapType temp;
 
  
 
-  Printf(" backgroundStudy%d : enter  ckovTools.segment",eventCnt);
+  Printf(" makeEvent%d : enter  ckovTools.segment",eventCnt);
   const auto photonCandidatesCoords = ckovTools.segment(cherenkovPhotons, temp, eventCnt); // temp --> mapBins
 
 
 
-  Printf(" backgroundStudy%d : num photonCandidatesCoords %zu",eventCnt, photonCandidatesCoords.size()); 	 
+  Printf(" makeEvent%d : num photonCandidatesCoords %zu",eventCnt, photonCandidatesCoords.size()); 	 
   for(const auto& photons : photonCandidatesCoords){
     //Printf("photon x %f y %f", photons.first, photons.second);
     //hSignalAndNoiseMap->Fill(photons.first, photons.second);
   }
-    Printf("backgroundStudy%d() exit const auto& photons : photonCandidatesCoords", eventCnt);
+    Printf("makeEvent%d() exit const auto& photons : photonCandidatesCoords", eventCnt);
   
   
   TCanvas *thSignalAndNoiseMap = new TCanvas("hSignalAndNoiseMap","hSignalAndNoiseMap",800,800);  
@@ -776,9 +708,9 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
     // s->Draw();
   } */
 
-  hMaxPion->Draw("same");     //  Printf("backgroundStudy()  hMaxPion->Draw");
+  hMaxPion->Draw("same");     //  Printf("makeEvent()  hMaxPion->Draw");
   hMinPion->Draw("same");
-  hMaxProton->Draw("same");   //Printf("backgroundStudy()  hMaxProton->Draw");
+  hMaxProton->Draw("same");   //Printf("makeEvent()  hMaxProton->Draw");
   hMinProton->Draw("same");
   hMinKaon->Draw("same");
   hMaxKaon->Draw("same");
@@ -799,7 +731,7 @@ incL->Draw("same");incL->SetMarkerStyle(2);
 
   //l4->Draw("same");l3->Draw("same");
   //l2->Draw("same");//l1->Draw("same");
-  //Printf("backgroundStudy()  l1->Draw()");
+  //Printf("makeEvent()  l1->Draw()");
   //hSignalAndNoiseMap->Show();
   thSignalAndNoiseMap->SaveAs("thSignalAndNoiseMap.png");
   thSignalAndNoiseMap->Show();
@@ -825,7 +757,7 @@ incL->Draw("same");incL->SetMarkerStyle(2);
   particle.map = hSignalAndNoiseMap;  
 
 
-  Printf("end backgroundStudy%d", eventCnt);
+  Printf("end makeEvent%d", eventCnt);
   return photonCandidatesCoords;
  
 } // 

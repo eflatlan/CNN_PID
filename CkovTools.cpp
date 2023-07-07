@@ -393,8 +393,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 	if(getProtonStatus()) {
 		arrMaxProton.reserve(kN);
 		arrMinProton.reserve(kN);
-		
-		
+				
 		// also later add max, i forste runde sjekk at ckov i {minProton, maxPion}
 		Printf("calling setArrayMin w getMinCkovProton() = %.2f", getMinCkovProton());
   	setArrayMin(populate__, getMinCkovProton(), arrMinProton, kN);
@@ -485,16 +484,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 
 
 
-  /*
-  TH2F *localPion = new TH2F("pion ", "pion",800,-40.,-40.,800,-40.,40.);
 
-
-  Printf("ckovTools segment : enter const auto& p : segPionLocal"); 	 
-  for(const auto& p : segPionLocal) {
-		localPion->Fill(p.first, p.second);
-
-    //Printf(" ckovTools segment | x %.3f, y %.3f ", p.first, p.second);
-  } */ 
 
   Printf("ckovTools segment : exit const auto& p : segPionLocal"); 	 
 
@@ -521,11 +511,6 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
  
   const auto numBackgroundPhotons = static_cast<int>(area*occupancy); 
 
-  //Printf("CkovTools segment : rMax %f l1Max %f l2Max %f Area %f ", rMax, l1Max, l2Max, area);
-
-
- // Printf("CkovTools segment backGroundPhotons vector numBackgroundPhotons = %d", numBackgroundPhotons);
- 
  	std::vector<std::array<double, 3>> backGroundPhotons(numBackgroundPhotons);
   // std::vector<std::pair<double, double>> backGroundPhotons(numBackgroundPhotons);
    //   Printf("CkovTools segment backGroundPhotons vector created");
@@ -1306,23 +1291,6 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 Printf("CkovTools segment filledBins Size %zu", filledBins.size());
 
 
-/*
-TCanvas *thSignalNoiseMap = new TCanvas("hSignalNoiseMap","hSignalNoiseMap",800,800);  // thSignalNoiseMap->Divide(2,1);
-thSignalNoiseMap->cd(1);
-//globalBoxSignal->Draw();
-
-globalREfMIP->SetMarkerStyle(3);
-globalREfMIP->SetMarkerColor(kBlue);
-
-
-hSignalMap->SetMarkerStyle(2);
-hNoiseMap->SetMarkerStyle(2);
-
-hSignalMap->Draw();
-globalREfMIP->Draw("same");
-hNoiseMap->Draw("same");
-*/ 
-
 
 TCanvas* tcnvRane = new TCanvas(Form("tcnvRane%d", eventCnt), Form("tcnvRane%d", eventCnt), 1600, 800);
 
@@ -2049,12 +2017,22 @@ void setArrayMin2(Populate* populate, double etaTRS, vecArray3& inPutVector)
 		const auto r = (max - trkPC).Mod();
 		inPutVector[i] = {phiL, phiR, r};
 
-		/*if(maxPion.X() > 0 && maxPion.X() < 156.0 && maxPion.Y() > 0 && maxPion.Y() < 144) {
-			// hMaxPion->Fill(maxPion.X(), maxPion.Y());
-			// maxPionVec[i] = std::make_pair(maxPion.X(), maxPion.Y());
-			Printf("maxPion loop i = %d, maxSize = %zu", i, maxPionVec.size()); 
-		}*/
+
 	}
 }
+
+
+void populateRegions(Populate* populate, std::vector<std::pair<double, double>>& vecArr, TH2F* map, const double& eta, const double& l) {	 
+	 const int kN = vecArr.size();
+	 for(int i = 0; i < vecArr.size(); i++){
+		  const auto& value = populate->tracePhot(eta, Double_t(TMath::TwoPi()*(i+1)/kN), l);
+		  if(value.X() > 0 && value.X() < 156.0 && value.Y() > 0 && value.Y() < 144) {
+		    map->Fill(value.X(), value.Y());
+		    vecArr[i] = std::make_pair(value.X(), value.Y());
+		  }
+	 }
+ 		
+ }
+
 
 };

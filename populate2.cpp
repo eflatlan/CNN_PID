@@ -455,6 +455,9 @@ public:
 			prev = phi2;
 		}
 
+
+
+
 		// TODO: this has to be changed if inc = -1?
 		int index = iCnt - 1;
 
@@ -470,6 +473,13 @@ public:
 		// get radiuses
 		double r1 = vec[initValue + iCnt][2];
 		double r2 = vec[initValue + iCnt+1][2];
+
+
+		if(phi2 == 0) {
+			phiL2 = vec[0][0];
+			phi2 = vec[0][1];
+			r2 = vec[0][2];
+		}
 
 		// correct indexes are found 
 
@@ -637,7 +647,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		double prev = vec[initValue][1];
 		while(/*phi2 < phiPhoton*/ true) {
 
-			phi2 = vec[initValue + iCnt +1][1]; // waas not +1_
+			phi2 = vec[initValue + iCnt][1]; // waas not +1_
 			//Printf("	while(phi12< phiPhoton) {  || phi2 %.4f, prev %.4f phiPhoton %.4f, iCnt %d, initValue + iCnt = %d", phi2, prev, phiPhoton, iCnt, initValue + iCnt);
 
 
@@ -685,6 +695,16 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		// get radiuses
 		double r1 = vec[initValue + iCnt][2];
 		double r2 = vec[initValue + iCnt+1][2];
+
+		if(phi2 == 0) {
+			
+			Printf("	checkOver() -->  phi2 == 0, setting back to 1st elem in arr");
+			Printf("	Old vals : phi2 %.2f, phiL2 %.2f, r2 %.2f", phi2, phiL2, r2);			
+			phiL2 = vec[0][0];
+			phi2 = vec[0][1];
+			r2 = vec[0][2];
+			Printf("	New vals : phi2 %.2f, phiL2 %.2f, r2 %.2f", phi2, phiL2, r2);			
+		}
 
 		// correct indexes are found 
 
@@ -830,7 +850,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		double prev = vec[initValue][1];
 		while(/*phi2 < phiPhoton*/ true) {
 
-			phi2 = vec[initValue + iCnt +1][1]; // waas not +1_
+			phi2 = vec[initValue + iCnt ][1]; // waas not +1_
 			Printf("	while(phi12< phiPhoton) {  || phi2 %.4f, prev %.4f phiPhoton %.4f, iCnt %d, initValue + iCnt = %d", phi2, prev, phiPhoton, iCnt, initValue + iCnt);
 
 
@@ -873,13 +893,26 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 
 		// was index
 		double phi1 = vec[initValue + iCnt][1];
-		phi2 = vec[initValue + iCnt + 1][1]; // iCnt
+		// phi2 = vec[initValue + iCnt + 1][1]; // iCnt
 
 		// get radiuses
 		double r1 = vec[initValue + iCnt][2];
 		double r2 = vec[initValue + iCnt+1][2];
 
 		// correct indexes are found 
+
+
+
+		if(phi2 == 0) {
+			
+			Printf("	checkUnder(%s) -->  phi2 == 0, setting back to 1st elem in arr");
+			Printf("	Old vals : phi2 %.2f, phiL2 %.2f, r2 %.2f", phi2, phiL2, r2);			
+			phiL2 = vec[0][0];
+			phi2 = vec[0][1];
+			r2 = vec[0][2];
+			Printf("	New vals : phi2 %.2f, phiL2 %.2f, r2 %.2f", phi2, phiL2, r2);			
+		}
+
 
 		Printf("	checkUnder(%s) -->  kN %d | initValue %d | phiPhoton %.3f, phiP %.3f, phiC %.3f, phi2 %.3f, phi1 %.3f,", hadronType, kN, initValue, phiPhoton, phiP, phiC, phi2, phi1);
 
