@@ -15,12 +15,14 @@ using namespace o2;
 
 
 
+struct ArrAndMap; // forw decl
+
 class CkovTools {
 
 
 private: 
 
-
+  
 	// for storing candidates...
 	struct Candidate {
 		double x, y = 0.;
@@ -36,6 +38,12 @@ private:
 		/*uint32_t*/int candStatus = 0;//(000, 001, 010, 011, 100, 110, 101, 111);
 	};
 
+
+
+  bool print = true; // ef: TODO : later pass this in ctor 
+
+  Populate2* populate2Ptr = nullptr;// =  
+	Populate* populatePtr = nullptr;// 
 
 // using array = std::array;
 using vecArray3 = std::vector<std::array<double,3>>;
@@ -87,7 +95,7 @@ float L = rW/2;
  // --> later set them if they exceed momentum threshold
  double ckovPionMin = 999, ckovPionMax = 0, ckovKaonMin = 999, ckovKaonMax = 0, ckovProtonMin = 999,ckovProtonMax = 0;
 
- double mRMax, mL1Max, mL2Max, mRMin, mL1Min, mL2Min;
+ // double mRMax, mL1Max, mL2Max, mRMin, mL1Min, mL2Min;
 
  double momentum;
 
@@ -97,6 +105,8 @@ float L = rW/2;
  double xMipLocal, yMipLocal;
  float phiLCurrent, etaCCurrent;
 
+
+ int eventCnt;
  TVector2 trkPC;
 
 public:
@@ -121,13 +131,10 @@ double refIndexes[3] = {nF, nQ, nG};
 
 
 CkovTools (double radParams[6], double refIndexes[3], 
-           std::array<float, 3> ckovHyps, double occupancy, float trackCkov)
+           std::array<float, 3> ckovHyps, double occupancy, float trackCkov, int eventCnt)
   : 
-    ckovHyps(ckovHyps), occupancy(occupancy) , trackCkov(trackCkov) {
-  
-
-
-  
+    ckovHyps(ckovHyps), occupancy(occupancy) , trackCkov(trackCkov), eventCnt(eventCnt) {
+    
   xRad= radParams[0];
   yRad= radParams[1];
   L = radParams[2]; 
@@ -204,7 +211,30 @@ yMipLocal = tanThetaP*sinPhiP*(rW-L + tGap + qW);
 xPC = xMipLocal + xRad;
 yPC = yMipLocal + yRad;
 
+
+// fyll : 
+
+
+  ArrAndMap* mArrAndMap;
+  (mArrAndMap->hSignalMIP)->Fill(xRad, yRad);
+  (mArrAndMap->hSignalMIPpc)->Fill(xPC, yPC);
+
 trkPC.Set(xPC, yPC); // TODO :check it equals populate.getPcImp();
+
+ 
+TVector2 trkPos(xRad, yRad);
+TVector3 trkDir; 
+trkDir.SetMagThetaPhi(1, thetaP, phiP);
+
+
+
+
+populatePtr = new Populate(trkPos, trkDir, nF);
+
+populate2Ptr = new Populate2(trkPos, trkDir, nF);
+
+Populate populate(trkPos, trkDir, nF);
+
 
 
 Printf("init Ckovtools \n MIP Root : %f %f %f \n MIP local %f %f",op.Px(),op.Py(),op.Pz(),xMipLocal,yMipLocal);
@@ -213,7 +243,7 @@ Printf("init Ckovtools \n MIP Root : %f %f %f \n MIP local %f %f",op.Px(),op.Py(
 Printf("Ckovtools :: trkPC %.2f %.2f",trkPC.X(), trkPC.Y());
       // constructor body goes here, if needed
 
-
+/*
 mRMax = getR_Lmax(ckovPionMax, halfPI);
 mL2Max = getR_Lmax(ckovPionMax, 0);
 mL1Max = getR_Lmax(ckovPionMax, PI);
@@ -222,7 +252,7 @@ mL1Max = getR_Lmax(ckovPionMax, PI);
 // needs to be changed if to be used! now uses L = lMax
 mRMin = getR_Lmax(ckovProtonMin, halfPI);
       mL1Min = getR_Lmax(ckovProtonMin, PI);
-      mL2Min = getR_Lmax(ckovProtonMin, 0);
+      mL2Min = getR_Lmax(ckovProtonMin, 0);*/ 
 		
 			/*for(const auto& c : ckovHyps) {
 				auto R = getR_Lmax(c, halfPI);
@@ -355,21 +385,21 @@ double getThetaP()
 
 // x, y, etaC
 
-std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>>& cherenkovPhotons, MapType& bins, int eventCnt) { 
+std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>>& cherenkovPhotons, MapType& bins) { 
   MapType pionCandidates, kaonCandidates, protonCandidates;
   
   Printf("ckovTools enter  ckovTools.segment"); 	 
-  const auto infString = Form("localRef #Theta_{p}  = %.4f #Phi_{p} = %.4f L = %.2f \n #Theta_{C} = %.4f maxCkov = %.4f \n maxR = %.1f | l1 = %.1f | l2 = %.1f; x [cm]; y [cm]", thetaP,phiP, L,trackCkov,ckovPionMax, mRMax, mL1Max, mL2Max); 
+  //const auto infString = Form("localRef #Theta_{p}  = %.4f #Phi_{p} = %.4f L = %.2f \n #Theta_{C} = %.4f maxCkov = %.4f ; x [cm]; y [cm]", thetaP,phiP, L,trackCkov,ckovPionMax); 
 
-  TH2F *localRefMIP = new TH2F("localRefMIP ", infString,800,-40.,-40.,900,-40.,40.);
+  //TH2F *localRefMIP = new TH2F("localRefMIP ", infString,800,-40.,-40.,900,-40.,40.);
 
-
-
+  
+  /*
   TVector2 trkPos(xRad, yRad);
   TVector3 trkDir; 
   trkDir.SetMagThetaPhi(1, thetaP, phiP);
-  Populate* populate__ = new Populate(trkPos, trkDir, nF);
-  Populate populate(trkPos, trkDir, nF);
+  Populate* populatePtr = new Populate(trkPos, trkDir, nF);
+  Populate populate(trkPos, trkDir, nF);*/
 
 
   // void setArrayMin(Populate* populate, double etaTRS, vecArray3 inPutVector) 
@@ -380,6 +410,8 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 	//array<array<double, 3> ,kN> arrMaxPion; 
 
   
+
+	// disse kan brukes istedet for maxKaonVec...?
 	vecArray3 arrMaxPion, arrMinPion, arrMinProton, arrMaxProton, arrMinKaon, arrMaxKaon;
 
 	// do not reserve size? NO prob just dont resize :) 
@@ -396,36 +428,47 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 				
 		// also later add max, i forste runde sjekk at ckov i {minProton, maxPion}
 		Printf("calling setArrayMin w getMinCkovProton() = %.2f", getMinCkovProton());
-  	setArrayMin(populate__, getMinCkovProton(), arrMinProton, kN);
+  	setArrayMin(getMinCkovProton(), arrMinProton, kN);
 
 		Printf("calling setArrayMax w getMaxCkovProton() = %.2f", getMaxCkovProton());
-  	setArrayMax(populate__, getMaxCkovProton(), arrMaxProton, kN);
+  	setArrayMax(getMaxCkovProton(), arrMaxProton, kN);
 	}
 	
 
 	// check if candidate can be Kaon (i.e., that it exceeds momentum threshold)
 	if(getKaonStatus()) {
 		arrMaxKaon.reserve(kN);
-		arrMinKaon.reserve(kN);
-				
+		arrMinKaon.reserve(kN);				
 
 		Printf("calling setArrayMin w getMinCkovKaon() = %.2f", getMinCkovKaon());
-  	setArrayMin(populate__, getMinCkovKaon(), arrMinKaon, kN);
+  	setArrayMin(getMinCkovKaon(), arrMinKaon, kN);
 
 		Printf("calling setArrayMax w getMaxCkovKaon() = %.2f", getMaxCkovKaon());
-  	setArrayMax(populate__, getMaxCkovKaon(), arrMaxKaon, kN);
+  	setArrayMax(getMaxCkovKaon(), arrMaxKaon, kN);
 	}
 
 	
   Printf("calling setArrayMax w getMaxCkovPion() = %.2f", getMaxCkovPion());
-  setArrayMax(populate__, getMaxCkovPion(), arrMaxPion, kN);
+  setArrayMax(getMaxCkovPion(), arrMaxPion, kN);
 
 
 
   Printf("calling setArrayMin w getMinCkovPion() = %.2f", getMinCkovPion());
-  setArrayMin(populate__, getMinCkovPion(), arrMinPion, kN);
+  setArrayMin(getMinCkovPion(), arrMinPion, kN);
 
-  Populate2* populate2 = new Populate2(trkPos, trkDir, nF);
+
+	// fill all the values in the maps 
+	if(print) {
+		fillMapFromVec(mArrAndMap->hMaxPion, arrMaxPion);// map, array
+		fillMapFromVec(mArrAndMap->hMaxKaon, arrMaxKaon);// map, array
+		fillMapFromVec(mArrAndMap->hMaxProton, arrMaxProton);// map, array
+
+		fillMapFromVec(mArrAndMap->hMinPion, arrMinPion);// map, array
+		fillMapFromVec(mArrAndMap->hMinKaon, arrMinKaon);// map, array
+		fillMapFromVec(mArrAndMap->hMinProton, arrMinProton);// map, array
+	}
+
+
 
 
   // get track impacrt point at PC
@@ -433,42 +476,21 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 
 	const int scale = 2;
 
-	TH2F* ckovCandMapRange = new TH2F("ckovCandMapRange", "ckovCandMapRange", 160*scale, 0, 159, 144*scale, 0, 143);
-
-	TH2F* bgCandMapRange = new TH2F("bgCandMapRange", "bgCandMapRange", 160*scale, 0, 159, 144*scale, 0, 143);
-
-	TH2F* ckovCandMapOutRange = new TH2F("ckovCandMapOutRange", "ckovCandMapOutRange", 160*scale, 0, 159, 144*scale, 0, 143);
-
-	TH2F* bgCandMapOutRange = new TH2F("bgCandMapOutRange", "bgCandMapOutRange", 160*scale, 0, 159, 144*scale, 0, 143);
-
-	ckovCandMapRange->SetMarkerColor(kGreen);
-	ckovCandMapOutRange->SetMarkerColor(kGreen + 2);
-	bgCandMapRange->SetMarkerColor(kRed-1);
-	bgCandMapOutRange->SetMarkerColor(kRed+2);
-
-	ckovCandMapRange->SetMarkerStyle(3);
-	ckovCandMapOutRange->SetMarkerStyle(2);
-	bgCandMapRange->SetMarkerStyle(3);
-	bgCandMapOutRange->SetMarkerStyle(2);
 
 
 	/*
   TH2F *localRefMIPUnrot = new TH2F("localRefMIPUnrot ", infString,800,-40.,-40.,800,-40,40);
   TH2F *localRefUnrot = new TH2F("localRef ", infString,800,-40.,-40.,800,-40.,40.);
   TH2F *localRef = new TH2F("localRef ", infString,800,-40.,-40.,800,-40.,40.);  
-  TH2F *localRefBG = new TH2F("localRefBG ", infString,800,-40.,-40.,800,-40.,40.);
-
-
+  TH2F *localRefBG = new TH2F("localRefBG ", infString,800,-40.,-40.,800,-40.,40.)
 
   TH2F *localRefMIP2 = new TH2F("localRefMIP2 ", infString,160, 0., 159., 140, 0., 143.); */
 
-
+ /*
  TH2F *mapPhotons = new TH2F("mapPhotons ", "mapPhotons",1600, 0., 159., 1440, 0., 143.);
 
  TH2F *mapProtonMin = new TH2F("mapProtonMin ", "mapProtonMin",1600, 0., 159., 1440, 0., 143.);
  TH2F *mapProtonMax = new TH2F("mapProtonMax ", "mapProtonMax",1600, 0., 159., 1440, 0., 143.);
-
-
 
  TH2F *mapKaon = new TH2F("mapKaon ", "mapKaon",1600, 0., 159., 1440, 0., 143.);
 
@@ -482,7 +504,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
  TH2F *mapPion = new TH2F("mapPion ", "mapPion",1600, 0., 159., 1440, 0., 143.);
  TH2F *mapProton = new TH2F("mapProton ", "mapProton",1600, 0., 159., 1440, 0., 143.);
 
-
+ */
 
 
 
@@ -843,22 +865,8 @@ const auto phiPhoton = (posPhoton - trkPC).Phi();
 
 
 
+const auto pc = populatePtr->getPcImp();
 
-// mmmm trkPC here 0! 
-//Printf("CkovTools segment() : phiPhoton  %.2f, rPhoton  %.2f  |  posPhoton {x %.2f, y %.2f} - trkPC {x %.2f, y %.2f} " , phiPhoton, rPhoton, posPhoton.X(), posPhoton.Y(), trkPC.X(), trkPC.Y());
-
-
-
-const auto pc = populate__->getPcImp();
-///Printf("CkovTools segment() : phiPhoton  %.2f, rPhoton  %.2f  |  posPhoton {x %.2f, y %.2f} - trkPC2 {x %.2f, y %.2f} " , phiPhoton, rPhoton, posPhoton.X(), posPhoton.Y(), pc.X(), pc.Y());
-
-
-
-
-      // Printf("CkovTools segment ckov %f", ckov);
-      //Printf("CkovTools segment ckovPionMin %f ckovPionMax %f", ckovPionMin, ckovPionMax);
-
-// double switchLogic(const double& thetaP, const double& theta, const double& phiP, const double& phi, const double& eta, vector<double>& phiLVector, vector<double>& phiVector
       
 	
 	/*
@@ -875,44 +883,6 @@ const auto pc = populate__->getPcImp();
   // iteration phiL approach init
 	// checking if inside outer pionRadius (Lmin, etaMax)
 
-	/*
-
-void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& phiPhoton, bool getAbove, vecArray3& vec, const double& etaCkov)
-  */ 
-	
-	
-	/*
-	if(getPionStatus()) {
-		bool above = true;
-		Printf("populate2->checkCond(posPhoton, rPhoton, phiPhoton, above, arrMaxPion, getMaxCkovPion());");
-		// check if rPhoton > rMax(@ phiEstimated = phiPhoton)
-  	//populate2->checkCond(posPhoton, rPhoton, phiPhoton, above, arrMaxPion, getMaxCkovPion());
-  	
-
-		Printf("populate2->checkCond(posPhoton, rPhoton, phiPhoton, !above, arrMinPion, getMinCkovPion());");
-		// check if rPhoton < rMin(@ phiEstimated = phiPhoton)
-  	populate2->checkCond(posPhoton, rPhoton, phiPhoton, !above, arrMinPion, getMinCkovPion());
-	}*/ 
-	
-	
-	/*
-	// we should first check if rPhoton > rMinProton
-	if(getProtonStatus()) {
-		bool above = false;
-		Printf("populate2->checkCond(posPhoton, rPhoton, phiPhoton, above, arrMinProton, getMinCkovProton());");
-		// verify thatrPhoton > rMinProton(@ phiEstimated = phiPhoton)
-  	auto isMaxProtonOk = populate2->checkCond(posPhoton, rPhoton, phiPhoton, above, arrMinProton, getMinCkovProton());
-  	
-		/*
-		Printf("populate2->checkCond(posPhoton, rPhoton, phiPhoton, !above, arrMinPion, getMinCkovPion());");
-		// check if rPhoton < rMin(@ phiEstimated = phiPhoton)
-  	populate2->checkCond(posPhoton, rPhoton, phiPhoton, !above, arrMinPion, getMinCkovPion());* /
-	} */
-	
-
-	//  checkCond(const TVector2& posPhoton, const double& rPhoton, const double& phiPhoton, bool getAbove, vecArray3& vec, const double& etaCkov)
-	
-	// takes 
 	
   bool isPhotonProtonCand = false, isPhotonKaonCand = false, isPhotonPionCand = false;
 
@@ -925,15 +895,15 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 		Printf("Pion%d can be Pion Kaon and Proton from p-hyp \n", iPhotCount);	
 		// verify thatrPhoton > rMinProton(@ phiEstimated = phiPhoton)
 
-		Printf("\n\npopulate2->checkUnder(posPhoton, rPhoton, phiPhoton, above, arrMinProton, getMinCkovProton());");
-  	isMinProtonOk = populate2->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinProton, getMinCkovProton(), "Proton");
+		Printf("\n\npopulate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, above, arrMinProton, getMinCkovProton());");
+  	isMinProtonOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinProton, getMinCkovProton(), "Proton");
 
 		// check if rPhoton > rMax(@ phiEstimated = phiPhoton)
 		if(isMinProtonOk) {
 			Printf("isMinProtonOk = true");
-			Printf("\n\npopulate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion());");
+			Printf("\n\npopulate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion());");
 
-			isMaxPionOk = populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion(), "Pion");
+			isMaxPionOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion(), "Pion");
 			
 			// this means rProtonMin < rPhoton < rMaxPion
 			if(isMaxPionOk) {
@@ -941,7 +911,7 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 				
 				// this means rProtonMax > rPhoton; then also the rPh < rPionMax and rPh < rKaonMax
 
-				isMaxProtonOk = populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxProton, getMaxCkovProton(), "Proton");
+				isMaxProtonOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxProton, getMaxCkovProton(), "Proton");
 				Printf("===================================="); 
 				if(isMaxProtonOk) {
 					// we have proton-candiate
@@ -958,7 +928,7 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 
 
 
-				isMinPionOk = populate2->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion");
+				isMinPionOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion");
 				if(isMinPionOk) {
 					// we have pion-candiate
 					isPhotonPionCand = true;
@@ -971,16 +941,16 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 				
 				// if rPhoton < rPhotonMin, check if rPhoton > rKaonMin
 				if(!isMinKaonOk) {
-					// isMinKaonOk = populate2->checkCond()
-				isMinKaonOk = populate2->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinKaon, getMinCkovKaon(), "Kaon");
+					// isMinKaonOk = populate2Ptr->checkCond()
+				isMinKaonOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinKaon, getMinCkovKaon(), "Kaon");
 				}
 				
 				Printf("\n===================================="); 
 				// only check isMaxKaon if isMinKaonOk
 				if(isMinKaonOk) {
 					if(!isMaxKaonOk) {
-						isMaxKaonOk = populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxKaon, getMaxCkovKaon(), "Kaon");
-						// isMaxKaonOk = populate2->checkCond()
+						isMaxKaonOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxKaon, getMaxCkovKaon(), "Kaon");
+						// isMaxKaonOk = populate2Ptr->checkCond()
 					} 
 
 					if(isMaxKaonOk and isMinKaonOk) {
@@ -1022,17 +992,17 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 		Printf("\n====================================================="); 
 		Printf("Photon%d can be Pion and Kaon from p-hyp", iPhotCount);	
 		// verify that rPhoton > rMinKaon(@ phiEstimated = phiPhoton)
-		Printf("\npopulate2->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinProton, getMinCkovProton());");
-  	isMinKaonOk = populate2->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinKaon, getMinCkovKaon(), "Kaon");
+		Printf("\npopulate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinProton, getMinCkovProton());");
+  	isMinKaonOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinKaon, getMinCkovKaon(), "Kaon");
 
 
 		// this means rProtonMin < rPhoton < rMaxPion
 		if(isMinKaonOk) {
-			isMaxPionOk = populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion");
+			isMaxPionOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion");
 
 			if(isMaxPionOk) {
 
-				isMinPionOk = populate2->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion");
+				isMinPionOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion");
 				
 			  //isMinPionOk = ...
 				// this means rPionMin < rPhoton
@@ -1042,8 +1012,8 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 					// we have pion-candiate
 				}	
 
-				isMaxKaonOk = populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxKaon, getMaxCkovKaon(), "Kaon");
-				// isMaxKaonOk = populate2->
+				isMaxKaonOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxKaon, getMaxCkovKaon(), "Kaon");
+				// isMaxKaonOk = populate2Ptr->
 				if(isMaxKaonOk) {
 					isPhotonKaonCand = true;
 					Printf("Photon%d is Kaon Candiate", iPhotCount); 
@@ -1067,16 +1037,16 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 	else if(!getProtonStatus() and !getKaonStatus() and getPionStatus()) {
 		Printf("Photon%d can be Pion from p-hyp", iPhotCount);	
 
-		Printf("populate2->checkUnder(posPhoton, rPhoton, phiPhotob, arrMaxPion, getMaxCkovPion());",iPhotCount);
+		Printf("populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhotob, arrMaxPion, getMaxCkovPion());",iPhotCount);
 
-		isMaxPionOk = populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion(), "Pion");
+		isMaxPionOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion(), "Pion");
 		
 		
 		if(isMaxPionOk) {
 
-			Printf("populate2->checkOver(posPhoton, rPhoton, phiPhoton, arrMinPion, getMaxCkovPion());",iPhotCount);
+			Printf("populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMinPion, getMaxCkovPion());",iPhotCount);
 			
-			bool isMinPionOk = populate2->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion");
+			bool isMinPionOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion");
 			
 			if(isMinPionOk) {
 				// we have pion candidate
@@ -1119,29 +1089,30 @@ void checkCond(const TVector2& posPhoton, const double& rPhoton, const double& p
 
 
 
-	
-	// TODO: plot as same in maxPion..Range
-	if( x > 0 && x < 156 && y < 144 && y > 0) {
-		// this means it falls within range
-		if(cStatus != 0) {
+	if(print) {
+		// TODO: plot as same in maxPion..Range
+		if( x > 0 && x < 156 && y < 144 && y > 0) {
+			// this means it falls within range
+			if(cStatus != 0) {
 
-			// this means  candidate is a ckov-photon
-			if(etaC != 0) {
-				ckovCandMapRange->Fill(x,y);
-			}	else { // falls within range, but is bg
-				bgCandMapRange->Fill(x,y);
+				// this means  candidate is a ckov-photon
+				if(etaC != 0) {
+					(mArrAndMap->ckovCandMapRange)->Fill(x,y);
+				}	else { // falls within range, but is bg
+					(mArrAndMap->bgCandMapRange)->Fill(x,y);
+				}
+			}
+			// falls out of range
+			else {
+				// this means  candidate is a ckov-photon, but out of range
+				if(etaC != 0) {
+					(mArrAndMap->ckovCandMapOutRange)->Fill(x,y);
+				}	else { // falls out of range, and is bg
+					(mArrAndMap->bgCandMapOutRange)->Fill(x,y);			
+				}
 			}
 		}
-		// falls out of range
-		else {
-			// this means  candidate is a ckov-photon, but out of range
-			if(etaC != 0) {
-				ckovCandMapOutRange->Fill(x,y);
-			}	else { // falls out of range, and is bg
-				bgCandMapOutRange->Fill(x,y);			
-			}
-		}
-	}
+  }
 
 	// or store as 1 vector, where candidate status 8 => 2^3 (000, 001, 010, 011, 100, 110, 101, 111)
 	
@@ -1292,55 +1263,15 @@ Printf("CkovTools segment filledBins Size %zu", filledBins.size());
 
 
 
-TCanvas* tcnvRane = new TCanvas(Form("tcnvRane%d", eventCnt), Form("tcnvRane%d", eventCnt), 1600, 800);
-
-tcnvRane->cd();
-ckovCandMapRange->Draw();
-ckovCandMapOutRange->Draw("same");
-bgCandMapRange->Draw("same");
-bgCandMapOutRange->Draw("same");
-
-
-
-
 // get impact points of track @ RAD and PC
 //const auto trkPC = populate.getPcImp();
-const auto trkRad = populate.getTrackPos();
+/*const auto trkRad = populate.getTrackPos();
 TH2F* trkPCMap = new TH2F("trkPCMap ", "trkPCMap; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
 TH2F* trkRadMap = new TH2F("trkRadMap ", "trkRadMap; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
 trkRadMap->Fill(trkRad.X(), trkRad.Y());
-trkPCMap->Fill(trkPC.X(), trkPC.Y());
-
-trkRadMap->SetMarkerStyle(3);  trkRadMap->SetMarkerColor(kGreen+4);
-trkPCMap->SetMarkerStyle(3);  trkPCMap->SetMarkerColor(kGreen+2);
+trkPCMap->Fill(trkPC.X(), trkPC.Y());*/
 
 
-mapPion->SetMarkerStyle(2);  
-mapProton->SetMarkerStyle(2);
-mapPion->SetMarkerColor(kBlue);
-
-
-mapPionMax->SetMarkerStyle(2); 
-mapPionMax->SetMarkerColor(kRed);
-
-mapPionMin->SetMarkerStyle(2); 
-mapPionMin->SetMarkerColor(kGreen);
-
-
-mapProtonMax->SetMarkerStyle(2); 
-mapProtonMax->SetMarkerColor(kRed);
-
-mapProtonMin->SetMarkerStyle(2); 
-mapProtonMin->SetMarkerColor(kGreen);
-
-
-
-mapKaonMax->SetMarkerStyle(2); 
-mapKaonMax->SetMarkerColor(kRed);
-
-mapKaonMin->SetMarkerStyle(2); 
-mapKaonMin->SetMarkerColor(kGreen);
-mapKaon->SetMarkerColor(kGreen + 4);
 
 
 
@@ -1422,7 +1353,13 @@ Printf("ckovtools segment : localPion->Draw()");
 gPad->Update();
 // * / 
 */
-return filledBins;
+
+
+	if(print) {
+		mArrAndMap->drawTotalMapAndMaxRegions();
+  }
+
+	return filledBins;
 } // end segment
 
 
@@ -1792,11 +1729,11 @@ Printf("ReconG findCkov: cluX %.3f > fPCX %.3f >  cluY %.3f > fPCY %.3f  ", xL, 
 
 
 // placeholder...
-void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector, const size_t kN)
+void setArrayMax(double etaTRS, vecArray3& inPutVector, const size_t kN)
 {
   // const size_t kN = inPutVector.size();
   const float lMin = 0.;
-  const auto trkPC2 = populate->getPcImp();
+  const auto trkPC2 = populatePtr->getPcImp();
 
   Printf("\n\n setArrayMax() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
 	for(int i = 0; i < kN; i++){
@@ -1813,7 +1750,7 @@ void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector, cons
 		double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
 
 		// make this fcn in populate instead?		
-		populate->trs2Lors(dirTrs, thetaR, phiR);
+		populatePtr->trs2Lors(dirTrs, thetaR, phiR);
 		
 		Printf("setArrayMax() called trs2Lors on dirTRS : return { thetaR = %.2f, phiR = %.2f}", thetaR, phiR);
 		
@@ -1826,12 +1763,12 @@ void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector, cons
 		// temp
 		// ckovThe, const double& ckovPhi, const double & L
 		// this should return the same as max
-		const auto t = populate->tracePhot(etaTRS, phiL, lMin);
+		const auto t = populatePtr->tracePhot(etaTRS, phiL, lMin);
 		Printf("setArrayMax() tracePhot returned TVector2 {x %.2f y %.2f}", t.X(), t.Y());
 		// temp
 		
-		Printf("setArrayMax() called  populate->traceForward(dirLORS (thetaR %.2f, phiR %.2f) lMin =  %.2f", thetaR, phiR, lMin);
-		const auto& max = populate->traceForward(dirLORS, lMin);
+		Printf("setArrayMax() called  populatePtr->traceForward(dirLORS (thetaR %.2f, phiR %.2f) lMin =  %.2f", thetaR, phiR, lMin);
+		const auto& max = populatePtr->traceForward(dirLORS, lMin);
 		
 		Printf("setArrayMax() traceForward returned TVector2 {x %.2f y %.2f}", max.X(), max.Y());
 		
@@ -1893,13 +1830,13 @@ void setArrayMax(Populate* populate, double etaTRS, vecArray3& inPutVector, cons
 
 
 // placeholder...
-void setArrayMin(Populate* populate, double etaTRS, vecArray3& inPutVector, const size_t kN)
+void setArrayMin(double etaTRS, vecArray3& inPutVector, const size_t kN)
 {
   // const size_t kN = inPutVector.size();
 
   // higher L == > lower radius
   const auto lMax = 1.5;
-  const auto trkPC2 = populate->getPcImp();
+  const auto trkPC2 = populatePtr->getPcImp();
 
   Printf("\n\n setArrayMin() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
 	for(int i = 0; i < kN; i++){
@@ -1916,7 +1853,7 @@ void setArrayMin(Populate* populate, double etaTRS, vecArray3& inPutVector, cons
 		double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
 
 		// make this fcn in populate instead?		
-		populate->trs2Lors(dirTrs, thetaR, phiR);
+		populatePtr->trs2Lors(dirTrs, thetaR, phiR);
 		
 		Printf("setArrayMin() called trs2Lors on dirTRS : return { thetaR = %.2f, phiR = %.2f}", thetaR, phiR);
 		
@@ -1929,12 +1866,12 @@ void setArrayMin(Populate* populate, double etaTRS, vecArray3& inPutVector, cons
 		// temp
 		// ckovThe, const double& ckovPhi, const double & L
 		// this should return the same as max
-		const auto t = populate->tracePhot(etaTRS, phiL, lMax);
+		const auto t = populatePtr->tracePhot(etaTRS, phiL, lMax);
 		Printf("setArrayMin() tracePhot returned TVector2 {x %.2f y %.2f}", t.X(), t.Y());
 		// temp
 		
-		Printf("setArrayMin() called  populate->traceForward(dirLORS (thetaR %.2f, phiR %.2f) lMax =  %.2f", thetaR, phiR, lMax);
-		const auto& max = populate->traceForward(dirLORS, lMax);
+		Printf("setArrayMin() called  populatePtr->traceForward(dirLORS (thetaR %.2f, phiR %.2f) lMax =  %.2f", thetaR, phiR, lMax);
+		const auto& max = populatePtr->traceForward(dirLORS, lMax);
 		
 		Printf("setArrayMin() traceForward returned TVector2 {x %.2f y %.2f}", max.X(), max.Y());
 		
@@ -1996,6 +1933,15 @@ void setArrayMin(Populate* populate, double etaTRS, vecArray3& inPutVector, cons
 }
 
 
+// map i.e., hMaxPion | vecArray i.e. arrMaxPion
+ 
+void fillMapFromVec(TH2F* map, const vecArray3& vecArr)
+{
+	for(const auto vE : vecArr) {
+		map->Fill(vecArr[0], vecArr[1]);
+	}
+}
+
 
 // placeholder...
 void setArrayMin2(Populate* populate, double etaTRS, vecArray3& inPutVector)
@@ -2009,10 +1955,10 @@ void setArrayMin2(Populate* populate, double etaTRS, vecArray3& inPutVector)
 		TVector3 dirTrs, dirLORS;
 		dirTrs.SetMagThetaPhi(1, etaTRS, phiL);
 		double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
-		populate->trs2Lors(dirTrs, thetaR, phiR);
+		populatePtr->trs2Lors(dirTrs, thetaR, phiR);
 		dirLORS.SetMagThetaPhi(1, thetaR, phiR);
 
-		const auto& max = populate->traceForward(dirLORS, lMax);
+		const auto& max = populatePtr->traceForward(dirLORS, lMax);
 
 		const auto r = (max - trkPC).Mod();
 		inPutVector[i] = {phiL, phiR, r};
@@ -2022,10 +1968,10 @@ void setArrayMin2(Populate* populate, double etaTRS, vecArray3& inPutVector)
 }
 
 
-void populateRegions(Populate* populate, std::vector<std::pair<double, double>>& vecArr, TH2F* map, const double& eta, const double& l) {	 
+void populateRegions(std::vector<std::pair<double, double>>& vecArr, TH2F* map, const double& eta, const double& l) {	 
 	 const int kN = vecArr.size();
 	 for(int i = 0; i < vecArr.size(); i++){
-		  const auto& value = populate->tracePhot(eta, Double_t(TMath::TwoPi()*(i+1)/kN), l);
+		  const auto& value = populatePtr->tracePhot(eta, Double_t(TMath::TwoPi()*(i+1)/kN), l);
 		  if(value.X() > 0 && value.X() < 156.0 && value.Y() > 0 && value.Y() < 144) {
 		    map->Fill(value.X(), value.Y());
 		    vecArr[i] = std::make_pair(value.X(), value.Y());
@@ -2035,4 +1981,123 @@ void populateRegions(Populate* populate, std::vector<std::pair<double, double>>&
  }
 
 
+}; // end class CkovTools
+
+
+
+
+struct ArrAndMap
+{
+
+
+	TH2F* ckovCandMapRange = new TH2F("ckovCandMapRange", "ckovCandMapRange", 160*scale, 0, 159, 144*scale, 0, 143);
+
+	TH2F* bgCandMapRange = new TH2F("bgCandMapRange", "bgCandMapRange", 160*scale, 0, 159, 144*scale, 0, 143);
+
+	TH2F* ckovCandMapOutRange = new TH2F("ckovCandMapOutRange", "ckovCandMapOutRange", 160*scale, 0, 159, 144*scale, 0, 143);
+
+	TH2F* bgCandMapOutRange = new TH2F("bgCandMapOutRange", "bgCandMapOutRange", 160*scale, 0, 159, 144*scale, 0, 143);
+
+	ckovCandMapRange->SetMarkerColor(kGreen);
+	ckovCandMapOutRange->SetMarkerColor(kGreen + 2);
+	bgCandMapRange->SetMarkerColor(kRed-1);
+	bgCandMapOutRange->SetMarkerColor(kRed+2);
+
+	ckovCandMapRange->SetMarkerStyle(3);
+	ckovCandMapOutRange->SetMarkerStyle(2);
+	bgCandMapRange->SetMarkerStyle(3);
+	bgCandMapOutRange->SetMarkerStyle(2);
+
+  TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+
+  TH2F *hSignalMIP = new TH2F("hmip ", "hmip ; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+  TH2F *hSignalMIPpc = new TH2F("hmip pc", "hmip pc; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+
+  TH2F* arrayMaxMin[8];
+  TH2F *hMaxProton = new TH2F("maxPoss Ckov Proton", "maxPoss Ckov Proton; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+  TH2F *hMaxPion = new TH2F("maxPoss Ckov Pion", "maxPoss Ckov Pion; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+  TH2F *hMaxPionMinL = new TH2F("maxPoss Ckov Pion min L", "maxPoss Ckov Pion min L; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+  TH2F *hMinPionMaxL = new TH2F("minPoss Ckov Pion max L", "minPoss Ckov Pion max L; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+  TH2F *hMaxKaon = new TH2F("maxPoss Ckov Kaon", "maxPoss Ckov Kaon; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+  hMaxProton->SetMarkerColor(kGreen+3);
+  hMaxKaon->SetMarkerColor(kRed);
+
+  TH2F *hMinProton = new TH2F("minPoss Ckov Proton", "minPoss Ckov Proton; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+  TH2F *hMinPion = new TH2F("minPoss Ckov Pion", "minPoss Ckov Pion; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+  TH2F *hMinKaon = new TH2F("minPoss Ckov Kaon", "minPoss Ckov Kaon; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+  hMinProton->SetMarkerColor(kGreen+3);
+  hMinKaon->SetMarkerColor(kRed);
+  hMaxPion->SetMarkerColor(kBlue + 4);    // max ckov max L
+  hMinPion->SetMarkerColor(kBlue); 				// min ckov min L
+  hMinPionMaxL->SetMarkerColor(kBlue); 		// min ckov max L
+  hMaxPionMinL->SetMarkerColor(kBlue + 4);// max ckov min L
+  /*
+  hMaxPion->SetMarkerStyle(3);
+  hMinPionMaxL->SetMarkerStyle(3);*/
+  hSignalMIPpc->SetMarkerStyle(3);
+  hSignalMIP->SetMarkerStyle(3);
+  hSignalMIPpc->SetMarkerStyle(3);
+  hSignalMIPpc->SetMarkerColor(kRed);
+  hSignalAndNoiseMap->SetMarkerStyle(2);
+
+
+  
+	void drawTotalMap()
+	{
+		TCanvas* tcnvRane = new TCanvas(Form("tcnvRane%d", eventCnt), Form("tcnvRane%d", eventCnt), 1600, 800);
+		tcnvRane->cd();
+		ckovCandMapRange->Draw();
+		ckovCandMapOutRange->Draw("same");
+		bgCandMapRange->Draw("same");
+		bgCandMapOutRange->Draw("same");
+	}
+
+	void drawMaxRegions()
+	{
+
+		trkRadMap->SetMarkerStyle(3);  trkRadMap->SetMarkerColor(kGreen+4);
+		trkPCMap->SetMarkerStyle(3);  trkPCMap->SetMarkerColor(kGreen+2);
+
+		TCanvas *thSignalAndNoiseMap = new TCanvas(Form("hSignalAndNoiseMap%d", eventCnt),Form("hSignalAndNoiseMap%d", eventCnt),800,800);  
+		thSignalAndNoiseMap->cd();
+		hSignalAndNoiseMap->Draw();
+		hSignalMIPpc->Draw("same");
+
+		hMaxPion->Draw("same");     //  Printf("makeEvent()  hMaxPion->Draw");
+		hMinPion->Draw("same");
+		hMaxProton->Draw("same");   //Printf("makeEvent()  hMaxProton->Draw");
+		hMinProton->Draw("same");
+		hMinKaon->Draw("same");
+		hMaxKaon->Draw("same");
+	}
+
+
+
+	void drawTotalMapAndMaxRegions()
+	{
+		TCanvas* tcnvRane = new TCanvas(Form("TotalMap%d", eventCnt), Form("TotalMap%d", eventCnt), 1600, 800);
+
+		
+
+		tcnvRane->cd();
+		ckovCandMapRange->Draw();
+		ckovCandMapOutRange->Draw("same");
+		bgCandMapRange->Draw("same");
+		bgCandMapOutRange->Draw("same");
+
+		hSignalAndNoiseMap->Draw();
+		hSignalMIP->Draw("same");
+		hSignalMIPpc->Draw("same");
+
+		hMaxPion->Draw("same");     //  Printf("makeEvent()  hMaxPion->Draw");
+		hMinPion->Draw("same");
+		hMaxProton->Draw("same");   //Printf("makeEvent()  hMaxProton->Draw");
+		hMinProton->Draw("same");
+		hMinKaon->Draw("same");
+		hMaxKaon->Draw("same");
+	}
+
 };
+
+
+

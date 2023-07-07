@@ -423,65 +423,6 @@ std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, flo
 
   //TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",1000,-25.,25.,1000,-25.,25.);
 
-  TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-
-  TH2F *hSignalMIP = new TH2F("hmip ", "hmip ; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-  TH2F *hSignalMIPpc = new TH2F("hmip pc", "hmip pc; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-
-
-
-	TH2F* arrayMaxMin[8];
-
-  TH2F *hMaxProton = new TH2F("maxPoss Ckov Proton", "maxPoss Ckov Proton; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-
-  TH2F *hMaxPion = new TH2F("maxPoss Ckov Pion", "maxPoss Ckov Pion; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-
-  TH2F *hMaxPionMinL = new TH2F("maxPoss Ckov Pion min L", "maxPoss Ckov Pion min L; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-
-
-  TH2F *hMinPionMaxL = new TH2F("minPoss Ckov Pion max L", "minPoss Ckov Pion max L; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-
-  TH2F *hMaxKaon = new TH2F("maxPoss Ckov Kaon", "maxPoss Ckov Kaon; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-
-
-  hMaxProton->SetMarkerColor(kGreen+3);
-
-  hMaxKaon->SetMarkerColor(kRed);
-
-  TH2F *hMinProton = new TH2F("minPoss Ckov Proton", "minPoss Ckov Proton; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-
-  TH2F *hMinPion = new TH2F("minPoss Ckov Pion", "minPoss Ckov Pion; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-
-  TH2F *hMinKaon = new TH2F("minPoss Ckov Kaon", "minPoss Ckov Kaon; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-
-  hMinProton->SetMarkerColor(kGreen+3);
-
-  hMinKaon->SetMarkerColor(kRed);
-
-
-
-
-  hMaxPion->SetMarkerColor(kBlue + 4);    // max ckov max L
-  hMinPion->SetMarkerColor(kBlue); 				// min ckov min L
-  hMinPionMaxL->SetMarkerColor(kBlue); 		// min ckov max L
-  hMaxPionMinL->SetMarkerColor(kBlue + 4);// max ckov min L
-
-
-  /*
-  hMaxPion->SetMarkerStyle(3);
-  hMinPionMaxL->SetMarkerStyle(3);*/
-
-  hSignalMIPpc->SetMarkerStyle(3);
-
-
-
-  hSignalMIP->SetMarkerStyle(3);
-  hSignalMIPpc->SetMarkerStyle(3);
-
-  hSignalMIPpc->SetMarkerColor(kRed);
-
-
-  hSignalAndNoiseMap->SetMarkerStyle(2);
 
 
   float mapArray[40][40]{};
@@ -544,7 +485,19 @@ std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, flo
   double refIndexes[3] = {nF, nQ, nG};
 
 
-  CkovTools ckovTools(radParams, refIndexes, ckovHyps, occupancy, ckovAngle);
+
+ /*
+ TVector2 trkPos(xRad, yRad);
+ TVector3 trkDir; trkDir.SetMagThetaPhi(1, thetaP, phiP);
+ */ 
+ // getR* getr = new getR(trkPos, trkDir, nF);
+ 
+
+
+ Populate* populate = new Populate(trkPos, trkDir, nF);
+ const TVector2& posMaxProton = populate->tracePhot(ckovTools.getMaxCkovProton(), 0, lMax);
+
+  CkovTools ckovTools(radParams, refIndexes, ckovHyps, occupancy, ckovAngle, eventCnt);
 
 
 
@@ -557,15 +510,7 @@ std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, flo
 
  //Populate populate()
 
- TVector2 trkPos(xRad, yRad);
- TVector3 trkDir; trkDir.SetMagThetaPhi(1, thetaP, phiP);
 
- // getR* getr = new getR(trkPos, trkDir, nF);
- 
-
-
- Populate* populate = new Populate(trkPos, trkDir, nF);
- const TVector2& posMaxProton = populate->tracePhot(ckovTools.getMaxCkovProton(), 0, lMax);
  
  
  // maximum possible radius between points
@@ -583,6 +528,14 @@ std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, flo
 
  const int kN = 200;
 
+ 
+
+ Printf(" makeEvent%d : ckovHyps = <%.3f, %.3f> | <%.3f, %.3f> | <%.3f, %.3f>", eventCnt, ckovTools.getMinCkovPion(),ckovTools.getMaxCkovPion(),ckovTools.getMinCkovKaon(),
+ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovProton(), eventCnt); 
+
+// void populateRegions(std::vector<std::array<double, 3>>& vecArr, TH2F* map, const double& eta, const double& l);
+ 
+ /*
  std::vector<std::pair<double, double>> maxPionVec, maxKaonVec, maxProtonVec;
   
  std::vector<std::array<double, 3>> arrMaxPion, arrMaxKaon, arrMaxProton;
@@ -590,14 +543,6 @@ std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, flo
  maxPionVec.reserve(kN); maxKaonVec.reserve(kN); maxProtonVec.reserve(kN); 
  maxPionVec.resize(kN); maxKaonVec.resize(kN); maxProtonVec.resize(kN);
  Printf(" makeEvent%d : populating loop",eventCnt); 
- 
-
- Printf(" makeEvent%d : ckovHyps = <%.3f, %.3f> | <%.3f, %.3f> | <%.3f, %.3f>", eventCnt, ckovTools.getMinCkovPion(),ckovTools.getMaxCkovPion(),ckovTools.getMinCkovKaon(),
-ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovProton(), eventCnt); 
-
-// void populateRegions(std::vector<std::array<double, 3>>& vecArr, TH2F* map, const double& eta, const double& l);
-
-
 
   std::vector<std::pair<double, double>> minPionVec, minKaonVec, minProtonVec;
   minPionVec.reserve(kN); minKaonVec.reserve(kN); minProtonVec.reserve(kN); 
@@ -610,7 +555,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
   populateRegions(populate, minPionVec, hMinPion, ckovTools.getMinCkovPion(), lMax);
   populateRegions(populate, minKaonVec, hMinKaon, ckovTools.getMinCkovKaon(), lMax);
   populateRegions(populate, minProtonVec, hMinProton, ckovTools.getMinCkovProton(), lMax);
-
+*/ 
  // track hit at PC in LORS : 
  const auto posPC = populate->getPcImp();
 
@@ -681,7 +626,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
  
 
   Printf(" makeEvent%d : enter  ckovTools.segment",eventCnt);
-  const auto photonCandidatesCoords = ckovTools.segment(cherenkovPhotons, temp, eventCnt); // temp --> mapBins
+  const auto photonCandidatesCoords = ckovTools.segment(cherenkovPhotons, temp); // temp --> mapBins
 
 
 
@@ -693,11 +638,13 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
     Printf("makeEvent%d() exit const auto& photons : photonCandidatesCoords", eventCnt);
   
   
+
+  /*
   TCanvas *thSignalAndNoiseMap = new TCanvas("hSignalAndNoiseMap","hSignalAndNoiseMap",800,800);  
   thSignalAndNoiseMap->cd();
   hSignalAndNoiseMap->Draw();
   hSignalMIP->Draw("same");
-  hSignalMIPpc->Draw("same");
+  hSignalMIPpc->Draw("same"); */ 
 
 
   
@@ -707,13 +654,13 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
   { 
     // s->Draw();
   } */
-
+  /*
   hMaxPion->Draw("same");     //  Printf("makeEvent()  hMaxPion->Draw");
   hMinPion->Draw("same");
   hMaxProton->Draw("same");   //Printf("makeEvent()  hMaxProton->Draw");
   hMinProton->Draw("same");
   hMinKaon->Draw("same");
-  hMaxKaon->Draw("same");
+  hMaxKaon->Draw("same"); */
 
 
 
