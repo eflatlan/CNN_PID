@@ -468,8 +468,10 @@ std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, flo
   auto yPC =  yRad + delta*TMath::Sin(phiP);
 
 
-  hSignalMIP->Fill(xRad, yRad);
-  hSignalMIPpc->Fill(xPC, yPC);
+  
+
+  /*hSignalMIP->Fill(xRad, yRad);
+  hSignalMIPpc->Fill(xPC, yPC);*/
  
 
  const auto lMax = 1.5, lMin = 0.0;
@@ -486,18 +488,20 @@ std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, flo
 
 
 
- /*
+ 
  TVector2 trkPos(xRad, yRad);
  TVector3 trkDir; trkDir.SetMagThetaPhi(1, thetaP, phiP);
- */ 
+ 
  // getR* getr = new getR(trkPos, trkDir, nF);
  
 
 
  Populate* populate = new Populate(trkPos, trkDir, nF);
- const TVector2& posMaxProton = populate->tracePhot(ckovTools.getMaxCkovProton(), 0, lMax);
 
   CkovTools ckovTools(radParams, refIndexes, ckovHyps, occupancy, ckovAngle, eventCnt);
+ const TVector2& posMaxProton = populate->tracePhot(ckovTools.getMaxCkovProton(), 0, lMax);
+
+
 
 
 
@@ -561,7 +565,10 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
 
 
  Printf(" makeEvent%d : exit populating loop ", eventCnt); 
- Printf("		sizes = kN %d | %zu %zu %zu", kN, maxPionVec.size(),    maxKaonVec.size(), maxProtonVec.size()); 
+
+
+ 
+ // Printf("		sizes = kN %d | %zu %zu %zu", kN, maxPionVec.size(),    maxKaonVec.size(), maxProtonVec.size()); 
 
  auto deltaPcRad = (populate->getPcImp() - populate->getTrackPos());
  //else diff = vec.Phi() - phiL;
@@ -608,7 +615,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
    cherenkovPhotons[photonCount] = cand;
 
    //Printf(" makeEvent : ckovTools.makeCkovPhoton returned x %f y%f", ckovPhotonCoordinates.first + xRad, ckovPhotonCoordinates.second + yRad); 	    
-   hSignalAndNoiseMap->Fill(phot.X(), phot.Y());
+   //hSignalAndNoiseMap->Fill(phot.X(), phot.Y());
 
   } 
 
@@ -680,9 +687,9 @@ incL->Draw("same");incL->SetMarkerStyle(2);
   //l2->Draw("same");//l1->Draw("same");
   //Printf("makeEvent()  l1->Draw()");
   //hSignalAndNoiseMap->Show();
-  thSignalAndNoiseMap->SaveAs("thSignalAndNoiseMap.png");
+  /*thSignalAndNoiseMap->SaveAs("thSignalAndNoiseMap.png");
   thSignalAndNoiseMap->Show();
-  gPad->Update();
+  gPad->Update();*/ 
   int cnt = 0;
   for(auto& b : mapBins) {/*Printf("xval %f", b.x);*/ cnt++;}
   Printf(" mapBins size = %zu", mapBins.size());
@@ -701,7 +708,7 @@ incL->Draw("same");incL->SetMarkerStyle(2);
   particle.yRad = yRad;
   particle.thetaP = thetaP;
   particle.phiP = phiP;
-  particle.map = hSignalAndNoiseMap;  
+  //particle.map = hSignalAndNoiseMap;  
 
 
   Printf("end makeEvent%d", eventCnt);
@@ -1069,14 +1076,14 @@ void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector) {
 	//TCanvas* canvas = new TCanvas("canvas", "Map Canvas", 800, 800);
         // Write each histogram to the maps directory with a unique name
         TString histName = TString::Format("hist_%d", histCounter++);
-        TH2F* histCopy = new TH2F(*particle.map);
-        histCopy->SetName(histName);
+        //TH2F* histCopy = new TH2F(*particle.map);
+        //histCopy->SetName(histName);
 
 	// Draw the map on the canvas with a 1:1 aspect ratio
 	//canvas->SetCanvasSize(800, 800);
 	//canvas->SetFixedAspectRatio();
-        histCopy->Write();
-        tree->Fill();
+        //histCopy->Write();
+        //tree->Fill();
     }
 
     // Go back to the top directory

@@ -15,7 +15,175 @@ using namespace o2;
 
 
 
-struct ArrAndMap; // forw decl
+
+class ArrAndMap
+{
+
+  public :
+
+  int scale = 5;
+
+	TH2F* ckovCandMapRange = nullptr;
+
+	TH2F* bgCandMapRange  = nullptr;
+
+	TH2F* ckovCandMapOutRange = nullptr;
+
+	TH2F* bgCandMapOutRange = nullptr;
+
+
+  TH2F *hSignalAndNoiseMap =  nullptr;
+
+		TH2F *hSignalMIP =  nullptr;
+		TH2F *hSignalMIPpc =  nullptr;
+
+		TH2F* arrayMaxMin[8];
+		TH2F *hMaxProton =  nullptr;
+		TH2F *hMaxPion =  nullptr;
+		TH2F *hMaxPionMinL =  nullptr;
+		TH2F *hMinPionMaxL =  nullptr;
+		TH2F *hMaxKaon =  nullptr;
+
+
+		TH2F *hMinProton =  nullptr;
+		TH2F *hMinPion =  nullptr;
+		TH2F *hMinKaon = nullptr;
+
+    Populate* populatePtr = nullptr;
+
+
+		int eventCnt;
+  ArrAndMap(int eventCount, Populate* populatePtr) : eventCnt(eventCount),  populatePtr(populatePtr) {
+		ckovCandMapRange = new TH2F("ckovCandMapRange", "ckovCandMapRange", 160*scale, 0, 159, 144*scale, 0, 143);
+
+		bgCandMapRange  = new TH2F("bgCandMapRange", "bgCandMapRange", 160*scale, 0, 159, 144*scale, 0, 143);
+
+		ckovCandMapOutRange = new TH2F("ckovCandMapOutRange", "ckovCandMapOutRange", 160*scale, 0, 159, 144*scale, 0, 143);
+
+		bgCandMapOutRange = new TH2F("bgCandMapOutRange", "bgCandMapOutRange", 160*scale, 0, 159, 144*scale, 0, 143);
+
+
+	
+
+		hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+
+		hSignalMIP = new TH2F("hmip ", "hmip ; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+		hSignalMIPpc = new TH2F("hmip pc", "hmip pc; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+
+
+		hMaxProton = new TH2F("maxPoss Ckov Proton", "maxPoss Ckov Proton; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+		hMaxPion = new TH2F("maxPoss Ckov Pion", "maxPoss Ckov Pion; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+		hMaxPionMinL = new TH2F("maxPoss Ckov Pion min L", "maxPoss Ckov Pion min L; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+		hMinPionMaxL = new TH2F("minPoss Ckov Pion max L", "minPoss Ckov Pion max L; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+		hMaxKaon = new TH2F("maxPoss Ckov Kaon", "maxPoss Ckov Kaon; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+		hMaxProton->SetMarkerColor(kGreen+3);
+		hMaxKaon->SetMarkerColor(kRed);
+
+		hMinProton = new TH2F("minPoss Ckov Proton", "minPoss Ckov Proton; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+		hMinPion = new TH2F("minPoss Ckov Pion", "minPoss Ckov Pion; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+		hMinKaon = new TH2F("minPoss Ckov Kaon", "minPoss Ckov Kaon; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+
+
+		hMaxProton->SetMarkerColor(kGreen+3);
+		hMaxKaon->SetMarkerColor(kRed);
+		ckovCandMapRange->SetMarkerColor(kGreen);
+		ckovCandMapOutRange->SetMarkerColor(kGreen + 2);
+		bgCandMapRange->SetMarkerColor(kRed-1);
+		bgCandMapOutRange->SetMarkerColor(kRed+2);
+
+		ckovCandMapRange->SetMarkerStyle(3);
+		ckovCandMapOutRange->SetMarkerStyle(2);
+		bgCandMapRange->SetMarkerStyle(3);
+		bgCandMapOutRange->SetMarkerStyle(2);
+
+
+
+
+		hMinProton->SetMarkerColor(kGreen+3);
+		hMinKaon->SetMarkerColor(kRed);
+		hMaxPion->SetMarkerColor(kBlue + 4);    // max ckov max L
+		hMinPion->SetMarkerColor(kBlue); 				// min ckov min L
+		hMinPionMaxL->SetMarkerColor(kBlue); 		// min ckov max L
+		hMaxPionMinL->SetMarkerColor(kBlue + 4);// max ckov min L
+		/*
+		hMaxPion->SetMarkerStyle(3);
+		hMinPionMaxL->SetMarkerStyle(3);*/
+		hSignalMIPpc->SetMarkerStyle(3);
+		hSignalMIP->SetMarkerStyle(3);
+		hSignalMIPpc->SetMarkerStyle(3);
+		hSignalMIPpc->SetMarkerColor(kRed);
+		hSignalAndNoiseMap->SetMarkerStyle(2);
+
+  }
+
+
+
+  
+	void drawTotalMap()
+	{
+		TCanvas* tcnvRane = new TCanvas(Form("tcnvRane%d", eventCnt), Form("tcnvRane%d", eventCnt), 1600, 800);
+		tcnvRane->cd();
+		ckovCandMapRange->Draw();
+		ckovCandMapOutRange->Draw("same");
+		bgCandMapRange->Draw("same");
+		bgCandMapOutRange->Draw("same");
+	}
+
+	void drawMaxRegions()
+	{
+
+
+		const auto trkPC = populatePtr->getPcImp();
+		const auto trkRad = populatePtr->getTrackPos();
+		TH2F* trkPCMap = new TH2F("trkPCMap ", "trkPCMap; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
+		TH2F* trkRadMap = new TH2F("trkRadMap ", "trkRadMap; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
+	  trkRadMap->Fill(trkRad.X(), trkRad.Y());
+	  trkPCMap->Fill(trkPC.X(), trkPC.Y());
+
+
+		trkRadMap->SetMarkerStyle(3);  trkRadMap->SetMarkerColor(kGreen+4);
+		trkPCMap->SetMarkerStyle(3);  trkPCMap->SetMarkerColor(kGreen+2);
+
+		TCanvas *thSignalAndNoiseMap = new TCanvas(Form("hSignalAndNoiseMap%d", eventCnt),Form("hSignalAndNoiseMap%d", eventCnt),800,800);  
+		thSignalAndNoiseMap->cd();
+		hSignalAndNoiseMap->Draw();
+		hSignalMIPpc->Draw("same");
+
+		hMaxPion->Draw("same");     //  Printf("makeEvent()  hMaxPion->Draw");
+		hMinPion->Draw("same");
+		hMaxProton->Draw("same");   //Printf("makeEvent()  hMaxProton->Draw");
+		hMinProton->Draw("same");
+		hMinKaon->Draw("same");
+		hMaxKaon->Draw("same");
+	}
+
+
+
+	void drawTotalMapAndMaxRegions()
+	{
+		TCanvas* tcnvRane = new TCanvas(Form("TotalMap%d", eventCnt), Form("TotalMap%d", eventCnt), 1600, 800);
+
+		
+
+		tcnvRane->cd();
+		ckovCandMapRange->Draw();
+		ckovCandMapOutRange->Draw("same");
+		bgCandMapRange->Draw("same");
+		bgCandMapOutRange->Draw("same");
+
+		hSignalAndNoiseMap->Draw();
+		hSignalMIP->Draw("same");
+		hSignalMIPpc->Draw("same");
+
+		hMaxPion->Draw("same");     //  Printf("makeEvent()  hMaxPion->Draw");
+		hMinPion->Draw("same");
+		hMaxProton->Draw("same");   //Printf("makeEvent()  hMaxProton->Draw");
+		hMinProton->Draw("same");
+		hMinKaon->Draw("same");
+		hMaxKaon->Draw("same");
+	}
+
+};
 
 class CkovTools {
 
@@ -106,6 +274,8 @@ float L = rW/2;
  float phiLCurrent, etaCCurrent;
 
 
+  ArrAndMap* mArrAndMap = nullptr;// new ArrAndMap(eventCnt);
+
  int eventCnt;
  TVector2 trkPC;
 
@@ -128,6 +298,8 @@ void setPhoton(double phiL, double etaC)
 
 //   double pc[5] = {xRad,yRad,L,thetaP, phiP};
 double refIndexes[3] = {nF, nQ, nG};
+
+
 
 
 CkovTools (double radParams[6], double refIndexes[3], 
@@ -215,10 +387,6 @@ yPC = yMipLocal + yRad;
 // fyll : 
 
 
-  ArrAndMap* mArrAndMap;
-  (mArrAndMap->hSignalMIP)->Fill(xRad, yRad);
-  (mArrAndMap->hSignalMIPpc)->Fill(xPC, yPC);
-
 trkPC.Set(xPC, yPC); // TODO :check it equals populate.getPcImp();
 
  
@@ -230,6 +398,12 @@ trkDir.SetMagThetaPhi(1, thetaP, phiP);
 
 
 populatePtr = new Populate(trkPos, trkDir, nF);
+
+
+  mArrAndMap = new ArrAndMap(eventCnt, populatePtr);
+  (mArrAndMap->hSignalMIP)->Fill(xRad, yRad);
+  (mArrAndMap->hSignalMIPpc)->Fill(xPC, yPC);
+
 
 populate2Ptr = new Populate2(trkPos, trkDir, nF);
 
@@ -1938,7 +2112,7 @@ void setArrayMin(double etaTRS, vecArray3& inPutVector, const size_t kN)
 void fillMapFromVec(TH2F* map, const vecArray3& vecArr)
 {
 	for(const auto vE : vecArr) {
-		map->Fill(vecArr[0], vecArr[1]);
+		map->Fill(vE[0], vE[1]);
 	}
 }
 
@@ -1986,118 +2160,6 @@ void populateRegions(std::vector<std::pair<double, double>>& vecArr, TH2F* map, 
 
 
 
-struct ArrAndMap
-{
-
-
-	TH2F* ckovCandMapRange = new TH2F("ckovCandMapRange", "ckovCandMapRange", 160*scale, 0, 159, 144*scale, 0, 143);
-
-	TH2F* bgCandMapRange = new TH2F("bgCandMapRange", "bgCandMapRange", 160*scale, 0, 159, 144*scale, 0, 143);
-
-	TH2F* ckovCandMapOutRange = new TH2F("ckovCandMapOutRange", "ckovCandMapOutRange", 160*scale, 0, 159, 144*scale, 0, 143);
-
-	TH2F* bgCandMapOutRange = new TH2F("bgCandMapOutRange", "bgCandMapOutRange", 160*scale, 0, 159, 144*scale, 0, 143);
-
-	ckovCandMapRange->SetMarkerColor(kGreen);
-	ckovCandMapOutRange->SetMarkerColor(kGreen + 2);
-	bgCandMapRange->SetMarkerColor(kRed-1);
-	bgCandMapOutRange->SetMarkerColor(kRed+2);
-
-	ckovCandMapRange->SetMarkerStyle(3);
-	ckovCandMapOutRange->SetMarkerStyle(2);
-	bgCandMapRange->SetMarkerStyle(3);
-	bgCandMapOutRange->SetMarkerStyle(2);
-
-  TH2F *hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-
-  TH2F *hSignalMIP = new TH2F("hmip ", "hmip ; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-  TH2F *hSignalMIPpc = new TH2F("hmip pc", "hmip pc; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-
-  TH2F* arrayMaxMin[8];
-  TH2F *hMaxProton = new TH2F("maxPoss Ckov Proton", "maxPoss Ckov Proton; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-  TH2F *hMaxPion = new TH2F("maxPoss Ckov Pion", "maxPoss Ckov Pion; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-  TH2F *hMaxPionMinL = new TH2F("maxPoss Ckov Pion min L", "maxPoss Ckov Pion min L; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-  TH2F *hMinPionMaxL = new TH2F("minPoss Ckov Pion max L", "minPoss Ckov Pion max L; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-  TH2F *hMaxKaon = new TH2F("maxPoss Ckov Kaon", "maxPoss Ckov Kaon; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-  hMaxProton->SetMarkerColor(kGreen+3);
-  hMaxKaon->SetMarkerColor(kRed);
-
-  TH2F *hMinProton = new TH2F("minPoss Ckov Proton", "minPoss Ckov Proton; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-  TH2F *hMinPion = new TH2F("minPoss Ckov Pion", "minPoss Ckov Pion; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-  TH2F *hMinKaon = new TH2F("minPoss Ckov Kaon", "minPoss Ckov Kaon; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-  hMinProton->SetMarkerColor(kGreen+3);
-  hMinKaon->SetMarkerColor(kRed);
-  hMaxPion->SetMarkerColor(kBlue + 4);    // max ckov max L
-  hMinPion->SetMarkerColor(kBlue); 				// min ckov min L
-  hMinPionMaxL->SetMarkerColor(kBlue); 		// min ckov max L
-  hMaxPionMinL->SetMarkerColor(kBlue + 4);// max ckov min L
-  /*
-  hMaxPion->SetMarkerStyle(3);
-  hMinPionMaxL->SetMarkerStyle(3);*/
-  hSignalMIPpc->SetMarkerStyle(3);
-  hSignalMIP->SetMarkerStyle(3);
-  hSignalMIPpc->SetMarkerStyle(3);
-  hSignalMIPpc->SetMarkerColor(kRed);
-  hSignalAndNoiseMap->SetMarkerStyle(2);
-
-
-  
-	void drawTotalMap()
-	{
-		TCanvas* tcnvRane = new TCanvas(Form("tcnvRane%d", eventCnt), Form("tcnvRane%d", eventCnt), 1600, 800);
-		tcnvRane->cd();
-		ckovCandMapRange->Draw();
-		ckovCandMapOutRange->Draw("same");
-		bgCandMapRange->Draw("same");
-		bgCandMapOutRange->Draw("same");
-	}
-
-	void drawMaxRegions()
-	{
-
-		trkRadMap->SetMarkerStyle(3);  trkRadMap->SetMarkerColor(kGreen+4);
-		trkPCMap->SetMarkerStyle(3);  trkPCMap->SetMarkerColor(kGreen+2);
-
-		TCanvas *thSignalAndNoiseMap = new TCanvas(Form("hSignalAndNoiseMap%d", eventCnt),Form("hSignalAndNoiseMap%d", eventCnt),800,800);  
-		thSignalAndNoiseMap->cd();
-		hSignalAndNoiseMap->Draw();
-		hSignalMIPpc->Draw("same");
-
-		hMaxPion->Draw("same");     //  Printf("makeEvent()  hMaxPion->Draw");
-		hMinPion->Draw("same");
-		hMaxProton->Draw("same");   //Printf("makeEvent()  hMaxProton->Draw");
-		hMinProton->Draw("same");
-		hMinKaon->Draw("same");
-		hMaxKaon->Draw("same");
-	}
-
-
-
-	void drawTotalMapAndMaxRegions()
-	{
-		TCanvas* tcnvRane = new TCanvas(Form("TotalMap%d", eventCnt), Form("TotalMap%d", eventCnt), 1600, 800);
-
-		
-
-		tcnvRane->cd();
-		ckovCandMapRange->Draw();
-		ckovCandMapOutRange->Draw("same");
-		bgCandMapRange->Draw("same");
-		bgCandMapOutRange->Draw("same");
-
-		hSignalAndNoiseMap->Draw();
-		hSignalMIP->Draw("same");
-		hSignalMIPpc->Draw("same");
-
-		hMaxPion->Draw("same");     //  Printf("makeEvent()  hMaxPion->Draw");
-		hMinPion->Draw("same");
-		hMaxProton->Draw("same");   //Printf("makeEvent()  hMaxProton->Draw");
-		hMinProton->Draw("same");
-		hMinKaon->Draw("same");
-		hMaxKaon->Draw("same");
-	}
-
-};
 
 
 
