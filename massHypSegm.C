@@ -150,11 +150,12 @@ void setStyleInd(TH1* th1f, float ratio = 1.2);
 const float mass_Pion = 0.1396, mass_Kaon = 0.4937, mass_Proton = 0.938; // masses in
 std::array<float, 3> masses = {mass_Pion, mass_Kaon, mass_Proton};
 // get Ring-radius from Cherenkov-angle
-float getRadiusFromCkov(float ckovAngle);
+
 float calcRingGeom(float ckovAng, int level);
 float GetFreonIndexOfRefraction(float x);
-float GetQuartzIndexOfRefraction(float x);
-float BackgroundFunc(float *x, float *par);
+
+//float GetQuartzIndexOfRefraction(float x);
+//float BackgroundFunc(float *x, float *par);
 
 const float fDTheta = 0.001;  // increment
 float kThetaMax = 0.75;
@@ -192,7 +193,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
 const float defaultPhotonEnergy = 6.75; 
 const float refIndexFreon = GetFreonIndexOfRefraction(defaultPhotonEnergy);
-const float refIndexQuartz = GetQuartzIndexOfRefraction(defaultPhotonEnergy);
+const float refIndexQuartz = 1.5875;//GetQuartzIndexOfRefraction(defaultPhotonEnergy);
 const float  refIndexCH4 = 1.00; 
 const float CH4GapWidth = 8;
 const float  RadiatorWidth = 1.5; // ? was 1
@@ -251,14 +252,6 @@ float randomMomentum()
 }
 
 
-// create a number of random particles 
-/*float[] randomParticles(int numParticles)
-{
-  DataSaver dataSaver(Form("RandomParticles%3d.root",numParticles));
-
-  float[] randomMomentum = 
-
-}*/
 
 TH2F* tHistMass = new TH2F("test", "test; Momentum (GeV/c); Cherenkov Angle, #theta_{ch} (rad)", 5000, 0., 5., 800, 0., 0.8);
 
@@ -541,15 +534,8 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
 
  const auto lMax = 1.5, lMin = 0.0;
 
- // make instance of CkovTools
-
- // ckovHyps, nF, nQ, nG,
 
 
-
-
-  // TODO; change back to per each photon?
-  // setting emission-length of track
   double L = 0;
   L = static_cast<float>((rW)*(gRandom->Rndm()));
   
@@ -589,93 +575,11 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  Printf("posMaxProton --> rMax %.2f", rMax);
 
 
- // etaC 
-
- //const auto ckovMax 
- 
-
- // TODO: pass this to func?
-
- 
-
- // std::vector<TLine*> sLine, eLine;
-
-
  //auto sLine = std::make_unique<std::unique_ptr<TLine>[]>(37); 
  std::vector<std::pair<double, double>> tmp;
  //std::vector<std::unique_ptr<TLine>> sLine;
  
 
- /*
- std::vector<TLine*> sLine;
-
-
- 
- int lim = 10;
- for(int i = 0; i < lim; i++)
- {
-
-   auto angle = TMath::TwoPi() / lim * i;
-   const auto& s = populate->tracePhot(ckovTools.getMaxCkovProton(), angle, lMax);
-   const auto& e = populate->tracePhot(ckovTools.getMinCkovProton(),  TMath::Pi() + angle, lMax);
-   
-   //TLine *tL = new TLine(s.X(), s.Y(), e.X(), e.Y());
-   //tL->SetLineColor(kBlack);
-   
-   //sLine.push_back(std::make_unique<TLine>(s.X(), s.Y(), e.X(), e.Y()));//
-   sLine.push_back( new TLine(s.X(), s.Y(), e.X(), e.Y()));//
-
-   // tmp.push_back(s);
-   // tmp.push_back(s);
-
- }*/ 
-
-
- //const auto incL =  new TH2F("incL ", "incL ; x [cm]; y [cm]",160,0.,159.,144,0,143);
- //const auto incL2 =  new TH2F("incL2 ", "incL ; x [cm]; y [cm]",160,0.,159.,144,0,143);
- /*
- for(int i = 0; i < lim; i++)
- {
-
-   auto angle = 10;
-   const auto& s = populate->tracePhot(ckovTools.getMaxCkovProton()*i/lim, angle, lMax);
-   const auto& e = populate->tracePhot(ckovTools.getMinCkovProton()*i/lim,  angle, lMin);
-
-   incL->Fill(s.X(), s.Y());
-   incL2->Fill(e.X(), e.Y());
-   // sLine.push_back( new TLine(s.X(), s.Y(), e.X(), e.Y()));//
-   // tmp.push_back(s);
-   // tmp.push_back(s);
-
- } */ 
- 
- /*
-
- Printf(" backgroundStudy : populating lines"); 
- const auto& p1S = populate->tracePhot(ckovTools.getMaxCkovProton(), 0, lMax);
- const auto& p2S = populate->tracePhot(ckovTools.getMaxCkovProton(), 0, lMax);
-
-
-
- const auto& p1E = populate->tracePhot(ckovTools.getMaxCkovProton(), TMath::Pi(), lMax);
- const auto& p2E = populate->tracePhot(ckovTools.getMaxCkovProton(), TMath::Pi(), lMax);
-
-
- const auto& p3S = populate->tracePhot(ckovTools.getMaxCkovProton(), TMath::Pi()*1.5, lMax);
- const auto& p3E = populate->tracePhot(ckovTools.getMaxCkovProton(), TMath::Pi()*0.5, lMax);
-
- TLine *l1 = new TLine(p1S.X(), p1S.Y(), p1E.X(), p1E.Y());
- l1->SetLineColor(kOrange);
-
- TLine *l2 = new TLine(p2S.X(), p2S.Y(), p2E.X(), p2E.Y());
- l2->SetLineColor(kGreen);
-
- TLine *l3 = new TLine(p3S.X(), p3S.Y(), p3E.X(), p3E.Y());
- l3->SetLineColor(kRed);
-
-
- TLine *l4 = new TLine(p1S.X(), p1S.Y(), p3E.X(), p3E.Y());
- l4->SetLineColor(kBlue); */ 
 
 
  const int kN = 200;
@@ -689,7 +593,7 @@ std::vector<std::pair<double, double>>  backgroundStudy(std::vector<Bin>& mapBin
  Printf(" backgroundStudy%d : populating loop",eventCnt); 
  
 
- Printf(" backgroundStudy%d : ckovHyps = <%.3f, %.3f> | <%.3f, %.3f> | <%.3f, %.3f>", ckovTools.getMinCkovPion(),ckovTools.getMaxCkovPion(),ckovTools.getMinCkovKaon(),
+ Printf(" backgroundStudy%d : ckovHyps = <%.3f, %.3f> | <%.3f, %.3f> | <%.3f, %.3f>", eventCnt, ckovTools.getMinCkovPion(),ckovTools.getMaxCkovPion(),ckovTools.getMinCkovKaon(),
 ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovProton(), eventCnt); 
 
 // void populateRegions(std::vector<std::array<double, 3>>& vecArr, TH2F* map, const double& eta, const double& l);
@@ -801,7 +705,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
    TVector2 phot = populate->tracePhot(etaC, phiL, L); // tracePhot(double ckovThe, double ckovPhi)
    //Printf("made photon using populate->tracePhot | L = %.3f, etaC = %.4f, ckovAngle = %.4f | x %.3f, y %.3f ", L, etaC, ckovAngle, phot.X(), phot.Y());
 	 
-ø   //auto vec = phot - populate->getImpPc();     
+  //auto vec = phot - populate->getImpPc();     
    auto vec = phot - populate->getTrackPos();
 
 
@@ -933,32 +837,17 @@ float GetFreonIndexOfRefraction(float photonEnergy)
   return k;
 }
 //**********************************************************************************************************************************************************************************************************
-float GetQuartzIndexOfRefraction(float x)
-  
+
+
+/*float GetQuartzIndexOfRefraction(float x)
 {
   float k = TMath::Sqrt(1 + 46.411/(113.763556 - x) + 228.71/(328.51563 - x));
   return k;
-}
+}*/ 
 
 
 
-// get Ring-radius from Cherenkov-angle
-float getRadiusFromCkov(float ckovAngle)
-{
 
-  // TODO: change this back to using n!! not
-  //// refIndexFreon refIndexQuartz refIndexCH4
-  float sin_ckov = static_cast<float>(TMath::Sin(ckovAngle));
-  float sin_qz = static_cast<float>(sin_ckov*(refIndexFreon/refIndexQuartz));
-  float sin_theta0 = static_cast<float>(sin_qz*(refIndexQuartz/refIndexCH4));
-
-  float R_ckov = sin_ckov*(RadiatorWidth - EmissionLenght);
-  float R_qz = sin_qz * QuartzWindowWidth;
-  float R_0 = sin_theta0*CH4GapWidth;
-  //Printf("Radiuses  , R_ckov  % f + R_qz %f + R_0 %f", R_ckov, R_qz, R_0);
-  float R = static_cast<float>(R_ckov + R_qz + R_0);
-  return R;
-} 
 
 
 void setStyleInd(TH1* th1f, float ratio = 1.2)
@@ -1119,100 +1008,6 @@ void setStyle()
   hTheta->SetLabelSize(phots->GetLabelSize("x"), "xy");
 }
 
-/*
-void saveDataVector()
-{
-  std::vector<DataInfo> dataVector(100);  // Assuming you have a vector of Data
-
-    // Fill the vector with some data
-    // In a real case, you would likely fill this from your actual data source
-    for (int i = 0; i < 100; i++) {
-        dataVector[i].momentum = i * 0.5;  // some dummy values
-        dataVector[i].typeOfParticle = i % 3;
-        dataVector[i].refractiveIndex = i * 0.1;
-        for(int j=0; j<10; j++){
-            for(int k=0; k<10; k++){
-                dataVector[i].pads[j][k] = i+j+k; // some dummy values
-            }
-        }
-    }
-
-    DataSaver dataSaver("data.root");
-    dataSaver.fillData(dataVector);
-    dataSaver.save();
-}
-
-
-void saveDataInst()
-{
-
-  //std::vector<int> dataVector(100);  // Assuming you have a vector of Data	
-  std::vector<DataInfo> dataVector(100);  // Assuming you have a vector of Data
-
-    // Fill the vector with some data
-    // In a real case, you would likely fill this from your actual data source
-    for (int i = 0; i < 100; i++) {
-        dataVector[i].momentum = i * 0.5;  // some dummy values
-        dataVector[i].typeOfParticle = i % 3;
-        dataVector[i].refractiveIndex = i * 0.1;
-        for(int j=0; j<10; j++){
-            for(int k=0; k<10; k++){
-                dataVector[i].pads[j][k] = i+j+k; // some dummy values
-            }
-        }
-    }
-
-    DataSaver dataSaver("data.root");
-    dataSaver.fillData(dataVector);
-    dataSaver.save();
-} */ 
-
-
-/*
-// save TH2F* in own TTree since it caused segmentation fault when writing to same TTree as the other elements
-std::shared_ptr<TFile> saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector) {
-    // Create a smart pointer for the TFile
-    std::shared_ptr<TFile> outputFile(new TFile("outputFile.root", "RECREATE"));
-
-    // Create a smart pointer for the TTree
-    std::shared_ptr<TTree> tree(new TTree("tree", "ParticleInfo Tree"));
-
-    // Create variables to hold the values of ParticleInfo properties
-    float momentum;
-    float mass;
-    float energy;
-    float refractiveIndex;
-    float ckov;
-
-    // Set the branch addresses for the TTree
-    tree->Branch("momentum", &momentum);
-    tree->Branch("mass", &mass);
-    tree->Branch("energy", &energy);
-    tree->Branch("refractiveIndex", &refractiveIndex);
-    tree->Branch("ckov", &ckov);
-
-    // Loop over the ParticleInfo objects and fill the TTree
-    for (const auto& particle : particleVector) {
-        momentum = particle.momentum;
-        mass = particle.mass;
-        energy = particle.energy;
-        refractiveIndex = particle.refractiveIndex;
-        ckov = particle.ckov;
-
-        tree->Fill();
-
-        // Ensure the map is not a nullptr before writing it to the file
-        if (particle.map) {
-            particle.map->Write(); // This will write the TH2F* to the file
-        }
-    }
-
-    // Write the TTree to the TFile
-    outputFile->cd();
-    tree->Write();
-
-    return outputFile;
-}*/ 
 
 void saveParticleInfoToROOT2(const std::vector<ParticleInfo>& particleVector) {
     // Create a new TFile
@@ -1308,63 +1103,7 @@ void readParticleInfoFromROOT() {
     inputFile->Close();
 }
 
-/*
-void readParticleInfoFromROOT2() {
-    // Open the file
-    TFile* inputFile = new TFile("outputFile2.root", "READ");
 
-    // Get the TTree
-    TTree* tree = (TTree*)inputFile->Get("tree");
-
-    // Create a ParticleInfo pointer
-    ParticleInfo* particleInfo = nullptr;
-
-    // Set the branch address
-    Printf("Setting ParticleInfo adress");
-    tree->SetBranchAddress("ParticleInfo", &particleInfo);
-
-    // Get number of entries in the TTree
-    Long64_t nEntries = tree->GetEntries();
-
-    Printf("Entering Loop");
-
-    // Loop over the entries in the TTree
-    for (Long64_t iEntry = 0; iEntry < nEntries; ++iEntry) {
-        // Load the entry
-
-
-        if(particleInfo) {
-            delete particleInfo;
-            particleInfo = nullptr;
-        }
-        std::cout << "tree->GetEntry(iEntry); " << iEntry << ":\n";
-        tree->GetEntry(iEntry);
-
-        if(particleInfo) {
-            std::cout << "ParticleInfo object " << iEntry << ":\n";
-            std::cout << "  momentum: " << particleInfo->momentum << "\n";
-            std::cout << "  mass: " << particleInfo->mass << "\n";
-            std::cout << "  energy: " << particleInfo->energy << "\n";
-            std::cout << "  refractiveIndex: " << particleInfo->refractiveIndex << "\n";
-            std::cout << "  ckov: " << particleInfo->ckov << "\n";
-        } else {
-            std::cout << " ParticleInfo object not found\n";
-        }
-
-        // Get the associated histogram
-        TString histName = TString::Format("hist_%lld", iEntry);
-        TH2F* hist = (TH2F*)inputFile->Get(histName);
-        if (hist) {
-            // Print the number of points in the histogram
-            std::cout << "  map points: " << hist->GetEntries() << "\n";
-        } else {
-            std::cout << "  map not found\n";
-        }
-    }
-
-    // Close the file
-    inputFile->Close();
-}*/ 
 
 void saveHD5(const std::vector<ParticleInfo>& particleVectorIn)
 {
@@ -1484,86 +1223,5 @@ void saveParticleInfoToROOT(const std::vector<ParticleInfo>& particleVector) {
     readParticleInfoFromROOT();
 }
 
-
-
-/*
-
-// TODO! nb!!! naa har ikke tatt hoyde for phi' = phi - phiP;
-
-// find the phiL!
-double switchLogic(const double& thetaP, const double& theta, const double& phiP, const double& phi, const double& eta, std::vector<double>& phiLVector, std::vector<double>& phiVector)
-{
-  // symbols followed by capital L denotes "TRS" values
-  
- 
-  // assign case and IVs : 
-  double  phiNewL; // value to be returned; the estimated phi of rMin/rMax in TRS
-  // this value is later used in tracePhoton to find the radius at same 
-  // phi value as photon
-
-  //, phiNew;
-  double phi1, phiL1;  // LORS, TRS 
-  double phi2, phiL2;  // LORS, TRS
-
-
-  bool A;
-  if(phi < phiP + TMath::Pi()) { // Case A: phi1 CCW (+it), phi2 CW (-it)
-    phi1L = 0;
-    A = true;
-  } else {  			 // Case B: phi1 CW (-it), phi2 CCW (+it)
-    phi1L = TMath::TwoPi();
-    A = false;
-  }
-
-
-  // A : phiNewL = (0 + 1)Pi/2 = pi/2
-  // B : phiNewL = (2 + 1)Pi/2 = 3pi/2
-
-  int cnt = 0;
-  float limit = 0.0000001;
-  while(diff > limit and cnt < 100000000) {
-    phiNewL = (phi2L + phi1L)/2;
-
-    phiLVector.push_back(phiNewL); // to keep track of convergence
-
-
-    double phiNew;
-    TVector3 temp;
-    temp.SetMagThetaPhi(1, eta, phiNewL);
-
-    double thetaTemp; // trivial value, not really needed
-
-    // phiNew pass by ref, will be new value of phi1 or phi2
-    trs2Lors(temp, thetaTemp, phiNew);
-    phiVector.push_back(phiNew);  // to keep track of convergence
-
-    
-    if(A and phiNew > phi) {
-      phi2 = phiNew; 
-      phi2L = phiNewL;
-    } else if(A and phiNew < phi) {
-      phi1 = phiNew; 
-      phi1L = phiNewL;
-    } else if(!A and phiNew > phi) {
-      phi1 = phiNew; 
-      phi1L = phiNewL;
-    } else if(!A and phiNew < phi) {
-      phi2 = phiNew; 
-      phi2L = phiNewL;
-    } else if(phi == phi2 or phi == phi1) {
-      Printf("SLogic : phi %.2f == phi2 %.2f or phi %.2f == phi1 %.2f", phi, phi2, phi, phi1); 
-    } else {
-      Printf("SLogic: I dont know why this else-statemtnt is invoked :( !!"); 
-    }
-    auto diff1 = std::abs(phi - phi1); // needs cmath!
-    auto diff2 = std::(phi - phi2);
-    diff = std::min(phi - phi1);
-    Printf("SLogic : phi %.2f, phi1 %.2f, phi2 %.2f | diff = %.4f", phi, phi1, phi2, diff); 
-    cnt++;
-  }
-
-  return phiNewL;
-
-} */
 
 
