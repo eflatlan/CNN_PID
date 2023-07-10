@@ -277,7 +277,7 @@ float L = rW/2;
 
  // double mRMax, mL1Max, mL2Max, mRMin, mL1Min, mL2Min;
 
- double momentum;
+ double momentum, mass;
 
  float cosThetaP, sinThetaP, tanThetaP;
  float cosPhiP, sinPhiP, tanPhiP;
@@ -314,17 +314,21 @@ double refIndexes[3] = {nF, nQ, nG};
 
 
 
-CkovTools (double radParams[6], double refIndexes[3], 
+CkovTools (double radParams[7], double refIndexes[3], 
            std::array<float, 3> ckovHyps, double occupancy, float trackCkov, int eventCnt)
   : 
-    ckovHyps(ckovHyps), occupancy(occupancy) , trackCkov(trackCkov), eventCnt(eventCnt) {
+    ckovHyps(ckovHyps), occupancy(occupancy) , trackCkov(trackCkov), eventCnt(eventCnt) {  
+    
+    
+  // double radParams[6] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum};
     
   xRad= radParams[0];
   yRad= radParams[1];
   L = radParams[2]; 
   thetaP = radParams[3];
   phiP = radParams[4];
-  momentum = radParams[5];	  
+  momentum = radParams[5];	 
+  mass = radParams[6];
 
   nF = refIndexes[0];
 
@@ -1602,8 +1606,11 @@ gPad->Update();
 			
 		mArrAndMap->drawTotalMapAndMaxRegions();
 		mArrAndMap->drawTotalMap();
-		mArrAndMap->drawMaxRegions();
-
+		mArrAndMap->drawMaxRegions();		  
+  
+		Printf("momentum %.2f | mass %.2f | thetaP %.2f | phiP %.2f | L %.2f", momentum, mass, thetaP, phiP, L);
+		
+		
 		throw std::invalid_argument("print invoked");
   // drawTotalMap / drawMaxRegions
   }
