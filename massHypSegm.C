@@ -478,12 +478,12 @@ std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, flo
 
 
 
-  double L = 0;
-  L = static_cast<float>((rW)*(gRandom->Rndm()));
+  // double L = 0;
+  double L = static_cast<float>((rW)*(gRandom->Rndm(1)));
   
   // TODO; change back to:
   // double radParams[6] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum};
-  double radParams[6] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum};
+  double radParams[7] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum, randomValue.mass};
   double refIndexes[3] = {nF, nQ, nG};
 
 
@@ -498,7 +498,10 @@ std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, flo
 
  Populate* populate = new Populate(trkPos, trkDir, nF);
 
-  CkovTools ckovTools(radParams, refIndexes, ckovHyps, occupancy, ckovAngle, eventCnt);
+ CkovTools ckovTools(radParams, refIndexes, ckovHyps, occupancy, ckovAngle, eventCnt);
+
+
+
  const TVector2& posMaxProton = populate->tracePhot(ckovTools.getMaxCkovProton(), 0, lMax);
 
 
