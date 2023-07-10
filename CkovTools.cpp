@@ -21,7 +21,7 @@ class ArrAndMap
 
   public :
 
-  int scale = 5;
+  int scale = 10;
 
 	TH2F* ckovCandMapRange = nullptr;
 
@@ -65,23 +65,23 @@ class ArrAndMap
 
 	
 
-		hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+		hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160*scale,0.,159.,144*scale,0,143);
 
-		hSignalMIP = new TH2F("hmip ", "hmip ; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-		hSignalMIPpc = new TH2F("hmip pc", "hmip pc; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+		hSignalMIP = new TH2F("hmip ", "hmip ; x [cm]; y [cm]",160*scale,0.,159.,144*scale,0,143);
+		hSignalMIPpc = new TH2F("hmip pc", "hmip pc; x [cm]; y [cm]",160*scale,0.,159.,144*scale,0,143);
 
 
-		hMaxProton = new TH2F("maxPoss Ckov Proton", "maxPoss Ckov Proton; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-		hMaxPion = new TH2F("maxPoss Ckov Pion", "maxPoss Ckov Pion; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-		hMaxPionMinL = new TH2F("maxPoss Ckov Pion min L", "maxPoss Ckov Pion min L; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-		hMinPionMaxL = new TH2F("minPoss Ckov Pion max L", "minPoss Ckov Pion max L; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-		hMaxKaon = new TH2F("maxPoss Ckov Kaon", "maxPoss Ckov Kaon; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+		hMaxProton = new TH2F("maxPoss Ckov Proton", "maxPoss Ckov Proton; x [cm]; y [cm]",160*scale,0.,159.,144*scale,0,143);
+		hMaxPion = new TH2F("maxPoss Ckov Pion", "maxPoss Ckov Pion; x [cm]; y [cm]",160*scale,0.,159.,144*scale,0,143);
+		hMaxPionMinL = new TH2F("maxPoss Ckov Pion min L", "maxPoss Ckov Pion min L; x [cm]; y [cm]",160*scale,0.,159.,144*scale,0,143);
+		hMinPionMaxL = new TH2F("minPoss Ckov Pion max L", "minPoss Ckov Pion max L; x [cm]; y [cm]",160*scale,0.,159.,144*scale,0,143);
+		hMaxKaon = new TH2F("maxPoss Ckov Kaon", "maxPoss Ckov Kaon; x [cm]; y [cm]",160*scale,0.,159.,144*scale,0,143);
 		hMaxProton->SetMarkerColor(kGreen+3);
 		hMaxKaon->SetMarkerColor(kRed);
 
-		hMinProton = new TH2F("minPoss Ckov Proton", "minPoss Ckov Proton; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-		hMinPion = new TH2F("minPoss Ckov Pion", "minPoss Ckov Pion; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
-		hMinKaon = new TH2F("minPoss Ckov Kaon", "minPoss Ckov Kaon; x [cm]; y [cm]",160*5,0.,159.,144*5,0,143);
+		hMinProton = new TH2F("minPoss Ckov Proton", "minPoss Ckov Proton; x [cm]; y [cm]",160*scale,0.,159.,144*scale,0,143);
+		hMinPion = new TH2F("minPoss Ckov Pion", "minPoss Ckov Pion; x [cm]; y [cm]",160*scale,0.,159.,144*scale,0,143);
+		hMinKaon = new TH2F("minPoss Ckov Kaon", "minPoss Ckov Kaon; x [cm]; y [cm]",160*scale,0.,159.,144*scale,0,143);
 
 
 		hMaxProton->SetMarkerColor(kGreen+3);
@@ -218,7 +218,7 @@ private:
 
 
 
-  bool print = true; // ef: TODO : later pass this in ctor 
+  bool print = false; // ef: TODO : later pass this in ctor 
 
   Populate2* populate2Ptr = nullptr;// =  
 	Populate* populatePtr = nullptr;// 
@@ -591,7 +591,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
   // void setArrayMin(Populate* populate, double etaTRS, vecArray3 inPutVector) 
 
 
-  const size_t kN = 100;
+  const size_t kN = 150;
 
 	//array<array<double, 3> ,kN> arrMaxPion; 
 
@@ -605,8 +605,8 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 	// do not reserve size? NO prob just dont resize :) 
 	arrMaxPion.reserve(kN);
 	arrMinPion.reserve(kN);
-	arrMaxPion.resize(kN);
-	arrMinPion.resize(kN);
+	//arrMaxPion.resize(kN);
+	//arrMinPion.resize(kN);
 
 	arrMaxPionPos.reserve(kN);
 	arrMinPionPos.reserve(kN);
@@ -619,8 +619,8 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 	if(getProtonStatus()) {
 		arrMaxProton.reserve(kN);
 		arrMinProton.reserve(kN);
-		arrMaxProton.resize(kN);
-		arrMinProton.resize(kN);
+		//arrMaxProton.resize(kN);
+		//arrMinProton.resize(kN);
 
 		arrMinProtonPos.reserve(kN);
 		arrMaxProtonPos.reserve(kN);
@@ -641,8 +641,8 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 		arrMaxKaon.reserve(kN);
 		arrMinKaon.reserve(kN);				
 
-		arrMaxKaon.resize(kN);
-		arrMinKaon.resize(kN);	
+		//arrMaxKaon.resize(kN);
+		//arrMinKaon.resize(kN);	
 
 		arrMaxKaonPos.reserve(kN);
 		arrMinKaonPos.reserve(kN);				
@@ -720,7 +720,21 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 
   const auto area = 144*156; 
  
-  const auto numBackgroundPhotons = static_cast<int>(area*occupancy); 
+ 
+ 
+  // number of bg-photons produced
+  const auto numBackgroundPhotons = static_cast<int>(area*occupancy*0); 
+
+  // number of correctly identified ckov photons
+	int numFoundActualCkov = 0;
+		
+		
+	// in case ckov photons produced are out of range of chamber dimensions:	
+	int numActualCkov = 0;
+	
+	
+  // number of bg-photons labellled as being withing range:
+	int numBackgroundLabeledCkov = 0;
 
  	std::vector<std::array<double, 3>> backGroundPhotons(numBackgroundPhotons);
   // std::vector<std::pair<double, double>> backGroundPhotons(numBackgroundPhotons);
@@ -917,8 +931,8 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
   // it should be
   // within the ~1mm unc range, generate a value +- unc to add to 
   // ideal cluster-position
-  std::uniform_real_distribution<> disX(-uncX, uncX);
-  std::uniform_real_distribution<> disY(-uncY, uncY);
+  std::uniform_real_distribution<> disX(-uncX/2, uncX/2);
+  std::uniform_real_distribution<> disY(-uncY/2, uncY/2);
 
 
   // here : loop through all backGroundPhotons and cherenkovPhotons
@@ -1263,6 +1277,32 @@ const auto pc = populatePtr->getPcImp();
 	Printf("	Photon%d  Candidate: Pion = %d Kaon = %d Proton %d", iPhotCount, isPhotonPionCand, isPhotonKaonCand, isPhotonProtonCand);
 	Printf("===============================================================\n");	
 
+
+	// correctly identified cherenkov photons
+	if((isPhotonPionCand or isPhotonKaonCand or isPhotonProtonCand) and etaC != 0) {
+	  numFoundActualCkov ++;
+	}
+
+	// correctly identified cherenkov photons
+	if(!(isPhotonPionCand or isPhotonKaonCand or isPhotonProtonCand) and etaC != 0) {
+	  Printf("Ckov %.2f", etaC);
+	  
+	  print = true;
+		//throw std::invalid_argument("Photon Ckov not found!??");
+	}
+	
+	if(etaC != 0) {
+		numActualCkov ++;
+	}
+
+	
+	
+
+	// number of found bg photons that are labelled as within proper range:
+	if((isPhotonPionCand or isPhotonKaonCand or isPhotonProtonCand) and etaC == 0) {
+	  numBackgroundLabeledCkov ++;	
+	}
+
 	// struct with x, y, phiLocal, phi, R + bool isCandidate? 
 	// or just x, y, /* phiLocal,*/ phi, R; where x, y... = 0 if !isCandidate
 
@@ -1278,7 +1318,7 @@ const auto pc = populatePtr->getPcImp();
 
 
 
-	if(print) {
+	if(true) {
 		// TODO: plot as same in maxPion..Range
 		if( x > 0 && x < 156 && y < 144 && y > 0) {
 			// this means it falls within range
@@ -1428,7 +1468,21 @@ const auto pc = populatePtr->getPcImp();
 	// iterate through photons to check : 
 
 
+
+  Printf("	Identified the following  : \n");
+  
+
+  Printf("	numBackgroundPhotons %d", numBackgroundPhotons);
+  Printf("	numFoundActualCkov %d", numFoundActualCkov);
+  Printf("	numActualCkov %d", numActualCkov);
+  Printf("	numBackgroundLabeledCkov %d", numBackgroundLabeledCkov);        
 	
+	
+	/*
+  if(numFoundActualCkov != numActualCkov) {
+			throw std::invalid_argument("wtf value does numActualCkov have?");
+  }*/ 
+
 	Printf("=========================================================================");
 	Printf("CkovHyps, possible candidates from Momentum | Pion = %d, Kaon = %d, Proton = %d", getPionStatus(), getKaonStatus(), getProtonStatus());
 
@@ -1545,11 +1599,12 @@ gPad->Update();
 
 
 	if(print) {
+			
 		mArrAndMap->drawTotalMapAndMaxRegions();
 		mArrAndMap->drawTotalMap();
 		mArrAndMap->drawMaxRegions();
 
-
+		throw std::invalid_argument("print invoked");
   // drawTotalMap / drawMaxRegions
   }
 
@@ -2002,8 +2057,8 @@ void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
     } else {
     	//inPutVector.emplace_back(std::array<double, 3>{phiL, phiR, r});
     	inPutVectorPos[i] = {max.X(), max.Y()};
-    	inPutVectorAngle[i] = {phiL, phiR, r};
-
+    	//inPutVectorAngle[i] = {phiL, phiR, r};
+    	inPutVectorAngle.emplace_back(std::array<double, 3>{phiL, phiR, r});
     	Printf("setArrayMax() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
     }
     	//inPutVector[i] = {phiL, phiR, r};
@@ -2109,7 +2164,9 @@ void setArrayMin(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 			}
     } else {
     	inPutVectorPos[i] = {max.X(), max.Y()};
-    	inPutVectorAngle[i] = {phiL, phiR, r};
+    	//inPutVectorAngle[i] = {phiL, phiR, r};
+    	inPutVectorAngle.emplace_back(std::array<double, 3>{phiL, phiR, r});
+    	
 			//boolArray[i] = true;
     	Printf("setArrayMin() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
     }
@@ -2138,7 +2195,7 @@ void fillMapFromVec(TH2F* map, const vecArray2& vecArr)
 {
 	for(const auto vE : vecArr) {
 
-		Printf("fillMapFromVec El %.2f %.2f", vE[0], vE[1]);
+		//Printf("fillMapFromVec El %.2f %.2f", vE[0], vE[1]);
 		map->Fill(vE[0], vE[1]);
 	}
 }
