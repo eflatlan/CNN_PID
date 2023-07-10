@@ -127,6 +127,14 @@ class ArrAndMap
 		ckovCandMapOutRange->Draw("same");
 		bgCandMapRange->Draw("same");
 		bgCandMapOutRange->Draw("same");
+		
+	
+		hMaxPion->Draw("same");     //  Printf("makeEvent()  hMaxPion->Draw");
+		hMinPion->Draw("same");
+		hMaxProton->Draw("same");   //Printf("makeEvent()  hMaxProton->Draw");
+		hMinProton->Draw("same");
+		hMinKaon->Draw("same");
+		hMaxKaon->Draw("same");
 	}
 
 	void drawMaxRegions()
@@ -172,8 +180,7 @@ class ArrAndMap
 		bgCandMapOutRange->Draw("same");
 
 		hSignalAndNoiseMap->Draw();
-		hSignalMIP->Draw("same");
-		hSignalMIPpc->Draw("same");
+
 
 		hMaxPion->Draw("same");     //  Printf("makeEvent()  hMaxPion->Draw");
 		hMinPion->Draw("same");
@@ -181,6 +188,9 @@ class ArrAndMap
 		hMinProton->Draw("same");
 		hMinKaon->Draw("same");
 		hMaxKaon->Draw("same");
+		
+				hSignalMIP->Draw("same");
+		hSignalMIPpc->Draw("same");
 	}
 
 };
@@ -215,6 +225,8 @@ private:
 
 // using array = std::array;
 using vecArray3 = std::vector<std::array<double,3>>;
+using vecArray2 = std::vector<std::array<double,2>>;
+
 // using arrArray3 = std::vector<std::array<double,3>>;
 
 
@@ -588,24 +600,39 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 	// disse kan brukes istedet for maxKaonVec...?
 	vecArray3 arrMaxPion, arrMinPion, arrMinProton, arrMaxProton, arrMinKaon, arrMaxKaon;
 
+	vecArray2 arrMaxPionPos, arrMinPionPos, arrMinProtonPos, arrMaxProtonPos, arrMinKaonPos, arrMaxKaonPos;
+
 	// do not reserve size? NO prob just dont resize :) 
 	arrMaxPion.reserve(kN);
 	arrMinPion.reserve(kN);
+	arrMaxPion.resize(kN);
+	arrMinPion.resize(kN);
+
+	arrMaxPionPos.reserve(kN);
+	arrMinPionPos.reserve(kN);
+	arrMaxPionPos.resize(kN);
+	arrMinPionPos.resize(kN);
 
 	// arrMaxPion.resize(kN);
-	
-	
+		
 	// check if candidate can be proton (i.e., that it exceeds momentum threshold)
 	if(getProtonStatus()) {
 		arrMaxProton.reserve(kN);
 		arrMinProton.reserve(kN);
+		arrMaxProton.resize(kN);
+		arrMinProton.resize(kN);
+
+		arrMinProtonPos.reserve(kN);
+		arrMaxProtonPos.reserve(kN);
+		arrMinProtonPos.resize(kN);
+		arrMaxProtonPos.resize(kN);
 				
 		// also later add max, i forste runde sjekk at ckov i {minProton, maxPion}
 		Printf("calling setArrayMin w getMinCkovProton() = %.2f", getMinCkovProton());
-  	setArrayMin(getMinCkovProton(), arrMinProton, kN);
+  	setArrayMin(getMinCkovProton(), arrMinProton, arrMinProtonPos, kN);
 
 		Printf("calling setArrayMax w getMaxCkovProton() = %.2f", getMaxCkovProton());
-  	setArrayMax(getMaxCkovProton(), arrMaxProton, kN);
+  	setArrayMax(getMaxCkovProton(), arrMaxProton, arrMaxProtonPos, kN);
 	}
 	
 
@@ -614,32 +641,51 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 		arrMaxKaon.reserve(kN);
 		arrMinKaon.reserve(kN);				
 
+		arrMaxKaon.resize(kN);
+		arrMinKaon.resize(kN);	
+
+		arrMaxKaonPos.reserve(kN);
+		arrMinKaonPos.reserve(kN);				
+
+		arrMaxKaonPos.resize(kN);
+		arrMinKaonPos.resize(kN);
+
 		Printf("calling setArrayMin w getMinCkovKaon() = %.2f", getMinCkovKaon());
-  	setArrayMin(getMinCkovKaon(), arrMinKaon, kN);
+  	setArrayMin(getMinCkovKaon(), arrMinKaon, arrMinKaonPos, kN);
 
 		Printf("calling setArrayMax w getMaxCkovKaon() = %.2f", getMaxCkovKaon());
-  	setArrayMax(getMaxCkovKaon(), arrMaxKaon, kN);
+  	setArrayMax(getMaxCkovKaon(), arrMaxKaon, arrMaxKaonPos, kN);
 	}
 
 	
+
+
+	Printf("BF : Length of elem vectors : arrMaxPion %d", arrMaxPion.size());	
   Printf("calling setArrayMax w getMaxCkovPion() = %.2f", getMaxCkovPion());
-  setArrayMax(getMaxCkovPion(), arrMaxPion, kN);
+  setArrayMax(getMaxCkovPion(), arrMaxPion, arrMaxPionPos, kN);
+	Printf("AFTER : Length of elem vectors : arrMaxPion %d", arrMaxPion.size());	
 
 
 
+	Printf(" BF : Length of elem vectors : arrMinPion %d", arrMinPion.size());
   Printf("calling setArrayMin w getMinCkovPion() = %.2f", getMinCkovPion());
-  setArrayMin(getMinCkovPion(), arrMinPion, kN);
-
-
+  setArrayMin(getMinCkovPion(), arrMinPion, arrMinPionPos, kN);
+	Printf("AFTER : Length of elem vectors : arrMinPion %d", arrMinPion.size());
 	// fill all the values in the maps 
-	if(print) {
-		fillMapFromVec(mArrAndMap->hMaxPion, arrMaxPion);// map, array
-		fillMapFromVec(mArrAndMap->hMaxKaon, arrMaxKaon);// map, array
-		fillMapFromVec(mArrAndMap->hMaxProton, arrMaxProton);// map, array
+	
+	Printf("Length of elem vectors : arrMinPion %d", arrMinPion.size());
+	Printf("Length of elem vectors : arrMaxPion %d", arrMaxPion.size());
+	
+	if(true) {
 
-		fillMapFromVec(mArrAndMap->hMinPion, arrMinPion);// map, array
-		fillMapFromVec(mArrAndMap->hMinKaon, arrMinKaon);// map, array
-		fillMapFromVec(mArrAndMap->hMinProton, arrMinProton);// map, array
+		Printf("		fillMapFromVec(mArrAndMap->hMaxPion, arrMaxPion);// map, array");
+		fillMapFromVec(mArrAndMap->hMaxPion, arrMaxPionPos);// map, array
+		fillMapFromVec(mArrAndMap->hMaxKaon, arrMaxKaonPos);// map, array
+		fillMapFromVec(mArrAndMap->hMaxProton, arrMaxProtonPos);// map, array
+
+		fillMapFromVec(mArrAndMap->hMinPion, arrMinPionPos);// map, array
+		fillMapFromVec(mArrAndMap->hMinKaon, arrMinKaonPos);// map, array
+		fillMapFromVec(mArrAndMap->hMinProton, arrMinProtonPos);// map, array
 	}
 
 
@@ -649,37 +695,6 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 
 
 	const int scale = 2;
-
-
-
-	/*
-  TH2F *localRefMIPUnrot = new TH2F("localRefMIPUnrot ", infString,800,-40.,-40.,800,-40,40);
-  TH2F *localRefUnrot = new TH2F("localRef ", infString,800,-40.,-40.,800,-40.,40.);
-  TH2F *localRef = new TH2F("localRef ", infString,800,-40.,-40.,800,-40.,40.);  
-  TH2F *localRefBG = new TH2F("localRefBG ", infString,800,-40.,-40.,800,-40.,40.)
-
-  TH2F *localRefMIP2 = new TH2F("localRefMIP2 ", infString,160, 0., 159., 140, 0., 143.); */
-
- /*
- TH2F *mapPhotons = new TH2F("mapPhotons ", "mapPhotons",1600, 0., 159., 1440, 0., 143.);
-
- TH2F *mapProtonMin = new TH2F("mapProtonMin ", "mapProtonMin",1600, 0., 159., 1440, 0., 143.);
- TH2F *mapProtonMax = new TH2F("mapProtonMax ", "mapProtonMax",1600, 0., 159., 1440, 0., 143.);
-
- TH2F *mapKaon = new TH2F("mapKaon ", "mapKaon",1600, 0., 159., 1440, 0., 143.);
-
- TH2F *mapKaonMin = new TH2F("mapKaonMin ", "mapKaonMin",1600, 0., 159., 1440, 0., 143.);
- TH2F *mapKaonMax = new TH2F("mapKaonMax ", "mapKaonMax",1600, 0., 159., 1440, 0., 143.);
-
-
- TH2F *mapPionMin = new TH2F("mapPionMin ", "mapPionMin",1600, 0., 159., 1440, 0., 143.);
- TH2F *mapPionMax = new TH2F("mapPionMax ", "mapPionMax",1600, 0., 159., 1440, 0., 143.);
-
- TH2F *mapPion = new TH2F("mapPion ", "mapPion",1600, 0., 159., 1440, 0., 143.);
- TH2F *mapProton = new TH2F("mapProton ", "mapProton",1600, 0., 159., 1440, 0., 143.);
-
- */
-
 
 
   Printf("ckovTools segment : exit const auto& p : segPionLocal"); 	 
@@ -1420,7 +1435,7 @@ const auto pc = populatePtr->getPcImp();
 
 	int cntTemp = 0;
   for(const auto& c : candCombined){
-		Printf("Phot%d : x = %.2f, y = %.2f || statusCand = %d", cntTemp++, c.x, c.y, c.candStatus); 
+		//Printf("Phot%d : x = %.2f, y = %.2f || statusCand = %d", cntTemp++, c.x, c.y, c.candStatus); 
 	}
 	Printf("=========================================================================");
 
@@ -1531,6 +1546,11 @@ gPad->Update();
 
 	if(print) {
 		mArrAndMap->drawTotalMapAndMaxRegions();
+		mArrAndMap->drawTotalMap();
+		mArrAndMap->drawMaxRegions();
+
+
+  // drawTotalMap / drawMaxRegions
   }
 
 	return filledBins;
@@ -1903,7 +1923,7 @@ Printf("ReconG findCkov: cluX %.3f > fPCX %.3f >  cluY %.3f > fPCY %.3f  ", xL, 
 
 
 // placeholder...
-void setArrayMax(double etaTRS, vecArray3& inPutVector, const size_t kN)
+void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVectorPos, const size_t kN)
 {
   // const size_t kN = inPutVector.size();
   const float lMin = 0.;
@@ -1951,7 +1971,7 @@ void setArrayMax(double etaTRS, vecArray3& inPutVector, const size_t kN)
 
  		Printf("setArrayMax() --> i %d, {x %.2f y %.2f} - MIP {x %.2f y %.2f}", i, max.X(), max.Y(), trkPC.X(), trkPC.Y());
 
-		Printf("setArrayMax2() --> i %d, {x %.2f y %.2f} - MIP {x %.2f y %.2f}", i, max.X(), max.Y(), trkPC2.X(), trkPC2.Y());
+		//Printf("setArrayMax2() --> i %d, {x %.2f y %.2f} - MIP {x %.2f y %.2f}", i, max.X(), max.Y(), trkPC2.X(), trkPC2.Y());
 
 
 		// phiR in [-pi, pi]? set to 0..2pi?
@@ -1970,7 +1990,8 @@ void setArrayMax(double etaTRS, vecArray3& inPutVector, const size_t kN)
 
 
 		if((max.Y() == -999) or (max.X() == -999)) {
-    	inPutVector[i] = {0, 0, 0};
+    	//inPutVector[i] = {0,0,0, 0, 0};
+    	//inPutVector.emplace_back(std::array<double, 3>{0, 0, 0});
 			// placeholder, find better solution? 
 			if(max.Y() == -999) {
 				Printf("setArrayMax() max.Y() %.1f == -999", max.Y());
@@ -1979,7 +2000,10 @@ void setArrayMax(double etaTRS, vecArray3& inPutVector, const size_t kN)
 				Printf("setArrayMax() max.X() %.1f == -999", max.X());
 			}
     } else {
-    	inPutVector[i] = {phiL, phiR, r};
+    	//inPutVector.emplace_back(std::array<double, 3>{phiL, phiR, r});
+    	inPutVectorPos[i] = {max.X(), max.Y()};
+    	inPutVectorAngle[i] = {phiL, phiR, r};
+
     	Printf("setArrayMax() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
     }
     	//inPutVector[i] = {phiL, phiR, r};
@@ -1992,7 +2016,7 @@ void setArrayMax(double etaTRS, vecArray3& inPutVector, const size_t kN)
 		}*/
 	}
   	Printf("\n");
-	for(const auto& ip : inPutVector) {
+	for(const auto& ip : inPutVectorAngle) {
 		const auto& phiL_ = ip[0];
 		const auto& phiR_ = ip[1]; 
 		const auto& r_ = ip[2];  
@@ -2004,7 +2028,7 @@ void setArrayMax(double etaTRS, vecArray3& inPutVector, const size_t kN)
 
 
 // placeholder...
-void setArrayMin(double etaTRS, vecArray3& inPutVector, const size_t kN)
+void setArrayMin(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVectorPos, const size_t kN)
 {
   // const size_t kN = inPutVector.size();
 
@@ -2075,7 +2099,7 @@ void setArrayMin(double etaTRS, vecArray3& inPutVector, const size_t kN)
 		if((max.Y() == -999) or (max.X() == -999)) {
 
 			// set element to false, make better solution later..
-    	inPutVector[i] = {0, 0, 0};
+    	//inPutVector[i] = {0, 0, 0};
 			// placeholder, find better solution? s
 			if(max.Y() == -999) {
 				Printf("setArrayMin() max.Y() %.1f == -999", max.Y());
@@ -2084,7 +2108,8 @@ void setArrayMin(double etaTRS, vecArray3& inPutVector, const size_t kN)
 				Printf("setArrayMin() max.X() %.1f == -999", max.X());
 			}
     } else {
-    	inPutVector[i] ={phiL, phiR, r};
+    	inPutVectorPos[i] = {max.X(), max.Y()};
+    	inPutVectorAngle[i] = {phiL, phiR, r};
 			//boolArray[i] = true;
     	Printf("setArrayMin() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
     }
@@ -2098,7 +2123,7 @@ void setArrayMin(double etaTRS, vecArray3& inPutVector, const size_t kN)
 		}*/
 	}
   	Printf("\n");
-	for(const auto& ip : inPutVector) {
+	for(const auto& ip : inPutVectorAngle) {
 		const auto& phiL_ = ip[0];
 		const auto& phiR_ = ip[1]; 
 		const auto& r_ = ip[2];  
@@ -2109,9 +2134,11 @@ void setArrayMin(double etaTRS, vecArray3& inPutVector, const size_t kN)
 
 // map i.e., hMaxPion | vecArray i.e. arrMaxPion
  
-void fillMapFromVec(TH2F* map, const vecArray3& vecArr)
+void fillMapFromVec(TH2F* map, const vecArray2& vecArr)
 {
 	for(const auto vE : vecArr) {
+
+		Printf("fillMapFromVec El %.2f %.2f", vE[0], vE[1]);
 		map->Fill(vE[0], vE[1]);
 	}
 }
