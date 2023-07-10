@@ -54,7 +54,12 @@ private:
 
 
 		// unc in HMPI in mm (should prob be 2*sqrt(2) or 1*sqrt(2))
-		static constexpr float uncSquared = .2;
+    //static constexpr float sx = 0.8, sy = 0.84;
+
+		// 3.47 = sqrt(12)
+    //static constexpr float uncX = sx/3.47, uncY = sy/3.47;
+
+		static constexpr float uncSquared = 0.2*1.4;//;TMath::Sqrt((uncX)^2 + (uncY)^2);
 
 public:
 
@@ -608,6 +613,8 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 
 		Printf("\n\n enter checkOver(%s) phiPhoton %.4f, phiP %.4f", hadronType, phiPhoton, phiP);
 
+
+
 		if (phiC < TMath::Pi()/2)
 			initValue = 0;
 		else if (phiC < TMath::Pi())
@@ -627,11 +634,24 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		int iCnt = 0;
 		auto phi2 = vec[initValue][1]; // 
 
-	  Printf(" Enter checkOver(%s) \n initValue = %d \n  vec[initValue-1][1] = %.3f || phi2 = vec[initValue][1] =  %.3f |  vec[initValue+1][1] = %.3f;", hadronType,initValue, vec[initValue-1][1], vec[initValue][1], vec[initValue+1][1]);
+		const auto sizeVec = vec.size();
+	  Printf(" Enter checkOver(%s) \n initValue = %d \n  vec[initValue-1][1] = %.3f || phi2 = vec[initValue][1] =  %.3f |  vec[initValue+1][1] = %.3f;", hadronType,initValue, vec[sizeVec-1][1], vec[initValue][1], vec[initValue+1][1]);
+
+
+	Printf(" phi::: %.3f | %.3f | %.3f | %.3f | %.3f | ;", vec[sizeVec-1][1],vec[0][1], vec[1][1], vec[2][1], vec[3][1]);
+
+	Printf(" r::: %.3f | %.3f | %.3f | %.3f | %.3f | ;", vec[sizeVec-1][2],vec[0][2], vec[1][2], vec[2][2], vec[3][2]);
 
 		// set increment opposite way if phi1 > phiPhoton
 		int inc = 1;
 
+
+
+    // vec[initValue-1][1] = 3.873 || phi2 = vec[initValue][1] =  3.908 
+
+	  // 1st check if it is between 1st and last: ?
+		if(vec[sizeVec - 1][1] < phiPhoton && phiPhoton < vec[0][1]) {
+		}
 
 
 		/* iterate backwards?
@@ -647,7 +667,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		double prev = vec[initValue][1];
 		while(/*phi2 < phiPhoton*/ true) {
 
-			phi2 = vec[initValue + iCnt][1]; // waas not +1_
+			phi2 = vec[initValue + iCnt + 1][1]; // waas not +1_
 			//Printf("	while(phi12< phiPhoton) {  || phi2 %.4f, prev %.4f phiPhoton %.4f, iCnt %d, initValue + iCnt = %d", phi2, prev, phiPhoton, iCnt, initValue + iCnt);
 
 
@@ -680,21 +700,47 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 			prev = phi2;
 		}
 
+
+
+		// hvis det går rundt her? 
+    // vil det bli break Segmenetation fault siden vi prøver å finne element som er out of range
+
 		// TODO: this has to be changed if inc = -1?
+
+		double phiL1, phiL2, phi1, r1, r2;
+
 		int index = iCnt - 1;
 
-		//double phiL1 = vec.at(index).at(0);
-		double phiL1 = vec[initValue + iCnt][0];
-		double phiL2 = vec[initValue + iCnt+1][0];
-		
 
-		// was index
-		double phi1 = vec[initValue + iCnt][1];
-		phi2 = vec[initValue + iCnt + 1][1]; // iCnt
+		// hvis ikke har gått rundt:
+		if(initValue + iCnt+1 < sizeVec) {
+			//double phiL1 = vec.at(index).at(0);
+			phiL1 = vec[initValue + iCnt][0];
+			phiL2 = vec[initValue + iCnt+1][0];
+			
 
-		// get radiuses
-		double r1 = vec[initValue + iCnt][2];
-		double r2 = vec[initValue + iCnt+1][2];
+			// was index
+			phi1 = vec[initValue + iCnt][1];
+			phi2 = vec[initValue + iCnt + 1][1]; // iCnt
+
+			// get radiuses
+			r1 = vec[initValue + iCnt][2];
+			r2 = vec[initValue + iCnt+1][2];
+
+		} else {
+			//double phiL1 = vec.at(index).at(0);
+			phiL1 = vec[sizeVec - 1][0];
+			phiL2 = vec[0][0];
+			
+
+			// was index
+			phi1 = vec[sizeVec - 1][1];
+			phi2 = vec[0][1]; // iCnt
+
+			// get radiuses
+			r1 = vec[sizeVec - 1][2];
+			r2 = vec[0][2];
+		} 
 
 		if(phi2 == 0) {
 			
@@ -724,17 +770,22 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		if(r2 > r1) {
 			rMin = r1;
 			rMax = r2;
-			phiMax = phi2;
+
 			phiMin = phi1;
-			phiLmax = phiL2;
+			phiMax = phi2;
+
 			phiLmin = phiL1;
+			phiLmax = phiL2;
 		}	
 
 		else {
-			rMin = r2;
+
 			rMax = r1;
+			rMin = r2;
+
 			phiMax = phi1;
 			phiMin = phi2;
+
 			phiLmax = phiL1;
 			phiLmin = phiL2;
 		}
@@ -772,6 +823,23 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 				Printf("	checkOver(%s) | rMin = %.2f , rMax = %.2f,  \n",hadronType,  rMin, rMax);
 
 			} else {
+				
+
+				if(iCnt + 1 < sizeVec) {
+					Printf("\n iCnt + 1 < sizeVec");
+					Printf(" ??? r ==> -1 : %.3f 0 : %.3f 1: %.3f  " , vec[iCnt -1][2], vec[iCnt][2], vec[iCnt+1][2]);
+					Printf("??? phi ==> -1 : %.3f 0 : %.3f 1: %.3f  " , vec[iCnt -1][1], vec[iCnt][1], vec[iCnt+1][1]);
+					Printf("??? phiL ==> -1 : %.3f 0 : %.3f 1: %.3f  " , vec[iCnt -1][0], vec[iCnt][0], vec[iCnt+1][0]);
+				} else {
+					Printf("\n iCnt + 1 == sizeVec");
+					Printf(" ??? r ==> -1 : %.3f 0 : %.3f 1: %.3f  " , vec[iCnt -1][2], vec[iCnt][2], vec[0][2]);
+					Printf("??? phi ==> -1 : %.3f 0 : %.3f 1: %.3f  " , vec[iCnt -1][1], vec[iCnt][1], vec[0][1]);
+					Printf("??? phiL ==> -1 : %.3f 0 : %.3f 1: %.3f  " , vec[iCnt -1][0], vec[iCnt][0], vec[0][0]);
+				}
+				Printf("r2 %.3f r1 %.3f ", r2, r1);
+				Printf("phi2 %.3f phi1 %.3f ", phi2, phi1);
+				Printf("phiL2 %.3f phiL2 %.3f ", phiL2, phiL1);
+
 				throw std::invalid_argument("decisionTaken???");
 			}
 		}
@@ -830,7 +898,13 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		int iCnt = 0;
 		auto phi2 = vec[initValue][1]; // 
 
-	  Printf(" Enter checkUnder(%s) \n initValue = %d \n  vec[initValue-1][1] = %.3f || phi2 = vec[initValue][1] =  %.3f |  vec[initValue+1][1] = %.3f;", hadronType,initValue, vec[initValue-1][1], vec[initValue][1], vec[initValue+1][1]);
+
+		const auto sizeVec = vec.size();
+	  Printf(" Enter checkUnder(%s) \n initValue = %d \n  vec[initValue-1][1] = %.3f || phi2 = vec[initValue][1] =  %.3f |  vec[initValue+1][1] = %.3f;", hadronType,initValue, vec[sizeVec-1][1], vec[initValue][1], vec[initValue+1][1]);
+
+	Printf(" phi::: %.3f | %.3f | %.3f | %.3f | %.3f | ;", vec[sizeVec-1][1],vec[0][1], vec[1][1], vec[2][1], vec[3][1]);
+
+	Printf(" r::: %.3f | %.3f | %.3f | %.3f | %.3f | ;", vec[sizeVec-1][2],vec[0][2], vec[1][2], vec[2][2], vec[3][2]);
 
 		// set increment opposite way if phi1 > phiPhoton
 		int inc = 1;
@@ -850,7 +924,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		double prev = vec[initValue][1];
 		while(/*phi2 < phiPhoton*/ true) {
 
-			phi2 = vec[initValue + iCnt][1]; // waas not +1_
+			phi2 = vec[initValue + iCnt + 1][1]; // waas not +1_
 			//Printf("	while(phi12< phiPhoton) {  || phi2 %.4f, prev %.4f phiPhoton %.4f, iCnt %d, initValue + iCnt = %d", phi2, prev, phiPhoton, iCnt, initValue + iCnt);
 
 
@@ -886,21 +960,37 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		// TODO: this has to be changed if inc = -1?
 		int index = iCnt - 1;
 
-		//double phiL1 = vec.at(index).at(0);
-		double phiL1 = vec[initValue + iCnt][0];
-		double phiL2 = vec[initValue + iCnt+1][0];
-		
+		double phiL1, phiL2, phi1, r1, r2;
 
-		// was index
-		double phi1 = vec[initValue + iCnt][1];
-		// phi2 = vec[initValue + iCnt + 1][1]; // iCnt
 
-		// get radiuses
-		double r1 = vec[initValue + iCnt][2];
-		double r2 = vec[initValue + iCnt+1][2];
+		// hvis ikke har gått rundt:
+		if(initValue + iCnt+1 < sizeVec) {
+			//double phiL1 = vec.at(index).at(0);
+			phiL1 = vec[initValue + iCnt][0];
+			phiL2 = vec[initValue + iCnt+1][0];
+			
 
-		// correct indexes are found 
+			// was index
+			phi1 = vec[initValue + iCnt][1];
+			phi2 = vec[initValue + iCnt + 1][1]; // iCnt
 
+			// get radiuses
+			r1 = vec[initValue + iCnt][2];
+			r2 = vec[initValue + iCnt+1][2];
+		} else {
+			//double phiL1 = vec.at(index).at(0);
+			phiL1 = vec[initValue + iCnt][0];
+			phiL2 = vec[0][0];
+			
+
+			// was index
+			phi1 = vec[initValue + iCnt][1];
+			phi2 = vec[0][1]; // iCnt
+
+			// get radiuses
+			r1 = vec[initValue + iCnt][2];
+			r2 = vec[0][2];
+		} 
 
 
 		if(phi2 == 0) {
@@ -970,11 +1060,29 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 			} else if((rPhoton + (uncSquared)> rMin && rPhoton + (uncSquared)< rMax)) {
 				// iterate by splitting r1, r2 -> phi1 phi2
 
+
+
 				splitPhi(phiMax, phiLmax, phiMin, phiLmin, etaCkov, phiPhoton); // 
 				rMax = getR(etaCkov, phiLmax, lMax);
 				rMin = getR(etaCkov, phiLmin, lMax);
 				Printf("	checkUnder(%s) | rMin = %.2f , rMax = %.2f,  ",hadronType,  rMin, rMax);
 			} else {
+
+				if(iCnt + 1 < sizeVec) {
+					Printf("\n iCnt + 1 < sizeVec");
+					Printf(" ??? r ==> -1 : %.3f 0 : %.3f 1: %.3f  " , vec[iCnt -1][2], vec[iCnt][2], vec[iCnt+1][2]);
+					Printf("??? phi ==> -1 : %.3f 0 : %.3f 1: %.3f  " , vec[iCnt -1][1], vec[iCnt][1], vec[iCnt+1][1]);
+					Printf("??? phiL ==> -1 : %.3f 0 : %.3f 1: %.3f  " , vec[iCnt -1][0], vec[iCnt][0], vec[iCnt+1][0]);
+				} else {
+					Printf("\n iCnt + 1 == sizeVec");
+					Printf(" ??? r ==> -1 : %.3f 0 : %.3f 1: %.3f  " , vec[iCnt -1][2], vec[iCnt][2], vec[0][2]);
+					Printf("??? phi ==> -1 : %.3f 0 : %.3f 1: %.3f  " , vec[iCnt -1][1], vec[iCnt][1], vec[0][1]);
+					Printf("??? phiL ==> -1 : %.3f 0 : %.3f 1: %.3f  " , vec[iCnt -1][0], vec[iCnt][0], vec[0][0]);
+				}
+				Printf("r2 %.3f r1 %.3f ", r2, r1);
+				Printf("phi2 %.3f phi1 %.3f ", phi2, phi1);
+				Printf("phiL2 %.3f phiL2 %.3f ", phiL2, phiL1);
+
 				//Printf("	checkUnder(%s) | rMin = %.2f , rMax = %.2f,  ",hadronType,  rMin,
 				throw std::invalid_argument("decisionTaken???");
 			}
@@ -1006,19 +1114,38 @@ Printf("\n enter  getR()  rPosLORS {x %.2f y %.2f} - MIP {x %.2f y %.2f}",  rPos
 		return R;
 	}
 		
+
+
+
+
 	void splitPhi(double& phiMax, double& phiLmax, double& phiMin, double& phiLmin, const double& etaCkov, const double& phiPhoton)
 	{
 		const auto& phiNewL = (phiLmax + phiLmin)/2.0;	// phi in TRS
 
+    Printf("	splitPhi : phiLmax %.2f | phiLmin %.2f --> phiNewL = %.2f", phiLmax, phiLmin, phiNewL);
 
 		// Get phi in LORS 
-		TVector3 dirNewTrs;
-		dirNewTrs.SetMagThetaPhi(1, etaCkov, phiNewL); 
+		TVector3 dirTRS;
+		dirTRS.SetMagThetaPhi(1, etaCkov, phiNewL); 
 		
 		
-		trs2Lors(dirNewTrs, thetaP, phiP); 
-		
-		auto phiNew = dirNewTrs.Phi();
+		/*
+				fra tracePhot :::
+
+			 double theta, phi; // LORS theta phi
+			 TVector3 dirTRS, dirLORS;
+        dirTRS.SetMagThetaPhi(1, ckovThe, ckovPhi); // photon in TRS
+        trs2Lors(dirTRS, theta, phi);
+    */ 
+
+		// skal ikke denne være void trs2Lors(const TVector3& dirCkov, & thetaCer, & phiCer)
+
+
+		double thetaNew, phiNew;
+		// trs2Lors(dirNewTrs, thetaP, phiP); 
+		trs2Lors(dirTRS, thetaNew, phiNew); 		
+
+		//auto phiNew = dirNewTrs.Phi();
 		if (phiNew < 0) {
 			phiNew = TMath::TwoPi() + phiNew;
 		}
@@ -1027,7 +1154,7 @@ Printf("\n enter  getR()  rPosLORS {x %.2f y %.2f} - MIP {x %.2f y %.2f}",  rPos
 
    Printf("	splitPhi() etaCkov %.2f | phiNew %.2f | phiP %.2f | thetaP %.2f | phiPhoton %.2f ", etaCkov, phiNew, phiP, thetaP, phiPhoton);
 
-    Printf("	splitPhi : phiLmax %.2f | phiLmin %.2f ", phiLmax, phiLmin);
+
 		if((phiPhoton) < TMath::Pi() + phiP){
 			
 			if((phiNew-phiP) > (phiPhoton-phiP)) {
