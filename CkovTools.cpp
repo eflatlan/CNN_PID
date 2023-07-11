@@ -433,6 +433,7 @@ private:
 	Populate2* populatePtr = nullptr;// 
 
 // using array = std::array;
+using vecArray4 = std::vector<std::array<double,4>>;
 using vecArray3 = std::vector<std::array<double,3>>;
 using vecArray2 = std::vector<std::array<double,2>>;
 
@@ -822,14 +823,14 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
   // void setArrayMin(Populate* populate, double etaTRS, vecArray3 inPutVector) 
 
 
-  const size_t kN = 150;
+  const size_t kN = 100;
 
 	//array<array<double, 3> ,kN> arrMaxPion; 
 
   
 
 	// disse kan brukes istedet for maxKaonVec...?
-	vecArray3 arrMaxPion, arrMinPion, arrMinProton, arrMaxProton, arrMinKaon, arrMaxKaon;
+	vecArray4 arrMaxPion, arrMinPion, arrMinProton, arrMaxProton, arrMinKaon, arrMaxKaon;
 
 	vecArray2 arrMaxPionPos, arrMinPionPos, arrMinProtonPos, arrMaxProtonPos, arrMinKaonPos, arrMaxKaonPos;
 
@@ -1308,7 +1309,7 @@ const auto rPhoton = (posPhoton - trkPC).Mod();
 
 
 // skal denne gudbedres være trkRAD??
-const auto phiPhoton = (posPhoton - trkPos).Phi();
+const auto phiPhoton = (posPhoton - trkPC).Phi();
 
 const auto pc = populatePtr->getPcImp();
 
@@ -1894,7 +1895,10 @@ gPad->Update();
 		Printf("phiP %.5f: angle rad --> pc = %.5f | Acos %.5f Asin %.5f"  , phiP, (trkPos-trkPC).Phi(), TMath::ACos(d*tanP*cosP/(trkPos-trkPC).Mod()), TMath::ASin(d*tanP*sinP/(trkPos-trkPC).Mod()));
 		
 		Printf("PHI : l1 %.5f | l2 %.5f ", (l1-trkPos).Phi(),(l2-trkPos).Phi());
-				Printf("RADIUS : l1 %.5f | l2 %.5f ", (l1-trkPC).Mod(),(l2-trkPC).Mod());
+		Printf("RADIUS : l1 %.5f | l2 %.5f ", (l1-trkPC).Mod(),(l2-trkPC).Mod());
+
+		Printf("CkovHyps %.2f %.2f %.2f", ckovHyps[0], ckovHyps[1], ckovHyps[2]);
+		//Printf("CkovHyps %.2f %.2f %.2f", ckovHyps[0], ckovHyps[1], ckovHyps[2]);
 		throw std::invalid_argument("print invoked"); }
   // drawTotalMap / drawMaxRegions
   } else {
@@ -2271,7 +2275,7 @@ Printf("ReconG findCkov: cluX %.3f > fPCX %.3f >  cluY %.3f > fPCY %.3f  ", xL, 
 
 
 // placeholder...
-void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVectorPos, const size_t kN)
+void setArrayMax(double etaTRS, vecArray4& inPutVectorAngle, vecArray2& inPutVectorPos, const size_t kN)
 {
   // const size_t kN = inPutVector.size();
   const float lMin = 0.;
@@ -2307,7 +2311,7 @@ void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 		// temp
 		// ckovThe, const double& ckovPhi, const double & L
 		// this should return the same as max
-		const auto t = populatePtr->tracePhot(etaTRS, phiL, lMin);
+		//const auto t = populatePtr->tracePhot(etaTRS, phiL, lMin);
 
 		// temp
 		
@@ -2315,7 +2319,7 @@ void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 		const auto& max = populatePtr->traceForward(dirLORS, lMin);
 		
 		const auto r = (max - trkPC2).Mod();
-		
+		auto phiPC = (max - trkPC2).Phi();
 		//Printf("setArrayMax() traceForward returned TVector2 {x %.2f y %.2f} == > R  = %.2f", max.X(), max.Y(), r);
 		//Printf("setArrayMax() tracePhot returned TVector2 {x %.2f y %.2f} == > R  = %.2f", t.X(), t.Y(), (t-trkPC2).Mod());
 		
@@ -2337,10 +2341,16 @@ void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 		// inPutVector.emplace_back(std::array<double, 3>{phiL, phiR, r});
 		if(phiR < 0) {
 			phiR = TMath::TwoPi() + phiR;
+
     }
-        
+     
+		if(phiPC < 0) {
+			phiPC = TMath::TwoPi() + phiPC;
+
+    }   
+
     
-		if( (max-trkRad2).Phi() != (t-trkRad2).Phi()) {
+		/*if( (max-trkRad2).Phi() != (t-trkRad2).Phi()) {
 			throw std::invalid_argument("(max-trkRad2).Phi() != (t-trkRad2).Phi())");
 		}
 
@@ -2351,7 +2361,7 @@ void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 			throw std::invalid_argument("phiR != (t-trkRad2).Phi())");
 		}
 		// protections if r > value?
-		//if(r > )
+		//if(r > )*/
 
 
 		// TODO: if it goes out of map, find intersection with chamber-edges??
@@ -2374,7 +2384,7 @@ void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
     	//inPutVector.emplace_back(std::array<double, 3>{phiL, phiR, r});
     	
     	inPutVectorPos.emplace_back(std::array<double, 2>{max.X(), max.Y()}); 
-    	inPutVectorAngle.emplace_back(std::array<double, 3>{phiL, phiR, r});   	
+    	inPutVectorAngle.emplace_back(std::array<double, 4>{phiL, phiR, phiPC, r});   	
     	//inPutVectorPos[i] = {max.X(), max.Y()};
     	//inPutVectorAngle[i] = {phiL, phiR, r};
     	
@@ -2390,7 +2400,7 @@ void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 			// maxPionVec[i] = std::make_pair(maxPion.X(), maxPion.Y());
 			Printf("maxPion loop i = %d, maxSize = %zu", i, maxPionVec.size()); 
 		}*/
-	}
+	}/*
   	Printf("\n");
 	for(const auto& ip : inPutVectorAngle) {
 		const auto& phiL_ = ip[0];
@@ -2398,14 +2408,14 @@ void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 		const auto& r_ = ip[2];  
 		//Printf("setArrayMax() --> checking inputVector | : phiL %.2f, phiR %.2f, r %.2f", phiL_, phiR_, r_);
 		if(r_ == 0 ) {throw std::invalid_argument("r====??????;");}
-  } 
+  } */
 }
 
 
 
 
 // placeholder...
-void setArrayMin(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVectorPos, const size_t kN)
+void setArrayMin(double etaTRS, vecArray4& inPutVectorAngle, vecArray2& inPutVectorPos, const size_t kN)
 {
   // const size_t kN = inPutVector.size();
 
@@ -2441,7 +2451,7 @@ void setArrayMin(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 		// temp
 		// ckovThe, const double& ckovPhi, const double & L
 		// this should return the same as max
-		const auto t = populatePtr->tracePhot(etaTRS, phiL, lMax);
+		//const auto t = populatePtr->tracePhot(etaTRS, phiL, lMax);
 		//Printf("setArrayMin() tracePhot returned TVector2 {x %.2f y %.2f}", t.X(), t.Y());
 		// temp
 		
@@ -2463,6 +2473,12 @@ void setArrayMin(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 		if(phiR < 0) {
 			phiR = TMath::TwoPi() + phiR;
     }
+		auto phiPC = (max - trkPC2).Phi();
+		if(phiPC < 0) {
+			phiPC = TMath::TwoPi() + phiPC;
+
+    }   
+
 
 		// protections if r > value?
 		//if(r > )
@@ -2486,7 +2502,7 @@ void setArrayMin(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 			}
     } else {
     	inPutVectorPos.emplace_back(std::array<double, 2>{max.X(), max.Y()}); 
-    	inPutVectorAngle.emplace_back(std::array<double, 3>{phiL, phiR, r});   	
+    	inPutVectorAngle.emplace_back(std::array<double, 4>{phiL, phiR, phiPC, r});   	
     	//inPutVectorPos[i] = {max.X(), max.Y()};
     	//inPutVectorAngle[i] = {phiL, phiR, r};
     	//Printf("setArrayMin() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
@@ -2499,14 +2515,14 @@ void setArrayMin(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 			// maxPionVec[i] = std::make_pair(maxPion.X(), maxPion.Y());
 			Printf("maxPion loop i = %d, maxSize = %zu", i, maxPionVec.size()); 
 		}*/
-	}
+	}/*
   	Printf("\n");
 	for(const auto& ip : inPutVectorAngle) {
 		const auto& phiL_ = ip[0];
 		const auto& phiR_ = ip[1]; 
 		const auto& r_ = ip[2];  
-		// Printf("setArrayMin() --> checking inputVector | : phiL %.2f, phiR %.2f, r %.2f", phiL_, phiR_, r_);
-  } 
+		 Printf("setArrayMin() --> checking inputVector | : phiL %.2f, phiR %.2f, r %.2f", phiL_, phiR_, r_);
+  } */ 
 }
 
 
