@@ -13,7 +13,10 @@
 //namespace ParticleUtils
 using namespace o2;
 
-
+struct Bin {
+    float x;
+    float y;
+};
 
 
 class ArrAndMap
@@ -800,7 +803,9 @@ double getThetaP()
 
 // x, y, etaC
 
-std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>>& cherenkovPhotons, vecArray2& pionCands, vecArray2& kaonCands, vecArray2& protonCands,  MapType& bins) { 
+
+// std::array<int, 4> arrayInfo;
+std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>>& cherenkovPhotons, vecArray2& pionCands, vecArray2& kaonCands, vecArray2& protonCands, std::array<int, 4>& arrayInfo, MapType& bins) { 
 
 
   vecArray2 pionCandidates, kaonCandidates, protonCandidates;
@@ -1914,6 +1919,15 @@ gPad->Update();
 		protonCands = protonCandidates;//.emplace_back()
 		kaonCands = kaonCandidates;//.emplace_back()
 		pionCands = pionCandidates;//.emplace_back()
+    
+
+
+		// returner disse også: kun for debugging :
+
+		arrayInfo = {numBackgroundPhotons, numFoundActualCkov, numActualCkov, numBackgroundLabeledCkov}; 
+		       
+		
+
    	//delete mArrAndMap;	
    }
 

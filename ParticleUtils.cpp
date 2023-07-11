@@ -2,46 +2,82 @@
 #include <iostream>
 #include <vector>
 #include "TH2F.h"
-
+using vecArray2 = std::vector<std::array<double,2>>;
 using namespace H5;
-
-struct Bin {
-    float x;
-    float y;
-};
 
 class ParticleUtils {
 public:
     struct ParticleInfo {
+        std::vector<double> pionCandidatesX, pionCandidatesY;
+        std::vector<double> kaonCandidatesX, kaonCandidatesY;
+        std::vector<double> protonCandidatesX, protonCandidatesY;
+
+  			vecArray2 pionCandidates, kaonCandidates, protonCandidates;
+
+        std::array<int, 4> arrayInfo;
         float momentum;
         float mass;
         float energy;
         float refractiveIndex;
         float ckov;
-        float xP;
-        float yP;
+
+        float xRad;
+        float yRad;
+
+        float xPC;
+        float yPC;
+
         float thetaP;
         float phiP;
-        std::vector<Bin> filledBins;
     };
 
     static void saveParticleInfoToHDF5(std::vector<ParticleInfo>& particleVector) {
         H5File file("ParticleInfo.h5", H5F_ACC_TRUNC);
 
-        // Create a compound datatype for Bin
-        CompType binType(sizeof(Bin));
-        binType.insertMember("X", HOFFSET(Bin, x), PredType::NATIVE_FLOAT);
-        binType.insertMember("Y", HOFFSET(Bin, y), PredType::NATIVE_FLOAT);
-
         for (size_t i = 0; i < particleVector.size(); ++i) {
             const auto& particle = particleVector[i];
 
-            // Now let's create a group for each particle
+											
+						// Print all scalar values
+						Printf("\n\n=======================================");
+						Printf("=======================================");
+						Printf("	Particle %d", i);
+						Printf("=======================================");
+						printf("Momentum: %.2f\n", particle.momentum);
+						printf("Mass: %.2f\n", particle.mass);
+						printf("Energy: %.2f\n", particle.energy);
+						printf("Refractive Index: %.2f\n", particle.refractiveIndex);
+						printf("Ckov: %.2f\n", particle.ckov);
+						printf("xRad: %.2f\n", particle.xRad);
+						printf("yRad: %.2f\n", particle.yRad);
+						printf("xPC: %.2f\n", particle.xPC);
+						printf("yPC: %.2f\n", particle.yPC);
+						printf("ThetaP: %.2f\n", particle.thetaP);
+						printf("PhiP: %.2f\n", particle.phiP);
+			
+						// Print vector sizes
+						printf("Size of pionCandidatesX: %lu\n", particle.pionCandidatesX.size());
+						printf("Size of pionCandidatesY: %lu\n", particle.pionCandidatesY.size());
+						printf("Size of kaonCandidatesX: %lu\n", particle.kaonCandidatesX.size());
+						printf("Size of kaonCandidatesY: %lu\n", particle.kaonCandidatesY.size());
+						printf("Size of protonCandidatesX: %lu\n", particle.protonCandidatesX.size());
+						printf("Size of protonCandidatesY: %lu\n", particle.protonCandidatesY.size());
+
+
+
+						printf("Size of pionCandidates: %lu\n", particle.pionCandidates.size());
+						printf("Size of kaonCandidates: %lu\n", particle.kaonCandidates.size());
+
+
+
+
+
             std::string groupName = "Particle" + std::to_string(i);
             Group particleGroup = file.createGroup(groupName);
 
-            // Store scalar values
             DataSpace attr_dataspace = DataSpace(H5S_SCALAR);
+
+            // Store scalar values
             Attribute attribute = particleGroup.createAttribute("Momentum", PredType::NATIVE_FLOAT, attr_dataspace);
             attribute.write(PredType::NATIVE_FLOAT, &particle.momentum);
 
@@ -57,39 +93,76 @@ public:
             attribute = particleGroup.createAttribute("Ckov", PredType::NATIVE_FLOAT, attr_dataspace);
             attribute.write(PredType::NATIVE_FLOAT, &particle.ckov);
 
-            // Write filledBins to HDF5 file
-            hsize_t binDims[1] = {particle.filledBins.size()};
+            attribute = particleGroup.createAttribute("xRad", PredType::NATIVE_FLOAT, attr_dataspace);
+            attribute.write(PredType::NATIVE_FLOAT, &particle.xRad);
 
-            DataSpace binspace(1, binDims);
-            DataSet binDataset = particleGroup.createDataSet("FilledBins", binType, binspace);
-            binDataset.write(&particle.filledBins[0], binType);
+            attribute = particleGroup.createAttribute("yRad", PredType::NATIVE_FLOAT, attr_dataspace);
+            attribute.write(PredType::NATIVE_FLOAT, &particle.yRad);
+
+            attribute = particleGroup.createAttribute("xPC", PredType::NATIVE_FLOAT, attr_dataspace);
+            attribute.write(PredType::NATIVE_FLOAT, &particle.xPC);
+
+            attribute = particleGroup.createAttribute("yPC", PredType::NATIVE_FLOAT, attr_dataspace);
+            attribute.write(PredType::NATIVE_FLOAT, &particle.yPC);
+
+            attribute = particleGroup.createAttribute("ThetaP", PredType::NATIVE_FLOAT, attr_dataspace);
+            attribute.write(PredType::NATIVE_FLOAT, &particle.thetaP);
+
+            attribute = particleGroup.createAttribute("PhiP", PredType::NATIVE_FLOAT, attr_dataspace);
+            attribute.write(PredType::NATIVE_FLOAT, &particle.phiP);
+
+            // Write the arrayInfo
+            hsize_t array_dims[1] = {4};
+            DataSpace array_space(1, array_dims);
+            DataSet array_dataset = particleGroup.createDataSet("ArrayInfo", PredType::NATIVE_INT, array_space);
+            array_dataset.write(particle.arrayInfo.data(), PredType::NATIVE_INT);
+
+            // Write the vectors data
+            hsize_t vector_dims[1] = {particle.pionCandidatesX.size()};
+            DataSpace vector_space(1, vector_dims);
+
+            // PionCandidates
+            DataSet vector_dataset = particleGroup.createDataSet("PionCandidatesX", PredType::NATIVE_DOUBLE, vector_space);
+            vector_dataset.write(particle.pionCandidatesX.data(), PredType::NATIVE_DOUBLE);
+
+            vector_dataset = particleGroup.createDataSet("PionCandidatesY", PredType::NATIVE_DOUBLE, vector_space);
+            vector_dataset.write(particle.pionCandidatesY.data(), PredType::NATIVE_DOUBLE);
+
+            // KaonCandidates
+            vector_dims[0] = particle.kaonCandidatesX.size();
+            vector_space = DataSpace(1, vector_dims);
+
+            vector_dataset = particleGroup.createDataSet("KaonCandidatesX", PredType::NATIVE_DOUBLE, vector_space);
+            vector_dataset.write(particle.kaonCandidatesX.data(), PredType::NATIVE_DOUBLE);
+
+            vector_dataset = particleGroup.createDataSet("KaonCandidatesY", PredType::NATIVE_DOUBLE, vector_space);
+            vector_dataset.write(particle.kaonCandidatesY.data(), PredType::NATIVE_DOUBLE);
+
+            // ProtonCandidates
+            vector_dims[0] = particle.protonCandidatesX.size();
+            vector_space = DataSpace(1, vector_dims);
+
+            vector_dataset = particleGroup.createDataSet("ProtonCandidatesX", PredType::NATIVE_DOUBLE, vector_space);
+            vector_dataset.write(particle.protonCandidatesX.data(), PredType::NATIVE_DOUBLE);
+
+            vector_dataset = particleGroup.createDataSet("ProtonCandidatesY", PredType::NATIVE_DOUBLE, vector_space);
+            vector_dataset.write(particle.protonCandidatesY.data(), PredType::NATIVE_DOUBLE);
         }
     }
 
     static std::vector<ParticleInfo> loadParticleInfoFromHDF5(const std::string& filename) {
         std::vector<ParticleInfo> particleVector;
 
-        // Create a compound datatype for Bin
-        CompType binType(sizeof(Bin));
-        binType.insertMember("X", HOFFSET(Bin, x), PredType::NATIVE_FLOAT);
-        binType.insertMember("Y", HOFFSET(Bin, y), PredType::NATIVE_FLOAT);
-
-        // Open the file
         H5File file(filename, H5F_ACC_RDONLY);
 
-        // Iterate over all groups in the file
         for (hsize_t i = 0; i < file.getNumObjs(); ++i) {
             std::string groupName = file.getObjnameByIdx(i);
-
-            // Open the group
             Group particleGroup = file.openGroup(groupName);
 
-            // Read momentum
+            // Read simple attributes
             Attribute attribute = particleGroup.openAttribute("Momentum");
             float momentum;
             attribute.read(PredType::NATIVE_FLOAT, &momentum);
-
-            std::cout << "Particle " << i << " Momentum: " << momentum << std::endl;
 
             attribute = particleGroup.openAttribute("Mass");
             float mass;
@@ -107,19 +180,80 @@ public:
             float ckov;
             attribute.read(PredType::NATIVE_FLOAT, &ckov);
 
-            // Read filledBins
-            DataSet binDataset = particleGroup.openDataSet("FilledBins");
-            DataSpace binDataSpace = binDataset.getSpace();
+            attribute = particleGroup.openAttribute("xRad");
+            float xRad;
+            attribute.read(PredType::NATIVE_FLOAT, &xRad);
 
-            hsize_t binDims[1];
-            binDataSpace.getSimpleExtentDims(binDims, NULL);
-            std::vector<Bin> filledBins(binDims[0]);
-            binDataset.read(&filledBins[0], binType);
+            attribute = particleGroup.openAttribute("yRad");
+            float yRad;
+            attribute.read(PredType::NATIVE_FLOAT, &yRad);
 
-            std::cout << "Particle " << i << " FilledBins: \n";
-            for (auto& bin : filledBins) {
-                std::cout << "X: " << bin.x << ", Y: " << bin.y << '\n';
-            }
+            attribute = particleGroup.openAttribute("xPC");
+            float xPC;
+            attribute.read(PredType::NATIVE_FLOAT, &xPC);
+
+            attribute = particleGroup.openAttribute("yPC");
+            float yPC;
+            attribute.read(PredType::NATIVE_FLOAT, &yPC);
+
+            attribute = particleGroup.openAttribute("ThetaP");
+            float thetaP;
+            attribute.read(PredType::NATIVE_FLOAT, &thetaP);
+
+            attribute = particleGroup.openAttribute("PhiP");
+            float phiP;
+            attribute.read(PredType::NATIVE_FLOAT, &phiP);
+
+            // Read arrayInfo
+            DataSet array_dataset = particleGroup.openDataSet("ArrayInfo");
+            std::array<int, 4> arrayInfo;
+            array_dataset.read(arrayInfo.data(), PredType::NATIVE_INT);
+
+            // Read vector data
+            hsize_t dims_out[1];
+            DataSet vector_dataset = particleGroup.openDataSet("PionCandidatesX");
+            DataSpace vector_space = vector_dataset.getSpace();
+
+            vector_space.getSimpleExtentDims(dims_out, NULL);
+            std::vector<double> pionCandidatesX(dims_out[0]);
+            vector_dataset.read(pionCandidatesX.data(), PredType::NATIVE_DOUBLE);
+
+            vector_dataset = particleGroup.openDataSet("PionCandidatesY");
+            vector_space = vector_dataset.getSpace();
+
+            vector_space.getSimpleExtentDims(dims_out, NULL);
+            std::vector<double> pionCandidatesY(dims_out[0]);
+            vector_dataset.read(pionCandidatesY.data(), PredType::NATIVE_DOUBLE);
+
+            // Read KaonCandidates
+            vector_dataset = particleGroup.openDataSet("KaonCandidatesX");
+            vector_space = vector_dataset.getSpace();
+
+            vector_space.getSimpleExtentDims(dims_out, NULL);
+            std::vector<double> kaonCandidatesX(dims_out[0]);
+            vector_dataset.read(kaonCandidatesX.data(), PredType::NATIVE_DOUBLE);
+
+            vector_dataset = particleGroup.openDataSet("KaonCandidatesY");
+            vector_space = vector_dataset.getSpace();
+
+            vector_space.getSimpleExtentDims(dims_out, NULL);
+            std::vector<double> kaonCandidatesY(dims_out[0]);
+            vector_dataset.read(kaonCandidatesY.data(), PredType::NATIVE_DOUBLE);
+
+            // Read ProtonCandidates
+            vector_dataset = particleGroup.openDataSet("ProtonCandidatesX");
+            vector_space = vector_dataset.getSpace();
+
+            vector_space.getSimpleExtentDims(dims_out, NULL);
+            std::vector<double> protonCandidatesX(dims_out[0]);
+            vector_dataset.read(protonCandidatesX.data(), PredType::NATIVE_DOUBLE);
+
+            vector_dataset = particleGroup.openDataSet("ProtonCandidatesY");
+            vector_space = vector_dataset.getSpace();
+
+            vector_space.getSimpleExtentDims(dims_out, NULL);
+            std::vector<double> protonCandidatesY(dims_out[0]);
+            vector_dataset.read(protonCandidatesY.data(), PredType::NATIVE_DOUBLE);
 
             // Construct a ParticleInfo and add it to the vector
             ParticleInfo particleInfo;
@@ -128,10 +262,49 @@ public:
             particleInfo.energy = energy;
             particleInfo.refractiveIndex = refractiveIndex;
             particleInfo.ckov = ckov;
-            particleInfo.filledBins = filledBins;
+            particleInfo.xRad = xRad;
+            particleInfo.yRad = yRad;
+            particleInfo.xPC = xPC;
+            particleInfo.yPC = yPC;
+            particleInfo.thetaP = thetaP;
+            particleInfo.phiP = phiP;
+            particleInfo.arrayInfo = arrayInfo;
+            particleInfo.pionCandidatesX = pionCandidatesX;
+            particleInfo.pionCandidatesY = pionCandidatesY;
+            particleInfo.kaonCandidatesX = kaonCandidatesX;
+            particleInfo.kaonCandidatesY = kaonCandidatesY;
+            particleInfo.protonCandidatesX = protonCandidatesX;
+            particleInfo.protonCandidatesY = protonCandidatesY;
+											
+						// Print all scalar values
+						Printf("\n\n=======================================");
+						Printf("=======================================");
+						Printf("	Particle %d", i);
+						Printf("=======================================");
+						printf("Momentum: %.2f\n", particleInfo.momentum);
+						printf("Mass: %.2f\n", particleInfo.mass);
+						printf("Energy: %.2f\n", particleInfo.energy);
+						printf("Refractive Index: %.2f\n", particleInfo.refractiveIndex);
+						printf("Ckov: %.2f\n", particleInfo.ckov);
+						printf("xRad: %.2f\n", particleInfo.xRad);
+						printf("yRad: %.2f\n", particleInfo.yRad);
+						printf("xPC: %.2f\n", particleInfo.xPC);
+						printf("yPC: %.2f\n", particleInfo.yPC);
+						printf("ThetaP: %.2f\n", particleInfo.thetaP);
+						printf("PhiP: %.2f\n", particleInfo.phiP);
+			
+						// Print vector sizes
+						printf("Size of pionCandidatesX: %lu\n", particleInfo.pionCandidatesX.size());
+						printf("Size of pionCandidatesY: %lu\n", particleInfo.pionCandidatesY.size());
+						printf("Size of kaonCandidatesX: %lu\n", particleInfo.kaonCandidatesX.size());
+						printf("Size of kaonCandidatesY: %lu\n", particleInfo.kaonCandidatesY.size());
+						printf("Size of protonCandidatesX: %lu\n", particleInfo.protonCandidatesX.size());
+						printf("Size of protonCandidatesY: %lu\n", particleInfo.protonCandidatesY.size());
+
             particleVector.push_back(particleInfo);
         }
 
         return particleVector;
     }
 };
+
