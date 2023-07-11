@@ -105,6 +105,10 @@ public:
 
       // NB! TODO: here PC impact point based on L = rW/2!!
       setPcImp(fTrkPos.X() + deltaX, fTrkPos.Y() + deltaY);
+
+
+
+
       Printf("Track pos at PC : x %.3f y %.3f ", fPc.X(), fPc.Y());
 
       Printf("Track dir at RAD : theta %.3f phi %.3f ", trkDir.Theta(), trkDir.Phi());
