@@ -59,10 +59,16 @@ using namespace o2;
 using namespace o2::hmpid;
 
 
+using vecArray2 = std::vector<std::array<double,2>>;
+
+
 
 class ParticleInfo : public TObject {
 public:
     // Your data members here
+
+		vecArray2 pionCandidates, kaonCandidates, protonCandidates;
+
     float momentum;
     float mass;
     float energy;
@@ -626,7 +632,13 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
  
 
   Printf(" makeEvent%d : enter  ckovTools.segment",eventCnt);
-  const auto photonCandidatesCoords = ckovTools.segment(cherenkovPhotons, temp); // temp --> mapBins
+
+
+
+  vecArray2 pionCandidates, kaonCandidates, protonCandidates;
+
+
+  const auto photonCandidatesCoords = ckovTools.segment(cherenkovPhotons, pionCandidates, kaonCandidates, protonCandidates, temp); // temp --> mapBins
 
 
 
@@ -692,6 +704,12 @@ incL->Draw("same");incL->SetMarkerStyle(2);
  /*auto ckovAnglePredicted = houghResponse(photonCandidates,  Hwidth); */
 
   particle.filledBins = mapBins;
+
+
+  particle.pionCandidates = pionCandidates;
+  particle.kaonCandidates = kaonCandidates;
+  particle.protonCandidates = protonCandidates;
+
   particle.momentum = randomValue.momentum;
   particle.mass = randomValue.mass;
   particle.energy = randomValue.energy;
