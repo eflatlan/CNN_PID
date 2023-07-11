@@ -49,7 +49,7 @@ class ArrAndMap
 	TH2F*	hMinPion =  nullptr;
 	TH2F*	hMinKaon = nullptr;
 
-    Populate* populatePtr = nullptr;
+  Populate2* populatePtr = nullptr;
 		
 		
 		
@@ -127,7 +127,7 @@ delete 			hSignalAndNoiseMap;
 		}*/
 
 		int eventCnt;
-  ArrAndMap(int eventCount, Populate* populatePtr) : eventCnt(eventCount),  populatePtr(populatePtr) {
+  ArrAndMap(int eventCount, Populate2* populatePtr) : eventCnt(eventCount),  populatePtr(populatePtr) {
 		ckovCandMapRange = new TH2F("ckovCandMapRange", "ckovCandMapRange", 160*scale, 0, 159, 144*scale, 0, 143);
 
 		bgCandMapRange  = new TH2F("bgCandMapRange", "bgCandMapRange", 160*scale, 0, 159, 144*scale, 0, 143);
@@ -196,7 +196,7 @@ delete 			hSignalAndNoiseMap;
 	void drawTotalMap()
 	{
 	
-	const auto trkPC = populatePtr->getPcImp();
+	  const auto trkPC = populatePtr->getPcImp();
 		const auto trkRad = populatePtr->getTrackPos();
 		TH2F* trkPCMap = new TH2F("trkPCMap ", "trkPCMap; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
 		TH2F* trkRadMap = new TH2F("trkRadMap ", "trkRadMap; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
@@ -322,10 +322,10 @@ private:
 
 
 
-  bool print = true; // ef: TODO : later pass this in ctor 
+  bool print = false; // ef: TODO : later pass this in ctor 
 
   Populate2* populate2Ptr = nullptr;// =  
-	Populate* populatePtr = nullptr;// 
+	Populate2* populatePtr = nullptr;// 
 
 // using array = std::array;
 using vecArray3 = std::vector<std::array<double,3>>;
@@ -517,8 +517,8 @@ TVector2 trkPos(xRad, yRad);
 TVector3 trkDir; 
 trkDir.SetMagThetaPhi(1, thetaP, phiP);
 
-populatePtr = new Populate(trkPos, trkDir, nF, L);
-
+populatePtr = new Populate2(trkPos, trkDir, nF, L);
+populatePtr->setPcImp(trkPC);
 
 mArrAndMap = new ArrAndMap(eventCnt, populatePtr);
 //mArrAndMap = std::make_unique<ArrAndMap>(eventCnt, populatePtr);
@@ -529,8 +529,11 @@ mArrAndMap = new ArrAndMap(eventCnt, populatePtr);
 
 populate2Ptr = new Populate2(trkPos, trkDir, nF, L);
 
+populate2Ptr->setPcImp(trkPC);
+
 Populate populate(trkPos, trkDir, nF, L);
 
+populate.setPcImp(trkPC);
 
 
 Printf("init Ckovtools \n MIP Root : %f %f %f \n MIP local %f %f",op.Px(),op.Py(),op.Pz(),xMipLocal,yMipLocal);
@@ -833,7 +836,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
  
  
   // number of bg-photons produced
-  const auto numBackgroundPhotons = static_cast<int>(area*occupancy*0.001); 
+  const auto numBackgroundPhotons = static_cast<int>(area*occupancy*.1); 
 
   // number of correctly identified ckov photons
 	int numFoundActualCkov = 0;
@@ -1359,7 +1362,7 @@ const auto pc = populatePtr->getPcImp();
 	else if(!getProtonStatus() and !getKaonStatus() and getPionStatus()) {
 		Printf("Photon%d can be Pion from p-hyp", iPhotCount);	
 
-		Printf("populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhotob, arrMaxPion, getMaxCkovPion());",iPhotCount);
+		Printf("populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhotob, arrMaxPion, getMaxCkovPion());");
 
 		isMaxPionOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion(), "Pion");
 		
@@ -1719,7 +1722,7 @@ gPad->Update();
 
 
 	if(print) {
-			auto d = (rW- L + tGap + qW);
+		auto d = (rW- L + tGap + qW);
 
 
 		auto tanP = TMath::Tan(thetaP);
@@ -2122,6 +2125,7 @@ void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 
 		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
 		TVector3 dirTrs, dirLORS;
+		
 
 		// set TRS values :
 		dirTrs.SetMagThetaPhi(1, etaTRS, phiL);
@@ -2146,18 +2150,23 @@ void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 		// ckovThe, const double& ckovPhi, const double & L
 		// this should return the same as max
 		const auto t = populatePtr->tracePhot(etaTRS, phiL, lMin);
-		Printf("setArrayMax() tracePhot returned TVector2 {x %.2f y %.2f}", t.X(), t.Y());
+
 		// temp
 		
 		Printf("setArrayMax() called  populatePtr->traceForward(dirLORS (thetaR %.2f, phiR %.2f) lMin =  %.2f", thetaR, phiR, lMin);
 		const auto& max = populatePtr->traceForward(dirLORS, lMin);
 		
-		Printf("setArrayMax() traceForward returned TVector2 {x %.2f y %.2f}", max.X(), max.Y());
+		const auto r = (max - trkPC2).Mod();
+		
+		Printf("setArrayMax() traceForward returned TVector2 {x %.2f y %.2f} == > R  = %.2f", max.X(), max.Y(), r);
+		Printf("setArrayMax() tracePhot returned TVector2 {x %.2f y %.2f} == > R  = %.2f", t.X(), t.Y(), (t-trkPC2).Mod());
 		
 		// add protection if traceForward returns 0 or -999?
-		const auto r = (max - trkPC2).Mod();
+
 
  		Printf("setArrayMax() --> i %d, {x %.2f y %.2f} - MIP {x %.2f y %.2f}", i, max.X(), max.Y(), trkPC.X(), trkPC.Y());
+ 		
+
 
 		//Printf("setArrayMax2() --> i %d, {x %.2f y %.2f} - MIP {x %.2f y %.2f}", i, max.X(), max.Y(), trkPC2.X(), trkPC2.Y());
 

@@ -391,7 +391,7 @@ std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, flo
 
 
   // number of cherenkov photons in the cherenkov ring:
-  const auto numberOfCkovPhotons = rndP->Poisson(130); // NB!!! TODO: change back;
+  const auto numberOfCkovPhotons = rndP->Poisson(13); 
 
   photonCandidates.clear();
   float ThetaP = 0; // [rad]  // endre denne
@@ -480,34 +480,45 @@ std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, flo
 
 
   // double L = 0;
-  double L = .75;//static_cast<float>((rW)*(gRandom->Rndm(1)));
+  double L = static_cast<float>((rW)*(gRandom->Rndm(1)));
   
   // TODO; change back to:
   // double radParams[6] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum};
-  double radParams[7] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum, randomValue.mass};
-  double refIndexes[3] = {nF, nQ, nG};
-
-
-
+  double radParams[7] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum,    randomValue.mass};
+ double refIndexes[3] = {nF, nQ, nG};
  
  TVector2 trkPos(xRad, yRad);
  TVector3 trkDir; trkDir.SetMagThetaPhi(1, thetaP, phiP);
  
+
+ TVector2 impPC(xPC, yPC);
  // getR* getr = new getR(trkPos, trkDir, nF);
  
 
 
  Populate* populate = new Populate(trkPos, trkDir, nF, L);
+ populate->setPcImp(impPC);
+
 
  CkovTools ckovTools(radParams, refIndexes, ckovHyps, occupancy, ckovAngle, eventCnt);
 
 
 
  const TVector2& posMaxProton = populate->tracePhot(ckovTools.getMaxCkovProton(), 0, lMax);
+ /*
+ for(double t = 0; t < 1; t+= 0.1) {
 
+	 const auto& valueL = populate->tracePhot(.7, t, L);
+	 const auto& valueR = populate->tracePhot(.7, -t, L);
+	  Printf("valueL %.2f, valueR %.2f --> rL %.2f , rR %.2f", (impPC-valueL).Mod(), (impPC-valueR).Mod()); 
 
+	 if((impPC-valueL).Mod() != (impPC-valueL).Mod() ) {
+		 Printf("valueL %.2f, valueR %.2f --> rL %.2f , rR %.2f", (impPC-valueL).Mod(), (impPC-valueR).Mod()); 
 
+		 throw std::invalid_argument("???");
+	 }
 
+ } throw std::invalid_argument("fin"); */ 
 
   Printf("bgstudy segment : phiP %f thetaP %f xRad %f yP %f ", phiP, thetaP, xRad, yRad);
 
@@ -541,29 +552,7 @@ std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, flo
  Printf(" makeEvent%d : ckovHyps = <%.3f, %.3f> | <%.3f, %.3f> | <%.3f, %.3f>", eventCnt, ckovTools.getMinCkovPion(),ckovTools.getMaxCkovPion(),ckovTools.getMinCkovKaon(),
 ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovProton(), eventCnt); 
 
-// void populateRegions(std::vector<std::array<double, 3>>& vecArr, TH2F* map, const double& eta, const double& l);
- 
- /*
- std::vector<std::pair<double, double>> maxPionVec, maxKaonVec, maxProtonVec;
-  
- std::vector<std::array<double, 3>> arrMaxPion, arrMaxKaon, arrMaxProton;
- 
- maxPionVec.reserve(kN); maxKaonVec.reserve(kN); maxProtonVec.reserve(kN); 
- maxPionVec.resize(kN); maxKaonVec.resize(kN); maxProtonVec.resize(kN);
- Printf(" makeEvent%d : populating loop",eventCnt); 
 
-  std::vector<std::pair<double, double>> minPionVec, minKaonVec, minProtonVec;
-  minPionVec.reserve(kN); minKaonVec.reserve(kN); minProtonVec.reserve(kN); 
-  minPionVec.resize(kN); minKaonVec.resize(kN); minProtonVec.resize(kN);
-  Printf(" makeEvent%d : populating loop", eventCnt); 
-
-  populateRegions(populate, maxPionVec, hMaxPion, ckovTools.getMaxCkovPion(), lMin);
-  populateRegions(populate, maxKaonVec, hMaxKaon, ckovTools.getMaxCkovKaon(), lMin);
-  populateRegions(populate, maxProtonVec, hMaxProton, ckovTools.getMaxCkovProton(), lMin);
-  populateRegions(populate, minPionVec, hMinPion, ckovTools.getMinCkovPion(), lMax);
-  populateRegions(populate, minKaonVec, hMinKaon, ckovTools.getMinCkovKaon(), lMax);
-  populateRegions(populate, minProtonVec, hMinProton, ckovTools.getMinCkovProton(), lMax);
-*/ 
  // track hit at PC in LORS : 
  const auto posPC = populate->getPcImp();
 
@@ -583,7 +572,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
    
    // TODO: endre std-dev her til å følge prob-dist?!
    // TODO: change back to 0.008
-   float etaC = rnd->Gaus(ckovAngle, 0.008*0);		    // random CkovAngle, with 0.012 std-dev
+   float etaC = rnd->Gaus(ckovAngle, 0.008);		    // random CkovAngle, with 0.012 std-dev
 
    float phiL = static_cast<float>((TMath::Pi())*(1-2*gRandom->Rndm(1)));
    // angle around ckov Cone of photon
