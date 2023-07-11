@@ -38,13 +38,15 @@ private:
 
     double nF;	     // refIdnex of freon
 
+
+    double L;
     const double winThick = 0.5, radThick = 1.5; const int gapThick = 8;
     const double gapIdx = 1.0005, winIdx = 1.5787;
 
     const double nQ = winIdx, nG = gapIdx;
 
 
-		double getRefIdx;//     getRefIdx = nF;  
+    double getRefIdx;//     getRefIdx = nF;  
     double cosPhiP, sinPhiP;
     double tanThetaP;
     double deltaX, deltaY;
@@ -55,10 +57,10 @@ private:
     TVector2 fTrkPos2D;
 public:
 
-    Populate(TVector2 trkPos, TVector3 trkDir, double _nF) : fTrkPos(trkPos),  fTrkDir(trkDir), nF(_nF) 
+    Populate(TVector2 trkPos, TVector3 trkDir, double _nF, double _L) : fTrkPos(trkPos),  fTrkDir(trkDir), nF(_nF), L(_L)
     {
 
-			getRefIdx = nF;
+getRefIdx = nF;
       fTrkPos2D.Set(trkPos.X(), trkPos.Y()); 
 
 
@@ -70,8 +72,8 @@ public:
       
     getRefIdx = nF;  
     tanThetaP = TMath::Tan(trkDir.Theta());
-			cosPhiP = TMath::Cos(trkDir.Phi());		
-			sinPhiP = TMath::Sin(trkDir.Phi());	
+cosPhiP = TMath::Cos(trkDir.Phi());		
+sinPhiP = TMath::Sin(trkDir.Phi());	
 		
     phiP = trkDir.Phi();
     cosThetaP = TMath::Cos(trkDir.Theta());		
@@ -82,10 +84,18 @@ public:
 
 
 
+      // xMipLocal = tanThetaP*cosPhiP*(rW-L + tGap + qW);
+      // yMipLocal = tanThetaP*sinPhiP*(rW-L + tGap + qW);
+
+
       // should be radThick/2 here if assuming half em-length 
-      deltaX = (radThick/2 + winThick + gapThick) * tanThetaP * cosPhiP;
-      deltaY = (radThick/2 + winThick + gapThick) * tanThetaP * sinPhiP;		
-			
+      // EF : was like this : 
+      //deltaX = (radThick/2 + winThick + gapThick) * tanThetaP * cosPhiP;
+      //deltaY = (radThick/2 + winThick + gapThick) * tanThetaP * sinPhiP;		
+	
+      deltaX = (radThick - L + winThick + gapThick) * tanThetaP * cosPhiP;
+      deltaY = (radThick -L  + winThick + gapThick) * tanThetaP * sinPhiP;
+		
 
       // NB! TODO: here PC impact point based on L = rW/2!!
       setPcImp(fTrkPos.X() + deltaX, fTrkPos.Y() + deltaY);

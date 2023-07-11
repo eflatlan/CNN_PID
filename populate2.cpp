@@ -39,6 +39,9 @@ private:
 
     double nF, getRefIdx;	     // refIdnex of freon
 
+
+
+		double L;
     const double winThick = 0.5, radThick = 1.5; const int gapThick = 8;
     const double gapIdx = 1.0005, winIdx = 1.5787;
 
@@ -63,7 +66,7 @@ private:
 
 public:
 
-    Populate2(TVector2 trkPos, TVector3 trkDir, double _nF) : fTrkPos(trkPos),  fTrkDir(trkDir), nF(_nF) 
+    Populate2(TVector2 trkPos, TVector3 trkDir, double _nF, double _L) : fTrkPos(trkPos),  fTrkDir(trkDir), nF(_nF), L(_L)
     {
 
 
@@ -91,13 +94,13 @@ public:
 
 
 
-			// xRa = xPC - deltaX
-
-
-
       // should be radThick/2 here if assuming half em-length 
-      deltaX = (radThick/2 + winThick + gapThick) * tanThetaP * cosPhiP;
-      deltaY = (radThick/2 + winThick + gapThick) * tanThetaP * sinPhiP;		
+      // EF : was like this : 
+      //deltaX = (radThick/2 + winThick + gapThick) * tanThetaP * cosPhiP;
+      //deltaY = (radThick/2 + winThick + gapThick) * tanThetaP * sinPhiP;		
+	
+      deltaX = (radThick - L + winThick + gapThick) * tanThetaP * cosPhiP;
+      deltaY = (radThick - L  + winThick + gapThick) * tanThetaP * sinPhiP;
 			
 
       // NB! TODO: here PC impact point based on L = rW/2!!
