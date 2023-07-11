@@ -1576,6 +1576,10 @@ const auto pc = populatePtr->getPcImp();
 
 
 	int cStatus = 4*static_cast<int>(isPhotonPionCand) + 2*static_cast<int>(isPhotonKaonCand) + 1*static_cast<int>(isPhotonProtonCand);
+
+
+
+	// lagre denne istedet :
 	candCombined.emplace_back(Candidate2{x, y, cStatus});
 
 

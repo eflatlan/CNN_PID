@@ -35,9 +35,25 @@ public:
         H5File file("ParticleInfo.h5", H5F_ACC_TRUNC);
 
         for (size_t i = 0; i < particleVector.size(); ++i) {
-            const auto& particle = particleVector[i];
+            auto& particle = particleVector[i];
 
-											
+						for (const auto& candidate : particle.pionCandidates) {
+    					particle.pionCandidatesX.push_back(candidate[0]);
+    					particle.pionCandidatesY.push_back(candidate[1]);
+						} 				
+
+
+						for (const auto& candidate : particle.kaonCandidates) {
+    					particle.kaonCandidatesX.push_back(candidate[0]);
+    					particle.kaonCandidatesY.push_back(candidate[1]);
+						} 		
+
+
+						for (const auto& candidate : particle.protonCandidates) {
+    					particle.protonCandidatesX.push_back(candidate[0]);
+    					particle.protonCandidatesY.push_back(candidate[1]);
+						} 		
+																	
 						// Print all scalar values
 						Printf("\n\n=======================================");
 						Printf("=======================================");
