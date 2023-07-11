@@ -709,8 +709,8 @@ void setSegment(const segType& segPion, segType& segPionRot)
   {
     auto x = p.first, y = p.second;
     local2PhiRing(x, y, xMipLocal, yMipLocal);
-    segPionRot[i] = std::make_pair(x,y);
-    segPionLocal[i] = std::make_pair(x,y);
+    //segPionRot[i] = std::array<double,2>{x,y};
+    //segPionLocal[i] = std::array<double,2>{x,y};
     //Printf("Ckovtools : setsegment! x %.2f y %.2f", x, y);
 		i++;
   }    
@@ -800,8 +800,10 @@ double getThetaP()
 
 // x, y, etaC
 
-std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>>& cherenkovPhotons, MapType& bins) { 
-  MapType pionCandidates, kaonCandidates, protonCandidates;
+std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>>& cherenkovPhotons, vecArray2& pionCands, vecArray2& kaonCands, vecArray2& protonCands,  MapType& bins) { 
+
+
+  vecArray2 pionCandidates, kaonCandidates, protonCandidates;
   
   
   ArrAndMap mArrAndMap;// new ArrAndMap(eventCnt);
@@ -1185,10 +1187,10 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 
 	// obv change this later to also add bg photons
 	const size_t numPhotonsTemp = cherenkovPhotons.size();
-	std::vector<Candidate> pionCands, kaonCands, protonCands;
+	/*std::vector<Candidate> pionCands, kaonCands, protonCands;
 	pionCands.reserve(numPhotonsTemp);
 	kaonCands.reserve(numPhotonsTemp);
-	protonCands.reserve(numPhotonsTemp);
+	protonCands.reserve(numPhotonsTemp);*/ 
 
 	std::vector<Candidate2> candCombined;
 	candCombined.reserve(numPhotonsTemp);
@@ -1362,9 +1364,8 @@ const auto pc = populatePtr->getPcImp();
 				if(isMaxProtonOk) {
 					// we have proton-candiate
 					isPhotonProtonCand = true;
-					
-					
-					protonCandidates.push_back(std::make_pair(x,y));
+
+					protonCandidates.push_back(std::array<double,2>{x,y});
 					Printf("Photon%d is a Proton Candidate", iPhotCount); 
 					// isMaxPionOk = true;
 					isMaxKaonOk = true;
@@ -1383,7 +1384,7 @@ const auto pc = populatePtr->getPcImp();
 					isPhotonPionCand = true;
 					Printf("Photon%d is a Pion Candidate", iPhotCount); 
 										
-					pionCandidates.push_back(std::make_pair(x,y));
+					pionCandidates.push_back(std::array<double,2>{x,y});
 					
 					isMinKaonOk = true;
 				}	else {
@@ -1409,7 +1410,7 @@ const auto pc = populatePtr->getPcImp();
 						Printf("Photon%d is a Kaon Candidate", iPhotCount); 
 						// we have kaon cand
 						isPhotonKaonCand = true;
-						kaonCandidates.push_back(std::make_pair(x,y));
+						kaonCandidates.push_back(std::array<double,2>{x,y});
 					} else {
 						Printf("Photon%d not a Kaon Candidate", iPhotCount); 
 					}
@@ -1464,7 +1465,7 @@ const auto pc = populatePtr->getPcImp();
 				// this means rPionMin < rPhoton
 				if(isMinPionOk) {
 					isPhotonPionCand = true;
-					pionCandidates.push_back(std::make_pair(x,y));	
+					pionCandidates.push_back(std::array<double,2>{x,y});	
 					Printf("Photon%d is Pion Candiate", iPhotCount); 
 					// we have pion-candiate
 				}	
@@ -1473,7 +1474,7 @@ const auto pc = populatePtr->getPcImp();
 				// isMaxKaonOk = populate2Ptr->
 				if(isMaxKaonOk) {
 					isPhotonKaonCand = true;
-					kaonCandidates.push_back(std::make_pair(x,y));
+					kaonCandidates.push_back(std::array<double,2>{x,y});
 					Printf("Photon%d is Kaon Candiate", iPhotCount); 
 					// we have kaon-candiate
 				}							
@@ -1510,7 +1511,7 @@ const auto pc = populatePtr->getPcImp();
 				// we have pion candidate
 				Printf("Photon%d is Pion Candidate", iPhotCount);	
 				isPhotonPionCand = true; 
-				pionCandidates.push_back(std::make_pair(x,y));
+				pionCandidates.push_back(std::array<double,2>{x,y});
 			} else {
 				Printf("Photon%d could only have been Pion, but didnt fall within radius-range",iPhotCount);
 			}
@@ -1860,7 +1861,10 @@ gPad->Update();
 
 	if(print) {
 	
-		mArrAndMap.setEventCount(eventCnt);
+
+   
+
+ 		mArrAndMap.setEventCount(eventCnt);
 		
 		
 		Populate2* pPtr = new Populate2(trkPos, trkDir, nF, L);
@@ -1899,9 +1903,17 @@ gPad->Update();
 
 		Printf("CkovHyps %.2f %.2f %.2f", ckovHyps[0], ckovHyps[1], ckovHyps[2]);
 		//Printf("CkovHyps %.2f %.2f %.2f", ckovHyps[0], ckovHyps[1], ckovHyps[2]);
-		throw std::invalid_argument("print invoked"); }
+
+
+		//throw std::invalid_argument("print invoked"); 
+    }
   // drawTotalMap / drawMaxRegions
   } else {
+
+
+		protonCands = protonCandidates;//.emplace_back()
+		kaonCands = kaonCandidates;//.emplace_back()
+		pionCands = pionCandidates;//.emplace_back()
    	//delete mArrAndMap;	
    }
 
