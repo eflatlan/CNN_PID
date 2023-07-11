@@ -391,7 +391,7 @@ std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, flo
 
 
   // number of cherenkov photons in the cherenkov ring:
-  const auto numberOfCkovPhotons = rndP->Poisson(13);
+  const auto numberOfCkovPhotons = rndP->Poisson(130); // NB!!! TODO: change back;
 
   photonCandidates.clear();
   float ThetaP = 0; // [rad]  // endre denne
@@ -463,7 +463,8 @@ std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, flo
 
 
   // assumming L = 0.5*rW
-  auto delta = (radThick*0.5 + winThick + gapThick)*TMath::Tan(thetaP);
+  //auto delta = (radThick*0.5 + winThick + gapThick)*TMath::Tan(thetaP);
+  auto delta = (radThick - L  + winThick + gapThick)*TMath::Tan(thetaP);
   auto xPC =  xRad + delta*TMath::Cos(phiP);
   auto yPC =  yRad + delta*TMath::Sin(phiP);
 
@@ -479,7 +480,7 @@ std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, flo
 
 
   // double L = 0;
-  double L = static_cast<float>((rW)*(gRandom->Rndm(1)));
+  double L = .75;//static_cast<float>((rW)*(gRandom->Rndm(1)));
   
   // TODO; change back to:
   // double radParams[6] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum};
@@ -496,7 +497,7 @@ std::vector<std::pair<double, double>>  makeEvent(std::vector<Bin>& mapBins, flo
  
 
 
- Populate* populate = new Populate(trkPos, trkDir, nF);
+ Populate* populate = new Populate(trkPos, trkDir, nF, L);
 
  CkovTools ckovTools(radParams, refIndexes, ckovHyps, occupancy, ckovAngle, eventCnt);
 
@@ -582,7 +583,7 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
    
    // TODO: endre std-dev her til å følge prob-dist?!
    // TODO: change back to 0.008
-   float etaC = rnd->Gaus(ckovAngle, 0.008);		    // random CkovAngle, with 0.012 std-dev
+   float etaC = rnd->Gaus(ckovAngle, 0.008*0);		    // random CkovAngle, with 0.012 std-dev
 
    float phiL = static_cast<float>((TMath::Pi())*(1-2*gRandom->Rndm(1)));
    // angle around ckov Cone of photon
