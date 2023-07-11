@@ -841,8 +841,8 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 
 	arrMaxPionPos.reserve(kN);
 	arrMinPionPos.reserve(kN);
-	arrMaxPionPos.resize(kN);
-	arrMinPionPos.resize(kN);
+	//arrMaxPionPos.resize(kN);
+	//arrMinPionPos.resize(kN);
 
 	// arrMaxPion.resize(kN);
 		
@@ -855,8 +855,8 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 
 		arrMinProtonPos.reserve(kN);
 		arrMaxProtonPos.reserve(kN);
-		arrMinProtonPos.resize(kN);
-		arrMaxProtonPos.resize(kN);
+		//arrMinProtonPos.resize(kN);
+		//arrMaxProtonPos.resize(kN);
 				
 		// also later add max, i forste runde sjekk at ckov i {minProton, maxPion}
 		Printf("calling setArrayMin w getMinCkovProton() = %.2f", getMinCkovProton());
@@ -878,8 +878,8 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 		arrMaxKaonPos.reserve(kN);
 		arrMinKaonPos.reserve(kN);				
 
-		arrMaxKaonPos.resize(kN);
-		arrMinKaonPos.resize(kN);
+		//arrMaxKaonPos.resize(kN);
+		//arrMinKaonPos.resize(kN);
 
 		Printf("calling setArrayMin w getMinCkovKaon() = %.2f", getMinCkovKaon());
   	setArrayMin(getMinCkovKaon(), arrMinKaon, arrMinKaonPos, kN);
@@ -891,21 +891,21 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 	
 
 
-	Printf("BF : Length of elem vectors : arrMaxPion %d", arrMaxPion.size());	
-  Printf("calling setArrayMax w getMaxCkovPion() = %.2f", getMaxCkovPion());
-  setArrayMax(getMaxCkovPion(), arrMaxPion, arrMaxPionPos, kN);
-	Printf("AFTER : Length of elem vectors : arrMaxPion %d", arrMaxPion.size());	
+	//Printf("BF : Length of elem vectors : arrMaxPion %zu", arrMaxPion.size());	
+  //Printf("calling setArrayMax w getMaxCkovPion() = %.2f", getMaxCkovPion());
+  //setArrayMax(getMaxCkovPion(), arrMaxPion, arrMaxPionPos, kN);
+	//Printf("AFTER : Length of elem vectors : arrMaxPion %zu", arrMaxPion.size());	
 
 
 
-	Printf(" BF : Length of elem vectors : arrMinPion %d", arrMinPion.size());
-  Printf("calling setArrayMin w getMinCkovPion() = %.2f", getMinCkovPion());
+	//Printf(" BF : Length of elem vectors : arrMinPion %zu", arrMinPion.size());
+  //Printf("calling setArrayMin w getMinCkovPion() = %.2f", getMinCkovPion());
   setArrayMin(getMinCkovPion(), arrMinPion, arrMinPionPos, kN);
-	Printf("AFTER : Length of elem vectors : arrMinPion %d", arrMinPion.size());
+	//Printf("AFTER : Length of elem vectors : arrMinPion %zu", arrMinPion.size());
 	// fill all the values in the maps 
 	
-	Printf("Length of elem vectors : arrMinPion %d", arrMinPion.size());
-	Printf("Length of elem vectors : arrMaxPion %d", arrMaxPion.size());
+	//Printf("Length of elem vectors : arrMinPion %zu", arrMinPion.size());
+	//Printf("Length of elem vectors : arrMaxPion %zu", arrMaxPion.size());
 	
 	if(true) {
 
@@ -1299,10 +1299,7 @@ const auto rPhoton = (posPhoton - trkPC).Mod();
 
 
 // skal denne gudbedres være trkRAD??
-const auto phiPhoton = (posPhoton - trkPC).Phi();
-
-
-
+const auto phiPhoton = (posPhoton - trkPos).Phi();
 
 const auto pc = populatePtr->getPcImp();
 
@@ -1876,7 +1873,7 @@ gPad->Update();
 		mArrAndMap.drawTotalMap();
 		//mArrAndMap->drawMaxRegions();		  
   
-		Printf("momentum %.2f | mass %.2f | thetaP %.2f | phiP %.2f | L %.2f", momentum, mass, thetaP, phiP, L);
+		Printf("Event Number%d, momentum %.2f | mass %.2f | thetaP %.2f | phiP %.2f | L %.2f", eventCnt,momentum, mass, thetaP, phiP, L);
 					
 
 		throw std::invalid_argument("print invoked"); }
@@ -2260,18 +2257,19 @@ void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
   // const size_t kN = inPutVector.size();
   const float lMin = 0.;
   const auto trkPC2 = populatePtr->getPcImp();
+  const auto trkRad2 = populatePtr->getTrackPos();
 
-  Printf("\n\n setArrayMax() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
+
+  //Printf("\n\n setArrayMax() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
 	for(int i = 0; i < kN; i++){
 
 		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
 		TVector3 dirTrs, dirLORS;
 		
-
 		// set TRS values :
 		dirTrs.SetMagThetaPhi(1, etaTRS, phiL);
 
-		Printf("\n setArrayMax() dirTrs.SetMagThetaPhi(1, etaTRS = x %.2f, phiL = x %.2f); ", etaTRS, phiL);
+		//Printf("\n setArrayMax() dirTrs.SetMagThetaPhi(1, etaTRS = x %.2f, phiL = x %.2f); ", etaTRS, phiL);
 		
 
 		double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
@@ -2279,12 +2277,12 @@ void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 		// make this fcn in populate instead?		
 		populatePtr->trs2Lors(dirTrs, thetaR, phiR);
 		
-		Printf("setArrayMax() called trs2Lors on dirTRS : return { thetaR = %.2f, phiR = %.2f}", thetaR, phiR);
+		//Printf("setArrayMax() called trs2Lors on dirTRS : return { thetaR = %.2f, phiR = %.2f}", thetaR, phiR);
 		
 
 		dirLORS.SetMagThetaPhi(1, thetaR, phiR);
 
-		Printf("setArrayMax() dirLORS {x %.2f y %.2f z %.2f}", dirLORS.X(), dirLORS.Y(), dirLORS.Z());
+		//Printf("setArrayMax() dirLORS {x %.2f y %.2f z %.2f}", dirLORS.X(), dirLORS.Y(), dirLORS.Z());
 
 
 		// temp
@@ -2294,19 +2292,23 @@ void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 
 		// temp
 		
-		Printf("setArrayMax() called  populatePtr->traceForward(dirLORS (thetaR %.2f, phiR %.2f) lMin =  %.2f", thetaR, phiR, lMin);
+		//Printf("setArrayMax() called  populatePtr->traceForward(dirLORS (thetaR %.2f, phiR %.2f) lMin =  %.2f", thetaR, phiR, lMin);
 		const auto& max = populatePtr->traceForward(dirLORS, lMin);
 		
 		const auto r = (max - trkPC2).Mod();
 		
-		Printf("setArrayMax() traceForward returned TVector2 {x %.2f y %.2f} == > R  = %.2f", max.X(), max.Y(), r);
-		Printf("setArrayMax() tracePhot returned TVector2 {x %.2f y %.2f} == > R  = %.2f", t.X(), t.Y(), (t-trkPC2).Mod());
+		//Printf("setArrayMax() traceForward returned TVector2 {x %.2f y %.2f} == > R  = %.2f", max.X(), max.Y(), r);
+		//Printf("setArrayMax() tracePhot returned TVector2 {x %.2f y %.2f} == > R  = %.2f", t.X(), t.Y(), (t-trkPC2).Mod());
 		
 		// add protection if traceForward returns 0 or -999?
 
 
- 		Printf("setArrayMax() --> i %d, {x %.2f y %.2f} - MIP {x %.2f y %.2f}", i, max.X(), max.Y(), trkPC.X(), trkPC.Y());
+ 		//Printf("setArrayMax() --> i %d, {x %.2f y %.2f} - MIP {x %.2f y %.2f}", i, max.X(), max.Y(), trkPC.X(), trkPC.Y());
  		
+
+		// check at phiR  er det samme som (t-rad).phi og (max-rad).phi?
+		
+
 
 
 		//Printf("setArrayMax2() --> i %d, {x %.2f y %.2f} - MIP {x %.2f y %.2f}", i, max.X(), max.Y(), trkPC2.X(), trkPC2.Y());
@@ -2317,7 +2319,18 @@ void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 		if(phiR < 0) {
 			phiR = TMath::TwoPi() + phiR;
     }
+        
+    
+		if( (max-trkRad2).Phi() != (t-trkRad2).Phi()) {
+			throw std::invalid_argument("(max-trkRad2).Phi() != (t-trkRad2).Phi())");
+		}
 
+		if(TMath::Abs(phiR - (t-trkRad2).Phi()) > 0.0001 && t.X() != -999 && t.Y() != -999)   
+		{
+		
+		  Printf("phiR at %.6f | (t-rad) %.6f | (max-rad) %.6f ", phiR, (t-trkRad2).Phi(), (max-trkRad2).Phi());
+			throw std::invalid_argument("phiR != (t-trkRad2).Phi())");
+		}
 		// protections if r > value?
 		//if(r > )
 
@@ -2332,17 +2345,23 @@ void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
     	//inPutVector.emplace_back(std::array<double, 3>{0, 0, 0});
 			// placeholder, find better solution? 
 			if(max.Y() == -999) {
-				Printf("setArrayMax() max.Y() %.1f == -999", max.Y());
+				//Printf("setArrayMax() max.Y() %.1f == -999", max.Y());
 			}
 			if(max.X() == -999) {
-				Printf("setArrayMax() max.X() %.1f == -999", max.X());
+				//Printf("setArrayMax() max.X() %.1f == -999", max.X());
 			}
     } else {
+    	
     	//inPutVector.emplace_back(std::array<double, 3>{phiL, phiR, r});
-    	inPutVectorPos[i] = {max.X(), max.Y()};
+    	
+    	inPutVectorPos.emplace_back(std::array<double, 2>{max.X(), max.Y()}); 
+    	inPutVectorAngle.emplace_back(std::array<double, 3>{phiL, phiR, r});   	
+    	//inPutVectorPos[i] = {max.X(), max.Y()};
     	//inPutVectorAngle[i] = {phiL, phiR, r};
-    	inPutVectorAngle.emplace_back(std::array<double, 3>{phiL, phiR, r});
-    	Printf("setArrayMax() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
+    	
+    	
+    	//inPutVectorAngle.emplace_back(std::array<double, 3>{phiL, phiR, r});
+    	//Printf("setArrayMax() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
     }
     	//inPutVector[i] = {phiL, phiR, r};
     // Printf("setArrayMax() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
@@ -2358,7 +2377,7 @@ void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 		const auto& phiL_ = ip[0];
 		const auto& phiR_ = ip[1]; 
 		const auto& r_ = ip[2];  
-		Printf("setArrayMax() --> checking inputVector | : phiL %.2f, phiR %.2f, r %.2f", phiL_, phiR_, r_);
+		//Printf("setArrayMax() --> checking inputVector | : phiL %.2f, phiR %.2f, r %.2f", phiL_, phiR_, r_);
   } 
 }
 
@@ -2374,7 +2393,7 @@ void setArrayMin(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
   const auto lMax = 1.5;
   const auto trkPC2 = populatePtr->getPcImp();
 
-  Printf("\n\n setArrayMin() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
+ // Printf("\n\n setArrayMin() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
 	for(int i = 0; i < kN; i++){
 
 		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
@@ -2383,7 +2402,7 @@ void setArrayMin(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 		// set TRS values :
 		dirTrs.SetMagThetaPhi(1, etaTRS, phiL);
 
-		Printf("\n setArrayMin() dirTrs.SetMagThetaPhi(1, etaTRS = x %.2f, phiL = x %.2f); ", etaTRS, phiL);
+		//Printf("\n setArrayMin() dirTrs.SetMagThetaPhi(1, etaTRS = x %.2f, phiL = x %.2f); ", etaTRS, phiL);
 		
 
 		double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
@@ -2391,32 +2410,32 @@ void setArrayMin(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 		// make this fcn in populate instead?		
 		populatePtr->trs2Lors(dirTrs, thetaR, phiR);
 		
-		Printf("setArrayMin() called trs2Lors on dirTRS : return { thetaR = %.2f, phiR = %.2f}", thetaR, phiR);
+	  //Printf("setArrayMin() called trs2Lors on dirTRS : return { thetaR = %.2f, phiR = %.2f}", thetaR, phiR);
 		
 
 		dirLORS.SetMagThetaPhi(1, thetaR, phiR);
 
-		Printf("setArrayMin() dirLORS {x %.2f y %.2f z %.2f}", dirLORS.X(), dirLORS.Y(), dirLORS.Z());
+		//Printf("setArrayMin() dirLORS {x %.2f y %.2f z %.2f}", dirLORS.X(), dirLORS.Y(), dirLORS.Z());
 
 
 		// temp
 		// ckovThe, const double& ckovPhi, const double & L
 		// this should return the same as max
 		const auto t = populatePtr->tracePhot(etaTRS, phiL, lMax);
-		Printf("setArrayMin() tracePhot returned TVector2 {x %.2f y %.2f}", t.X(), t.Y());
+		//Printf("setArrayMin() tracePhot returned TVector2 {x %.2f y %.2f}", t.X(), t.Y());
 		// temp
 		
-		Printf("setArrayMin() called  populatePtr->traceForward(dirLORS (thetaR %.2f, phiR %.2f) lMax =  %.2f", thetaR, phiR, lMax);
+		// Printf("setArrayMin() called  populatePtr->traceForward(dirLORS (thetaR %.2f, phiR %.2f) lMax =  %.2f", thetaR, phiR, lMax);
 		const auto& max = populatePtr->traceForward(dirLORS, lMax);
 		
-		Printf("setArrayMin() traceForward returned TVector2 {x %.2f y %.2f}", max.X(), max.Y());
+		// Printf("setArrayMin() traceForward returned TVector2 {x %.2f y %.2f}", max.X(), max.Y());
 		
 		// add protection if traceForward returns 0 or -999?
 		const auto r = (max - trkPC2).Mod();
 
- 		Printf("setArrayMin() --> i %d, {x %.2f y %.2f} - MIP {x %.2f y %.2f}", i, max.X(), max.Y(), trkPC.X(), trkPC.Y());
+ 		// Printf("setArrayMin() --> i %d, {x %.2f y %.2f} - MIP {x %.2f y %.2f}", i, max.X(), max.Y(), trkPC.X(), trkPC.Y());
 
-		Printf("setArrayMin2() --> i %d, {x %.2f y %.2f} - MIP {x %.2f y %.2f}", i, max.X(), max.Y(), trkPC2.X(), trkPC2.Y());
+		// Printf("setArrayMin2() --> i %d, {x %.2f y %.2f} - MIP {x %.2f y %.2f}", i, max.X(), max.Y(), trkPC2.X(), trkPC2.Y());
 
 
 		// phiR in [-pi, pi]? set to 0..2pi?
@@ -2440,18 +2459,17 @@ void setArrayMin(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
     	//inPutVector[i] = {0, 0, 0};
 			// placeholder, find better solution? s
 			if(max.Y() == -999) {
-				Printf("setArrayMin() max.Y() %.1f == -999", max.Y());
+				// sPrintf("setArrayMin() max.Y() %.1f == -999", max.Y());
 			}
 			if(max.X() == -999) {
-				Printf("setArrayMin() max.X() %.1f == -999", max.X());
+				// Printf("setArrayMin() max.X() %.1f == -999", max.X());
 			}
     } else {
-    	inPutVectorPos[i] = {max.X(), max.Y()};
+    	inPutVectorPos.emplace_back(std::array<double, 2>{max.X(), max.Y()}); 
+    	inPutVectorAngle.emplace_back(std::array<double, 3>{phiL, phiR, r});   	
+    	//inPutVectorPos[i] = {max.X(), max.Y()};
     	//inPutVectorAngle[i] = {phiL, phiR, r};
-    	inPutVectorAngle.emplace_back(std::array<double, 3>{phiL, phiR, r});
-    	
-			//boolArray[i] = true;
-    	Printf("setArrayMin() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
+    	//Printf("setArrayMin() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
     }
     	//inPutVector[i] = {phiL, phiR, r};
     // Printf("setArrayMin() emplacing element %d : phiL %.2f, phiR %.2f, r %.2f", i, phiL, phiR, r);
@@ -2467,7 +2485,7 @@ void setArrayMin(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 		const auto& phiL_ = ip[0];
 		const auto& phiR_ = ip[1]; 
 		const auto& r_ = ip[2];  
-		Printf("setArrayMin() --> checking inputVector | : phiL %.2f, phiR %.2f, r %.2f", phiL_, phiR_, r_);
+		// Printf("setArrayMin() --> checking inputVector | : phiL %.2f, phiR %.2f, r %.2f", phiL_, phiR_, r_);
   } 
 }
 

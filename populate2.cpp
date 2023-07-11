@@ -414,7 +414,7 @@ public:
 		int iCnt = 0;
 		auto phi2 = vec[initValue][1]; // 
 
-	  Printf("\n\n Enter checkCond() \n initValue = %d \n  vec[initValue-1][1] = %.3f || phi2 = vec[initValue][1] =  %.3f |  vec[initValue+1][1] = %.3f;",initValue, vec[initValue-1][1], vec[initValue][1], vec[initValue+1][1]);
+	  //Printf("\n\n Enter checkCond() \n initValue = %d \n  vec[initValue-1][1] = %.3f || phi2 = vec[initValue][1] =  %.3f |  vec[initValue+1][1] = %.3f;",initValue, vec[initValue-1][1], vec[initValue][1], vec[initValue+1][1]);
 
 		// set increment opposite way if phi1 > phiPhoton
 		int inc = 1;
@@ -642,12 +642,12 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		auto phi2 = vec[initValue][1]; // 
 
 		const auto sizeVec = vec.size();
-	  Printf(" Enter checkOver(%s) \n initValue = %d \n  vec[initValue-1][1] = %.3f || phi2 = vec[initValue][1] =  %.3f |  vec[initValue+1][1] = %.3f;", hadronType,initValue, vec[sizeVec-1][1], vec[initValue][1], vec[initValue+1][1]);
+	  //Printf(" Enter checkOver(%s) \n initValue = %d \n  vec[initValue-1][1] = %.3f || phi2 = vec[initValue][1] =  %.3f |  vec[initValue+1][1] = %.3f;", hadronType,initValue, vec[sizeVec-1][1], vec[initValue][1], vec[initValue+1][1]);
 
 
-	Printf(" phi::: %.3f | %.3f | %.3f | %.3f | %.3f | ;", vec[sizeVec-1][1],vec[0][1], vec[1][1], vec[2][1], vec[3][1]);
+	//Printf(" phi::: %.3f | %.3f | %.3f | %.3f | %.3f | ;", vec[sizeVec-1][1],vec[0][1], vec[1][1], vec[2][1], vec[3][1]);
 
-	Printf(" r::: %.3f | %.3f | %.3f | %.3f | %.3f | ;", vec[sizeVec-1][2],vec[0][2], vec[1][2], vec[2][2], vec[3][2]);
+	//Printf(" r::: %.3f | %.3f | %.3f | %.3f | %.3f | ;", vec[sizeVec-1][2],vec[0][2], vec[1][2], vec[2][2], vec[3][2]);
 
 		// set increment opposite way if phi1 > phiPhoton
 		int inc = 1;
@@ -907,11 +907,11 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 
 
 		const auto sizeVec = vec.size();
-	  Printf(" Enter checkUnder(%s) \n initValue = %d \n  vec[initValue-1][1] = %.3f || phi2 = vec[initValue][1] =  %.3f |  vec[initValue+1][1] = %.3f;", hadronType,initValue, vec[sizeVec-1][1], vec[initValue][1], vec[initValue+1][1]);
+	  //Printf(" Enter checkUnder(%s) \n initValue = %d \n  vec[initValue-1][1] = %.3f || phi2 = vec[initValue][1] =  %.3f |  vec[initValue+1][1] = %.3f;", hadronType,initValue, vec[sizeVec-1][1], vec[initValue][1], vec[initValue+1][1]);
 
-	Printf(" phi::: %.3f | %.3f | %.3f | %.3f | %.3f | ;", vec[sizeVec-1][1],vec[0][1], vec[1][1], vec[2][1], vec[3][1]);
+	//Printf(" phi::: %.3f | %.3f | %.3f | %.3f | %.3f | ;", vec[sizeVec-1][1],vec[0][1], vec[1][1], vec[2][1], vec[3][1]);
 
-	Printf(" r::: %.3f | %.3f | %.3f | %.3f | %.3f | ;", vec[sizeVec-1][2],vec[0][2], vec[1][2], vec[2][2], vec[3][2]);
+	//Printf(" r::: %.3f | %.3f | %.3f | %.3f | %.3f | ;", vec[sizeVec-1][2],vec[0][2], vec[1][2], vec[2][2], vec[3][2]);
 
 		// set increment opposite way if phi1 > phiPhoton
 		int inc = 1;
@@ -1129,7 +1129,7 @@ Printf("\n enter  getR()  rPosLORS {x %.2f y %.2f} - MIP {x %.2f y %.2f}",  rPos
 	{
 		const auto& phiNewL = (phiLmax + phiLmin)/2.0;	// phi in TRS
 
-    Printf("	splitPhi : phiLmax %.2f | phiLmin %.2f --> phiNewL = %.2f", phiLmax, phiLmin, phiNewL);
+    //Printf("	splitPhi : phiLmax %.2f | phiLmin %.2f --> phiNewL = %.2f", phiLmax, phiLmin, phiNewL);
 
 		// Get phi in LORS 
 		TVector3 dirTRS;
