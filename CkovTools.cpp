@@ -19,10 +19,45 @@ using namespace o2;
 class ArrAndMap
 {
 
+
+  
   public :
+  
+
+  	
+  	
+  using vecArray2 = std::vector<std::array<double,2>>;
+  
+  
+  vecArray2 arrMaxPionPos, arrMaxKaonPos, arrMaxProtonPos;		
+  vecArray2 arrMinPionPos, arrMinKaonPos, arrMinProtonPos;		
+  	
+  	
+  void setMaxArrays(const vecArray2& _arrMaxPionPos, const vecArray2& _arrMaxKaonPos, const vecArray2& _arrMaxProtonPos) {
+  	arrMaxPionPos = _arrMaxPionPos;
+  	arrMaxKaonPos = _arrMaxKaonPos;
+  	arrMaxProtonPos = _arrMaxProtonPos;
+  }	
+		
+  	
+  void setMinArrays(const vecArray2& _arrMinPionPos, const vecArray2& _arrMinKaonPos, const vecArray2& _arrMinProtonPos) {
+    arrMinPionPos = _arrMinPionPos;
+  	arrMinKaonPos = _arrMinKaonPos;
+  	arrMinProtonPos = _arrMinProtonPos;
+  }	
+		
+  
+	void fillMapFromVec(TH2F* map, const vecArray2& vecArr)
+	{
+		for(const auto vE : vecArr) {
+
+			//Printf("fillMapFromVec El %.2f %.2f", vE[0], vE[1]);
+			map->Fill(vE[0], vE[1]);
+		}
+	}
 
   int scale = 10;
-
+  /*
 	TH2F* ckovCandMapRange = nullptr;
 
 	TH2F* bgCandMapRange  = nullptr;
@@ -47,11 +82,33 @@ class ArrAndMap
 
 	TH2F*	hMinProton =  nullptr;
 	TH2F*	hMinPion =  nullptr;
-	TH2F*	hMinKaon = nullptr;
+	TH2F*	hMinKaon = nullptr; 
 
-  Populate2* populatePtr = nullptr;
+  Populate2* populatePtr = nullptr; */ 
 		
-		
+
+  void fillCkovCandMapRange(double x, double y) {
+   	ckovCandMapRange.emplace_back(std::array<double,2>{x,y});
+  }
+  
+  void fillbgCandMapRange(double x, double y) {
+   	bgCandMapRange.emplace_back(std::array<double,2>{x,y});
+  }
+
+  void fillckovCandMapOutRange(double x, double y) {
+   	ckovCandMapOutRange.emplace_back(std::array<double,2>{x,y});
+  }
+  
+  void fillbgCandMapOutRange(double x, double y) {
+   	bgCandMapOutRange.emplace_back(std::array<double,2>{x,y});
+  }
+  
+
+  
+   
+
+
+	vecArray2 bgCandMapOutRange, ckovCandMapRange, bgCandMapRange, ckovCandMapOutRange;
 		
 		/*
 		~ArrAndMap() {
@@ -127,17 +184,53 @@ delete 			hSignalAndNoiseMap;
 		}*/
 
 		int eventCnt;
-  ArrAndMap(int eventCount, Populate2* populatePtr) : eventCnt(eventCount),  populatePtr(populatePtr) {
-		ckovCandMapRange = new TH2F("ckovCandMapRange", "ckovCandMapRange", 160*scale, 0, 159, 144*scale, 0, 143);
-
-		bgCandMapRange  = new TH2F("bgCandMapRange", "bgCandMapRange", 160*scale, 0, 159, 144*scale, 0, 143);
-
-		ckovCandMapOutRange = new TH2F("ckovCandMapOutRange", "ckovCandMapOutRange", 160*scale, 0, 159, 144*scale, 0, 143);
-
-		bgCandMapOutRange = new TH2F("bgCandMapOutRange", "bgCandMapOutRange", 160*scale, 0, 159, 144*scale, 0, 143);
-
-
+		
+	Populate2* populatePtr = nullptr;
 	
+	void setPopulatePtr(Populate2* _populatePtr) { 
+		populatePtr = _populatePtr; 
+	}	
+	
+	int eventCount = 0;
+	void setEventCount(int _eventCount) { 
+		eventCount = _eventCount; 
+	}	
+
+
+	void drawTotalMap()
+	{
+
+		TH2F* hCkovCandMapRange = nullptr;
+		TH2F* hBgCandMapRange  = nullptr;
+		TH2F* hCkovCandMapOutRange = nullptr;
+		TH2F* hBgCandMapOutRange = nullptr;
+
+
+		TH2F* hSignalAndNoiseMap =  nullptr;
+		TH2F*	hSignalMIP =  nullptr;
+		TH2F*	hSignalMIPpc =  nullptr;
+
+		TH2F* arrayMaxMin[8];
+		TH2F*	hMaxProton =  nullptr;
+		TH2F*	hMaxPion =  nullptr;
+		TH2F*	hMaxPionMinL =  nullptr;
+		TH2F*	hMinPionMaxL =  nullptr;
+		TH2F* hMaxKaon =  nullptr;
+
+
+		TH2F*	hMinProton =  nullptr;
+		TH2F*	hMinPion =  nullptr;
+		TH2F*	hMinKaon = nullptr; 
+
+		//Populate2* populatePtr = nullptr;
+
+		hCkovCandMapRange = new TH2F("ckovCandMapRange", "ckovCandMapRange", 160*scale, 0, 159, 144*scale, 0, 143);
+
+		hBgCandMapRange  = new TH2F("bgCandMapRange", "bgCandMapRange", 160*scale, 0, 159, 144*scale, 0, 143);
+
+		hCkovCandMapOutRange = new TH2F("ckovCandMapOutRange", "ckovCandMapOutRange", 160*scale, 0, 159, 144*scale, 0, 143);
+
+		hBgCandMapOutRange = new TH2F("bgCandMapOutRange", "bgCandMapOutRange", 160*scale, 0, 159, 144*scale, 0, 143);
 
 		hSignalAndNoiseMap = new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",160*scale,0.,159.,144*scale,0,143);
 
@@ -158,20 +251,38 @@ delete 			hSignalAndNoiseMap;
 		hMinKaon = new TH2F("minPoss Ckov Kaon", "minPoss Ckov Kaon; x [cm]; y [cm]",160*scale,0.,159.,144*scale,0,143);
 
 
+	  Printf("		fillMapFromVec(mArrAndMap->hMaxPion, arrMaxPion);// map, array");
+	  fillMapFromVec(hMaxPion, arrMaxPionPos);// map, array
+	  fillMapFromVec(hMaxKaon, arrMaxKaonPos);// map, array
+	  fillMapFromVec(hMaxProton, arrMaxProtonPos);// map, array
+
+	  fillMapFromVec(hMinPion, arrMinPionPos);// map, array
+	  fillMapFromVec(hMinKaon, arrMinKaonPos);// map, array
+	  fillMapFromVec(hMinProton, arrMinProtonPos);
+	  
+	  
+
 		hMaxProton->SetMarkerColor(kGreen+3);
 		hMaxKaon->SetMarkerColor(kRed);
-		ckovCandMapRange->SetMarkerColor(kGreen);
-		ckovCandMapOutRange->SetMarkerColor(kGreen + 2);
-		bgCandMapRange->SetMarkerColor(kRed-1);
-		bgCandMapOutRange->SetMarkerColor(kRed+2);
+		hCkovCandMapRange->SetMarkerColor(kGreen);
+		hCkovCandMapOutRange->SetMarkerColor(kGreen + 2);
+		hBgCandMapRange->SetMarkerColor(kRed-1);
+		hBgCandMapOutRange->SetMarkerColor(kRed+2);
 
-		ckovCandMapRange->SetMarkerStyle(3);
-		ckovCandMapOutRange->SetMarkerStyle(2);
-		bgCandMapRange->SetMarkerStyle(3);
-		bgCandMapOutRange->SetMarkerStyle(2);
+		hCkovCandMapRange->SetMarkerStyle(3);
+		hCkovCandMapOutRange->SetMarkerStyle(2);
+		hBgCandMapRange->SetMarkerStyle(3);
+		hBgCandMapOutRange->SetMarkerStyle(2);
 
 
 
+
+		
+		
+	  fillMapFromVec(hCkovCandMapRange, ckovCandMapRange);// map, array
+	  fillMapFromVec(hCkovCandMapOutRange, ckovCandMapOutRange);// map, array
+	  fillMapFromVec(hBgCandMapRange, bgCandMapRange);// map, array
+	  fillMapFromVec(hBgCandMapOutRange, bgCandMapOutRange);
 
 		hMinProton->SetMarkerColor(kGreen+3);
 		hMinKaon->SetMarkerColor(kRed);
@@ -188,42 +299,36 @@ delete 			hSignalAndNoiseMap;
 		hSignalMIPpc->SetMarkerColor(kRed);
 		hSignalAndNoiseMap->SetMarkerStyle(2);
 
-  }
 
-
-
-  
-	void drawTotalMap()
-	{
-	
-	  const auto trkPC = populatePtr->getPcImp();
+		
 		const auto trkRad = populatePtr->getTrackPos();
+		const auto trkPC = populatePtr->getPcImp();
 		TH2F* trkPCMap = new TH2F("trkPCMap ", "trkPCMap; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
 		TH2F* trkRadMap = new TH2F("trkRadMap ", "trkRadMap; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
-	  trkRadMap->Fill(trkRad.X(), trkRad.Y());
-	  trkPCMap->Fill(trkPC.X(), trkPC.Y());
-	
-	
+		trkRadMap->Fill(trkRad.X(), trkRad.Y());
+		trkPCMap->Fill(trkPC.X(), trkPC.Y());
+
+
 		TCanvas* tcnvRane = new TCanvas(Form("tcnvRane%d", eventCnt), Form("tcnvRane%d", eventCnt), 1600, 800);
 		tcnvRane->cd();
-		ckovCandMapRange->Draw();
-		ckovCandMapOutRange->Draw("same");
-		bgCandMapRange->Draw("same");
-		bgCandMapOutRange->Draw("same");
-		
-	
+		hCkovCandMapRange->Draw();
+		hCkovCandMapOutRange->Draw("same");
+		hBgCandMapRange->Draw("same");
+		hBgCandMapOutRange->Draw("same");
+
+
 		hMaxPion->Draw("same");     //  Printf("makeEvent()  hMaxPion->Draw");
 		hMinPion->Draw("same");
 		hMaxProton->Draw("same");   //Printf("makeEvent()  hMaxProton->Draw");
 		hMinProton->Draw("same");
 		hMinKaon->Draw("same");
 		hMaxKaon->Draw("same");
-		
-		
+
+
 		trkRadMap->Draw("same");
 		trkPCMap->Draw("same");
 	}
-
+  /*
 	void drawMaxRegions()
 	{
 
@@ -295,7 +400,7 @@ delete 			hSignalAndNoiseMap;
 		hSignalMIPpc->Draw("same");
 				trkRadMap->Draw("same");
 		trkPCMap->Draw("same");
-	}
+	} */ 
 
 };
 
@@ -330,6 +435,9 @@ private:
 // using array = std::array;
 using vecArray3 = std::vector<std::array<double,3>>;
 using vecArray2 = std::vector<std::array<double,2>>;
+
+using vecArrayPair = std::vector<std::pair<double,double>>;
+
 
 // using arrArray3 = std::vector<std::array<double,3>>;
 
@@ -390,7 +498,8 @@ float L = rW/2;
  float phiLCurrent, etaCCurrent;
 
 
- ArrAndMap* mArrAndMap = nullptr;// new ArrAndMap(eventCnt);
+TVector2 trkPos;
+TVector3 trkDir; 
 
  //std::unique_ptr<ArrAndMap> mArrAndMap;// = nullptr;// new ArrAndMap(eventCnt);
 
@@ -513,19 +622,22 @@ yPC = yMipLocal + yRad;
 trkPC.Set(xPC, yPC); // TODO :check it equals populate.getPcImp();
 
  
-TVector2 trkPos(xRad, yRad);
-TVector3 trkDir; 
+trkPos.Set(xRad, yRad);
+trkDir; 
 trkDir.SetMagThetaPhi(1, thetaP, phiP);
 
 populatePtr = new Populate2(trkPos, trkDir, nF, L);
 populatePtr->setPcImp(trkPC);
 
-mArrAndMap = new ArrAndMap(eventCnt, populatePtr);
+//mArrAndMap = new ArrAndMap(eventCnt, populatePtr);
 //mArrAndMap = std::make_unique<ArrAndMap>(eventCnt, populatePtr);
 
+
+
+/*
 (mArrAndMap->hSignalMIP)->Fill(xRad, yRad);
 (mArrAndMap->hSignalMIPpc)->Fill(xPC, yPC);
-
+*/ 
 
 populate2Ptr = new Populate2(trkPos, trkDir, nF, L);
 
@@ -571,6 +683,9 @@ mRMin = getR_Lmax(ckovProtonMin, halfPI);
 
 void setSegment(const segType& segPion, segType& segPionRot)
 {
+
+
+
   Printf("Ckovtools : enter setsegment!");
   // segType segPionRot; 
   // segPionRot.resize(segPion.length());
@@ -687,6 +802,9 @@ double getThetaP()
 std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>>& cherenkovPhotons, MapType& bins) { 
   MapType pionCandidates, kaonCandidates, protonCandidates;
   
+  
+  ArrAndMap mArrAndMap;// new ArrAndMap(eventCnt);
+  
   Printf("ckovTools enter  ckovTools.segment"); 	 
   //const auto infString = Form("localRef #Theta_{p}  = %.4f #Phi_{p} = %.4f L = %.2f \n #Theta_{C} = %.4f maxCkov = %.4f ; x [cm]; y [cm]", thetaP,phiP, L,trackCkov,ckovPionMax); 
 
@@ -791,7 +909,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 	
 	if(true) {
 
-		Printf("		fillMapFromVec(mArrAndMap->hMaxPion, arrMaxPion);// map, array");
+		/*Printf("		fillMapFromVec(mArrAndMap->hMaxPion, arrMaxPion);// map, array");
 		fillMapFromVec(mArrAndMap->hMaxPion, arrMaxPionPos);// map, array
 		fillMapFromVec(mArrAndMap->hMaxKaon, arrMaxKaonPos);// map, array
 		fillMapFromVec(mArrAndMap->hMaxProton, arrMaxProtonPos);// map, array
@@ -799,6 +917,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 		fillMapFromVec(mArrAndMap->hMinPion, arrMinPionPos);// map, array
 		fillMapFromVec(mArrAndMap->hMinKaon, arrMinKaonPos);// map, array
 		fillMapFromVec(mArrAndMap->hMinProton, arrMinProtonPos);// map, array
+		*/ 
 	} 
   
 
@@ -1171,11 +1290,15 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 
 
 
+
+
 const TVector2 posPhoton(x, y);
 
 // find reference  radius to be compared to segmetation radiuses 
 const auto rPhoton = (posPhoton - trkPC).Mod();
 
+
+// skal denne gudbedres være trkRAD??
 const auto phiPhoton = (posPhoton - trkPC).Phi();
 
 
@@ -1449,18 +1572,22 @@ const auto pc = populatePtr->getPcImp();
 
 				// this means  candidate is a ckov-photon
 				if(etaC != 0) {
-					(mArrAndMap->ckovCandMapRange)->Fill(x,y);
+					//(mArrAndMap->ckovCandMapRange)->Fill(x,y);
+					mArrAndMap.fillCkovCandMapRange(x,y); 
 				}	else { // falls within range, but is bg
-					(mArrAndMap->bgCandMapRange)->Fill(x,y);
+				//(mArrAndMap->bgCandMapRange)->Fill(x,y);
+					mArrAndMap.fillbgCandMapRange(x,y);
 				}
 			}
 			// falls out of range
 			else {
 				// this means  candidate is a ckov-photon, but out of range
 				if(etaC != 0) {
-					(mArrAndMap->ckovCandMapOutRange)->Fill(x,y);
+					mArrAndMap.fillckovCandMapOutRange(x,y);
+					//(mArrAndMap->ckovCandMapOutRange)->Fill(x,y);
 				}	else { // falls out of range, and is bg
-					(mArrAndMap->bgCandMapOutRange)->Fill(x,y);			
+					mArrAndMap.fillbgCandMapOutRange(x,y);
+					//(mArrAndMap->bgCandMapOutRange)->Fill(x,y);			
 				}
 			}
 		}
@@ -1722,6 +1849,20 @@ gPad->Update();
 
 
 	if(print) {
+	
+		mArrAndMap.setEventCount(eventCnt);
+		
+		
+		Populate2* pPtr = new Populate2(trkPos, trkDir, nF, L);
+		mArrAndMap.setPopulatePtr(pPtr);
+		
+		if(pPtr == nullptr) { Printf("populate2Ptr was nullptr!");}
+	  else {	
+		mArrAndMap.setMinArrays(arrMinPionPos, arrMinKaonPos, arrMinProtonPos);
+		mArrAndMap.setMaxArrays(arrMaxPionPos, arrMaxKaonPos, arrMaxProtonPos);		
+	
+	  
+	  
 		auto d = (rW- L + tGap + qW);
 
 
@@ -1731,14 +1872,14 @@ gPad->Update();
 		auto sinP = TMath::Sin(phiP);
 	
 		Printf("delta %.2f | x %.2f y %.2f ", d*tanP, d*tanP*cosP, d*tanP*sinP);
-		mArrAndMap->drawTotalMapAndMaxRegions();
-		mArrAndMap->drawTotalMap();
-		mArrAndMap->drawMaxRegions();		  
+		//mArrAndMap->drawTotalMapAndMaxRegions();
+		mArrAndMap.drawTotalMap();
+		//mArrAndMap->drawMaxRegions();		  
   
 		Printf("momentum %.2f | mass %.2f | thetaP %.2f | phiP %.2f | L %.2f", momentum, mass, thetaP, phiP, L);
 					
 
-		throw std::invalid_argument("print invoked");
+		throw std::invalid_argument("print invoked"); }
   // drawTotalMap / drawMaxRegions
   } else {
    	//delete mArrAndMap;	
