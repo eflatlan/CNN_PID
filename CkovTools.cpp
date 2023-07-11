@@ -891,10 +891,19 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 	
 
 
-	//Printf("BF : Length of elem vectors : arrMaxPion %zu", arrMaxPion.size());	
-  //Printf("calling setArrayMax w getMaxCkovPion() = %.2f", getMaxCkovPion());
-  //setArrayMax(getMaxCkovPion(), arrMaxPion, arrMaxPionPos, kN);
-	//Printf("AFTER : Length of elem vectors : arrMaxPion %zu", arrMaxPion.size());	
+	Printf("BF : Length of elem vectors : arrMaxPion %zu", arrMaxPion.size());	
+  Printf("calling setArrayMax w getMaxCkovPion() = %.2f", getMaxCkovPion());
+  setArrayMax(getMaxCkovPion(), arrMaxPion, arrMaxPionPos, kN);
+  
+  for(const auto& ip : arrMaxPion) {
+		const auto& phiL_ = ip[0];
+		const auto& phiR_ = ip[1]; 
+		const auto& r_ = ip[2];  
+		//Printf("setArrayMax() --> checking arrMaxPionPos | : phiL %.2f, phiR %.2f, r %.2f", phiL_, phiR_, r_);
+		if(r_ == 0 ) {throw std::invalid_argument("r====??????;");}
+  } 
+  
+	Printf("AFTER : Length of elem vectors : arrMaxPion %zu", arrMaxPion.size());	
 
 
 
@@ -955,7 +964,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
  
  
   // number of bg-photons produced
-  const auto numBackgroundPhotons = static_cast<int>(area*occupancy*.1); 
+  const auto numBackgroundPhotons = static_cast<int>(area*occupancy*.001); 
 
   // number of correctly identified ckov photons
 	int numFoundActualCkov = 0;
@@ -1441,7 +1450,10 @@ const auto pc = populatePtr->getPcImp();
 
 		// this means rProtonMin < rPhoton < rMaxPion
 		if(isMinKaonOk) {
-			isMaxPionOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion");
+		
+		
+			// denne var feil!!! her var det satt arrRMinPion og gtckovMin
+			isMaxPionOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion(), "Pion");
 
 			if(isMaxPionOk) {
 
@@ -1875,7 +1887,14 @@ gPad->Update();
   
 		Printf("Event Number%d, momentum %.2f | mass %.2f | thetaP %.2f | phiP %.2f | L %.2f", eventCnt,momentum, mass, thetaP, phiP, L);
 					
+		// const double& ckovThe, const double& ckovPhi, const double & L
+		const auto l1 = populatePtr->tracePhot(getMaxCkovPion(), 0, L);
+		const auto l2 = populatePtr->tracePhot(getMinCkovPion(), 3.14159285, L);
 
+		Printf("phiP %.5f: angle rad --> pc = %.5f | Acos %.5f Asin %.5f"  , phiP, (trkPos-trkPC).Phi(), TMath::ACos(d*tanP*cosP/(trkPos-trkPC).Mod()), TMath::ASin(d*tanP*sinP/(trkPos-trkPC).Mod()));
+		
+		Printf("PHI : l1 %.5f | l2 %.5f ", (l1-trkPos).Phi(),(l2-trkPos).Phi());
+				Printf("RADIUS : l1 %.5f | l2 %.5f ", (l1-trkPC).Mod(),(l2-trkPC).Mod());
 		throw std::invalid_argument("print invoked"); }
   // drawTotalMap / drawMaxRegions
   } else {
@@ -2378,6 +2397,7 @@ void setArrayMax(double etaTRS, vecArray3& inPutVectorAngle, vecArray2& inPutVec
 		const auto& phiR_ = ip[1]; 
 		const auto& r_ = ip[2];  
 		//Printf("setArrayMax() --> checking inputVector | : phiL %.2f, phiR %.2f, r %.2f", phiL_, phiR_, r_);
+		if(r_ == 0 ) {throw std::invalid_argument("r====??????;");}
   } 
 }
 
