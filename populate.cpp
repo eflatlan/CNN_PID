@@ -211,7 +211,7 @@ sinPhiP = TMath::Sin(trkDir.Phi());
 
     // L here is "simulated" within 0..1.5 range
     TVector2 tracePhot(const double& ckovThe, const double& ckovPhi, const double & L) const {
-    		Printf("populate : tracePhot()");
+    	//Printf("populate : tracePhot()");
         double theta, phi;
         TVector3 dirTRS, dirLORS;
         dirTRS.SetMagThetaPhi(1, ckovThe, ckovPhi); // photon in TRS

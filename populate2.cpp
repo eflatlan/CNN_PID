@@ -1116,10 +1116,10 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f \n, ",phiMin, phiPhoto
 		//TVector3 dirCkov;
 		//dirCkov.SetMagThetaPhi(1, etaTRS, phiTRS);
 		const TVector2& rPosLORS = tracePhot(etaTRS, phiTRS, L); // pos of estimated rPos at LORS PC
-Printf("\n enter  getR()  rPosLORS {x %.2f y %.2f} - MIP {x %.2f y %.2f}",  rPosLORS.X(), rPosLORS.Y(), (getPcImp()).X(), (getPcImp()).Y());
+//Printf("\n enter  getR()  rPosLORS {x %.2f y %.2f} - MIP {x %.2f y %.2f}",  rPosLORS.X(), rPosLORS.Y(), (getPcImp()).X(), (getPcImp()).Y());
 
 		const auto R = (rPosLORS-getPcImp()).Mod(); 
-   Printf("\n exit : getR() : etaTRS %.2f | phiTRS %.2f | L %.2f | R %.2f ", etaTRS, phiTRS, L, R);
+   //Printf("\n exit : getR() : etaTRS %.2f | phiTRS %.2f | L %.2f | R %.2f ", etaTRS, phiTRS, L, R);
 		return R;
 	}
 		
