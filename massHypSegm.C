@@ -1099,8 +1099,8 @@ void saveHD5(const std::vector<ParticleInfo>& particleVectorIn)
 	    convertedVector.push_back(newParticle);
 
 	    // Print the ParticleInfo object's values
-            std::cout << "HD5 reading object "  << ":\n";
-            std::cout << "  momentum: " << particle.momentum << "\n";
+            //std::cout << "HD5 reading object "  << ":\n";
+            //std::cout << "  momentum: " << particle.momentum << "\n";
             /*std::cout << "  mass: " << particle.mass << "\n";
             std::cout << "  energy: " << particle.energy << "\n";
             std::cout << "  refractiveIndex: " << particle.refractiveIndex << "\n";
