@@ -35,9 +35,9 @@ public:
 
         for (size_t i = 0; i < particleVector.size(); ++i) {
             auto& particle = particleVector[i];
-            // std::string groupName = "Particle" + std::to_string(i);
+            std::string groupName = "Particle" + std::to_string(i);
 
-						std::cout << groupName << std::endl;
+	    // std::cout << groupName << std::endl;
 
             Group particleGroup = file.createGroup(groupName);
 
