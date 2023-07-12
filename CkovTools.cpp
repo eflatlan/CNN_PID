@@ -825,7 +825,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
   // void setArrayMin(Populate* populate, double etaTRS, vecArray3 inPutVector) 
 
 
-  const size_t kN = 100;
+  const size_t kN = 400;
 
 	//array<array<double, 3> ,kN> arrMaxPion; 
 
@@ -967,7 +967,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
  
  
   // number of bg-photons produced
-  const auto numBackgroundPhotons = static_cast<int>(area*occupancy*.1); 
+  const auto numBackgroundPhotons = static_cast<int>(area*occupancy*1); 
 
   // number of correctly identified ckov photons
 	int numFoundActualCkov = 0;
@@ -1755,7 +1755,7 @@ const auto pc = populatePtr->getPcImp();
 
 	int cntTemp = 0;
   for(const auto& c : candidatesCombined){
-		Printf("Phot%d : x = %.2f, y = %.2f || statusCand = %d", cntTemp++, c.x, c.y, c.candStatus); 
+		//Printf("Phot%d : x = %.2f, y = %.2f || statusCand = %d", cntTemp++, c.x, c.y, c.candStatus); 
 	}
 	Printf("=========================================================================");
 
@@ -1873,7 +1873,7 @@ gPad->Update();
 		Populate2* pPtr = new Populate2(trkPos, trkDir, nF, L);
 		mArrAndMap.setPopulatePtr(pPtr);
 		
-		if(true or pPtr == nullptr) { Printf("populate2Ptr was nullptr!");}
+		if(/*true or */false and pPtr == nullptr) { Printf("populate2Ptr was nullptr!");}
 	  else {	
 		mArrAndMap.setMinArrays(arrMinPionPos, arrMinKaonPos, arrMinProtonPos);
 		mArrAndMap.setMaxArrays(arrMaxPionPos, arrMaxKaonPos, arrMaxProtonPos);		
@@ -1908,7 +1908,7 @@ gPad->Update();
 		//Printf("CkovHyps %.2f %.2f %.2f", ckovHyps[0], ckovHyps[1], ckovHyps[2]);
 
      
-		//throw std::invalid_argument("print invoked"); 
+		throw std::invalid_argument("print invoked"); 
     }
   // drawTotalMap / drawMaxRegions
   } else {
@@ -2596,7 +2596,7 @@ void populateRegions(std::vector<std::pair<double, double>>& vecArr, TH2F* map, 
 	 const int kN = vecArr.size();
 	 for(int i = 0; i < vecArr.size(); i++){
 		  const auto& value = populatePtr->tracePhot(eta, Double_t(TMath::TwoPi()*(i+1)/kN), l);
-		  if(value.X() > 0 && value.X() < 156.0 && value.Y() > 0 && value.Y() < 144) {
+		  if(/*value.X() > 0 && value.X() < 156.0 && value.Y() > 0 && value.Y() < 144*/true) {
 		    map->Fill(value.X(), value.Y());
 		    vecArr[i] = std::make_pair(value.X(), value.Y());
 		  }
