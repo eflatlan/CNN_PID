@@ -421,14 +421,6 @@ private:
 		bool isCandidate = false;
 	};
 
-	struct Candidate2 {
-		double x, y = 0.;
-		//double R = 0.;
-		//double phiL = 0., phi = 0.;
-		/*uint32_t*/int candStatus = 0;//(000, 001, 010, 011, 100, 110, 101, 111);
-	};
-
-
 
   bool print = false; // ef: TODO : later pass this in ctor 
 
@@ -805,7 +797,10 @@ double getThetaP()
 
 
 // std::array<int, 4> arrayInfo;
-std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>>& cherenkovPhotons, vecArray2& pionCands, vecArray2& kaonCands, vecArray2& protonCands, std::array<int, 4>& arrayInfo, MapType& bins) { 
+
+	// ;
+
+std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>>& cherenkovPhotons, vecArray2& pionCands, vecArray2& kaonCands, vecArray2& protonCands, std::array<int, 4>& arrayInfo, std::vector<ParticleUtils::Candidate2>& candCombined, MapType& bins) { 
 
 
   vecArray2 pionCandidates, kaonCandidates, protonCandidates;
@@ -972,7 +967,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
  
  
   // number of bg-photons produced
-  const auto numBackgroundPhotons = static_cast<int>(area*occupancy*.001); 
+  const auto numBackgroundPhotons = static_cast<int>(area*occupancy*.1); 
 
   // number of correctly identified ckov photons
 	int numFoundActualCkov = 0;
@@ -1190,15 +1185,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
 
 
 
-	// obv change this later to also add bg photons
-	const size_t numPhotonsTemp = cherenkovPhotons.size();
-	/*std::vector<Candidate> pionCands, kaonCands, protonCands;
-	pionCands.reserve(numPhotonsTemp);
-	kaonCands.reserve(numPhotonsTemp);
-	protonCands.reserve(numPhotonsTemp);*/ 
 
-	std::vector<Candidate2> candCombined;
-	candCombined.reserve(numPhotonsTemp);
 	
 	//inPutVector.emplace_back(std::array<double, 3>{phiL, phiR, r});
 	
@@ -1219,6 +1206,13 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
   for(const auto& p : backGroundPhotons) {
   	ckovAndBackground.emplace_back(std::array<double, 3>{p});
 	} 
+
+
+
+	const size_t numPhotonsTemp = ckovAndBackground.size();
+	std::vector<ParticleUtils::Candidate2> candidatesCombined;
+	candidatesCombined.reserve(numPhotonsTemp);
+
 	
 	Printf("length ckovPhotons %zu length background %zu length total %zu",cherenkovPhotons.size(), backGroundPhotons.size(), ckovAndBackground.size());
 	
@@ -1580,8 +1574,10 @@ const auto pc = populatePtr->getPcImp();
 
 
 	// lagre denne istedet :
-	candCombined.emplace_back(Candidate2{x, y, cStatus});
 
+	if( x > 0 && x < 156 && y < 144 && y > 0) {
+		candidatesCombined.emplace_back(ParticleUtils::Candidate2{x, y, cStatus});
+  }
 
 
 	if(true) {
@@ -1758,8 +1754,8 @@ const auto pc = populatePtr->getPcImp();
 
 
 	int cntTemp = 0;
-  for(const auto& c : candCombined){
-		//Printf("Phot%d : x = %.2f, y = %.2f || statusCand = %d", cntTemp++, c.x, c.y, c.candStatus); 
+  for(const auto& c : candidatesCombined){
+		Printf("Phot%d : x = %.2f, y = %.2f || statusCand = %d", cntTemp++, c.x, c.y, c.candStatus); 
 	}
 	Printf("=========================================================================");
 
@@ -1869,17 +1865,15 @@ gPad->Update();
 
 
 	if(print) {
-	
 
-   
-
+		
  		mArrAndMap.setEventCount(eventCnt);
 		
 		
 		Populate2* pPtr = new Populate2(trkPos, trkDir, nF, L);
 		mArrAndMap.setPopulatePtr(pPtr);
 		
-		if(pPtr == nullptr) { Printf("populate2Ptr was nullptr!");}
+		if(true or pPtr == nullptr) { Printf("populate2Ptr was nullptr!");}
 	  else {	
 		mArrAndMap.setMinArrays(arrMinPionPos, arrMinKaonPos, arrMinProtonPos);
 		mArrAndMap.setMaxArrays(arrMaxPionPos, arrMaxKaonPos, arrMaxProtonPos);		
@@ -1913,12 +1907,17 @@ gPad->Update();
 		Printf("CkovHyps %.2f %.2f %.2f", ckovHyps[0], ckovHyps[1], ckovHyps[2]);
 		//Printf("CkovHyps %.2f %.2f %.2f", ckovHyps[0], ckovHyps[1], ckovHyps[2]);
 
-
+     
 		//throw std::invalid_argument("print invoked"); 
     }
   // drawTotalMap / drawMaxRegions
   } else {
 
+
+
+
+		// NB! lagre denne istedet : 
+		candCombined = candidatesCombined; // x, y, cStatus
 
 		protonCands = protonCandidates;//.emplace_back()
 		kaonCands = kaonCandidates;//.emplace_back()

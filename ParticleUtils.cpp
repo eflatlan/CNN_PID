@@ -6,8 +6,25 @@ using vecArray2 = std::vector<std::array<double,2>>;
 using namespace H5;
 
 class ParticleUtils {
+
+
+
 public:
+
+struct Candidate2 {
+	double x, y = 0.;
+	//double R = 0.;
+	//double phiL = 0., phi = 0.;
+	/*uint32_t */int candStatus = 0;//(000, 001, 010, 011, 100, 110, 101, 111);
+};
+
+
+
     struct ParticleInfo {
+
+        std::vector<Candidate2> candsCombined;
+
+
         std::vector<double> pionCandidatesX, pionCandidatesY;
         std::vector<double> kaonCandidatesX, kaonCandidatesY;
         std::vector<double> protonCandidatesX, protonCandidatesY;
@@ -55,6 +72,8 @@ public:
 						} 		
 																	
 						// Print all scalar values
+
+						/*
 						Printf("\n\n=======================================");
 						Printf("=======================================");
 						Printf("	Particle %d", i);
@@ -82,7 +101,7 @@ public:
 
 
 						printf("Size of pionCandidates: %lu\n", particle.pionCandidates.size());
-						printf("Size of kaonCandidates: %lu\n", particle.kaonCandidates.size());
+						printf("Size of kaonCandidates: %lu\n", particle.kaonCandidates.size()); */ 
 
 
 
@@ -163,6 +182,22 @@ public:
 
             vector_dataset = particleGroup.createDataSet("ProtonCandidatesY", PredType::NATIVE_DOUBLE, vector_space);
             vector_dataset.write(particle.protonCandidatesY.data(), PredType::NATIVE_DOUBLE);
+
+
+
+						/* The cands-combined */
+
+
+						H5::CompType mtype(sizeof(Candidate2));
+ 				   	mtype.insertMember("x", HOFFSET(Candidate2, x), H5::PredType::NATIVE_DOUBLE);
+    				mtype.insertMember("y", HOFFSET(Candidate2, y), H5::PredType::NATIVE_DOUBLE);
+    				mtype.insertMember("candStatus", HOFFSET(Candidate2, candStatus), 	H5::PredType::NATIVE_INT);
+
+						hsize_t dims[1] = { particle.candsCombined.size() };
+						H5::DataSpace dataspace(1, dims);
+
+						H5::DataSet dataset = particleGroup.createDataSet("candsCombined", mtype, dataspace);
+						dataset.write(particle.candsCombined.data(), mtype);
         }
     }
 
@@ -271,9 +306,43 @@ public:
             std::vector<double> protonCandidatesY(dims_out[0]);
             vector_dataset.read(protonCandidatesY.data(), PredType::NATIVE_DOUBLE);
 
-            // Construct a ParticleInfo and add it to the vector
+
+
+						/* 
+						Cands combined : 
+						*/ 
+
+// Read candsCombined
+				    H5::CompType mtype(sizeof(Candidate2));
+				    mtype.insertMember("x", HOFFSET(Candidate2, x), H5::PredType::NATIVE_DOUBLE);
+				    mtype.insertMember("y", HOFFSET(Candidate2, y), H5::PredType::NATIVE_DOUBLE);
+				    mtype.insertMember("candStatus", HOFFSET(Candidate2, candStatus), H5::PredType::NATIVE_INT);
+
+
+
+
             ParticleInfo particleInfo;
+				
+						hsize_t dims[1] = { particleInfo.candsCombined.size() };
+						H5::DataSpace dataspace(1, dims);
+				    DataSet dataset = particleGroup.openDataSet("candsCombined");
+				    dataspace = dataset.getSpace();
+				    
+
+				    dataspace.getSimpleExtentDims(dims_out, NULL);
+				    
+				    std::vector<Candidate2> candsCombined(dims_out[0]);
+				    dataset.read(candsCombined.data(), mtype);
+
+				    for (const auto& candidate : candsCombined) {
+				        std::cout << "x: " << candidate.x << ", y: " << candidate.y << ", candStatus: " << candidate.candStatus << std::endl;
+				    }
+
+
+            // Construct a ParticleInfo and add it to the vector
+
             particleInfo.momentum = momentum;
+            particleInfo.candsCombined = candsCombined;
             particleInfo.mass = mass;
             particleInfo.energy = energy;
             particleInfo.refractiveIndex = refractiveIndex;
@@ -316,6 +385,8 @@ public:
 						printf("Size of kaonCandidatesY: %lu\n", particleInfo.kaonCandidatesY.size());
 						printf("Size of protonCandidatesX: %lu\n", particleInfo.protonCandidatesX.size());
 						printf("Size of protonCandidatesY: %lu\n", particleInfo.protonCandidatesY.size());
+
+						printf("particleInfo.arrayInfo %lu %lu %lu %lu \n", particleInfo.arrayInfo[0], particleInfo.arrayInfo[1], particleInfo.arrayInfo[2], particleInfo.arrayInfo[3]);
 
             particleVector.push_back(particleInfo);
         }

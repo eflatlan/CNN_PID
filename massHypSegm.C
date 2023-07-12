@@ -63,12 +63,16 @@ using vecArray2 = std::vector<std::array<double,2>>;
 
 
 
+
 class ParticleInfo : public TObject {
+
+
 public:
     // Your data members here
 
 		vecArray2 pionCandidates, kaonCandidates, protonCandidates;
 
+		std::vector<ParticleUtils::Candidate2> candidatesCombined;		
 
     std::array<int, 4> arrayInfo;
     float momentum;
@@ -666,7 +670,14 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
   std::array<int, 4> arrayInfo;
   //numBackgroundPhotons, numFoundActualCkov, numActualCkov, numBackgroundLabeledCkov
 
-  const auto photonCandidatesCoords = ckovTools.segment(cherenkovPhotons, pionCandidates, kaonCandidates, protonCandidates, arrayInfo, temp); // temp --> mapBins
+
+  
+
+
+	
+  std::vector<ParticleUtils::Candidate2> candCombined;
+
+  const auto photonCandidatesCoords = ckovTools.segment(cherenkovPhotons, pionCandidates, kaonCandidates, protonCandidates, arrayInfo, candCombined, temp); // temp --> mapBins
 
 
 
@@ -736,6 +747,8 @@ incL->Draw("same");incL->SetMarkerStyle(2);
 
 
   //std::array<int, 4> arrayInfo;
+	
+	particle.candidatesCombined = candCombined;
 
   particle.arrayInfo = arrayInfo;
 
