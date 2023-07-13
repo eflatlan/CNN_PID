@@ -967,7 +967,7 @@ std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>
  
  
   // number of bg-photons produced
-  const auto numBackgroundPhotons = static_cast<int>(area*occupancy*1); 
+  const auto numBackgroundPhotons = static_cast<int>(area*occupancy*0.1); 
 
   // number of correctly identified ckov photons
 	int numFoundActualCkov = 0;
