@@ -344,6 +344,8 @@ void testRandomMomentum(int numObjects = 10, float thetaTrackInclination = 0, do
      Printf(" enter makeEvent %d", eventCnt); 
      const auto filledBins = makeEvent(occupancy, randomValue, particle, eventCnt); 
 
+     Printf("exit makeEvent made particle.Cand2 : \n  particleØØØ %zu", particle.candidatesCombined.size());
+
      eventCnt++;
      
      Printf(" exit makeEvent %d", eventCnt); 
@@ -680,6 +682,10 @@ ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovPro
   const auto photonCandidatesCoords = ckovTools.segment(cherenkovPhotons, pionCandidates, kaonCandidates, protonCandidates, arrayInfo, candCombined, temp); // temp --> mapBins
 
 
+  for(const auto& c : candCombined) { 
+   Printf("segment : candCombined x %.2f y %.2f CS %d", c.x, c.y , c.candStatus);
+  }
+
 
   Printf(" makeEvent%d : num photonCandidatesCoords %zu",eventCnt, photonCandidatesCoords.size()); 	 
   for(const auto& photons : photonCandidatesCoords){
@@ -748,7 +754,11 @@ incL->Draw("same");incL->SetMarkerStyle(2);
 
   //std::array<int, 4> arrayInfo;
 	
-	particle.candidatesCombined = candCombined;
+  particle.candidatesCombined = candCombined;
+
+  for(const auto& c :  particle.candidatesCombined) { 
+   Printf("segment :  particle.candidatesCombined x %.2f y %.2f CS %d", c.x, c.y , c.candStatus);
+  }
 
   particle.arrayInfo = arrayInfo;
 
@@ -1072,7 +1082,7 @@ void saveHD5(const std::vector<ParticleInfo>& particleVectorIn)
 	    newParticle.ckov = particle.ckov;
 
 
-			const auto& aInfo = particle.arrayInfo;
+	     const auto& aInfo = particle.arrayInfo;
 
 	    newParticle.xRad = particle.xRad;
 	    newParticle.yRad = particle.yRad;
@@ -1084,6 +1094,13 @@ void saveHD5(const std::vector<ParticleInfo>& particleVectorIn)
 	    newParticle.arrayInfo = particle.arrayInfo;
 	    newParticle.pionCandidates = particle.pionCandidates;
 	    newParticle.kaonCandidates = particle.kaonCandidates;
+	    newParticle.protonCandidates = particle.protonCandidates;
+
+
+
+	    newParticle.candsCombined = particle.candidatesCombined;
+
+
 	    newParticle.protonCandidates = particle.protonCandidates;
 
 	    newParticle.thetaP = particle.thetaP;
@@ -1121,7 +1138,7 @@ void saveHD5(const std::vector<ParticleInfo>& particleVectorIn)
 
 
 	// reading the entreis...
-  ParticleUtils::loadParticleInfoFromHDF5("ParticleInfo.h5");
+        ParticleUtils::loadParticleInfoFromHDF5("ParticleInfo.h5");
 	// Suppose you have a std::vector<ParticleInfo> named particleVector
 	//std::vector<ParticleUtils::ParticleInfo> particleVector;
 

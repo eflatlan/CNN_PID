@@ -53,11 +53,12 @@ public:
 						std::vector<double> x_values;
 						std::vector<double> y_values;
 						std::vector<int> candStatus_values;
-
+						Printf("ParticleUtils ::: size of candValus = %zu", particle.candsCombined.size());
 						for (const auto& cand : particle.candsCombined) {
 								x_values.push_back(cand.x);
 								y_values.push_back(cand.y);
 								candStatus_values.push_back(cand.candStatus);
+								//Printf("db x_ %.2f y %.2f cStat %d", cand.x, cand.y, cand.candStatus);
 						}
 						
 						hsize_t dims[1] = { x_values.size() };
@@ -139,8 +140,8 @@ public:
             H5::DataSpace dataspaceVec2(1, vecDims);
 
             H5::DataSet datasetVec2 = particleGroup.createDataSet("candsCombined", mtype, dataspaceVec2);
-            //datasetVec.write(&particle.candsCombined[0], mtype); /**/
-            datasetVec2.write(particle.candsCombined.data(), mtype); /**/
+            datasetVec2.write(&particle.candsCombined[0], mtype); /**/
+            //datasetVec2.write(particle.candsCombined.data(), mtype); /**/
 
 
 						std::vector<double> X, Y;
@@ -188,7 +189,7 @@ public:
         for (hsize_t i = 0; i < file.getNumObjs(); ++i) {
             std::string groupName = file.getObjnameByIdx(i);
             Group particleGroup = file.openGroup(groupName);
-						/*
+						
             // Read simple attributes
             // (The rest of the code is the same as before without the removed parts)
 
@@ -211,8 +212,10 @@ public:
             std::vector<Candidate2> candsCombined(dims_out[0]);
             dataset.read(candsCombined.data(), mtype);
 
+						for(const auto& c : candsCombined) {Printf("X %.2f Y %.2f cs %d", c.x, c.y, c.candStatus);}
+
             // (The rest of the code is the same as before without the removed parts)
-            */ 
+            //*/ 
             //particleVector.push_back(particleInfo);
         }
 
