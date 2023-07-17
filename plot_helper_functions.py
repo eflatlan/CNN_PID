@@ -5,7 +5,7 @@ from numpy.linalg import norm
 import os
 import h5py
 import tensorflow as tf
-def plot_training_history(self, history=None, vector_of_weights=None, vector_of_weights2=None, dropout=None, y_pred_train=None, y_pred_test=None, y_train_true=None, y_test_true=None, relu_alpha = None):
+def plot_training_history(history=None, vector_of_weights=None, vector_of_weights2=None, dropout=None, y_pred_train=None, y_pred_test=None, y_train_true=None, y_test_true=None, relu_alpha = None):
         fig, axs = plt.subplots(3, 2, figsize=(16, 18))
 
         # Plot Training and Validation Loss
