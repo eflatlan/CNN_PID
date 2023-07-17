@@ -1873,7 +1873,7 @@ gPad->Update();
 		Populate2* pPtr = new Populate2(trkPos, trkDir, nF, L);
 		mArrAndMap.setPopulatePtr(pPtr);
 		
-		if(/*true or */false and pPtr == nullptr) { Printf("populate2Ptr was nullptr!");}
+		if(false) { Printf("populate2Ptr was nullptr!");}
 	  else {	
 		mArrAndMap.setMinArrays(arrMinPionPos, arrMinKaonPos, arrMinProtonPos);
 		mArrAndMap.setMaxArrays(arrMaxPionPos, arrMaxKaonPos, arrMaxProtonPos);		
