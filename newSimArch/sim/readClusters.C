@@ -52,6 +52,9 @@
 #include <unistd.h>
 #include "randutils.hpp"
 
+#include <queue>
+
+
 #endif
 
 
@@ -67,6 +70,8 @@ using std::vector, std::cout, std::cin, std::endl;
 using std::this_thread::sleep_for;
 
 using o2::InteractionRecord;
+
+std::priority_queue<int, std::vector<int>, std::greater<int>> topSizes, topSizesInd, topSizesDig;
 
 
 // 
@@ -540,9 +545,19 @@ void readClusters(int nEvents = 1, bool leadRun = false) {
       Digit::pad2Absolute(dig.getPadID(), &module, &padChX, &padChY);
       cntCh[module]++;
       avgDig[module]++;
+			
 
     oneEventDigits.push_back(dig);
     }
+    auto digSize =   lastTrig - firstTrig;
+
+		if(topSizesDig.size() < 10) {
+				topSizesDig.push(digSize);
+		} else if (digSize > topSizesDig.top()) {
+				topSizesDig.pop();
+				topSizesDig.push(digSize);
+		}
+
 
     for (int ch = 0; ch < 7; ch++) {
       digPerEvent[ch]->Fill(rel * cntCh[ch]);
@@ -1194,9 +1209,25 @@ vector<string> dig2Clus(const std::string &fileName, vector<Cluster> &clusters,
                                      clusters.size() - clStart);
 
 				auto cluSize = clusters.size() - clStart;
+
+				if(topSizes.size() < 10) {
+					topSizes.push(cluSize);
+					topSizesInd.push(tNum);
+				} else if (cluSize > topSizes.top()) {
+					topSizes.pop();
+					topSizes.push(cluSize);
+
+					topSizesInd.pop();
+					topSizesInd.push(tNum);
+				}
+
+
+
 				if(cluSize > maxCluSize) { 
 					maxCluSize = cluSize;
 					LOGP(info, "new maxCluSize {} -- > number of digits 1st clus = {} size pads {}",maxCluSize, clusters[clStart].getNumDigits(), clusters[clStart].size());
+
+
 				}
 
 				LOGP(info, "Trigger number {}, numClusters {}", tNum, clusters.size() - clStart);			
@@ -1207,6 +1238,7 @@ vector<string> dig2Clus(const std::string &fileName, vector<Cluster> &clusters,
             oneEventDigits.push_back(dig);
           //oneEventCluMapsters = {trigDigits, clusters};
         }
+					
       }
       j++;
     }
@@ -1225,6 +1257,53 @@ vector<string> dig2Clus(const std::string &fileName, vector<Cluster> &clusters,
   }
 
   LOGP(info, "maxCluSize = {}", maxCluSize);
+	std::cout << "Top 10 cluster sizes:" << std::endl;
+std::vector<int> top10Values;
+	while(!topSizes.empty()) {
+		top10Values.push_back(topSizes.top());
+		topSizes.pop();
+	}
+	// If you want the values in descending order, you can reverse the vector
+	std::reverse(top10Values.begin(), top10Values.end());
+
+	// Print the values
+	for(auto val : top10Values) {
+		  std::cout << val << std::endl;
+	}
+
+	std::vector<int> top10Index;
+	while(!topSizesInd.empty()) {
+		top10Index.push_back(topSizesInd.top());
+		topSizesInd.pop();
+	}
+
+
+	LOGP(info, "with indexes: ");
+	for(auto val : top10Index) {
+		  std::cout << val << std::endl;
+	}
+
+
+  std::cout << "Top 10 Digit Size" << std::endl;
+	std::vector<int> top10ValuesDig;
+	while(!topSizesDig.empty()) {
+		  top10ValuesDig.push_back(topSizesDig.top());
+		  topSizesDig.pop();
+	}
+	// If you want the values in descending order, you can reverse the vector
+	std::reverse(top10ValuesDig.begin(), top10ValuesDig.end());
+
+	// Print the values
+	for(auto val : top10ValuesDig) {
+		  std::cout << val << std::endl;
+	}
+
+
+
+
+
+
+
 
 
   const int numTriggers = static_cast<int>(mTriggersReceived);
