@@ -38,15 +38,13 @@ private:
 
     double nF;	     // refIdnex of freon
 
-
-    double L;
     const double winThick = 0.5, radThick = 1.5; const int gapThick = 8;
     const double gapIdx = 1.0005, winIdx = 1.5787;
 
     const double nQ = winIdx, nG = gapIdx;
 
 
-    double getRefIdx;//     getRefIdx = nF;  
+		double getRefIdx;//     getRefIdx = nF;  
     double cosPhiP, sinPhiP;
     double tanThetaP;
     double deltaX, deltaY;
@@ -57,10 +55,10 @@ private:
     TVector2 fTrkPos2D;
 public:
 
-    Populate(TVector2 trkPos, TVector3 trkDir, double _nF, double _L) : fTrkPos(trkPos),  fTrkDir(trkDir), nF(_nF), L(_L)
+    Populate(TVector2 trkPos, TVector3 trkDir, double _nF) : fTrkPos(trkPos),  fTrkDir(trkDir), nF(_nF) 
     {
 
-getRefIdx = nF;
+			getRefIdx = nF;
       fTrkPos2D.Set(trkPos.X(), trkPos.Y()); 
 
 
@@ -70,32 +68,24 @@ getRefIdx = nF;
       Printf("Track pos at RAD : x %.3f y %.3f ", trkPos.X(), trkPos.Y());
 
       
-    getRefIdx = nF;  
-    tanThetaP = TMath::Tan(trkDir.Theta());
-cosPhiP = TMath::Cos(trkDir.Phi());		
-sinPhiP = TMath::Sin(trkDir.Phi());	
+      getRefIdx = nF;  
+      tanThetaP = TMath::Tan(trkDir.Theta());
+			  cosPhiP = TMath::Cos(trkDir.Phi());		
+			  sinPhiP = TMath::Sin(trkDir.Phi());	
 		
-    phiP = trkDir.Phi();
-    cosThetaP = TMath::Cos(trkDir.Theta());		
-    sinThetaP = TMath::Sin(trkDir.Theta());
+      phiP = trkDir.Phi();
+     cosThetaP = TMath::Cos(trkDir.Theta());		
+     sinThetaP = TMath::Sin(trkDir.Theta());
 
 
 			// xRa = xPC - deltaX
 
 
 
-      // xMipLocal = tanThetaP*cosPhiP*(rW-L + tGap + qW);
-      // yMipLocal = tanThetaP*sinPhiP*(rW-L + tGap + qW);
-
-
       // should be radThick/2 here if assuming half em-length 
-      // EF : was like this : 
-      //deltaX = (radThick/2 + winThick + gapThick) * tanThetaP * cosPhiP;
-      //deltaY = (radThick/2 + winThick + gapThick) * tanThetaP * sinPhiP;		
-	
-      deltaX = (radThick - L + winThick + gapThick) * tanThetaP * cosPhiP;
-      deltaY = (radThick -L  + winThick + gapThick) * tanThetaP * sinPhiP;
-		
+      deltaX = (radThick/2 + winThick + gapThick) * tanThetaP * cosPhiP;
+      deltaY = (radThick/2 + winThick + gapThick) * tanThetaP * sinPhiP;		
+			
 
       // NB! TODO: here PC impact point based on L = rW/2!!
       setPcImp(fTrkPos.X() + deltaX, fTrkPos.Y() + deltaY);
@@ -211,7 +201,7 @@ sinPhiP = TMath::Sin(trkDir.Phi());
 
     // L here is "simulated" within 0..1.5 range
     TVector2 tracePhot(const double& ckovThe, const double& ckovPhi, const double & L) const {
-    	//Printf("populate : tracePhot()");
+    		Printf("populate : tracePhot()");
         double theta, phi;
         TVector3 dirTRS, dirLORS;
         dirTRS.SetMagThetaPhi(1, ckovThe, ckovPhi); // photon in TRS
@@ -362,7 +352,7 @@ sinPhiP = TMath::Sin(trkDir.Phi());
 
 		// track pos in pc 2 rad
     void pc2rad(const TVector& pc) */ 
-    ClassDefNV(Populate, 0);
+    ClassDefNV(Populate, 1);
 };
 
 #endif
