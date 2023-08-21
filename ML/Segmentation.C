@@ -44,7 +44,7 @@ struct ShallowDigit {
   int getSourceId () const  {return mSourceId;}
     ShallowDigit(uint16_t q, uint8_t x, uint8_t y, Int_t trackId, Int_t particlePdg) : mQ(q), mX(x), mY(y), trackId(mTrackId),particlePdg(mParticlePdg) {}
 }; */ 
-
+void evaluateClusterTrack(std::vector<ClusterCandidate>& clusterPerChamber, const o2::dataformats::MatchInfoHMP& track, const std::vector<float>& mipCharges, int mcTrackPdg);
 std::array<float, 3> calcCherenkovHyp(float p, float n);
 
 /*
@@ -128,10 +128,13 @@ void process()
 
 
     int startIndexTrack = 0;
+    if(trigArr== nullptr) {Printf("HmpidDataReader::initializeClusterTree trigArr== nullptr"); return ;}	
     for(int i = 0; i < trigArr->size(); i++) //for(const auto& clusters : clustersVector) // "events loop"
     { 
-			
+		
 	auto pTgr = &trigArr->at(i);
+	if(pTgr== nullptr) {Printf("pTgr== nullptr"); continue;}	
+
         const int firstEntry = pTgr->getFirstEntry();
 
         Printf("Checking trigger number %d For Global event number %d", i, firstEntry);
@@ -160,14 +163,14 @@ void process()
         // find entries in tracksOneEvent which corresponds to correct eventNumber
         Printf("Reading match vector<MatchInfoHMP> for startIndexTrack %d", startIndexTrack);
 
-        std::vector<o2::dataformats::MatchInfoHMP>* tracksOneEvent = HmpidDataReader::readMatch(tMatch, matchArr, eventNumber1,startIndexTrack);
+        std::vector<o2::dataformats::MatchInfoHMP>* tracksOneEvent = HmpidDataReader::readMatch(tMatch, matchArr, eventNumber1, startIndexTrack);
 
         // get MC tracks for given event from mc;
         Printf("Reading vector<o2::MCTrack>* mcTracks for  eventNumber %d", eventNumber1);
         std::vector<o2::MCTrack>* mcTracks = HmpidDataReader::readMC(mcArr, tMcTrack, eventNumber1);
 
 
-
+        Printf("tracksOneEvent size %d", tracksOneEvent->size());
 
         // for this event 
 
@@ -189,11 +192,11 @@ void process()
         // Assign MLinfoHMP objects to corresponding vectors based on iCh value
         for (const auto &obj : *tracksOneEvent) {
 
-	    const auto& iCh = obj.getChamber();
-            if (iCh >= 0 && iCh <= 6) {
-                sortedTracks[iCh].push_back(obj);
+	    			const auto& iCh = obj.getChamber();
+            if (iCh < 0 || iCh > 6) {
+                std::cerr << "Warning: iCh value out of expected range: " << iCh << std::endl;
             } else {
-                std::cerr << "Warning: iCh value out of expected range: " << obj.iCh << std::endl;
+                sortedTracks[iCh].push_back(obj);
             }
         }
 
@@ -205,35 +208,36 @@ void process()
         // Assign MLinfoHMP objects to corresponding vectors based on iCh value
         for (const auto &obj : oneEventClusters) {
 
-  	    const auto& iCh = obj.ch();
-            if (iCh >= 0 && iCh <= 6 && sortedTracks[iCh].size() > 0) {
+	    		const auto& iCh = obj.ch();
+          if (iCh >= 0 && iCh <= 6) {
+						if(sortedTracks[iCh].size() > 0) {
+				      // make a light copy of digits, just holding the fields charge, x, y
+				      /*std::vector<ShallowDigit> shallowDigits;
 
-                // make a light copy of digits, just holding the fields charge, x, y
-                /*std::vector<ShallowDigit> shallowDigits;
-                shallowDigits.reserve((obj.pDig)->size());
-                std::transform(obj.pDig.begin(), obj.pDig.end(), std::back_inserter(shallowDigits),
-                [](const Digit* d) {
-                    return ShallowDigit(d->getQ(), d->getX(), d->getY(), d->getY(), d->getTrackId(), d->getParticlePdg());
-                }); */
 
-                //const std::vector<o2::hmpid::Cluster::Topology>& topology = obj.getClusterTopology();  // some info about digits associated w cluster
+				      //const std::vector<o2::hmpid::Cluster::Topology>& topology = obj.getClusterTopology();  // some info about digits associated w cluster*/
 
-                std::vector<std::pair<int,int>> candStatus = {{0,0}};
-                /*
-                    ClusterCandidate(int ch, double x, double y, double q, double chi2, 
-                        double xe, double ye, std::vector<ShallowDigit>* shallowDigits, 
-                        std::vector<std::pair<int,int>>* candidateStatusVector) */
-                sortedClusters[iCh].emplace_back({obj.ch, obj.x, obj.y, obj.q, obj.chi2, obj.xE, obj.yE, obj.getPDG(), /*&topology,*/ &candStatus});
-            } else {
-                std::cerr << "Warning: iCh value out of expected range: " << iCh << std::endl;
+
+				      std::vector<std::pair<int,int>> candStatus = {{0,0}};
+							Printf("ClusterCandidate Ch %d", iCh);
+							ClusterCandidate temp(obj.ch(), obj.x(), obj.y(), obj.q(), obj.chi2(), obj.xe(), obj.ye(), obj.getPDG(), &candStatus);
+							sortedClusters[iCh].emplace_back(temp);
+	          }  else {
+            	std::cerr << "sortedTracks[iCh] " << iCh << " empty " << sortedTracks[iCh].size() << std::endl;
             }
-        }
+             
+          } else {
+            std::cerr << "Warning: iCh value out of expected range: " << iCh << std::endl;
+          }
+          
+        } // end for
         
 
         for(int i = 0; i < 7; i++) {
             
             // check if has more than one track --> this means there is no candidates
             if(sortedTracks[i].size() < 1) {
+            	  Printf("sortedTracks[iCh%d].size() %d", i, sortedTracks[i].size());
                 continue;
             }
 
@@ -243,13 +247,15 @@ void process()
             std::vector<float> mipCharges;
             // fill charges of MIPs
             for(const auto& track : sortedTracks[i]) {
-                float xMip, yMip, q, nph;
+                float xMip, yMip; int q, nph;
                 track.getHMPIDmip(xMip, yMip, q, nph);
                 mipCharges.emplace_back(q);
             }
 
-            for(const auto& track : sortedTracks[i]) {
 
+						int tNum = 0;
+            for(const auto& track : sortedTracks[i]) {
+            	  Printf("TrackNumber%d track[iCh%d].size() %d", tNum++,i);
                 // pass clusters (and track) by reference, and add its status per track (adding to candStatus vector )
 
                 // for each clusterPerChamber we will have a "candidate-status" for each of the photons, this is a vector of length of sortedTracks[i].size();
@@ -287,10 +293,10 @@ void process()
     }
 }
 
-void evaluateClusterTrack(std::vector<ClusterCandidate>& clusterPerChamber, const o2::dataformats::MatchInfoHMP& track, const std::vector<float>& mipCharges, int mcTrackPdg);
+void evaluateClusterTrack(std::vector<ClusterCandidate>& clusterPerChamber, const o2::dataformats::MatchInfoHMP& track, const std::vector<float>& mipCharges, int mcTrackPdg)
 {
 
-        const auto iEvent = track.getEvent(); // check it corresponds to entry in loop of events?
+        const auto eventCnt = track.getEvent(); // check it corresponds to entry in loop of events?
         const auto momentum = track.getHmpMom();
 
         const auto nF = track.getRefIndex(); // ef: aon it only gets the mean value ; TODO: in MatchHMP.cxx get calibration value
@@ -306,25 +312,32 @@ void evaluateClusterTrack(std::vector<ClusterCandidate>& clusterPerChamber, cons
 
         //double radParams[7] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum,    randomValue.mass};
 
-        float xRad, yRad, xPc, yPc, th, ph;
-        track.getHMPIDtrk(xRad, yRad, xPc, yPc, th, ph);
+
+			
+
+        float xRad, yRad, xPc, yPc, thetaP, phiP;
+        track.getHMPIDtrk(xRad, yRad, xPc, yPc, thetaP, phiP);
 
         float xMip, yMip;
-        int q, nph;
+        int nph, q;
         track.getHMPIDmip(xMip, yMip, q, nph);
 
         const auto& L = 0.5; // 
-        double radParams[7] = {xRad, yRad, L, thetaP, phiP, momentum, mcTrackPdg}; // ef : TODO add PID to MLinfoHMP?
+        double radParams[7] = {xRad, yRad, L, thetaP, phiP, momentum, static_cast<double>(mcTrackPdg*1.0)}; // ef : TODO add PID to MLinfoHMP?
         
         double refIndexes[3] = {nF, nQ, nG};
 
 
+        double MIP[3] = {xMip, yMip, static_cast<double>(q*1.0)};
+	// (double radParams[7], double refIndexes[3], double MIP[3],
+        //  std::array<float, 3> ckovHyps, float trackCkov, int eventCnt)
         // ef: TODO use MIP to get radius and phi in CkovTools: 
-        CkovTools ckovTools(radParams, refIndexes, ckovHyps, occupancy, ckovAngle, eventCnt);
+	auto ckovAngle = 0.;
+        CkovTools ckovTools(radParams, refIndexes, MIP, ckovHyps, ckovAngle, eventCnt);
 
         Printf(" Event%d Track%d  : ckovHyps = <%.3f, %.3f> | <%.3f, %.3f> | <%.3f, %.3f>", eventCnt, ckovTools.getMinCkovPion(),ckovTools.getMaxCkovPion(),ckovTools.getMinCkovKaon(), ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovProton(), eventCnt); 
 
-        std::array<int, 4> arrayInfo;
+
         //numBackgroundPhotons, numFoundActualCkov, numActualCkov, numBackgroundLabeledCkov
         std::array<int, 4> arrayInfo;
 
@@ -348,7 +361,7 @@ const float mass_Pion_sq = mass_Pion*mass_Pion, mass_Kaon_sq = mass_Kaon*mass_Ka
 std::array<float, 3> calcCherenkovHyp(float p, float n)
 {
   const float p_sq = p*p;
-  const float cos_ckov_denom = p*refIndexFreon;
+  const float cos_ckov_denom = p*n;
   const auto cos_ckov_Pion = static_cast<float>(TMath::Sqrt(p_sq + mass_Pion_sq)/(cos_ckov_denom)); // n = refIndexFreon 1.289 later make it random?
 
   const float cos_ckov_Kaon = static_cast<float>(TMath::Sqrt(p_sq + mass_Kaon_sq)/(cos_ckov_denom)); 

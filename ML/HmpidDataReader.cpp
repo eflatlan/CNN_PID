@@ -76,7 +76,7 @@ public:
         // Destructor to clean up any allocated resources
     }
 
-    static TTree* initializeMatchTree(std::vector<o2::dataformats::MatchInfoHMP>* matchArr, int eventID, int trackID, int pdg);
+    static TTree* initializeMatchTree(std::vector<o2::dataformats::MatchInfoHMP>*& matchArr, int eventID, int trackID, int pdg);
 
 
     static std::vector<o2::dataformats::MatchInfoHMP>* readMatch(TTree* tMatch, std::vector<o2::dataformats::MatchInfoHMP>* matchArr, int eventID, int& startIndex);
@@ -90,14 +90,19 @@ public:
 
 
 // should they be static here ? :
-TTree* HmpidDataReader::initializeMatchTree(std::vector<o2::dataformats::MatchInfoHMP>* matchArr, int eventID, int trackID, int pdg) {
+TTree* HmpidDataReader::initializeMatchTree(std::vector<o2::dataformats::MatchInfoHMP>*& matchArr, int eventID, int trackID, int pdg) {
   TFile* fMatch = new TFile("o2match_hmp.root");
   TTree* tMatch = (TTree*)fMatch->Get("matchHMP");
-	if(!tMatch) tMatch = (TTree*)fMatch->Get("o2hmp");
+
+  if(!tMatch) tMatch = (TTree*)fMatch->Get("o2hmp");
+  if(!tMatch) tMatch = (TTree*)fMatch->Get("o2sim");
+
   //std::vector<o2::dataformats::MatchInfoHMP>* matchArr = nullptr;
   tMatch->SetBranchAddress("HMPMatchInfo", &matchArr);
-  tMatch->GetEntry(0);
-	return tMatch;
+  tMatch->GetEntry(0); tMatch->Print("toponly");
+  if(matchArr== nullptr) {Printf("HmpidDataReader::initializeClusterTree matchArr== nullptr"); return nullptr;}
+
+  return tMatch;   
 }
 
 
@@ -115,7 +120,9 @@ std::vector<o2::dataformats::MatchInfoHMP>* HmpidDataReader::readMatch(TTree* tM
     // tracks should be stored in "time" --> when we find our event we can then switch this condition "of" when the event changes:
     bool found = false;
 
+    if(matchArr== nullptr) {Printf("HmpidDataReader::readMatch :: matchArr== nullptr"); return nullptr;}
 
+	
     if((*matchArr)[startIndex].getEvent() != eventID) {Printf("This shouldnt happen");}
     else found = true;
 
@@ -160,7 +167,7 @@ TTree* HmpidDataReader::initializeClusterTree(std::vector<Cluster>*& cluArr, std
 
     tClu->SetBranchAddress("HMPIDDigitTopology", &mTopologyFromFilePtr);
     tClu->SetBranchAddress("HMPIDclusters", &cluArr);
-    tClu->SetBranchAddress("HMPIDInteractionRecords", &trigArr);
+    tClu->SetBranchAddress("InteractionRecords", &trigArr);
 
     tClu->GetEntry(0);
     return tClu;
@@ -183,6 +190,7 @@ TTree* HmpidDataReader::initializeMCTree(std::vector<o2::MCTrack>*& mcArr) {
 
     tKine->SetBranchAddress("MCTrack", &mcArr);
     tKine->GetEntry(0);
+    tKine->Print("toponly");
     return tKine;
 }
 
