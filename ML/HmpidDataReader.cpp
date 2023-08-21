@@ -76,17 +76,21 @@ public:
         // Destructor to clean up any allocated resources
     }
 
-    TTree* initializeMatchTree(std::vector<o2::dataformats::MatchInfoHMP>* matchArr, int eventID, int trackID, int& pdg);
-    std::vector<o2::dataformats::MatchInfoHMP>* readMatch(TTree* tMatch, std::vector<o2::dataformats::MatchInfoHMP>* matchArr, int eventID, int& startIndex);
-   TTree* initializeClusterTree(std::vector<Cluster>*& cluArr, std::vector<Trigger>*& trigArr, std::vector<o2::hmpid::Topology>*& mTopologyFromFilePtr);
+    static TTree* initializeMatchTree(std::vector<o2::dataformats::MatchInfoHMP>* matchArr, int eventID, int trackID, int pdg);
 
-    TTree* initializeMCTree(std::vector<o2::MCTrack>*& mcArr);
-    std::vector<o2::MCTrack>* readMC(std::vector<o2::MCTrack>*& mcArr, TTree* tKine, int eventId);
-    const o2::MCTrack* getMCEntry(std::vector<o2::MCTrack>* mcArr, int trackID);
-    void readTreeEntries();
+
+    static std::vector<o2::dataformats::MatchInfoHMP>* readMatch(TTree* tMatch, std::vector<o2::dataformats::MatchInfoHMP>* matchArr, int eventID, int& startIndex);
+    static TTree* initializeClusterTree(std::vector<Cluster>*& cluArr, std::vector<Trigger>*& trigArr, std::vector<o2::hmpid::Topology>*& mTopologyFromFilePtr);
+
+    static TTree* initializeMCTree(std::vector<o2::MCTrack>*& mcArr);
+    static std::vector<o2::MCTrack>* readMC(std::vector<o2::MCTrack>*& mcArr, TTree* tKine, int eventId);
+    static const o2::MCTrack* getMCEntry(std::vector<o2::MCTrack>* mcArr, int trackID);
+    static void readTreeEntries();
 };
 
-TTree* HmpidDataReader::initializeMatchTree(std::vector<o2::dataformats::MatchInfoHMP>* matchArr, int eventID, int trackID, int& pdg) {
+
+// should they be static here ? :
+TTree* HmpidDataReader::initializeMatchTree(std::vector<o2::dataformats::MatchInfoHMP>* matchArr, int eventID, int trackID, int pdg) {
   TFile* fMatch = new TFile("o2match_hmp.root");
   TTree* tMatch = (TTree*)fMatch->Get("matchHMP");
 	if(!tMatch) tMatch = (TTree*)fMatch->Get("o2hmp");

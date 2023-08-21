@@ -24,6 +24,60 @@ struct Bin {
 };
 
 
+struct ClusterCandidate {
+   
+    int mCh = 0;
+    double mX = 0., mY = 0.;
+    double mQ = 0;
+    double mChi2 = 0;
+    double mXe = 0., mYe = 0.;
+    int mPDG = -1;
+
+    // vector e.l. som holder truth? // i.e., for hver track, set MIP og trackIndex fra track
+    int trackId = -1;
+    bool isMip = false;
+
+    std::vector<std::pair<int,int>>* mCandidateStatusVector = nullptr;
+    // std::vector<o2::hmpid::Cluster::Topology> mTopologyVector = nullptr;
+
+    // Constructor based on the order and types you provided
+    ClusterCandidate(int ch, double x, double y, double q, double chi2, 
+                     double xe, double ye, /*std::vector<Topology>* topologyVector,*/ int pdg, 
+                     std::vector<std::pair<int,int>>* candidateStatusVector) 
+        : mCh(ch), mX(x), mY(y), mQ(q), mChi2(chi2), mXe(xe), mYe(ye), 
+          /*mTopologyVector(topologyVector),*/ mPDG(pdg), mCandidateStatusVector(candidateStatusVector) {}
+
+
+    //obj.ch, obj.x, obj.y, obj.q, shallowDigits, obj.chi2, obj.xE, obj.yE, candStatus
+
+
+    /*
+    void setDigits(const std::vector<Topology>*& topologyVector) 
+    {
+        if(!mTopologyVector) {
+            mTopologyVector = new std::vector<Topology>;
+        }
+        *mTopologyVector = topologyVector;
+    } */
+
+    void addCandidateStatus(int iTrack, int hadronCandidateBit) /*const*/
+    {
+        if(!mCandidateStatusVector) {
+            mCandidateStatusVector = new std::vector<std::pair<int,int>>;
+        }
+        mCandidateStatusVector->emplace_back(iTrack, hadronCandidateBit);
+    }
+
+    std::vector<std::pair<int,int>>* getCandidateStatus()
+    {    
+        if(!mCandidateStatusVector) {
+            mCandidateStatusVector = new std::vector<std::pair<int,int>>;
+        }
+        return mCandidateStatusVector;
+    }
+};
+
+
 class ArrAndMap
 {
 
@@ -780,7 +834,7 @@ double getThetaP()
 	// ;
 
 //std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>>& cherenkovPhotons, vecArray2& pionCands, vecArray2& kaonCands, vecArray2& protonCands, std::array<int, 4>& arrayInfo, std::vector<ParticleUtils::Candidate2>& candCombined, MapType& bins) { 
-std::vector<std::pair<double, double>> segment(const std::vector<o2::hmpid::Cluster>& clusterTrack, std::array<int, 4>& arrayInfo, int trackIndex, const std::vector<float>& mipCharges, float mipX, float mipY, float mipCharge, const int mcTrackPdg)
+std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& clusterTrack, std::array<int, 4>& arrayInfo, int trackIndex, const std::vector<float>& mipCharges, float mipX, float mipY, float mipCharge, const int mcTrackPdg)
 { 
 
 
@@ -974,17 +1028,17 @@ std::vector<std::pair<double, double>> segment(const std::vector<o2::hmpid::Clus
 
   int iPhotCount = 0;
   //for(const auto& photons : ckovAndBackground) {
-  for(const auto& photons : clusterTrack) 
+  for(auto& photons : clusterTrack) 
   {
 
-    const auto& dist = (photons.x() - mipX)*(photons.x() - mipX) + (photons.y() - mipY)*(photons.y() - mipY);
+    const auto& dist = (photons.mX - mipX)*(photons.mX - mipX) + (photons.mY - mipY)*(photons.mY - mipY);
     
 
     // match track PDG w MIP cluster : 
 
     // ef : MIP charge from where ? is it given by index?
    
-    if(photons.x() == mipX && photons.y() == mipY && photons.q() ==  mipCharge) { // current cluster is mip
+    if(photons.mX == mipX && photons.mY == mipY && photons.mQ ==  mipCharge) { // current cluster is mip
       // check if PDG code matches track's PDG-code
       // : photons has field digits w pdg-code; get this and match w track: 
 
@@ -993,7 +1047,7 @@ std::vector<std::pair<double, double>> segment(const std::vector<o2::hmpid::Clus
       if(true) {
 
 				// this just checks the first digit in the pDigs of the cluster
-        const auto photonPDG = photons.getPDG(); // check also other indexes?
+        const auto photonPDG = photons.mPDG; // check also other indexes?
 
         if(photonPDG != mcTrackPdg) {
           Printf("photonPDG != mcTrackPdg");		
@@ -1030,7 +1084,7 @@ std::vector<std::pair<double, double>> segment(const std::vector<o2::hmpid::Clus
     // this means current cluster is MIP (probably from other track)
     bool skip = false;
     for(const auto& mipCharge : mipCharges ) { 
-       if(photons.q() ==  mipCharge) { 
+       if(photons.mQ ==  mipCharge) { 
         skip = true; 
        } 
     }
@@ -1043,14 +1097,14 @@ std::vector<std::pair<double, double>> segment(const std::vector<o2::hmpid::Clus
 
 
     // ef : TODO get this value from calibration
-    //if(photons.q() > mipCut) {continue; } // this means current entry should be a MIP, this will not be a candidate
+    //if(photons.mQ > mipCut) {continue; } // this means current entry should be a MIP, this will not be a candidate
 
 		iPhotCount++;
 
 
   	Printf("%d", iPhotCount);
     //const auto& x = photons[0], y = photons[1];
-    const auto& x = photons.x(), y = photons.y();
+    const auto& x = photons.mX, y = photons.mY;
     
 
 
@@ -1367,7 +1421,7 @@ std::vector<std::pair<double, double>> segment(const std::vector<o2::hmpid::Clus
         int cStatus = 4*static_cast<int>(isPhotonPionCand) + 2*static_cast<int>(isPhotonKaonCand) + 1*static_cast<int>(isPhotonProtonCand);
 
         //CLusterCandidate :addCandidateStatus(int iTrack, int hadronCandidateBit)
-        clusterTrack.addCandidateStatus(trackIndex, cStatus);
+        photons.addCandidateStatus(trackIndex, cStatus);
 
         /// lagre denne istedet :
         /*
@@ -1555,7 +1609,7 @@ std::vector<std::pair<double, double>> segment(const std::vector<o2::hmpid::Clus
 	}*/
 	Printf("=========================================================================");
 
-segment
+
     Printf("number of candidates : proton %zu, kaon %zu, pion %zu", protonCandidates.size(), kaonCandidates.size(), pionCandidates.size());
  
   
