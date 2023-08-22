@@ -145,9 +145,13 @@ hPDG->SetYTitle("Entries");
 //11 111 321 2212 22/50000050
   std::vector<int> particlePDGs;
   for(unsigned int j = 0; j < digits->size(); j++) {
-
-
     pDig = (o2::hmpid::Digit*)&digits->at(j);
+	  if(j<15)
+	    std::cout << j << " evnum" << pDig->getEventNumber()<< std::endl; 
+
+
+
+
     hPDG->Fill(pDig->mParticlePdg);
   pdgCounts[pDig->mParticlePdg]++;
     o2::hmpid::Digit::pad2Absolute(pDig->getPadID(), &module, &padChX, &padChY);    
@@ -199,11 +203,13 @@ for(const auto& pdg: particlePDGs) {
     
     oneEventDigits.clear();
     pTgr = (o2::hmpid::Trigger*)&trigger->at(i);
-    
+		Printf("\n === Event %i", i); 
     for(int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++) {
       
       digit = (o2::hmpid::Digit)digits->at(j);
       oneEventDigits.push_back(digit);
+
+	    std::cout << j << " evnum" << pDig->getEventNumber()<< std::endl; 
       
      }
       
@@ -355,10 +361,10 @@ treeClusters = ((TTree *)fileClusters->Get("o2sim"));
       module = pClu->ch();
                              
       hCharge[module]->Fill(pClu->q());
-      std::vector<Cluster::Topology> topologies = pClu->getTopologyVector();
-      
 
-      std::cout << "evnum" << pClu->getEventNumber()<< std::endl; 
+      
+      if(j<15)
+      	//std::cout << j << "evnum" << pClu->getEventNumber()<< std::endl; 
       /*for (const Cluster::Topology& topo : topologies) {
               std::cout << "diffX: " << topo.diffX << ", "
               << "diffY: " << topo.diffY << ", "
@@ -383,11 +389,16 @@ treeClusters = ((TTree *)fileClusters->Get("o2sim"));
      oneEventClusters.clear();
      pTgr = (o2::hmpid::Trigger*)&trigger->at(i);
     
+		Printf("\n === Event %i", i); 
+
+
+
+
      for(int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++) {
       
       cluster = (o2::hmpid::Cluster)clusters->at(j);
       oneEventClusters.push_back(cluster);
-      
+      std::cout << j << " evnum" << cluster.getEventNumber()<< std::endl; 
      }
       
       if(i==nEvent) {

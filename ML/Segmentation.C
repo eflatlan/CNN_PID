@@ -129,37 +129,51 @@ void process()
 
     int startIndexTrack = 0;
     if(trigArr== nullptr) {Printf("HmpidDataReader::initializeClusterTree trigArr== nullptr"); return ;}	
+    
+    
     for(int i = 0; i < trigArr->size(); i++) //for(const auto& clusters : clustersVector) // "events loop"
     { 
 		
-	auto pTgr = &trigArr->at(i);
-	if(pTgr== nullptr) {Printf("pTgr== nullptr"); continue;}	
+			auto pTgr = &trigArr->at(i);
+			if(pTgr== nullptr) {Printf("pTgr== nullptr"); continue;}	
 
         const int firstEntry = pTgr->getFirstEntry();
-
-        Printf("Checking trigger number %d For Global event number %d", i, firstEntry);
+        const int lastEntry = pTgr->getLastEntry();
+        
+        Printf("Checking trigger number %d Range Clu = %d :: %d", i, firstEntry, lastEntry);
 
         std::vector<Cluster> oneEventClusters;
-        const int lastEntry = pTgr->getLastEntry();
-        auto fClu = static_cast<o2::hmpid::Cluster>(clusterArr->at(firstEntry));
-        auto sClu = static_cast<o2::hmpid::Cluster>(clusterArr->at(lastEntry));
-	int eventNumber1 = fClu.getEventNumber();
-	int eventNumberLast = sClu.getEventNumber();
 
+        auto fClu = static_cast<o2::hmpid::Cluster>(clusterArr->at(firstEntry));
+        auto s1Clu = static_cast<o2::hmpid::Cluster>(clusterArr->at(lastEntry-1));
+        auto sClu = static_cast<o2::hmpid::Cluster>(clusterArr->at(lastEntry));
+				int eventNumber1 = fClu.getEventNumber();
+				int eventNumberLast = sClu.getEventNumber();
+				int eventNumberLast1 = s1Clu.getEventNumber();
         if(eventNumberLast != eventNumber1) {
-            Printf("Eventnumber changed??");
+            Printf("eventNumberLast%d != eventNumber1%d", eventNumberLast, eventNumber1);
+            Printf("eventNumberLast1%d",eventNumberLast1);
         } // TODO: throw error? ef:
 
 
+	      for(int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++) {      
+		      const auto& clu = static_cast<o2::hmpid::Cluster>(clusterArr->at(j));
+		      std::cout << j << " evNum " <<  clu.getEventNumber() << " |";
+				}
+
+
         for(int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++) {      
-        const auto& clu = static_cast<o2::hmpid::Cluster>(clusterArr->at(j));
+		      const auto& clu = static_cast<o2::hmpid::Cluster>(clusterArr->at(j));
 
-        if(clu.getEventNumber() != eventNumber1) {Printf("Eventnumber changed??");}
-        else {
-            oneEventClusters.push_back(clu); 
-        }
+          Printf("============\n Cluster Loop \n ===============");
+		      if(clu.getEventNumber() != eventNumber1) {
+		      	Printf("Eventnumber changed??");
+		      	Printf("clu.getEventNumber()%d", clu.getEventNumber());
+		      } else {
+		          oneEventClusters.push_back(clu); std::cout << " clu " << j << " eventNum " << clu.getEventNumber();
+		      }
         }  
-
+          Printf("============\n Cluster Loop \n ===============");
         // find entries in tracksOneEvent which corresponds to correct eventNumber
         Printf("Reading match vector<MatchInfoHMP> for startIndexTrack %d", startIndexTrack);
 
@@ -197,10 +211,13 @@ void process()
                 std::cerr << "Warning: iCh value out of expected range: " << iCh << std::endl;
             } else {
                 sortedTracks[iCh].push_back(obj);
+                std::cerr << "sortedTracks[iCh] " << iCh << " pushback" << std::endl;
             }
         }
 
-
+				for (int i = 0; i < 7; i++) {
+    std::cout << "Length of sortedTracks vector " << i << ": " << sortedTracks[i].size() << 			std::endl;
+}
         
 
         // Assuming the range of iCh values is from 0 to 6 (inclusive)

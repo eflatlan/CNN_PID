@@ -123,8 +123,12 @@ std::vector<o2::dataformats::MatchInfoHMP>* HmpidDataReader::readMatch(TTree* tM
     if(matchArr== nullptr) {Printf("HmpidDataReader::readMatch :: matchArr== nullptr"); return nullptr;}
 
 	
-    if((*matchArr)[startIndex].getEvent() != eventID) {Printf("This shouldnt happen");}
-    else found = true;
+
+    Printf("readMatch : (*matchArr)[startIndex].getEvent() %d eventID %d", (*matchArr)[startIndex].getEvent(), eventID);
+    if((*matchArr)[startIndex].getEvent() != eventID) 
+    {
+			Printf("This shouldnt happen");
+		} else found = true;
 
 
     Printf("readMatch : event %d startIndex %d", eventID, startIndex);
