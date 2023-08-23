@@ -99,7 +99,8 @@ TTree* HmpidDataReader::initializeMatchTree(std::vector<o2::dataformats::MatchIn
 
   //std::vector<o2::dataformats::MatchInfoHMP>* matchArr = nullptr;
   tMatch->SetBranchAddress("HMPMatchInfo", &matchArr);
-  tMatch->GetEntry(0); tMatch->Print("toponly");
+  tMatch->GetEntry(0); 
+  tMatch->Print("toponly");
   if(matchArr== nullptr) {Printf("HmpidDataReader::initializeClusterTree matchArr== nullptr"); return nullptr;}
 
   return tMatch;   
@@ -127,8 +128,8 @@ std::vector<o2::dataformats::MatchInfoHMP>* HmpidDataReader::readMatch(TTree* tM
     Printf("readMatch : (*matchArr)[startIndex].getEvent() %d eventID %d", (*matchArr)[startIndex].getEvent(), eventID);
     if((*matchArr)[startIndex].getEvent() != eventID) 
     {
-			Printf("This shouldnt happen");
-		} else found = true;
+      Printf("This shouldnt happen");
+    } else found = true;
 
 
     Printf("readMatch : event %d startIndex %d", eventID, startIndex);
@@ -141,6 +142,7 @@ std::vector<o2::dataformats::MatchInfoHMP>* HmpidDataReader::readMatch(TTree* tM
 
           break;
         } else { 
+
           filteredMatches->push_back(track);
         }
     }

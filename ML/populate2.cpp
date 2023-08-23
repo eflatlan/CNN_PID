@@ -64,37 +64,44 @@ public:
     {
 
 
-      fTrkPos2D.Set(trkPos.X(), trkPos.Y()); 
+			/*
+
+				TVector3 fTrkDir; // track direction in LORS at RAD
+
+				TVector2 fTrkPos; // track positon in LORS at RAD   // XY mag
+				TVector2 fMipPos; // mip positon for a given trackf // XY
+				TVector2 fPc;     // track position at PC           // XY
+
+			*/			
+			
+	    fTrkPos2D.Set(trkPos.X(), trkPos.Y()); 
 
 
       //fPc.setX()
       Printf("init Populate class");
 
       Printf("Track pos at RAD : x %.3f y %.3f ", trkPos.X(), trkPos.Y());
-      Printf("nF : x %.3f y %.3f ", trkPos.X(), trkPos.Y());
+      Printf("nF %.3f : x %.3f y %.3f ", nF, trkPos.X(), trkPos.Y());
       
-    thetaP = trkDir.Theta();
-    tanThetaP = TMath::Tan(thetaP);
-    cosThetaP = TMath::Cos(thetaP);		
-    sinThetaP = TMath::Sin(thetaP);
+		  thetaP = trkDir.Theta();
+		  tanThetaP = TMath::Tan(thetaP);
+		  cosThetaP = TMath::Cos(thetaP);		
+		  sinThetaP = TMath::Sin(thetaP);
 
-    getRefIdx = nF;  
+		  getRefIdx = nF;  
 
-    phiP = trkDir.Phi();
-		cosPhiP = TMath::Cos(phiP);		
-		sinPhiP = TMath::Sin(phiP);	
+		  phiP = trkDir.Phi();
+			cosPhiP = TMath::Cos(phiP);		
+			sinPhiP = TMath::Sin(phiP);	
 		
-
-
 
 
 			// xRa = xPC - deltaX
 
 
-
-      // should be radThick/2 here if assuming half em-length 
-      /*deltaX = (radThick/2 + winThick + gapThick) * tanThetaP * cosPhiP;
-      deltaY = (radThick/2 + winThick + gapThick) * tanThetaP * sinPhiP;*/		
+      // should be radThick/2 here if assuming half em-length */
+      deltaX = (radThick/2 + winThick + gapThick) * tanThetaP * cosPhiP;
+      deltaY = (radThick/2 + winThick + gapThick) * tanThetaP * sinPhiP;		
 			
 
       // NB! TODO: here PC impact point based on L = rW/2!!
@@ -107,6 +114,9 @@ public:
 
 
 
+  // Trace a single Ckov photon from emission point somewhere in radiator up to photocathode taking into account ref indexes of materials it travereses
+  // Arguments: ckovThe,ckovPhi- photon ckov angles in TRS, [rad]
+  //   Returns: distance between photon point on PC and track projection
     // L here is "simulated" within 0..1.5 range
     TVector2 tracePhot(const double& ckovThe, const double& ckovPhi, const double & L) const {
     		Printf("populate2 : tracePhot()");
@@ -146,18 +156,33 @@ public:
 		
         TVector2 pos(-999, -999);
         double thetaCer = dirCkov.Theta();
+        
+        // if called to make the boundaries from hyp: since were 
+        // using n x std_dev to make the boundaries, this value can be exceeded, 
+        // therefore instead "Threshold" the value
+        
+        
+        // ef :TODO: ask Giacomo, is this valid?
+        // the ckov photon can be above this value, just not the track cherenkov value?
+        
+        // its the dispersion of chromacity that makes the normal distribution around the track Ckov value?
         if (thetaCer > TMath::ASin(1. / getRefIdx)) {
-						Printf("populate2: traceForward() INVOKED thetaCer > TMath::ASin(1. / getRefIdx))");
-						Printf("getRefIdx (=nF) = %.2f, thetaCer %.2f", getRefIdx, thetaCer);
-            return pos;
+        		LOGP(debug, "populate2: traceForward() INVOKED thetaCer {} > TMath::ASin(1. / getRefIdx{}))", getRefIdx, thetaCer);
+        		
+        		
+        		// instead, set the threshold ? : 
+        		thetaCer = TMath::ASin(1. / getRefIdx);
+            // return pos; // ef: TODO this was changed to the above
         }
+        
 
-	// change radThick to other value to change L
- 	// auto radThick' = (radThick - L);
+
+				// change radThick to other value to change L
+ 				// auto radThick' = (radThick - L);
         // double zRad = - radThick' - 0.5 * winThick;
         double zRad = - (radThick - L) - 0.5 * winThick; 
   
-	// TODO: which value should be changed??
+				// TODO: which value should be changed??
 
         TVector3 posCkov(fTrkPos.X(), fTrkPos.Y(), zRad);
         propagate(dirCkov, posCkov, -0.5 * winThick); // TODO giacomo spm :er ikke dette også feil!
@@ -474,8 +499,10 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 
 	bool checkOver(const TVector2& posPhoton, const double& rPhoton, const double& phiPhoton, vecArray4& vec, const double& etaCkov, const char* hadronType) {
 		// vec : contains phiL, phi, R w etaMin/etaMax for hadron species
-
 		
+		const auto sizeVec = vec.size();	
+
+
 		const double lMin = 0.;//, lMax = 1.5;
     bool decisionTaken = false, condition = false;
 
@@ -494,7 +521,8 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		Printf("\n\n enter checkOver(%s) phiPhoton %.4f, phiP %.4f", hadronType, phiPhoton, phiP);
 
 
-
+		LOGP(info, "Some radius checks checkOver rPhoton {} : [sizeVec - 2]{} [sizeVec - 1]{} [0]{} [1]{}", rPhoton, vec[sizeVec - 2][3],vec[sizeVec - 1][3],vec[0][3],vec[1][3]);
+		
 		if (phiC < TMath::Pi()/2)
 			initValue = 0;
 		else if (phiC < TMath::Pi())
@@ -514,7 +542,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		int iCnt = 0;
 		auto phi2 = vec[initValue][2]; // 
 
-		const auto sizeVec = vec.size();
+
 	  //Printf(" Enter checkOver(%s) \n initValue = %d \n  vec[initValue-1][1] = %.3f || phi2 = vec[initValue][1] =  %.3f |  vec[initValue+1][1] = %.3f;", hadronType,initValue, vec[sizeVec-1][1], vec[initValue][1], vec[initValue+1][1]);
 
 
@@ -738,9 +766,27 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 
 
 
+
+  
+  /*  vecArray4& vec {phiL, phiR, phiPC, r}
+			// phiL : photon_phi i TRS system 
+    	// phiR : photon_phi i LORS system
+	  	// phiPC : (photon - MIP).Phi(); --> vector phiL "on paper"
+    	 
+			const auto r = (max - trkPC2).Mod(); // trkPC2 : track impact @ PC
+			// from alinot_paattrec : this is MIP2photon distance?
+			// const auto r = (max - trkPC2).Mod(); // trkPC2 : track impact @ PC
+	*/
+
 	bool checkUnder(const TVector2& posPhoton, const double& rPhoton, const double& phiPhoton, vecArray4& vec, const double& etaCkov, const char* hadronType) {
 		// vec : contains phiL, phi, R w etaMin/etaMax for hadron species
+		
+		
+		const auto sizeVec = vec.size();
+				
+				
 
+		
 		//const double lMin = 0., 
 		const double lMax = 1.5;
     bool decisionTaken = false, condition = false;
@@ -750,7 +796,9 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
     const size_t kN = vec.size();
     int initValue;
 		
-		auto phiC = phiPhoton - phiP;
+		auto phiC = phiPhoton - phiP; // phiC : value to be "approximated"		
+																	// phiPhoton : phiValue of photon in LORS
+																	// phiP track phi value ()
 		
 		if(phiC > TMath::TwoPi()){
 			phiC = phiC - TMath::TwoPi();
@@ -758,6 +806,10 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		
 
 		Printf("\n\n enter checkUnder(%s) phiPhoton %.4f, phiP %.4f",  hadronType, phiPhoton, phiP);
+
+		LOGP(info, "Some radius checks checkUnder rPhoton {} : [sizeVec - 2]{} [sizeVec - 1]{} [0]{} [1]{}", rPhoton,vec[sizeVec - 2][3],vec[sizeVec - 1][3],vec[0][3],vec[1][3]);
+		
+
 
 		if (phiC < TMath::Pi()/2)
 			initValue = 0;
@@ -776,10 +828,10 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
  		initValue = 0;
 
 		int iCnt = 0;
-		auto phi2 = vec[initValue][2]; // 
+		auto phi2 = vec[initValue][2]; // phiPC : (photon - MIP).Phi(); --> vector
 
 
-		const auto sizeVec = vec.size();
+
 	  //Printf(" Enter checkUnder(%s) \n initValue = %d \n  vec[initValue-1][1] = %.3f || phi2 = vec[initValue][1] =  %.3f |  vec[initValue+1][1] = %.3f;", hadronType,initValue, vec[sizeVec-1][1], vec[initValue][1], vec[initValue+1][1]);
 
 	//Printf(" phi::: %.3f | %.3f | %.3f | %.3f | %.3f | ;", vec[sizeVec-1][1],vec[0][1], vec[1][1], vec[2][1], vec[3][1]);
@@ -801,7 +853,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		// TODO: change back to being 0?
 		// double prev = 0.;// vec[initValue-1][1];
 
-		double prev = vec[initValue][1];
+		double prev = vec[initValue][2];
 		while(/*phi2 < phiPhoton*/ true) {
 
 			phi2 = vec[initValue + iCnt + 1][2]; // waas not +1_
