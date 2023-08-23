@@ -211,7 +211,7 @@ void process()
                 std::cerr << "Warning: iCh value out of expected range: " << iCh << std::endl;
             } else {
                 sortedTracks[iCh].push_back(obj);
-                std::cerr << "sortedTracks[iCh] " << iCh << " pushback" << std::endl;
+                //sstd::cerr << "sortedTracks[iCh] " << iCh << " pushback" << std::endl;
             }
         }
 
@@ -236,11 +236,11 @@ void process()
 
 
 				      std::vector<std::pair<int,int>> candStatus = {{0,0}};
-							Printf("ClusterCandidate Ch %d", iCh);
-							ClusterCandidate temp(obj.ch(), obj.x(), obj.y(), obj.q(), obj.chi2(), obj.xe(), obj.ye(), obj.getPDG(), &candStatus);
+							// Printf("ClusterCandidate Ch %d", iCh);
+							ClusterCandidate temp(obj.ch(), obj.x(), obj.y(), obj.q(), obj.chi2(), obj.xe(), obj.ye(), obj.getPDG(), candStatus);
 							sortedClusters[iCh].emplace_back(temp);
 	          }  else {
-            	std::cerr << "sortedTracks[iCh] " << iCh << " empty " << sortedTracks[iCh].size() << std::endl;
+            	//std::cerr << "sortedTracks[iCh] " << iCh << " empty " << sortedTracks[iCh].size() << std::endl;
             }
              
           } else {
@@ -272,7 +272,7 @@ void process()
 
 						int tNum = 0;
             for(const auto& track : sortedTracks[i]) {
-            	  Printf("TrackNumber%d track[iCh%d].size() %d", tNum++,i);
+            	  Printf("TrackNumber%d track[iCh%d].size() %d", tNum++, i, sortedTracks[i].size());
                 // pass clusters (and track) by reference, and add its status per track (adding to candStatus vector )
 
                 // for each clusterPerChamber we will have a "candidate-status" for each of the photons, this is a vector of length of sortedTracks[i].size();
@@ -286,6 +286,12 @@ void process()
                 const o2::MCTrack* mcTrack = HmpidDataReader::getMCEntry(mcTracks, mcTrackIndex);
 
                 const int mcTrackPdg = mcTrack->GetPdgCode();
+                
+                const int momentum = mcTrack->GetPdgCode();
+                
+                
+
+                
                 // add mcTrackPdg
                 evaluateClusterTrack(clusterPerChamber, track, mipCharges, mcTrackPdg);
             }
@@ -317,6 +323,9 @@ void evaluateClusterTrack(std::vector<ClusterCandidate>& clusterPerChamber, cons
         const auto momentum = track.getHmpMom();
 
         const auto nF = track.getRefIndex(); // ef: aon it only gets the mean value ; TODO: in MatchHMP.cxx get calibration value
+        // https://github.com/eflatlan/AliceO2/blob/811fcc6d00b363b1e96e0aa8269d46eed95d879b/Detectors/GlobalTracking/src/MatchHMP.cxx#L432C28-L432C38
+        // https://github.com/AliceO2Group/AliceO2/blob/e6b603e4c92f98733ff9f7954100140e72bd99f6/Detectors/HMPID/base/include/HMPIDBase/Param.h#L159C37-L159C64
+        
 
         const auto nQ = 1.5787;
         const auto nG = 1.0005;
@@ -350,11 +359,21 @@ void evaluateClusterTrack(std::vector<ClusterCandidate>& clusterPerChamber, cons
         //  std::array<float, 3> ckovHyps, float trackCkov, int eventCnt)
         // ef: TODO use MIP to get radius and phi in CkovTools: 
 	auto ckovAngle = 0.;
-        CkovTools ckovTools(radParams, refIndexes, MIP, ckovHyps, ckovAngle, eventCnt);
+	
+	
+				
+        CkovTools ckovTools(radParams, refIndexes, MIP, ckovHyps, ckovAngle, eventCnt, mcTrackPdg);
 
         Printf(" Event%d Track%d  : ckovHyps = <%.3f, %.3f> | <%.3f, %.3f> | <%.3f, %.3f>", eventCnt, ckovTools.getMinCkovPion(),ckovTools.getMaxCkovPion(),ckovTools.getMinCkovKaon(), ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovProton(), eventCnt); 
 
-
+       
+        // only consider if adequate momentum? 
+        //LOGP(info, "Momentum {} ckovHyps {} {} {}", ckov[0], ckov[1], ckov[2]);
+        
+        if(TMath::IsNaN(ckovHyps[0])) { 
+        	Printf("was isnan!!!");
+        	return;
+        }
         //numBackgroundPhotons, numFoundActualCkov, numActualCkov, numBackgroundLabeledCkov
         std::array<int, 4> arrayInfo;
 

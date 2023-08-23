@@ -37,7 +37,7 @@ void readDigits(char* filename, int nEvent)
     TH2F *hParticlePdgMapBelow[7];
 
 
-TH2F* hParticlePdgElectron[7], *hParticlePdgPion[7], *hParticlePdgKaon[7],  *hParticlePdgProton[7], *hParticlePdgPhoton[7];
+TH2F* hParticlePdgElectron[7], *hParticlePdgPion[7], *hParticlePdgKaon[7],  *hParticlePdgProton[7], *hParticlePdgPhoton[7], *hParticlePdgPhoton2[7];
 
 
 //11 111 321 2212 22/50000050
@@ -48,7 +48,7 @@ for (int i = 0; i < 7; i++) {
                                        160, 0, 159, 144, 0, 143);
     hParticlePdgElectron[i]->SetXTitle("pad X");
     hParticlePdgElectron[i]->SetYTitle("pad Y");
-    hParticlePdgElectron[i]->SetMarkerColor(kBlue); // Example color
+    hParticlePdgElectron[i]->SetMarkerColor(kRed); // Example color
 
     // Pion histograms
     hParticlePdgPion[i] = new TH2F(Form("Pion_ParticlePdg_Chamber%i", i),
@@ -56,24 +56,24 @@ for (int i = 0; i < 7; i++) {
                                    160, 0, 159, 144, 0, 143);
     hParticlePdgPion[i]->SetXTitle("pad X");
     hParticlePdgPion[i]->SetYTitle("pad Y");
-    hParticlePdgPion[i]->SetMarkerColor(kRed); // Example color
-    //hParticlePdgPion[i]->SetMarkerStyle(3); // Example color
+    hParticlePdgPion[i]->SetMarkerColor(kBlue-2); // Example color
+    hParticlePdgPion[i]->SetMarkerStyle(2); // Example color
     // Kaon histograms
     hParticlePdgKaon[i] = new TH2F(Form("Kaon_ParticlePdg_Chamber%i", i),
                                    Form("Kaon PDG Map Chamber%i", i),
                                    160, 0, 159, 144, 0, 143);
     hParticlePdgKaon[i]->SetXTitle("pad X");
     hParticlePdgKaon[i]->SetYTitle("pad Y");
-    hParticlePdgKaon[i]->SetMarkerColor(kGreen); // Example color
-    //hParticlePdgKaon[i]->SetMarkerStyle(3); // Example color
+    hParticlePdgKaon[i]->SetMarkerColor(kBlue); // Example color
+    hParticlePdgKaon[i]->SetMarkerStyle(2); // Example color
     // Proton histograms
     hParticlePdgProton[i] = new TH2F(Form("Proton_ParticlePdg_Chamber%i", i),
                                      Form("Proton PDG Map Chamber%i", i),
                                      160, 0, 159, 144, 0, 143);
     hParticlePdgProton[i]->SetXTitle("pad X");
     hParticlePdgProton[i]->SetYTitle("pad Y");
-    hParticlePdgProton[i]->SetMarkerColor(kOrange); // Example color
-    hParticlePdgProton[i]->SetMarkerStyle(3); // Example color
+    hParticlePdgProton[i]->SetMarkerColor(kBlue+2); // Example color
+    hParticlePdgProton[i]->SetMarkerStyle(2); // Example color
     // Photon histograms
     hParticlePdgPhoton[i] = new TH2F(Form("Photon_ParticlePdg_Chamber%i", i),
                                      Form("Photon PDG Map Chamber%i", i),
@@ -81,6 +81,14 @@ for (int i = 0; i < 7; i++) {
     hParticlePdgPhoton[i]->SetXTitle("pad X");
     hParticlePdgPhoton[i]->SetYTitle("pad Y");
     hParticlePdgPhoton[i]->SetMarkerColor(kBlack); // Example color
+
+    hParticlePdgPhoton2[i] = new TH2F(Form("Photon2_ParticlePdg_Chamber%i", i),
+                                     Form("Photon2 PDG Map Chamber%i", i),
+                                     160, 0, 159, 144, 0, 143);
+    hParticlePdgPhoton2[i]->SetXTitle("pad X");
+    hParticlePdgPhoton2[i]->SetYTitle("pad Y");
+    hParticlePdgPhoton2[i]->SetMarkerColor(kCyan); // Example color
+
 }
 // Add a new histogram to collect PDG values
 TH1F* hPDG = new TH1F("hPDG", "Particle PDG values", 5000, -2500, 2500);
@@ -181,6 +189,9 @@ hPDG->SetYTitle("Entries");
       case 50000050 : 
 	hParticlePdgPhoton[module]->Fill(padChX, padChY);
 	break;
+      case 22 : 
+	hParticlePdgPhoton2[module]->Fill(padChX, padChY);
+	break;
     }
  
     bool isInPdg = false;
@@ -259,12 +270,16 @@ TCanvas* c6 = new TCanvas("c6", "PDG Histogram", 800, 600);
      hParticlePdgMapAbove[iCh]->Draw();
      //hParticlePdgMapAbove[iCh]->Draw("Colz");
 
+
+
+
      c5->cd(pos[iCh]); 
      hParticlePdgElectron[iCh]->Draw();
      hParticlePdgPion[iCh]->Draw("same");
      hParticlePdgKaon[iCh]->Draw("same");	
      hParticlePdgProton[iCh]->Draw("same");
      hParticlePdgPhoton[iCh]->Draw("same");
+     hParticlePdgPhoton2[iCh]->Draw("same");
    }      
 }
 //************************************************************************************************************************************************************************************************************************************************************************************
