@@ -385,7 +385,7 @@ void evaluateClusterTrack(std::vector<ClusterCandidate>& clusterPerChamber, cons
 
 
         // mcTrackPdg check that it matches with clusterPDG?
-        ckovTools.segment(clusterPerChamber, arrayInfo, track.getTrackIndex(), mipCharges, xMip, yMip, q /*MIP-charge*/, mcTrackPdg); // temp --> mapBins
+        ckovTools.segment(clusterPerChamber, arrayInfo, track.getTrackIndex(), mipCharges, xMip, yMip, q /*MIP-charge*/, mcTrackPdg, track); // temp --> mapBins
 }
 
 
