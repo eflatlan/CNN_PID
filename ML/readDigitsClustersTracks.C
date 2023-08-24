@@ -515,6 +515,11 @@ void process()
                 thTrackPc[i]->Fill(xPc, yPc);
                 thTrackRad[i]->Fill(xRad, yRad);
 
+
+
+                if(mcTrackPdg)
+                thCluPdg[i]->Fill(xRad, yRad, );
+
                 // add mcTrackPdg
                 evaluateClusterTrack(clusterPerChamber, track, mipCharges, mcTrackPdg);
             }
@@ -522,11 +527,36 @@ void process()
     }
 
 
+    TCanvas* cCluCharge = new TCanvas("cCluCharge", "Cluster Charge MAP", 800, 600);
+    TCanvas* cTrackInfo = new TCanvas("cTrackInfo", "Track impact and mip", 800, 600);
 
-    for (int i = 0; i < 7; ++i) {
+    cCluCharge->Divide(3,3);
+    cTrackInfo->Divide(3,3);
+
+    for (int i = 0; i < 7; i++) {
+        int iCh = pos[i];
+        cCluCharge->cd(pos[iCh]); 
+
+        hCluChargeMap->Draw("Colz");
+
+        cTrackInfo->cd(pos[iCh]);        
+        thTrackMip[i]->Draw();
+        thTrackPc[i]->Draw("same");
+        thTrackRad[i]->Draw("same");
+
+
+        /*
+
+        draw maps of pdg codes for clu and track also??
+        c5->cd(pos[iCh]); 
+        hParticlePdgElectron[iCh]->Draw();
+        hParticlePdgPion[iCh]->Draw("same");
+        hParticlePdgKaon[iCh]->Draw("same");	
+        hParticlePdgProton[iCh]->Draw("same");
+        hParticlePdgPhoton[iCh]->Draw("same");
+        hParticlePdgPhoton2[iCh]->Draw("same");
+        */
 
     }
-
-
 
 }
