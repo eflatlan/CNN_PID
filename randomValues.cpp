@@ -33,17 +33,70 @@ public:
     RandomValues() : gen(rd()) {
         massDistribution = std::uniform_int_distribution<int>(0, 2);
         energyDistribution = std::uniform_int_distribution<int>(0, 29);
-        momentumDistribution = std::normal_distribution<float>(0.5, 0.25);
-        
-        momentum = getRandomMomentum();
+        momentumDistribution = std::normal_distribution<float>(0.5, 0.1);
+
+	
+
         mass = getRandomMass();
         energy = getRandomEnergy();
         refractiveIndex = calculateRefractiveIndex();
-
+        momentum = getRandomMomentum(mass, refractiveIndex);
     }
+    /*
+    float checkMomentumThreshold(float m, float p, float n) {
+	  const float p_sq = p*p
 
-    float getRandomMomentum() {
-        return 1 + 4 * momentumDistribution(gen);
+	;
+	  const float cos_ckov_denom = p*n;
+
+	  // sanity check ;)
+	  if(p_sq + m*m < 0){
+	    return 0;
+	  }
+          const auto cos_ckov = static_cast<float>(TMath::Sqrt(p_sq + m*m)/(cos_ckov_denom));
+
+	  // sanity check ;)
+	  if(cos_ckov > 1 || cos_ckov < -1)
+	    return 0;
+	  }
+
+
+    }*/ 
+
+
+
+    /*
+
+cosCkov in 0...1
+(pn)^2 = p^2 + m^2
+p*p*(n^2-1) = m^2
+
+pThre = m/(sqrt(n^2-1)) 
+cosCkov = sqrt(p^2+m^2)/(p*n)
+0.1396, mass_Kaon = 0.4937, mass_Proton = 0.938
+    */
+
+    float getRandomMomentum(float m, float n) {
+				const auto pThre = m/(TMath::Sqrt(n*n-1));
+
+				// should imply range pThre..5 
+      	auto p = pThre + (5-pThre) * momentumDistribution(gen);
+
+				if(p > 5 ) {
+					Printf("p %.4f | m %.4f | n %.4f", p, m, n); throw std::invalid_argument("vaffanculo");
+				}
+				else {
+					return p;
+				}
+/*			 
+
+								if()
+
+				else if(m == mass_Kaon) 
+        	 return pThre + 4 * momentumDistributionKaon(gen);
+
+				else if(m == mass_Pion) 
+        	 return 1 + 4 * momentumDistributionKaon(gen);*/
     }
 
     float getRandomMass() {
