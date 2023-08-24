@@ -251,7 +251,7 @@ for(const auto& pdg: particlePDGs) {
 
 
 
-TCanvas* c6 = new TCanvas("c6", "PDG Histogram", 800, 600);
+  TCanvas* c6 = new TCanvas("c6", "PDG Histogram", 800, 600);
 	c6->cd();
 	hPDG->Draw();
 
