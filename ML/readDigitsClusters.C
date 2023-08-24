@@ -271,8 +271,6 @@ TCanvas* c6 = new TCanvas("c6", "PDG Histogram", 800, 600);
      //hParticlePdgMapAbove[iCh]->Draw("Colz");
 
 
-
-
      c5->cd(pos[iCh]); 
      hParticlePdgElectron[iCh]->Draw();
      hParticlePdgPion[iCh]->Draw("same");
