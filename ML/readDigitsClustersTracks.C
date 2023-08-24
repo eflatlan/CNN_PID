@@ -279,6 +279,11 @@ TCanvas* c6 = new TCanvas("c6", "PDG Histogram", 800, 600);
      hParticlePdgPhoton2[iCh]->Draw("same");
    }      
 }
+
+
+ TH1F *thcluMIPCharge[7], *thcluMIPSize[7], *thTrackMIPCharge[7], *thTrackMIPSize[7]; // add this
+ 
+ 
  TH2F *hCluChargeMap[7]; // add this
 void process()
 {
@@ -287,6 +292,18 @@ void process()
     for (int i = 0; i < 7; ++i) {
         // You will want to give each TH2F object a unique name and title
         // possibly by incorporating the index `i` into the strings.
+				int iCh = i;
+        thcluMIPCharge[iCh]=new TH1F(Form("Clu Charge chamber%i",i),Form("Clu Charge chamber%i",i),2000, 100., 2100.);	   // init     
+        
+        
+        
+        thcluMIPSize[iCh]=new TH1F(Form("MIP Size chamber%i",i),Form("MIP Size chamber%i",i),10, 0., 10.); 
+     
+         thTrackMIPCharge[iCh]=new TH1F(Form("Track MIP Charge chamber%i",i),Form("Track MIP Charge chamber%i",i),2000, 100., 4100.);
+     // init   
+        thTrackMIPSize[iCh]=new TH1F(Form("Track MIP Size chamber%i",i),Form("Track MIP Size chamber%i",i),10, 0., 10.);
+
+
 
         // For thTrackMip
         thTrackMip[i] = new TH2F(Form("thTrackMip_%d", i), Form("MIP Track %d; x-axis; y-axis", i), 160, 0, 159, 144, 0, 143);
@@ -373,8 +390,16 @@ void process()
         {
             const auto &clu = static_cast<o2::hmpid::Cluster>(clusterArr->at(j));
             oneEventClusters.push_back(clu);
-            
+            int iCh = clu.ch();
             hCluChargeMap[clu.ch()]->Fill(clu.x(), clu.y(), clu.q());
+            
+		        thcluMIPCharge[iCh]->Fill(clu.q());		       
+		        thcluMIPSize[iCh]->Fill(clu.size());
+						LOGP(info, "cluSi{} ch{}", clu.size() , clu.q());
+
+	        
+            
+            
             Printf("============\n Cluster Loop \n ===============");
             if (clu.getEventNumber() != eventNumber1)
             {
@@ -416,16 +441,27 @@ void process()
         // Assign MLinfoHMP objects to corresponding vectors based on iCh value
         for (const auto &obj : *tracksOneEvent)
         {
-
-          float xRad, yRad, xPc, yPc, th, ph;
-          float xMip = obj.getMipX(), yMip = obj.getMipY();
-          obj.getHMPIDtrk(xRad, yRad, xPc, yPc, th, ph);
-
-          thTrackMip[i]->Fill(xMip, yMip);
-          thTrackPc[i]->Fill(xPc, yPc);
-          thTrackRad[i]->Fill(xRad, yRad);
-          std::cerr << " MIP " << xMip;
             const auto &iCh = obj.getChamber();
+            
+            
+		        float xRad, yRad, xPc, yPc, th, ph;
+		        float xMip, yMip;
+		        obj.getHMPIDtrk(xRad, yRad, xPc, yPc, th, ph);
+
+
+
+						int q, nph;
+            obj.getHMPIDmip(xMip, yMip, q, nph);
+		        thTrackMIPCharge[iCh]->Fill(q);		       
+		        thTrackMIPSize[iCh]->Fill(obj.getMipClusSize());
+
+
+	        
+		        thTrackMip[iCh]->Fill(xMip, yMip);
+		        thTrackPc[iCh]->Fill(xPc, yPc);
+		        thTrackRad[iCh]->Fill(xRad, yRad);
+		        std::cerr << " MIP Charge Track" << q << " Size  " << obj.getMipClusSize();
+
             if (iCh < 0 || iCh > 6)
             {
                 std::cerr << "Warning: iCh value out of expected range: " << iCh << std::endl;
@@ -576,4 +612,31 @@ void process()
 
     }
 
+}
+
+
+void printMIP(){
+	TCanvas* cthcluMIPCharge = new TCanvas("Cluster Charge", "Cluster Charge", 800, 600);
+	TCanvas* cthcluMIPSize = new TCanvas("thcluMIPSize", "thcluMIPSize", 800, 600);
+		TCanvas* cthTrackMIPCharge = new TCanvas("thTrackMIPCharge", "thTrackMIPCharge", 800, 600);
+			TCanvas* cthTrackMIPSize = new TCanvas("thTrackMIPSize", "thTrackMIPSize", 800, 600);
+			
+		cthcluMIPCharge->Divide(3,3);
+		cthcluMIPSize->Divide(3,3);
+		cthTrackMIPCharge->Divide(3,3);
+		cthTrackMIPSize->Divide(3,3);
+
+
+     for (int i = 0; i < 7; i++) {
+        int iCh = pos[i];
+        cthcluMIPCharge->cd(iCh); 
+        thcluMIPCharge[i]->Draw();
+        cthcluMIPSize->cd(iCh); 
+        thcluMIPSize[i]->Draw();
+        cthTrackMIPCharge->cd(iCh); 
+        thTrackMIPCharge[i]->Draw();  
+        cthTrackMIPSize->cd(iCh); 
+        thTrackMIPSize[i]->Draw();      
+ 			}
+ 
 }
