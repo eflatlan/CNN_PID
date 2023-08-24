@@ -215,8 +215,10 @@ for(const auto& pdg: particlePDGs) {
     for(int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++) {
       
       digit = (o2::hmpid::Digit)digits->at(j);
+      
+      o2::hmpid::Digit::pad2Absolute(digit.getPadID(), &module, &padChX, &padChY);
       oneEventDigits.push_back(digit);
-
+      hMap[module]->Fill(padChX, padChY, pDigEvt->getQ());
 	    std::cout << j << " evnum" << pDig->getEventNumber()<< std::endl; 
       
      }
@@ -287,21 +289,21 @@ void process()
         // possibly by incorporating the index `i` into the strings.
 
         // For thTrackMip
-        thTrackMip[i] = new TH2F(Form("thTrackMip_%d", i), Form("MIP Track %d; x-axis; y-axis", i), 100, 0, 10, 100, 0, 10);
-        thTrackMip[i]->SetMarkerColor(kBlue-2); // Example color
-        thTrackMip[i]->SetMarkerStyle(2); // Example color
+        thTrackMip[i] = new TH2F(Form("thTrackMip_%d", i), Form("MIP Track %d; x-axis; y-axis", i), 160, 0, 159, 144, 0, 143);
+        thTrackMip[i]->SetMarkerColor(kBlue); // Example color
+        thTrackMip[i]->SetMarkerStyle(3); // Example color
         // For thTrackPc
-        thTrackPc[i] = new TH2F(Form("thTrackPc_%d", i), Form("PC Track %d; x-axis; y-axis", i), 100, 0, 10, 100, 0, 10);
-        thTrackPc[i]->SetMarkerColor(kBlue); // Example color
+        thTrackPc[i] = new TH2F(Form("thTrackPc_%d", i), Form("PC Track %d; x-axis; y-axis", i), 160, 0, 159, 144, 0, 143);
+        thTrackPc[i]->SetMarkerColor(kBlue-3); // Example color
         thTrackPc[i]->SetMarkerStyle(2); // Example color
         // For thTrackRad
-        thTrackRad[i] = new TH2F(Form("thTrackRad_%d", i), Form("Rad Track %d; x-axis; y-axis", i), 100, 0, 10, 100, 0, 10);
+        thTrackRad[i] = new TH2F(Form("thTrackRad_%d", i), Form("Rad Track %d; x-axis; y-axis", i), 160, 0, 159, 144, 0, 143);
         thTrackRad[i]->SetMarkerColor(kBlue+3); // Example color
         thTrackRad[i]->SetMarkerStyle(2); // Example color
 
 
         // For hCluChargeMap
-        hCluChargeMap[i] = new TH2F(Form("hCluChargeMap_%d", i), Form("Cluster Charge Map %d; x-axis; y-axis", i), 100, 0, 10, 100, 0, 10);
+        hCluChargeMap[i] = new TH2F(Form("hCluChargeMap_%d", i), Form("Cluster Charge Map %d; x-axis; y-axis", i), 160, 0, 159, 144, 0, 143);
     }
 
 
@@ -359,16 +361,20 @@ void process()
             Printf("eventNumberLast1%d", eventNumberLast1);
         } // TODO: throw error? ef:
 
+
+	/*
         for (int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++)
         {
             const auto &clu = static_cast<o2::hmpid::Cluster>(clusterArr->at(j));
             std::cout << j << " evNum " << clu.getEventNumber() << " |";
-        }
+        }*/
 
         for (int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++)
         {
             const auto &clu = static_cast<o2::hmpid::Cluster>(clusterArr->at(j));
-
+            oneEventClusters.push_back(clu);
+            
+            hCluChargeMap[clu.ch()]->Fill(clu.x(), clu.y(), clu.q());
             Printf("============\n Cluster Loop \n ===============");
             if (clu.getEventNumber() != eventNumber1)
             {
@@ -377,7 +383,7 @@ void process()
             }
             else
             {
-                oneEventClusters.push_back(clu);
+                //oneEventClusters.push_back(clu);
                 std::cout << " clu " << j << " eventNum " << clu.getEventNumber();
             }
         }
@@ -411,6 +417,14 @@ void process()
         for (const auto &obj : *tracksOneEvent)
         {
 
+          float xRad, yRad, xPc, yPc, th, ph;
+          float xMip = obj.getMipX(), yMip = obj.getMipY();
+          obj.getHMPIDtrk(xRad, yRad, xPc, yPc, th, ph);
+
+          thTrackMip[i]->Fill(xMip, yMip);
+          thTrackPc[i]->Fill(xPc, yPc);
+          thTrackRad[i]->Fill(xRad, yRad);
+          std::cerr << " MIP " << xMip;
             const auto &iCh = obj.getChamber();
             if (iCh < 0 || iCh > 6)
             {
@@ -418,7 +432,7 @@ void process()
             }
             else
             {
-                sortedTracks[iCh].push_back(obj);
+            sortedTracks[iCh].push_back(obj);
                 // sstd::cerr << "sortedTracks[iCh] " << iCh << " pushback" << std::endl;
             }
         }
@@ -445,7 +459,7 @@ void process()
                 
                     //const std::vector<o2::hmpid::Cluster::Topology>& topology = obj.getClusterTopology();  // some info about digits associated w cluster*/
 
-                    hCluChargeMap[bj.ch()]->Fill(obj.x(), obj.y(), obj.q());
+                    // hCluChargeMap[obj.ch()]->Fill(obj.x(), obj.y(), obj.q());
                     
                     
                     
@@ -517,11 +531,11 @@ void process()
 
 
 
-                if(mcTrackPdg)
-                thCluPdg[i]->Fill(xRad, yRad, );
+                //if(mcTrackPdg)
+                //thCluPdg[i]->Fill(xRad, yRad, );
 
                 // add mcTrackPdg
-                evaluateClusterTrack(clusterPerChamber, track, mipCharges, mcTrackPdg);
+                //evaluateClusterTrack(clusterPerChamber, track, mipCharges, mcTrackPdg);
             }
         }
     }
@@ -535,15 +549,18 @@ void process()
 
     for (int i = 0; i < 7; i++) {
         int iCh = pos[i];
-        cCluCharge->cd(pos[iCh]); 
+        cCluCharge->cd(iCh); 
+        hCluChargeMap[i]->Draw("Colz");
 
-        hCluChargeMap->Draw("Colz");
-
-        cTrackInfo->cd(pos[iCh]);        
-        thTrackMip[i]->Draw();
+        //cTrackInfo->cd(iCh);        
+        thTrackMip[i]->Draw("same");
         thTrackPc[i]->Draw("same");
         thTrackRad[i]->Draw("same");
 
+        cTrackInfo->cd(iCh);        
+        thTrackMip[i]->Draw();
+        thTrackPc[i]->Draw("same");
+        thTrackRad[i]->Draw("same");
 
         /*
 
