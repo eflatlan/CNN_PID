@@ -342,6 +342,10 @@ void process()
                   // branch : clusterPerChamber --> vector of clusterCandidates
                   // branch : track --> trackInformation (Ra, MIP, refIndex, momentum, theta, phi)
 
+
+
+
+
 									clusterBranch = const_cast<std::vector<ClusterCandidate>*>(&clusterPerChamber); // Make sure your ClusterCandidate class is compatible with ROOT I/O
 									trackInfoBranch = const_cast<o2::dataformats::MatchInfoHMP*>(&track); // Make sure your MatchInfoHMP class is compatible with ROOT I/O
 									mcPDGBranch = mcTrack->GetPdgCode(); // This assumes mcTrack is properly initialized
@@ -391,6 +395,22 @@ void process()
 				std::cout << "Size of clusterBranch: " << clusterBranch->size() << std::endl;
 		}
 }
+
+void read_tree() {
+    TFile *f = new TFile("MLOUTPUT.root");
+    TTree *tree = (TTree*) f->Get("myTree");
+
+    std::vector<ClusterCandidate>* clusterBranch = nullptr;
+    tree->SetBranchAddress("clusters", &clusterBranch);
+    
+    Long64_t nEntries = tree->GetEntries();
+    for (Long64_t i = 0; i < nEntries; ++i) {
+        tree->GetEntry(i);
+        std::cout << "Size of clusterBranch: " << clusterBranch->size() << std::endl;
+    }
+}
+
+
 
 void evaluateClusterTrack(std::vector<ClusterCandidate>& clusterPerChamber, const o2::dataformats::MatchInfoHMP& track, const std::vector<float>& mipCharges, int mcTrackPdg, int trackNumber)
 {
