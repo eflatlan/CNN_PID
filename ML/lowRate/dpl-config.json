@@ -1,0 +1,46 @@
+{
+    "internal-dpl-clock": "",
+    "TRDTrackletReader": {
+        "trd-tracklet-infile": "trdtracklets.root",
+        "trd-calib-tracklet-infile": "trdcalibratedtracklets.root",
+        "input-dir": "none",
+        "treename": "o2sim",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "internal-dpl-ccdb-backend": {
+        "condition-backend": "http:\/\/alice-ccdb.cern.ch",
+        "condition-not-before": "0",
+        "condition-not-after": "3385078236000",
+        "condition-remap": "",
+        "condition-tf-per-query": "0",
+        "condition-tf-per-query-multiplier": "1",
+        "condition-time-tolerance": "5000",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "TRDTRACKLETTRANSFORMER": {
+        "apply-xor": "false",
+        "condition-backend": "http:\/\/alice-ccdb.cern.ch",
+        "condition-timestamp": "0"
+    },
+    "trd-calibrated-tracklet-writer": {
+        "outfile": "trdcalibratedtracklets.root",
+        "output-dir": "none",
+        "treename": "ctracklets",
+        "treetitle": "ctracklets",
+        "nevents": "-1",
+        "autosave": "-1",
+        "terminate": "process",
+        "TRKLABELS": "TRKLabels"
+    },
+    "internal-dpl-injected-dummy-sink": ""
+}

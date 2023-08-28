@@ -1,0 +1,2717 @@
+[21:20:59][INFO] 
+      ______      _    _______  _________ 
+     / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+    / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+   / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+  /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+
+[21:20:59][STATE] Starting FairMQ state machine --> IDLE
+[21:20:59][WARN] Signal handling (e.g. Ctrl-C) has been deactivated.
+[21:20:59][STATE] IDLE ---> INITIALIZING DEVICE
+[21:20:59][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[21:20:59][STATE] INITIALIZED ---> BINDING
+[21:20:59][STATE] BINDING ---> BOUND
+[21:20:59][STATE] BOUND ---> CONNECTING
+[21:20:59][STATE] CONNECTING ---> DEVICE READY
+[21:20:59][STATE] DEVICE READY ---> INITIALIZING TASK
+[21:20:59][INFO] INIT HIT MERGER
+[21:21:00][INFO] Waiting for configuration answer 
+[21:21:00][INFO] Configuration answer received, containing 1032 bytes 
+[21:21:00][INFO] COMMUNICATED ENGINE TGeant3
+[21:21:00][INFO] L# 0 Phi:16.42 R:2.34 Nst:12 Nunit:9 W:1.5 Tilt:17.503 Lthick:0.005 Dthick:0.003 DetID:0 B:0
+[21:21:00][INFO] L# 1 Phi:12.18 R:3.15 Nst:16 Nunit:9 W:1.5 Tilt:17.9445 Lthick:0.005 Dthick:0.003 DetID:0 B:0
+[21:21:00][INFO] L# 2 Phi:9.55 R:3.93 Nst:20 Nunit:9 W:1.5 Tilt:16.9423 Lthick:0.005 Dthick:0.003 DetID:0 B:0
+[21:21:00][INFO] L# 3 Phi:7.5 R:19.45 Nst:24 Nunit:4 Lthick:0.01 Dthick:0.003 DetID:0 B:0
+[21:21:00][INFO] L# 4 Phi:6 R:24.4 Nst:30 Nunit:4 Lthick:0.01 Dthick:0.003 DetID:0 B:0
+[21:21:00][INFO] L# 5 Phi:4.29 R:34.24 Nst:42 Nunit:7 Lthick:0.01 Dthick:0.003 DetID:0 B:0
+[21:21:00][INFO] L# 6 Phi:3.75 R:39.2 Nst:48 Nunit:7 Lthick:0.01 Dthick:0.003 DetID:0 B:0
+[21:21:00][INFO] o2::emcal::Geometry::GetInstanceFromRunNumber() - Initialized geometry with name <<EMCAL_COMPLETE12SMV1_DCAL_8SM>>
+ Image initialized with 44 x 44 pixels  Image initialized with 56 x 30 pixels [21:21:00][INFO] FastSim module disabled
+[21:21:00][WARN]  O2HitMerger: Some Detectors are potentially missing in this initialization 
+[21:21:00][INFO] OCCUPYING A SEGMENT IN A SHARED REGION
+[21:21:00][INFO] FOUND ID TO ATTACH 5
+[21:21:00][INFO] TRYING ADDRESS 0x7f6eaffff000
+[21:21:00][INFO] ASSIGNED PIPE HANDLE 14
+[21:21:00][STATE] INITIALIZING TASK ---> READY
+[21:21:00][STATE] READY ---> RUNNING
+[21:21:00][INFO] fair::mq::Device running...
+[21:21:33][INFO] SIMDATA channel got 68 parts for event 1 part 1 out of 1
+[21:21:33][INFO] Event 1 complete. Marking as flushable
+[21:21:33][INFO] HitMerger processing took 0.00901604
+[21:21:33][INFO] Launching merge kernel 
+[21:21:33][INFO] Merge and flush event 1
+HitMerger entry: 0 nprimry:   284 trackoffset: 14581 
+[21:21:33][INFO] flushing tree to file o2sim_HitsITS.root
+[21:21:33][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:21:33][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:21:33][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:21:33][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:21:33][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:21:33][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:21:33][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:21:33][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:21:33][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:21:33][INFO] flushing tree to file o2sim_HitsMID.root
+[21:21:33][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:21:33][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:21:33][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:21:33][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:21:33][INFO] outtree has file o2sim_Kine.root
+[21:21:33][INFO] Merge/flush for event 1 took 0.205778
+[21:21:33][INFO] Writing TTrees
+[21:21:38][INFO] SIMDATA channel got 68 parts for event 2 part 1 out of 1
+[21:21:38][INFO] Event 2 complete. Marking as flushable
+[21:21:38][INFO] Launching merge kernel 
+[21:21:38][INFO] Merge and flush event 2
+HitMerger entry: 0 nprimry:   189 trackoffset:  8047 
+[21:21:38][INFO] HitMerger processing took 0.00948286
+[21:21:38][INFO] flushing tree to file o2sim_HitsITS.root
+[21:21:38][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:21:38][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:21:38][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:21:38][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:21:38][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:21:38][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:21:38][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:21:38][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:21:38][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:21:38][INFO] flushing tree to file o2sim_HitsMID.root
+[21:21:38][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:21:38][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:21:38][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:21:38][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:21:38][INFO] outtree has file o2sim_Kine.root
+[21:21:38][INFO] Merge/flush for event 2 took 0.00663209
+[21:21:38][INFO] Writing TTrees
+[21:21:39][INFO] SIMDATA channel got 68 parts for event 3 part 1 out of 1
+[21:21:39][INFO] Event 3 complete. Marking as flushable
+[21:21:39][INFO] HitMerger processing took 0.00187206
+[21:21:39][INFO] Launching merge kernel 
+[21:21:39][INFO] Merge and flush event 3
+HitMerger entry: 0 nprimry:   272 trackoffset: 10618 
+[21:21:39][INFO] flushing tree to file o2sim_HitsITS.root
+[21:21:39][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:21:39][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:21:39][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:21:39][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:21:39][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:21:39][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:21:39][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:21:39][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:21:39][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:21:39][INFO] flushing tree to file o2sim_HitsMID.root
+[21:21:39][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:21:39][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:21:39][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:21:39][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:21:39][INFO] outtree has file o2sim_Kine.root
+[21:21:39][INFO] Merge/flush for event 3 took 0.0212069
+[21:21:39][INFO] Writing TTrees
+[21:21:46][INFO] SIMDATA channel got 68 parts for event 5 part 1 out of 1
+[21:21:46][INFO] Event 5 complete. Marking as flushable
+[21:21:46][INFO] HitMerger processing took 0.00191402
+[21:21:46][INFO] Launching merge kernel 
+[21:21:48][INFO] SIMDATA channel got 68 parts for event 4 part 1 out of 1
+[21:21:48][INFO] Event 4 complete. Marking as flushable
+[21:21:48][INFO] HitMerger processing took 0.00260115
+[21:21:48][INFO] Launching merge kernel 
+[21:21:48][INFO] Merge and flush event 4
+HitMerger entry: 0 nprimry:   180 trackoffset: 19110 
+[21:21:48][INFO] flushing tree to file o2sim_HitsITS.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsMID.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:21:48][INFO] outtree has file o2sim_Kine.root
+[21:21:48][INFO] Merge/flush for event 4 took 0.0155718
+[21:21:48][INFO] Merge and flush event 5
+HitMerger entry: 0 nprimry:   197 trackoffset: 20534 
+[21:21:48][INFO] flushing tree to file o2sim_HitsITS.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsMID.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:21:48][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:21:48][INFO] outtree has file o2sim_Kine.root
+[21:21:48][INFO] Merge/flush for event 5 took 0.0306871
+[21:21:48][INFO] Writing TTrees
+[21:21:56][INFO] SIMDATA channel got 68 parts for event 6 part 1 out of 1
+[21:21:56][INFO] Event 6 complete. Marking as flushable
+[21:21:56][INFO] HitMerger processing took 0.00191307
+[21:21:56][INFO] Launching merge kernel 
+[21:21:56][INFO] Merge and flush event 6
+HitMerger entry: 0 nprimry:   110 trackoffset: 13294 
+[21:21:56][INFO] flushing tree to file o2sim_HitsITS.root
+[21:21:56][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:21:56][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:21:56][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:21:56][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:21:56][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:21:56][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:21:56][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:21:56][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:21:56][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:21:56][INFO] flushing tree to file o2sim_HitsMID.root
+[21:21:56][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:21:56][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:21:56][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:21:56][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:21:56][INFO] outtree has file o2sim_Kine.root
+[21:21:56][INFO] Merge/flush for event 6 took 0.0279422
+[21:21:56][INFO] Writing TTrees
+[21:21:58][INFO] SIMDATA channel got 68 parts for event 7 part 2 out of 3
+[21:21:58][INFO] HitMerger processing took 0.00124002
+[21:21:58][INFO] SIMDATA channel got 68 parts for event 7 part 3 out of 3
+[21:21:58][INFO] HitMerger processing took 0.000208139
+[21:21:59][INFO] SIMDATA channel got 68 parts for event 7 part 1 out of 3
+[21:21:59][INFO] Event 7 complete. Marking as flushable
+[21:21:59][INFO] Launching merge kernel 
+[21:21:59][INFO] HitMerger processing took 0.00872707
+[21:21:59][INFO] Merge and flush event 7
+HitMerger entry: 2 nprimry:   500 trackoffset: 43913 
+HitMerger entry: 1 nprimry:   324 trackoffset:   324 
+HitMerger entry: 0 nprimry:   500 trackoffset: 10889 
+merge 2     1     1     0 
+merge 1     0     0     2 
+merge 0     2     2     1 
+[21:21:59][INFO] flushing tree to file o2sim_HitsITS.root
+[21:21:59][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:21:59][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:21:59][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:21:59][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:21:59][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:21:59][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:21:59][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:21:59][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:21:59][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:21:59][INFO] flushing tree to file o2sim_HitsMID.root
+[21:21:59][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:21:59][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:21:59][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:21:59][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:21:59][INFO] outtree has file o2sim_Kine.root
+[21:21:59][INFO] Merge/flush for event 7 took 0.181105
+[21:21:59][INFO] Writing TTrees
+[21:22:06][INFO] SIMDATA channel got 68 parts for event 8 part 2 out of 5
+[21:22:06][INFO] HitMerger processing took 0.0103669
+[21:22:06][INFO] SIMDATA channel got 68 parts for event 8 part 1 out of 5
+[21:22:06][INFO] HitMerger processing took 0.0103362
+[21:22:06][INFO] SIMDATA channel got 68 parts for event 8 part 4 out of 5
+[21:22:06][INFO] HitMerger processing took 0.000231981
+[21:22:06][INFO] SIMDATA channel got 68 parts for event 8 part 5 out of 5
+[21:22:06][INFO] HitMerger processing took 0.000205994
+[21:22:07][INFO] SIMDATA channel got 68 parts for event 8 part 3 out of 5
+[21:22:07][INFO] Event 8 complete. Marking as flushable
+[21:22:07][INFO] HitMerger processing took 0.00299811
+[21:22:07][INFO] Launching merge kernel 
+[21:22:07][INFO] Merge and flush event 8
+HitMerger entry: 4 nprimry:   500 trackoffset: 16686 
+HitMerger entry: 3 nprimry:   482 trackoffset:   482 
+HitMerger entry: 2 nprimry:   500 trackoffset:   500 
+HitMerger entry: 1 nprimry:   500 trackoffset: 51181 
+HitMerger entry: 0 nprimry:   500 trackoffset: 71358 
+merge 4     3     3     2 
+merge 3     2     2     4 
+merge 2     4     4     3 
+merge 1     0     0     1 
+merge 0     1     1     0 
+[21:22:07][INFO] flushing tree to file o2sim_HitsITS.root
+[21:22:07][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:22:08][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:22:08][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:22:08][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:22:08][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:22:08][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:22:08][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:22:08][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:22:08][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:22:08][INFO] flushing tree to file o2sim_HitsMID.root
+[21:22:08][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:22:08][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:22:08][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:22:08][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:22:08][INFO] outtree has file o2sim_Kine.root
+[21:22:08][INFO] Merge/flush for event 8 took 0.398678
+[21:22:08][INFO] Writing TTrees
+[21:22:12][INFO] SIMDATA channel got 68 parts for event 9 part 1 out of 1
+[21:22:12][INFO] Event 9 complete. Marking as flushable
+[21:22:12][INFO] HitMerger processing took 0.00138593
+[21:22:12][INFO] Launching merge kernel 
+[21:22:12][INFO] Merge and flush event 9
+HitMerger entry: 0 nprimry:    86 trackoffset: 10886 
+[21:22:12][INFO] flushing tree to file o2sim_HitsITS.root
+[21:22:12][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:22:12][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:22:12][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:22:12][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:22:12][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:22:12][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:22:12][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:22:12][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:22:12][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:22:12][INFO] flushing tree to file o2sim_HitsMID.root
+[21:22:12][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:22:12][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:22:12][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:22:12][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:22:12][INFO] outtree has file o2sim_Kine.root
+[21:22:12][INFO] Merge/flush for event 9 took 0.0151811
+[21:22:12][INFO] Writing TTrees
+[21:22:20][INFO] SIMDATA channel got 68 parts for event 10 part 1 out of 1
+[21:22:20][INFO] Event 10 complete. Marking as flushable
+[21:22:20][INFO] HitMerger processing took 0.00181794
+[21:22:20][INFO] Launching merge kernel 
+[21:22:20][INFO] Merge and flush event 10
+HitMerger entry: 0 nprimry:   227 trackoffset:  7549 
+[21:22:20][INFO] flushing tree to file o2sim_HitsITS.root
+[21:22:20][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:22:20][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:22:20][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:22:20][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:22:20][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:22:20][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:22:20][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:22:20][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:22:20][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:22:20][INFO] flushing tree to file o2sim_HitsMID.root
+[21:22:20][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:22:20][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:22:20][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:22:20][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:22:20][INFO] outtree has file o2sim_Kine.root
+[21:22:20][INFO] Merge/flush for event 10 took 0.04722
+[21:22:20][INFO] Writing TTrees
+[21:22:24][INFO] SIMDATA channel got 68 parts for event 11 part 1 out of 5
+[21:22:24][INFO] HitMerger processing took 0.00654912
+[21:22:25][INFO] SIMDATA channel got 68 parts for event 11 part 2 out of 5
+[21:22:25][INFO] HitMerger processing took 0.00564003
+[21:22:25][INFO] SIMDATA channel got 68 parts for event 11 part 4 out of 5
+[21:22:25][INFO] HitMerger processing took 0.000184774
+[21:22:25][INFO] SIMDATA channel got 68 parts for event 11 part 5 out of 5
+[21:22:25][INFO] HitMerger processing took 3.69549e-05
+[21:22:26][INFO] SIMDATA channel got 68 parts for event 11 part 3 out of 5
+[21:22:26][INFO] Event 11 complete. Marking as flushable
+[21:22:26][INFO] HitMerger processing took 0.00125289
+[21:22:26][INFO] Launching merge kernel 
+[21:22:26][INFO] Merge and flush event 11
+HitMerger entry: 4 nprimry:   500 trackoffset:  1723 
+HitMerger entry: 3 nprimry:    20 trackoffset:    20 
+HitMerger entry: 2 nprimry:   500 trackoffset:   500 
+HitMerger entry: 1 nprimry:   500 trackoffset: 49364 
+HitMerger entry: 0 nprimry:   500 trackoffset: 47489 
+merge 4     3     3     2 
+merge 3     2     2     4 
+merge 2     4     4     3 
+merge 1     1     1     1 
+merge 0     0     0     0 
+[21:22:26][INFO] flushing tree to file o2sim_HitsITS.root
+[21:22:26][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:22:27][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:22:27][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:22:27][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:22:27][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:22:27][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:22:27][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:22:27][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:22:27][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:22:27][INFO] flushing tree to file o2sim_HitsMID.root
+[21:22:27][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:22:27][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:22:27][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:22:27][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:22:27][INFO] outtree has file o2sim_Kine.root
+[21:22:27][INFO] Merge/flush for event 11 took 0.378218
+[21:22:27][INFO] Writing TTrees
+[21:22:31][INFO] SIMDATA channel got 68 parts for event 13 part 1 out of 1
+[21:22:31][INFO] Event 13 complete. Marking as flushable
+[21:22:31][INFO] HitMerger processing took 0.000922918
+[21:22:31][INFO] Launching merge kernel 
+[21:22:37][INFO] SIMDATA channel got 68 parts for event 12 part 1 out of 1
+[21:22:37][INFO] Event 12 complete. Marking as flushable
+[21:22:37][INFO] HitMerger processing took 0.00207806
+[21:22:37][INFO] Launching merge kernel 
+[21:22:37][INFO] Merge and flush event 12
+HitMerger entry: 0 nprimry:   166 trackoffset: 20014 
+[21:22:37][INFO] flushing tree to file o2sim_HitsITS.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsMID.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:22:37][INFO] outtree has file o2sim_Kine.root
+[21:22:37][INFO] Merge/flush for event 12 took 0.0191131
+[21:22:37][INFO] Merge and flush event 13
+HitMerger entry: 0 nprimry:   126 trackoffset:  3869 
+[21:22:37][INFO] flushing tree to file o2sim_HitsITS.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsMID.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:22:37][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:22:37][INFO] outtree has file o2sim_Kine.root
+[21:22:37][INFO] Merge/flush for event 13 took 0.00241899
+[21:22:37][INFO] Writing TTrees
+[21:22:38][INFO] SIMDATA channel got 68 parts for event 14 part 1 out of 1
+[21:22:38][INFO] Event 14 complete. Marking as flushable
+[21:22:38][INFO] HitMerger processing took 0.00169992
+[21:22:38][INFO] Launching merge kernel 
+[21:22:38][INFO] Merge and flush event 14
+HitMerger entry: 0 nprimry:   188 trackoffset: 11603 
+[21:22:38][INFO] flushing tree to file o2sim_HitsITS.root
+[21:22:38][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:22:38][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:22:38][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:22:38][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:22:38][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:22:38][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:22:38][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:22:38][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:22:38][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:22:38][INFO] flushing tree to file o2sim_HitsMID.root
+[21:22:38][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:22:38][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:22:38][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:22:38][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:22:38][INFO] outtree has file o2sim_Kine.root
+[21:22:38][INFO] Merge/flush for event 14 took 0.0106311
+[21:22:38][INFO] Writing TTrees
+[21:22:50][INFO] SIMDATA channel got 68 parts for event 16 part 1 out of 1
+[21:22:50][INFO] Event 16 complete. Marking as flushable
+[21:22:50][INFO] HitMerger processing took 0.0012641
+[21:22:50][INFO] Launching merge kernel 
+[21:22:53][INFO] SIMDATA channel got 68 parts for event 15 part 1 out of 1
+[21:22:53][INFO] Event 15 complete. Marking as flushable
+[21:22:53][INFO] HitMerger processing took 0.000663042
+[21:22:53][INFO] Launching merge kernel 
+[21:22:53][INFO] Merge and flush event 15
+HitMerger entry: 0 nprimry:   113 trackoffset:  4280 
+[21:22:53][INFO] flushing tree to file o2sim_HitsITS.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsMID.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:22:53][INFO] outtree has file o2sim_Kine.root
+[21:22:53][INFO] Merge/flush for event 15 took 0.00769114
+[21:22:53][INFO] Merge and flush event 16
+HitMerger entry: 0 nprimry:   187 trackoffset:  7195 
+[21:22:53][INFO] flushing tree to file o2sim_HitsITS.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsMID.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:22:53][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:22:53][INFO] outtree has file o2sim_Kine.root
+[21:22:53][INFO] Merge/flush for event 16 took 0.0175388
+[21:22:53][INFO] Writing TTrees
+[21:22:55][INFO] SIMDATA channel got 68 parts for event 18 part 1 out of 1
+[21:22:55][INFO] Event 18 complete. Marking as flushable
+[21:22:55][INFO] HitMerger processing took 0.00106001
+[21:22:55][INFO] Launching merge kernel 
+[21:23:04][INFO] SIMDATA channel got 68 parts for event 17 part 1 out of 1
+[21:23:04][INFO] Event 17 complete. Marking as flushable
+[21:23:04][INFO] HitMerger processing took 0.00251102
+[21:23:04][INFO] Launching merge kernel 
+[21:23:04][INFO] Merge and flush event 17
+HitMerger entry: 0 nprimry:   413 trackoffset: 18993 
+[21:23:04][INFO] flushing tree to file o2sim_HitsITS.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsMID.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:23:04][INFO] outtree has file o2sim_Kine.root
+[21:23:04][INFO] Merge/flush for event 17 took 0.0439899
+[21:23:04][INFO] Merge and flush event 18
+HitMerger entry: 0 nprimry:    89 trackoffset:  8171 
+[21:23:04][INFO] flushing tree to file o2sim_HitsITS.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsMID.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:23:04][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:23:04][INFO] outtree has file o2sim_Kine.root
+[21:23:04][INFO] Merge/flush for event 18 took 0.0188611
+[21:23:04][INFO] Writing TTrees
+[21:23:06][INFO] SIMDATA channel got 68 parts for event 19 part 2 out of 4
+[21:23:06][INFO] HitMerger processing took 0.00249791
+[21:23:06][INFO] SIMDATA channel got 68 parts for event 19 part 3 out of 4
+[21:23:06][INFO] HitMerger processing took 0.000138044
+[21:23:06][INFO] SIMDATA channel got 68 parts for event 19 part 4 out of 4
+[21:23:06][INFO] HitMerger processing took 0.000163078
+[21:23:11][INFO] SIMDATA channel got 68 parts for event 19 part 1 out of 4
+[21:23:11][INFO] Event 19 complete. Marking as flushable
+[21:23:11][INFO] HitMerger processing took 0.00731301
+[21:23:11][INFO] Launching merge kernel 
+[21:23:11][INFO] Merge and flush event 19
+HitMerger entry: 3 nprimry:   500 trackoffset: 75716 
+HitMerger entry: 2 nprimry:    19 trackoffset:    19 
+HitMerger entry: 1 nprimry:   500 trackoffset:   500 
+HitMerger entry: 0 nprimry:   500 trackoffset: 21775 
+merge 3     2     2     1 
+merge 2     1     1     0 
+merge 1     0     0     3 
+merge 0     3     3     2 
+[21:23:11][INFO] SIMDATA channel got 68 parts for event 20 part 2 out of 2
+[21:23:11][INFO] HitMerger processing took 0.000206947
+[21:23:11][INFO] flushing tree to file o2sim_HitsITS.root
+[21:23:11][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:23:11][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:23:11][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:23:11][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:23:11][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:23:11][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:23:11][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:23:11][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:23:11][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:23:11][INFO] flushing tree to file o2sim_HitsMID.root
+[21:23:11][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:23:11][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:23:11][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:23:11][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:23:11][INFO] outtree has file o2sim_Kine.root
+[21:23:11][INFO] Merge/flush for event 19 took 0.420279
+[21:23:11][INFO] Writing TTrees
+[21:23:22][INFO] SIMDATA channel got 68 parts for event 20 part 1 out of 2
+[21:23:22][INFO] Event 20 complete. Marking as flushable
+[21:23:22][INFO] HitMerger processing took 0.00315094
+[21:23:22][INFO] Launching merge kernel 
+[21:23:22][INFO] Merge and flush event 20
+HitMerger entry: 1 nprimry:   500 trackoffset: 22977 
+HitMerger entry: 0 nprimry:   184 trackoffset:   184 
+merge 1     0     0     1 
+merge 0     1     1     0 
+[21:23:22][INFO] flushing tree to file o2sim_HitsITS.root
+[21:23:22][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:23:22][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:23:22][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:23:22][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:23:22][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:23:22][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:23:22][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:23:22][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:23:22][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:23:22][INFO] flushing tree to file o2sim_HitsMID.root
+[21:23:22][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:23:22][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:23:22][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:23:22][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:23:22][INFO] outtree has file o2sim_Kine.root
+[21:23:22][INFO] Merge/flush for event 20 took 0.070982
+[21:23:22][INFO] Writing TTrees
+[21:23:24][INFO] SIMDATA channel got 68 parts for event 21 part 1 out of 1
+[21:23:24][INFO] Event 21 complete. Marking as flushable
+[21:23:24][INFO] HitMerger processing took 0.00239086
+[21:23:24][INFO] Launching merge kernel 
+[21:23:24][INFO] Merge and flush event 21
+HitMerger entry: 0 nprimry:   138 trackoffset: 15702 
+[21:23:24][INFO] flushing tree to file o2sim_HitsITS.root
+[21:23:24][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:23:24][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:23:24][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:23:24][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:23:24][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:23:24][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:23:24][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:23:24][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:23:24][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:23:24][INFO] flushing tree to file o2sim_HitsMID.root
+[21:23:24][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:23:24][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:23:24][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:23:24][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:23:24][INFO] outtree has file o2sim_Kine.root
+[21:23:24][INFO] Merge/flush for event 21 took 0.029388
+[21:23:24][INFO] Writing TTrees
+[21:23:36][INFO] SIMDATA channel got 68 parts for event 22 part 1 out of 1
+[21:23:36][INFO] Event 22 complete. Marking as flushable
+[21:23:36][INFO] HitMerger processing took 0.00314093
+[21:23:36][INFO] Launching merge kernel 
+[21:23:36][INFO] Merge and flush event 22
+HitMerger entry: 0 nprimry:   278 trackoffset: 19960 
+[21:23:36][INFO] flushing tree to file o2sim_HitsITS.root
+[21:23:36][INFO] SIMDATA channel got 68 parts for event 23 part 2 out of 2
+[21:23:36][INFO] HitMerger processing took 0.000192881
+[21:23:36][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:23:36][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:23:36][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:23:36][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:23:36][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:23:36][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:23:36][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:23:36][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:23:36][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:23:36][INFO] flushing tree to file o2sim_HitsMID.root
+[21:23:36][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:23:36][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:23:36][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:23:36][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:23:36][INFO] outtree has file o2sim_Kine.root
+[21:23:36][INFO] Merge/flush for event 22 took 0.0328271
+[21:23:36][INFO] Writing TTrees
+[21:23:38][INFO] SIMDATA channel got 68 parts for event 23 part 1 out of 2
+[21:23:38][INFO] Event 23 complete. Marking as flushable
+[21:23:38][INFO] HitMerger processing took 0.00347495
+[21:23:38][INFO] Launching merge kernel 
+[21:23:38][INFO] Merge and flush event 23
+HitMerger entry: 1 nprimry:   500 trackoffset: 36085 
+HitMerger entry: 0 nprimry:   278 trackoffset:   278 
+merge 1     0     0     1 
+merge 0     1     1     0 
+[21:23:38][INFO] flushing tree to file o2sim_HitsITS.root
+[21:23:38][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:23:38][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:23:38][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:23:38][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:23:38][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:23:38][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:23:38][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:23:38][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:23:38][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:23:38][INFO] flushing tree to file o2sim_HitsMID.root
+[21:23:38][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:23:38][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:23:38][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:23:38][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:23:38][INFO] outtree has file o2sim_Kine.root
+[21:23:38][INFO] Merge/flush for event 23 took 0.0846012
+[21:23:38][INFO] Writing TTrees
+[21:23:39][INFO] SIMDATA channel got 68 parts for event 24 part 2 out of 3
+[21:23:39][INFO] HitMerger processing took 0.00172091
+[21:23:39][INFO] SIMDATA channel got 68 parts for event 24 part 3 out of 3
+[21:23:39][INFO] HitMerger processing took 0.000156164
+[21:23:46][INFO] SIMDATA channel got 68 parts for event 25 part 1 out of 1
+[21:23:46][INFO] Event 25 complete. Marking as flushable
+[21:23:46][INFO] HitMerger processing took 0.00351906
+[21:23:46][INFO] Launching merge kernel 
+[21:23:48][INFO] SIMDATA channel got 68 parts for event 26 part 1 out of 1
+[21:23:48][INFO] Event 26 complete. Marking as flushable
+[21:23:48][INFO] HitMerger processing took 0.000588179
+[21:23:48][INFO] Launching merge kernel 
+[21:23:50][INFO] SIMDATA channel got 68 parts for event 24 part 1 out of 3
+[21:23:50][INFO] Event 24 complete. Marking as flushable
+[21:23:50][INFO] HitMerger processing took 0.00377202
+[21:23:50][INFO] Launching merge kernel 
+[21:23:50][INFO] Merge and flush event 24
+HitMerger entry: 2 nprimry:   500 trackoffset: 28216 
+HitMerger entry: 1 nprimry:    81 trackoffset:    81 
+HitMerger entry: 0 nprimry:   500 trackoffset: 16135 
+merge 2     1     1     0 
+merge 1     0     0     2 
+merge 0     2     2     1 
+[21:23:50][INFO] flushing tree to file o2sim_HitsITS.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsMID.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:23:50][INFO] outtree has file o2sim_Kine.root
+[21:23:50][INFO] Merge/flush for event 24 took 0.204432
+[21:23:50][INFO] Merge and flush event 25
+HitMerger entry: 0 nprimry:   245 trackoffset: 15665 
+[21:23:50][INFO] flushing tree to file o2sim_HitsITS.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsMID.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:23:50][INFO] outtree has file o2sim_Kine.root
+[21:23:50][INFO] Merge/flush for event 25 took 0.028368
+[21:23:50][INFO] Merge and flush event 26
+HitMerger entry: 0 nprimry:    69 trackoffset:   845 
+[21:23:50][INFO] flushing tree to file o2sim_HitsITS.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsMID.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:23:50][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:23:50][INFO] outtree has file o2sim_Kine.root
+[21:23:50][INFO] Merge/flush for event 26 took 0.000720024
+[21:23:50][INFO] Writing TTrees
+[21:23:52][INFO] SIMDATA channel got 68 parts for event 27 part 2 out of 3
+[21:23:52][INFO] HitMerger processing took 0.00183606
+[21:23:52][INFO] SIMDATA channel got 68 parts for event 27 part 3 out of 3
+[21:23:52][INFO] HitMerger processing took 0.000188828
+[21:24:00][INFO] SIMDATA channel got 68 parts for event 27 part 1 out of 3
+[21:24:00][INFO] Event 27 complete. Marking as flushable
+[21:24:00][INFO] HitMerger processing took 0.0049572
+[21:24:00][INFO] Launching merge kernel 
+[21:24:00][INFO] Merge and flush event 27
+HitMerger entry: 2 nprimry:   500 trackoffset: 56855 
+HitMerger entry: 1 nprimry:   473 trackoffset:   473 
+HitMerger entry: 0 nprimry:   500 trackoffset: 17477 
+merge 2     1     1     0 
+merge 1     0     0     2 
+merge 0     2     2     1 
+[21:24:00][INFO] flushing tree to file o2sim_HitsITS.root
+[21:24:01][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:24:01][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:24:01][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:24:01][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:24:01][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:24:01][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:24:01][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:24:01][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:24:01][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:24:01][INFO] flushing tree to file o2sim_HitsMID.root
+[21:24:01][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:24:01][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:24:01][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:24:01][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:24:01][INFO] outtree has file o2sim_Kine.root
+[21:24:01][INFO] Merge/flush for event 27 took 0.262386
+[21:24:01][INFO] Writing TTrees
+[21:24:02][INFO] SIMDATA channel got 68 parts for event 28 part 1 out of 4
+[21:24:02][INFO] HitMerger processing took 0.00545216
+[21:24:02][INFO] SIMDATA channel got 68 parts for event 28 part 3 out of 4
+[21:24:02][INFO] HitMerger processing took 0.000142813
+[21:24:02][INFO] SIMDATA channel got 68 parts for event 28 part 4 out of 4
+[21:24:02][INFO] HitMerger processing took 0.000165939
+[21:24:05][INFO] SIMDATA channel got 68 parts for event 28 part 2 out of 4
+[21:24:05][INFO] Event 28 complete. Marking as flushable
+[21:24:05][INFO] HitMerger processing took 0.00426698
+[21:24:05][INFO] Launching merge kernel 
+[21:24:05][INFO] Merge and flush event 28
+HitMerger entry: 3 nprimry:   500 trackoffset: 39848 
+HitMerger entry: 2 nprimry:    60 trackoffset:    60 
+HitMerger entry: 1 nprimry:   500 trackoffset:   500 
+HitMerger entry: 0 nprimry:   500 trackoffset: 43598 
+merge 3     2     2     1 
+merge 2     1     1     3 
+merge 1     3     3     2 
+merge 0     0     0     0 
+[21:24:05][INFO] flushing tree to file o2sim_HitsITS.root
+[21:24:05][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:24:05][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:24:05][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:24:05][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:24:05][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:24:05][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:24:05][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:24:05][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:24:05][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:24:05][INFO] flushing tree to file o2sim_HitsMID.root
+[21:24:05][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:24:05][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:24:05][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:24:05][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:24:05][INFO] outtree has file o2sim_Kine.root
+[21:24:05][INFO] Merge/flush for event 28 took 0.315425
+[21:24:05][INFO] Writing TTrees
+[21:24:10][INFO] SIMDATA channel got 68 parts for event 30 part 1 out of 2
+[21:24:10][INFO] HitMerger processing took 0.00391316
+[21:24:10][INFO] SIMDATA channel got 68 parts for event 30 part 2 out of 2
+[21:24:10][INFO] Event 30 complete. Marking as flushable
+[21:24:10][INFO] HitMerger processing took 0.000504017
+[21:24:10][INFO] Launching merge kernel 
+[21:24:11][INFO] SIMDATA channel got 68 parts for event 29 part 1 out of 1
+[21:24:11][INFO] Event 29 complete. Marking as flushable
+[21:24:11][INFO] HitMerger processing took 0.00269508
+[21:24:11][INFO] Launching merge kernel 
+[21:24:11][INFO] Merge and flush event 29
+HitMerger entry: 0 nprimry:   477 trackoffset: 22850 
+[21:24:11][INFO] SIMDATA channel got 68 parts for event 31 part 2 out of 2
+[21:24:11][INFO] HitMerger processing took 0.000324965
+[21:24:11][INFO] flushing tree to file o2sim_HitsITS.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsMID.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:24:11][INFO] outtree has file o2sim_Kine.root
+[21:24:11][INFO] Merge/flush for event 29 took 0.053443
+[21:24:11][INFO] Merge and flush event 30
+HitMerger entry: 1 nprimry:    30 trackoffset:    30 
+HitMerger entry: 0 nprimry:   500 trackoffset: 38406 
+merge 1     1     1     1 
+merge 0     0     0     0 
+[21:24:11][INFO] flushing tree to file o2sim_HitsITS.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsMID.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:24:11][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:24:11][INFO] outtree has file o2sim_Kine.root
+[21:24:11][INFO] Merge/flush for event 30 took 0.0960681
+[21:24:11][INFO] Writing TTrees
+[21:24:20][INFO] SIMDATA channel got 68 parts for event 31 part 1 out of 2
+[21:24:20][INFO] Event 31 complete. Marking as flushable
+[21:24:20][INFO] HitMerger processing took 0.00462103
+[21:24:20][INFO] Launching merge kernel 
+[21:24:20][INFO] Merge and flush event 31
+HitMerger entry: 1 nprimry:   500 trackoffset: 37039 
+HitMerger entry: 0 nprimry:   229 trackoffset:   229 
+merge 1     0     0     1 
+merge 0     1     1     0 
+[21:24:20][INFO] flushing tree to file o2sim_HitsITS.root
+[21:24:20][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:24:20][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:24:20][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:24:20][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:24:20][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:24:20][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:24:20][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:24:20][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:24:20][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:24:20][INFO] flushing tree to file o2sim_HitsMID.root
+[21:24:20][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:24:20][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:24:20][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:24:20][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:24:20][INFO] outtree has file o2sim_Kine.root
+[21:24:20][INFO] Merge/flush for event 31 took 0.139747
+[21:24:20][INFO] Writing TTrees
+[21:24:20][INFO] SIMDATA channel got 68 parts for event 32 part 1 out of 1
+[21:24:20][INFO] Event 32 complete. Marking as flushable
+[21:24:20][INFO] HitMerger processing took 0.000855207
+[21:24:27][INFO] SIMDATA channel got 68 parts for event 34 part 1 out of 1
+[21:24:27][INFO] Event 34 complete. Marking as flushable
+[21:24:27][INFO] HitMerger processing took 0.00144005
+[21:24:27][INFO] Launching merge kernel 
+[21:24:27][INFO] Merge and flush event 32
+HitMerger entry: 0 nprimry:   100 trackoffset:  3629 
+[21:24:27][INFO] flushing tree to file o2sim_HitsITS.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsMID.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:24:27][INFO] outtree has file o2sim_Kine.root
+[21:24:27][INFO] Merge/flush for event 32 took 0.00893903
+[21:24:27][INFO] Writing TTrees
+[21:24:27][INFO] SIMDATA channel got 68 parts for event 33 part 1 out of 1
+[21:24:27][INFO] Event 33 complete. Marking as flushable
+[21:24:27][INFO] HitMerger processing took 0.00197697
+[21:24:27][INFO] Launching merge kernel 
+[21:24:27][INFO] Merge and flush event 33
+HitMerger entry: 0 nprimry:   305 trackoffset: 12311 
+[21:24:27][INFO] flushing tree to file o2sim_HitsITS.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsMID.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:24:27][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:24:27][INFO] outtree has file o2sim_Kine.root
+[21:24:27][INFO] Merge/flush for event 33 took 0.026453
+[21:24:27][INFO] Merge and flush event 34
+HitMerger entry: 0 nprimry:   164 trackoffset:  6292 
+[21:24:27][INFO] flushing tree to file o2sim_HitsITS.root
+[21:24:28][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:24:28][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:24:28][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:24:28][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:24:28][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:24:28][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:24:28][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:24:28][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:24:28][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:24:28][INFO] flushing tree to file o2sim_HitsMID.root
+[21:24:28][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:24:28][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:24:28][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:24:28][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:24:28][INFO] outtree has file o2sim_Kine.root
+[21:24:28][INFO] Merge/flush for event 34 took 0.018043
+[21:24:28][INFO] Writing TTrees
+[21:24:30][INFO] SIMDATA channel got 68 parts for event 35 part 1 out of 1
+[21:24:30][INFO] Event 35 complete. Marking as flushable
+[21:24:30][INFO] HitMerger processing took 0.0009799
+[21:24:30][INFO] Launching merge kernel 
+[21:24:30][INFO] Merge and flush event 35
+HitMerger entry: 0 nprimry:   177 trackoffset:  4268 
+[21:24:30][INFO] flushing tree to file o2sim_HitsITS.root
+[21:24:30][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:24:30][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:24:30][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:24:30][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:24:30][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:24:30][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:24:30][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:24:30][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:24:30][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:24:30][INFO] flushing tree to file o2sim_HitsMID.root
+[21:24:30][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:24:30][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:24:30][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:24:30][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:24:30][INFO] outtree has file o2sim_Kine.root
+[21:24:30][INFO] Merge/flush for event 35 took 0.00714803
+[21:24:30][INFO] Writing TTrees
+[21:24:36][INFO] SIMDATA channel got 68 parts for event 36 part 1 out of 1
+[21:24:36][INFO] Event 36 complete. Marking as flushable
+[21:24:36][INFO] HitMerger processing took 0.00263095
+[21:24:36][INFO] Launching merge kernel 
+[21:24:36][INFO] Merge and flush event 36
+HitMerger entry: 0 nprimry:   478 trackoffset: 18746 
+[21:24:36][INFO] flushing tree to file o2sim_HitsITS.root
+[21:24:36][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:24:36][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:24:36][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:24:36][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:24:36][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:24:36][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:24:36][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:24:36][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:24:36][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:24:36][INFO] flushing tree to file o2sim_HitsMID.root
+[21:24:36][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:24:36][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:24:36][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:24:36][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:24:36][INFO] outtree has file o2sim_Kine.root
+[21:24:36][INFO] Merge/flush for event 36 took 0.070888
+[21:24:36][INFO] Writing TTrees
+[21:24:37][INFO] SIMDATA channel got 68 parts for event 37 part 1 out of 1
+[21:24:37][INFO] Event 37 complete. Marking as flushable
+[21:24:37][INFO] HitMerger processing took 0.0022192
+[21:24:37][INFO] Launching merge kernel 
+[21:24:37][INFO] Merge and flush event 37
+HitMerger entry: 0 nprimry:   161 trackoffset: 14669 
+[21:24:37][INFO] flushing tree to file o2sim_HitsITS.root
+[21:24:37][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:24:37][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:24:37][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:24:37][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:24:37][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:24:37][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:24:37][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:24:37][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:24:37][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:24:37][INFO] flushing tree to file o2sim_HitsMID.root
+[21:24:37][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:24:37][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:24:37][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:24:37][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:24:37][INFO] outtree has file o2sim_Kine.root
+[21:24:37][INFO] Merge/flush for event 37 took 0.059257
+[21:24:37][INFO] Writing TTrees
+[21:24:41][INFO] SIMDATA channel got 68 parts for event 38 part 1 out of 1
+[21:24:41][INFO] Event 38 complete. Marking as flushable
+[21:24:41][INFO] HitMerger processing took 0.000777006
+[21:24:41][INFO] Launching merge kernel 
+[21:24:41][INFO] Merge and flush event 38
+HitMerger entry: 0 nprimry:    55 trackoffset:  3157 
+[21:24:41][INFO] flushing tree to file o2sim_HitsITS.root
+[21:24:41][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:24:41][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:24:41][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:24:41][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:24:41][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:24:41][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:24:41][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:24:41][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:24:41][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:24:41][INFO] flushing tree to file o2sim_HitsMID.root
+[21:24:41][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:24:41][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:24:41][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:24:41][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:24:41][INFO] outtree has file o2sim_Kine.root
+[21:24:41][INFO] Merge/flush for event 38 took 0.000648975
+[21:24:41][INFO] Writing TTrees
+[21:24:46][INFO] SIMDATA channel got 68 parts for event 39 part 1 out of 1
+[21:24:46][INFO] Event 39 complete. Marking as flushable
+[21:24:46][INFO] HitMerger processing took 0.00159883
+[21:24:46][INFO] Launching merge kernel 
+[21:24:46][INFO] Merge and flush event 39
+HitMerger entry: 0 nprimry:   165 trackoffset: 12894 
+[21:24:46][INFO] flushing tree to file o2sim_HitsITS.root
+[21:24:46][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:24:46][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:24:46][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:24:46][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:24:46][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:24:46][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:24:46][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:24:46][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:24:46][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:24:46][INFO] flushing tree to file o2sim_HitsMID.root
+[21:24:46][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:24:46][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:24:46][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:24:46][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:24:46][INFO] outtree has file o2sim_Kine.root
+[21:24:46][INFO] Merge/flush for event 39 took 0.0192029
+[21:24:46][INFO] Writing TTrees
+[21:24:55][INFO] SIMDATA channel got 68 parts for event 40 part 1 out of 1
+[21:24:55][INFO] Event 40 complete. Marking as flushable
+[21:24:55][INFO] HitMerger processing took 0.00230384
+[21:24:55][INFO] Launching merge kernel 
+[21:24:55][INFO] Merge and flush event 40
+HitMerger entry: 0 nprimry:   240 trackoffset: 21093 
+[21:24:55][INFO] flushing tree to file o2sim_HitsITS.root
+[21:24:55][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:24:55][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:24:55][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:24:55][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:24:55][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:24:55][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:24:55][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:24:55][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:24:55][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:24:55][INFO] flushing tree to file o2sim_HitsMID.root
+[21:24:55][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:24:55][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:24:55][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:24:55][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:24:55][INFO] outtree has file o2sim_Kine.root
+[21:24:55][INFO] Merge/flush for event 40 took 0.0248671
+[21:24:55][INFO] Writing TTrees
+[21:24:55][INFO] SIMDATA channel got 68 parts for event 41 part 2 out of 2
+[21:24:55][INFO] HitMerger processing took 0.000322104
+[21:25:01][INFO] SIMDATA channel got 68 parts for event 41 part 1 out of 2
+[21:25:01][INFO] Event 41 complete. Marking as flushable
+[21:25:01][INFO] HitMerger processing took 0.00489902
+[21:25:01][INFO] Launching merge kernel 
+[21:25:01][INFO] Merge and flush event 41
+HitMerger entry: 1 nprimry:   500 trackoffset: 31158 
+HitMerger entry: 0 nprimry:   301 trackoffset:   301 
+merge 1     0     0     1 
+merge 0     1     1     0 
+[21:25:01][INFO] flushing tree to file o2sim_HitsITS.root
+[21:25:01][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:25:01][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:25:01][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:25:01][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:25:01][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:25:01][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:25:01][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:25:01][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:25:01][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:25:01][INFO] flushing tree to file o2sim_HitsMID.root
+[21:25:01][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:25:01][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:25:01][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:25:01][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:25:01][INFO] outtree has file o2sim_Kine.root
+[21:25:01][INFO] Merge/flush for event 41 took 0.168119
+[21:25:01][INFO] Writing TTrees
+[21:25:06][INFO] SIMDATA channel got 68 parts for event 42 part 2 out of 5
+[21:25:06][INFO] HitMerger processing took 0.00546312
+[21:25:07][INFO] SIMDATA channel got 68 parts for event 42 part 3 out of 5
+[21:25:07][INFO] HitMerger processing took 0.000983
+[21:25:07][INFO] SIMDATA channel got 68 parts for event 42 part 4 out of 5
+[21:25:07][INFO] HitMerger processing took 0.000172853
+[21:25:07][INFO] SIMDATA channel got 68 parts for event 42 part 5 out of 5
+[21:25:07][INFO] HitMerger processing took 0.000160933
+[21:25:12][INFO] SIMDATA channel got 68 parts for event 42 part 1 out of 5
+[21:25:12][INFO] Event 42 complete. Marking as flushable
+[21:25:12][INFO] HitMerger processing took 0.00534606
+[21:25:12][INFO] Launching merge kernel 
+[21:25:12][INFO] Merge and flush event 42
+HitMerger entry: 4 nprimry:   500 trackoffset: 49604 
+HitMerger entry: 3 nprimry:   266 trackoffset:   266 
+HitMerger entry: 2 nprimry:   500 trackoffset:   500 
+HitMerger entry: 1 nprimry:   500 trackoffset: 13382 
+HitMerger entry: 0 nprimry:   500 trackoffset: 43822 
+merge 4     3     3     2 
+merge 3     2     2     1 
+merge 2     1     1     0 
+merge 1     0     0     4 
+merge 0     4     4     3 
+[21:25:13][INFO] flushing tree to file o2sim_HitsITS.root
+[21:25:13][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:25:13][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:25:13][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:25:13][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:25:13][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:25:13][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:25:13][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:25:13][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:25:13][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:25:13][INFO] flushing tree to file o2sim_HitsMID.root
+[21:25:13][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:25:13][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:25:13][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:25:13][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:25:13][INFO] outtree has file o2sim_Kine.root
+[21:25:13][INFO] Merge/flush for event 42 took 0.543999
+[21:25:13][INFO] Writing TTrees
+[21:25:16][INFO] SIMDATA channel got 68 parts for event 43 part 1 out of 1
+[21:25:16][INFO] Event 43 complete. Marking as flushable
+[21:25:16][INFO] HitMerger processing took 0.00410295
+[21:25:16][INFO] Launching merge kernel 
+[21:25:16][INFO] Merge and flush event 43
+HitMerger entry: 0 nprimry:   196 trackoffset:  8082 
+[21:25:16][INFO] flushing tree to file o2sim_HitsITS.root
+[21:25:16][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:25:16][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:25:16][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:25:16][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:25:16][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:25:16][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:25:16][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:25:16][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:25:16][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:25:16][INFO] flushing tree to file o2sim_HitsMID.root
+[21:25:16][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:25:16][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:25:16][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:25:16][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:25:16][INFO] outtree has file o2sim_Kine.root
+[21:25:16][INFO] Merge/flush for event 43 took 0.0153928
+[21:25:16][INFO] Writing TTrees
+[21:25:23][INFO] SIMDATA channel got 68 parts for event 44 part 1 out of 1
+[21:25:23][INFO] Event 44 complete. Marking as flushable
+[21:25:23][INFO] HitMerger processing took 0.00198507
+[21:25:23][INFO] Launching merge kernel 
+[21:25:23][INFO] Merge and flush event 44
+HitMerger entry: 0 nprimry:   287 trackoffset: 14473 
+[21:25:23][INFO] flushing tree to file o2sim_HitsITS.root
+[21:25:23][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:25:23][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:25:23][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:25:23][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:25:23][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:25:23][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:25:23][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:25:23][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:25:23][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:25:23][INFO] flushing tree to file o2sim_HitsMID.root
+[21:25:23][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:25:23][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:25:23][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:25:23][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:25:23][INFO] outtree has file o2sim_Kine.root
+[21:25:23][INFO] Merge/flush for event 44 took 0.0163159
+[21:25:23][INFO] Writing TTrees
+[21:25:30][INFO] SIMDATA channel got 68 parts for event 45 part 1 out of 1
+[21:25:30][INFO] Event 45 complete. Marking as flushable
+[21:25:30][INFO] HitMerger processing took 0.00302696
+[21:25:30][INFO] Launching merge kernel 
+[21:25:30][INFO] Merge and flush event 45
+HitMerger entry: 0 nprimry:   382 trackoffset: 21249 
+[21:25:30][INFO] flushing tree to file o2sim_HitsITS.root
+[21:25:30][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:25:30][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:25:30][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:25:30][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:25:30][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:25:30][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:25:30][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:25:30][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:25:30][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:25:30][INFO] flushing tree to file o2sim_HitsMID.root
+[21:25:30][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:25:30][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:25:30][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:25:30][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:25:30][INFO] outtree has file o2sim_Kine.root
+[21:25:30][INFO] Merge/flush for event 45 took 0.0673208
+[21:25:30][INFO] Writing TTrees
+[21:25:30][INFO] SIMDATA channel got 68 parts for event 46 part 2 out of 3
+[21:25:30][INFO] HitMerger processing took 0.000551939
+[21:25:30][INFO] SIMDATA channel got 68 parts for event 46 part 3 out of 3
+[21:25:30][INFO] HitMerger processing took 0.000359774
+[21:25:34][INFO] SIMDATA channel got 68 parts for event 46 part 1 out of 3
+[21:25:34][INFO] Event 46 complete. Marking as flushable
+[21:25:34][INFO] HitMerger processing took 0.017319
+[21:25:34][INFO] Launching merge kernel 
+[21:25:34][INFO] Merge and flush event 46
+HitMerger entry: 2 nprimry:   500 trackoffset: 49072 
+HitMerger entry: 1 nprimry:   185 trackoffset:   185 
+HitMerger entry: 0 nprimry:   500 trackoffset:  1694 
+merge 2     1     1     0 
+merge 1     0     0     2 
+merge 0     2     2     1 
+[21:25:34][INFO] flushing tree to file o2sim_HitsITS.root
+[21:25:35][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:25:35][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:25:35][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:25:35][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:25:35][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:25:35][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:25:35][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:25:35][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:25:35][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:25:35][INFO] flushing tree to file o2sim_HitsMID.root
+[21:25:35][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:25:35][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:25:35][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:25:35][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:25:35][INFO] outtree has file o2sim_Kine.root
+[21:25:35][INFO] Merge/flush for event 46 took 0.188322
+[21:25:35][INFO] Writing TTrees
+[21:25:36][INFO] SIMDATA channel got 68 parts for event 47 part 2 out of 3
+[21:25:36][INFO] HitMerger processing took 0.00160003
+[21:25:36][INFO] SIMDATA channel got 68 parts for event 47 part 3 out of 3
+[21:25:36][INFO] HitMerger processing took 0.000304937
+[21:25:52][INFO] SIMDATA channel got 68 parts for event 47 part 1 out of 3
+[21:25:52][INFO] Event 47 complete. Marking as flushable
+[21:25:52][INFO] Launching merge kernel 
+[21:25:52][INFO] Merge and flush event 47
+HitMerger entry: 2 nprimry:   500 trackoffset: 34699 
+HitMerger entry: 1 nprimry:   448 trackoffset:   448 
+HitMerger entry: 0 nprimry:   500 trackoffset: 17253 
+merge 2     1     1     0 
+merge 1     0     0     2 
+merge 0     2     2     1 
+[21:25:52][INFO] HitMerger processing took 0.0037601
+[21:25:52][INFO] SIMDATA channel got 68 parts for event 48 part 2 out of 2
+[21:25:52][INFO] HitMerger processing took 0.000194073
+[21:25:52][INFO] SIMDATA channel got 68 parts for event 48 part 1 out of 2
+[21:25:52][INFO] Event 48 complete. Marking as flushable
+[21:25:52][INFO] HitMerger processing took 0.00209308
+[21:25:52][INFO] flushing tree to file o2sim_HitsITS.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsMID.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:25:52][INFO] outtree has file o2sim_Kine.root
+[21:25:52][INFO] Merge/flush for event 47 took 0.183693
+[21:25:52][INFO] Merge and flush event 48
+HitMerger entry: 1 nprimry:   500 trackoffset: 19091 
+HitMerger entry: 0 nprimry:    45 trackoffset:    45 
+merge 1     0     0     1 
+merge 0     1     1     0 
+[21:25:52][INFO] flushing tree to file o2sim_HitsITS.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsMID.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:25:52][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:25:52][INFO] outtree has file o2sim_Kine.root
+[21:25:52][INFO] Merge/flush for event 48 took 0.080682
+[21:25:52][INFO] Writing TTrees
+[21:25:53][INFO] SIMDATA channel got 68 parts for event 49 part 1 out of 1
+[21:25:53][INFO] Event 49 complete. Marking as flushable
+[21:25:53][INFO] HitMerger processing took 0.00226903
+[21:25:53][INFO] SIMDATA channel got 68 parts for event 50 part 2 out of 2
+[21:25:53][INFO] HitMerger processing took 0.000138998
+[21:26:02][INFO] SIMDATA channel got 68 parts for event 51 part 1 out of 1
+[21:26:02][INFO] Event 51 complete. Marking as flushable
+[21:26:02][INFO] HitMerger processing took 0.00193691
+[21:26:02][INFO] Launching merge kernel 
+[21:26:02][INFO] Merge and flush event 49
+HitMerger entry: 0 nprimry:   284 trackoffset: 19050 
+[21:26:02][INFO] flushing tree to file o2sim_HitsITS.root
+[21:26:02][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:26:02][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:26:02][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:26:02][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:26:02][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:26:02][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:26:02][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:26:02][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:26:02][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:26:02][INFO] flushing tree to file o2sim_HitsMID.root
+[21:26:02][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:26:02][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:26:02][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:26:02][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:26:02][INFO] outtree has file o2sim_Kine.root
+[21:26:02][INFO] Merge/flush for event 49 took 0.0464821
+[21:26:02][INFO] Writing TTrees
+[21:26:03][INFO] SIMDATA channel got 68 parts for event 50 part 1 out of 2
+[21:26:03][INFO] Event 50 complete. Marking as flushable
+[21:26:03][INFO] HitMerger processing took 0.00371504
+[21:26:03][INFO] Launching merge kernel 
+[21:26:03][INFO] Merge and flush event 50
+HitMerger entry: 1 nprimry:   500 trackoffset: 37211 
+HitMerger entry: 0 nprimry:   397 trackoffset:   397 
+merge 1     0     0     1 
+merge 0     1     1     0 
+[21:26:03][INFO] flushing tree to file o2sim_HitsITS.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsMID.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:26:03][INFO] outtree has file o2sim_Kine.root
+[21:26:03][INFO] Merge/flush for event 50 took 0.100398
+[21:26:03][INFO] Merge and flush event 51
+HitMerger entry: 0 nprimry:   253 trackoffset: 15595 
+[21:26:03][INFO] flushing tree to file o2sim_HitsITS.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsMID.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:26:03][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:26:03][INFO] outtree has file o2sim_Kine.root
+[21:26:03][INFO] Merge/flush for event 51 took 0.0429628
+[21:26:03][INFO] Writing TTrees
+[21:26:03][INFO] SIMDATA channel got 68 parts for event 52 part 2 out of 2
+[21:26:03][INFO] HitMerger processing took 0.000763893
+[21:26:13][INFO] SIMDATA channel got 68 parts for event 53 part 1 out of 3
+[21:26:13][INFO] HitMerger processing took 0.00328302
+[21:26:14][INFO] SIMDATA channel got 68 parts for event 52 part 1 out of 2
+[21:26:14][INFO] Event 52 complete. Marking as flushable
+[21:26:14][INFO] HitMerger processing took 0.00508308
+[21:26:14][INFO] SIMDATA channel got 68 parts for event 53 part 3 out of 3
+[21:26:14][INFO] HitMerger processing took 0.000155926
+[21:26:14][INFO] Launching merge kernel 
+[21:26:14][INFO] Merge and flush event 52
+HitMerger entry: 1 nprimry:   500 trackoffset: 41349 
+HitMerger entry: 0 nprimry:   471 trackoffset:  5505 
+merge 1     0     0     1 
+merge 0     1     1     0 
+[21:26:14][INFO] flushing tree to file o2sim_HitsITS.root
+[21:26:14][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:26:14][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:26:14][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:26:14][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:26:14][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:26:14][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:26:14][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:26:14][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:26:14][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:26:14][INFO] flushing tree to file o2sim_HitsMID.root
+[21:26:14][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:26:14][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:26:14][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:26:14][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:26:14][INFO] outtree has file o2sim_Kine.root
+[21:26:14][INFO] Merge/flush for event 52 took 0.135495
+[21:26:14][INFO] Writing TTrees
+[21:26:16][INFO] SIMDATA channel got 68 parts for event 53 part 2 out of 3
+[21:26:16][INFO] Event 53 complete. Marking as flushable
+[21:26:16][INFO] HitMerger processing took 0.00244093
+[21:26:16][INFO] Launching merge kernel 
+[21:26:16][INFO] Merge and flush event 53
+HitMerger entry: 2 nprimry:   500 trackoffset: 22107 
+HitMerger entry: 1 nprimry:   400 trackoffset:   400 
+HitMerger entry: 0 nprimry:   500 trackoffset: 41782 
+merge 2     1     1     2 
+merge 1     2     2     1 
+merge 0     0     0     0 
+[21:26:16][INFO] flushing tree to file o2sim_HitsITS.root
+[21:26:16][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:26:16][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:26:16][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:26:16][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:26:16][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:26:16][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:26:16][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:26:16][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:26:16][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:26:16][INFO] flushing tree to file o2sim_HitsMID.root
+[21:26:16][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:26:16][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:26:16][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:26:16][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:26:16][INFO] outtree has file o2sim_Kine.root
+[21:26:16][INFO] Merge/flush for event 53 took 0.18463
+[21:26:16][INFO] Writing TTrees
+[21:26:24][INFO] SIMDATA channel got 68 parts for event 55 part 1 out of 3
+[21:26:25][INFO] HitMerger processing took 0.00565386
+[21:26:25][INFO] SIMDATA channel got 68 parts for event 55 part 2 out of 3
+[21:26:25][INFO] HitMerger processing took 0.000346899
+[21:26:25][INFO] SIMDATA channel got 68 parts for event 55 part 3 out of 3
+[21:26:25][INFO] Event 55 complete. Marking as flushable
+[21:26:25][INFO] HitMerger processing took 0.000380993
+[21:26:25][INFO] Launching merge kernel 
+[21:26:27][INFO] SIMDATA channel got 68 parts for event 54 part 1 out of 1
+[21:26:27][INFO] Event 54 complete. Marking as flushable
+[21:26:27][INFO] HitMerger processing took 0.00176501
+[21:26:27][INFO] Launching merge kernel 
+[21:26:27][INFO] Merge and flush event 54
+HitMerger entry: 0 nprimry:   187 trackoffset: 14741 
+[21:26:27][INFO] flushing tree to file o2sim_HitsITS.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsMID.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:26:27][INFO] outtree has file o2sim_Kine.root
+[21:26:27][INFO] Merge/flush for event 54 took 0.0167918
+[21:26:27][INFO] Merge and flush event 55
+HitMerger entry: 2 nprimry:   168 trackoffset:   168 
+HitMerger entry: 1 nprimry:   500 trackoffset:  1898 
+HitMerger entry: 0 nprimry:   500 trackoffset: 59103 
+merge 2     2     2     2 
+merge 1     1     1     1 
+merge 0     0     0     0 
+[21:26:27][INFO] flushing tree to file o2sim_HitsITS.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsMID.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:26:27][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:26:27][INFO] outtree has file o2sim_Kine.root
+[21:26:27][INFO] Merge/flush for event 55 took 0.179066
+[21:26:27][INFO] Writing TTrees
+[21:26:28][INFO] SIMDATA channel got 68 parts for event 56 part 2 out of 3
+[21:26:28][INFO] HitMerger processing took 0.000953913
+[21:26:28][INFO] SIMDATA channel got 68 parts for event 56 part 3 out of 3
+[21:26:28][INFO] HitMerger processing took 0.00228405
+[21:26:36][INFO] SIMDATA channel got 68 parts for event 57 part 1 out of 1
+[21:26:36][INFO] Event 57 complete. Marking as flushable
+[21:26:36][INFO] HitMerger processing took 0.00159097
+[21:26:36][INFO] Launching merge kernel 
+[21:26:37][INFO] SIMDATA channel got 68 parts for event 56 part 1 out of 3
+[21:26:37][INFO] Event 56 complete. Marking as flushable
+[21:26:37][INFO] HitMerger processing took 0.00493908
+[21:26:37][INFO] Launching merge kernel 
+[21:26:37][INFO] Merge and flush event 56
+HitMerger entry: 2 nprimry:   500 trackoffset: 57562 
+HitMerger entry: 1 nprimry:   294 trackoffset:   294 
+HitMerger entry: 0 nprimry:   500 trackoffset:  5705 
+merge 2     1     1     0 
+merge 1     0     0     2 
+merge 0     2     2     1 
+[21:26:37][INFO] flushing tree to file o2sim_HitsITS.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsMID.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:26:37][INFO] outtree has file o2sim_Kine.root
+[21:26:37][INFO] Merge/flush for event 56 took 0.162051
+[21:26:37][INFO] Merge and flush event 57
+HitMerger entry: 0 nprimry:   123 trackoffset:  5274 
+[21:26:37][INFO] flushing tree to file o2sim_HitsITS.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsMID.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:26:37][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:26:37][INFO] outtree has file o2sim_Kine.root
+[21:26:37][INFO] Merge/flush for event 57 took 0.00692081
+[21:26:37][INFO] Writing TTrees
+[21:26:46][INFO] SIMDATA channel got 68 parts for event 58 part 1 out of 1
+[21:26:46][INFO] Event 58 complete. Marking as flushable
+[21:26:46][INFO] HitMerger processing took 0.0011971
+[21:26:46][INFO] SIMDATA channel got 68 parts for event 59 part 2 out of 2
+[21:26:46][INFO] HitMerger processing took 0.00022912
+[21:26:48][INFO] SIMDATA channel got 68 parts for event 59 part 1 out of 2
+[21:26:48][INFO] Event 59 complete. Marking as flushable
+[21:26:48][INFO] HitMerger processing took 0.00388193
+[21:26:48][INFO] Launching merge kernel 
+[21:26:48][INFO] Merge and flush event 58
+HitMerger entry: 0 nprimry:    93 trackoffset:  6336 
+[21:26:48][INFO] flushing tree to file o2sim_HitsITS.root
+[21:26:48][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:26:48][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:26:48][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:26:48][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:26:48][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:26:48][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:26:48][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:26:48][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:26:48][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:26:48][INFO] flushing tree to file o2sim_HitsMID.root
+[21:26:48][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:26:48][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:26:48][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:26:48][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:26:48][INFO] outtree has file o2sim_Kine.root
+[21:26:48][INFO] Merge/flush for event 58 took 0.00497007
+[21:26:48][INFO] Merge and flush event 59
+HitMerger entry: 1 nprimry:   500 trackoffset: 33398 
+HitMerger entry: 0 nprimry:   119 trackoffset:   119 
+merge 1     0     0     1 
+merge 0     1     1     0 
+[21:26:48][INFO] flushing tree to file o2sim_HitsITS.root
+[21:26:49][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:26:49][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:26:49][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:26:49][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:26:49][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:26:49][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:26:49][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:26:49][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:26:49][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:26:49][INFO] flushing tree to file o2sim_HitsMID.root
+[21:26:49][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:26:49][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:26:49][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:26:49][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:26:49][INFO] outtree has file o2sim_Kine.root
+[21:26:49][INFO] Merge/flush for event 59 took 0.143002
+[21:26:49][INFO] Writing TTrees
+[21:26:55][INFO] SIMDATA channel got 68 parts for event 61 part 1 out of 1
+[21:26:55][INFO] Event 61 complete. Marking as flushable
+[21:26:55][INFO] HitMerger processing took 0.00266099
+[21:26:55][INFO] Launching merge kernel 
+[21:26:59][INFO] SIMDATA channel got 68 parts for event 60 part 1 out of 1
+[21:26:59][INFO] Event 60 complete. Marking as flushable
+[21:26:59][INFO] HitMerger processing took 0.00373507
+[21:26:59][INFO] Launching merge kernel 
+[21:26:59][INFO] Merge and flush event 60
+HitMerger entry: 0 nprimry:   461 trackoffset: 29689 
+[21:26:59][INFO] flushing tree to file o2sim_HitsITS.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsMID.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:26:59][INFO] outtree has file o2sim_Kine.root
+[21:26:59][INFO] Merge/flush for event 60 took 0.107888
+[21:26:59][INFO] Merge and flush event 61
+HitMerger entry: 0 nprimry:   419 trackoffset: 20418 
+[21:26:59][INFO] flushing tree to file o2sim_HitsITS.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsMID.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:26:59][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:26:59][INFO] outtree has file o2sim_Kine.root
+[21:26:59][INFO] Merge/flush for event 61 took 0.058387
+[21:26:59][INFO] Writing TTrees
+[21:27:02][INFO] SIMDATA channel got 68 parts for event 62 part 1 out of 1
+[21:27:02][INFO] Event 62 complete. Marking as flushable
+[21:27:02][INFO] HitMerger processing took 0.00101805
+[21:27:02][INFO] Launching merge kernel 
+[21:27:02][INFO] Merge and flush event 62
+HitMerger entry: 0 nprimry:   136 trackoffset:  7264 
+[21:27:02][INFO] flushing tree to file o2sim_HitsITS.root
+[21:27:02][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:27:02][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:27:02][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:27:02][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:27:02][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:27:02][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:27:02][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:27:02][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:27:02][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:27:02][INFO] flushing tree to file o2sim_HitsMID.root
+[21:27:02][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:27:02][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:27:02][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:27:02][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:27:02][INFO] outtree has file o2sim_Kine.root
+[21:27:02][INFO] Merge/flush for event 62 took 0.0060389
+[21:27:02][INFO] Writing TTrees
+[21:27:02][INFO] SIMDATA channel got 68 parts for event 63 part 2 out of 2
+[21:27:02][INFO] HitMerger processing took 0.000485897
+[21:27:06][INFO] SIMDATA channel got 68 parts for event 63 part 1 out of 2
+[21:27:06][INFO] Event 63 complete. Marking as flushable
+[21:27:06][INFO] HitMerger processing took 0.00606012
+[21:27:06][INFO] Launching merge kernel 
+[21:27:06][INFO] Merge and flush event 63
+HitMerger entry: 1 nprimry:   500 trackoffset: 22156 
+HitMerger entry: 0 nprimry:   319 trackoffset:   319 
+merge 1     0     0     1 
+merge 0     1     1     0 
+[21:27:06][INFO] flushing tree to file o2sim_HitsITS.root
+[21:27:06][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:27:06][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:27:06][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:27:06][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:27:06][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:27:06][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:27:06][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:27:06][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:27:06][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:27:06][INFO] flushing tree to file o2sim_HitsMID.root
+[21:27:06][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:27:06][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:27:06][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:27:06][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:27:06][INFO] outtree has file o2sim_Kine.root
+[21:27:06][INFO] Merge/flush for event 63 took 0.067565
+[21:27:06][INFO] Writing TTrees
+[21:27:15][INFO] SIMDATA channel got 68 parts for event 65 part 1 out of 2
+[21:27:15][INFO] HitMerger processing took 0.00658512
+[21:27:15][INFO] SIMDATA channel got 68 parts for event 65 part 2 out of 2
+[21:27:15][INFO] Event 65 complete. Marking as flushable
+[21:27:15][INFO] HitMerger processing took 0.000599861
+[21:27:15][INFO] Launching merge kernel 
+[21:27:18][INFO] SIMDATA channel got 68 parts for event 64 part 1 out of 1
+[21:27:18][INFO] Event 64 complete. Marking as flushable
+[21:27:18][INFO] HitMerger processing took 0.00149608
+[21:27:18][INFO] Launching merge kernel 
+[21:27:18][INFO] Merge and flush event 64
+HitMerger entry: 0 nprimry:   205 trackoffset:  9982 
+[21:27:18][INFO] flushing tree to file o2sim_HitsITS.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsMID.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:27:18][INFO] outtree has file o2sim_Kine.root
+[21:27:18][INFO] Merge/flush for event 64 took 0.00802994
+[21:27:18][INFO] Merge and flush event 65
+HitMerger entry: 1 nprimry:   286 trackoffset:   286 
+HitMerger entry: 0 nprimry:   500 trackoffset: 33345 
+merge 1     1     1     1 
+merge 0     0     0     0 
+[21:27:18][INFO] flushing tree to file o2sim_HitsITS.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsMID.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:27:18][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:27:18][INFO] outtree has file o2sim_Kine.root
+[21:27:18][INFO] Merge/flush for event 65 took 0.128652
+[21:27:18][INFO] Writing TTrees
+[21:27:19][INFO] SIMDATA channel got 68 parts for event 66 part 2 out of 3
+[21:27:19][INFO] HitMerger processing took 0.00102782
+[21:27:19][INFO] SIMDATA channel got 68 parts for event 66 part 3 out of 3
+[21:27:19][INFO] HitMerger processing took 0.000132799
+[21:27:24][INFO] SIMDATA channel got 68 parts for event 66 part 1 out of 3
+[21:27:24][INFO] Event 66 complete. Marking as flushable
+[21:27:24][INFO] HitMerger processing took 0.00496101
+[21:27:24][INFO] Launching merge kernel 
+[21:27:24][INFO] Merge and flush event 66
+HitMerger entry: 2 nprimry:   500 trackoffset: 62445 
+HitMerger entry: 1 nprimry:    13 trackoffset:    13 
+HitMerger entry: 0 nprimry:   500 trackoffset:  8796 
+merge 2     1     1     0 
+merge 1     0     0     2 
+merge 0     2     2     1 
+[21:27:24][INFO] flushing tree to file o2sim_HitsITS.root
+[21:27:24][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:27:24][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:27:24][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:27:24][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:27:24][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:27:24][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:27:24][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:27:24][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:27:24][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:27:24][INFO] flushing tree to file o2sim_HitsMID.root
+[21:27:24][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:27:24][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:27:24][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:27:24][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:27:24][INFO] outtree has file o2sim_Kine.root
+[21:27:24][INFO] Merge/flush for event 66 took 0.140131
+[21:27:24][INFO] Writing TTrees
+[21:27:25][INFO] SIMDATA channel got 68 parts for event 67 part 1 out of 1
+[21:27:25][INFO] Event 67 complete. Marking as flushable
+[21:27:25][INFO] HitMerger processing took 0.000994921
+[21:27:25][INFO] Launching merge kernel 
+[21:27:25][INFO] Merge and flush event 67
+HitMerger entry: 0 nprimry:   167 trackoffset:  3736 
+[21:27:25][INFO] flushing tree to file o2sim_HitsITS.root
+[21:27:25][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:27:25][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:27:25][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:27:25][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:27:25][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:27:25][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:27:25][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:27:25][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:27:25][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:27:25][INFO] flushing tree to file o2sim_HitsMID.root
+[21:27:25][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:27:25][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:27:25][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:27:25][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:27:25][INFO] outtree has file o2sim_Kine.root
+[21:27:25][INFO] Merge/flush for event 67 took 0.00303197
+[21:27:25][INFO] Writing TTrees
+[21:27:29][INFO] SIMDATA channel got 68 parts for event 68 part 2 out of 4
+[21:27:29][INFO] HitMerger processing took 0.00247502
+[21:27:29][INFO] SIMDATA channel got 68 parts for event 68 part 3 out of 4
+[21:27:29][INFO] HitMerger processing took 0.000178099
+[21:27:29][INFO] SIMDATA channel got 68 parts for event 68 part 4 out of 4
+[21:27:29][INFO] HitMerger processing took 0.000132084
+[21:27:32][INFO] SIMDATA channel got 68 parts for event 69 part 1 out of 1
+[21:27:32][INFO] Event 69 complete. Marking as flushable
+[21:27:32][INFO] HitMerger processing took 0.00208688
+[21:27:32][INFO] Launching merge kernel 
+[21:27:33][INFO] SIMDATA channel got 68 parts for event 68 part 1 out of 4
+[21:27:33][INFO] Event 68 complete. Marking as flushable
+[21:27:33][INFO] HitMerger processing took 0.00428796
+[21:27:33][INFO] Launching merge kernel 
+[21:27:33][INFO] Merge and flush event 68
+HitMerger entry: 3 nprimry:   500 trackoffset: 39791 
+HitMerger entry: 2 nprimry:    11 trackoffset:    11 
+HitMerger entry: 1 nprimry:   500 trackoffset:   500 
+HitMerger entry: 0 nprimry:   500 trackoffset: 29645 
+merge 3     2     2     1 
+merge 2     1     1     0 
+merge 1     0     0     3 
+merge 0     3     3     2 
+[21:27:33][INFO] flushing tree to file o2sim_HitsITS.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsMID.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:27:33][INFO] outtree has file o2sim_Kine.root
+[21:27:33][INFO] Merge/flush for event 68 took 0.23655
+[21:27:33][INFO] Merge and flush event 69
+HitMerger entry: 0 nprimry:   165 trackoffset: 23386 
+[21:27:33][INFO] flushing tree to file o2sim_HitsITS.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsMID.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:27:33][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:27:33][INFO] outtree has file o2sim_Kine.root
+[21:27:33][INFO] Merge/flush for event 69 took 0.0221169
+[21:27:33][INFO] Writing TTrees
+[21:27:40][INFO] SIMDATA channel got 68 parts for event 70 part 1 out of 1
+[21:27:40][INFO] Event 70 complete. Marking as flushable
+[21:27:40][INFO] HitMerger processing took 0.00178695
+[21:27:40][INFO] Launching merge kernel 
+[21:27:40][INFO] Merge and flush event 70
+HitMerger entry: 0 nprimry:   218 trackoffset: 13353 
+[21:27:40][INFO] flushing tree to file o2sim_HitsITS.root
+[21:27:40][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:27:40][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:27:40][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:27:40][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:27:40][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:27:40][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:27:40][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:27:40][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:27:40][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:27:40][INFO] flushing tree to file o2sim_HitsMID.root
+[21:27:40][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:27:40][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:27:40][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:27:40][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:27:40][INFO] outtree has file o2sim_Kine.root
+[21:27:40][INFO] Merge/flush for event 70 took 0.023376
+[21:27:40][INFO] Writing TTrees
+[21:27:44][INFO] SIMDATA channel got 68 parts for event 71 part 1 out of 1
+[21:27:44][INFO] Event 71 complete. Marking as flushable
+[21:27:44][INFO] HitMerger processing took 0.00150394
+[21:27:44][INFO] SIMDATA channel got 68 parts for event 72 part 2 out of 2
+[21:27:44][INFO] HitMerger processing took 0.000136852
+[21:27:44][INFO] Launching merge kernel 
+[21:27:44][INFO] Merge and flush event 71
+HitMerger entry: 0 nprimry:   122 trackoffset:  6744 
+[21:27:44][INFO] flushing tree to file o2sim_HitsITS.root
+[21:27:44][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:27:44][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:27:44][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:27:44][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:27:44][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:27:44][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:27:44][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:27:44][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:27:44][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:27:44][INFO] flushing tree to file o2sim_HitsMID.root
+[21:27:44][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:27:44][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:27:44][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:27:44][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:27:44][INFO] outtree has file o2sim_Kine.root
+[21:27:44][INFO] Merge/flush for event 71 took 0.00732708
+[21:27:44][INFO] Writing TTrees
+[21:27:54][INFO] SIMDATA channel got 68 parts for event 72 part 1 out of 2
+[21:27:54][INFO] Event 72 complete. Marking as flushable
+[21:27:54][INFO] HitMerger processing took 0.00397205
+[21:27:54][INFO] Launching merge kernel 
+[21:27:54][INFO] Merge and flush event 72
+HitMerger entry: 1 nprimry:   500 trackoffset: 36223 
+HitMerger entry: 0 nprimry:   143 trackoffset:   143 
+merge 1     0     0     1 
+merge 0     1     1     0 
+[21:27:54][INFO] SIMDATA channel got 68 parts for event 73 part 1 out of 1
+[21:27:54][INFO] Event 73 complete. Marking as flushable
+[21:27:54][INFO] HitMerger processing took 0.00254798
+[21:27:54][INFO] flushing tree to file o2sim_HitsITS.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsMID.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:27:54][INFO] outtree has file o2sim_Kine.root
+[21:27:54][INFO] Merge/flush for event 72 took 0.0830369
+[21:27:54][INFO] Merge and flush event 73
+HitMerger entry: 0 nprimry:   444 trackoffset: 27747 
+[21:27:54][INFO] flushing tree to file o2sim_HitsITS.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsMID.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:27:54][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:27:54][INFO] outtree has file o2sim_Kine.root
+[21:27:54][INFO] Merge/flush for event 73 took 0.0858481
+[21:27:54][INFO] Writing TTrees
+[21:28:01][INFO] SIMDATA channel got 68 parts for event 74 part 1 out of 1
+[21:28:01][INFO] Event 74 complete. Marking as flushable
+[21:28:01][INFO] HitMerger processing took 0.00145411
+[21:28:01][INFO] Launching merge kernel 
+[21:28:01][INFO] Merge and flush event 74
+HitMerger entry: 0 nprimry:   143 trackoffset: 11106 
+[21:28:01][INFO] flushing tree to file o2sim_HitsITS.root
+[21:28:01][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:28:01][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:28:01][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:28:01][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:28:01][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:28:01][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:28:01][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:28:01][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:28:01][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:28:01][INFO] flushing tree to file o2sim_HitsMID.root
+[21:28:01][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:28:01][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:28:01][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:28:01][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:28:01][INFO] outtree has file o2sim_Kine.root
+[21:28:01][INFO] Merge/flush for event 74 took 0.00984406
+[21:28:01][INFO] Writing TTrees
+[21:28:03][INFO] SIMDATA channel got 68 parts for event 75 part 2 out of 3
+[21:28:03][INFO] HitMerger processing took 0.00285292
+[21:28:03][INFO] SIMDATA channel got 68 parts for event 75 part 3 out of 3
+[21:28:03][INFO] HitMerger processing took 0.00020504
+[21:28:06][INFO] SIMDATA channel got 68 parts for event 75 part 1 out of 3
+[21:28:06][INFO] Event 75 complete. Marking as flushable
+[21:28:06][INFO] HitMerger processing took 0.00650001
+[21:28:06][INFO] Launching merge kernel 
+[21:28:06][INFO] Merge and flush event 75
+HitMerger entry: 2 nprimry:   500 trackoffset: 79406 
+HitMerger entry: 1 nprimry:   394 trackoffset:   394 
+HitMerger entry: 0 nprimry:   500 trackoffset: 21795 
+merge 2     1     1     0 
+merge 1     0     0     2 
+merge 0     2     2     1 
+[21:28:06][INFO] flushing tree to file o2sim_HitsITS.root
+[21:28:06][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:28:06][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:28:06][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:28:06][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:28:06][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:28:06][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:28:06][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:28:06][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:28:06][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:28:06][INFO] flushing tree to file o2sim_HitsMID.root
+[21:28:06][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:28:06][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:28:06][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:28:06][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:28:06][INFO] outtree has file o2sim_Kine.root
+[21:28:06][INFO] Merge/flush for event 75 took 0.365868
+[21:28:06][INFO] Writing TTrees
+[21:28:15][INFO] SIMDATA channel got 68 parts for event 77 part 1 out of 1
+[21:28:15][INFO] Event 77 complete. Marking as flushable
+[21:28:15][INFO] HitMerger processing took 0.002316
+[21:28:15][INFO] Launching merge kernel 
+[21:28:20][INFO] SIMDATA channel got 68 parts for event 76 part 1 out of 1
+[21:28:20][INFO] Event 76 complete. Marking as flushable
+[21:28:20][INFO] HitMerger processing took 0.000715017
+[21:28:20][INFO] Launching merge kernel 
+[21:28:20][INFO] Merge and flush event 76
+HitMerger entry: 0 nprimry:    48 trackoffset:  1830 
+[21:28:20][INFO] flushing tree to file o2sim_HitsITS.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsMID.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:28:20][INFO] outtree has file o2sim_Kine.root
+[21:28:20][INFO] Merge/flush for event 76 took 0.00078702
+[21:28:20][INFO] Merge and flush event 77
+HitMerger entry: 0 nprimry:   172 trackoffset: 24004 
+[21:28:20][INFO] flushing tree to file o2sim_HitsITS.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsMID.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:28:20][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:28:20][INFO] outtree has file o2sim_Kine.root
+[21:28:20][INFO] Merge/flush for event 77 took 0.0262818
+[21:28:20][INFO] Writing TTrees
+[21:28:25][INFO] SIMDATA channel got 68 parts for event 78 part 1 out of 1
+[21:28:25][INFO] Event 78 complete. Marking as flushable
+[21:28:25][INFO] HitMerger processing took 0.0016849
+[21:28:25][INFO] Launching merge kernel 
+[21:28:25][INFO] Merge and flush event 78
+HitMerger entry: 0 nprimry:   226 trackoffset: 18108 
+[21:28:25][INFO] flushing tree to file o2sim_HitsITS.root
+[21:28:25][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:28:25][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:28:25][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:28:25][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:28:25][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:28:25][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:28:25][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:28:25][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:28:25][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:28:25][INFO] flushing tree to file o2sim_HitsMID.root
+[21:28:25][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:28:25][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:28:25][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:28:25][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:28:25][INFO] outtree has file o2sim_Kine.root
+[21:28:25][INFO] Merge/flush for event 78 took 0.0241139
+[21:28:25][INFO] Writing TTrees
+[21:28:29][INFO] SIMDATA channel got 68 parts for event 79 part 1 out of 1
+[21:28:29][INFO] Event 79 complete. Marking as flushable
+[21:28:29][INFO] HitMerger processing took 0.003057
+[21:28:29][INFO] Launching merge kernel 
+[21:28:29][INFO] Merge and flush event 79
+HitMerger entry: 0 nprimry:   370 trackoffset: 31945 
+[21:28:29][INFO] flushing tree to file o2sim_HitsITS.root
+[21:28:29][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:28:29][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:28:29][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:28:29][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:28:29][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:28:29][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:28:29][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:28:29][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:28:29][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:28:29][INFO] flushing tree to file o2sim_HitsMID.root
+[21:28:29][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:28:29][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:28:29][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:28:29][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:28:29][INFO] outtree has file o2sim_Kine.root
+[21:28:29][INFO] Merge/flush for event 79 took 0.0634429
+[21:28:29][INFO] Writing TTrees
+[21:28:35][INFO] SIMDATA channel got 68 parts for event 80 part 1 out of 1
+[21:28:35][INFO] Event 80 complete. Marking as flushable
+[21:28:35][INFO] HitMerger processing took 0.00286984
+[21:28:42][INFO] SIMDATA channel got 68 parts for event 81 part 1 out of 1
+[21:28:42][INFO] Event 81 complete. Marking as flushable
+[21:28:42][INFO] HitMerger processing took 0.00930405
+[21:28:42][INFO] Launching merge kernel 
+[21:28:42][INFO] Merge and flush event 80
+HitMerger entry: 0 nprimry:   290 trackoffset: 21044 
+[21:28:42][INFO] flushing tree to file o2sim_HitsITS.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsMID.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:28:42][INFO] outtree has file o2sim_Kine.root
+[21:28:42][INFO] Merge/flush for event 80 took 0.0436342
+[21:28:42][INFO] Merge and flush event 81
+HitMerger entry: 0 nprimry:   358 trackoffset: 18120 
+[21:28:42][INFO] flushing tree to file o2sim_HitsITS.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsMID.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:28:42][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:28:42][INFO] outtree has file o2sim_Kine.root
+[21:28:42][INFO] Merge/flush for event 81 took 0.0322089
+[21:28:42][INFO] Writing TTrees
+[21:28:52][INFO] SIMDATA channel got 68 parts for event 83 part 1 out of 3
+[21:28:52][INFO] HitMerger processing took 0.00380087
+[21:28:52][INFO] SIMDATA channel got 68 parts for event 82 part 1 out of 1
+[21:28:52][INFO] Event 82 complete. Marking as flushable
+[21:28:52][INFO] HitMerger processing took 0.00200701
+[21:28:52][INFO] SIMDATA channel got 68 parts for event 83 part 3 out of 3
+[21:28:52][INFO] HitMerger processing took 0.000150919
+[21:28:52][INFO] Launching merge kernel 
+[21:28:52][INFO] Merge and flush event 82
+HitMerger entry: 0 nprimry:   297 trackoffset: 13656 
+[21:28:52][INFO] flushing tree to file o2sim_HitsITS.root
+[21:28:53][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:28:53][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:28:53][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:28:53][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:28:53][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:28:53][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:28:53][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:28:53][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:28:53][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:28:53][INFO] flushing tree to file o2sim_HitsMID.root
+[21:28:53][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:28:53][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:28:53][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:28:53][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:28:53][INFO] outtree has file o2sim_Kine.root
+[21:28:53][INFO] Merge/flush for event 82 took 0.0379632
+[21:28:53][INFO] Writing TTrees
+[21:28:55][INFO] SIMDATA channel got 68 parts for event 83 part 2 out of 3
+[21:28:55][INFO] Event 83 complete. Marking as flushable
+[21:28:55][INFO] HitMerger processing took 0.00267792
+[21:28:55][INFO] Launching merge kernel 
+[21:28:55][INFO] Merge and flush event 83
+HitMerger entry: 2 nprimry:   500 trackoffset: 28143 
+HitMerger entry: 1 nprimry:   454 trackoffset:   454 
+HitMerger entry: 0 nprimry:   500 trackoffset: 37706 
+merge 2     1     1     2 
+merge 1     2     2     1 
+merge 0     0     0     0 
+[21:28:55][INFO] flushing tree to file o2sim_HitsITS.root
+[21:28:55][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:28:55][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:28:55][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:28:55][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:28:55][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:28:55][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:28:55][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:28:55][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:28:55][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:28:55][INFO] flushing tree to file o2sim_HitsMID.root
+[21:28:55][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:28:55][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:28:55][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:28:55][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:28:55][INFO] outtree has file o2sim_Kine.root
+[21:28:55][INFO] Merge/flush for event 83 took 0.234355
+[21:28:55][INFO] Writing TTrees
+[21:28:55][INFO] SIMDATA channel got 68 parts for event 84 part 2 out of 2
+[21:28:55][INFO] HitMerger processing took 0.000256062
+[21:29:02][INFO] SIMDATA channel got 68 parts for event 84 part 1 out of 2
+[21:29:02][INFO] Event 84 complete. Marking as flushable
+[21:29:02][INFO] HitMerger processing took 0.00488687
+[21:29:04][INFO] SIMDATA channel got 68 parts for event 86 part 1 out of 1
+[21:29:04][INFO] Event 86 complete. Marking as flushable
+[21:29:04][INFO] HitMerger processing took 0.000792027
+[21:29:04][INFO] Launching merge kernel 
+[21:29:04][INFO] Merge and flush event 84
+HitMerger entry: 1 nprimry:   500 trackoffset: 53216 
+HitMerger entry: 0 nprimry:   412 trackoffset:   412 
+merge 1     0     0     1 
+merge 0     1     1     0 
+[21:29:04][INFO] flushing tree to file o2sim_HitsITS.root
+[21:29:04][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:29:04][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:29:04][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:29:04][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:29:04][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:29:04][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:29:04][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:29:04][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:29:04][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:29:04][INFO] flushing tree to file o2sim_HitsMID.root
+[21:29:04][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:29:04][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:29:04][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:29:04][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:29:04][INFO] outtree has file o2sim_Kine.root
+[21:29:04][INFO] Merge/flush for event 84 took 0.138872
+[21:29:04][INFO] Writing TTrees
+[21:29:07][INFO] SIMDATA channel got 68 parts for event 85 part 1 out of 1
+[21:29:07][INFO] Event 85 complete. Marking as flushable
+[21:29:07][INFO] HitMerger processing took 0.00173807
+[21:29:07][INFO] Launching merge kernel 
+[21:29:07][INFO] Merge and flush event 85
+HitMerger entry: 0 nprimry:   220 trackoffset: 12661 
+[21:29:07][INFO] flushing tree to file o2sim_HitsITS.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsMID.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:29:07][INFO] outtree has file o2sim_Kine.root
+[21:29:07][INFO] Merge/flush for event 85 took 0.0392609
+[21:29:07][INFO] Merge and flush event 86
+HitMerger entry: 0 nprimry:    47 trackoffset:   687 
+[21:29:07][INFO] flushing tree to file o2sim_HitsITS.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsMID.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:29:07][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:29:07][INFO] outtree has file o2sim_Kine.root
+[21:29:07][INFO] Merge/flush for event 86 took 0.000498056
+[21:29:07][INFO] Writing TTrees
+[21:29:11][INFO] SIMDATA channel got 68 parts for event 87 part 1 out of 1
+[21:29:11][INFO] Event 87 complete. Marking as flushable
+[21:29:12][INFO] HitMerger processing took 0.000551939
+[21:29:12][INFO] Launching merge kernel 
+[21:29:12][INFO] Merge and flush event 87
+HitMerger entry: 0 nprimry:    87 trackoffset:  1607 
+[21:29:12][INFO] flushing tree to file o2sim_HitsITS.root
+[21:29:12][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:29:12][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:29:12][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:29:12][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:29:12][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:29:12][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:29:12][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:29:12][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:29:12][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:29:12][INFO] flushing tree to file o2sim_HitsMID.root
+[21:29:12][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:29:12][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:29:12][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:29:12][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:29:12][INFO] outtree has file o2sim_Kine.root
+[21:29:12][INFO] Merge/flush for event 87 took 0.000558138
+[21:29:12][INFO] Writing TTrees
+[21:29:18][INFO] SIMDATA channel got 68 parts for event 89 part 1 out of 1
+[21:29:18][INFO] Event 89 complete. Marking as flushable
+[21:29:18][INFO] HitMerger processing took 0.00128508
+[21:29:19][INFO] SIMDATA channel got 68 parts for event 88 part 1 out of 1
+[21:29:19][INFO] Event 88 complete. Marking as flushable
+[21:29:19][INFO] HitMerger processing took 0.00353098
+[21:29:19][INFO] Launching merge kernel 
+[21:29:19][INFO] Merge and flush event 88
+HitMerger entry: 0 nprimry:   413 trackoffset: 42294 
+[21:29:19][INFO] flushing tree to file o2sim_HitsITS.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsMID.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:29:19][INFO] outtree has file o2sim_Kine.root
+[21:29:19][INFO] Merge/flush for event 88 took 0.0631218
+[21:29:19][INFO] Merge and flush event 89
+HitMerger entry: 0 nprimry:   157 trackoffset: 12660 
+[21:29:19][INFO] flushing tree to file o2sim_HitsITS.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsMID.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:29:19][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:29:19][INFO] outtree has file o2sim_Kine.root
+[21:29:19][INFO] Merge/flush for event 89 took 0.0149782
+[21:29:19][INFO] Writing TTrees
+[21:29:24][INFO] SIMDATA channel got 68 parts for event 90 part 1 out of 1
+[21:29:24][INFO] Event 90 complete. Marking as flushable
+[21:29:24][INFO] HitMerger processing took 0.00395107
+[21:29:28][INFO] SIMDATA channel got 68 parts for event 91 part 1 out of 3
+[21:29:28][INFO] HitMerger processing took 0.00498295
+[21:29:28][INFO] SIMDATA channel got 68 parts for event 91 part 3 out of 3
+[21:29:28][INFO] HitMerger processing took 0.000136137
+[21:29:30][INFO] SIMDATA channel got 68 parts for event 91 part 2 out of 3
+[21:29:30][INFO] Event 91 complete. Marking as flushable
+[21:29:30][INFO] HitMerger processing took 0.0013411
+[21:29:30][INFO] Launching merge kernel 
+[21:29:30][INFO] Merge and flush event 90
+HitMerger entry: 0 nprimry:   146 trackoffset: 13701 
+[21:29:30][INFO] flushing tree to file o2sim_HitsITS.root
+[21:29:30][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:29:30][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:29:30][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:29:30][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:29:30][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:29:30][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:29:30][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:29:30][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:29:30][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:29:30][INFO] flushing tree to file o2sim_HitsMID.root
+[21:29:30][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:29:30][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:29:30][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:29:30][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:29:30][INFO] outtree has file o2sim_Kine.root
+[21:29:30][INFO] Merge/flush for event 90 took 0.0124509
+[21:29:30][INFO] Merge and flush event 91
+HitMerger entry: 2 nprimry:   500 trackoffset: 11809 
+HitMerger entry: 1 nprimry:   230 trackoffset:   230 
+HitMerger entry: 0 nprimry:   500 trackoffset: 54611 
+merge 2     1     1     2 
+merge 1     2     2     1 
+merge 0     0     0     0 
+[21:29:30][INFO] flushing tree to file o2sim_HitsITS.root
+[21:29:31][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:29:31][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:29:31][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:29:31][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:29:31][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:29:31][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:29:31][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:29:31][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:29:31][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:29:31][INFO] flushing tree to file o2sim_HitsMID.root
+[21:29:31][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:29:31][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:29:31][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:29:31][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:29:31][INFO] outtree has file o2sim_Kine.root
+[21:29:31][INFO] Merge/flush for event 91 took 0.239351
+[21:29:31][INFO] Writing TTrees
+[21:29:32][INFO] SIMDATA channel got 68 parts for event 92 part 1 out of 1
+[21:29:32][INFO] Event 92 complete. Marking as flushable
+[21:29:32][INFO] HitMerger processing took 0.00190496
+[21:29:32][INFO] Launching merge kernel 
+[21:29:32][INFO] Merge and flush event 92
+HitMerger entry: 0 nprimry:   350 trackoffset: 19672 
+[21:29:32][INFO] flushing tree to file o2sim_HitsITS.root
+[21:29:32][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:29:32][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:29:32][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:29:32][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:29:32][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:29:32][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:29:32][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:29:32][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:29:32][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:29:32][INFO] flushing tree to file o2sim_HitsMID.root
+[21:29:32][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:29:32][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:29:32][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:29:32][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:29:32][INFO] outtree has file o2sim_Kine.root
+[21:29:32][INFO] Merge/flush for event 92 took 0.031673
+[21:29:32][INFO] Writing TTrees
+[21:29:38][INFO] SIMDATA channel got 68 parts for event 93 part 1 out of 1
+[21:29:38][INFO] Event 93 complete. Marking as flushable
+[21:29:38][INFO] HitMerger processing took 0.000674963
+[21:29:38][INFO] SIMDATA channel got 68 parts for event 94 part 2 out of 2
+[21:29:38][INFO] HitMerger processing took 0.000151873
+[21:29:38][INFO] Launching merge kernel 
+[21:29:38][INFO] Merge and flush event 93
+HitMerger entry: 0 nprimry:    55 trackoffset:  1838 
+[21:29:38][INFO] flushing tree to file o2sim_HitsITS.root
+[21:29:38][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:29:38][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:29:38][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:29:38][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:29:38][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:29:38][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:29:38][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:29:38][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:29:38][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:29:38][INFO] flushing tree to file o2sim_HitsMID.root
+[21:29:38][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:29:38][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:29:38][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:29:38][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:29:38][INFO] outtree has file o2sim_Kine.root
+[21:29:38][INFO] Merge/flush for event 93 took 0.000542164
+[21:29:38][INFO] Writing TTrees
+[21:29:41][INFO] SIMDATA channel got 68 parts for event 94 part 1 out of 2
+[21:29:41][INFO] Event 94 complete. Marking as flushable
+[21:29:41][INFO] HitMerger processing took 0.00293398
+[21:29:41][INFO] Launching merge kernel 
+[21:29:41][INFO] Merge and flush event 94
+HitMerger entry: 1 nprimry:   500 trackoffset: 19991 
+HitMerger entry: 0 nprimry:    26 trackoffset:    26 
+merge 1     0     0     1 
+merge 0     1     1     0 
+[21:29:41][INFO] flushing tree to file o2sim_HitsITS.root
+[21:29:41][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:29:41][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:29:41][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:29:41][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:29:41][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:29:41][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:29:41][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:29:41][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:29:41][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:29:41][INFO] flushing tree to file o2sim_HitsMID.root
+[21:29:41][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:29:41][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:29:41][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:29:41][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:29:41][INFO] outtree has file o2sim_Kine.root
+[21:29:41][INFO] Merge/flush for event 94 took 0.0679729
+[21:29:41][INFO] Writing TTrees
+[21:29:48][INFO] SIMDATA channel got 68 parts for event 95 part 2 out of 5
+[21:29:48][INFO] HitMerger processing took 0.00739789
+[21:29:50][INFO] SIMDATA channel got 68 parts for event 95 part 3 out of 5
+[21:29:50][INFO] HitMerger processing took 0.00166178
+[21:29:50][INFO] SIMDATA channel got 68 parts for event 95 part 4 out of 5
+[21:29:50][INFO] HitMerger processing took 0.000188112
+[21:29:50][INFO] SIMDATA channel got 68 parts for event 95 part 5 out of 5
+[21:29:50][INFO] HitMerger processing took 0.000566959
+[21:29:52][INFO] SIMDATA channel got 68 parts for event 95 part 1 out of 5
+[21:29:52][INFO] Event 95 complete. Marking as flushable
+[21:29:52][INFO] HitMerger processing took 0.0048871
+[21:29:52][INFO] Launching merge kernel 
+[21:29:52][INFO] Merge and flush event 95
+HitMerger entry: 4 nprimry:   500 trackoffset: 49229 
+HitMerger entry: 3 nprimry:   345 trackoffset:   345 
+HitMerger entry: 2 nprimry:   500 trackoffset:   500 
+HitMerger entry: 1 nprimry:   500 trackoffset: 14419 
+HitMerger entry: 0 nprimry:   500 trackoffset: 71361 
+merge 4     3     3     2 
+merge 3     2     2     1 
+merge 2     1     1     0 
+merge 1     0     0     4 
+merge 0     4     4     3 
+[21:29:52][INFO] flushing tree to file o2sim_HitsITS.root
+[21:29:52][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:29:53][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:29:53][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:29:53][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:29:53][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:29:53][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:29:53][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:29:53][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:29:53][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:29:53][INFO] flushing tree to file o2sim_HitsMID.root
+[21:29:53][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:29:53][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:29:53][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:29:53][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:29:53][INFO] outtree has file o2sim_Kine.root
+[21:29:53][INFO] Merge/flush for event 95 took 0.421168
+[21:29:53][INFO] Writing TTrees
+[21:30:00][INFO] SIMDATA channel got 68 parts for event 97 part 1 out of 1
+[21:30:00][INFO] Event 97 complete. Marking as flushable
+[21:30:00][INFO] HitMerger processing took 0.0020771
+[21:30:04][INFO] SIMDATA channel got 68 parts for event 96 part 1 out of 1
+[21:30:04][INFO] Event 96 complete. Marking as flushable
+[21:30:04][INFO] HitMerger processing took 0.0025692
+[21:30:04][INFO] Launching merge kernel 
+[21:30:04][INFO] Merge and flush event 96
+HitMerger entry: 0 nprimry:   246 trackoffset: 18071 
+[21:30:04][INFO] flushing tree to file o2sim_HitsITS.root
+[21:30:04][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:30:04][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:30:04][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:30:04][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:30:04][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:30:04][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:30:04][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:30:04][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:30:04][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:30:04][INFO] flushing tree to file o2sim_HitsMID.root
+[21:30:04][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:30:04][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:30:04][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:30:04][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:30:04][INFO] outtree has file o2sim_Kine.root
+[21:30:04][INFO] Merge/flush for event 96 took 0.038666
+[21:30:04][INFO] Merge and flush event 97
+HitMerger entry: 0 nprimry:   394 trackoffset: 21884 
+[21:30:05][INFO] flushing tree to file o2sim_HitsITS.root
+[21:30:05][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:30:05][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:30:05][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:30:05][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:30:05][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:30:05][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:30:05][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:30:05][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:30:05][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:30:05][INFO] flushing tree to file o2sim_HitsMID.root
+[21:30:05][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:30:05][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:30:05][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:30:05][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:30:05][INFO] outtree has file o2sim_Kine.root
+[21:30:05][INFO] Merge/flush for event 97 took 0.034157
+[21:30:05][INFO] Writing TTrees
+[21:30:09][INFO] SIMDATA channel got 68 parts for event 98 part 2 out of 4
+[21:30:09][INFO] HitMerger processing took 0.00538993
+[21:30:09][INFO] SIMDATA channel got 68 parts for event 98 part 3 out of 4
+[21:30:09][INFO] HitMerger processing took 0.000159025
+[21:30:09][INFO] SIMDATA channel got 68 parts for event 98 part 4 out of 4
+[21:30:09][INFO] HitMerger processing took 0.000162125
+[21:30:13][INFO] SIMDATA channel got 68 parts for event 98 part 1 out of 4
+[21:30:14][INFO] Event 98 complete. Marking as flushable
+[21:30:14][INFO] HitMerger processing took 0.00529695
+[21:30:14][INFO] Launching merge kernel 
+[21:30:14][INFO] Merge and flush event 98
+HitMerger entry: 3 nprimry:   500 trackoffset: 48243 
+HitMerger entry: 2 nprimry:   143 trackoffset:   143 
+HitMerger entry: 1 nprimry:   500 trackoffset:   500 
+HitMerger entry: 0 nprimry:   500 trackoffset: 38669 
+merge 3     2     2     1 
+merge 2     1     1     0 
+merge 1     0     0     3 
+merge 0     3     3     2 
+[21:30:14][INFO] flushing tree to file o2sim_HitsITS.root
+[21:30:14][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:30:14][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:30:14][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:30:14][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:30:14][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:30:14][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:30:14][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:30:14][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:30:14][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:30:14][INFO] flushing tree to file o2sim_HitsMID.root
+[21:30:14][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:30:14][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:30:14][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:30:14][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:30:14][INFO] outtree has file o2sim_Kine.root
+[21:30:14][INFO] Merge/flush for event 98 took 0.354779
+[21:30:14][INFO] Writing TTrees
+[21:30:14][INFO] SIMDATA channel got 68 parts for event 99 part 2 out of 2
+[21:30:14][INFO] HitMerger processing took 0.00037384
+[21:30:17][INFO] SIMDATA channel got 68 parts for event 99 part 1 out of 2
+[21:30:17][INFO] Event 99 complete. Marking as flushable
+[21:30:17][INFO] HitMerger processing took 0.00462079
+[21:30:19][INFO] SIMDATA channel got 68 parts for event 100 part 2 out of 3
+[21:30:19][INFO] HitMerger processing took 0.00511694
+[21:30:19][INFO] SIMDATA channel got 68 parts for event 100 part 3 out of 3
+[21:30:19][INFO] HitMerger processing took 0.000203848
+[21:30:29][INFO] SIMDATA channel got 68 parts for event 100 part 1 out of 3
+[21:30:29][INFO] Event 100 complete. Marking as flushable
+[21:30:29][INFO] ALL EVENTS HERE; CHECKSUM 5050
+[21:30:29][INFO] Launching merge kernel 
+[21:30:29][INFO] Merge and flush event 99
+HitMerger entry: 1 nprimry:   500 trackoffset: 48701 
+HitMerger entry: 0 nprimry:   421 trackoffset:   986 
+merge 1     0     0     1 
+merge 0     1     1     0 
+[21:30:29][INFO] flushing tree to file o2sim_HitsITS.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsMID.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:30:29][INFO] outtree has file o2sim_Kine.root
+[21:30:29][INFO] Merge/flush for event 99 took 0.098413
+[21:30:29][INFO] Merge and flush event 100
+HitMerger entry: 2 nprimry:   500 trackoffset: 42505 
+HitMerger entry: 1 nprimry:   279 trackoffset:   279 
+HitMerger entry: 0 nprimry:   500 trackoffset: 22235 
+merge 2     1     1     0 
+merge 1     0     0     2 
+merge 0     2     2     1 
+[21:30:29][INFO] flushing tree to file o2sim_HitsITS.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsTPC.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsTRD.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsTOF.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsPHS.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsCPV.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsEMC.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsHMP.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsMFT.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsMCH.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsMID.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsZDC.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsFT0.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsFV0.root
+[21:30:29][INFO] flushing tree to file o2sim_HitsFDD.root
+[21:30:29][INFO] outtree has file o2sim_Kine.root
+[21:30:29][INFO] Merge/flush for event 100 took 0.194155
+[21:30:29][INFO] Writing TTrees
+[21:30:29][INFO] Launching merge kernel 
+[21:30:29][INFO] HitMerger processing took 0.436964
+[21:30:29][STATE] RUNNING ---> READY

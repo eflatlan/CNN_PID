@@ -171,8 +171,8 @@ public:
         		
         		
         		// instead, set the threshold ? : 
-        		thetaCer = TMath::ASin(1. / getRefIdx);
-            // return pos; // ef: TODO this was changed to the above
+        		//thetaCer = TMath::ASin(1. / getRefIdx);
+            return pos; // ef: TODO this was changed to the above
         }
         
 
@@ -521,7 +521,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 		Printf("\n\n enter checkOver(%s) phiPhoton %.4f, phiP %.4f", hadronType, phiPhoton, phiP);
 
 
-		LOGP(info, "Some radius checks checkOver rPhoton {} : [sizeVec - 2]{} [sizeVec - 1]{} [0]{} [1]{}", rPhoton, vec[sizeVec - 2][3],vec[sizeVec - 1][3],vec[0][3],vec[1][3]);
+		//LOGP(info, "Some radius checks checkOver rPhoton {} : [sizeVec - 2]{} [sizeVec - 1]{} [0]{} [1]{}", rPhoton, vec[sizeVec - 2][3],vec[sizeVec - 1][3],vec[0][3],vec[1][3]);
 		
 		if (phiC < TMath::Pi()/2)
 			initValue = 0;
@@ -807,7 +807,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 
 		Printf("\n\n enter checkUnder(%s) phiPhoton %.4f, phiP %.4f",  hadronType, phiPhoton, phiP);
 
-		LOGP(info, "Some radius checks checkUnder rPhoton {} : [sizeVec - 2]{} [sizeVec - 1]{} [0]{} [1]{}", rPhoton,vec[sizeVec - 2][3],vec[sizeVec - 1][3],vec[0][3],vec[1][3]);
+		//LOGP(info, "Some radius checks checkUnder rPhoton {} : [sizeVec - 2]{} [sizeVec - 1]{} [0]{} [1]{}", rPhoton,vec[sizeVec - 2][3],vec[sizeVec - 1][3],vec[0][3],vec[1][3]);
 		
 
 

@@ -300,9 +300,7 @@ void process()
                 float xMip = track.getMipX(), yMip = track.getMipY();
                 track.getHMPIDtrk(xRad,  yRad,  xPc,  yPc,  th,  ph);
 
-                thTrackMip->Fill(xMip, yMip);
-                thTrackPc->Fill(xPc, yPc);
-                thTrackRad->Fill(xRad, yRad);
+
 
 
 

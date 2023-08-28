@@ -1,0 +1,100 @@
+Summary of cut settings per media.
+-- Default cut settings:
+	CUTGAM = 0.001
+	CUTELE = 0.001
+	CUTNEU = 0.001
+	CUTHAD = 0.001
+	CUTMUO = 0.001
+	BCUTE = 0.001
+	BCUTM = 0.001
+	DCUTE = 0.001
+	DCUTM = 0.001
+	PPCUTM = 0.001
+	TOFMAX = 0.1
+-- Custom cut settings for single media:
+Global medium ID 4 (module = HMP, medium name = HMP_C6F14):
+	CUTGAM = 0.0001
+	CUTELE = 0.0001
+	CUTNEU = 0.0001
+	CUTMUO = 0.0001
+	DCUTE = 0.0005
+	DCUTM = 0.0005
+Global medium ID 5 (module = HMP, medium name = HMP_SiO2):
+	CUTGAM = 0.0001
+	CUTELE = 0.0001
+	CUTNEU = 0.0001
+	CUTMUO = 0.0001
+	DCUTE = 0.001
+	DCUTM = 0.001
+Global medium ID 6 (module = HMP, medium name = HMP_CH4):
+	CUTGAM = 5e-05
+	CUTELE = 1e-05
+	CUTNEU = 0.0001
+	CUTMUO = 0.0001
+	DCUTE = 0.0001
+	DCUTM = 0.0001
+Global medium ID 7 (module = HMP, medium name = HMP_CsI):
+	CUTGAM = 1e-05
+	CUTELE = 1e-05
+	CUTNEU = 0.0001
+	CUTMUO = 0.0001
+	DCUTE = 5e-05
+	DCUTM = 5e-05
+Global medium ID 10 (module = HMP, medium name = HMP_Cu):
+	CUTGAM = 1e-05
+	CUTELE = 1e-05
+	CUTNEU = 0.0001
+	CUTMUO = 0.0001
+	DCUTE = 5e-05
+	DCUTM = 5e-05
+Global medium ID 11 (module = HMP, medium name = HMP_W):
+	CUTGAM = 1e-05
+	CUTELE = 1e-05
+	CUTNEU = 0.0001
+	CUTMUO = 0.0001
+	DCUTE = 5e-05
+	DCUTM = 5e-05
+Global medium ID 12 (module = HMP, medium name = HMP_Al):
+	CUTGAM = 1e-05
+	CUTELE = 1e-05
+	CUTNEU = 0.0001
+	CUTMUO = 0.0001
+	DCUTE = 5e-05
+	DCUTM = 5e-05
+Summary of process settings per media.
+-- Default process settings:
+	PAIR = 1
+	COMP = 1
+	PHOT = 1
+	PFIS = 0
+	DRAY = 0
+	ANNI = 1
+	BREM = 1
+	HADR = 1
+	MUNU = 1
+	DCAY = 1
+	LOSS = 2
+	MULS = 1
+	CKOV = 1
+-- Custom process settings for single media:
+Global medium ID 4 (module = HMP, medium name = HMP_C6F14):
+	DRAY = 1
+	LOSS = 1
+Global medium ID 5 (module = HMP, medium name = HMP_SiO2):
+	DRAY = 1
+	LOSS = 1
+Global medium ID 6 (module = HMP, medium name = HMP_CH4):
+	DRAY = 1
+	LOSS = 1
+Global medium ID 7 (module = HMP, medium name = HMP_CsI):
+	DRAY = 1
+	LOSS = 1
+Global medium ID 10 (module = HMP, medium name = HMP_Cu):
+	DRAY = 1
+	LOSS = 1
+Global medium ID 11 (module = HMP, medium name = HMP_W):
+	DRAY = 1
+	LOSS = 1
+Global medium ID 12 (module = HMP, medium name = HMP_Al):
+	DRAY = 1
+	LOSS = 1

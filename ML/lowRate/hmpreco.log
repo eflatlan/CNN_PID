@@ -1,0 +1,180 @@
+Running: TIME="#walltime %e" /usr/bin/time --output=hmpreco.log_time ./hmpreco.log_tmp.sh
+[INFO] Initialising O2 Data Processing Layer. Driver PID: 78529.
+[INFO] Driver listening on port: 26609
+[INFO] Rate limiting set up at 500MB distributed over 1 readers
+[INFO] O2 Data Processing Layer initialised. We brake for nobody.
+[INFO] Optimised build. O2DEBUG / LOG(debug) / LOGF(debug) / assert statement will not be shown.
+[INFO] Redeployment of configuration asked.
+[INFO] Starting internal-dpl-clock on pid 78569
+[INFO] Starting HMP-DigitReader on pid 78570
+[INFO] Starting HMP-Clusterization on pid 78571
+[INFO] Starting HMPClustersWriter on pid 78572
+[INFO] Redeployment of configuration done.
+[78569:internal-dpl-clock]: [INFO] Instrumenting crash signals
+[78569:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 78569
+[78569:internal-dpl-clock]: [16:37:30][INFO] 
+[78569:internal-dpl-clock]:       ______      _    _______  _________ 
+[78569:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[78569:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[78569:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[78569:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[78569:internal-dpl-clock]: 
+[78569:internal-dpl-clock]: [16:37:30][STATE] Starting FairMQ state machine --> IDLE
+[78569:internal-dpl-clock]: [16:37:30][STATE] IDLE ---> INITIALIZING DEVICE
+[78569:internal-dpl-clock]: [16:37:30][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[78569:internal-dpl-clock]: [16:37:30][STATE] INITIALIZED ---> BINDING
+[78569:internal-dpl-clock]: [16:37:30][STATE] BINDING ---> BOUND
+[78569:internal-dpl-clock]: [16:37:30][STATE] BOUND ---> CONNECTING
+[78569:internal-dpl-clock]: [16:37:30][STATE] CONNECTING ---> DEVICE READY
+[78569:internal-dpl-clock]: [16:37:30][STATE] DEVICE READY ---> INITIALIZING TASK
+[78569:internal-dpl-clock]: [16:37:30][STATE] INITIALIZING TASK ---> READY
+[78569:internal-dpl-clock]: [16:37:30][STATE] READY ---> RUNNING
+[78569:internal-dpl-clock]: [16:37:30][INFO] fair::mq::Device running...
+[78569:internal-dpl-clock]: [16:37:30][INFO] LHCPeriod is not available, using current month AUG
+[78570:HMP-DigitReader]: [INFO] Instrumenting crash signals
+[78570:HMP-DigitReader]: [INFO] Spawing new device HMP-DigitReader in process with pid 78570
+[78570:HMP-DigitReader]: [16:37:30][INFO] 
+[78570:HMP-DigitReader]:       ______      _    _______  _________ 
+[78570:HMP-DigitReader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[78570:HMP-DigitReader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[78570:HMP-DigitReader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[78570:HMP-DigitReader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[78570:HMP-DigitReader]: 
+[78570:HMP-DigitReader]: [16:37:30][STATE] Starting FairMQ state machine --> IDLE
+[78570:HMP-DigitReader]: [16:37:30][STATE] IDLE ---> INITIALIZING DEVICE
+[78569:internal-dpl-clock]: [16:37:30][INFO] Correctly handshaken websocket connection.
+[78571:HMP-Clusterization]: [INFO] Instrumenting crash signals
+[78571:HMP-Clusterization]: [INFO] Spawing new device HMP-Clusterization in process with pid 78571
+[78571:HMP-Clusterization]: [16:37:30][INFO] 
+[78571:HMP-Clusterization]:       ______      _    _______  _________ 
+[78571:HMP-Clusterization]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[78571:HMP-Clusterization]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[78571:HMP-Clusterization]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[78571:HMP-Clusterization]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[78571:HMP-Clusterization]: 
+[78571:HMP-Clusterization]: [16:37:30][STATE] Starting FairMQ state machine --> IDLE
+[78572:HMPClustersWriter]: [INFO] Instrumenting crash signals
+[78572:HMPClustersWriter]: [INFO] Spawing new device HMPClustersWriter in process with pid 78572
+[78572:HMPClustersWriter]: [16:37:30][INFO] 
+[78572:HMPClustersWriter]:       ______      _    _______  _________ 
+[78572:HMPClustersWriter]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[78572:HMPClustersWriter]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[78572:HMPClustersWriter]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[78572:HMPClustersWriter]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[78572:HMPClustersWriter]: 
+[78572:HMPClustersWriter]: [16:37:30][STATE] Starting FairMQ state machine --> IDLE
+[78571:HMP-Clusterization]: [16:37:30][STATE] IDLE ---> INITIALIZING DEVICE
+[78571:HMP-Clusterization]: [16:37:30][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[78571:HMP-Clusterization]: [16:37:30][STATE] INITIALIZED ---> BINDING
+[78571:HMP-Clusterization]: [16:37:30][STATE] BINDING ---> BOUND
+[78571:HMP-Clusterization]: [16:37:30][STATE] BOUND ---> CONNECTING
+[78571:HMP-Clusterization]: [16:37:30][STATE] CONNECTING ---> DEVICE READY
+[78571:HMP-Clusterization]: [16:37:30][STATE] DEVICE READY ---> INITIALIZING TASK
+[78571:HMP-Clusterization]: [16:37:30][STATE] INITIALIZING TASK ---> READY
+[78571:HMP-Clusterization]: [16:37:30][STATE] READY ---> RUNNING
+[78571:HMP-Clusterization]: [16:37:30][INFO] fair::mq::Device running...
+[78571:HMP-Clusterization]: [16:37:30][INFO] LHCPeriod is not available, using current month AUG
+[78571:HMP-Clusterization]: [16:37:30][INFO] Correctly handshaken websocket connection.
+[78572:HMPClustersWriter]: [16:37:30][STATE] IDLE ---> INITIALIZING DEVICE
+[78572:HMPClustersWriter]: [16:37:30][INFO] 0: branch  HMPIDclusters set up
+[78572:HMPClustersWriter]: [16:37:30][INFO] 1: branch  HMPIDDigitTopology set up
+[78572:HMPClustersWriter]: [16:37:30][INFO] 2: branch  InteractionRecords set up
+[78572:HMPClustersWriter]: [16:37:30][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[78572:HMPClustersWriter]: [16:37:30][STATE] INITIALIZED ---> BINDING
+[78572:HMPClustersWriter]: [16:37:30][STATE] BINDING ---> BOUND
+[78572:HMPClustersWriter]: [16:37:30][STATE] BOUND ---> CONNECTING
+[78572:HMPClustersWriter]: [16:37:30][STATE] CONNECTING ---> DEVICE READY
+[78572:HMPClustersWriter]: [16:37:30][STATE] DEVICE READY ---> INITIALIZING TASK
+[78572:HMPClustersWriter]: [16:37:30][STATE] INITIALIZING TASK ---> READY
+[78572:HMPClustersWriter]: [16:37:30][STATE] READY ---> RUNNING
+[78572:HMPClustersWriter]: [16:37:30][INFO] fair::mq::Device running...
+[78572:HMPClustersWriter]: [16:37:30][INFO] LHCPeriod is not available, using current month AUG
+[78572:HMPClustersWriter]: [16:37:30][INFO] Correctly handshaken websocket connection.
+[78570:HMP-DigitReader]: [16:37:30][INFO] HMPID DigitWriterSpec::init() : Trying to read File : /root/CNN_PID/ML/lowRate/hmpiddigits.root
+[78570:HMP-DigitReader]: [16:37:31][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[78570:HMP-DigitReader]: [16:37:31][STATE] INITIALIZED ---> BINDING
+[78570:HMP-DigitReader]: [16:37:31][STATE] BINDING ---> BOUND
+[78570:HMP-DigitReader]: [16:37:31][STATE] BOUND ---> CONNECTING
+[78570:HMP-DigitReader]: [16:37:31][STATE] CONNECTING ---> DEVICE READY
+[78570:HMP-DigitReader]: [16:37:31][STATE] DEVICE READY ---> INITIALIZING TASK
+[78570:HMP-DigitReader]: [16:37:31][STATE] INITIALIZING TASK ---> READY
+[78570:HMP-DigitReader]: [16:37:31][STATE] READY ---> RUNNING
+[78570:HMP-DigitReader]: [16:37:31][INFO] fair::mq::Device running...
+[78570:HMP-DigitReader]: [16:37:31][INFO] LHCPeriod is not available, using current month AUG
+[78570:HMP-DigitReader]: [16:37:31][INFO] [HMPID DigitsReader - run() ] digits  = 363
+[78570:HMP-DigitReader]: [16:37:31][INFO] End DigitsReader !  digits = 363 Execution time = 0.66
+[78570:HMP-DigitReader]: [16:37:31][INFO] Sending end-of-stream message to channel from_HMP-DigitReader_to_HMP-Clusterization
+[78570:HMP-DigitReader]: [16:37:31][INFO] Correctly handshaken websocket connection.
+[78571:HMP-Clusterization]: [16:37:31][INFO] [HMPID DClusterization - run() ] Enter ...
+[78571:HMP-Clusterization]: [16:37:31][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu7
+[78571:HMP-Clusterization]: [16:37:31][INFO] [HMPID DClusterization - return from dig2clu
+[78571:HMP-Clusterization]: [16:37:31][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu10
+[78571:HMP-Clusterization]: [16:37:31][INFO] [HMPID DClusterization - return from dig2clu
+[78571:HMP-Clusterization]: [16:37:31][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu44
+[78571:HMP-Clusterization]: [16:37:31][INFO] [HMPID DClusterization - return from dig2clu
+[78571:HMP-Clusterization]: [16:37:31][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu30
+[78571:HMP-Clusterization]: [16:37:31][INFO] [HMPID DClusterization - return from dig2clu
+[78571:HMP-Clusterization]: [16:37:31][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu75
+[78571:HMP-Clusterization]: [16:37:31][INFO] [HMPID DClusterization - return from dig2clu
+[78571:HMP-Clusterization]: [16:37:31][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu51
+[78571:HMP-Clusterization]: [16:37:31][INFO] [HMPID DClusterization - return from dig2clu
+[78571:HMP-Clusterization]: [16:37:31][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu146
+[78571:HMP-Clusterization]: [16:37:31][INFO] [HMPID DClusterization - return from dig2clu
+[78571:HMP-Clusterization]: [16:37:31][INFO] Received 12 triggers with 363 digits -> 7 triggers with 142 clusters
+[78571:HMP-Clusterization]: [16:37:31][INFO] End Clusterization !  digits = 363 Execution time = 0.08
+[78571:HMP-Clusterization]: [16:37:31][INFO] Sending end-of-stream message to channel from_HMP-Clusterization_to_HMPClustersWriter
+[INFO] Quitting
+[INFO] QUIT_REQUESTED
+[78569:internal-dpl-clock]: [16:37:31][INFO] Received device shutdown request (signal 15).
+[78569:internal-dpl-clock]: [16:37:31][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[78569:internal-dpl-clock]: [16:37:31][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[78569:internal-dpl-clock]: [16:37:31][STATE] RUNNING ---> READY
+[78569:internal-dpl-clock]: [16:37:31][STATE] READY ---> RESETTING TASK
+[78569:internal-dpl-clock]: [16:37:31][STATE] RESETTING TASK ---> DEVICE READY
+[78569:internal-dpl-clock]: [16:37:31][STATE] DEVICE READY ---> RESETTING DEVICE
+[78569:internal-dpl-clock]: [16:37:31][STATE] RESETTING DEVICE ---> IDLE
+[78569:internal-dpl-clock]: [16:37:31][STATE] IDLE ---> EXITING
+[78569:internal-dpl-clock]: [16:37:31][STATE] Exiting FairMQ state machine
+[78570:HMP-DigitReader]: [16:37:31][INFO] Received device shutdown request (signal 15).
+[78570:HMP-DigitReader]: [16:37:31][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[78570:HMP-DigitReader]: [16:37:31][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[78570:HMP-DigitReader]: [16:37:31][STATE] RUNNING ---> READY
+[78570:HMP-DigitReader]: [16:37:31][STATE] READY ---> RESETTING TASK
+[78570:HMP-DigitReader]: [16:37:31][STATE] RESETTING TASK ---> DEVICE READY
+[78570:HMP-DigitReader]: [16:37:31][STATE] DEVICE READY ---> RESETTING DEVICE
+[78570:HMP-DigitReader]: [16:37:31][STATE] RESETTING DEVICE ---> IDLE
+[78570:HMP-DigitReader]: [16:37:31][STATE] IDLE ---> EXITING
+[78570:HMP-DigitReader]: [16:37:31][STATE] Exiting FairMQ state machine
+[78572:HMPClustersWriter]: [16:37:31][INFO] Received device shutdown request (signal 15).
+[78572:HMPClustersWriter]: [16:37:31][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[78571:HMP-Clusterization]: [16:37:31][INFO] Received device shutdown request (signal 15).
+[78571:HMP-Clusterization]: [16:37:31][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[78572:HMPClustersWriter]: [16:37:31][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[78571:HMP-Clusterization]: [16:37:31][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[78571:HMP-Clusterization]: [16:37:31][STATE] RUNNING ---> READY
+[78571:HMP-Clusterization]: [16:37:31][STATE] READY ---> RESETTING TASK
+[78571:HMP-Clusterization]: [16:37:31][STATE] RESETTING TASK ---> DEVICE READY
+[78571:HMP-Clusterization]: [16:37:31][STATE] DEVICE READY ---> RESETTING DEVICE
+[78571:HMP-Clusterization]: [16:37:31][STATE] RESETTING DEVICE ---> IDLE
+[78571:HMP-Clusterization]: [16:37:31][STATE] IDLE ---> EXITING
+[78571:HMP-Clusterization]: [16:37:31][STATE] Exiting FairMQ state machine
+[78572:HMPClustersWriter]: [16:37:31][STATE] RUNNING ---> READY
+[78572:HMPClustersWriter]: [16:37:31][STATE] READY ---> RESETTING TASK
+[78572:HMPClustersWriter]: [16:37:31][STATE] RESETTING TASK ---> DEVICE READY
+[78572:HMPClustersWriter]: [16:37:31][STATE] DEVICE READY ---> RESETTING DEVICE
+[78572:HMPClustersWriter]: [16:37:31][INFO] Cleaning up for shared memory id '7348b83b'...
+[78572:HMPClustersWriter]: [16:37:31][INFO] Found 0 unmanaged regions...
+[78572:HMPClustersWriter]: [16:37:31][INFO] Found 1 managed segments...
+[78572:HMPClustersWriter]: [16:37:31][INFO] Successfully removed 'fmq_7348b83b_m_0'.
+[78572:HMPClustersWriter]: [16:37:31][INFO] Successfully removed 'fmq_7348b83b_mng'.
+[78572:HMPClustersWriter]: [16:37:31][STATE] RESETTING DEVICE ---> IDLE
+[78572:HMPClustersWriter]: [16:37:31][STATE] IDLE ---> EXITING
+[78572:HMPClustersWriter]: [16:37:31][STATE] Exiting FairMQ state machine
+[INFO] ## Processes completed. Run summary:
+[INFO] ### Devices started: 4
+[INFO]  - Device internal-dpl-clock: pid 78569 (exit 0)
+[INFO]  - Device HMP-DigitReader: pid 78570 (exit 0)
+[INFO]  - Device HMP-Clusterization: pid 78571 (exit 0)
+[INFO]  - Device HMPClustersWriter: pid 78572 (exit 0)
+[INFO] Dumping used configuration in dpl-config.json
+TASK-EXIT-CODE: 0

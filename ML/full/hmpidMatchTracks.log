@@ -1,0 +1,1096 @@
+Running: TIME="#walltime %e" /usr/bin/time --output=hmpidMatchTracks.log_time ./hmpidMatchTracks.log_tmp.sh
+[INFO] hmp-matcher-workflow.cxx ustomize(std::vector<o2::framework::ConfigParamSpec>& workflowOptions)
+[INFO] hmp-matcher-workflow.cxx customize(std::vector<o2::framework::CompletionPolicy>& policies)
+[INFO]   o2::raw::HBFUtilsInitializer::addNewTimeSliceCallback(policies);
+[INFO] hmp-matcher-workflow.cxx ::init defineDataProcessing
+[INFO] hmp-matcher-workflow.cxx
+[WARN] HMP clusters do not support MC lables, disabling
+[INFO] Initialising O2 Data Processing Layer. Driver PID: 154622.
+[INFO] Driver listening on port: 12702
+[INFO] Rate limiting set up at 500MB distributed over 1 readers
+[INFO] O2 Data Processing Layer initialised. We brake for nobody.
+[INFO] Optimised build. O2DEBUG / LOG(debug) / LOGF(debug) / assert statement will not be shown.
+[INFO] Redeployment of configuration asked.
+[INFO] Starting internal-dpl-clock on pid 154692
+[INFO] Starting itstpc-track-reader on pid 154693
+[INFO] Starting HMP-ClusterReader on pid 154694
+[INFO] Starting itstpctrd-track-reader on pid 154695
+[INFO] Starting tpctrd-track-reader on pid 154696
+[INFO] Starting TOFMatchedReader_TPC on pid 154697
+[INFO] Starting TOFMatchedReader_ITSTPC on pid 154698
+[INFO] Starting TOFMatchedReader_ITSTPCTRD on pid 154699
+[INFO] Starting tof-cluster-reader on pid 154700
+[INFO] Starting internal-dpl-ccdb-backend on pid 154701
+[INFO] Starting hmp-matcher on pid 154702
+[INFO] Starting HMPMatchedWriter on pid 154703
+[INFO] Starting internal-dpl-injected-dummy-sink on pid 154704
+[INFO] Redeployment of configuration done.
+[154698:TOFMatchedReader_ITSTPC]: [INFO] hmp-matcher-workflow.cxx ustomize(std::vector<o2::framework::ConfigParamSpec>& workflowOptions)
+[154698:TOFMatchedReader_ITSTPC]: [INFO] hmp-matcher-workflow.cxx customize(std::vector<o2::framework::CompletionPolicy>& policies)
+[154698:TOFMatchedReader_ITSTPC]: [INFO]   o2::raw::HBFUtilsInitializer::addNewTimeSliceCallback(policies);
+[154698:TOFMatchedReader_ITSTPC]: [INFO] hmp-matcher-workflow.cxx ::init defineDataProcessing
+[154695:itstpctrd-track-reader]: [INFO] hmp-matcher-workflow.cxx ustomize(std::vector<o2::framework::ConfigParamSpec>& workflowOptions)
+[154695:itstpctrd-track-reader]: [INFO] hmp-matcher-workflow.cxx customize(std::vector<o2::framework::CompletionPolicy>& policies)
+[154695:itstpctrd-track-reader]: [INFO]   o2::raw::HBFUtilsInitializer::addNewTimeSliceCallback(policies);
+[154695:itstpctrd-track-reader]: [INFO] hmp-matcher-workflow.cxx ::init defineDataProcessing
+[154692:internal-dpl-clock]: [INFO] hmp-matcher-workflow.cxx ustomize(std::vector<o2::framework::ConfigParamSpec>& workflowOptions)
+[154701:internal-dpl-ccdb-backend]: [INFO] hmp-matcher-workflow.cxx ustomize(std::vector<o2::framework::ConfigParamSpec>& workflowOptions)
+[154692:internal-dpl-clock]: [INFO] hmp-matcher-workflow.cxx customize(std::vector<o2::framework::CompletionPolicy>& policies)
+[154692:internal-dpl-clock]: [INFO]   o2::raw::HBFUtilsInitializer::addNewTimeSliceCallback(policies);
+[154692:internal-dpl-clock]: [INFO] hmp-matcher-workflow.cxx ::init defineDataProcessing
+[154703:HMPMatchedWriter]: [INFO] hmp-matcher-workflow.cxx ustomize(std::vector<o2::framework::ConfigParamSpec>& workflowOptions)
+[154703:HMPMatchedWriter]: [INFO] hmp-matcher-workflow.cxx customize(std::vector<o2::framework::CompletionPolicy>& policies)
+[154703:HMPMatchedWriter]: [INFO]   o2::raw::HBFUtilsInitializer::addNewTimeSliceCallback(policies);
+[154703:HMPMatchedWriter]: [INFO] hmp-matcher-workflow.cxx ::init defineDataProcessing
+[154697:TOFMatchedReader_TPC]: [INFO] hmp-matcher-workflow.cxx ustomize(std::vector<o2::framework::ConfigParamSpec>& workflowOptions)
+[154697:TOFMatchedReader_TPC]: [INFO] hmp-matcher-workflow.cxx customize(std::vector<o2::framework::CompletionPolicy>& policies)
+[154697:TOFMatchedReader_TPC]: [INFO]   o2::raw::HBFUtilsInitializer::addNewTimeSliceCallback(policies);
+[154697:TOFMatchedReader_TPC]: [INFO] hmp-matcher-workflow.cxx ::init defineDataProcessing
+[154701:internal-dpl-ccdb-backend]: [INFO] hmp-matcher-workflow.cxx customize(std::vector<o2::framework::CompletionPolicy>& policies)
+[154701:internal-dpl-ccdb-backend]: [INFO]   o2::raw::HBFUtilsInitializer::addNewTimeSliceCallback(policies);
+[154701:internal-dpl-ccdb-backend]: [INFO] hmp-matcher-workflow.cxx ::init defineDataProcessing
+[154702:hmp-matcher]: [INFO] hmp-matcher-workflow.cxx ustomize(std::vector<o2::framework::ConfigParamSpec>& workflowOptions)
+[154702:hmp-matcher]: [INFO] hmp-matcher-workflow.cxx customize(std::vector<o2::framework::CompletionPolicy>& policies)
+[154702:hmp-matcher]: [INFO]   o2::raw::HBFUtilsInitializer::addNewTimeSliceCallback(policies);
+[154702:hmp-matcher]: [INFO] hmp-matcher-workflow.cxx ::init defineDataProcessing
+[154700:tof-cluster-reader]: [INFO] hmp-matcher-workflow.cxx ustomize(std::vector<o2::framework::ConfigParamSpec>& workflowOptions)
+[154700:tof-cluster-reader]: [INFO] hmp-matcher-workflow.cxx customize(std::vector<o2::framework::CompletionPolicy>& policies)
+[154700:tof-cluster-reader]: [INFO]   o2::raw::HBFUtilsInitializer::addNewTimeSliceCallback(policies);
+[154700:tof-cluster-reader]: [INFO] hmp-matcher-workflow.cxx ::init defineDataProcessing
+[154693:itstpc-track-reader]: [INFO] hmp-matcher-workflow.cxx ustomize(std::vector<o2::framework::ConfigParamSpec>& workflowOptions)
+[154693:itstpc-track-reader]: [INFO] hmp-matcher-workflow.cxx customize(std::vector<o2::framework::CompletionPolicy>& policies)
+[154693:itstpc-track-reader]: [INFO]   o2::raw::HBFUtilsInitializer::addNewTimeSliceCallback(policies);
+[154693:itstpc-track-reader]: [INFO] hmp-matcher-workflow.cxx ::init defineDataProcessing
+[154704:internal-dpl-injected-dummy-sink]: [INFO] hmp-matcher-workflow.cxx ustomize(std::vector<o2::framework::ConfigParamSpec>& workflowOptions)
+[154704:internal-dpl-injected-dummy-sink]: [INFO] hmp-matcher-workflow.cxx customize(std::vector<o2::framework::CompletionPolicy>& policies)
+[154704:internal-dpl-injected-dummy-sink]: [INFO]   o2::raw::HBFUtilsInitializer::addNewTimeSliceCallback(policies);
+[154704:internal-dpl-injected-dummy-sink]: [INFO] hmp-matcher-workflow.cxx ::init defineDataProcessing
+[154698:TOFMatchedReader_ITSTPC]: [INFO] hmp-matcher-workflow.cxx
+[154694:HMP-ClusterReader]: [INFO] hmp-matcher-workflow.cxx ustomize(std::vector<o2::framework::ConfigParamSpec>& workflowOptions)
+[154694:HMP-ClusterReader]: [INFO] hmp-matcher-workflow.cxx customize(std::vector<o2::framework::CompletionPolicy>& policies)
+[154694:HMP-ClusterReader]: [INFO]   o2::raw::HBFUtilsInitializer::addNewTimeSliceCallback(policies);
+[154694:HMP-ClusterReader]: [INFO] hmp-matcher-workflow.cxx ::init defineDataProcessing
+[154696:tpctrd-track-reader]: [INFO] hmp-matcher-workflow.cxx ustomize(std::vector<o2::framework::ConfigParamSpec>& workflowOptions)
+[154696:tpctrd-track-reader]: [INFO] hmp-matcher-workflow.cxx customize(std::vector<o2::framework::CompletionPolicy>& policies)
+[154696:tpctrd-track-reader]: [INFO]   o2::raw::HBFUtilsInitializer::addNewTimeSliceCallback(policies);
+[154696:tpctrd-track-reader]: [INFO] hmp-matcher-workflow.cxx ::init defineDataProcessing
+[154699:TOFMatchedReader_ITSTPCTRD]: [INFO] hmp-matcher-workflow.cxx ustomize(std::vector<o2::framework::ConfigParamSpec>& workflowOptions)
+[154699:TOFMatchedReader_ITSTPCTRD]: [INFO] hmp-matcher-workflow.cxx customize(std::vector<o2::framework::CompletionPolicy>& policies)
+[154699:TOFMatchedReader_ITSTPCTRD]: [INFO]   o2::raw::HBFUtilsInitializer::addNewTimeSliceCallback(policies);
+[154699:TOFMatchedReader_ITSTPCTRD]: [INFO] hmp-matcher-workflow.cxx ::init defineDataProcessing
+[154702:hmp-matcher]: [INFO] hmp-matcher-workflow.cxx
+[154702:hmp-matcher]: [WARN] HMP clusters do not support MC lables, disabling
+[154695:itstpctrd-track-reader]: [INFO] hmp-matcher-workflow.cxx
+[154692:internal-dpl-clock]: [INFO] hmp-matcher-workflow.cxx
+[154692:internal-dpl-clock]: [WARN] HMP clusters do not support MC lables, disabling
+[154695:itstpctrd-track-reader]: [WARN] HMP clusters do not support MC lables, disabling
+[154698:TOFMatchedReader_ITSTPC]: [WARN] HMP clusters do not support MC lables, disabling
+[154696:tpctrd-track-reader]: [INFO] hmp-matcher-workflow.cxx
+[154696:tpctrd-track-reader]: [WARN] HMP clusters do not support MC lables, disabling
+[154703:HMPMatchedWriter]: [INFO] hmp-matcher-workflow.cxx
+[154697:TOFMatchedReader_TPC]: [INFO] hmp-matcher-workflow.cxx
+[154697:TOFMatchedReader_TPC]: [WARN] HMP clusters do not support MC lables, disabling
+[154703:HMPMatchedWriter]: [WARN] HMP clusters do not support MC lables, disabling
+[154692:internal-dpl-clock]: [INFO] Instrumenting crash signals
+[154692:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 154692
+[154692:internal-dpl-clock]: [22:07:40][INFO] 
+[154692:internal-dpl-clock]:       ______      _    _______  _________ 
+[154692:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[154692:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[154692:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[154692:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[154692:internal-dpl-clock]: 
+[154692:internal-dpl-clock]: [22:07:40][STATE] Starting FairMQ state machine --> IDLE
+[154692:internal-dpl-clock]: [22:07:40][STATE] IDLE ---> INITIALIZING DEVICE
+[154695:itstpctrd-track-reader]: [INFO] Instrumenting crash signals
+[154701:internal-dpl-ccdb-backend]: [INFO] hmp-matcher-workflow.cxx
+[154701:internal-dpl-ccdb-backend]: [WARN] HMP clusters do not support MC lables, disabling
+[154692:internal-dpl-clock]: [22:07:40][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[154692:internal-dpl-clock]: [22:07:40][STATE] INITIALIZED ---> BINDING
+[154692:internal-dpl-clock]: [22:07:40][STATE] BINDING ---> BOUND
+[154692:internal-dpl-clock]: [22:07:40][STATE] BOUND ---> CONNECTING
+[154692:internal-dpl-clock]: [22:07:40][STATE] CONNECTING ---> DEVICE READY
+[154695:itstpctrd-track-reader]: [INFO] Spawing new device itstpctrd-track-reader in process with pid 154695
+[154695:itstpctrd-track-reader]: [22:07:40][INFO] 
+[154695:itstpctrd-track-reader]:       ______      _    _______  _________ 
+[154695:itstpctrd-track-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[154695:itstpctrd-track-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[154695:itstpctrd-track-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[154695:itstpctrd-track-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[154695:itstpctrd-track-reader]: 
+[154695:itstpctrd-track-reader]: [22:07:40][STATE] Starting FairMQ state machine --> IDLE
+[154696:tpctrd-track-reader]: [INFO] Instrumenting crash signals
+[154696:tpctrd-track-reader]: [INFO] Spawing new device tpctrd-track-reader in process with pid 154696
+[154696:tpctrd-track-reader]: [22:07:40][INFO] 
+[154696:tpctrd-track-reader]:       ______      _    _______  _________ 
+[154696:tpctrd-track-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[154696:tpctrd-track-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[154696:tpctrd-track-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[154696:tpctrd-track-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[154696:tpctrd-track-reader]: 
+[154696:tpctrd-track-reader]: [22:07:40][STATE] Starting FairMQ state machine --> IDLE
+[154692:internal-dpl-clock]: [22:07:40][STATE] DEVICE READY ---> INITIALIZING TASK
+[154697:TOFMatchedReader_TPC]: [INFO] Instrumenting crash signals
+[154695:itstpctrd-track-reader]: [22:07:40][STATE] IDLE ---> INITIALIZING DEVICE
+[154697:TOFMatchedReader_TPC]: [INFO] Spawing new device TOFMatchedReader_TPC in process with pid 154697
+[154697:TOFMatchedReader_TPC]: [22:07:40][INFO] 
+[154697:TOFMatchedReader_TPC]:       ______      _    _______  _________ 
+[154697:TOFMatchedReader_TPC]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[154697:TOFMatchedReader_TPC]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[154697:TOFMatchedReader_TPC]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[154697:TOFMatchedReader_TPC]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[154697:TOFMatchedReader_TPC]: 
+[154697:TOFMatchedReader_TPC]: [22:07:40][STATE] Starting FairMQ state machine --> IDLE
+[154698:TOFMatchedReader_ITSTPC]: [INFO] Instrumenting crash signals
+[154698:TOFMatchedReader_ITSTPC]: [INFO] Spawing new device TOFMatchedReader_ITSTPC in process with pid 154698
+[154698:TOFMatchedReader_ITSTPC]: [22:07:40][INFO] 
+[154698:TOFMatchedReader_ITSTPC]:       ______      _    _______  _________ 
+[154698:TOFMatchedReader_ITSTPC]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[154698:TOFMatchedReader_ITSTPC]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[154698:TOFMatchedReader_ITSTPC]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[154698:TOFMatchedReader_ITSTPC]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[154698:TOFMatchedReader_ITSTPC]: 
+[154698:TOFMatchedReader_ITSTPC]: [22:07:40][STATE] Starting FairMQ state machine --> IDLE
+[154700:tof-cluster-reader]: [INFO] hmp-matcher-workflow.cxx
+[154696:tpctrd-track-reader]: [22:07:40][STATE] IDLE ---> INITIALIZING DEVICE
+[154697:TOFMatchedReader_TPC]: [22:07:40][STATE] IDLE ---> INITIALIZING DEVICE
+[154700:tof-cluster-reader]: [WARN] HMP clusters do not support MC lables, disabling
+[154698:TOFMatchedReader_ITSTPC]: [22:07:40][STATE] IDLE ---> INITIALIZING DEVICE
+[154702:hmp-matcher]: [INFO] Instrumenting crash signals
+[154701:internal-dpl-ccdb-backend]: [INFO] Instrumenting crash signals
+[154701:internal-dpl-ccdb-backend]: [INFO] Spawing new device internal-dpl-ccdb-backend in process with pid 154701
+[154701:internal-dpl-ccdb-backend]: [22:07:40][INFO] 
+[154701:internal-dpl-ccdb-backend]:       ______      _    _______  _________ 
+[154701:internal-dpl-ccdb-backend]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[154701:internal-dpl-ccdb-backend]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[154701:internal-dpl-ccdb-backend]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[154701:internal-dpl-ccdb-backend]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[154701:internal-dpl-ccdb-backend]: 
+[154700:tof-cluster-reader]: [INFO] Instrumenting crash signals
+[154700:tof-cluster-reader]: [INFO] Spawing new device tof-cluster-reader in process with pid 154700
+[154700:tof-cluster-reader]: [22:07:40][INFO] 
+[154700:tof-cluster-reader]:       ______      _    _______  _________ 
+[154700:tof-cluster-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[154700:tof-cluster-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[154700:tof-cluster-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[154700:tof-cluster-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[154700:tof-cluster-reader]: 
+[154700:tof-cluster-reader]: [22:07:40][STATE] Starting FairMQ state machine --> IDLE
+[154701:internal-dpl-ccdb-backend]: [22:07:40][STATE] Starting FairMQ state machine --> IDLE
+[154703:HMPMatchedWriter]: [INFO] Instrumenting crash signals
+[154701:internal-dpl-ccdb-backend]: [22:07:40][STATE] IDLE ---> INITIALIZING DEVICE
+[154702:hmp-matcher]: [INFO] Spawing new device hmp-matcher in process with pid 154702
+[154702:hmp-matcher]: [22:07:40][INFO] 
+[154702:hmp-matcher]:       ______      _    _______  _________ 
+[154702:hmp-matcher]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[154702:hmp-matcher]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[154702:hmp-matcher]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[154702:hmp-matcher]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[154702:hmp-matcher]: 
+[154702:hmp-matcher]: [22:07:40][STATE] Starting FairMQ state machine --> IDLE
+[154703:HMPMatchedWriter]: [INFO] Spawing new device HMPMatchedWriter in process with pid 154703
+[154703:HMPMatchedWriter]: [22:07:40][INFO] 
+[154703:HMPMatchedWriter]:       ______      _    _______  _________ 
+[154703:HMPMatchedWriter]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[154703:HMPMatchedWriter]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[154703:HMPMatchedWriter]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[154703:HMPMatchedWriter]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[154703:HMPMatchedWriter]: 
+[154703:HMPMatchedWriter]: [22:07:40][STATE] Starting FairMQ state machine --> IDLE
+[154701:internal-dpl-ccdb-backend]: [22:07:40][INFO] CCDB Backend at: http://alice-ccdb.cern.ch, validity check for every 2147483647 TF
+[154701:internal-dpl-ccdb-backend]: [22:07:40][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1692907660-5h7bp7, Host: http://alice-ccdb.cern.ch
+[154701:internal-dpl-ccdb-backend]: [22:07:40][INFO] Initialised default CCDB host http://alice-ccdb.cern.ch
+[154701:internal-dpl-ccdb-backend]: [22:07:40][INFO] The following route is a condition GLO/MATLUT/0
+[154701:internal-dpl-ccdb-backend]: [22:07:40][INFO] - ccdb-path: GLO/Param/MatLUT
+[154701:internal-dpl-ccdb-backend]: [22:07:40][INFO] The following route is a condition GLO/GRPMAGFIELD/0
+[154701:internal-dpl-ccdb-backend]: [22:07:40][INFO] - ccdb-path: GLO/Config/GRPMagField
+[154701:internal-dpl-ccdb-backend]: [22:07:40][INFO] The following route is a condition GLO/GRPLHCIF/0
+[154701:internal-dpl-ccdb-backend]: [22:07:40][INFO] - ccdb-path: GLO/Config/GRPLHCIF
+[154701:internal-dpl-ccdb-backend]: [22:07:40][INFO] The following route is a condition GLO/GRPECS/0
+[154701:internal-dpl-ccdb-backend]: [22:07:40][INFO] - ccdb-path: GLO/Config/GRPECS
+[154701:internal-dpl-ccdb-backend]: [22:07:40][INFO] The following route is a condition GLO/GEOMALIGN/0
+[154701:internal-dpl-ccdb-backend]: [22:07:40][INFO] - ccdb-path: GLO/Config/GeometryAligned
+[154701:internal-dpl-ccdb-backend]: [22:07:40][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[154701:internal-dpl-ccdb-backend]: [22:07:40][STATE] INITIALIZED ---> BINDING
+[154701:internal-dpl-ccdb-backend]: [22:07:40][STATE] BINDING ---> BOUND
+[154701:internal-dpl-ccdb-backend]: [22:07:40][STATE] BOUND ---> CONNECTING
+[154701:internal-dpl-ccdb-backend]: [22:07:40][STATE] CONNECTING ---> DEVICE READY
+[154701:internal-dpl-ccdb-backend]: [22:07:40][STATE] DEVICE READY ---> INITIALIZING TASK
+[154692:internal-dpl-clock]: [22:07:40][STATE] INITIALIZING TASK ---> READY
+[154700:tof-cluster-reader]: [22:07:40][STATE] IDLE ---> INITIALIZING DEVICE
+[154703:HMPMatchedWriter]: [22:07:40][STATE] IDLE ---> INITIALIZING DEVICE
+[154702:hmp-matcher]: [22:07:41][STATE] IDLE ---> INITIALIZING DEVICE
+[154702:hmp-matcher]: [22:07:41][INFO] Loading geometry from o2sim_geometry-aligned.root
+[154693:itstpc-track-reader]: [INFO] hmp-matcher-workflow.cxx
+[154699:TOFMatchedReader_ITSTPCTRD]: [INFO] hmp-matcher-workflow.cxx
+[154699:TOFMatchedReader_ITSTPCTRD]: [WARN] HMP clusters do not support MC lables, disabling
+[154692:internal-dpl-clock]: [22:07:41][STATE] READY ---> RUNNING
+[154692:internal-dpl-clock]: [22:07:41][INFO] fair::mq::Device running...
+[154692:internal-dpl-clock]: [22:07:41][INFO] LHCPeriod is not available, using current month AUG
+[154701:internal-dpl-ccdb-backend]: [22:07:41][STATE] INITIALIZING TASK ---> READY
+[154701:internal-dpl-ccdb-backend]: [22:07:41][STATE] READY ---> RUNNING
+[154701:internal-dpl-ccdb-backend]: [22:07:41][INFO] fair::mq::Device running...
+[154701:internal-dpl-ccdb-backend]: [22:07:41][INFO] LHCPeriod is not available, using current month AUG
+[154704:internal-dpl-injected-dummy-sink]: [INFO] hmp-matcher-workflow.cxx
+[154692:internal-dpl-clock]: [22:07:41][INFO] Correctly handshaken websocket connection.
+[154701:internal-dpl-ccdb-backend]: [22:07:41][INFO] Correctly handshaken websocket connection.
+[154693:itstpc-track-reader]: [WARN] HMP clusters do not support MC lables, disabling
+[154703:HMPMatchedWriter]: [22:07:42][INFO] 0: branch  HMPMatchInfo set up
+[154703:HMPMatchedWriter]: [22:07:42][INFO] 1: branch  MatchHMPMCTruth set up
+[154703:HMPMatchedWriter]: [22:07:42][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[154703:HMPMatchedWriter]: [22:07:42][STATE] INITIALIZED ---> BINDING
+[154703:HMPMatchedWriter]: [22:07:42][STATE] BINDING ---> BOUND
+[154703:HMPMatchedWriter]: [22:07:42][STATE] BOUND ---> CONNECTING
+[154703:HMPMatchedWriter]: [22:07:42][STATE] CONNECTING ---> DEVICE READY
+[154703:HMPMatchedWriter]: [22:07:42][STATE] DEVICE READY ---> INITIALIZING TASK
+[154703:HMPMatchedWriter]: [22:07:42][STATE] INITIALIZING TASK ---> READY
+[154703:HMPMatchedWriter]: [22:07:42][STATE] READY ---> RUNNING
+[154703:HMPMatchedWriter]: [22:07:42][INFO] fair::mq::Device running...
+[154703:HMPMatchedWriter]: [22:07:42][INFO] LHCPeriod is not available, using current month AUG
+[154704:internal-dpl-injected-dummy-sink]: [WARN] HMP clusters do not support MC lables, disabling
+[154703:HMPMatchedWriter]: [22:07:42][INFO] Correctly handshaken websocket connection.
+[154699:TOFMatchedReader_ITSTPCTRD]: [INFO] Instrumenting crash signals
+[154699:TOFMatchedReader_ITSTPCTRD]: [INFO] Spawing new device TOFMatchedReader_ITSTPCTRD in process with pid 154699
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:42][INFO] 
+[154699:TOFMatchedReader_ITSTPCTRD]:       ______      _    _______  _________ 
+[154699:TOFMatchedReader_ITSTPCTRD]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[154699:TOFMatchedReader_ITSTPCTRD]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[154699:TOFMatchedReader_ITSTPCTRD]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[154699:TOFMatchedReader_ITSTPCTRD]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[154699:TOFMatchedReader_ITSTPCTRD]: 
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:42][STATE] Starting FairMQ state machine --> IDLE
+[154693:itstpc-track-reader]: [INFO] Instrumenting crash signals
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:42][STATE] IDLE ---> INITIALIZING DEVICE
+[154704:internal-dpl-injected-dummy-sink]: [INFO] Instrumenting crash signals
+[154704:internal-dpl-injected-dummy-sink]: [INFO] Spawing new device internal-dpl-injected-dummy-sink in process with pid 154704
+[154693:itstpc-track-reader]: [INFO] Spawing new device itstpc-track-reader in process with pid 154693
+[154693:itstpc-track-reader]: [22:07:42][INFO] 
+[154693:itstpc-track-reader]:       ______      _    _______  _________ 
+[154693:itstpc-track-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[154693:itstpc-track-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[154693:itstpc-track-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[154693:itstpc-track-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[154693:itstpc-track-reader]: 
+[154693:itstpc-track-reader]: [22:07:42][STATE] Starting FairMQ state machine --> IDLE
+[154704:internal-dpl-injected-dummy-sink]: [22:07:42][INFO] 
+[154704:internal-dpl-injected-dummy-sink]:       ______      _    _______  _________ 
+[154704:internal-dpl-injected-dummy-sink]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[154704:internal-dpl-injected-dummy-sink]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[154704:internal-dpl-injected-dummy-sink]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[154704:internal-dpl-injected-dummy-sink]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[154704:internal-dpl-injected-dummy-sink]: 
+[154704:internal-dpl-injected-dummy-sink]: [22:07:42][STATE] Starting FairMQ state machine --> IDLE
+[154704:internal-dpl-injected-dummy-sink]: [22:07:42][STATE] IDLE ---> INITIALIZING DEVICE
+[154704:internal-dpl-injected-dummy-sink]: [22:07:42][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[154704:internal-dpl-injected-dummy-sink]: [22:07:42][STATE] INITIALIZED ---> BINDING
+[154704:internal-dpl-injected-dummy-sink]: [22:07:42][STATE] BINDING ---> BOUND
+[154704:internal-dpl-injected-dummy-sink]: [22:07:42][STATE] BOUND ---> CONNECTING
+[154704:internal-dpl-injected-dummy-sink]: [22:07:42][STATE] CONNECTING ---> DEVICE READY
+[154704:internal-dpl-injected-dummy-sink]: [22:07:42][STATE] DEVICE READY ---> INITIALIZING TASK
+[154693:itstpc-track-reader]: [22:07:42][STATE] IDLE ---> INITIALIZING DEVICE
+[154704:internal-dpl-injected-dummy-sink]: [22:07:42][STATE] INITIALIZING TASK ---> READY
+[154704:internal-dpl-injected-dummy-sink]: [22:07:42][STATE] READY ---> RUNNING
+[154704:internal-dpl-injected-dummy-sink]: [22:07:42][INFO] fair::mq::Device running...
+[154704:internal-dpl-injected-dummy-sink]: [22:07:42][INFO] LHCPeriod is not available, using current month AUG
+[154704:internal-dpl-injected-dummy-sink]: [22:07:42][INFO] Correctly handshaken websocket connection.
+[154694:HMP-ClusterReader]: [INFO] hmp-matcher-workflow.cxx
+[154694:HMP-ClusterReader]: [WARN] HMP clusters do not support MC lables, disabling
+[154694:HMP-ClusterReader]: [INFO] Instrumenting crash signals
+[154694:HMP-ClusterReader]: [INFO] Spawing new device HMP-ClusterReader in process with pid 154694
+[154694:HMP-ClusterReader]: [22:07:43][INFO] 
+[154694:HMP-ClusterReader]:       ______      _    _______  _________ 
+[154694:HMP-ClusterReader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[154694:HMP-ClusterReader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[154694:HMP-ClusterReader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[154694:HMP-ClusterReader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[154694:HMP-ClusterReader]: 
+[154694:HMP-ClusterReader]: [22:07:43][STATE] Starting FairMQ state machine --> IDLE
+[154694:HMP-ClusterReader]: [22:07:43][STATE] IDLE ---> INITIALIZING DEVICE
+[154694:HMP-ClusterReader]: [22:07:43][INFO] [HMPID Cluster reader - init() ] 
+[154694:HMP-ClusterReader]: [22:07:43][INFO] HMPID ClusterReaderTask::init() : Found Clusters file /root/CNN_PID/ML/full/hmpidclusters.root
+[154698:TOFMatchedReader_ITSTPC]: [22:07:43][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[154698:TOFMatchedReader_ITSTPC]: [22:07:43][STATE] INITIALIZED ---> BINDING
+[154698:TOFMatchedReader_ITSTPC]: [22:07:43][STATE] BINDING ---> BOUND
+[154698:TOFMatchedReader_ITSTPC]: [22:07:43][STATE] BOUND ---> CONNECTING
+[154698:TOFMatchedReader_ITSTPC]: [22:07:43][STATE] CONNECTING ---> DEVICE READY
+[154698:TOFMatchedReader_ITSTPC]: [22:07:43][STATE] DEVICE READY ---> INITIALIZING TASK
+[154698:TOFMatchedReader_ITSTPC]: [22:07:44][STATE] INITIALIZING TASK ---> READY
+[154698:TOFMatchedReader_ITSTPC]: [22:07:44][STATE] READY ---> RUNNING
+[154698:TOFMatchedReader_ITSTPC]: [22:07:44][INFO] fair::mq::Device running...
+[154698:TOFMatchedReader_ITSTPC]: [22:07:44][INFO] LHCPeriod is not available, using current month AUG
+[154695:itstpctrd-track-reader]: [22:07:44][INFO] Loaded tree from trdmatches_itstpc.root with 1 entries
+[154695:itstpctrd-track-reader]: [22:07:44][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[154695:itstpctrd-track-reader]: [22:07:44][STATE] INITIALIZED ---> BINDING
+[154695:itstpctrd-track-reader]: [22:07:44][STATE] BINDING ---> BOUND
+[154696:tpctrd-track-reader]: [22:07:44][INFO] Loaded tree from trdmatches_tpc.root with 1 entries
+[154695:itstpctrd-track-reader]: [22:07:44][STATE] BOUND ---> CONNECTING
+[154695:itstpctrd-track-reader]: [22:07:44][STATE] CONNECTING ---> DEVICE READY
+[154695:itstpctrd-track-reader]: [22:07:44][STATE] DEVICE READY ---> INITIALIZING TASK
+[154697:TOFMatchedReader_TPC]: [22:07:44][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[154695:itstpctrd-track-reader]: [22:07:44][STATE] INITIALIZING TASK ---> READY
+[154697:TOFMatchedReader_TPC]: [22:07:44][STATE] INITIALIZED ---> BINDING
+[154695:itstpctrd-track-reader]: [22:07:44][STATE] READY ---> RUNNING
+[154695:itstpctrd-track-reader]: [22:07:44][INFO] fair::mq::Device running...
+[154695:itstpctrd-track-reader]: [22:07:44][INFO] LHCPeriod is not available, using current month AUG
+[154695:itstpctrd-track-reader]: [22:07:44][INFO] Pushing 70 tracks and 6 trigger records at entry 0
+[154695:itstpctrd-track-reader]: [22:07:44][INFO] Pushing 70 MC labels at entry 0
+[154697:TOFMatchedReader_TPC]: [22:07:44][STATE] BINDING ---> BOUND
+[154697:TOFMatchedReader_TPC]: [22:07:44][STATE] BOUND ---> CONNECTING
+[154697:TOFMatchedReader_TPC]: [22:07:44][STATE] CONNECTING ---> DEVICE READY
+[154697:TOFMatchedReader_TPC]: [22:07:44][STATE] DEVICE READY ---> INITIALIZING TASK
+[154697:TOFMatchedReader_TPC]: [22:07:44][STATE] INITIALIZING TASK ---> READY
+[154696:tpctrd-track-reader]: [22:07:44][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[154696:tpctrd-track-reader]: [22:07:44][STATE] INITIALIZED ---> BINDING
+[154696:tpctrd-track-reader]: [22:07:44][STATE] BINDING ---> BOUND
+[154696:tpctrd-track-reader]: [22:07:44][STATE] BOUND ---> CONNECTING
+[154696:tpctrd-track-reader]: [22:07:44][STATE] CONNECTING ---> DEVICE READY
+[154696:tpctrd-track-reader]: [22:07:44][STATE] DEVICE READY ---> INITIALIZING TASK
+[154697:TOFMatchedReader_TPC]: [22:07:44][STATE] READY ---> RUNNING
+[154697:TOFMatchedReader_TPC]: [22:07:44][INFO] fair::mq::Device running...
+[154696:tpctrd-track-reader]: [22:07:44][STATE] INITIALIZING TASK ---> READY
+[154696:tpctrd-track-reader]: [22:07:44][STATE] READY ---> RUNNING
+[154696:tpctrd-track-reader]: [22:07:44][INFO] fair::mq::Device running...
+[154696:tpctrd-track-reader]: [22:07:44][INFO] LHCPeriod is not available, using current month AUG
+[154697:TOFMatchedReader_TPC]: [22:07:44][INFO] LHCPeriod is not available, using current month AUG
+[154696:tpctrd-track-reader]: [22:07:44][INFO] Pushing 39 tracks and 7 trigger records at entry 0
+[154696:tpctrd-track-reader]: [22:07:44][INFO] Pushing 39 MC labels at entry 0
+[154700:tof-cluster-reader]: [22:07:44][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[154700:tof-cluster-reader]: [22:07:44][STATE] INITIALIZED ---> BINDING
+[154700:tof-cluster-reader]: [22:07:44][STATE] BINDING ---> BOUND
+[154700:tof-cluster-reader]: [22:07:44][STATE] BOUND ---> CONNECTING
+[154700:tof-cluster-reader]: [22:07:44][STATE] CONNECTING ---> DEVICE READY
+[154700:tof-cluster-reader]: [22:07:44][STATE] DEVICE READY ---> INITIALIZING TASK
+[154700:tof-cluster-reader]: [22:07:44][STATE] INITIALIZING TASK ---> READY
+[154700:tof-cluster-reader]: [22:07:44][STATE] READY ---> RUNNING
+[154700:tof-cluster-reader]: [22:07:44][INFO] fair::mq::Device running...
+[154700:tof-cluster-reader]: [22:07:44][INFO] LHCPeriod is not available, using current month AUG
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:44][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:44][STATE] INITIALIZED ---> BINDING
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:44][STATE] BINDING ---> BOUND
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:44][STATE] BOUND ---> CONNECTING
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:44][STATE] CONNECTING ---> DEVICE READY
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:44][STATE] DEVICE READY ---> INITIALIZING TASK
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:44][STATE] INITIALIZING TASK ---> READY
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:44][STATE] READY ---> RUNNING
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:44][INFO] fair::mq::Device running...
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:44][INFO] LHCPeriod is not available, using current month AUG
+[154693:itstpc-track-reader]: [22:07:44][INFO] Loaded tree from o2match_itstpc.root with 1 entries
+[154693:itstpc-track-reader]: [22:07:44][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[154702:hmp-matcher]: Info in <TGeoManager::CloseGeometry>: Geometry loaded from file...
+[154702:hmp-matcher]: Info in <TGeoManager::SetTopVolume>: Top volume is cave. Master volume is cave
+[154702:hmp-matcher]: Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+[154702:hmp-matcher]: Info in <TGeoManager::CloseGeometry>: Voxelization retrieved from file
+[154693:itstpc-track-reader]: [22:07:45][STATE] INITIALIZED ---> BINDING
+[154693:itstpc-track-reader]: [22:07:45][STATE] BINDING ---> BOUND
+[154693:itstpc-track-reader]: [22:07:45][STATE] BOUND ---> CONNECTING
+[154693:itstpc-track-reader]: [22:07:45][STATE] CONNECTING ---> DEVICE READY
+[154693:itstpc-track-reader]: [22:07:45][STATE] DEVICE READY ---> INITIALIZING TASK
+[154693:itstpc-track-reader]: [22:07:45][STATE] INITIALIZING TASK ---> READY
+[154693:itstpc-track-reader]: [22:07:45][STATE] READY ---> RUNNING
+[154693:itstpc-track-reader]: [22:07:45][INFO] fair::mq::Device running...
+[154693:itstpc-track-reader]: [22:07:45][INFO] LHCPeriod is not available, using current month AUG
+[154693:itstpc-track-reader]: [22:07:45][INFO] Pushing 1715 TPC-ITS matches at entry 0
+[154702:hmp-matcher]: Info in <TGeoManager::CountLevels>: max level = 13, max placements = 735
+[154702:hmp-matcher]: Info in <TGeoManager::CloseGeometry>: 5346830 nodes/ 27478 volume UID's in FAIR geometry
+[154702:hmp-matcher]: Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+[154694:HMP-ClusterReader]: ******************************************************************************
+[154694:HMP-ClusterReader]: *Tree    :o2hmp     : Tree with HMPID clusters                               *
+[154694:HMP-ClusterReader]: *Entries :        1 : Total =          128682 bytes  File  Size =      43836 *
+[154694:HMP-ClusterReader]: *        :          : Tree compression factor =   2.61                       *
+[154694:HMP-ClusterReader]: ******************************************************************************
+[154694:HMP-ClusterReader]: branch: HMPIDclusters            30600
+[154694:HMP-ClusterReader]: 
+[154694:HMP-ClusterReader]: branch: HMPIDDigitTopology        8650
+[154694:HMP-ClusterReader]: 
+[154694:HMP-ClusterReader]: branch: InteractionRecords         644
+[154694:HMP-ClusterReader]: 
+[154694:HMP-ClusterReader]: ******************************************************************************
+[154694:HMP-ClusterReader]: *Tree    :o2hmp     : Tree with HMPID clusters                               *
+[154694:HMP-ClusterReader]: *Entries :        1 : Total =          128682 bytes  File  Size =      43836 *
+[154694:HMP-ClusterReader]: *        :          : Tree compression factor =   2.61                       *
+[154694:HMP-ClusterReader]: ******************************************************************************
+[154694:HMP-ClusterReader]: branch: HMPIDclusters            30600
+[154694:HMP-ClusterReader]: 
+[154694:HMP-ClusterReader]: branch: HMPIDDigitTopology        8650
+[154694:HMP-ClusterReader]: 
+[154694:HMP-ClusterReader]: branch: InteractionRecords         644
+[154694:HMP-ClusterReader]: 
+[154694:HMP-ClusterReader]: [22:07:45][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[154694:HMP-ClusterReader]: [22:07:45][STATE] INITIALIZED ---> BINDING
+[154694:HMP-ClusterReader]: [22:07:45][STATE] BINDING ---> BOUND
+[154694:HMP-ClusterReader]: [22:07:45][STATE] BOUND ---> CONNECTING
+[154694:HMP-ClusterReader]: [22:07:45][STATE] CONNECTING ---> DEVICE READY
+[154694:HMP-ClusterReader]: [22:07:45][STATE] DEVICE READY ---> INITIALIZING TASK
+[154694:HMP-ClusterReader]: [22:07:45][STATE] INITIALIZING TASK ---> READY
+[154694:HMP-ClusterReader]: [22:07:45][STATE] READY ---> RUNNING
+[154694:HMP-ClusterReader]: [22:07:45][INFO] fair::mq::Device running...
+[154694:HMP-ClusterReader]: [22:07:45][INFO] LHCPeriod is not available, using current month AUG
+[154694:HMP-ClusterReader]: [22:07:45][INFO] [HMPID ClusterReader - run() ] clusters  = 472
+[154694:HMP-ClusterReader]: [22:07:45][INFO] End ClusterReader !  clusters = 472 Execution time = 1.2
+[154702:hmp-matcher]: [22:07:45][INFO] MagneticField::Print: MagneticFieldMap:
+[154702:hmp-matcher]: [22:07:45][INFO] MagneticField::Print: Solenoid (-1*)5 kG, Dipole ON (-1) 
+[154702:hmp-matcher]: [22:07:45][INFO] MagneticField::Print: Machine B fields for p-p  beam (7000 GeV): QGrad: 22.0002 Dipole: 37.8781
+[154702:hmp-matcher]: [22:07:45][INFO] MagneticField::Print: Uses Sol30_Dip6_Hole  of /root/alice/sw/slc8_x86-64/O2/segment-local1/share/Common/maps/mfchebKGI_sym.root
+[154702:hmp-matcher]: Info in <TGeoGlobalMagField::SetField>: Global magnetic field set to <MagneticFieldMap>
+[154702:hmp-matcher]: Info in <TGeoGlobalMagField::Lock>: Global magnetic field <MagneticFieldMap> is now locked
+[154702:hmp-matcher]: [22:07:45][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[154702:hmp-matcher]: [22:07:45][STATE] INITIALIZED ---> BINDING
+[154702:hmp-matcher]: [22:07:45][STATE] BINDING ---> BOUND
+[154702:hmp-matcher]: [22:07:45][STATE] BOUND ---> CONNECTING
+[154702:hmp-matcher]: [22:07:45][STATE] CONNECTING ---> DEVICE READY
+[154702:hmp-matcher]: [22:07:45][STATE] DEVICE READY ---> INITIALIZING TASK
+[154698:TOFMatchedReader_ITSTPC]: [22:07:45][INFO] Sending end-of-stream message to channel from_TOFMatchedReader_ITSTPC_to_hmp-matcher
+[154698:TOFMatchedReader_ITSTPC]: [22:07:45][INFO] Correctly handshaken websocket connection.
+[154693:itstpc-track-reader]: [22:07:45][INFO] Sending end-of-stream message to channel from_itstpc-track-reader_to_hmp-matcher
+[154693:itstpc-track-reader]: [22:07:45][INFO] Correctly handshaken websocket connection.
+[154694:HMP-ClusterReader]: [22:07:45][INFO] Sending end-of-stream message to channel from_HMP-ClusterReader_to_internal-dpl-ccdb-backend
+[154694:HMP-ClusterReader]: [22:07:45][INFO] Sending end-of-stream message to channel from_HMP-ClusterReader_to_hmp-matcher
+[154694:HMP-ClusterReader]: [22:07:45][INFO] Sending end-of-stream message to channel from_HMP-ClusterReader_to_internal-dpl-injected-dummy-sink
+[154694:HMP-ClusterReader]: [22:07:45][INFO] Correctly handshaken websocket connection.
+[154695:itstpctrd-track-reader]: [22:07:45][INFO] Sending end-of-stream message to channel from_itstpctrd-track-reader_to_hmp-matcher
+[154695:itstpctrd-track-reader]: [22:07:45][INFO] Correctly handshaken websocket connection.
+[154696:tpctrd-track-reader]: [22:07:45][INFO] Sending end-of-stream message to channel from_tpctrd-track-reader_to_hmp-matcher
+[154696:tpctrd-track-reader]: [22:07:45][INFO] Correctly handshaken websocket connection.
+[154697:TOFMatchedReader_TPC]: [22:07:45][INFO] Sending end-of-stream message to channel from_TOFMatchedReader_TPC_to_hmp-matcher
+[154697:TOFMatchedReader_TPC]: [22:07:45][INFO] Correctly handshaken websocket connection.
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:45][INFO] Sending end-of-stream message to channel from_TOFMatchedReader_ITSTPCTRD_to_hmp-matcher
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:45][INFO] Correctly handshaken websocket connection.
+[154700:tof-cluster-reader]: [22:07:45][INFO] Sending end-of-stream message to channel from_tof-cluster-reader_to_hmp-matcher
+[154700:tof-cluster-reader]: [22:07:45][INFO] Sending end-of-stream message to channel from_tof-cluster-reader_to_internal-dpl-injected-dummy-sink
+[154700:tof-cluster-reader]: [22:07:45][INFO] Correctly handshaken websocket connection.
+[154702:hmp-matcher]: [22:07:45][STATE] INITIALIZING TASK ---> READY
+[154702:hmp-matcher]: [22:07:45][STATE] READY ---> RUNNING
+[154702:hmp-matcher]: [22:07:45][INFO] fair::mq::Device running...
+[154702:hmp-matcher]: [22:07:45][INFO] LHCPeriod is not available, using current month AUG
+[154702:hmp-matcher]: [22:07:45][INFO] Correctly handshaken websocket connection.
+[154701:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to JCentral. Please wait
+[154701:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to 137.138.47.219
+[154701:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Successfully connected to 137.138.47.219
+[154701:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/CTP/Calib/OrbitReset/06/62200/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee in SE <ALICE::CERN::EOS>
+[154701:internal-dpl-ccdb-backend]: [22:07:47][INFO] ccdb reads http://alice-ccdb.cern.ch/CTP/Calib/OrbitReset/1546300800000/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee for 1546300800000 (load to memory, agent_id: localhost.localdomain-1692907660-5h7bp7), 
+[154701:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Param/MatLUT/05/24630/d5a2a33e-dba4-11ec-9e90-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[154701:internal-dpl-ccdb-backend]: [22:07:48][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Param/MatLUT/1546300800000/d5a2a33e-dba4-11ec-9e90-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1692907660-5h7bp7), 
+[154701:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPMagField/06/62924/01d633ab-efdf-11ec-841e-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[154701:internal-dpl-ccdb-backend]: [22:07:48][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPMagField/1546300800000/01d633ab-efdf-11ec-841e-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1692907660-5h7bp7), 
+[154701:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPLHCIF/04/60609/b3296373-efea-11ec-b9c0-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[154701:internal-dpl-ccdb-backend]: [22:07:48][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPLHCIF/1546300800000/b3296373-efea-11ec-b9c0-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1692907660-5h7bp7), 
+[154701:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPECS/03/07584/646e9be2-0210-11ed-8000-200114580202 in SE <ALICE::CERN::OCDB>
+[154701:internal-dpl-ccdb-backend]: [22:07:48][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPECS/1546300800000/646e9be2-0210-11ed-8000-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1692907660-5h7bp7), 
+[154701:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GeometryAligned/06/21224/787687c0-287a-11ed-8141-200114580202 in SE <ALICE::CERN::OCDB>
+[154701:internal-dpl-ccdb-backend]: [22:07:48][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GeometryAligned/1546300800000/787687c0-287a-11ed-8141-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1692907660-5h7bp7), 
+[154701:internal-dpl-ccdb-backend]: [22:07:48][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_hmp-matcher
+[154701:internal-dpl-ccdb-backend]: [22:07:48][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_internal-dpl-injected-dummy-sink
+[154702:hmp-matcher]: [22:07:48][INFO] RecoContainer::createTracks took 0.00019 CPU s.
+[154702:hmp-matcher]: [22:07:48][INFO] MatchHMP::prepareTracks() ended ok
+[154702:hmp-matcher]: [22:07:48][INFO]  ************************number of tracks: 1444, number of HMP triggers: 7
+[154702:hmp-matcher]: [22:07:48][INFO] Loaded 440 params from $(O2_ROOT)/share/Common/maps/sol5k.txt
+[154702:hmp-matcher]: [22:07:48][INFO] 1st entry last entry
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 0 -- 20
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 0 -- 20
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 0 -- 20
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 0 -- 20
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 0 -- 20
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 0 -- 20
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 0 -- 20
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 0 -- 20
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 0 -- 20
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 0 -- 20
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 0 -- 20
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 0 -- 20
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 0 -- 20
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 0 -- 20
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 0 -- 20
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 0 -- 20
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 0 -- 20
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] 1st entry last entry
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 21 -- 88
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] 1st entry last entry
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:48][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:48][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:48][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 89 -- 203
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] 1st entry last entry
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 204 -- 242
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 204 -- 242
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 204 -- 242
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 204 -- 242
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 204 -- 242
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 204 -- 242
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 204 -- 242
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 204 -- 242
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 204 -- 242
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 204 -- 242
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 204 -- 242
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 204 -- 242
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 204 -- 242
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 204 -- 242
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 204 -- 242
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] 1st entry last entry
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 243 -- 265
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 243 -- 265
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 243 -- 265
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 243 -- 265
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 243 -- 265
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 243 -- 265
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 243 -- 265
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 243 -- 265
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 243 -- 265
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 243 -- 265
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 243 -- 265
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] 1st entry last entry
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 266 -- 358
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 266 -- 358
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 266 -- 358
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 266 -- 358
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 266 -- 358
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 266 -- 358
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 266 -- 358
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 266 -- 358
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] 1st entry last entry
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 359 -- 471
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 359 -- 471
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 359 -- 471
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 359 -- 471
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 359 -- 471
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 359 -- 471
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 359 -- 471
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO] Track Intersected :::: clusters loop 359 -- 471
+[154702:hmp-matcher]: [22:07:49][INFO] mHMPClustersArray Size  472
+[154702:hmp-matcher]: [22:07:49][INFO] eventLoop
+[154702:hmp-matcher]: [22:07:49][INFO] Finished  event clusters loop
+[154702:hmp-matcher]: [22:07:49][INFO]  MatchHMP.cxx : finished all events
+[154702:hmp-matcher]: [22:07:49][INFO] Sending end-of-stream message to channel from_hmp-matcher_to_HMPMatchedWriter
+[INFO] Quitting
+[INFO] QUIT_REQUESTED
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:49][INFO] Received device shutdown request (signal 15).
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:49][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[154700:tof-cluster-reader]: [22:07:49][INFO] Received device shutdown request (signal 15).
+[154700:tof-cluster-reader]: [22:07:49][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[154701:internal-dpl-ccdb-backend]: [22:07:49][INFO] Received device shutdown request (signal 15).
+[154701:internal-dpl-ccdb-backend]: [22:07:49][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[154692:internal-dpl-clock]: [22:07:49][INFO] Received device shutdown request (signal 15).
+[154692:internal-dpl-clock]: [22:07:49][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[154695:itstpctrd-track-reader]: [22:07:49][INFO] Received device shutdown request (signal 15).
+[154695:itstpctrd-track-reader]: [22:07:49][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[154696:tpctrd-track-reader]: [22:07:49][INFO] Received device shutdown request (signal 15).
+[154696:tpctrd-track-reader]: [22:07:49][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[154702:hmp-matcher]: [22:07:49][INFO] Received device shutdown request (signal 15).
+[154702:hmp-matcher]: [22:07:49][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[154703:HMPMatchedWriter]: [22:07:49][INFO] Received device shutdown request (signal 15).
+[154703:HMPMatchedWriter]: [22:07:49][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[154693:itstpc-track-reader]: [22:07:49][INFO] Received device shutdown request (signal 15).
+[154693:itstpc-track-reader]: [22:07:49][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[154694:HMP-ClusterReader]: [22:07:49][INFO] Received device shutdown request (signal 15).
+[154694:HMP-ClusterReader]: [22:07:49][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[154695:itstpctrd-track-reader]: [22:07:49][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[154695:itstpctrd-track-reader]: [22:07:49][STATE] RUNNING ---> READY
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:49][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:49][STATE] RUNNING ---> READY
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:49][STATE] READY ---> RESETTING TASK
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:49][STATE] RESETTING TASK ---> DEVICE READY
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:49][STATE] DEVICE READY ---> RESETTING DEVICE
+[154700:tof-cluster-reader]: [22:07:49][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[154700:tof-cluster-reader]: [22:07:49][STATE] RUNNING ---> READY
+[154700:tof-cluster-reader]: [22:07:49][STATE] READY ---> RESETTING TASK
+[154700:tof-cluster-reader]: [22:07:49][STATE] RESETTING TASK ---> DEVICE READY
+[154700:tof-cluster-reader]: [22:07:49][STATE] DEVICE READY ---> RESETTING DEVICE
+[154694:HMP-ClusterReader]: [22:07:49][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[154694:HMP-ClusterReader]: [22:07:49][STATE] RUNNING ---> READY
+[154695:itstpctrd-track-reader]: [22:07:49][STATE] READY ---> RESETTING TASK
+[154695:itstpctrd-track-reader]: [22:07:49][STATE] RESETTING TASK ---> DEVICE READY
+[154695:itstpctrd-track-reader]: [22:07:49][STATE] DEVICE READY ---> RESETTING DEVICE
+[154703:HMPMatchedWriter]: [22:07:49][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[154694:HMP-ClusterReader]: [22:07:49][STATE] READY ---> RESETTING TASK
+[154694:HMP-ClusterReader]: [22:07:49][STATE] RESETTING TASK ---> DEVICE READY
+[154694:HMP-ClusterReader]: [22:07:49][STATE] DEVICE READY ---> RESETTING DEVICE
+[154697:TOFMatchedReader_TPC]: [22:07:49][INFO] Received device shutdown request (signal 15).
+[154697:TOFMatchedReader_TPC]: [22:07:49][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[154698:TOFMatchedReader_ITSTPC]: [22:07:49][INFO] Received device shutdown request (signal 15).
+[154698:TOFMatchedReader_ITSTPC]: [22:07:49][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[154704:internal-dpl-injected-dummy-sink]: [22:07:49][INFO] Received device shutdown request (signal 15).
+[154704:internal-dpl-injected-dummy-sink]: [22:07:49][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[154692:internal-dpl-clock]: [22:07:49][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[154692:internal-dpl-clock]: [22:07:49][STATE] RUNNING ---> READY
+[154692:internal-dpl-clock]: [22:07:49][STATE] READY ---> RESETTING TASK
+[154692:internal-dpl-clock]: [22:07:49][STATE] RESETTING TASK ---> DEVICE READY
+[154692:internal-dpl-clock]: [22:07:49][STATE] DEVICE READY ---> RESETTING DEVICE
+[154693:itstpc-track-reader]: [22:07:49][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[154693:itstpc-track-reader]: [22:07:49][STATE] RUNNING ---> READY
+[154693:itstpc-track-reader]: [22:07:49][STATE] READY ---> RESETTING TASK
+[154693:itstpc-track-reader]: [22:07:49][STATE] RESETTING TASK ---> DEVICE READY
+[154695:itstpctrd-track-reader]: [22:07:49][STATE] RESETTING DEVICE ---> IDLE
+[154695:itstpctrd-track-reader]: [22:07:49][STATE] IDLE ---> EXITING
+[154695:itstpctrd-track-reader]: [22:07:49][STATE] Exiting FairMQ state machine
+[154701:internal-dpl-ccdb-backend]: [22:07:49][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[154701:internal-dpl-ccdb-backend]: [22:07:49][INFO] CCDB cache miss/hit ratio:
+[154701:internal-dpl-ccdb-backend]: [22:07:49][INFO]   GLO/Config/GeometryAligned: 1/0 (1847296-1847296 bytes)
+[154701:internal-dpl-ccdb-backend]: [22:07:49][INFO]   GLO/Config/GRPECS: 1/0 (2048-2048 bytes)
+[154701:internal-dpl-ccdb-backend]: [22:07:49][INFO]   GLO/Config/GRPLHCIF: 1/0 (2048-2048 bytes)
+[154701:internal-dpl-ccdb-backend]: [22:07:49][INFO]   GLO/Config/GRPMagField: 1/0 (1024-1024 bytes)
+[154701:internal-dpl-ccdb-backend]: [22:07:49][INFO]   GLO/Param/MatLUT: 1/0 (9225216-9225216 bytes)
+[154701:internal-dpl-ccdb-backend]: [22:07:49][INFO]   CTP/Calib/OrbitReset: 1/1 (1024-1024 bytes)
+[154701:internal-dpl-ccdb-backend]: [22:07:49][STATE] RUNNING ---> READY
+[154701:internal-dpl-ccdb-backend]: [22:07:49][STATE] READY ---> RESETTING TASK
+[154701:internal-dpl-ccdb-backend]: [22:07:49][STATE] RESETTING TASK ---> DEVICE READY
+[154701:internal-dpl-ccdb-backend]: [22:07:49][STATE] DEVICE READY ---> RESETTING DEVICE
+[154704:internal-dpl-injected-dummy-sink]: [22:07:49][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[154704:internal-dpl-injected-dummy-sink]: [22:07:49][STATE] RUNNING ---> READY
+[154704:internal-dpl-injected-dummy-sink]: [22:07:49][STATE] READY ---> RESETTING TASK
+[154704:internal-dpl-injected-dummy-sink]: [22:07:49][STATE] RESETTING TASK ---> DEVICE READY
+[154704:internal-dpl-injected-dummy-sink]: [22:07:49][STATE] DEVICE READY ---> RESETTING DEVICE
+[154693:itstpc-track-reader]: [22:07:49][STATE] DEVICE READY ---> RESETTING DEVICE
+[154702:hmp-matcher]: [22:07:49][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[154702:hmp-matcher]: [22:07:49][STATE] RUNNING ---> READY
+[154696:tpctrd-track-reader]: [22:07:49][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[154697:TOFMatchedReader_TPC]: [22:07:49][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[154697:TOFMatchedReader_TPC]: [22:07:49][STATE] RUNNING ---> READY
+[154697:TOFMatchedReader_TPC]: [22:07:49][STATE] READY ---> RESETTING TASK
+[154697:TOFMatchedReader_TPC]: [22:07:49][STATE] RESETTING TASK ---> DEVICE READY
+[154697:TOFMatchedReader_TPC]: [22:07:49][STATE] DEVICE READY ---> RESETTING DEVICE
+[154696:tpctrd-track-reader]: [22:07:49][STATE] RUNNING ---> READY
+[154694:HMP-ClusterReader]: [22:07:49][STATE] RESETTING DEVICE ---> IDLE
+[154694:HMP-ClusterReader]: [22:07:49][STATE] IDLE ---> EXITING
+[154694:HMP-ClusterReader]: [22:07:49][STATE] Exiting FairMQ state machine
+[154696:tpctrd-track-reader]: [22:07:49][STATE] READY ---> RESETTING TASK
+[154696:tpctrd-track-reader]: [22:07:49][STATE] RESETTING TASK ---> DEVICE READY
+[154696:tpctrd-track-reader]: [22:07:49][STATE] DEVICE READY ---> RESETTING DEVICE
+[154697:TOFMatchedReader_TPC]: [22:07:49][STATE] RESETTING DEVICE ---> IDLE
+[154697:TOFMatchedReader_TPC]: [22:07:49][STATE] IDLE ---> EXITING
+[154697:TOFMatchedReader_TPC]: [22:07:49][STATE] Exiting FairMQ state machine
+[154698:TOFMatchedReader_ITSTPC]: [22:07:49][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[154698:TOFMatchedReader_ITSTPC]: [22:07:49][STATE] RUNNING ---> READY
+[154698:TOFMatchedReader_ITSTPC]: [22:07:49][STATE] READY ---> RESETTING TASK
+[154698:TOFMatchedReader_ITSTPC]: [22:07:49][STATE] RESETTING TASK ---> DEVICE READY
+[154698:TOFMatchedReader_ITSTPC]: [22:07:49][STATE] DEVICE READY ---> RESETTING DEVICE
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:49][STATE] RESETTING DEVICE ---> IDLE
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:49][STATE] IDLE ---> EXITING
+[154700:tof-cluster-reader]: [22:07:49][STATE] RESETTING DEVICE ---> IDLE
+[154700:tof-cluster-reader]: [22:07:49][STATE] IDLE ---> EXITING
+[154700:tof-cluster-reader]: [22:07:49][STATE] Exiting FairMQ state machine
+[154701:internal-dpl-ccdb-backend]: [22:07:49][STATE] RESETTING DEVICE ---> IDLE
+[154702:hmp-matcher]: [22:07:49][STATE] READY ---> RESETTING TASK
+[154702:hmp-matcher]: [22:07:49][STATE] RESETTING TASK ---> DEVICE READY
+[154702:hmp-matcher]: [22:07:49][STATE] DEVICE READY ---> RESETTING DEVICE
+[154704:internal-dpl-injected-dummy-sink]: [22:07:49][STATE] RESETTING DEVICE ---> IDLE
+[154704:internal-dpl-injected-dummy-sink]: [22:07:49][STATE] IDLE ---> EXITING
+[154704:internal-dpl-injected-dummy-sink]: [22:07:49][STATE] Exiting FairMQ state machine
+[154701:internal-dpl-ccdb-backend]: [22:07:49][STATE] IDLE ---> EXITING
+[154692:internal-dpl-clock]: [22:07:49][STATE] RESETTING DEVICE ---> IDLE
+[154699:TOFMatchedReader_ITSTPCTRD]: [22:07:49][STATE] Exiting FairMQ state machine
+[154701:internal-dpl-ccdb-backend]: [22:07:49][STATE] Exiting FairMQ state machine
+[154692:internal-dpl-clock]: [22:07:49][STATE] IDLE ---> EXITING
+[154692:internal-dpl-clock]: [22:07:49][STATE] Exiting FairMQ state machine
+[154693:itstpc-track-reader]: [22:07:49][STATE] RESETTING DEVICE ---> IDLE
+[154693:itstpc-track-reader]: [22:07:49][STATE] IDLE ---> EXITING
+[154696:tpctrd-track-reader]: [22:07:49][STATE] RESETTING DEVICE ---> IDLE
+[154696:tpctrd-track-reader]: [22:07:49][STATE] IDLE ---> EXITING
+[154696:tpctrd-track-reader]: [22:07:49][STATE] Exiting FairMQ state machine
+[154698:TOFMatchedReader_ITSTPC]: [22:07:49][STATE] RESETTING DEVICE ---> IDLE
+[154698:TOFMatchedReader_ITSTPC]: [22:07:49][STATE] IDLE ---> EXITING
+[154698:TOFMatchedReader_ITSTPC]: [22:07:49][STATE] Exiting FairMQ state machine
+[154702:hmp-matcher]: [22:07:49][STATE] RESETTING DEVICE ---> IDLE
+[154693:itstpc-track-reader]: [22:07:49][STATE] Exiting FairMQ state machine
+[154702:hmp-matcher]: [22:07:49][STATE] IDLE ---> EXITING
+[154702:hmp-matcher]: [22:07:49][STATE] Exiting FairMQ state machine
+[154703:HMPMatchedWriter]: [22:07:50][STATE] RUNNING ---> READY
+[154703:HMPMatchedWriter]: [22:07:50][STATE] READY ---> RESETTING TASK
+[154703:HMPMatchedWriter]: [22:07:50][STATE] RESETTING TASK ---> DEVICE READY
+[154703:HMPMatchedWriter]: [22:07:50][STATE] DEVICE READY ---> RESETTING DEVICE
+[154703:HMPMatchedWriter]: [22:07:50][INFO] Cleaning up for shared memory id '37f50483'...
+[154703:HMPMatchedWriter]: [22:07:50][INFO] Found 0 unmanaged regions...
+[154703:HMPMatchedWriter]: [22:07:50][INFO] Found 1 managed segments...
+[154703:HMPMatchedWriter]: [22:07:50][INFO] Successfully removed 'fmq_37f50483_m_0'.
+[154703:HMPMatchedWriter]: [22:07:50][INFO] Successfully removed 'fmq_37f50483_mng'.
+[154703:HMPMatchedWriter]: [22:07:50][STATE] RESETTING DEVICE ---> IDLE
+[154703:HMPMatchedWriter]: [22:07:50][STATE] IDLE ---> EXITING
+[154703:HMPMatchedWriter]: [22:07:50][STATE] Exiting FairMQ state machine
+[INFO] ## Processes completed. Run summary:
+[INFO] ### Devices started: 13
+[INFO]  - Device internal-dpl-clock: pid 154692 (exit 0)
+[INFO]  - Device itstpc-track-reader: pid 154693 (exit 0)
+[INFO]  - Device HMP-ClusterReader: pid 154694 (exit 0)
+[INFO]  - Device itstpctrd-track-reader: pid 154695 (exit 0)
+[INFO]  - Device tpctrd-track-reader: pid 154696 (exit 0)
+[INFO]  - Device TOFMatchedReader_TPC: pid 154697 (exit 0)
+[INFO]  - Device TOFMatchedReader_ITSTPC: pid 154698 (exit 0)
+[INFO]  - Device TOFMatchedReader_ITSTPCTRD: pid 154699 (exit 0)
+[INFO]  - Device tof-cluster-reader: pid 154700 (exit 0)
+[INFO]  - Device internal-dpl-ccdb-backend: pid 154701 (exit 0)
+[INFO]  - Device hmp-matcher: pid 154702 (exit 0)
+[INFO]  - Device HMPMatchedWriter: pid 154703 (exit 0)
+[INFO]  - Device internal-dpl-injected-dummy-sink: pid 154704 (exit 0)
+[INFO] Dumping used configuration in dpl-config.json
+TASK-EXIT-CODE: 0

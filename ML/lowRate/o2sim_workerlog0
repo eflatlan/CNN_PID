@@ -1,0 +1,1563 @@
+[16:28:12][INFO] BINDING TO ADDRESS ipc:///tmp/o2sim-worker-notifications-52388 type pub
+[16:28:12][INFO] Parsed primary server address ipc:///tmp/o2sim-primary-get-52388
+[16:28:12][INFO] Parsed primary server status address ipc:///tmp/o2sim-primserv-info-52388
+[16:28:12][INFO] Parsed merger address ipc:///tmp/o2sim-hitmerger-simdata-52388
+[16:28:12][INFO] Waiting for configuration answer 
+[16:28:12][INFO] Configuration answer received, containing 1032 bytes 
+[16:28:14][INFO] COMMUNICATED ENGINE TGeant3
+[16:28:14][INFO] Setting up the simulation ...
+[16:28:14][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1692714494-bh1t7b, Host: http://alice-ccdb.cern.ch/
+[16:28:14][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1692714494-bh1t7b, Host: http://alice-ccdb.cern.ch
+[16:28:14][INFO] Initialized CCDB Manager at URL: http://alice-ccdb.cern.ch
+[16:28:14][INFO] Initialized CCDB Manager with timestamp : 1546300800000
+[16:28:14][INFO] RNG INITIAL SEED 5565866444181172389
+[16:28:14][INFO] Media file used: /root/alice/sw/slc8_x86-64/O2/segment-local1/share/Detectors/Geometry/media.geo
+[16:28:14][INFO] MagneticField::CreateField: Maximim possible beam energy for requested beam is assumed
+[16:28:14][INFO] MagneticField::Print: Maps:
+[16:28:14][INFO] MagneticField::Print: Solenoid (-1*)5 kG, Dipole ON (-1) 
+[16:28:14][INFO] MagneticField::Print: Machine B fields for p-p  beam (7000 GeV): QGrad: 22.0002 Dipole: 37.8781
+[16:28:14][INFO] MagneticField::Print: Uses Sol30_Dip6_Hole  of $(O2_ROOT)/share/Common/maps/mfchebKGI_sym.root
+[16:28:14][INFO] Activating ZDC module
+[16:28:14][INFO] Activating HALL module
+[16:28:14][INFO] Activating MAG module
+[16:28:14][INFO] Activating DIPO module
+[16:28:14][INFO] Activating COMP module
+[16:28:14][INFO] Activating PIPE module
+[16:28:14][INFO] Activating ABSO module
+[16:28:14][INFO] Activating SHIL module
+[16:28:14][INFO] Activating TOF module
+[16:28:14][INFO] Activating TOF module
+[16:28:14][INFO] Reading out TOF detector
+[16:28:14][INFO] Activating TRD module
+[16:28:14][INFO] Reading out TRD detector
+[16:28:14][INFO] Activating TPC module
+[16:28:14][INFO] Reading out TPC detector
+[16:28:14][INFO] Activating ITS module
+[16:28:14][INFO] Reading out ITS detector
+[16:28:14][INFO] L# 0 Phi:16.42 R:2.34 Nst:12 Nunit:9 W:1.5 Tilt:17.503 Lthick:0.005 Dthick:0.003 DetID:0 B:0
+[16:28:14][INFO] L# 1 Phi:12.18 R:3.15 Nst:16 Nunit:9 W:1.5 Tilt:17.9445 Lthick:0.005 Dthick:0.003 DetID:0 B:0
+[16:28:14][INFO] L# 2 Phi:9.55 R:3.93 Nst:20 Nunit:9 W:1.5 Tilt:16.9423 Lthick:0.005 Dthick:0.003 DetID:0 B:0
+[16:28:14][INFO] L# 3 Phi:7.5 R:19.45 Nst:24 Nunit:4 Lthick:0.01 Dthick:0.003 DetID:0 B:0
+[16:28:14][INFO] L# 4 Phi:6 R:24.4 Nst:30 Nunit:4 Lthick:0.01 Dthick:0.003 DetID:0 B:0
+[16:28:14][INFO] L# 5 Phi:4.29 R:34.24 Nst:42 Nunit:7 Lthick:0.01 Dthick:0.003 DetID:0 B:0
+[16:28:14][INFO] L# 6 Phi:3.75 R:39.2 Nst:48 Nunit:7 Lthick:0.01 Dthick:0.003 DetID:0 B:0
+[16:28:14][INFO] Activating MFT module
+[16:28:14][INFO] Reading out MFT detector
+[16:28:14][INFO] Activating MCH module
+[16:28:14][INFO] Reading out MCH detector
+[16:28:14][INFO] Activating MID module
+[16:28:14][INFO] Reading out MID detector
+[16:28:14][INFO] Activating EMC module
+[16:28:14][INFO] Reading out EMC detector
+[16:28:14][INFO] o2::emcal::Geometry::GetInstanceFromRunNumber() - Initialized geometry with name <<EMCAL_COMPLETE12SMV1_DCAL_8SM>>
+[16:28:14][INFO] Activating PHS module
+[16:28:14][INFO] Reading out PHS detector
+[16:28:14][INFO] Activating CPV module
+[16:28:14][INFO] Reading out CPV detector
+[16:28:14][INFO] Activating FT0 module
+[16:28:14][INFO] Reading out FT0 detector
+[16:28:14][INFO] Activating FV0 module
+[16:28:14][INFO] Reading out FV0 detector
+[16:28:14][INFO] Activating FDD module
+[16:28:14][INFO] Reading out FDD detector
+[16:28:14][INFO] Activating HMP module
+[16:28:14][INFO] Reading out HMP detector
+[16:28:14][INFO] Activating ZDC module
+[16:28:14][INFO] Reading out ZDC detector
+ Image initialized with 44 x 44 pixels  Image initialized with 56 x 30 pixels [16:28:14][INFO] FastSim module disabled
+[16:28:14][INFO] Reading out ITS detector
+[16:28:14][INFO] Reading out TPC detector
+[16:28:14][INFO] Reading out TRD detector
+[16:28:14][INFO] Reading out TOF detector
+[16:28:14][INFO] Reading out PHS detector
+[16:28:14][INFO] Reading out CPV detector
+[16:28:14][INFO] Reading out EMC detector
+[16:28:14][INFO] Reading out HMP detector
+[16:28:14][INFO] Reading out MFT detector
+[16:28:14][INFO] Reading out MCH detector
+[16:28:14][INFO] Reading out MID detector
+[16:28:14][INFO] Reading out ZDC detector
+[16:28:14][INFO] Reading out FT0 detector
+[16:28:14][INFO] Reading out FV0 detector
+[16:28:14][INFO] Reading out FDD detector
+[16:28:14][INFO] Reading out TST detector
+[16:28:14][INFO] Reading out CTP detector
+[16:28:14][INFO] Reading out FOC detector
+[16:28:14][INFO] O2RUNSIM SPECIFIC INIT CALLED
+[16:28:14][INFO] FairRootFileSink initialized.
+[16:28:14][INFO]  - cbmroot_0
+[16:28:14][INFO]     - o2sim_53509.root
+Info in <TGeoManager::TGeoManager>: Geometry FAIRGeom, FAIR geometry created
+[16:28:14][INFO] FairGeoMedia: Read media 
+[16:28:16][INFO] MagFieldContFact::createContainer: Creating mag.field container MagFieldParam
+[16:28:16][INFO] Loading simulation plugin libO2G3Setup
+[16:28:16][INFO] Setting up G3 sim from library code
+
+=============================================================
+ Virtual Monte Carlo Library
+ Version 2.0 ( 10 February 2022 )
+=============================================================
+
+=============================================================
+ Geant3 Virtual Monte Carlo 
+ Version 4.2 ( 9 February 2023 )
+ WWW : https://vmc-project.github.io/
+=============================================================
+
+-I- G3Config: Geant3 with TGeo has been created.
+[16:28:16][INFO] Stack.storeSecondaries : true		[ CODE ]
+Stack.pruneKine : true		[ CODE ]
+Stack.transportPrimary : all		[ CODE ]
+Stack.transportPrimaryFileName : 		[ CODE ]
+Stack.transportPrimaryFuncName : 		[ CODE ]
+Stack.transportPrimaryInvert : false		[ CODE ]
+
+
+ *------------------------------------------------------------------------------------* 
+ |                                                                                    | 
+ |  *------------------------------------------------------------------------------*  | 
+ |  |                                                                              |  | 
+ |  |                                                                              |  | 
+ |  |   PPP   Y   Y  TTTTT  H   H  III    A      Welcome to the Lund Monte Carlo!  |  | 
+ |  |   P  P   Y Y     T    H   H   I    A A     This is PYTHIA version 8.304      |  | 
+ |  |   PPP     Y      T    HHHHH   I   AAAAA    Last date of change:  9 Apr 2021  |  | 
+ |  |   P       Y      T    H   H   I   A   A                                      |  | 
+ |  |   P       Y      T    H   H  III  A   A    Now is 22 Aug 2023 at 16:28:16    |  | 
+ |  |                                                                              |  | 
+ |  |   Christian Bierlich;  Department of Astronomy and Theoretical Physics,      |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: christian.bierlich@thep.lu.se                                   |  | 
+ |  |   Nishita Desai;  Department of Theoretical Physics, Tata Institute,         |  | 
+ |  |      Homi Bhabha Road, Mumbai 400005, India;                                 |  | 
+ |  |      e-mail: desai@theory.tifr.res.in                                        |  | 
+ |  |   Leif Gellersen;  Department of Astronomy and Theoretical Physics,          |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: leif.gellersen@thep.lu.se                                       |  | 
+ |  |   Ilkka Helenius;  Department of Physics, University of Jyvaskyla,           |  | 
+ |  |      P.O. Box 35, FI-40014 University of Jyvaskyla, Finland;                 |  | 
+ |  |      e-mail: ilkka.m.helenius@jyu.fi                                         |  | 
+ |  |   Philip Ilten;  Department of Physics,                                      |  | 
+ |  |      University of Cincinnati, Cincinnati, OH 45221, USA;                    |  | 
+ |  |      e-mail: philten@cern.ch                                                 |  | 
+ |  |   Leif Lonnblad;  Department of Astronomy and Theoretical Physics,           |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: leif.lonnblad@thep.lu.se                                        |  | 
+ |  |   Stephen Mrenna;  Computing Division, Simulations Group,                    |  | 
+ |  |      Fermi National Accelerator Laboratory, MS 234, Batavia, IL 60510, USA;  |  | 
+ |  |      e-mail: mrenna@fnal.gov                                                 |  | 
+ |  |   Stefan Prestel;  Department of Astronomy and Theoretical Physics,          |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: stefan.prestel@thep.lu.se                                       |  | 
+ |  |   Christian Preuss;  School of Physics and Astronomy,                        |  | 
+ |  |      Monash University, PO Box 27, 3800 Melbourne, Australia;                |  | 
+ |  |      e-mail: christian.preuss@monash.edu                                     |  | 
+ |  |   Torbjorn Sjostrand;  Department of Astronomy and Theoretical Physics,      |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: torbjorn@thep.lu.se                                             |  | 
+ |  |   Peter Skands;  School of Physics and Astronomy,                            |  | 
+ |  |      Monash University, PO Box 27, 3800 Melbourne, Australia;                |  | 
+ |  |      e-mail: peter.skands@monash.edu                                         |  | 
+ |  |   Marius Utheim;  Department of Astronomy and Theoretical Physics,           |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: marius.utheim@thep.lu.se                                        |  | 
+ |  |   Rob Verheyen;  Department of Physics and Astronomy,                        |  | 
+ |  |      University College London, Gower St, Bloomsbury, London WC1E 6BT, UK;   |  | 
+ |  |      e-mail: r.verheyen@ucl.ac.uk                                            |  | 
+ |  |                                                                              |  | 
+ |  |   The main program reference is 'An Introduction to PYTHIA 8.2',             |  | 
+ |  |   T. Sjostrand et al, Comput. Phys. Commun. 191 (2015) 159                   |  | 
+ |  |   [arXiv:1410.3012 [hep-ph]]                                                 |  | 
+ |  |                                                                              |  | 
+ |  |   The main physics reference is the 'PYTHIA 6.4 Physics and Manual',         |  | 
+ |  |   T. Sjostrand, S. Mrenna and P. Skands, JHEP05 (2006) 026 [hep-ph/0603175]  |  | 
+ |  |                                                                              |  | 
+ |  |   An archive of program versions and documentation is found on the web:      |  | 
+ |  |   http://www.thep.lu.se/Pythia                                               |  | 
+ |  |                                                                              |  | 
+ |  |   This program is released under the GNU General Public Licence version 2.   |  | 
+ |  |   Please respect the MCnet Guidelines for Event Generator Authors and Users. |  | 
+ |  |                                                                              |  | 
+ |  |   Disclaimer: this program comes without any guarantees.                     |  | 
+ |  |   Beware of errors and use common sense when interpreting results.           |  | 
+ |  |                                                                              |  | 
+ |  |   Copyright (C) 2021 Torbjorn Sjostrand                                      |  | 
+ |  |                                                                              |  | 
+ |  |                                                                              |  | 
+ |  *------------------------------------------------------------------------------*  | 
+ |                                                                                    | 
+ *------------------------------------------------------------------------------------* 
+
+[16:28:16][INFO] Init 'DecayerPythia8' with following parameters
+[16:28:16][INFO] DecayerPythia8.config[0] : ${O2_ROOT}/share/Generators/pythia8/decays/base.cfg		[ CODE ]
+DecayerPythia8.config[1] : 		[ CODE ]
+DecayerPythia8.config[2] : 		[ CODE ]
+DecayerPythia8.config[3] : 		[ CODE ]
+DecayerPythia8.config[4] : 		[ CODE ]
+DecayerPythia8.config[5] : 		[ CODE ]
+DecayerPythia8.config[6] : 		[ CODE ]
+DecayerPythia8.config[7] : 		[ CODE ]
+DecayerPythia8.verbose : false		[ CODE ]
+DecayerPythia8.showChanged : false		[ CODE ]
+
+[16:28:16][INFO] Reading configuration from file: /root/alice/sw/slc8_x86-64/O2/segment-local1/share/Generators/pythia8/decays/base.cfg
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | Init:showChangedParticleData                  |                      off |           on                         | 
+ | ProcessLevel:all                              |                      off |           on                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+[16:28:17][INFO] Setup global cuts and processes
+[16:28:17][INFO] Set default settings for processes and cuts.
+[16:28:17][INFO] Special process settings are enabled.
+[16:28:17][INFO] Special cut settings are enabled.
+[16:28:17][INFO] Adding custom particles to VMC
+Error in <TGeant3TGeo::SetParticle>: Particle already exists.
+Error in <TGeant3TGeo::SetParticle>: Particle already exists.
+Error in <TGeant3TGeo::SetParticle>: Unknown particle transport.
+Error in <TGeant3TGeo::SetParticle>: Unknown particle transport.
+Particle -311 not in geant
+Particle 311 not in geant
+[16:28:17][INFO] Printing 'SimUserDecay' parameters
+[16:28:17][INFO] SimUserDecay.pdglist : 		[ CODE ]
+
+[16:28:17][INFO] Initialising primary generator
+[16:28:17][INFO] Field in CAVE: 2
+[16:28:17][INFO] Setting up CAVE to host ZDC
+Info in <TGeoManager::SetTopVolume>: Top volume is cave. Master volume is cave
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Error in <TGeoCompositeShape::MakeNode>: Expression has no boolean operation
+Error in <TGeoCompositeShape::ctor>: Composite halfFixationToPipe: cannot parse expression: pipeSupportTubeCarbon
+[16:28:17][INFO] Loaded TOF geometry
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+[16:28:18][INFO] GeometryBuilder::buildGeometry volume name = MFT
+Info in <Create>: Creating HeatExchanger_0_0
+Info in <Create>: ... done HeatExchanger_0_0
+Info in <Create>: Creating HeatExchanger_1_0
+Info in <Create>: ... done HeatExchanger_1_0
+Info in <Create>: Creating HeatExchanger_2_0
+Info in <Create>: ... done HeatExchanger_2_0
+Info in <Create>: Creating HeatExchanger_3_0
+Info in <Create>: ... done HeatExchanger_3_0
+Info in <Create>: Creating HeatExchanger_4_0
+Info in <Create>: ... done HeatExchanger_4_0
+Info in <Create>: Creating HeatExchanger_0_1
+Info in <Create>: ... done HeatExchanger_0_1
+Info in <Create>: Creating HeatExchanger_1_1
+Info in <Create>: ... done HeatExchanger_1_1
+Info in <Create>: Creating HeatExchanger_2_1
+Info in <Create>: ... done HeatExchanger_2_1
+Info in <Create>: Creating HeatExchanger_3_1
+Info in <Create>: ... done HeatExchanger_3_1
+Info in <Create>: Creating HeatExchanger_4_1
+Info in <Create>: ... done HeatExchanger_4_1
+Creating MFT heat exchanger for disk0 bottom
+Creating MFT heat exchanger for disk1 bottom
+Creating MFT heat exchanger for disk2 bottom
+Creating MFT heat exchanger for disk3 bottom
+Creating MFT heat exchanger for disk4 bottom
+Creating MFT heat exchanger for disk0 top
+Creating MFT heat exchanger for disk1 top
+Creating MFT heat exchanger for disk2 top
+Creating MFT heat exchanger for disk3 top
+Creating MFT heat exchanger for disk4 top
+[16:28:27][INFO] MC modeler <TGeant3TGeo>, Title <C++ Interface to Geant3>: Sampling 10.9, model fraction with respect to G3 1, final sampling 10.9
+[16:28:27][INFO] Using EMCAL sampling fraction 10.87 for TGeant3TGeo / C++ Interface to Geant3
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+[16:28:28][INFO] FV0: Constructing geometry
+[16:28:28][INFO] FV0: Creating materials
+[16:28:28][INFO] FV0: createMaterials(): fieldType 2, maxField 15
+[16:28:28][INFO] FV0 geometry instance created
+[16:28:30][INFO] FV0: Building geometry. FV0 volume name is 'FV0'
+[16:28:30][INFO] Geometry::buildGeometry()::Volume name = FDD
+[16:28:30][INFO] Detector::CreateMaterials >>>>> magnetic field: type 2 max 15
+
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 13, max placements = 735
+Info in <TGeoManager::CloseGeometry>: 5346830 nodes/ 27478 volume UID's in FAIR geometry
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+[16:28:31][INFO] TGeometry will not be imported to VMC
+
+Warning in <TGeoManager::CloseGeometry>: geometry already closed
+[16:28:32][WARN] Alignable volumes are not yet defined for TPC
+[16:28:32][INFO] Add ITS alignable volumes
+[16:28:34][INFO] Add MCH alignable volumes
+[16:28:34][WARN] Alignable volumes are not yet defined for MID
+[16:28:34][WARN] Alignable volumes are not yet defined for EMC
+[16:28:34][INFO] Add FT0 alignable volumes
+[16:28:34][INFO] FT0A <-> /cave_1/barrel_1/FT0A_1
+[16:28:34][INFO] FT0C <-> /cave_1/barrel_1/FT0C_1
+[16:28:34][INFO] FV0: Add alignable volumes
+[16:28:34][INFO] FV0: Add alignable volume: FV0RIGHT_0: /cave_1/barrel_1/FV0_1/FV0RIGHT_0
+[16:28:34][INFO] FV0: Add alignable volume: FV0LEFT_1: /cave_1/barrel_1/FV0_1/FV0LEFT_1
+[16:28:34][WARN] Alignable volumes are not yet defined for FDD
+[16:28:34][WARN] Alignable volumes are not yet defined for HMP
+Info in <TGeoManager::Export>: Exporting ccdb_object FAIR geometry as root file. Optimizations streamed.
+[16:28:36][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1692714494-bh1t7b, Host: http://alice-ccdb.cern.ch/
+Info in <TJAlienConnectionManager>: Opening connection to JCentral. Please wait
+Info in <TJAlienConnectionManager>: Opening connection to 137.138.99.188
+Info in <TJAlienConnectionManager>: Successfully connected to 137.138.99.188
+Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/ITS/Calib/Align/09/16940/f7db4c84-bc3e-11ec-b66d-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[16:28:42][INFO] ccdb reads http://alice-ccdb.cern.ch/ITS/Calib/Align/1/f7db4c84-bc3e-11ec-b66d-2a010e0a0b16 for 1546300800000 (retrieve, agent_id: localhost.localdomain-1692714494-bh1t7b), 
+Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TPC/Calib/Align/07/10256/f7fe8760-bc3e-11ec-b66d-2a010e0a0b16 in SE <ALICE::CERN::EOS>
+[16:28:42][INFO] ccdb reads http://alice-ccdb.cern.ch/TPC/Calib/Align/1/f7fe8760-bc3e-11ec-b66d-2a010e0a0b16 for 1546300800000 (retrieve, agent_id: localhost.localdomain-1692714494-bh1t7b), 
+Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TRD/Calib/Align/06/02784/f82105ae-bc3e-11ec-b66d-2a010e0a0b16 in SE <ALICE::CERN::EOS>
+[16:28:42][INFO] ccdb reads http://alice-ccdb.cern.ch/TRD/Calib/Align/1/f82105ae-bc3e-11ec-b66d-2a010e0a0b16 for 1546300800000 (retrieve, agent_id: localhost.localdomain-1692714494-bh1t7b), 
+Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TOF/Calib/Align/01/18474/f843ba4b-bc3e-11ec-b66d-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[16:28:43][INFO] ccdb reads http://alice-ccdb.cern.ch/TOF/Calib/Align/1/f843ba4b-bc3e-11ec-b66d-2a010e0a0b16 for 1546300800000 (retrieve, agent_id: localhost.localdomain-1692714494-bh1t7b), 
+Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/PHS/Calib/Align/01/22586/f86688b4-bc3e-11ec-b66d-2a010e0a0b16 in SE <ALICE::CERN::EOS>
+[16:28:43][INFO] ccdb reads http://alice-ccdb.cern.ch/PHS/Calib/Align/1/f86688b4-bc3e-11ec-b66d-2a010e0a0b16 for 1546300800000 (retrieve, agent_id: localhost.localdomain-1692714494-bh1t7b), 
+Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/CPV/Calib/Align/01/22843/f88944a8-bc3e-11ec-b66d-2a010e0a0b16 in SE <ALICE::CERN::EOS>
+[16:28:43][INFO] ccdb reads http://alice-ccdb.cern.ch/CPV/Calib/Align/1/f88944a8-bc3e-11ec-b66d-2a010e0a0b16 for 1546300800000 (retrieve, agent_id: localhost.localdomain-1692714494-bh1t7b), 
+Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/EMC/Calib/Align/06/23603/f8ad3060-bc3e-11ec-b66d-2a010e0a0b16 in SE <ALICE::CERN::EOS>
+[16:28:43][INFO] ccdb reads http://alice-ccdb.cern.ch/EMC/Calib/Align/1/f8ad3060-bc3e-11ec-b66d-2a010e0a0b16 for 1546300800000 (retrieve, agent_id: localhost.localdomain-1692714494-bh1t7b), 
+Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/HMP/Calib/Align/03/00211/f8d05560-bc3e-11ec-b66d-2a010e0a0b16 in SE <ALICE::CERN::EOS>
+[16:28:43][INFO] ccdb reads http://alice-ccdb.cern.ch/HMP/Calib/Align/1/f8d05560-bc3e-11ec-b66d-2a010e0a0b16 for 1546300800000 (retrieve, agent_id: localhost.localdomain-1692714494-bh1t7b), 
+Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/MFT/Calib/Align/03/37751/f8f3570f-bc3e-11ec-b66d-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[16:28:43][INFO] ccdb reads http://alice-ccdb.cern.ch/MFT/Calib/Align/1/f8f3570f-bc3e-11ec-b66d-2a010e0a0b16 for 1546300800000 (retrieve, agent_id: localhost.localdomain-1692714494-bh1t7b), 
+Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/MCH/Calib/Align/12/47767/f9160ba9-bc3e-11ec-b66d-2a010e0a0b16 in SE <ALICE::CERN::EOS>
+[16:28:43][INFO] ccdb reads http://alice-ccdb.cern.ch/MCH/Calib/Align/1/f9160ba9-bc3e-11ec-b66d-2a010e0a0b16 for 1546300800000 (retrieve, agent_id: localhost.localdomain-1692714494-bh1t7b), 
+Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/MID/Calib/Align/12/28508/f938e7ba-bc3e-11ec-b66d-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[16:28:43][INFO] ccdb reads http://alice-ccdb.cern.ch/MID/Calib/Align/1/f938e7ba-bc3e-11ec-b66d-2a010e0a0b16 for 1546300800000 (retrieve, agent_id: localhost.localdomain-1692714494-bh1t7b), 
+Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/ZDC/Calib/Align/15/16930/f95bf513-bc3e-11ec-b66d-2a010e0a0b16 in SE <ALICE::CERN::EOS>
+[16:28:43][INFO] ccdb reads http://alice-ccdb.cern.ch/ZDC/Calib/Align/1/f95bf513-bc3e-11ec-b66d-2a010e0a0b16 for 1546300800000 (retrieve, agent_id: localhost.localdomain-1692714494-bh1t7b), 
+Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/FT0/Calib/Align/11/54962/f97f3416-bc3e-11ec-b66d-2a010e0a0b16 in SE <ALICE::CERN::EOS>
+[16:28:44][INFO] ccdb reads http://alice-ccdb.cern.ch/FT0/Calib/Align/1/f97f3416-bc3e-11ec-b66d-2a010e0a0b16 for 1546300800000 (retrieve, agent_id: localhost.localdomain-1692714494-bh1t7b), 
+Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/FV0/Calib/Align/07/60885/f9a1e08f-bc3e-11ec-b66d-2a010e0a0b16 in SE <ALICE::CERN::EOS>
+[16:28:44][INFO] ccdb reads http://alice-ccdb.cern.ch/FV0/Calib/Align/1/f9a1e08f-bc3e-11ec-b66d-2a010e0a0b16 for 1546300800000 (retrieve, agent_id: localhost.localdomain-1692714494-bh1t7b), 
+Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/FDD/Calib/Align/14/04848/f9c530b8-bc3e-11ec-b66d-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[16:28:44][INFO] ccdb reads http://alice-ccdb.cern.ch/FDD/Calib/Align/1/f9c530b8-bc3e-11ec-b66d-2a010e0a0b16 for 1546300800000 (retrieve, agent_id: localhost.localdomain-1692714494-bh1t7b), 
+[16:28:44][INFO] Alignment from http://alice-ccdb.cern.ch/ for timestamp 1546300800000: , empty object for [ITS,TPC,TRD,TOF,PHS,CPV,EMC,HMP,MFT,MCH,MID,ZDC,FT0,FV0,FDD]
+Info in <TGeoManager::Export>: Exporting ccdb_object FAIR geometry as root file. Optimizations streamed.
+[16:28:46][INFO]  file /root/alice/sw/slc8_x86-64/O2/segment-local1/share/Detectors/FT0/files/quartzOptProperties.txt
+[16:28:46][INFO] Optical properties taken from the file: /root/alice/sw/slc8_x86-64/O2/segment-local1/share/Detectors/FT0/files/quartzOptProperties.txt Number of lines read: 354
+Warning in <TGeant3TGeo::DefineOpSurface>: Called for surface surfRd. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surfRd. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surfRd. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetBorderSurface>: Called for border surface surMirrorBorder0. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetBorderSurface>: Called for border surface surMirrorBorder1. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetBorderSurface>: Called for border surface surMirrorBorder2. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetBorderSurface>: Called for border surface surMirrorBorder3. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::DefineOpSurface>: Called for surface surFrontBWindow. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surFrontBWindow. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surFrontBWindow. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetBorderSurface>: Called for border surface surBorderFrontBWindow. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::DefineOpSurface>: Called for surface surBackFrontWindow. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surBackFrontWindow. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surBackFrontWindow. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetBorderSurface>: Called for border surface surBorderBackFrontWindow. Not applicable in Geant3 - setting is ignored.
+[16:28:46][INFO]  file  open /root/alice/sw/slc8_x86-64/O2/segment-local1/share/Detectors/FT0/files/Sim2DataChannels.txt
+Warning in <TGeant3TGeo::DefineOpSurface>: Called for surface surfPc0. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surfPc0. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surfPc0. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetSkinSurface>: Called for skin surface skinPc0. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::DefineOpSurface>: Called for surface surfPc1. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surfPc1. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surfPc1. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetSkinSurface>: Called for skin surface skinPc1. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::DefineOpSurface>: Called for surface surfPc2. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surfPc2. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surfPc2. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetSkinSurface>: Called for skin surface skinPc2. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::DefineOpSurface>: Called for surface surfPc3. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surfPc3. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surfPc3. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetSkinSurface>: Called for skin surface skinPc3. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::DefineOpSurface>: Called for surface surfPc4. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surfPc4. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surfPc4. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetSkinSurface>: Called for skin surface skinPc4. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::DefineOpSurface>: Called for surface surfPc5. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surfPc5. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surfPc5. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetSkinSurface>: Called for skin surface skinPc5. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::DefineOpSurface>: Called for surface surfPc6. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surfPc6. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetMaterialProperty>: Called for material surface  surfPc6. Not applicable in Geant3 - setting is ignored.
+Warning in <TGeant3TGeo::SetSkinSurface>: Called for skin surface skinPc6. Not applicable in Geant3 - setting is ignored.
+[16:28:46][INFO] FairMCApplication::InitGeometry: 0
+[16:28:46][INFO] Setting special cuts for passive module HALL
+[16:28:46][INFO] Setting special cuts for passive module MAG
+[16:28:46][INFO] Setting special cuts for passive module DIPO
+[16:28:46][INFO] Setting special cuts for passive module COMP
+[16:28:46][INFO] Setting special cuts for passive module PIPE
+[16:28:46][INFO] Setting special cuts for passive module ABSO
+[16:28:46][INFO] Setting special cuts for passive module SHIL
+[16:28:46][INFO] Setting special cuts for passive module FRAME
+[16:28:46][INFO] Setting special cuts for TOF
+[16:28:46][WARN] File /root/alice/sw/slc8_x86-64/O2/segment-local1/share/Detectors/TOF/simulation/data/simcuts.dat does not exist; Cannot apply cuts
+[16:28:46][INFO] Setting special cuts for TRD
+[16:28:46][INFO] Setting special cuts for TPC
+[16:28:46][INFO] Setting special cuts for ITS
+[16:28:46][INFO] Setting special cuts for MFT
+[16:28:47][INFO] MFT GeometryTGeo::Build total number of sensors 936
+[16:28:47][INFO] Setting special cuts for MCH
+[16:28:47][INFO] Setting special cuts for MID
+[16:28:47][INFO] Setting special cuts for EMC
+Adding supermodule type 0 for SM SMOD with volume ID 26860
+Adding supermodule type 2 for SM SM3rd with volume ID 26861
+Adding supermodule type 3 for SM DCSM with volume ID 26862
+Adding supermodule type 4 for SM DCEXT with volume ID 26863
+[16:28:47][INFO] Setting special cuts for PHS
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 0
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialCut: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][WARN] SpecialProcess: NO GLOBALINDEX FOUND FOR PHS 16
+[16:28:47][INFO] Setting special cuts for CPV
+[16:28:47][WARN] File /root/alice/sw/slc8_x86-64/O2/segment-local1/share/Detectors/CPV/simulation/data/simcuts.dat does not exist; Cannot apply cuts
+[16:28:47][INFO] Setting special cuts for FT0
+[16:28:47][INFO] Setting special cuts for FV0
+[16:28:47][INFO] FV0: Initializing O2 detector. Adding sensitive volumes.
+[16:28:47][INFO] FV0: Sensitive volume added: FV0SCINTCELLa0
+[16:28:47][INFO] FV0: Sensitive volume added: FV0SCINTCELLb0
+[16:28:47][INFO] FV0: Sensitive volume added: FV0SCINTCELLa1
+[16:28:47][INFO] FV0: Sensitive volume added: FV0SCINTCELLb1
+[16:28:47][INFO] FV0: Sensitive volume added: FV0SCINTCELLa2
+[16:28:47][INFO] FV0: Sensitive volume added: FV0SCINTCELLb2
+[16:28:47][INFO] FV0: Sensitive volume added: FV0SCINTCELLa3
+[16:28:47][INFO] FV0: Sensitive volume added: FV0SCINTCELLb3
+[16:28:47][INFO] FV0: Sensitive volume added: FV0SCINTCELLa4
+[16:28:47][INFO] FV0: Sensitive volume added: FV0SCINTCELLb4
+[16:28:47][INFO] Setting special cuts for FDD
+[16:28:47][INFO] Setting special cuts for HMP
+[16:28:47][INFO] Setting special cuts for ZDC
+[16:28:47][INFO] defining sensitive for ZDC
+[16:28:47][INFO] Simulation RunID: 1692714496
+[16:28:47][INFO] CREATING BRANCH CPVHit
+[16:28:47][INFO] Creating branch for CPVHit with address 0x7604748
+[16:28:47][INFO] CREATING BRANCH EMCHit
+[16:28:47][INFO] Creating branch for EMCHit with address 0x5b37308
+[16:28:47][INFO] CREATING BRANCH FDDHit
+[16:28:47][INFO] Creating branch for FDDHit with address 0x7605760
+[16:28:47][INFO] CREATING BRANCH FT0Hit
+[16:28:47][INFO] Creating branch for FT0Hit with address 0x7604b40
+[16:28:47][INFO] CREATING BRANCH FV0Hit
+[16:28:47][INFO] Creating branch for FV0Hit with address 0x7605490
+[16:28:47][INFO] CREATING BRANCH HMPHit
+[16:28:47][INFO] Creating branch for HMPHit with address 0x76059a0
+[16:28:47][INFO] CREATING BRANCH ITSHit
+[16:28:47][INFO] Creating branch for ITSHit with address 0x75b8150
+[16:28:47][INFO] CREATING BRANCH MCHHit
+[16:28:47][INFO] Creating branch for MCHHit with address 0x75b86d8
+[16:28:47][INFO] CREATING BRANCH MCTrack
+[16:28:47][INFO] Creating branch for MCTrack with address 0x768e170
+[16:28:47][INFO] CREATING BRANCH MFTHit
+[16:28:47][INFO] Creating branch for MFTHit with address 0x75b8918
+[16:28:47][INFO] CREATING BRANCH MIDHit
+[16:28:47][INFO] Creating branch for MIDHit with address 0x75b8d68
+[16:28:47][INFO] CREATING BRANCH PHSHit
+[16:28:47][INFO] Creating branch for PHSHit with address 0x75bc0b8
+[16:28:47][INFO] CREATING BRANCH TOFHit
+[16:28:47][INFO] Creating branch for TOFHit with address 0x5c786f8
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector0
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector0 with address 0x5c76aa0
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector1
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector1 with address 0x5c76aa8
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector10
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector10 with address 0x5c76af0
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector11
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector11 with address 0x5c76af8
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector12
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector12 with address 0x5c76b00
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector13
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector13 with address 0x5c76b08
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector14
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector14 with address 0x5c76b10
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector15
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector15 with address 0x5c76b18
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector16
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector16 with address 0x5c76b20
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector17
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector17 with address 0x5c76b28
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector18
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector18 with address 0x5c76b30
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector19
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector19 with address 0x5c76b38
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector2
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector2 with address 0x5c76ab0
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector20
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector20 with address 0x5c76b40
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector21
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector21 with address 0x5c76b48
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector22
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector22 with address 0x5c76b50
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector23
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector23 with address 0x5c76b58
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector24
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector24 with address 0x5c76b60
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector25
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector25 with address 0x5c76b68
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector26
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector26 with address 0x5c76b70
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector27
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector27 with address 0x5c76b78
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector28
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector28 with address 0x5c76b80
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector29
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector29 with address 0x5c76b88
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector3
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector3 with address 0x5c76ab8
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector30
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector30 with address 0x5c76b90
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector31
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector31 with address 0x5c76b98
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector32
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector32 with address 0x5c76ba0
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector33
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector33 with address 0x5c76ba8
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector34
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector34 with address 0x5c76bb0
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector35
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector35 with address 0x5c76bb8
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector4
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector4 with address 0x5c76ac0
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector5
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector5 with address 0x5c76ac8
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector6
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector6 with address 0x5c76ad0
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector7
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector7 with address 0x5c76ad8
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector8
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector8 with address 0x5c76ae0
+[16:28:47][INFO] CREATING BRANCH TPCHitsShiftedSector9
+[16:28:47][INFO] Creating branch for TPCHitsShiftedSector9 with address 0x5c76ae8
+[16:28:47][INFO] CREATING BRANCH TRDHit
+[16:28:47][INFO] Creating branch for TRDHit with address 0x5c788a0
+[16:28:47][INFO] CREATING BRANCH TrackRefs
+[16:28:47][INFO] Creating branch for TrackRefs with address 0x768e230
+[16:28:47][INFO] CREATING BRANCH ZDCHit
+[16:28:47][INFO] Creating branch for ZDCHit with address 0x7605c48
+[16:28:48][INFO] Monte Carlo Engine Initialisation with: TGeant3TGeo
+Warning in <TBufferFile::WriteObjectAny>: since o2::trd::Geometry has no public constructor
+	which can be called without argument, objects of this class
+	can not be read with the current library. You will need to
+	add a default constructor before attempting to read it.
+[16:28:49][INFO] ***  FairBaseParSet written to ROOT file   version: 1
+[16:28:49][INFO] ***  FairGeoParSet written to ROOT file   version: 1
+[16:28:49][INFO] ***  MagFieldParam written to ROOT file   version: 1
+--------------------------------------------------------------------------------
+--------------  actual containers in runtime database  -------------------------
+FairBaseParSet                                 class for parameter io
+FairGeoParSet                                  class for Geo parameter
+MagFieldParam                                  Mag. Field Parameters
+--------------  runs, versions  ------------------------------------------------
+run id
+  container                                        1st-inp    2nd-inp    output
+run: 1692714496
+  FairBaseParSet                                1692714496         -1          1
+  FairGeoParSet                                 1692714496         -1          1
+  MagFieldParam                                         -1         -1          1
+--------------  input/output  --------------------------------------------------
+first input: none
+second input: none
+output:
+OBJ: FairParRootFile	o2sim_53509_par.root	 : 0 at: 0x192336e0
+Root file I/O o2sim_53509_par.root is open
+detector I/Os:  FairGenericParIo
+ *** TDatabasePDG::AddAntiParticle: can't redefine parameters
+ *** TDatabasePDG::AddAntiParticle: can't redefine parameters
+ *** TDatabasePDG::AddAntiParticle: can't redefine parameters
+ *** TDatabasePDG::AddAntiParticle: can't redefine parameters
+ *** TDatabasePDG::AddParticle: particle with PDGcode=50000050 already defined
+ *** TDatabasePDG::AddParticle: particle with PDGcode=50000051 already defined
+ *** TDatabasePDG::AddAntiParticle: can't redefine parameters
+[16:28:49][INFO] Reading out CTP detector
+Run:   300000
+Fill:      0
+Period: , isMC:0
+LHC State: 
+Start: Sat Apr 28 02:00:00 50970
+End  : Fri Jun  8 18:00:00 50970
+1st orbit: 0, 256 orbits per TF
+Beam0: Z:A =   0:  0, Energy = 0.000
+Beam1: Z:A =   0:  0, Energy = 0.000
+sqrt[s]    = 0.000
+crossing angle (radian) = 0.000000e+00
+magnet currents (A) L3 = 0.000, Dipole = 0
+Detectors: Cont.RO Triggers
+      ITS:    -       -    
+      TPC:    -       -    
+      TRD:    -       -    
+      TOF:    -       -    
+      PHS:    -       -    
+      CPV:    -       -    
+      EMC:    -       -    
+      HMP:    -       -    
+      MFT:    -       -    
+      MCH:    -       -    
+      MID:    -       -    
+      ZDC:    -       -    
+      FT0:    -       -    
+      FV0:    -       -    
+      FDD:    -       -    
+      TST:    -       -    
+      CTP:    -       -    
+      FOC:    -       -    
+VMC: 0x769f920
+[16:28:49][INFO] Reading out CTP detector
+[16:28:49][INFO] Init: Real time 35.1219 s, CPU time 30.46s
+[16:28:49][INFO] Init: Memory used 970.516 MB
+[16:28:49][INFO] MEM-STAMP END OF SIM INIT862.992 970.516 MB
+
+[16:28:49][INFO] Running with 2 sim workers 
+[16:28:49][INFO] CONNECTING TO ADDRESS ipc:///tmp/o2sim-workerinternal-52388 type push
+[16:28:49][STATE] Starting FairMQ state machine --> IDLE
+[16:28:49][INFO] OCCUPYING A SEGMENT IN A SHARED REGION
+[16:28:49][INFO] FOUND ID TO ATTACH 9
+[16:28:49][INFO] TRYING ADDRESS 0x7f3c9ffff000
+[16:28:49][INFO] SEGMENTCOUNT 0
+[16:28:49][INFO] SHARED MEM OCCUPIED AT ID 9 AND SEGMENT COUNTER 0
+[16:28:49][INFO] [W1] Requesting work chunk
+[16:28:49][INFO] [W1] Waiting for answer
+[16:28:49][INFO] CONNECTING TO ADDRESS ipc:///tmp/o2sim-workerinternal-52388 type push
+[16:28:49][STATE] Starting FairMQ state machine --> IDLE
+[16:28:49][INFO] OCCUPYING A SEGMENT IN A SHARED REGION
+[16:28:49][INFO] FOUND ID TO ATTACH 9
+[16:28:49][INFO] TRYING ADDRESS 0x7f3c9ffff000
+[16:28:49][INFO] SEGMENTCOUNT 1
+[16:28:49][INFO] SHARED MEM OCCUPIED AT ID 9 AND SEGMENT COUNTER 1
+[16:28:49][INFO] [W0] Requesting work chunk
+[16:28:49][INFO] [W0] Waiting for answer
+[16:28:49][INFO] BINDING TO ADDRESS ipc:///tmp/o2sim-workerinternal-52388 type pull
+[16:28:50][INFO] [W1] Primary chunk received
+[16:28:50][INFO] [W1] Processing 330 primary particles for event 1/20 part 1/1
+[16:28:50][INFO] [W1] Setting seed for this sub-event to 11986781196298596590
+[16:28:50][INFO] Seeder initializing for TGeant3TGeo
+[16:28:50][INFO] [W0] Primary chunk received
+[16:28:50][INFO] [W0] Processing 281 primary particles for event 2/20 part 1/1
+[16:28:50][INFO] [W0] Setting seed for this sub-event to 11986781196298596591
+[16:28:50][INFO] Seeder initializing for TGeant3TGeo
+[16:28:53][INFO] tof::Geo: Initialization of TOF rotation parameters
+[16:28:55][INFO] Charged, event 1
+[16:28:57][INFO] Stack: 23386 out of 536894 stored 
+
+[16:28:57][INFO] Found nonconforming detector CAVE
+[16:28:57][INFO] This event/chunk did 6354925 steps
+[16:28:57][INFO] Longest track time is 1.20393e-05
+[16:28:57][INFO] sending message with 68 parts
+[16:28:57][INFO] [W0] TIME-STAMP 7.81887	
+[16:28:57][INFO] [W0] MEM-STAMP 537.152 537.152 MB
+
+[16:28:57][INFO] [W0] Requesting work chunk
+[16:28:57][INFO] [W0] Waiting for answer
+[16:28:57][INFO] [W0] Primary chunk received
+[16:28:57][INFO] [W0] Processing 127 primary particles for event 3/20 part 1/1
+[16:28:57][INFO] [W0] Setting seed for this sub-event to 11986781196298596592
+[16:28:59][INFO] tof::Geo: Initialization of TOF rotation parameters
+[16:29:04][INFO] Stack: 19735 out of 1298712 stored 
+
+[16:29:04][INFO] Found nonconforming detector CAVE
+[16:29:04][INFO] This event/chunk did 17148017 steps
+[16:29:04][INFO] Longest track time is 1.80903e-05
+[16:29:04][INFO] sending message with 68 parts
+[16:29:04][INFO] [W1] TIME-STAMP 14.8627	
+[16:29:04][INFO] [W1] MEM-STAMP 889.699 970.516 MB
+
+[16:29:04][INFO] [W1] Requesting work chunk
+[16:29:04][INFO] [W1] Waiting for answer
+[16:29:04][INFO] [W1] Primary chunk received
+[16:29:04][INFO] [W1] Processing 84 primary particles for event 4/20 part 1/1
+[16:29:04][INFO] [W1] Setting seed for this sub-event to 11986781196298596593
+[16:29:09][INFO] Stack: 8375 out of 933106 stored 
+
+[16:29:09][INFO] This event/chunk did 14062287 steps
+[16:29:09][INFO] Longest track time is 1.63251e-05
+[16:29:09][INFO] sending message with 68 parts
+[16:29:09][INFO] [W0] TIME-STAMP 19.5882	
+[16:29:09][INFO] [W0] MEM-STAMP 550.426 550.426 MB
+
+[16:29:09][INFO] [W0] Requesting work chunk
+[16:29:09][INFO] [W0] Waiting for answer
+[16:29:09][INFO] [W0] Primary chunk received
+[16:29:09][INFO] [W0] Processing 500 primary particles for event 5/20 part 1/2
+[16:29:09][INFO] [W0] Setting seed for this sub-event to 11986781196298596594
+[16:29:10][INFO] photon, event 1
+[16:29:10][INFO] photon, event 1
+[16:29:10][INFO] photon, event 1
+[16:29:11][INFO] photon, event 1
+[16:29:11][INFO] photon, event 1
+[16:29:11][INFO] photon, event 1
+[16:29:11][INFO] photon, event 1
+[16:29:11][INFO] photon, event 1
+[16:29:11][INFO] photon, event 1
+[16:29:11][INFO] photon, event 1
+[16:29:11][INFO] photon, event 1
+[16:29:18][INFO] Stack: 26303 out of 606584 stored 
+
+[16:29:18][INFO] This event/chunk did 9253884 steps
+[16:29:18][INFO] Longest track time is 1.30749e-05
+[16:29:18][INFO] sending message with 68 parts
+[16:29:18][INFO] [W0] TIME-STAMP 28.9512	
+[16:29:18][INFO] [W0] MEM-STAMP 558.777 558.777 MB
+
+[16:29:18][INFO] [W0] Requesting work chunk
+[16:29:18][INFO] [W0] Waiting for answer
+[16:29:18][INFO] [W0] Primary chunk received
+[16:29:18][INFO] [W0] Processing 122 primary particles for event 5/20 part 2/2
+[16:29:18][INFO] [W0] Setting seed for this sub-event to 11986781196298596594
+[16:29:18][INFO] Stack: 122 out of 122 stored 
+
+[16:29:18][INFO] This event/chunk did 235 steps
+[16:29:18][INFO] Longest track time is 5.00291e-07
+[16:29:18][INFO] sending message with 68 parts
+[16:29:18][INFO] [W0] TIME-STAMP 28.9582	
+[16:29:18][INFO] [W0] MEM-STAMP 558.777 558.777 MB
+
+[16:29:18][INFO] [W0] Requesting work chunk
+[16:29:18][INFO] [W0] Waiting for answer
+[16:29:18][INFO] [W0] Primary chunk received
+[16:29:18][INFO] [W0] Processing 500 primary particles for event 6/20 part 1/3
+[16:29:18][INFO] [W0] Setting seed for this sub-event to 11986781196298596595
+[16:29:20][INFO] photon, event 1
+[16:29:20][INFO] photon, event 1
+[16:29:20][INFO] photon, event 1
+[16:29:20][INFO] photon, event 1
+[16:29:20][INFO] photon, event 1
+[16:29:20][INFO] photon, event 1
+[16:29:20][INFO] photon, event 1
+[16:29:20][INFO] photon, event 1
+[16:29:29][INFO] photon, event 1
+[16:29:29][INFO] photon, event 1
+[16:29:29][INFO] photon, event 1
+[16:29:29][INFO] photon, event 1
+[16:29:33][INFO] photon, event 1
+[16:29:33][INFO] photon, event 1
+[16:29:34][INFO] Stack: 44252 out of 832108 stored 
+
+[16:29:34][INFO] This event/chunk did 9783937 steps
+[16:29:34][INFO] Longest track time is 1.58047e-05
+[16:29:34][INFO] sending message with 68 parts
+[16:29:34][INFO] [W0] TIME-STAMP 44.6483	
+[16:29:34][INFO] [W0] MEM-STAMP 565.129 565.129 MB
+
+[16:29:34][INFO] [W0] Requesting work chunk
+[16:29:34][INFO] [W0] Waiting for answer
+[16:29:34][INFO] [W0] Primary chunk received
+[16:29:34][INFO] [W0] Processing 500 primary particles for event 6/20 part 2/3
+[16:29:34][INFO] [W0] Setting seed for this sub-event to 11986781196298596595
+[16:29:34][INFO] Stack: 4075 out of 2188883 stored 
+
+[16:29:34][INFO] This event/chunk did 34890302 steps
+[16:29:34][INFO] Longest track time is 1.78013e-05
+[16:29:34][INFO] sending message with 68 parts
+[16:29:34][INFO] [W1] TIME-STAMP 44.9378	
+[16:29:34][INFO] [W1] MEM-STAMP 951.457 970.516 MB
+
+[16:29:34][INFO] [W1] Requesting work chunk
+[16:29:34][INFO] [W1] Waiting for answer
+[16:29:34][INFO] [W1] Primary chunk received
+[16:29:34][INFO] [W1] Processing 314 primary particles for event 6/20 part 3/3
+[16:29:34][INFO] [W1] Setting seed for this sub-event to 11986781196298596595
+[16:29:34][INFO] Stack: 314 out of 314 stored 
+
+[16:29:34][INFO] This event/chunk did 0 steps
+[16:29:34][INFO] Longest track time is 0
+[16:29:34][INFO] sending message with 68 parts
+[16:29:34][INFO] [W1] TIME-STAMP 44.9447	
+[16:29:34][INFO] [W1] MEM-STAMP 951.457 970.516 MB
+
+[16:29:34][INFO] [W1] Requesting work chunk
+[16:29:34][INFO] [W1] Waiting for answer
+[16:29:34][INFO] [W1] Primary chunk received
+[16:29:34][INFO] [W1] Processing 173 primary particles for event 7/20 part 1/1
+[16:29:34][INFO] [W1] Setting seed for this sub-event to 11986781196298596596
+[16:29:36][INFO] photon, event 1
+[16:29:36][INFO] photon, event 1
+[16:29:36][INFO] photon, event 1
+[16:29:36][INFO] photon, event 1
+[16:29:36][INFO] photon, event 1
+[16:29:36][INFO] photon, event 1
+[16:29:36][INFO] photon, event 1
+[16:29:36][INFO] photon, event 1
+[16:29:36][INFO] photon, event 1
+[16:29:37][INFO] Stack: 17135 out of 66140 stored 
+
+[16:29:37][INFO] This event/chunk did 784185 steps
+[16:29:37][INFO] Longest track time is 1.86454e-05
+[16:29:37][INFO] sending message with 68 parts
+[16:29:37][INFO] [W0] TIME-STAMP 47.0668	
+[16:29:37][INFO] [W0] MEM-STAMP 565.266 565.266 MB
+
+[16:29:37][INFO] [W0] Requesting work chunk
+[16:29:37][INFO] [W0] Waiting for answer
+[16:29:37][INFO] [W0] Primary chunk received
+[16:29:37][INFO] [W0] Processing 500 primary particles for event 8/20 part 1/2
+[16:29:37][INFO] [W0] Setting seed for this sub-event to 11986781196298596597
+[16:29:42][INFO] photon, event 1
+[16:29:43][INFO] Charged, event 1
+[16:29:43][INFO] Charged, event 1
+[16:29:44][INFO] photon, event 1
+[16:29:44][INFO] photon, event 1
+[16:29:44][INFO] photon, event 1
+[16:29:44][INFO] photon, event 1
+[16:29:44][INFO] photon, event 1
+[16:29:44][INFO] photon, event 1
+[16:29:44][INFO] photon, event 1
+[16:29:44][INFO] photon, event 1
+[16:29:44][INFO] photon, event 1
+[16:29:44][INFO] photon, event 1
+[16:29:44][INFO] photon, event 1
+[16:29:44][INFO] photon, event 1
+[16:29:44][INFO] photon, event 1
+[16:29:51][INFO] photon, event 1
+[16:29:51][INFO] Stack: 18022 out of 875396 stored 
+
+[16:29:51][INFO] This event/chunk did 10631971 steps
+[16:29:51][INFO] Longest track time is 1.76163e-05
+[16:29:51][INFO] sending message with 68 parts
+[16:29:51][INFO] [W0] TIME-STAMP 61.64	
+[16:29:51][INFO] [W0] MEM-STAMP 568.906 568.906 MB
+
+[16:29:51][INFO] [W0] Requesting work chunk
+[16:29:51][INFO] [W0] Waiting for answer
+[16:29:51][INFO] [W0] Primary chunk received
+[16:29:51][INFO] [W0] Processing 9 primary particles for event 8/20 part 2/2
+[16:29:51][INFO] [W0] Setting seed for this sub-event to 11986781196298596597
+[16:29:51][INFO] Stack: 9 out of 9 stored 
+
+[16:29:51][INFO] This event/chunk did 0 steps
+[16:29:51][INFO] Longest track time is 0
+[16:29:51][INFO] sending message with 68 parts
+[16:29:51][INFO] [W0] TIME-STAMP 61.6533	
+[16:29:51][INFO] [W0] MEM-STAMP 568.906 568.906 MB
+
+[16:29:51][INFO] [W0] Requesting work chunk
+[16:29:51][INFO] [W0] Waiting for answer
+[16:29:51][INFO] [W0] Primary chunk received
+[16:29:51][INFO] [W0] Processing 308 primary particles for event 9/20 part 1/1
+[16:29:51][INFO] [W0] Setting seed for this sub-event to 11986781196298596598
+[16:29:52][INFO] Stack: 10849 out of 1202904 stored 
+
+[16:29:52][INFO] This event/chunk did 16015955 steps
+[16:29:52][INFO] Longest track time is 1.39785e-05
+[16:29:52][INFO] sending message with 68 parts
+[16:29:52][INFO] [W1] TIME-STAMP 62.5894	
+[16:29:52][INFO] [W1] MEM-STAMP 951.469 970.516 MB
+
+[16:29:52][INFO] [W1] Requesting work chunk
+[16:29:52][INFO] [W1] Waiting for answer
+[16:29:52][INFO] [W1] Primary chunk received
+[16:29:52][INFO] [W1] Processing 117 primary particles for event 10/20 part 1/1
+[16:29:52][INFO] [W1] Setting seed for this sub-event to 11986781196298596599
+[16:30:03][INFO] Stack: 11599 out of 769244 stored 
+
+[16:30:03][INFO] This event/chunk did 11497281 steps
+[16:30:03][INFO] Longest track time is 1.97886e-05
+[16:30:03][INFO] sending message with 68 parts
+[16:30:03][INFO] [W1] TIME-STAMP 73.5124	
+[16:30:03][INFO] [W1] MEM-STAMP 951.508 970.516 MB
+
+[16:30:03][INFO] [W1] Requesting work chunk
+[16:30:03][INFO] [W1] Waiting for answer
+[16:30:03][INFO] [W1] Primary chunk received
+[16:30:03][INFO] [W1] Processing 500 primary particles for event 11/20 part 1/2
+[16:30:03][INFO] [W1] Setting seed for this sub-event to 11986781196298596600
+[16:30:03][INFO] Charged, event 1
+[16:30:03][INFO] Charged, event 1
+[16:30:03][INFO] Charged, event 1
+[16:30:03][INFO] Charged, event 1
+[16:30:03][INFO] Charged, event 1
+[16:30:03][INFO] Charged, event 1
+[16:30:03][INFO] Charged, event 1
+[16:30:03][INFO] Charged, event 1
+[16:30:03][INFO] Charged, event 1
+[16:30:03][INFO] Charged, event 1
+[16:30:03][INFO] Charged, event 1
+[16:30:03][INFO] Charged, event 1
+[16:30:03][INFO] Charged, event 1
+[16:30:06][INFO] Stack: 12517 out of 1241371 stored 
+
+[16:30:06][INFO] This event/chunk did 14421160 steps
+[16:30:06][INFO] Longest track time is 9.82035e-06
+[16:30:06][INFO] sending message with 68 parts
+[16:30:06][INFO] [W0] TIME-STAMP 76.6744	
+[16:30:06][INFO] [W0] MEM-STAMP 574.727 574.727 MB
+
+[16:30:06][INFO] [W0] Requesting work chunk
+[16:30:06][INFO] [W0] Waiting for answer
+[16:30:06][INFO] [W0] Primary chunk received
+[16:30:06][INFO] [W0] Processing 147 primary particles for event 11/20 part 2/2
+[16:30:06][INFO] [W0] Setting seed for this sub-event to 11986781196298596600
+[16:30:06][INFO] Stack: 147 out of 147 stored 
+
+[16:30:06][INFO] This event/chunk did 275 steps
+[16:30:06][INFO] Longest track time is 4.99753e-07
+[16:30:06][INFO] sending message with 68 parts
+[16:30:06][INFO] [W0] TIME-STAMP 76.6976	
+[16:30:06][INFO] [W0] MEM-STAMP 574.727 574.727 MB
+
+[16:30:06][INFO] [W0] Requesting work chunk
+[16:30:06][INFO] [W0] Waiting for answer
+[16:30:06][INFO] [W0] Primary chunk received
+[16:30:06][INFO] [W0] Processing 213 primary particles for event 12/20 part 1/1
+[16:30:06][INFO] [W0] Setting seed for this sub-event to 11986781196298596601
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:11][INFO] photon, event 1
+[16:30:13][INFO] photon, event 1
+[16:30:13][INFO] photon, event 1
+[16:30:13][INFO] Charged, event 1
+[16:30:13][INFO] Charged, event 1
+[16:30:13][INFO] photon, event 1
+[16:30:15][INFO] Stack: 32223 out of 522207 stored 
+
+[16:30:15][INFO] This event/chunk did 6872030 steps
+[16:30:15][INFO] Longest track time is 1.30106e-05
+[16:30:15][INFO] sending message with 68 parts
+[16:30:15][INFO] [W1] TIME-STAMP 85.4196	
+[16:30:15][INFO] [W1] MEM-STAMP 956.621 970.516 MB
+
+[16:30:15][INFO] [W1] Requesting work chunk
+[16:30:15][INFO] [W1] Waiting for answer
+[16:30:15][INFO] [W1] Primary chunk received
+[16:30:15][INFO] [W1] Processing 227 primary particles for event 13/20 part 1/1
+[16:30:15][INFO] [W1] Setting seed for this sub-event to 11986781196298596602
+[16:30:16][INFO] Charged, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:16][INFO] photon, event 1
+[16:30:21][INFO] Charged, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:21][INFO] photon, event 1
+[16:30:22][INFO] Stack: 17808 out of 517772 stored 
+
+[16:30:22][INFO] This event/chunk did 6629944 steps
+[16:30:22][INFO] Longest track time is 1.32396e-05
+[16:30:22][INFO] sending message with 68 parts
+[16:30:22][INFO] [W1] TIME-STAMP 92.8104	
+[16:30:22][INFO] [W1] MEM-STAMP 956.668 970.516 MB
+
+[16:30:22][INFO] [W1] Requesting work chunk
+[16:30:22][INFO] [W1] Waiting for answer
+[16:30:22][INFO] [W1] Primary chunk received
+[16:30:22][INFO] [W1] Processing 500 primary particles for event 14/20 part 1/2
+[16:30:22][INFO] [W1] Setting seed for this sub-event to 11986781196298596603
+[16:30:23][INFO] Stack: 14139 out of 1143193 stored 
+
+[16:30:23][INFO] This event/chunk did 16006980 steps
+[16:30:23][INFO] Longest track time is 1.3808e-05
+[16:30:23][INFO] sending message with 68 parts
+[16:30:23][INFO] [W0] TIME-STAMP 93.5659	
+[16:30:23][INFO] [W0] MEM-STAMP 617.629 617.629 MB
+
+[16:30:23][INFO] [W0] Requesting work chunk
+[16:30:23][INFO] [W0] Waiting for answer
+[16:30:23][INFO] [W0] Primary chunk received
+[16:30:23][INFO] [W0] Processing 220 primary particles for event 14/20 part 2/2
+[16:30:23][INFO] [W0] Setting seed for this sub-event to 11986781196298596603
+[16:30:23][INFO] Stack: 220 out of 220 stored 
+
+[16:30:23][INFO] This event/chunk did 0 steps
+[16:30:23][INFO] Longest track time is 0
+[16:30:23][INFO] sending message with 68 parts
+[16:30:23][INFO] [W0] TIME-STAMP 93.5798	
+[16:30:23][INFO] [W0] MEM-STAMP 617.629 617.629 MB
+
+[16:30:23][INFO] [W0] Requesting work chunk
+[16:30:23][INFO] [W0] Waiting for answer
+[16:30:23][INFO] [W0] Primary chunk received
+[16:30:23][INFO] [W0] Processing 500 primary particles for event 15/20 part 1/3
+[16:30:23][INFO] [W0] Setting seed for this sub-event to 11986781196298596604
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] Charged, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:24][INFO] photon, event 1
+[16:30:29][INFO] photon, event 1
+[16:30:29][INFO] photon, event 1
+[16:30:29][INFO] photon, event 1
+[16:30:29][INFO] photon, event 1
+[16:30:29][INFO] photon, event 1
+[16:30:29][INFO] photon, event 1
+[16:30:32][INFO] photon, event 1
+[16:30:32][INFO] Charged, event 1
+[16:30:32][INFO] Charged, event 1
+[16:30:32][INFO] Charged, event 1
+[16:30:32][INFO] Charged, event 1
+[16:30:32][INFO] Charged, event 1
+[16:30:34][INFO] photon, event 1
+[16:30:34][INFO] photon, event 1
+[16:30:34][INFO] photon, event 1
+[16:30:34][INFO] Charged, event 1
+[16:30:34][INFO] Charged, event 1
+[16:30:34][INFO] Charged, event 1
+[16:30:34][INFO] Charged, event 1
+[16:30:34][INFO] Charged, event 1
+[16:30:37][INFO] photon, event 1
+[16:30:37][INFO] photon, event 1
+[16:30:38][INFO] Stack: 51417 out of 616396 stored 
+
+[16:30:38][INFO] This event/chunk did 6906535 steps
+[16:30:38][INFO] Longest track time is 8.69909e-06
+[16:30:38][INFO] sending message with 68 parts
+[16:30:38][INFO] [W0] TIME-STAMP 108.937	
+[16:30:38][INFO] [W0] MEM-STAMP 619.527 619.527 MB
+
+[16:30:38][INFO] [W0] Requesting work chunk
+[16:30:38][INFO] [W0] Waiting for answer
+[16:30:38][INFO] [W0] Primary chunk received
+[16:30:38][INFO] [W0] Processing 500 primary particles for event 15/20 part 2/3
+[16:30:38][INFO] [W0] Setting seed for this sub-event to 11986781196298596604
+[16:30:39][INFO] photon, event 1
+[16:30:39][INFO] photon, event 1
+[16:30:39][INFO] photon, event 1
+[16:30:39][INFO] photon, event 1
+[16:30:39][INFO] photon, event 1
+[16:30:39][INFO] photon, event 1
+[16:30:39][INFO] photon, event 1
+[16:30:42][INFO] Stack: 28559 out of 1126395 stored 
+
+[16:30:42][INFO] This event/chunk did 16441400 steps
+[16:30:42][INFO] Longest track time is 2.14359e-05
+[16:30:42][INFO] sending message with 68 parts
+[16:30:42][INFO] [W1] TIME-STAMP 113.003	
+[16:30:42][INFO] [W1] MEM-STAMP 961.066 970.516 MB
+
+[16:30:42][INFO] [W1] Requesting work chunk
+[16:30:42][INFO] [W1] Waiting for answer
+[16:30:42][INFO] [W1] Primary chunk received
+[16:30:42][INFO] [W1] Processing 233 primary particles for event 15/20 part 3/3
+[16:30:42][INFO] [W1] Setting seed for this sub-event to 11986781196298596604
+[16:30:42][INFO] Stack: 233 out of 233 stored 
+
+[16:30:42][INFO] This event/chunk did 0 steps
+[16:30:42][INFO] Longest track time is 0
+[16:30:42][INFO] sending message with 68 parts
+[16:30:42][INFO] [W1] TIME-STAMP 113.022	
+[16:30:42][INFO] [W1] MEM-STAMP 961.066 970.516 MB
+
+[16:30:42][INFO] [W1] Requesting work chunk
+[16:30:42][INFO] [W1] Waiting for answer
+[16:30:42][INFO] [W1] Primary chunk received
+[16:30:42][INFO] [W1] Processing 500 primary particles for event 16/20 part 1/3
+[16:30:42][INFO] [W1] Setting seed for this sub-event to 11986781196298596605
+[16:30:44][INFO] Stack: 12624 out of 345927 stored 
+
+[16:30:44][INFO] This event/chunk did 4235234 steps
+[16:30:44][INFO] Longest track time is 1.51983e-05
+[16:30:44][INFO] sending message with 68 parts
+[16:30:44][INFO] [W0] TIME-STAMP 114.109	
+[16:30:44][INFO] [W0] MEM-STAMP 619.527 619.527 MB
+
+[16:30:44][INFO] [W0] Requesting work chunk
+[16:30:44][INFO] [W0] Waiting for answer
+[16:30:44][INFO] [W0] Primary chunk received
+[16:30:44][INFO] [W0] Processing 500 primary particles for event 16/20 part 2/3
+[16:30:44][INFO] [W0] Setting seed for this sub-event to 11986781196298596605
+
+ MZSTOR.  ZEBRA table base TAB(0) in /MZCC/ at adr   452962159    1AFFA76F HEX
+
+ MZSTOR.  Initialize Store  0  in /GCBANK/
+          with Store/Table at absolute adrs   447516541   452962159
+                                        HEX    1AAC8F7D    1AFFA76F
+                                        HEX    FFACE5FA           0
+                              relative adrs    -5446150           0
+          with     1 Str. in     2 Links in   5300 Low words in 4999970 words.
+          This store has a fence of   16 words.
+
+ MZLOGL.  Set Log Level 0 for store  0
+1*****  GEANT Version  3.21/11 Released on 100298
+0*****  Correction Cradle Version  0.1100
+
+ MZDIV.   Initialize Division  Constant  in Store  0
+          NW/NWMAX=   20004000000,  MODE/KIND=  1  2
+          Division 20 initialized.
+
+ MZLINK.  Initialize Link Area  /GCLINK/  for Store  0 NL/NS=    20    20
+
+ MZLINK.  Initialize Link Area  /GCSLNK/  for Store  0 NL/NS=   100   100
+
+ Calculating cross section tables, see gphysi.dat for more information
+
+ Cross section calculation concluded successfully
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535215           0
+ GTREVE_ROOT : Transporting primary track No        200
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535216           0
+ GTREVE_ROOT : Transporting primary track No        100
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535218           0
+ GTREVE_ROOT : Transporting primary track No        500
+ GTREVE_ROOT : Transporting primary track No        400
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535218           0
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535219           0
+ GTREVE_ROOT : Transporting primary track No        500
+ GTREVE_ROOT : Transporting primary track No        400
+ GTREVE_ROOT : Transporting primary track No        300
+ GTREVE_ROOT : Transporting primary track No        200
+ GTREVE_ROOT : Transporting primary track No        100
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535219           0
+ GTREVE_ROOT : Transporting primary track No        500
+ GTREVE_ROOT : Transporting primary track No        300
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535221           0
+ GTREVE_ROOT : Transporting primary track No        500
+ GTREVE_ROOT : Transporting primary track No        400
+ GTREVE_ROOT : Transporting primary track No        300
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535221           0
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535222           0
+ GTREVE_ROOT : Transporting primary track No        300
+ GTREVE_ROOT : Transporting primary track No        200
+
+ *** GTRACK *** More than 100000 steps, tracking abandoned!
+ =====> TRACK    1 STACK NR   0 NTMULT=   1224089     PION +                   TOFG =    17.572 NS
+       X          Y          Z          R     NAME  NUMBER   SLENG      STEP      DESTEP     GEKIN   MECHANISMS
+   -217.1069   236.8854  -116.8255   321.3255 URFB    1    34.5740    0.0001    0.0  eV   47.992 MeV FIEL SCUT LOSS MULS STOP
+ IEVENT       1 IDEVT       1 Random Seeds 1169535222           0 Time of flight     17.572 ns
+
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535224           0
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535225           0
+ GTREVE_ROOT : Transporting primary track No        200
+ GTREVE_ROOT : Transporting primary track No        100
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535227           0
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535228           0
+ GTREVE_ROOT : Transporting primary track No        500
+ GTREVE_ROOT : Transporting primary track No        400
+ GTREVE_ROOT : Transporting primary track No        300
+ GTREVE_ROOT : Transporting primary track No        200
+ GTREVE_ROOT : Transporting primary track No        100
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535228           0
+ GTREVE_ROOT : Transporting primary track No        500
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535229           0
+[16:30:44][INFO] Charged, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] Charged, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:44][INFO] photon, event 1
+[16:30:45][INFO] Stack: 11301 out of 51612 stored 
+
+[16:30:45][INFO] This event/chunk did 661331 steps
+[16:30:45][INFO] Longest track time is 1.53365e-05
+[16:30:45][INFO] sending message with 68 parts
+[16:30:45][INFO] [W0] TIME-STAMP 115.655	
+[16:30:45][INFO] [W0] MEM-STAMP 619.527 619.527 MB
+
+[16:30:45][INFO] [W0] Requesting work chunk
+[16:30:45][INFO] [W0] Waiting for answer
+[16:30:45][INFO] [W0] Primary chunk received
+[16:30:45][INFO] [W0] Processing 277 primary particles for event 16/20 part 3/3
+[16:30:45][INFO] [W0] Setting seed for this sub-event to 11986781196298596605
+[16:30:45][INFO] Stack: 277 out of 277 stored 
+
+[16:30:45][INFO] This event/chunk did 0 steps
+[16:30:45][INFO] Longest track time is 0
+[16:30:45][INFO] sending message with 68 parts
+[16:30:45][INFO] [W0] TIME-STAMP 115.7	
+[16:30:45][INFO] [W0] MEM-STAMP 619.527 619.527 MB
+
+[16:30:45][INFO] [W0] Requesting work chunk
+[16:30:45][INFO] [W0] Waiting for answer
+[16:30:45][INFO] [W0] Primary chunk received
+[16:30:45][INFO] [W0] Processing 500 primary particles for event 17/20 part 1/5
+[16:30:45][INFO] [W0] Setting seed for this sub-event to 11986781196298596606
+[16:30:59][INFO] Charged, event 1
+[16:30:59][INFO] photon, event 1
+[16:30:59][INFO] photon, event 1
+[16:30:59][INFO] photon, event 1
+[16:30:59][INFO] photon, event 1
+[16:30:59][INFO] photon, event 1
+[16:30:59][INFO] photon, event 1
+[16:30:59][INFO] photon, event 1
+[16:30:59][INFO] photon, event 1
+[16:30:59][INFO] photon, event 1
+[16:30:59][INFO] photon, event 1
+[16:30:59][INFO] photon, event 1
+[16:30:59][INFO] photon, event 1
+[16:30:59][INFO] photon, event 1
+[16:30:59][INFO] photon, event 1
+[16:30:59][INFO] photon, event 1
+[16:30:59][INFO] photon, event 1
+[16:30:59][INFO] photon, event 1
+[16:30:59][INFO] photon, event 1
+[16:31:01][INFO] photon, event 1
+[16:31:01][INFO] photon, event 1
+[16:31:01][INFO] photon, event 1
+[16:31:01][INFO] photon, event 1
+[16:31:01][INFO] photon, event 1
+[16:31:01][INFO] photon, event 1
+[16:31:01][INFO] photon, event 1
+[16:31:01][INFO] photon, event 1
+[16:31:01][INFO] photon, event 1
+[16:31:01][INFO] photon, event 1
+[16:31:01][INFO] photon, event 1
+[16:31:01][INFO] photon, event 1
+[16:31:01][INFO] photon, event 1
+[16:31:02][INFO] photon, event 1
+[16:31:02][INFO] Stack: 33843 out of 511073 stored 
+
+[16:31:02][INFO] This event/chunk did 5973037 steps
+[16:31:02][INFO] Longest track time is 1.42713e-05
+[16:31:02][INFO] sending message with 68 parts
+[16:31:02][INFO] [W0] TIME-STAMP 132.253	
+[16:31:02][INFO] [W0] MEM-STAMP 619.609 619.609 MB
+
+[16:31:02][INFO] [W0] Requesting work chunk
+[16:31:02][INFO] [W0] Waiting for answer
+[16:31:02][INFO] [W0] Primary chunk received
+[16:31:02][INFO] [W0] Processing 500 primary particles for event 17/20 part 2/5
+[16:31:02][INFO] [W0] Setting seed for this sub-event to 11986781196298596606
+[16:31:03][INFO] Stack: 50583 out of 1220133 stored 
+
+[16:31:03][INFO] This event/chunk did 14487838 steps
+[16:31:03][INFO] Longest track time is 1.31851e-05
+[16:31:03][INFO] sending message with 68 parts
+[16:31:03][INFO] [W1] TIME-STAMP 133.138	
+[16:31:03][INFO] [W1] MEM-STAMP 963.184 970.516 MB
+
+[16:31:03][INFO] [W1] Requesting work chunk
+[16:31:03][INFO] [W1] Waiting for answer
+[16:31:03][INFO] [W1] Primary chunk received
+[16:31:03][INFO] [W1] Processing 500 primary particles for event 17/20 part 3/5
+[16:31:03][INFO] [W1] Setting seed for this sub-event to 11986781196298596606
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] Stack: 2215 out of 117013 stored 
+
+[16:31:05][INFO] This event/chunk did 1955445 steps
+[16:31:05][INFO] Longest track time is 1.5878e-05
+[16:31:05][INFO] sending message with 68 parts
+[16:31:05][INFO] [W1] TIME-STAMP 135.481	
+[16:31:05][INFO] [W1] MEM-STAMP 963.184 970.516 MB
+
+[16:31:05][INFO] [W1] Requesting work chunk
+[16:31:05][INFO] [W1] Waiting for answer
+[16:31:05][INFO] [W1] Primary chunk received
+[16:31:05][INFO] [W1] Processing 500 primary particles for event 17/20 part 4/5
+[16:31:05][INFO] [W1] Setting seed for this sub-event to 11986781196298596606
+[16:31:05][INFO] Stack: 500 out of 500 stored 
+
+[16:31:05][INFO] This event/chunk did 0 steps
+[16:31:05][INFO] Longest track time is 0
+[16:31:05][INFO] sending message with 68 parts
+[16:31:05][INFO] [W1] TIME-STAMP 135.485	
+[16:31:05][INFO] [W1] MEM-STAMP 963.184 970.516 MB
+
+[16:31:05][INFO] [W1] Requesting work chunk
+[16:31:05][INFO] [W1] Waiting for answer
+[16:31:05][INFO] [W1] Primary chunk received
+[16:31:05][INFO] [W1] Processing 398 primary particles for event 17/20 part 5/5
+[16:31:05][INFO] [W1] Setting seed for this sub-event to 11986781196298596606
+[16:31:05][INFO] Stack: 398 out of 398 stored 
+
+[16:31:05][INFO] This event/chunk did 0 steps
+[16:31:05][INFO] Longest track time is 0
+[16:31:05][INFO] sending message with 68 parts
+[16:31:05][INFO] [W1] TIME-STAMP 135.491	
+[16:31:05][INFO] [W1] MEM-STAMP 963.184 970.516 MB
+
+[16:31:05][INFO] [W1] Requesting work chunk
+[16:31:05][INFO] [W1] Waiting for answer
+[16:31:05][INFO] [W1] Primary chunk received
+[16:31:05][INFO] [W1] Processing 55 primary particles for event 18/20 part 1/1
+[16:31:05][INFO] [W1] Setting seed for this sub-event to 11986781196298596607
+
+ MZSTOR.  ZEBRA table base TAB(0) in /MZCC/ at adr   452962159    1AFFA76F HEX
+
+ MZSTOR.  Initialize Store  0  in /GCBANK/
+          with Store/Table at absolute adrs   447516541   452962159
+                                        HEX    1AAC8F7D    1AFFA76F
+                                        HEX    FFACE5FA           0
+                              relative adrs    -5446150           0
+          with     1 Str. in     2 Links in   5300 Low words in 4999970 words.
+          This store has a fence of   16 words.
+
+ MZLOGL.  Set Log Level 0 for store  0
+1*****  GEANT Version  3.21/11 Released on 100298
+0*****  Correction Cradle Version  0.1100
+
+ MZDIV.   Initialize Division  Constant  in Store  0
+          NW/NWMAX=   20004000000,  MODE/KIND=  1  2
+          Division 20 initialized.
+
+ MZLINK.  Initialize Link Area  /GCLINK/  for Store  0 NL/NS=    20    20
+
+ MZLINK.  Initialize Link Area  /GCSLNK/  for Store  0 NL/NS=   100   100
+
+ Calculating cross section tables, see gphysi.dat for more information
+
+ Cross section calculation concluded successfully
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535214           0
+ GTREVE_ROOT : Transporting primary track No        300
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535217           0
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535219           0
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535220           0
+ GTREVE_ROOT : Transporting primary track No        100
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535223           0
+
+ *** GTRACK *** More than 100000 steps, tracking abandoned!
+ =====> TRACK    1 STACK NR   0 NTMULT=     67793     ELECTRON                 TOFG =   584.626 NS
+       X          Y          Z          R     NAME  NUMBER   SLENG      STEP      DESTEP     GEKIN   MECHANISMS
+     -1.1470     1.5253  6101.3784     1.9085 MD1L    1 10744.1826    0.1075    0.0  eV    1.025 MeV FIEL LOSS MULS STOP
+ IEVENT       1 IDEVT       1 Random Seeds 1169535223           0 Time of flight    584.626 ns
+
+ GTREVE_ROOT : Transporting primary track No        100
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535224           0
+ GTREVE_ROOT : Transporting primary track No        500
+ GTREVE_ROOT : Transporting primary track No        400
+
+ *** GTRACK *** More than 100000 steps, tracking abandoned!
+ =====> TRACK    1 STACK NR   0 NTMULT=    315384     PROTON                   TOFG =    14.463 NS
+       X          Y          Z          R     NAME  NUMBER   SLENG      STEP      DESTEP     GEKIN   MECHANISMS
+    -25.5918   355.6324   -83.7977   356.5520 URFB    1    27.3429    0.0001    0.0  eV   79.991 MeV FIEL SCUT LOSS MULS STOP
+ IEVENT       1 IDEVT       1 Random Seeds 1169535224           0 Time of flight     14.463 ns
+
+ GTREVE_ROOT : Transporting primary track No        300
+ GTREVE_ROOT : Transporting primary track No        200
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535226           0
+ GTREVE_ROOT : Transporting primary track No        200
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535227           0
+ GTREVE_ROOT : Transporting primary track No        500
+ GTREVE_ROOT : Transporting primary track No        300
+ GTREVE_ROOT : Transporting primary track No        200
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535228           0
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535229           0
+ GTREVE_ROOT : Transporting primary track No        500
+ GTREVE_ROOT : Transporting primary track No        400
+ GTREVE_ROOT : Transporting primary track No        300
+ GTREVE_ROOT : Transporting primary track No        200
+ GTREVE_ROOT : Transporting primary track No        100
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535230           0
+ GTREVE_ROOT : Transporting primary track No        400
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535230           0
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535230           0
+ **** GTRIGI: IEVENT=      1 IDEVT=      1 Random Seeds = 1169535231           0
+[16:31:05][INFO] Charged, event 1
+[16:31:05][INFO] Charged, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:05][INFO] photon, event 1
+[16:31:08][INFO] Stack: 51673 out of 203888 stored 
+
+[16:31:08][INFO] This event/chunk did 2284979 steps
+[16:31:08][INFO] Longest track time is 1.67968e-05
+[16:31:08][INFO] sending message with 68 parts
+[16:31:08][INFO] [W0] TIME-STAMP 138.544	
+[16:31:08][INFO] [W0] MEM-STAMP 620.531 620.531 MB
+
+[16:31:08][INFO] [W0] Requesting work chunk
+[16:31:08][INFO] [W0] Waiting for answer
+[16:31:08][INFO] [W0] Primary chunk received
+[16:31:08][INFO] [W0] Processing 120 primary particles for event 19/20 part 1/1
+[16:31:08][INFO] [W0] Setting seed for this sub-event to 11986781196298596608
+[16:31:14][INFO] Stack: 951 out of 770089 stored 
+
+[16:31:14][INFO] This event/chunk did 10554062 steps
+[16:31:14][INFO] Longest track time is 1.18213e-05
+[16:31:14][INFO] sending message with 68 parts
+[16:31:14][INFO] [W1] TIME-STAMP 144.47	
+[16:31:14][INFO] [W1] MEM-STAMP 963.184 970.516 MB
+
+[16:31:14][INFO] [W1] Requesting work chunk
+[16:31:14][INFO] [W1] Waiting for answer
+[16:31:14][INFO] [W1] Primary chunk received
+[16:31:14][INFO] [W1] Processing 239 primary particles for event 20/20 part 1/1
+[16:31:14][INFO] [W1] Setting seed for this sub-event to 11986781196298596609
+[16:31:17][INFO] Stack: 6590 out of 673155 stored 
+
+[16:31:17][INFO] This event/chunk did 9390463 steps
+[16:31:17][INFO] Longest track time is 1.07605e-05
+[16:31:17][INFO] sending message with 68 parts
+[16:31:17][INFO] [W0] TIME-STAMP 147.419	
+[16:31:17][INFO] [W0] MEM-STAMP 620.531 620.531 MB
+
+[16:31:17][INFO] [W0] Requesting work chunk
+[16:31:17][INFO] [W0] Waiting for answer
+[16:31:17][INFO] [W0] Primary chunk received
+[16:31:17][INFO] [W0] No payload; Server in stage SERVING
+[16:31:17][INFO] [W0] simulation is done
+[16:31:17][INFO] FINISHING
+[16:31:22][INFO] Stack: 13764 out of 419564 stored 
+
+[16:31:22][INFO] This event/chunk did 5549781 steps
+[16:31:22][INFO] Longest track time is 1.15105e-05
+[16:31:22][INFO] sending message with 68 parts
+[16:31:22][INFO] [W1] TIME-STAMP 152.731	
+[16:31:22][INFO] [W1] MEM-STAMP 963.176 970.516 MB
+
+[16:31:22][INFO] [W1] Requesting work chunk
+[16:31:22][INFO] [W1] Waiting for answer
+[16:31:22][INFO] 53509 caught signal 15 from source 52388
+[16:31:22][INFO] 55549 caught signal 15 from source 52388

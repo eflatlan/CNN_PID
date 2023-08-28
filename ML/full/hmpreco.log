@@ -1,0 +1,2314 @@
+Running: TIME="#walltime %e" /usr/bin/time --output=hmpreco.log_time ./hmpreco.log_tmp.sh
+[INFO] Initialising O2 Data Processing Layer. Driver PID: 148672.
+[INFO] Driver listening on port: 36752
+[INFO] Rate limiting set up at 500MB distributed over 1 readers
+[INFO] O2 Data Processing Layer initialised. We brake for nobody.
+[INFO] Optimised build. O2DEBUG / LOG(debug) / LOGF(debug) / assert statement will not be shown.
+[INFO] Redeployment of configuration asked.
+[INFO] Starting internal-dpl-clock on pid 148712
+[INFO] Starting HMP-DigitReader on pid 148713
+[INFO] Starting HMP-Clusterization on pid 148714
+[INFO] Starting HMPClustersWriter on pid 148715
+[INFO] Redeployment of configuration done.
+[148712:internal-dpl-clock]: [INFO] Instrumenting crash signals
+[148712:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 148712
+[148712:internal-dpl-clock]: [22:06:14][INFO] 
+[148712:internal-dpl-clock]:       ______      _    _______  _________ 
+[148712:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[148712:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[148712:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[148712:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[148712:internal-dpl-clock]: 
+[148712:internal-dpl-clock]: [22:06:14][STATE] Starting FairMQ state machine --> IDLE
+[148713:HMP-DigitReader]: [INFO] Instrumenting crash signals
+[148713:HMP-DigitReader]: [INFO] Spawing new device HMP-DigitReader in process with pid 148713
+[148713:HMP-DigitReader]: [22:06:14][INFO] 
+[148713:HMP-DigitReader]:       ______      _    _______  _________ 
+[148713:HMP-DigitReader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[148713:HMP-DigitReader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[148713:HMP-DigitReader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[148713:HMP-DigitReader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[148713:HMP-DigitReader]: 
+[148713:HMP-DigitReader]: [22:06:14][STATE] Starting FairMQ state machine --> IDLE
+[148712:internal-dpl-clock]: [22:06:14][STATE] IDLE ---> INITIALIZING DEVICE
+[148712:internal-dpl-clock]: [22:06:14][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[148712:internal-dpl-clock]: [22:06:14][STATE] INITIALIZED ---> BINDING
+[148712:internal-dpl-clock]: [22:06:14][STATE] BINDING ---> BOUND
+[148712:internal-dpl-clock]: [22:06:14][STATE] BOUND ---> CONNECTING
+[148712:internal-dpl-clock]: [22:06:14][STATE] CONNECTING ---> DEVICE READY
+[148712:internal-dpl-clock]: [22:06:14][STATE] DEVICE READY ---> INITIALIZING TASK
+[148712:internal-dpl-clock]: [22:06:14][STATE] INITIALIZING TASK ---> READY
+[148712:internal-dpl-clock]: [22:06:14][STATE] READY ---> RUNNING
+[148712:internal-dpl-clock]: [22:06:14][INFO] fair::mq::Device running...
+[148712:internal-dpl-clock]: [22:06:14][INFO] LHCPeriod is not available, using current month AUG
+[148712:internal-dpl-clock]: [22:06:14][INFO] Correctly handshaken websocket connection.
+[148713:HMP-DigitReader]: [22:06:14][STATE] IDLE ---> INITIALIZING DEVICE
+[148714:HMP-Clusterization]: [INFO] Instrumenting crash signals
+[148714:HMP-Clusterization]: [INFO] Spawing new device HMP-Clusterization in process with pid 148714
+[148714:HMP-Clusterization]: [22:06:14][INFO] 
+[148714:HMP-Clusterization]:       ______      _    _______  _________ 
+[148714:HMP-Clusterization]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[148714:HMP-Clusterization]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[148714:HMP-Clusterization]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[148714:HMP-Clusterization]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[148714:HMP-Clusterization]: 
+[148714:HMP-Clusterization]: [22:06:14][STATE] Starting FairMQ state machine --> IDLE
+[148714:HMP-Clusterization]: [22:06:14][STATE] IDLE ---> INITIALIZING DEVICE
+[148714:HMP-Clusterization]: [22:06:14][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[148714:HMP-Clusterization]: [22:06:14][STATE] INITIALIZED ---> BINDING
+[148714:HMP-Clusterization]: [22:06:14][STATE] BINDING ---> BOUND
+[148714:HMP-Clusterization]: [22:06:14][STATE] BOUND ---> CONNECTING
+[148714:HMP-Clusterization]: [22:06:14][STATE] CONNECTING ---> DEVICE READY
+[148714:HMP-Clusterization]: [22:06:14][STATE] DEVICE READY ---> INITIALIZING TASK
+[148714:HMP-Clusterization]: [22:06:14][STATE] INITIALIZING TASK ---> READY
+[148714:HMP-Clusterization]: [22:06:14][STATE] READY ---> RUNNING
+[148714:HMP-Clusterization]: [22:06:14][INFO] fair::mq::Device running...
+[148714:HMP-Clusterization]: [22:06:14][INFO] LHCPeriod is not available, using current month AUG
+[148714:HMP-Clusterization]: [22:06:14][INFO] Correctly handshaken websocket connection.
+[148713:HMP-DigitReader]: [22:06:14][INFO] HMPID DigitWriterSpec::init() : Trying to read File : /root/CNN_PID/ML/full/hmpiddigits.root
+[148715:HMPClustersWriter]: [INFO] Instrumenting crash signals
+[148715:HMPClustersWriter]: [INFO] Spawing new device HMPClustersWriter in process with pid 148715
+[148715:HMPClustersWriter]: [22:06:14][INFO] 
+[148715:HMPClustersWriter]:       ______      _    _______  _________ 
+[148715:HMPClustersWriter]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[148715:HMPClustersWriter]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[148715:HMPClustersWriter]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[148715:HMPClustersWriter]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[148715:HMPClustersWriter]: 
+[148715:HMPClustersWriter]: [22:06:14][STATE] Starting FairMQ state machine --> IDLE
+[148715:HMPClustersWriter]: [22:06:14][STATE] IDLE ---> INITIALIZING DEVICE
+[148715:HMPClustersWriter]: [22:06:14][INFO] 0: branch  HMPIDclusters set up
+[148715:HMPClustersWriter]: [22:06:14][INFO] 1: branch  HMPIDDigitTopology set up
+[148715:HMPClustersWriter]: [22:06:14][INFO] 2: branch  InteractionRecords set up
+[148715:HMPClustersWriter]: [22:06:14][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[148715:HMPClustersWriter]: [22:06:14][STATE] INITIALIZED ---> BINDING
+[148715:HMPClustersWriter]: [22:06:14][STATE] BINDING ---> BOUND
+[148715:HMPClustersWriter]: [22:06:14][STATE] BOUND ---> CONNECTING
+[148715:HMPClustersWriter]: [22:06:14][STATE] CONNECTING ---> DEVICE READY
+[148715:HMPClustersWriter]: [22:06:14][STATE] DEVICE READY ---> INITIALIZING TASK
+[148715:HMPClustersWriter]: [22:06:14][STATE] INITIALIZING TASK ---> READY
+[148715:HMPClustersWriter]: [22:06:14][STATE] READY ---> RUNNING
+[148715:HMPClustersWriter]: [22:06:14][INFO] fair::mq::Device running...
+[148715:HMPClustersWriter]: [22:06:14][INFO] LHCPeriod is not available, using current month AUG
+[148715:HMPClustersWriter]: [22:06:14][INFO] Correctly handshaken websocket connection.
+[148713:HMP-DigitReader]: [22:06:15][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[148713:HMP-DigitReader]: [22:06:15][STATE] INITIALIZED ---> BINDING
+[148713:HMP-DigitReader]: [22:06:15][STATE] BINDING ---> BOUND
+[148713:HMP-DigitReader]: [22:06:15][STATE] BOUND ---> CONNECTING
+[148713:HMP-DigitReader]: [22:06:15][STATE] CONNECTING ---> DEVICE READY
+[148713:HMP-DigitReader]: [22:06:15][STATE] DEVICE READY ---> INITIALIZING TASK
+[148713:HMP-DigitReader]: [22:06:15][STATE] INITIALIZING TASK ---> READY
+[148713:HMP-DigitReader]: [22:06:15][STATE] READY ---> RUNNING
+[148713:HMP-DigitReader]: [22:06:15][INFO] fair::mq::Device running...
+[148713:HMP-DigitReader]: [22:06:15][INFO] LHCPeriod is not available, using current month AUG
+[148713:HMP-DigitReader]: [22:06:15][INFO] [HMPID DigitsReader - run() ] digits  = 1162
+[148713:HMP-DigitReader]: [22:06:15][INFO] End DigitsReader !  digits = 1162 Execution time = 0.61
+[148713:HMP-DigitReader]: [22:06:15][INFO] Sending end-of-stream message to channel from_HMP-DigitReader_to_HMP-Clusterization
+[148713:HMP-DigitReader]: [22:06:15][INFO] Correctly handshaken websocket connection.
+[148714:HMP-Clusterization]: [22:06:15][INFO] [HMPID DClusterization - run() ] Enter ...
+[148714:HMP-Clusterization]: [22:06:15][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu57
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] [HMPID DClusterization - return from dig2clu
+[148714:HMP-Clusterization]: [22:06:15][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu179
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -211
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -211
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -211
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -211
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] [HMPID DClusterization - return from dig2clu
+[148714:HMP-Clusterization]: [22:06:15][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu296
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -211
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -211
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -211
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -211
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -211
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -211
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -211
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] [HMPID DClusterization - return from dig2clu
+[148714:HMP-Clusterization]: [22:06:15][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu95
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 13
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 13
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 13
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 13
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 13
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 13
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 13
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 13
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 13
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] [HMPID DClusterization - return from dig2clu
+[148714:HMP-Clusterization]: [22:06:15][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu58
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] [HMPID DClusterization - return from dig2clu
+[148714:HMP-Clusterization]: [22:06:15][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu192
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] [HMPID DClusterization - return from dig2clu
+[148714:HMP-Clusterization]: [22:06:15][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu285
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 2212
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 211
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 211
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 211
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 211
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig -11
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] ======================
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] pdg dig 50000050
+[148714:HMP-Clusterization]: [22:06:15][INFO] [HMPID DClusterization - return from dig2clu
+[148714:HMP-Clusterization]: [22:06:15][INFO] Received 8 triggers with 1162 digits -> 7 triggers with 472 clusters
+[148714:HMP-Clusterization]: [22:06:15][INFO] End Clusterization !  digits = 1162 Execution time = 0.3
+[148714:HMP-Clusterization]: [22:06:15][INFO] Sending end-of-stream message to channel from_HMP-Clusterization_to_HMPClustersWriter
+[INFO] Quitting
+[INFO] QUIT_REQUESTED
+[148714:HMP-Clusterization]: [22:06:15][INFO] Received device shutdown request (signal 15).
+[148714:HMP-Clusterization]: [22:06:15][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[148715:HMPClustersWriter]: [22:06:15][INFO] Received device shutdown request (signal 15).
+[148715:HMPClustersWriter]: [22:06:15][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[148714:HMP-Clusterization]: [22:06:15][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[148714:HMP-Clusterization]: [22:06:15][STATE] RUNNING ---> READY
+[148715:HMPClustersWriter]: [22:06:15][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[148714:HMP-Clusterization]: [22:06:15][STATE] READY ---> RESETTING TASK
+[148714:HMP-Clusterization]: [22:06:15][STATE] RESETTING TASK ---> DEVICE READY
+[148714:HMP-Clusterization]: [22:06:15][STATE] DEVICE READY ---> RESETTING DEVICE
+[148714:HMP-Clusterization]: [22:06:15][STATE] RESETTING DEVICE ---> IDLE
+[148714:HMP-Clusterization]: [22:06:15][STATE] IDLE ---> EXITING
+[148714:HMP-Clusterization]: [22:06:15][STATE] Exiting FairMQ state machine
+[148712:internal-dpl-clock]: [22:06:15][INFO] Received device shutdown request (signal 15).
+[148712:internal-dpl-clock]: [22:06:15][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[148712:internal-dpl-clock]: [22:06:15][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[148712:internal-dpl-clock]: [22:06:15][STATE] RUNNING ---> READY
+[148712:internal-dpl-clock]: [22:06:15][STATE] READY ---> RESETTING TASK
+[148712:internal-dpl-clock]: [22:06:15][STATE] RESETTING TASK ---> DEVICE READY
+[148712:internal-dpl-clock]: [22:06:15][STATE] DEVICE READY ---> RESETTING DEVICE
+[148713:HMP-DigitReader]: [22:06:15][INFO] Received device shutdown request (signal 15).
+[148713:HMP-DigitReader]: [22:06:15][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[148713:HMP-DigitReader]: [22:06:15][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[148713:HMP-DigitReader]: [22:06:15][STATE] RUNNING ---> READY
+[148713:HMP-DigitReader]: [22:06:15][STATE] READY ---> RESETTING TASK
+[148713:HMP-DigitReader]: [22:06:15][STATE] RESETTING TASK ---> DEVICE READY
+[148712:internal-dpl-clock]: [22:06:15][STATE] RESETTING DEVICE ---> IDLE
+[148713:HMP-DigitReader]: [22:06:15][STATE] DEVICE READY ---> RESETTING DEVICE
+[148712:internal-dpl-clock]: [22:06:15][STATE] IDLE ---> EXITING
+[148712:internal-dpl-clock]: [22:06:15][STATE] Exiting FairMQ state machine
+[148713:HMP-DigitReader]: [22:06:15][STATE] RESETTING DEVICE ---> IDLE
+[148713:HMP-DigitReader]: [22:06:15][STATE] IDLE ---> EXITING
+[148713:HMP-DigitReader]: [22:06:15][STATE] Exiting FairMQ state machine
+[148715:HMPClustersWriter]: [22:06:16][STATE] RUNNING ---> READY
+[148715:HMPClustersWriter]: [22:06:16][STATE] READY ---> RESETTING TASK
+[148715:HMPClustersWriter]: [22:06:16][STATE] RESETTING TASK ---> DEVICE READY
+[148715:HMPClustersWriter]: [22:06:16][STATE] DEVICE READY ---> RESETTING DEVICE
+[148715:HMPClustersWriter]: [22:06:16][INFO] Cleaning up for shared memory id '06cd8c9c'...
+[148715:HMPClustersWriter]: [22:06:16][INFO] Found 0 unmanaged regions...
+[148715:HMPClustersWriter]: [22:06:16][INFO] Found 1 managed segments...
+[148715:HMPClustersWriter]: [22:06:16][INFO] Successfully removed 'fmq_06cd8c9c_m_0'.
+[148715:HMPClustersWriter]: [22:06:16][INFO] Successfully removed 'fmq_06cd8c9c_mng'.
+[148715:HMPClustersWriter]: [22:06:16][STATE] RESETTING DEVICE ---> IDLE
+[148715:HMPClustersWriter]: [22:06:16][STATE] IDLE ---> EXITING
+[148715:HMPClustersWriter]: [22:06:16][STATE] Exiting FairMQ state machine
+[INFO] ## Processes completed. Run summary:
+[INFO] ### Devices started: 4
+[INFO]  - Device internal-dpl-clock: pid 148712 (exit 0)
+[INFO]  - Device HMP-DigitReader: pid 148713 (exit 0)
+[INFO]  - Device HMP-Clusterization: pid 148714 (exit 0)
+[INFO]  - Device HMPClustersWriter: pid 148715 (exit 0)
+[INFO] Dumping used configuration in dpl-config.json
+TASK-EXIT-CODE: 0
