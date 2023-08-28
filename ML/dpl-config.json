@@ -1,0 +1,24 @@
+{
+    "internal-dpl-clock": "",
+    "HMP-DigitReader": {
+        "hmpid-digit-infile": "hmpiddigits.root",
+        "input-dir": ".\/",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "HMP-Clusterization": {
+        "sigma-cut": ""
+    },
+    "HMPClustersWriter": {
+        "outfile": "hmpidcluster.root",
+        "output-dir": "none",
+        "treename": "o2hmp",
+        "treetitle": "Tree with HMPID clusters",
+        "nevents": "-1",
+        "autosave": "-1",
+        "terminate": "process"
+    }
+}

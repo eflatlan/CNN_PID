@@ -1,0 +1,731 @@
+o2-sim-primary-server-device-runner
+--control
+static
+--id
+primary-server
+--mq-config
+o2simtopology_138079.json
+--severity
+debug
+--color
+false
+-n20
+--configKeyValues
+Diamond.width[2]=6.
+-g
+pythia8pp
+-e
+TGeant3
+--run
+300000
+--timestamp
+1546300800000
+$$$$
+[17:46:11][INFO] 
+      ______      _    _______  _________ 
+     / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+    / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+   / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+  /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+
+[17:46:11][STATE] Starting FairMQ state machine --> IDLE
+[17:46:11][DEBUG] PID: 138114
+[17:46:11][DEBUG] Loaded plugin: 'config', version '1.6.0', maintainer 'FairRootGroup <fairroot@gsi.de>', homepage 'https://github.com/FairRootGroup/FairMQ'
+[17:46:11][DEBUG] Loaded plugin: 'control', version '1.6.0', maintainer 'FairRootGroup <fairroot@gsi.de>', homepage 'https://github.com/FairRootGroup/FairMQ'
+[17:46:11][DEBUG] Running builtin controller: static
+[17:46:11][DEBUG] Plugin 'control' is setting up signal handling for SIGINT and SIGTERM
+[17:46:11][DEBUG] Configuration: 
+CCDBUrl                       = http://alice-ccdb.cern.ch <string>         [default] 
+asservice                     = false                     <bool>           [default] 
+bMax                          = 0                         <float>          [default] 
+bad-alloc-attempt-interval    = 50                        <int>            [default] 
+catch-signals                 = 1                         <int>            [default] 
+chunkSize                     = 500                       <unsigned>       [default] 
+chunkSizeI                    = -1                        <int>            [default] 
+color                         = false                     <bool>           [provided]
+configFile                    =                           <string>         [default] 
+configKeyValues               = Diamond.width[2]=6.       <string>         [provided]
+control                       = static                    <string>         [provided]
+embedIntoFile                 =                           <string>         [default] 
+extKinFile                    = Kinematics.root           <string>         [default] 
+field                         = -5                        <string>         [default] 
+file-severity                 = debug                     <string>         [default] 
+forwardKine                   = false                     <bool>           [default] 
+fromCollContext               =                           <string>         [default] 
+generator                     = pythia8pp                 <string>         [provided]
+id                            = primary-server            <string>         [provided]
+init-timeout                  = 120                       <int>            [default] 
+io-threads                    = 1                         <int>            [default] 
+isMT                          = false                     <bool>           [default] 
+log-to-file                   =                           <string>         [default] 
+logseverity                   = INFO                      <string>         [default] 
+logverbosity                  = medium                    <string>         [default] 
+mcEngine                      = TGeant3                   <string>         [provided]
+modules                       = all                       <vector<string>> [default] 
+mq-config                     = o2simtopology_138079.json <string>         [provided]
+nEvents                       = 20                        <unsigned>       [provided]
+network-interface             = default                   <string>         [default] 
+noDiscOutput                  = false                     <bool>           [default] 
+noGeant                       = false                     <bool>           [default] 
+nworkers                      = 2                         <int>            [default] 
+outPrefix                     = o2sim                     <string>         [default] 
+rate                          = 0                         <float>          [default] 
+readoutDetectors              =                           <vector<string>> [default] 
+run                           = 300000                    <int>            [provided]
+seed                          = 0                         <unsigned long>  [default] 
+session                       = default                   <string>         [default] 
+severity                      = debug                     <string>         [provided]
+shm-allocation                = rbtree_best_fit           <string>         [default] 
+shm-metadata-msg-size         = 0                         <unsigned long>  [default] 
+shm-mlock-segment             = false                     <bool>           [default] 
+shm-mlock-segment-on-creation = false                     <bool>           [default] 
+shm-monitor                   = false                     <bool>           [default] 
+shm-no-cleanup                = false                     <bool>           [default] 
+shm-segment-id                = 0                         <unsigned short> [default] 
+shm-segment-size              = 2147483648                <unsigned long>  [default] 
+shm-throw-bad-alloc           = true                      <bool>           [default] 
+shm-zero-segment              = false                     <bool>           [default] 
+shm-zero-segment-on-creation  = false                     <bool>           [default] 
+skipModules                   =                           <vector<string>> [default] 
+skipReadoutDetectors          =                           <vector<string>> [default] 
+startEvent                    = 0                         <unsigned>       [default] 
+timestamp                     = 1546300800000             <unsigned long>  [provided]
+transport                     = zeromq                    <string>         [default] 
+trigger                       =                           <string>         [default] 
+verbosity                     = medium                    <string>         [default] 
+vertexMode                    = kDiamondParam             <string>         [default] 
+
+[17:46:11][STATE] IDLE ---> INITIALIZING DEVICE
+[17:46:11][DEBUG] mq-config: Using default JSON parser
+[17:46:11][DEBUG] Parsing JSON from o2simtopology_138079.json ...
+[17:46:11][DEBUG] Setting 'zeromq' as default transport for the device
+[17:46:11][DEBUG] Adding 'zeromq' transport
+[17:46:11][DEBUG] Transport: Using ZeroMQ library, version: 4.3.3
+[17:46:11][DEBUG] Initializing transport for channel o2sim-primserv-info[0]: default
+[17:46:11][DEBUG] Reusing existing 'zeromq' transport
+[17:46:11][DEBUG] Initializing transport for channel primary-notifications[0]: default
+[17:46:11][DEBUG] Reusing existing 'zeromq' transport
+[17:46:11][DEBUG] Initializing transport for channel primary-get[0]: default
+[17:46:11][DEBUG] Reusing existing 'zeromq' transport
+[17:46:11][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[17:46:11][STATE] INITIALIZED ---> BINDING
+[17:46:11][DEBUG] Validating channel 'o2sim-primserv-info[0]'... VALID
+[17:46:11][DEBUG] Created socket primary-server.o2sim-primserv-info[0].rep
+[17:46:11][DEBUG] Attached channel o2sim-primserv-info[0] to ipc:///tmp/o2sim-primserv-info-138079 (bind) (rep)
+[17:46:11][DEBUG] Validating channel 'primary-notifications[0]'... VALID
+[17:46:11][DEBUG] Created socket primary-server.primary-notifications[0].pub
+[17:46:11][DEBUG] Attached channel primary-notifications[0] to ipc:///tmp/o2sim-primary-notifications-138079 (bind) (pub)
+[17:46:11][DEBUG] Validating channel 'primary-get[0]'... VALID
+[17:46:11][DEBUG] Created socket primary-server.primary-get[0].rep
+[17:46:11][DEBUG] Attached channel primary-get[0] to ipc:///tmp/o2sim-primary-get-138079 (bind) (rep)
+[17:46:11][STATE] BINDING ---> BOUND
+[17:46:11][STATE] BOUND ---> CONNECTING
+[17:46:11][STATE] CONNECTING ---> DEVICE READY
+[17:46:11][STATE] DEVICE READY ---> INITIALIZING TASK
+[17:46:11][INFO] INITTASK CHANGING STATE TO INIT
+[17:46:11][INFO] Init Server device 
+[17:46:12][INFO] Stack.storeSecondaries : true		[ CODE ]
+Stack.pruneKine : true		[ CODE ]
+Stack.transportPrimary : all		[ CODE ]
+Stack.transportPrimaryFileName : 		[ CODE ]
+Stack.transportPrimaryFuncName : 		[ CODE ]
+Stack.transportPrimaryInvert : false		[ CODE ]
+
+[17:46:12][INFO] ENGINE SET TO TGeant3
+[17:46:12][INFO] CHUNK SIZE SET TO 500
+[17:46:12][INFO] RNG INITIAL SEED 17800285745689859757
+[17:46:13][INFO] LAUNCHING STATUS THREAD
+[17:46:13][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1692719173-zrUv0u, Host: http://alice-ccdb.cern.ch/
+[17:46:13][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1692719173-zrUv0u, Host: http://alice-ccdb.cern.ch
+[17:46:13][INFO] MagneticField::CreateField: Maximim possible beam energy for requested beam is assumed
+[17:46:13][INFO] MagneticField::Print: Maps:
+[17:46:13][INFO] MagneticField::Print: Solenoid (-1*)5 kG, Dipole ON (-1) 
+[17:46:13][INFO] MagneticField::Print: Machine B fields for p-p  beam (7000 GeV): QGrad: 22.0002 Dipole: 37.8781
+[17:46:13][INFO] MagneticField::Print: Uses Sol30_Dip6_Hole  of $(O2_ROOT)/share/Common/maps/mfchebKGI_sym.root
+Info in <TGeoGlobalMagField::SetField>: Global magnetic field set to <Maps>
+Info in <TGeoGlobalMagField::Lock>: Global magnetic field <Maps> is now locked
+
+ *------------------------------------------------------------------------------------* 
+ |                                                                                    | 
+ |  *------------------------------------------------------------------------------*  | 
+ |  |                                                                              |  | 
+ |  |                                                                              |  | 
+ |  |   PPP   Y   Y  TTTTT  H   H  III    A      Welcome to the Lund Monte Carlo!  |  | 
+ |  |   P  P   Y Y     T    H   H   I    A A     This is PYTHIA version 8.304      |  | 
+ |  |   PPP     Y      T    HHHHH   I   AAAAA    Last date of change:  9 Apr 2021  |  | 
+ |  |   P       Y      T    H   H   I   A   A                                      |  | 
+ |  |   P       Y      T    H   H  III  A   A    Now is 22 Aug 2023 at 17:46:13    |  | 
+ |  |                                                                              |  | 
+ |  |   Christian Bierlich;  Department of Astronomy and Theoretical Physics,      |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: christian.bierlich@thep.lu.se                                   |  | 
+ |  |   Nishita Desai;  Department of Theoretical Physics, Tata Institute,         |  | 
+ |  |      Homi Bhabha Road, Mumbai 400005, India;                                 |  | 
+ |  |      e-mail: desai@theory.tifr.res.in                                        |  | 
+ |  |   Leif Gellersen;  Department of Astronomy and Theoretical Physics,          |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: leif.gellersen@thep.lu.se                                       |  | 
+ |  |   Ilkka Helenius;  Department of Physics, University of Jyvaskyla,           |  | 
+ |  |      P.O. Box 35, FI-40014 University of Jyvaskyla, Finland;                 |  | 
+ |  |      e-mail: ilkka.m.helenius@jyu.fi                                         |  | 
+ |  |   Philip Ilten;  Department of Physics,                                      |  | 
+ |  |      University of Cincinnati, Cincinnati, OH 45221, USA;                    |  | 
+ |  |      e-mail: philten@cern.ch                                                 |  | 
+ |  |   Leif Lonnblad;  Department of Astronomy and Theoretical Physics,           |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: leif.lonnblad@thep.lu.se                                        |  | 
+ |  |   Stephen Mrenna;  Computing Division, Simulations Group,                    |  | 
+ |  |      Fermi National Accelerator Laboratory, MS 234, Batavia, IL 60510, USA;  |  | 
+ |  |      e-mail: mrenna@fnal.gov                                                 |  | 
+ |  |   Stefan Prestel;  Department of Astronomy and Theoretical Physics,          |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: stefan.prestel@thep.lu.se                                       |  | 
+ |  |   Christian Preuss;  School of Physics and Astronomy,                        |  | 
+ |  |      Monash University, PO Box 27, 3800 Melbourne, Australia;                |  | 
+ |  |      e-mail: christian.preuss@monash.edu                                     |  | 
+ |  |   Torbjorn Sjostrand;  Department of Astronomy and Theoretical Physics,      |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: torbjorn@thep.lu.se                                             |  | 
+ |  |   Peter Skands;  School of Physics and Astronomy,                            |  | 
+ |  |      Monash University, PO Box 27, 3800 Melbourne, Australia;                |  | 
+ |  |      e-mail: peter.skands@monash.edu                                         |  | 
+ |  |   Marius Utheim;  Department of Astronomy and Theoretical Physics,           |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: marius.utheim@thep.lu.se                                        |  | 
+ |  |   Rob Verheyen;  Department of Physics and Astronomy,                        |  | 
+ |  |      University College London, Gower St, Bloomsbury, London WC1E 6BT, UK;   |  | 
+ |  |      e-mail: r.verheyen@ucl.ac.uk                                            |  | 
+ |  |                                                                              |  | 
+ |  |   The main program reference is 'An Introduction to PYTHIA 8.2',             |  | 
+ |  |   T. Sjostrand et al, Comput. Phys. Commun. 191 (2015) 159                   |  | 
+ |  |   [arXiv:1410.3012 [hep-ph]]                                                 |  | 
+ |  |                                                                              |  | 
+ |  |   The main physics reference is the 'PYTHIA 6.4 Physics and Manual',         |  | 
+ |  |   T. Sjostrand, S. Mrenna and P. Skands, JHEP05 (2006) 026 [hep-ph/0603175]  |  | 
+ |  |                                                                              |  | 
+ |  |   An archive of program versions and documentation is found on the web:      |  | 
+ |  |   http://www.thep.lu.se/Pythia                                               |  | 
+ |  |                                                                              |  | 
+ |  |   This program is released under the GNU General Public Licence version 2.   |  | 
+ |  |   Please respect the MCnet Guidelines for Event Generator Authors and Users. |  | 
+ |  |                                                                              |  | 
+ |  |   Disclaimer: this program comes without any guarantees.                     |  | 
+ |  |   Beware of errors and use common sense when interpreting results.           |  | 
+ |  |                                                                              |  | 
+ |  |   Copyright (C) 2021 Torbjorn Sjostrand                                      |  | 
+ |  |                                                                              |  | 
+ |  |                                                                              |  | 
+ |  *------------------------------------------------------------------------------*  | 
+ |                                                                                    | 
+ *------------------------------------------------------------------------------------* 
+
+[17:46:13][INFO] Instance 'Pythia8' generator with following parameters
+[17:46:13][INFO] GeneratorPythia8.config : 		[ CODE ]
+GeneratorPythia8.hooksFileName : 		[ CODE ]
+GeneratorPythia8.hooksFuncName : 		[ CODE ]
+
+[17:46:13][INFO] Reading 'Pythia8' base configuration: /root/alice/sw/slc8_x86-64/O2/segment-local1/share/Generators/egconfig/pythia8_inel.cfg
+
+[17:46:13][INFO] Using random seed from gRandom % 900000000: 782642605
+[17:46:13][INFO] Initialising primary generator
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 1.400e+04 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | non-diffractive                                101 |   5.717e+01 |
+ | A B -> X B single diffractive                  103 |   6.442e+00 |
+ | A B -> A X single diffractive                  104 |   6.442e+00 |
+ | A B -> X X double diffractive                  105 |   8.881e+00 |
+ | A B -> A X B central diffractive               106 |   0.000e+00 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Multiparton Interactions Initialization  ---------* 
+ |                                                                  | 
+ |                   sigmaNonDiffractive =    57.17 mb              | 
+ |                                                                  | 
+ |    pT0 =  2.65 gives sigmaInteraction =   326.31 mb: accepted    | 
+ |                                                                  | 
+ *-------  End PYTHIA Multiparton Interactions Initialization  -----* 
+
+ *-------  PYTHIA Multiparton Interactions Initialization  ---------* 
+ |                                                                  | 
+ |                          diffraction XB                          | 
+ |                                                                  | 
+ |   diffractive mass = 1.00e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.56 gives sigmaInteraction =    25.07 mb: accepted    | 
+ |   diffractive mass = 1.62e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.62 gives sigmaInteraction =    24.11 mb: accepted    | 
+ |   diffractive mass = 2.63e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.69 gives sigmaInteraction =    22.24 mb: accepted    | 
+ |   diffractive mass = 4.26e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.76 gives sigmaInteraction =    20.07 mb: accepted    | 
+ |   diffractive mass = 6.90e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.84 gives sigmaInteraction =    18.26 mb: accepted    | 
+ |   diffractive mass = 1.12e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.94 gives sigmaInteraction =    17.08 mb: accepted    | 
+ |   diffractive mass = 1.81e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.04 gives sigmaInteraction =    16.64 mb: accepted    | 
+ |   diffractive mass = 2.94e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.15 gives sigmaInteraction =    17.25 mb: accepted    | 
+ |   diffractive mass = 4.76e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.28 gives sigmaInteraction =    18.85 mb: accepted    | 
+ |   diffractive mass = 7.72e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.42 gives sigmaInteraction =    21.49 mb: accepted    | 
+ |   diffractive mass = 1.25e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.57 gives sigmaInteraction =    25.54 mb: accepted    | 
+ |   diffractive mass = 2.03e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.75 gives sigmaInteraction =    30.79 mb: accepted    | 
+ |   diffractive mass = 3.29e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.94 gives sigmaInteraction =    37.18 mb: accepted    | 
+ |   diffractive mass = 5.33e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  2.15 gives sigmaInteraction =    44.82 mb: accepted    | 
+ |   diffractive mass = 8.64e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  2.39 gives sigmaInteraction =    53.07 mb: accepted    | 
+ |   diffractive mass = 1.40e+04 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  2.65 gives sigmaInteraction =    62.86 mb: accepted    | 
+ |                                                                  | 
+ *-------  End PYTHIA Multiparton Interactions Initialization  -----* 
+ PYTHIA Warning in MultipartonInteractions::init: maximum increased by factor 4.126
+
+ *-------  PYTHIA Multiparton Interactions Initialization  ---------* 
+ |                                                                  | 
+ |                          diffraction AX                          | 
+ |                                                                  | 
+ |   diffractive mass = 1.00e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.56 gives sigmaInteraction =    25.14 mb: accepted    | 
+ |   diffractive mass = 1.62e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.62 gives sigmaInteraction =    24.17 mb: accepted    | 
+ |   diffractive mass = 2.63e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.69 gives sigmaInteraction =    22.24 mb: accepted    | 
+ |   diffractive mass = 4.26e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.76 gives sigmaInteraction =    20.04 mb: accepted    | 
+ |   diffractive mass = 6.90e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.84 gives sigmaInteraction =    18.18 mb: accepted    | 
+ |   diffractive mass = 1.12e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.94 gives sigmaInteraction =    16.99 mb: accepted    | 
+ |   diffractive mass = 1.81e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.04 gives sigmaInteraction =    16.61 mb: accepted    | 
+ |   diffractive mass = 2.94e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.15 gives sigmaInteraction =    17.16 mb: accepted    | 
+ |   diffractive mass = 4.76e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.28 gives sigmaInteraction =    18.74 mb: accepted    | 
+ |   diffractive mass = 7.72e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.42 gives sigmaInteraction =    21.82 mb: accepted    | 
+ |   diffractive mass = 1.25e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.57 gives sigmaInteraction =    25.82 mb: accepted    | 
+ |   diffractive mass = 2.03e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.75 gives sigmaInteraction =    30.90 mb: accepted    | 
+ |   diffractive mass = 3.29e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.94 gives sigmaInteraction =    37.17 mb: accepted    | 
+ |   diffractive mass = 5.33e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  2.15 gives sigmaInteraction =    44.37 mb: accepted    | 
+ |   diffractive mass = 8.64e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  2.39 gives sigmaInteraction =    53.46 mb: accepted    | 
+ |   diffractive mass = 1.40e+04 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  2.65 gives sigmaInteraction =    62.58 mb: accepted    | 
+ |                                                                  | 
+ *-------  End PYTHIA Multiparton Interactions Initialization  -----* 
+
+ *-------  PYTHIA Multiparton Interactions Initialization  ---------* 
+ |                                                                  | 
+ |                          diffraction AXB                         | 
+ |                                                                  | 
+ |   diffractive mass = 1.00e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.56 gives sigmaInteraction =     5.91 mb: rejected    | 
+ |    pT0 =  0.50 gives sigmaInteraction =     8.76 mb: rejected    | 
+ |    pT0 =  0.45 gives sigmaInteraction =    13.16 mb: accepted    | 
+ |   diffractive mass = 1.62e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.62 gives sigmaInteraction =     4.83 mb: rejected    | 
+ |    pT0 =  0.56 gives sigmaInteraction =     7.04 mb: rejected    | 
+ |    pT0 =  0.50 gives sigmaInteraction =    10.33 mb: rejected    | 
+ |    pT0 =  0.45 gives sigmaInteraction =    15.18 mb: accepted    | 
+ |   diffractive mass = 2.63e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.69 gives sigmaInteraction =     3.84 mb: rejected    | 
+ |    pT0 =  0.62 gives sigmaInteraction =     5.49 mb: rejected    | 
+ |    pT0 =  0.56 gives sigmaInteraction =     7.87 mb: rejected    | 
+ |    pT0 =  0.50 gives sigmaInteraction =    11.43 mb: accepted    | 
+ |   diffractive mass = 4.26e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.76 gives sigmaInteraction =     3.14 mb: rejected    | 
+ |    pT0 =  0.69 gives sigmaInteraction =     4.36 mb: rejected    | 
+ |    pT0 =  0.62 gives sigmaInteraction =     6.09 mb: rejected    | 
+ |    pT0 =  0.55 gives sigmaInteraction =     8.61 mb: rejected    | 
+ |    pT0 =  0.50 gives sigmaInteraction =    12.29 mb: accepted    | 
+ |   diffractive mass = 6.90e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.84 gives sigmaInteraction =     2.69 mb: rejected    | 
+ |    pT0 =  0.76 gives sigmaInteraction =     3.60 mb: rejected    | 
+ |    pT0 =  0.68 gives sigmaInteraction =     4.90 mb: rejected    | 
+ |    pT0 =  0.62 gives sigmaInteraction =     6.69 mb: rejected    | 
+ |    pT0 =  0.55 gives sigmaInteraction =     9.30 mb: rejected    | 
+ |    pT0 =  0.50 gives sigmaInteraction =    13.15 mb: accepted    | 
+ |   diffractive mass = 1.12e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.94 gives sigmaInteraction =     2.54 mb: rejected    | 
+ |    pT0 =  0.84 gives sigmaInteraction =     3.25 mb: rejected    | 
+ |    pT0 =  0.76 gives sigmaInteraction =     4.19 mb: rejected    | 
+ |    pT0 =  0.68 gives sigmaInteraction =     5.59 mb: rejected    | 
+ |    pT0 =  0.61 gives sigmaInteraction =     7.44 mb: rejected    | 
+ |    pT0 =  0.55 gives sigmaInteraction =     9.99 mb: rejected    | 
+ |    pT0 =  0.50 gives sigmaInteraction =    13.97 mb: accepted    | 
+ |   diffractive mass = 1.81e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.04 gives sigmaInteraction =     2.53 mb: rejected    | 
+ |    pT0 =  0.94 gives sigmaInteraction =     3.16 mb: rejected    | 
+ |    pT0 =  0.84 gives sigmaInteraction =     3.98 mb: rejected    | 
+ |    pT0 =  0.76 gives sigmaInteraction =     5.00 mb: rejected    | 
+ |    pT0 =  0.68 gives sigmaInteraction =     6.36 mb: rejected    | 
+ |    pT0 =  0.61 gives sigmaInteraction =     8.32 mb: rejected    | 
+ |    pT0 =  0.55 gives sigmaInteraction =    10.96 mb: rejected    | 
+ |    pT0 =  0.50 gives sigmaInteraction =    14.93 mb: accepted    | 
+ |   diffractive mass = 2.94e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.15 gives sigmaInteraction =     2.75 mb: rejected    | 
+ |    pT0 =  1.04 gives sigmaInteraction =     3.34 mb: rejected    | 
+ |    pT0 =  0.93 gives sigmaInteraction =     3.99 mb: rejected    | 
+ |    pT0 =  0.84 gives sigmaInteraction =     4.88 mb: rejected    | 
+ |    pT0 =  0.76 gives sigmaInteraction =     5.94 mb: rejected    | 
+ |    pT0 =  0.68 gives sigmaInteraction =     7.45 mb: rejected    | 
+ |    pT0 =  0.61 gives sigmaInteraction =     9.54 mb: rejected    | 
+ |    pT0 =  0.55 gives sigmaInteraction =    12.25 mb: accepted    | 
+ |   diffractive mass = 4.76e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.28 gives sigmaInteraction =     3.11 mb: rejected    | 
+ |    pT0 =  1.15 gives sigmaInteraction =     3.68 mb: rejected    | 
+ |    pT0 =  1.04 gives sigmaInteraction =     4.34 mb: rejected    | 
+ |    pT0 =  0.93 gives sigmaInteraction =     5.17 mb: rejected    | 
+ |    pT0 =  0.84 gives sigmaInteraction =     6.15 mb: rejected    | 
+ |    pT0 =  0.76 gives sigmaInteraction =     7.38 mb: rejected    | 
+ |    pT0 =  0.68 gives sigmaInteraction =     8.93 mb: rejected    | 
+ |    pT0 =  0.61 gives sigmaInteraction =    10.89 mb: rejected    | 
+ |    pT0 =  0.55 gives sigmaInteraction =    13.81 mb: accepted    | 
+ |   diffractive mass = 7.72e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.42 gives sigmaInteraction =     3.58 mb: rejected    | 
+ |    pT0 =  1.28 gives sigmaInteraction =     4.17 mb: rejected    | 
+ |    pT0 =  1.15 gives sigmaInteraction =     4.91 mb: rejected    | 
+ |    pT0 =  1.03 gives sigmaInteraction =     5.69 mb: rejected    | 
+ |    pT0 =  0.93 gives sigmaInteraction =     6.59 mb: rejected    | 
+ |    pT0 =  0.84 gives sigmaInteraction =     7.63 mb: rejected    | 
+ |    pT0 =  0.75 gives sigmaInteraction =     9.03 mb: rejected    | 
+ |    pT0 =  0.68 gives sigmaInteraction =    10.62 mb: rejected    | 
+ |    pT0 =  0.61 gives sigmaInteraction =    12.91 mb: accepted    | 
+ |   diffractive mass = 1.25e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.57 gives sigmaInteraction =     4.15 mb: rejected    | 
+ |    pT0 =  1.42 gives sigmaInteraction =     4.80 mb: rejected    | 
+ |    pT0 =  1.28 gives sigmaInteraction =     5.56 mb: rejected    | 
+ |    pT0 =  1.15 gives sigmaInteraction =     6.48 mb: rejected    | 
+ |    pT0 =  1.03 gives sigmaInteraction =     7.36 mb: rejected    | 
+ |    pT0 =  0.93 gives sigmaInteraction =     8.43 mb: rejected    | 
+ |    pT0 =  0.84 gives sigmaInteraction =     9.57 mb: rejected    | 
+ |    pT0 =  0.75 gives sigmaInteraction =    11.08 mb: accepted    | 
+ |   diffractive mass = 2.03e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.75 gives sigmaInteraction =     4.74 mb: rejected    | 
+ |    pT0 =  1.57 gives sigmaInteraction =     5.59 mb: rejected    | 
+ |    pT0 =  1.42 gives sigmaInteraction =     6.36 mb: rejected    | 
+ |    pT0 =  1.27 gives sigmaInteraction =     7.34 mb: rejected    | 
+ |    pT0 =  1.15 gives sigmaInteraction =     8.31 mb: rejected    | 
+ |    pT0 =  1.03 gives sigmaInteraction =     9.41 mb: rejected    | 
+ |    pT0 =  0.93 gives sigmaInteraction =    10.60 mb: rejected    | 
+ |    pT0 =  0.84 gives sigmaInteraction =    11.97 mb: accepted    | 
+ |   diffractive mass = 3.29e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.94 gives sigmaInteraction =     5.40 mb: rejected    | 
+ |    pT0 =  1.74 gives sigmaInteraction =     6.29 mb: rejected    | 
+ |    pT0 =  1.57 gives sigmaInteraction =     7.24 mb: rejected    | 
+ |    pT0 =  1.41 gives sigmaInteraction =     8.49 mb: rejected    | 
+ |    pT0 =  1.27 gives sigmaInteraction =     9.54 mb: rejected    | 
+ |    pT0 =  1.14 gives sigmaInteraction =    10.68 mb: rejected    | 
+ |    pT0 =  1.03 gives sigmaInteraction =    11.94 mb: accepted    | 
+ |   diffractive mass = 5.33e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  2.15 gives sigmaInteraction =     6.10 mb: rejected    | 
+ |    pT0 =  1.94 gives sigmaInteraction =     7.08 mb: rejected    | 
+ |    pT0 =  1.74 gives sigmaInteraction =     8.14 mb: rejected    | 
+ |    pT0 =  1.57 gives sigmaInteraction =     9.47 mb: rejected    | 
+ |    pT0 =  1.41 gives sigmaInteraction =    10.75 mb: rejected    | 
+ |    pT0 =  1.27 gives sigmaInteraction =    12.13 mb: accepted    | 
+ |   diffractive mass = 8.64e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  2.39 gives sigmaInteraction =     6.69 mb: rejected    | 
+ |    pT0 =  2.15 gives sigmaInteraction =     7.91 mb: rejected    | 
+ |    pT0 =  1.93 gives sigmaInteraction =     9.23 mb: rejected    | 
+ |    pT0 =  1.74 gives sigmaInteraction =    10.44 mb: rejected    | 
+ |    pT0 =  1.57 gives sigmaInteraction =    11.99 mb: accepted    | 
+ |   diffractive mass = 1.40e+04 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  2.65 gives sigmaInteraction =     7.37 mb: rejected    | 
+ |    pT0 =  2.38 gives sigmaInteraction =     8.60 mb: rejected    | 
+ |    pT0 =  2.14 gives sigmaInteraction =     9.99 mb: rejected    | 
+ |    pT0 =  1.93 gives sigmaInteraction =    11.50 mb: accepted    | 
+ |                                                                  | 
+ *-------  End PYTHIA Multiparton Interactions Initialization  -----* 
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | ParticleDecays:limitTau0                      |                       on |          off                         | 
+ | Random:seed                                   |                782642605 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ | SoftQCD:inelastic                             |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+
+ --------  PYTHIA Particle Data Table (changed only)  ------------------------------------------------------------------------------
+ 
+      id   name            antiName         spn chg col      m0        mWidth      mMin       mMax       tau0    res dec ext vis wid
+             no onMode   bRatio   meMode     products 
+
+ no particle data has been changed from its default value 
+
+ --------  End PYTHIA Particle Data Table  -----------------------------------------------------------------------------------------
+
+[17:46:38][INFO] Generator initialization took 25.5s
+[17:46:38][INFO] Event generation started 
+[17:46:38][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:46:38][INFO] Sampled interacting vertex (0.00877462,0.00363571,2.28118)
+
+ --------  PYTHIA Info Listing  ---------------------------------------- 
+ 
+ Beam A: id =   2212, pz =  7.000e+03, e =  7.000e+03, m =  9.383e-01.
+ Beam B: id =   2212, pz = -7.000e+03, e =  7.000e+03, m =  9.383e-01.
+
+ Process A B -> X X double diffractive with code 105 is 2 -> 2.
+ It has s =  1.960e+08,    t = -7.658e-03,    u = -1.960e+08,
+       pT =  8.747e-02,   m3 =  3.344e+00,   m4 =  1.135e+01,
+    theta =  1.250e-05,  phi =  3.872e+00.
+
+ --------  End PYTHIA Info Listing  ------------------------------------
+
+ --------  PYTHIA Event Listing  (hard process)  -----------------------------------------------------------------------------------
+ 
+    no         id  name            status     mothers   daughters     colours      p_x        p_y        p_z         e          m 
+     0         90  (system)           -11     0     0     0     0     0     0      0.000      0.000      0.000  14000.000  14000.000
+     1       2212  (p+)               -12     0     0     3     0     0     0      0.000      0.000   7000.000   7000.000      0.938
+     2       2212  (p+)               -12     0     0     4     0     0     0      0.000      0.000  -7000.000   7000.000      0.938
+     3    9902210  p_diffr+            15     1     0     0     0     0     0     -0.065     -0.058   6999.995   6999.996      3.344
+     4    9902210  p_diffr+            15     2     0     0     0     0     0      0.065      0.058  -6999.995   7000.004     11.351
+                                   Charge sum:  2.000           Momentum sum:      0.000      0.000      0.000  14000.000  14000.000
+
+ --------  End PYTHIA Event Listing  -----------------------------------------------------------------------------------------------
+
+ --------  PYTHIA Event Listing  (complete event)  ---------------------------------------------------------------------------------
+ 
+    no         id  name            status     mothers   daughters     colours      p_x        p_y        p_z         e          m 
+     0         90  (system)           -11     0     0     0     0     0     0      0.000      0.000      0.000  14000.000  14000.000
+     1       2212  (p+)               -12     0     0     3     0     0     0      0.000      0.000   7000.000   7000.000      0.938
+     2       2212  (p+)               -12     0     0     4     0     0     0      0.000      0.000  -7000.000   7000.000      0.938
+     3    9902210  (p_diffr+)         -15     1     0     5     6     0     0     -0.065     -0.058   6999.995   6999.996      3.344
+     4    9902210  (p_diffr+)         -15     2     0     7     8     0     0      0.065      0.058  -6999.995   7000.004     11.351
+     5          2  (u)                -24     3     0     9    10   101     0     -0.068     -0.061     74.108     74.109      0.325
+     6       2101  (ud_0)             -63     3     0     9    10     0   101      0.003      0.003   6925.887   6925.887      0.650
+     7          2  (u)                -24     4     0    11    17   102     0      0.065      0.059     -6.173      6.182      0.325
+     8       2101  (ud_0)             -63     4     0    11    17     0   102     -0.000     -0.000  -6993.822   6993.822      0.650
+     9       2112  n0                  83     5     6     0     0     0     0     -0.568     -0.334    854.168    854.169      0.940
+    10        211  pi+                 84     5     6     0     0     0     0      0.503      0.276   6145.827   6145.827      0.140
+    11        211  pi+                 83     7     8     0     0     0     0     -0.414     -0.065    -21.262     21.267      0.140
+    12       -211  pi-                 83     7     8     0     0     0     0      0.608      0.296   -121.993    121.995      0.140
+    13        223  (omega)            -83     7     8    19    21     0     0     -0.222     -0.004   -471.179    471.180      0.798
+    14       2212  p+                  83     7     8     0     0     0     0      0.073     -0.470  -1078.145   1078.145      0.938
+    15      -2112  nbar0               83     7     8     0     0     0     0     -0.236      0.392   -505.404    505.405      0.940
+    16        311  (K0)               -84     7     8    18    18     0     0      0.387      0.114  -1831.409   1831.409      0.498
+    17       3122  Lambda0             84     7     8     0     0     0     0     -0.130     -0.206  -2970.603   2970.603      1.116
+    18        130  K_L0                91    16    16     0     0     0     0      0.387      0.114  -1831.409   1831.409      0.498
+    19        211  pi+                 91    13     0     0     0     0     0      0.112      0.028   -198.165    198.165      0.140
+    20       -211  pi-                 91    13     0     0     0     0     0     -0.304     -0.185   -194.618    194.619      0.140
+    21        111  (pi0)              -91    13     0    22    23     0     0     -0.029      0.153    -78.396     78.396      0.135
+    22         22  gamma               91    21     0     0     0     0     0     -0.058      0.073    -20.988     20.988      0.000
+    23         22  gamma               91    21     0     0     0     0     0      0.029      0.080    -57.408     57.408      0.000
+                                   Charge sum:  2.000           Momentum sum:      0.000      0.000     -0.000  14000.000  14000.000
+
+ --------  End PYTHIA Event Listing  -----------------------------------------------------------------------------------------------
+[17:46:38][INFO] Event generation took 0s and produced 23 primaries 
+[17:46:38][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:46:38][INFO] ASSIGNED PIPE HANDLE 12
+[17:46:38][INFO] INITTASK CHANGING STATE TO SERVING
+[17:46:38][STATE] INITIALIZING TASK ---> READY
+[17:46:38][STATE] READY ---> RUNNING
+[17:46:38][INFO] fair::mq::Device running...
+[17:46:39][INFO] INFO REQUEST RECEIVED
+[17:46:39][INFO] Received config request
+[17:46:39][INFO] config reply send 
+[17:46:42][INFO] INFO REQUEST RECEIVED
+[17:46:42][INFO] Received config request
+[17:46:42][INFO] config reply send 
+[17:47:13][INFO] Sending 23 particles
+[17:47:13][INFO] treating ev 1 part 1 out of 1
+[17:47:13][INFO] Event generation started 
+[17:47:13][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:47:13][INFO] Sampled interacting vertex (-0.00698061,-0.00263847,0.0962996)
+[17:47:14][INFO] Event generation took 0.22s and produced 570 primaries 
+[17:47:14][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:47:14][INFO] Sending 500 particles
+[17:47:14][INFO] treating ev 2 part 1 out of 2
+[17:47:21][INFO] Sending 70 particles
+[17:47:21][INFO] treating ev 2 part 2 out of 2
+[17:47:21][INFO] Event generation started 
+[17:47:21][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:47:21][INFO] Sampled interacting vertex (-0.0115354,0.007785,0.0413834)
+[17:47:21][INFO] Event generation took 0s and produced 357 primaries 
+[17:47:21][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:47:21][INFO] Sending 357 particles
+[17:47:21][INFO] treating ev 3 part 1 out of 1
+[17:47:21][INFO] Event generation started 
+[17:47:21][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:47:21][INFO] Sampled interacting vertex (0.00189765,-0.00554645,-3.42405)
+[17:47:21][INFO] Event generation took 0.01s and produced 326 primaries 
+[17:47:21][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:47:33][INFO] Sending 326 particles
+[17:47:33][INFO] treating ev 4 part 1 out of 1
+[17:47:33][INFO] Event generation started 
+[17:47:33][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:47:33][INFO] Sampled interacting vertex (-0.0100439,0.00242012,-9.3839)
+[17:47:33][INFO] Event generation took 0.01s and produced 335 primaries 
+[17:47:33][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:47:47][INFO] Sending 335 particles
+[17:47:47][INFO] treating ev 5 part 1 out of 1
+[17:47:47][INFO] Event generation started 
+[17:47:47][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:47:47][INFO] Sampled interacting vertex (-0.0116198,0.000687554,-0.222138)
+[17:47:47][INFO] Event generation took 0.03s and produced 1423 primaries 
+[17:47:47][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:47:54][INFO] Sending 500 particles
+[17:47:54][INFO] treating ev 6 part 1 out of 3
+[17:48:01][INFO] Sending 500 particles
+[17:48:01][INFO] treating ev 6 part 2 out of 3
+[17:48:06][INFO] Sending 423 particles
+[17:48:06][INFO] treating ev 6 part 3 out of 3
+[17:48:06][INFO] Event generation started 
+[17:48:06][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:48:06][INFO] Sampled interacting vertex (0.0081326,0.0092117,0.552887)
+Warning in <TParticle::SetPdgCode>: PDG code 990 unknown from TDatabasePDG
+Warning in <TParticle::SetPdgCode>: PDG code 990 unknown from TDatabasePDG
+[17:48:06][INFO] Event generation took 0s and produced 98 primaries 
+[17:48:06][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:48:06][INFO] Sending 98 particles
+[17:48:06][INFO] treating ev 7 part 1 out of 1
+[17:48:06][INFO] Event generation started 
+[17:48:06][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:48:06][INFO] Sampled interacting vertex (0.0115722,0.00671281,-7.23076)
+[17:48:06][INFO] Event generation took 0.02s and produced 1760 primaries 
+[17:48:06][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:48:14][INFO] Sending 500 particles
+[17:48:14][INFO] treating ev 8 part 1 out of 4
+[17:48:15][INFO] Sending 500 particles
+[17:48:15][INFO] treating ev 8 part 2 out of 4
+[17:48:19][INFO] Sending 500 particles
+[17:48:19][INFO] treating ev 8 part 3 out of 4
+[17:48:19][INFO] Sending 260 particles
+[17:48:19][INFO] treating ev 8 part 4 out of 4
+[17:48:19][INFO] Event generation started 
+[17:48:19][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:48:19][INFO] Sampled interacting vertex (0.00876375,0.0145488,6.14678)
+Warning in <TParticle::SetPdgCode>: PDG code 990 unknown from TDatabasePDG
+Warning in <TParticle::SetPdgCode>: PDG code 990 unknown from TDatabasePDG
+[17:48:19][INFO] Event generation took 0.01s and produced 48 primaries 
+[17:48:19][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:48:19][INFO] Sending 48 particles
+[17:48:19][INFO] treating ev 9 part 1 out of 1
+[17:48:19][INFO] Event generation started 
+[17:48:19][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:48:19][INFO] Sampled interacting vertex (-0.0202918,0.00222949,6.12348)
+[17:48:19][INFO] Event generation took 0s and produced 206 primaries 
+[17:48:19][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:48:21][INFO] Sending 206 particles
+[17:48:21][INFO] treating ev 10 part 1 out of 1
+[17:48:21][INFO] Event generation started 
+[17:48:21][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:48:21][INFO] Sampled interacting vertex (-0.00868064,0.00792377,-4.52871)
+[17:48:21][INFO] Event generation took 0s and produced 506 primaries 
+[17:48:21][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:48:28][INFO] Sending 500 particles
+[17:48:28][INFO] treating ev 11 part 1 out of 2
+[17:48:30][INFO] Sending 6 particles
+[17:48:30][INFO] treating ev 11 part 2 out of 2
+[17:48:30][INFO] Event generation started 
+[17:48:30][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:48:30][INFO] Sampled interacting vertex (0.0148196,0.00860049,-4.94229)
+[17:48:30][INFO] Event generation took 0s and produced 588 primaries 
+[17:48:30][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:48:30][INFO] Sending 500 particles
+[17:48:30][INFO] treating ev 12 part 1 out of 2
+[17:48:40][INFO] Sending 88 particles
+[17:48:40][INFO] treating ev 12 part 2 out of 2
+[17:48:40][INFO] Event generation started 
+[17:48:40][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:48:40][INFO] Sampled interacting vertex (-0.0260276,0.00596846,7.19547)
+[17:48:40][INFO] Event generation took 0.01s and produced 663 primaries 
+[17:48:40][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:48:40][INFO] Sending 500 particles
+[17:48:40][INFO] treating ev 13 part 1 out of 2
+[17:48:42][INFO] Sending 163 particles
+[17:48:42][INFO] treating ev 13 part 2 out of 2
+[17:48:42][INFO] Event generation started 
+[17:48:42][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:48:42][INFO] Sampled interacting vertex (-0.00125313,-0.00100135,0.0743191)
+[17:48:42][INFO] Event generation took 0s and produced 620 primaries 
+[17:48:42][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:48:42][INFO] Sending 500 particles
+[17:48:42][INFO] treating ev 14 part 1 out of 2
+[17:48:56][INFO] Sending 120 particles
+[17:48:56][INFO] treating ev 14 part 2 out of 2
+[17:48:56][INFO] Event generation started 
+[17:48:56][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:48:56][INFO] Sampled interacting vertex (-0.00644945,0.00920959,0.53064)
+Warning in <TParticle::SetPdgCode>: PDG code 990 unknown from TDatabasePDG
+Warning in <TParticle::SetPdgCode>: PDG code 990 unknown from TDatabasePDG
+[17:48:56][INFO] Event generation took 0s and produced 116 primaries 
+[17:48:56][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:48:56][INFO] Sending 116 particles
+[17:48:56][INFO] treating ev 15 part 1 out of 1
+[17:48:56][INFO] Event generation started 
+[17:48:56][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:48:56][INFO] Sampled interacting vertex (-0.00468416,-0.0180725,-1.71067)
+[17:48:56][INFO] Event generation took 0.01s and produced 669 primaries 
+[17:48:56][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:48:58][INFO] Sending 500 particles
+[17:48:58][INFO] treating ev 16 part 1 out of 2
+[17:49:02][INFO] Sending 169 particles
+[17:49:02][INFO] treating ev 16 part 2 out of 2
+[17:49:02][INFO] Event generation started 
+[17:49:02][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:49:02][INFO] Sampled interacting vertex (-0.00944947,0.00788566,7.02614)
+[17:49:02][INFO] Event generation took 0s and produced 115 primaries 
+[17:49:02][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:49:02][INFO] Sending 115 particles
+[17:49:02][INFO] treating ev 17 part 1 out of 1
+[17:49:02][INFO] Event generation started 
+[17:49:02][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:49:02][INFO] Sampled interacting vertex (-0.00794524,-0.0163073,5.90798)
+[17:49:02][INFO] Event generation took 0.01s and produced 884 primaries 
+[17:49:02][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:49:12][INFO] Sending 500 particles
+[17:49:12][INFO] treating ev 18 part 1 out of 2
+[17:49:13][INFO] Sending 384 particles
+[17:49:13][INFO] treating ev 18 part 2 out of 2
+[17:49:13][INFO] Event generation started 
+[17:49:13][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:49:13][INFO] Sampled interacting vertex (-0.00725736,0.00945432,-3.31648)
+[17:49:13][INFO] Event generation took 0s and produced 613 primaries 
+[17:49:13][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:49:13][INFO] Sending 500 particles
+[17:49:13][INFO] treating ev 19 part 1 out of 2
+[17:49:27][INFO] Sending 113 particles
+[17:49:27][INFO] treating ev 19 part 2 out of 2
+[17:49:27][INFO] Event generation started 
+[17:49:27][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[17:49:27][INFO] Sampled interacting vertex (0.0114465,-0.0182472,3.54002)
+Warning in <TParticle::SetPdgCode>: PDG code 990 unknown from TDatabasePDG
+Warning in <TParticle::SetPdgCode>: PDG code 990 unknown from TDatabasePDG
+[17:49:27][INFO] Event generation took 0.01s and produced 134 primaries 
+[17:49:27][INFO] GENEVENT CHANGING STATE TO SERVING
+[17:49:27][INFO] Sending 134 particles
+[17:49:27][INFO] treating ev 20 part 1 out of 1
+[17:49:28][INFO] CONDRUN CHANGING STATE TO STOPPED
+[17:49:28][INFO] Waiting info thread
+[17:49:28][STATE] RUNNING ---> READY
+[17:49:28][STATE] READY ---> RESETTING TASK
+[17:49:28][STATE] RESETTING TASK ---> DEVICE READY
+[17:49:28][STATE] DEVICE READY ---> RESETTING DEVICE
+[17:49:28][STATE] RESETTING DEVICE ---> IDLE
+[17:49:28][STATE] IDLE ---> EXITING
+[17:49:28][STATE] Exiting FairMQ state machine

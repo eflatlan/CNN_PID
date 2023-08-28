@@ -1,0 +1,259 @@
+Running: TIME="#walltime %e" /usr/bin/time --output=phsreco.log_time ./phsreco.log_tmp.sh
+[INFO] Initialising O2 Data Processing Layer. Driver PID: 291941.
+[INFO] Driver listening on port: 30021
+[INFO] Rate limiting set up at 500MB distributed over 1 readers
+[INFO] O2 Data Processing Layer initialised. We brake for nobody.
+[INFO] Optimised build. O2DEBUG / LOG(debug) / LOGF(debug) / assert statement will not be shown.
+[INFO] Redeployment of configuration asked.
+[INFO] Starting internal-dpl-clock on pid 291981
+[INFO] Starting phos-digit-reader on pid 291982
+[INFO] Starting internal-dpl-ccdb-backend on pid 291983
+[INFO] Starting PHOSCellConverterSpec on pid 291984
+[INFO] Starting phos-cell-writer on pid 291985
+[INFO] Starting internal-dpl-injected-dummy-sink on pid 291986
+[INFO] Redeployment of configuration done.
+[291981:internal-dpl-clock]: [INFO] Instrumenting crash signals
+[291981:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 291981
+[291981:internal-dpl-clock]: [19:27:51][INFO] 
+[291981:internal-dpl-clock]:       ______      _    _______  _________ 
+[291981:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[291981:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[291981:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[291981:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[291981:internal-dpl-clock]: 
+[291981:internal-dpl-clock]: [19:27:51][STATE] Starting FairMQ state machine --> IDLE
+[291981:internal-dpl-clock]: [19:27:51][STATE] IDLE ---> INITIALIZING DEVICE
+[291981:internal-dpl-clock]: [19:27:51][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[291981:internal-dpl-clock]: [19:27:51][STATE] INITIALIZED ---> BINDING
+[291981:internal-dpl-clock]: [19:27:51][STATE] BINDING ---> BOUND
+[291981:internal-dpl-clock]: [19:27:51][STATE] BOUND ---> CONNECTING
+[291981:internal-dpl-clock]: [19:27:51][STATE] CONNECTING ---> DEVICE READY
+[291981:internal-dpl-clock]: [19:27:51][STATE] DEVICE READY ---> INITIALIZING TASK
+[291981:internal-dpl-clock]: [19:27:51][STATE] INITIALIZING TASK ---> READY
+[291981:internal-dpl-clock]: [19:27:51][STATE] READY ---> RUNNING
+[291981:internal-dpl-clock]: [19:27:51][INFO] fair::mq::Device running...
+[291981:internal-dpl-clock]: [19:27:51][INFO] LHCPeriod is not available, using current month AUG
+[291981:internal-dpl-clock]: [19:27:51][INFO] Correctly handshaken websocket connection.
+[291983:internal-dpl-ccdb-backend]: [INFO] Instrumenting crash signals
+[291983:internal-dpl-ccdb-backend]: [INFO] Spawing new device internal-dpl-ccdb-backend in process with pid 291983
+[291985:phos-cell-writer]: [INFO] Instrumenting crash signals
+[291983:internal-dpl-ccdb-backend]: [19:27:51][INFO] 
+[291983:internal-dpl-ccdb-backend]:       ______      _    _______  _________ 
+[291983:internal-dpl-ccdb-backend]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[291983:internal-dpl-ccdb-backend]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[291983:internal-dpl-ccdb-backend]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[291983:internal-dpl-ccdb-backend]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[291983:internal-dpl-ccdb-backend]: 
+[291983:internal-dpl-ccdb-backend]: [19:27:51][STATE] Starting FairMQ state machine --> IDLE
+[291983:internal-dpl-ccdb-backend]: [19:27:51][STATE] IDLE ---> INITIALIZING DEVICE
+[291985:phos-cell-writer]: [INFO] Spawing new device phos-cell-writer in process with pid 291985
+[291985:phos-cell-writer]: [19:27:51][INFO] 
+[291985:phos-cell-writer]:       ______      _    _______  _________ 
+[291985:phos-cell-writer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[291985:phos-cell-writer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[291985:phos-cell-writer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[291985:phos-cell-writer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[291985:phos-cell-writer]: 
+[291985:phos-cell-writer]: [19:27:51][STATE] Starting FairMQ state machine --> IDLE
+[291985:phos-cell-writer]: [19:27:51][STATE] IDLE ---> INITIALIZING DEVICE
+[291983:internal-dpl-ccdb-backend]: [19:27:51][INFO] CCDB Backend at: http://alice-ccdb.cern.ch, validity check for every 2147483647 TF
+[291983:internal-dpl-ccdb-backend]: [19:27:51][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1692725271-prhXvt, Host: http://alice-ccdb.cern.ch
+[291983:internal-dpl-ccdb-backend]: [19:27:51][INFO] Initialised default CCDB host http://alice-ccdb.cern.ch
+[291983:internal-dpl-ccdb-backend]: [19:27:51][INFO] The following route is a condition PHS/PHS_Calib_BadMap/0
+[291983:internal-dpl-ccdb-backend]: [19:27:51][INFO] - ccdb-path: PHS/Calib/BadMap
+[291983:internal-dpl-ccdb-backend]: [19:27:51][INFO] The following route is a condition PHS/PHS_RecoParams/0
+[291983:internal-dpl-ccdb-backend]: [19:27:51][INFO] - ccdb-path: PHS/Config/RecoParams
+[291983:internal-dpl-ccdb-backend]: [19:27:51][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[291983:internal-dpl-ccdb-backend]: [19:27:51][STATE] INITIALIZED ---> BINDING
+[291983:internal-dpl-ccdb-backend]: [19:27:51][STATE] BINDING ---> BOUND
+[291983:internal-dpl-ccdb-backend]: [19:27:51][STATE] BOUND ---> CONNECTING
+[291983:internal-dpl-ccdb-backend]: [19:27:51][STATE] CONNECTING ---> DEVICE READY
+[291983:internal-dpl-ccdb-backend]: [19:27:51][STATE] DEVICE READY ---> INITIALIZING TASK
+[291983:internal-dpl-ccdb-backend]: [19:27:51][STATE] INITIALIZING TASK ---> READY
+[291983:internal-dpl-ccdb-backend]: [19:27:51][STATE] READY ---> RUNNING
+[291983:internal-dpl-ccdb-backend]: [19:27:51][INFO] fair::mq::Device running...
+[291983:internal-dpl-ccdb-backend]: [19:27:51][INFO] LHCPeriod is not available, using current month AUG
+[291985:phos-cell-writer]: [19:27:52][INFO] 0: branch  PHOSCell set up
+[291985:phos-cell-writer]: [19:27:52][INFO] 1: branch  PHOSCellTrigRec set up
+[291985:phos-cell-writer]: [19:27:52][INFO] 2: branch  PHOSCellTrueMC set up
+[291985:phos-cell-writer]: [19:27:52][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[291985:phos-cell-writer]: [19:27:52][STATE] INITIALIZED ---> BINDING
+[291985:phos-cell-writer]: [19:27:52][STATE] BINDING ---> BOUND
+[291985:phos-cell-writer]: [19:27:52][STATE] BOUND ---> CONNECTING
+[291985:phos-cell-writer]: [19:27:52][STATE] CONNECTING ---> DEVICE READY
+[291985:phos-cell-writer]: [19:27:52][STATE] DEVICE READY ---> INITIALIZING TASK
+[291985:phos-cell-writer]: [19:27:52][STATE] INITIALIZING TASK ---> READY
+[291985:phos-cell-writer]: [19:27:52][STATE] READY ---> RUNNING
+[291985:phos-cell-writer]: [19:27:52][INFO] fair::mq::Device running...
+[291985:phos-cell-writer]: [19:27:52][INFO] LHCPeriod is not available, using current month AUG
+[291983:internal-dpl-ccdb-backend]: [19:27:52][INFO] Correctly handshaken websocket connection.
+[291985:phos-cell-writer]: [19:27:52][INFO] Correctly handshaken websocket connection.
+[291984:PHOSCellConverterSpec]: [INFO] Instrumenting crash signals
+[291982:phos-digit-reader]: [INFO] Instrumenting crash signals
+[291982:phos-digit-reader]: [INFO] Spawing new device phos-digit-reader in process with pid 291982
+[291982:phos-digit-reader]: [19:27:52][INFO] 
+[291982:phos-digit-reader]:       ______      _    _______  _________ 
+[291982:phos-digit-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[291982:phos-digit-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[291982:phos-digit-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[291982:phos-digit-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[291982:phos-digit-reader]: 
+[291982:phos-digit-reader]: [19:27:52][STATE] Starting FairMQ state machine --> IDLE
+[291984:PHOSCellConverterSpec]: [INFO] Spawing new device PHOSCellConverterSpec in process with pid 291984
+[291984:PHOSCellConverterSpec]: [19:27:52][INFO] 
+[291984:PHOSCellConverterSpec]:       ______      _    _______  _________ 
+[291984:PHOSCellConverterSpec]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[291984:PHOSCellConverterSpec]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[291984:PHOSCellConverterSpec]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[291984:PHOSCellConverterSpec]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[291984:PHOSCellConverterSpec]: 
+[291984:PHOSCellConverterSpec]: [19:27:52][STATE] Starting FairMQ state machine --> IDLE
+[291982:phos-digit-reader]: [19:27:52][STATE] IDLE ---> INITIALIZING DEVICE
+[291984:PHOSCellConverterSpec]: [19:27:52][STATE] IDLE ---> INITIALIZING DEVICE
+[291984:PHOSCellConverterSpec]: [19:27:52][INFO] [PHOSCellConverter - init] Initialize converter with MC truth container
+[291984:PHOSCellConverterSpec]: [19:27:52][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[291984:PHOSCellConverterSpec]: [19:27:52][STATE] INITIALIZED ---> BINDING
+[291984:PHOSCellConverterSpec]: [19:27:52][STATE] BINDING ---> BOUND
+[291984:PHOSCellConverterSpec]: [19:27:52][STATE] BOUND ---> CONNECTING
+[291984:PHOSCellConverterSpec]: [19:27:52][STATE] CONNECTING ---> DEVICE READY
+[291984:PHOSCellConverterSpec]: [19:27:52][STATE] DEVICE READY ---> INITIALIZING TASK
+[291984:PHOSCellConverterSpec]: [19:27:52][STATE] INITIALIZING TASK ---> READY
+[291984:PHOSCellConverterSpec]: [19:27:52][STATE] READY ---> RUNNING
+[291984:PHOSCellConverterSpec]: [19:27:52][INFO] fair::mq::Device running...
+[291984:PHOSCellConverterSpec]: [19:27:52][INFO] LHCPeriod is not available, using current month AUG
+[291984:PHOSCellConverterSpec]: [19:27:52][INFO] Correctly handshaken websocket connection.
+[291986:internal-dpl-injected-dummy-sink]: [INFO] Instrumenting crash signals
+[291986:internal-dpl-injected-dummy-sink]: [INFO] Spawing new device internal-dpl-injected-dummy-sink in process with pid 291986
+[291986:internal-dpl-injected-dummy-sink]: [19:27:52][INFO] 
+[291986:internal-dpl-injected-dummy-sink]:       ______      _    _______  _________ 
+[291986:internal-dpl-injected-dummy-sink]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[291986:internal-dpl-injected-dummy-sink]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[291986:internal-dpl-injected-dummy-sink]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[291986:internal-dpl-injected-dummy-sink]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[291986:internal-dpl-injected-dummy-sink]: 
+[291986:internal-dpl-injected-dummy-sink]: [19:27:52][STATE] Starting FairMQ state machine --> IDLE
+[291986:internal-dpl-injected-dummy-sink]: [19:27:52][STATE] IDLE ---> INITIALIZING DEVICE
+[291986:internal-dpl-injected-dummy-sink]: [19:27:52][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[291986:internal-dpl-injected-dummy-sink]: [19:27:52][STATE] INITIALIZED ---> BINDING
+[291986:internal-dpl-injected-dummy-sink]: [19:27:52][STATE] BINDING ---> BOUND
+[291986:internal-dpl-injected-dummy-sink]: [19:27:52][STATE] BOUND ---> CONNECTING
+[291986:internal-dpl-injected-dummy-sink]: [19:27:52][STATE] CONNECTING ---> DEVICE READY
+[291986:internal-dpl-injected-dummy-sink]: [19:27:52][STATE] DEVICE READY ---> INITIALIZING TASK
+[291986:internal-dpl-injected-dummy-sink]: [19:27:52][STATE] INITIALIZING TASK ---> READY
+[291986:internal-dpl-injected-dummy-sink]: [19:27:52][STATE] READY ---> RUNNING
+[291986:internal-dpl-injected-dummy-sink]: [19:27:52][INFO] fair::mq::Device running...
+[291986:internal-dpl-injected-dummy-sink]: [19:27:52][INFO] LHCPeriod is not available, using current month AUG
+[291986:internal-dpl-injected-dummy-sink]: [19:27:52][INFO] Correctly handshaken websocket connection.
+[291982:phos-digit-reader]: [19:27:52][INFO] branch set up: PHOSDigit
+[291982:phos-digit-reader]: [19:27:52][INFO] branch set up: PHOSDigitTrigRecords
+[291982:phos-digit-reader]: [19:27:52][INFO] branch set up: PHOSDigitMCTruth
+[291982:phos-digit-reader]: [19:27:52][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[291982:phos-digit-reader]: [19:27:52][STATE] INITIALIZED ---> BINDING
+[291982:phos-digit-reader]: [19:27:52][STATE] BINDING ---> BOUND
+[291982:phos-digit-reader]: [19:27:52][STATE] BOUND ---> CONNECTING
+[291982:phos-digit-reader]: [19:27:52][STATE] CONNECTING ---> DEVICE READY
+[291982:phos-digit-reader]: [19:27:52][STATE] DEVICE READY ---> INITIALIZING TASK
+[291982:phos-digit-reader]: [19:27:52][STATE] INITIALIZING TASK ---> READY
+[291982:phos-digit-reader]: [19:27:52][STATE] READY ---> RUNNING
+[291982:phos-digit-reader]: [19:27:52][INFO] fair::mq::Device running...
+[291982:phos-digit-reader]: [19:27:52][INFO] LHCPeriod is not available, using current month AUG
+[291982:phos-digit-reader]: [19:27:52][INFO] Correctly handshaken websocket connection.
+[291982:phos-digit-reader]: [19:27:52][INFO] Sending end-of-stream message to channel from_phos-digit-reader_to_internal-dpl-ccdb-backend
+[291982:phos-digit-reader]: [19:27:52][INFO] Sending end-of-stream message to channel from_phos-digit-reader_to_PHOSCellConverterSpec
+[291983:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to JCentral. Please wait
+[291983:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to 137.138.99.147
+[291983:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Successfully connected to 137.138.99.147
+[291983:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/CTP/Calib/OrbitReset/06/62200/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee in SE <ALICE::CERN::EOS>
+[291983:internal-dpl-ccdb-backend]: [19:27:53][INFO] ccdb reads http://alice-ccdb.cern.ch/CTP/Calib/OrbitReset/1546300800000/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee for 1546300800000 (load to memory, agent_id: localhost.localdomain-1692725271-prhXvt), 
+[291983:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/PHS/Calib/BadMap/10/40794/45929b61-dd0a-11ec-8000-0aa202a21b9a in SE <ALICE::CERN::EOS>
+[291983:internal-dpl-ccdb-backend]: [19:27:53][INFO] ccdb reads http://alice-ccdb.cern.ch/PHS/Calib/BadMap/1546300800000/45929b61-dd0a-11ec-8000-0aa202a21b9a for 1546300800000 (load to memory, agent_id: localhost.localdomain-1692725271-prhXvt), 
+[291983:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/PHS/Config/RecoParams/09/61096/abd15e1e-0613-11ed-8002-0aa202a21b9a in SE <ALICE::CERN::OCDB>
+[291983:internal-dpl-ccdb-backend]: [19:27:53][INFO] ccdb reads http://alice-ccdb.cern.ch/PHS/Config/RecoParams/1/abd15e1e-0613-11ed-8002-0aa202a21b9a for 1546300800000 (load to memory, agent_id: localhost.localdomain-1692725271-prhXvt), 
+[291983:internal-dpl-ccdb-backend]: [19:27:53][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_PHOSCellConverterSpec
+[291983:internal-dpl-ccdb-backend]: [19:27:53][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_internal-dpl-injected-dummy-sink
+[291984:PHOSCellConverterSpec]: [19:27:53][INFO] Caching in 139835568684736 ptr to PHS/PHS_RecoParams/0 (0x7f30795a66a0)
+[291984:PHOSCellConverterSpec]: [19:27:53][INFO] [PHOSCellConverter - run]  Received 43 digits and 1 TriggerRecords195 MC labels
+[291984:PHOSCellConverterSpec]: [19:27:53][INFO] Caching in 139835568682464 ptr to PHS/PHS_Calib_BadMap/0 (0x4227240)
+[291984:PHOSCellConverterSpec]: [19:27:53][INFO] [PHOSCellConverter - run] Writing 43 cells, 1 Trig Records 45 PHOS labels 
+[291984:PHOSCellConverterSpec]: [19:27:53][INFO] Sending end-of-stream message to channel from_PHOSCellConverterSpec_to_phos-cell-writer
+[INFO] Quitting
+[INFO] QUIT_REQUESTED
+[291981:internal-dpl-clock]: [19:27:54][INFO] Received device shutdown request (signal 15).
+[291981:internal-dpl-clock]: [19:27:54][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[291982:phos-digit-reader]: [19:27:54][INFO] Received device shutdown request (signal 15).
+[291982:phos-digit-reader]: [19:27:54][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[291983:internal-dpl-ccdb-backend]: [19:27:54][INFO] Received device shutdown request (signal 15).
+[291983:internal-dpl-ccdb-backend]: [19:27:54][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[291983:internal-dpl-ccdb-backend]: [19:27:54][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[291983:internal-dpl-ccdb-backend]: [19:27:54][INFO] CCDB cache miss/hit ratio:
+[291983:internal-dpl-ccdb-backend]: [19:27:54][INFO]   PHS/Config/RecoParams: 1/1 (3072-3072 bytes)
+[291983:internal-dpl-ccdb-backend]: [19:27:54][INFO]   PHS/Calib/BadMap: 1/1 (2048-2048 bytes)
+[291983:internal-dpl-ccdb-backend]: [19:27:54][INFO]   CTP/Calib/OrbitReset: 1/2 (1024-1024 bytes)
+[291983:internal-dpl-ccdb-backend]: [19:27:54][STATE] RUNNING ---> READY
+[291983:internal-dpl-ccdb-backend]: [19:27:54][STATE] READY ---> RESETTING TASK
+[291983:internal-dpl-ccdb-backend]: [19:27:54][STATE] RESETTING TASK ---> DEVICE READY
+[291983:internal-dpl-ccdb-backend]: [19:27:54][STATE] DEVICE READY ---> RESETTING DEVICE
+[291984:PHOSCellConverterSpec]: [19:27:54][INFO] Received device shutdown request (signal 15).
+[291984:PHOSCellConverterSpec]: [19:27:54][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[291985:phos-cell-writer]: [19:27:54][INFO] Received device shutdown request (signal 15).
+[291985:phos-cell-writer]: [19:27:54][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[291986:internal-dpl-injected-dummy-sink]: [19:27:54][INFO] Received device shutdown request (signal 15).
+[291986:internal-dpl-injected-dummy-sink]: [19:27:54][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[291984:PHOSCellConverterSpec]: [19:27:54][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[291984:PHOSCellConverterSpec]: [19:27:54][STATE] RUNNING ---> READY
+[291985:phos-cell-writer]: [19:27:54][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[291981:internal-dpl-clock]: [19:27:54][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[291981:internal-dpl-clock]: [19:27:54][STATE] RUNNING ---> READY
+[291986:internal-dpl-injected-dummy-sink]: [19:27:54][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[291986:internal-dpl-injected-dummy-sink]: [19:27:54][STATE] RUNNING ---> READY
+[291986:internal-dpl-injected-dummy-sink]: [19:27:54][STATE] READY ---> RESETTING TASK
+[291986:internal-dpl-injected-dummy-sink]: [19:27:54][STATE] RESETTING TASK ---> DEVICE READY
+[291986:internal-dpl-injected-dummy-sink]: [19:27:54][STATE] DEVICE READY ---> RESETTING DEVICE
+[291981:internal-dpl-clock]: [19:27:54][STATE] READY ---> RESETTING TASK
+[291981:internal-dpl-clock]: [19:27:54][STATE] RESETTING TASK ---> DEVICE READY
+[291982:phos-digit-reader]: [19:27:54][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[291982:phos-digit-reader]: [19:27:54][STATE] RUNNING ---> READY
+[291982:phos-digit-reader]: [19:27:54][STATE] READY ---> RESETTING TASK
+[291982:phos-digit-reader]: [19:27:54][STATE] RESETTING TASK ---> DEVICE READY
+[291983:internal-dpl-ccdb-backend]: [19:27:54][STATE] RESETTING DEVICE ---> IDLE
+[291984:PHOSCellConverterSpec]: [19:27:54][STATE] READY ---> RESETTING TASK
+[291984:PHOSCellConverterSpec]: [19:27:54][STATE] RESETTING TASK ---> DEVICE READY
+[291984:PHOSCellConverterSpec]: [19:27:54][STATE] DEVICE READY ---> RESETTING DEVICE
+[291986:internal-dpl-injected-dummy-sink]: [19:27:54][STATE] RESETTING DEVICE ---> IDLE
+[291986:internal-dpl-injected-dummy-sink]: [19:27:54][STATE] IDLE ---> EXITING
+[291981:internal-dpl-clock]: [19:27:54][STATE] DEVICE READY ---> RESETTING DEVICE
+[291982:phos-digit-reader]: [19:27:54][STATE] DEVICE READY ---> RESETTING DEVICE
+[291986:internal-dpl-injected-dummy-sink]: [19:27:54][STATE] Exiting FairMQ state machine
+[291982:phos-digit-reader]: [19:27:54][STATE] RESETTING DEVICE ---> IDLE
+[291983:internal-dpl-ccdb-backend]: [19:27:54][STATE] IDLE ---> EXITING
+[291983:internal-dpl-ccdb-backend]: [19:27:54][STATE] Exiting FairMQ state machine
+[291984:PHOSCellConverterSpec]: [19:27:54][STATE] RESETTING DEVICE ---> IDLE
+[291981:internal-dpl-clock]: [19:27:54][STATE] RESETTING DEVICE ---> IDLE
+[291981:internal-dpl-clock]: [19:27:54][STATE] IDLE ---> EXITING
+[291982:phos-digit-reader]: [19:27:54][STATE] IDLE ---> EXITING
+[291981:internal-dpl-clock]: [19:27:54][STATE] Exiting FairMQ state machine
+[291984:PHOSCellConverterSpec]: [19:27:54][STATE] IDLE ---> EXITING
+[291984:PHOSCellConverterSpec]: [19:27:54][STATE] Exiting FairMQ state machine
+[291982:phos-digit-reader]: [19:27:54][STATE] Exiting FairMQ state machine
+[291985:phos-cell-writer]: [19:27:54][STATE] RUNNING ---> READY
+[291985:phos-cell-writer]: [19:27:54][STATE] READY ---> RESETTING TASK
+[291985:phos-cell-writer]: [19:27:54][STATE] RESETTING TASK ---> DEVICE READY
+[291985:phos-cell-writer]: [19:27:54][STATE] DEVICE READY ---> RESETTING DEVICE
+[291985:phos-cell-writer]: [19:27:54][INFO] Cleaning up for shared memory id '0f742720'...
+[291985:phos-cell-writer]: [19:27:54][INFO] Found 0 unmanaged regions...
+[291985:phos-cell-writer]: [19:27:54][INFO] Found 1 managed segments...
+[291985:phos-cell-writer]: [19:27:54][INFO] Successfully removed 'fmq_0f742720_m_0'.
+[291985:phos-cell-writer]: [19:27:54][INFO] Successfully removed 'fmq_0f742720_mng'.
+[291985:phos-cell-writer]: [19:27:54][STATE] RESETTING DEVICE ---> IDLE
+[291985:phos-cell-writer]: [19:27:54][STATE] IDLE ---> EXITING
+[291985:phos-cell-writer]: [19:27:54][STATE] Exiting FairMQ state machine
+[INFO] ## Processes completed. Run summary:
+[INFO] ### Devices started: 6
+[INFO]  - Device internal-dpl-clock: pid 291981 (exit 0)
+[INFO]  - Device phos-digit-reader: pid 291982 (exit 0)
+[INFO]  - Device internal-dpl-ccdb-backend: pid 291983 (exit 0)
+[INFO]  - Device PHOSCellConverterSpec: pid 291984 (exit 0)
+[INFO]  - Device phos-cell-writer: pid 291985 (exit 0)
+[INFO]  - Device internal-dpl-injected-dummy-sink: pid 291986 (exit 0)
+[INFO] Dumping used configuration in dpl-config.json
+TASK-EXIT-CODE: 0

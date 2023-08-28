@@ -840,8 +840,10 @@ double getThetaP()
 
 	// ;
 
-//std::vector<std::pair<double, double>> segment(std::vector<std::array<double, 3>>& cherenkovPhotons, vecArray2& pionCands, vecArray2& kaonCands, vecArray2& protonCands, std::array<int, 4>& arrayInfo, std::vector<ParticleUtils::Candidate2>& candCombined, MapType& bins) { 
-std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& clusterTrack, std::array<int, 4>& arrayInfo, int trackIndex, const std::vector<float>& mipCharges, float mipX, float mipY, float mipCharge, const int mcTrackPdg)
+//ckovTools.segment(clusterPerChamber, arrayInfo, track.getTrackIndex(), mipCharges, xMip, yMip, q /*MIP-charge*/, mcTrackPdg, track);
+
+
+std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& clusterTrack, std::array<int, 4>& arrayInfo, int trackIndex, const std::vector<float>& mipCharges, float mipX, float mipY, float mipCharge, const int mcTrackPdg, const o2::dataformats::MatchInfoHMP& track)
 { 
 
 
