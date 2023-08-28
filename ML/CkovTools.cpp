@@ -11,6 +11,9 @@
 
 #include "populate2.cpp" // TODO: change name of class and file here 
 
+#include "ClusterCandidate.h" // TODO: change name of class and file here 
+
+
 #include <math.h>
 //#include "ReconE.cpp"
 //#include "ReconG.cpp"
@@ -24,55 +27,6 @@ struct Bin {
 };
 
 
-struct ClusterCandidate {
-   
-    int mCh = 0;
-    double mX = 0., mY = 0.;
-    int mQ = 0;
-    double mChi2 = 0;
-    double mXe = 0., mYe = 0.;
-    int mPDG = -1;
-
-    // vector e.l. som holder truth? // i.e., for hver track, set MIP og trackIndex fra track
-    int trackId = -1;
-    bool isMip = false;
-
-    int mCandidateStatus = 0;// = {{0,0}}; do not initialize
-    int trackNumber = 0;// = {{0,0}}; do not initialize
-    
-    // std::vector<o2::hmpid::Cluster::Topology> mTopologyVector = nullptr;
-
-    // Constructor based on the order and types you provided
-    ClusterCandidate(int ch, double x, double y, int q, double chi2, 
-                     double xe, double ye, /*std::vector<Topology>* topologyVector,*/ int pdg) 
-        : mCh(ch), mX(x), mY(y), mQ(q), mChi2(chi2), mXe(xe), mYe(ye), 
-          /*mTopologyVector(topologyVector),*/ mPDG(pdg) {}
-
-
-    //obj.ch, obj.x, obj.y, obj.q, shallowDigits, obj.chi2, obj.xE, obj.yE, candStatus
-
-
-    /*
-    void setDigits(const std::vector<Topology>*& topologyVector) 
-    {
-        if(!mTopologyVector) {
-            mTopologyVector = new std::vector<Topology>;
-        }
-        *mTopologyVector = topologyVector;
-    } */
-
-    void setCandidateStatus(int hadronCandidateBit) /*const*/
-    {
-      LOGP(info, "Calling Struct Topology.setCandidateStatus();");
-      mCandidateStatus = hadronCandidateBit;
- 	    LOGP(info, "Exit Struct Topology.setCandidateStatus();");
-    }
-
-    int getCandidateStatus()
-    {   
-        return mCandidateStatus;
-    }
-};
 
 
 class ArrAndMap
@@ -1104,9 +1058,11 @@ std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& cl
 
     // small radius as we probably will only see secondary charged particles here TODO: ask Giacomo
 
+
+    /* ef :TODO add this, but what kind of CStatus to define as?
     if(dist < 2) // add small radius where we dont add; this also to not include the MIP for hte current track;
       continue;  // also to not add candidates from other MIPs
-
+    */
 
     // this means current cluster is MIP (probably from other track)
     bool skip = false;
@@ -1115,6 +1071,10 @@ std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& cl
        if(photons.mQ ==  mipCharge) { 
          const auto photonPDG = photons.mPDG; // check also other indexes?
      	 	 LOGP(info, "CluCharge {} Cluster PDG {} Track {}", photons.mQ , photonPDG, mcTrackPdg);
+     	 	 
+     	 	// ef : this corresponds to the photon being a MIP in the same chamber, for the same event
+     	 	// but for a different track
+     	 	photons.setCandidateStatus(-1);
         skip = true; 
        } 
     }
