@@ -53,7 +53,7 @@ for (int i = 0; i < 7; i++) {
                                    160, 0, 159, 144, 0, 143);
     hParticlePdgPion[i]->SetXTitle("pad X");
     hParticlePdgPion[i]->SetYTitle("pad Y");
-    hParticlePdgPion[i]->SetMarkerColor(kBlue-2); // Example color
+    hParticlePdgPion[i]->SetMarkerColor(kMagenta+2); // Example color
     hParticlePdgPion[i]->SetMarkerStyle(2); // Example color
     // Kaon histograms
     hParticlePdgKaon[i] = new TH2F(Form("Kaon_ParticlePdg_Chamber%i", i),
@@ -69,7 +69,7 @@ for (int i = 0; i < 7; i++) {
                                      160, 0, 159, 144, 0, 143);
     hParticlePdgProton[i]->SetXTitle("pad X");
     hParticlePdgProton[i]->SetYTitle("pad Y");
-    hParticlePdgProton[i]->SetMarkerColor(kBlue+2); // Example color
+    hParticlePdgProton[i]->SetMarkerColor(kGreen+3); // Example color
     hParticlePdgProton[i]->SetMarkerStyle(2); // Example color
     // Photon histograms
     hParticlePdgPhoton[i] = new TH2F(Form("Photon_ParticlePdg_Chamber%i", i),
@@ -187,6 +187,9 @@ hPDG->SetYTitle("Entries");
 	hParticlePdgPhoton[module]->Fill(padChX, padChY);
 	break;
       case 22 : 
+	hParticlePdgPhoton[module]->Fill(padChX, padChY);
+	break;
+	     default : 
 	hParticlePdgPhoton2[module]->Fill(padChX, padChY);
 	break;
     }
@@ -307,8 +310,8 @@ void process()
 
         // For thTrackMip
         thTrackMip[i] = new TH2F(Form("thTrackMip_%d", i), Form("MIP Track %d; x-axis; y-axis", i), 160, 0, 159, 144, 0, 143);
-        thTrackMip[i]->SetMarkerColor(kBlue); // Example color
-        thTrackMip[i]->SetMarkerStyle(3); // Example color
+        thTrackMip[i]->SetMarkerColor(kRed); // Example color
+        thTrackMip[i]->SetMarkerStyle(2); // Example color
         // For thTrackPc
         thTrackPc[i] = new TH2F(Form("thTrackPc_%d", i), Form("PC Track %d; x-axis; y-axis", i), 160, 0, 159, 144, 0, 143);
         thTrackPc[i]->SetMarkerColor(kBlue-3); // Example color
