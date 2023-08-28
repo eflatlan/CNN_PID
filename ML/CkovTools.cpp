@@ -37,16 +37,16 @@ struct ClusterCandidate {
     int trackId = -1;
     bool isMip = false;
 
-    std::vector<std::pair<int,int>> mCandidateStatusVector;// = {{0,0}}; do not initialize
-
+    int mCandidateStatus = 0;// = {{0,0}}; do not initialize
+    int trackNumber = 0;// = {{0,0}}; do not initialize
+    
     // std::vector<o2::hmpid::Cluster::Topology> mTopologyVector = nullptr;
 
     // Constructor based on the order and types you provided
     ClusterCandidate(int ch, double x, double y, int q, double chi2, 
-                     double xe, double ye, /*std::vector<Topology>* topologyVector,*/ int pdg, 
-                     std::vector<std::pair<int,int>> candidateStatusVector) 
+                     double xe, double ye, /*std::vector<Topology>* topologyVector,*/ int pdg) 
         : mCh(ch), mX(x), mY(y), mQ(q), mChi2(chi2), mXe(xe), mYe(ye), 
-          /*mTopologyVector(topologyVector),*/ mPDG(pdg), mCandidateStatusVector(candidateStatusVector) {}
+          /*mTopologyVector(topologyVector),*/ mPDG(pdg) {}
 
 
     //obj.ch, obj.x, obj.y, obj.q, shallowDigits, obj.chi2, obj.xE, obj.yE, candStatus
@@ -61,16 +61,16 @@ struct ClusterCandidate {
         *mTopologyVector = topologyVector;
     } */
 
-    void addCandidateStatus(int iTrack, int hadronCandidateBit) /*const*/
+    void setCandidateStatus(int hadronCandidateBit) /*const*/
     {
-	LOGP(info, "Calling Struct Topology.addCandidateStatus();");
-        mCandidateStatusVector.emplace_back(iTrack, hadronCandidateBit);
-	LOGP(info, "Exit Struct Topology.addCandidateStatus();");
+      LOGP(info, "Calling Struct Topology.setCandidateStatus();");
+      mCandidateStatus = hadronCandidateBit;
+ 	    LOGP(info, "Exit Struct Topology.setCandidateStatus();");
     }
 
-    std::vector<std::pair<int,int>> getCandidateStatus()
+    int getCandidateStatus()
     {   
-        return mCandidateStatusVector;
+        return mCandidateStatus;
     }
 };
 
@@ -843,7 +843,7 @@ double getThetaP()
 //ckovTools.segment(clusterPerChamber, arrayInfo, track.getTrackIndex(), mipCharges, xMip, yMip, q /*MIP-charge*/, mcTrackPdg, track);
 
 
-std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& clusterTrack, std::array<int, 4>& arrayInfo, int trackIndex, const std::vector<float>& mipCharges, float mipX, float mipY, float mipCharge, const int mcTrackPdg, const o2::dataformats::MatchInfoHMP& track)
+std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& clusterTrack, std::array<int, 4>& arrayInfo, int trackIndex, const std::vector<float>& mipCharges, float mipX, float mipY, float mipCharge, const int mcTrackPdg, const o2::dataformats::MatchInfoHMP& track, int trackNumber)
 { 
 
 
@@ -1032,11 +1032,6 @@ std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& cl
 
 
 
-
-	//const size_t numPhotonsTemp = ckovAndBackground.size();
-	//std::vector<ParticleUtils::Candidate2> candidatesCombined;
-	//candidatesCombined.reserve(numPhotonsTemp);
-
 	
 	//Printf("length ckovPhotons %zu length background %zu length total %zu",cherenkovPhotons.size(), backGroundPhotons.size(), ckovAndBackground.size());
 	
@@ -1056,6 +1051,10 @@ std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& cl
   for(auto& photons : clusterTrack) 
   {
 
+
+    photons.setCandidateStatus(0);
+    
+    
     const auto& dist = (photons.mX - mipX)*(photons.mX - mipX) + (photons.mY - mipY)*(photons.mY - mipY);
     
 
@@ -1090,7 +1089,7 @@ std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& cl
           // eller expand denne og set index?
 
           // cStatus expand her ? have another bit for being a MIP?
-          //clusterTrack.addCandidateStatus(trackIndex, cStatus);
+          //clusterTrack.setCandidateStatus(trackIndex, cStatus);
 					// trenger vi egentlig aa gjore dette? 
 					// MIP er der allerede fra Track!
 					continue;
@@ -1205,17 +1204,6 @@ std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& cl
         const auto pc = populatePtr->getPcImp();
 
         
-        
-        /*
-        ***************************************************************************
-        ***************************************************************************
-        ***************************************************************************
-        ***************************************************************************
-        ***************************************************************************
-        ***************************************************************************
-        ***************************************************************************
-        ***************************************************************************
-        */ 
     
         // iteration phiL approach init
         // checking if inside outer pionRadius (Lmin, etaMax)
@@ -1476,9 +1464,9 @@ std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& cl
 
 				LOGP(info, "cStatus {}", cStatus);
 
-        //CLusterCandidate :addCandidateStatus(int iTrack, int hadronCandidateBit)
-        photons.addCandidateStatus(trackIndex, cStatus);
-				LOGP(info, "photons.addCandidateStatus(trackIndex {}, cStatus{}); ", trackIndex, cStatus);
+        //CLusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)
+        photons.setCandidateStatus(cStatus);
+				LOGP(info, "photons.setCandidateStatus(trackIndex {}, cStatus{}); ", trackIndex, cStatus);
         /// lagre denne istedet :
         /*
         if( x > 0 && x < 156 && y < 144 && y > 0) {
@@ -1521,121 +1509,7 @@ std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& cl
             // phiL, phi, R of maxPionVec vectorh
 
 
-
-        /*
-        ***************************************************************************
-        ***************************************************************************
-        ***************************************************************************
-        ***************************************************************************
-        ***************************************************************************
-        ***************************************************************************
-        ***************************************************************************
-        ***************************************************************************
-        */ 
-
-
-
-        // "Closed form approch" init    
-
-        // check if inside pionMax and outside protonMin
-
-
-
-            /*
-            Printf("\n\n");
-        TVector2 rPosPion;
-        bool pionBelow = populate.checkRangeBelow(posPhoton, getMaxCkovPion(), rPosPion);
-
-            TVector2 rPosPionMin;
-        populate.checkRangeBelow(posPhoton, getMinCkovPion(), rPosPionMin);
-
-        mapPhotons->Fill(posPhoton.X(), posPhoton.Y());
-        mapPionMax->Fill(rPosPion.X(), rPosPion.Y());
-        mapPionMin->Fill(rPosPionMin.X(), rPosPionMin.Y());
-
-            /	*
-        mapPionMaxRev->Fill(rPosPion.X(), rPosPion.Y());
-        mapPionMinRev->Fill(rPosPionMin.X(), rPosPionMin.Y());
-        * / 
-
-
-        TVector2 rPosKaonMin, rPosKaonMax;
-            populate.checkRangeBelow(posPhoton, getMinCkovKaon(), rPosKaonMin);
-            populate.checkRangeBelow(posPhoton, getMaxCkovKaon(), rPosKaonMax);
-        mapKaonMax->Fill(rPosKaonMax.X(), rPosKaonMax.Y());
-        mapKaonMin->Fill(rPosKaonMin.X(), rPosKaonMin.Y());
-
-
-        TVector2 rPosProtonMin, rPosProtonMax;
-            populate.checkRangeBelow(posPhoton, getMinCkovProton(), rPosProtonMin);
-            populate.checkRangeBelow(posPhoton, getMaxCkovProton(), rPosProtonMax);
-        mapProtonMax->Fill(rPosProtonMax.X(), rPosProtonMax.Y());
-        mapProtonMin->Fill(rPosProtonMin.X(), rPosProtonMin.Y());
-
-
-        TVector2 rPosProton, temp;
-        bool protonBelow = populate.checkRangeBelow(posPhoton, getMinCkovProton(), rPosProton);
-
-
-
-
-        // if not inside ckovMaxPion, continue loop
-        if(!pionBelow){
-            Printf("!pionBelow");
-            continue;
-        } if(protonBelow == false && getProtonStatus() == true){
-            Printf("protonBelow = 0 && getProtonStatus() = 1");
-            continue;
-        }
-        // global bounds ok, can check candidates 
-        else {
-            // check Pion
-            if(getPionStatus()){ // shouldt really be possible in this case but.. 
-
-                Printf("\n\n ------------ \n\n Region: minProton < ckov < maxProton ok");
-                TVector2 rPosPionB;
-                bool pionBelow = populate.checkRangeBelow(posPhoton, getMaxCkovPion(), rPosPionB);
-
-                Printf("getPionStatus Ok --> checkRangeAbove getMinCkovPion %.2f ", getMinCkovPion());
-                if(populate.checkRangeAbove(posPhoton, getMinCkovPion(), rPosPionB)) {
-                mapPion->Fill(xG, yG);
-                // add candidate to pions 
-                pionCandidates.push_back(std::make_pair(xG, yG));
-                Printf("pionCand found ");
-                filledBins.push_back(std::make_pair(xG, yG));
-                hSignalMap->Fill(xG, yG);
-                // range is ok, can check other candidates
-                // check if ckov > ckovMaxPion
-                }
-            }
-            if(getKaonStatus()){ // shouldt really be possible in this case but..   		    
-
-
-            Printf("\n getKaonStatus Ok --> checkRange2 getMinCkovKaon %.2f, getMaxCkovKaon %.2f ", getMaxCkovKaon());
-
-            if (populate.checkRange2(posPhoton, getMaxCkovKaon(), getMinCkovKaon(), temp))
-            {	
-                Printf("kaonCand found ");			    
-                // kaon range ok:
-                kaonCandidates.push_back(std::make_pair(xG, yG));
-                mapKaon->Fill(xG, yG);
-            }
-            } 
-            if (getProtonStatus()) {
-        Printf("\n getProtonStatus Ok --> checkRangeAbove getMaxCkovProton %.2f ", getMinCkovPion());
-            if(populate.checkRangeBelow(posPhoton, getMaxCkovProton(), temp)) {
-                Printf("protonCand found ");			    
-                // proton range ok:
-                mapProton->Fill(xG, yG);
-                protonCandidates.push_back(std::make_pair(xG, yG));
-            }
-            } 
-            }  // end else / if pionBelow 
-            Printf("\n\n");   
-                    //<end ClosedForm segm>//		
-                    */
-
-        }// end else ifTrue
+        }// end if radius ok
         
         
         // radius was to big to consider : 
@@ -1645,10 +1519,8 @@ std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& cl
 
 					LOGP(info, "Radius {} too high ! cStatus {}", rPhoton, cStatus);
 
-		      //CLusterCandidate :addCandidateStatus(int iTrack, int hadronCandidateBit)
-		      photons.addCandidateStatus(trackIndex, cStatus);
-					LOGP(info, "photons.addCandidateStatus(trackIndex {}, cStatus{}); ",trackIndex, cStatus);
-					
+		      //CLusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)
+		      					
 				}
         
     }   // end for ckovPhotons
