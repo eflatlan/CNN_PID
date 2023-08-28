@@ -444,6 +444,9 @@ void process()
         // Assign MLinfoHMP objects to corresponding vectors based on iCh value
         for (const auto &obj : *tracksOneEvent)
         {
+
+
+						if(!obj.getMatchStatus()) {continue;}
             const auto &iCh = obj.getChamber();
             
             

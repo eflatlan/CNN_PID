@@ -1172,9 +1172,22 @@ std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& cl
 
 
 
+    bool withinRange = true; 
 
-    // not really helpful? 
-    if(true){
+
+
+    const TVector2 posPhoton(x, y);
+
+    // find reference  radius to be compared to segmetation radiuses 
+    // use PC/MIP value?
+    // trkPC = track value at PC
+    // mipPos = MIP at PC
+    
+    const auto rPhoton = (posPhoton - mipPos).Mod();
+    
+    
+    // ef : TODO here i put a radius of 40, should this be done?
+    if(rPhoton < 40){
         //if(x > -mL1Max && x < mL2Max && y > -mRMax  && y < mRMax){
 
         //double thetaCer, phiCer;
@@ -1182,18 +1195,7 @@ std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& cl
         //auto ckov = thetaCer;
 
 
-        bool withinRange = true; 
 
-
-
-        const TVector2 posPhoton(x, y);
-
-        // find reference  radius to be compared to segmetation radiuses 
-        // use PC/MIP value?
-        // trkPC = track value at PC
-        // mipPos = MIP at PC
-        
-        const auto rPhoton = (posPhoton - mipPos).Mod();
 
 
         // skal denne vaere trkRAD? trkPos= trkRAD
@@ -1472,11 +1474,11 @@ std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& cl
         int cStatus = 4*static_cast<int>(isPhotonPionCand) + 2*static_cast<int>(isPhotonKaonCand) + 1*static_cast<int>(isPhotonProtonCand);
 
 
-	LOGP(debug, "cStatus {}", cStatus);
+				LOGP(info, "cStatus {}", cStatus);
 
         //CLusterCandidate :addCandidateStatus(int iTrack, int hadronCandidateBit)
         photons.addCandidateStatus(trackIndex, cStatus);
-	LOGP(debug, "photons.addCandidateStatus(trackIndex {}, cStatus{}); ", cStatus);
+				LOGP(info, "photons.addCandidateStatus(trackIndex {}, cStatus{}); ", trackIndex, cStatus);
         /// lagre denne istedet :
         /*
         if( x > 0 && x < 156 && y < 144 && y > 0) {
@@ -1634,6 +1636,21 @@ std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& cl
                     */
 
         }// end else ifTrue
+        
+        
+        // radius was to big to consider : 
+        else {
+		      int cStatus = 0;
+
+
+					LOGP(info, "Radius {} too high ! cStatus {}", rPhoton, cStatus);
+
+		      //CLusterCandidate :addCandidateStatus(int iTrack, int hadronCandidateBit)
+		      photons.addCandidateStatus(trackIndex, cStatus);
+					LOGP(info, "photons.addCandidateStatus(trackIndex {}, cStatus{}); ",trackIndex, cStatus);
+					
+				}
+        
     }   // end for ckovPhotons
 
 
