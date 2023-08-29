@@ -46,7 +46,7 @@ struct ShallowDigit {
 }; */ 
 
 
-void evaluateClusterTrack(std::vector<ClusterCandidate>& clusterPerChamber, const o2::dataformats::MatchInfoHMP& track, const std::vector<float>& mipCharges, int mcTrackPdg, int trackNumber);
+void evaluateClusterTrack(std::vector<o2::hmpid::ClusterCandidate>& clusterPerChamber, const o2::dataformats::MatchInfoHMP& track, const std::vector<float>& mipCharges, int mcTrackPdg, int trackNumber);
 
 
 std::array<float, 3> calcCherenkovHyp(float p, float n);
@@ -112,16 +112,24 @@ void process()
 
    auto myTree = std::make_unique<TTree>("myTree", "Tree to store clusters, trackInfo, and mcPDG");
 
-	std::vector<ClusterCandidate>* clusterBranch = nullptr;
+	std::vector<o2::hmpid::ClusterCandidate>* clusterBranch = nullptr;
+	std::vector<o2::hmpid::Cluster>* clusterBranch2 = nullptr;
 	o2::dataformats::MatchInfoHMP* trackInfoBranch = nullptr;
 	int mcPDGBranch = 0;
 
+	myTree->Branch("clusters2", &clusterBranch2);
 	myTree->Branch("clusters", &clusterBranch);
 	myTree->Branch("trackInfo", &trackInfoBranch);
 	myTree->Branch("mcPDG", &mcPDGBranch);
 
 
 
+  /*
+	myTree->SetBranchAdress("clusters", &clusterBranch);
+	myTree->Branch("trackInfo", &trackInfoBranch);
+	myTree->Branch("mcPDG", &mcPDGBranch);*/
+	
+	
     // clusters and triggers 
     std::vector<Cluster>* clusterArr = nullptr;
     std::vector<o2::hmpid::Topology> mTopologyFromFile, *mTopologyFromFilePtr = &mTopologyFromFile;
@@ -145,7 +153,10 @@ void process()
 
 
     int startIndexTrack = 0;
-    if(trigArr== nullptr) {Printf("HmpidDataReader::initializeClusterTree trigArr== nullptr"); return ;}	
+    if(trigArr== nullptr) {
+    	Printf("HmpidDataReader::initializeClusterTree trigArr== nullptr"); 
+    	return ;
+  	}	
     
     
     for(int i = 0; i < trigArr->size(); i++) //for(const auto& clusters : clustersVector) // "events loop"
@@ -169,10 +180,15 @@ void process()
         int eventNumberLast1 = s1Clu.getEventNumber();
 
 
+
+
+        /* ef : TODO some clusters in the same trigger have different 
+                event-number!?
         if(eventNumberLast != eventNumber1) {
             Printf("eventNumberLast%d != eventNumber1%d", eventNumberLast, eventNumber1);
             Printf("eventNumberLast1%d",eventNumberLast1);
-        } // TODO: throw error? ef:
+        } // TODO: throw error? ef: 
+        */
 
 
         for(int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++) {      
@@ -184,19 +200,29 @@ void process()
         for(int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++) {      
 		      const auto& clu = static_cast<o2::hmpid::Cluster>(clusterArr->at(j));
 
+
+					oneEventClusters.push_back(clu);
+					
+					
+					// ef: dont check this atm, resolve error wrt different eNum for 
+					// same trigger later
+					/*
           Printf("============\n Cluster Loop \n ===============");
 		      if(clu.getEventNumber() != eventNumber1) {
 		      	Printf("Eventnumber changed??");
 		      	Printf("clu.getEventNumber()%d", clu.getEventNumber());
 		      } else {
-		          oneEventClusters.push_back(clu); std::cout << " clu " << j << " eventNum " << clu.getEventNumber();
-		      }
+			      oneEventClusters.push_back(clu);
+		           std::cout << " clu " << j << " eventNum " << clu.getEventNumber();
+		      } */
         }  
           Printf("============\n Cluster Loop \n ===============");
         // find entries in tracksOneEvent which corresponds to correct eventNumber
         Printf("Reading match vector<MatchInfoHMP> for startIndexTrack %d", startIndexTrack);
 
-        std::vector<o2::dataformats::MatchInfoHMP>* tracksOneEvent = HmpidDataReader::readMatch(tMatch, matchArr, eventNumber1, startIndexTrack);
+
+				// read instead MatchInfoHMP field mEvent? (i)
+        std::vector<o2::dataformats::MatchInfoHMP>* tracksOneEvent = HmpidDataReader::readMatch(tMatch, matchArr, i, startIndexTrack);
 
         // get MC tracks for given event from mc;
         Printf("Reading vector<o2::MCTrack>* mcTracks for  eventNumber %d", eventNumber1);
@@ -250,7 +276,7 @@ void process()
         
 
         // Assuming the range of iCh values is from 0 to 6 (inclusive)
-        std::vector<ClusterCandidate> sortedClusters[7];
+        std::vector<o2::hmpid::ClusterCandidate> sortedClusters[7];
         // Assign MLinfoHMP objects to corresponding vectors based on iCh value
         for (const auto &obj : oneEventClusters) {
 
@@ -267,7 +293,7 @@ void process()
 				      //std::vector<std::pair<int,int>> candStatus;
 				      //candStatus.resize(sortedTracks[iCh].size()); // should now be initialized to (0,0) x numTracks
 							// Printf("ClusterCandidate Ch %d", iCh);
-							ClusterCandidate temp(obj.ch(), obj.x(), obj.y(), obj.q(), obj.chi2(), obj.xe(), obj.ye(), obj.getPDG());
+							o2::hmpid::ClusterCandidate temp(obj.ch(), obj.x(), obj.y(), obj.q(), obj.chi2(), obj.xe(), obj.ye(), obj.getPDG());
 							sortedClusters[iCh].emplace_back(temp);
 	          }  else {
             	//std::cerr << "sortedTracks[iCh] " << iCh << " empty " << sortedTracks[iCh].size() << std::endl;
@@ -346,7 +372,7 @@ void process()
 
 
 
-									clusterBranch = const_cast<std::vector<ClusterCandidate>*>(&clusterPerChamber); // Make sure your ClusterCandidate class is compatible with ROOT I/O
+									clusterBranch = const_cast<std::vector<o2::hmpid::ClusterCandidate>*>(&clusterPerChamber); // Make sure your ClusterCandidate class is compatible with ROOT I/O
 									trackInfoBranch = const_cast<o2::dataformats::MatchInfoHMP*>(&track); // Make sure your MatchInfoHMP class is compatible with ROOT I/O
 									mcPDGBranch = mcTrack->GetPdgCode(); // This assumes mcTrack is properly initialized
 									
@@ -355,6 +381,10 @@ void process()
                   
                   // for(auto& clusterPerChamber)
                 }
+								else  
+								{
+									Printf("Track didnt match!");
+  							}
             }
 
             // save ClusterPerChamber
@@ -400,7 +430,7 @@ void read_tree() {
     TFile *f = new TFile("MLOUTPUT.root");
     TTree *tree = (TTree*) f->Get("myTree");
 
-    std::vector<ClusterCandidate>* clusterBranch = nullptr;
+    std::vector<o2::hmpid::ClusterCandidate>* clusterBranch = nullptr;
     tree->SetBranchAddress("clusters", &clusterBranch);
     
     Long64_t nEntries = tree->GetEntries();
@@ -412,7 +442,7 @@ void read_tree() {
 
 
 
-void evaluateClusterTrack(std::vector<ClusterCandidate>& clusterPerChamber, const o2::dataformats::MatchInfoHMP& track, const std::vector<float>& mipCharges, int mcTrackPdg, int trackNumber)
+void evaluateClusterTrack(std::vector<o2::hmpid::ClusterCandidate>& clusterPerChamber, const o2::dataformats::MatchInfoHMP& track, const std::vector<float>& mipCharges, int mcTrackPdg, int trackNumber)
 {
 
         const auto eventCnt = track.getEvent(); // check it corresponds to entry in loop of events?

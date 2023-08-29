@@ -136,6 +136,10 @@ std::vector<o2::dataformats::MatchInfoHMP>* HmpidDataReader::readMatch(TTree* tM
 
     for(int i = startIndex; i < matchArr->size(); i++) {
         const auto& track = (*matchArr)[i];
+  	//filteredMatches->push_back(track);
+	//startIndex = i;
+	// ef : we cant use this atm, since the clusters from the same trigger
+	// sometimes have different eventNumber!
         if(track.getEvent() != eventID) {
           startIndex = i; // new startIndex for next event
           Printf("readMatch : eventID changed - %d; end of loop ", track.getEvent());
