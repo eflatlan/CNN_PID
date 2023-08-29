@@ -11,7 +11,7 @@
 
 #include "populate2.cpp" // TODO: change name of class and file here 
 
-#include "ClusterCandidate.h" // TODO: change name of class and file here 
+
 
 
 #include <math.h>
@@ -797,7 +797,7 @@ double getThetaP()
 //ckovTools.segment(clusterPerChamber, arrayInfo, track.getTrackIndex(), mipCharges, xMip, yMip, q /*MIP-charge*/, mcTrackPdg, track);
 
 
-std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& clusterTrack, std::array<int, 4>& arrayInfo, int trackIndex, const std::vector<float>& mipCharges, float mipX, float mipY, float mipCharge, const int mcTrackPdg, const o2::dataformats::MatchInfoHMP& track, int trackNumber)
+std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCandidate>& clusterTrack, std::array<int, 4>& arrayInfo, int trackIndex, const std::vector<float>& mipCharges, float mipX, float mipY, float mipCharge, const int mcTrackPdg, const o2::dataformats::MatchInfoHMP& track, int trackNumber)
 { 
 
 
@@ -1424,7 +1424,7 @@ std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& cl
 
 				LOGP(info, "cStatus {}", cStatus);
 
-        //CLusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)
+        //o2::hmpid::ClusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)
         photons.setCandidateStatus(cStatus);
 				LOGP(info, "photons.setCandidateStatus(trackIndex {}, cStatus{}); ", trackIndex, cStatus);
         /// lagre denne istedet :
@@ -1479,7 +1479,7 @@ std::vector<std::pair<double, double>> segment(std::vector<ClusterCandidate>& cl
 
 					LOGP(info, "Radius {} too high ! cStatus {}", rPhoton, cStatus);
 
-		      //CLusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)
+		      //o2::hmpid::ClusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)
 		      					
 				}
         
