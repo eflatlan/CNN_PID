@@ -5,7 +5,9 @@
 #pragma link off all functions;
 
 #pragma link C++ class ClusterCandidate+;
-#pragma link C++ class std::vector<ClusterCandidate>+;
+#pragma link C++ class std::vector < ClusterCandidate> + ;
+
+#pragma link C++ class std::vector < ClusterCandidate>* + ;
 
 #endif
 
