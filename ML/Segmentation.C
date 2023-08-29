@@ -422,21 +422,37 @@ void process()
 				// For example, to print the size of clusterBranch (assuming it is a std::vector)
 				std::cout << "Size of clusterBranch: " << clusterBranch->size() << std::endl;
 				
-				std::cout << "Size of clusterBranch: " << clusterBranch->size() << std::endl;
+
 		}
 }
 
 void read_tree() {
-    TFile *f = new TFile("MLOUTPUT.root");
-    TTree *tree = (TTree*) f->Get("myTree");
+    auto f = std::make_unique<TFile>("MLOUTPUT.root");
+    
+    std::unique_ptr<TTree> tree;
+    tree.reset((TTree*)f->Get("myTree"));
 
-    std::vector<o2::hmpid::ClusterCandidate>* clusterBranch = nullptr;
+		std::vector<o2::hmpid::ClusterCandidate>* clusterBranch = nullptr;
+		o2::dataformats::MatchInfoHMP* trackInfoBranch = nullptr;
+		int mcPDGBranch = 0;
+
+
     tree->SetBranchAddress("clusters", &clusterBranch);
+    tree->SetBranchAddress("trackInfo", &trackInfoBranch); 
+    tree->SetBranchAddress("mcPDG", &mcPDGBranch);   
     
     Long64_t nEntries = tree->GetEntries();
     for (Long64_t i = 0; i < nEntries; ++i) {
         tree->GetEntry(i);
+  	    std::cout << "mcPDGBranch " << mcPDGBranch << std::endl;
+  	    
+  	    float xRad, yRad, xPc, yPc, th, ph;
+  	     
+  	    trackInfoBranch->getHMPIDtrk(xRad, yRad, xPc, yPc, th, ph);
+  	    
         std::cout << "Size of clusterBranch: " << clusterBranch->size() << std::endl;
+  	    Printf("Track : MIP {%.2f %.2f} RAD {%.2f %.2f} Track {th %.2f phi %.2f momentum %.2f}", trackInfoBranch->getMipX(), trackInfoBranch->getMipY(), xRad, yRad,th, ph, trackInfoBranch->getHmpMom());
+  	    
     }
 }
 
