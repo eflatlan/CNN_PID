@@ -345,7 +345,7 @@ void process()
             for(const auto& track : sortedTracks[i]) {
             	  Printf("TrackNumber%d track[iCh%d].size() %d", tNum++, i, sortedTracks[i].size());
             	  
-            	  Printf("TrackNumberMom%d", track.getHmpMom());
+            	  Printf("TrackNumberMom %f", track.getHmpMom());
             	  
                 // pass clusters (and track) by reference, and add its status per track (adding to candStatus vector )
 
