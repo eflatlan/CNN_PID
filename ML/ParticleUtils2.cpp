@@ -80,8 +80,11 @@ public:
 		              
 				float p = track.getHmpMom(); 
 				
-				 											                      
-        ParticleInfo2 particleInfo(xRad, yRad, xMip, yMip, th,  ph, refIndex, cluCharge, cluSize, p, mcTrackPdg);
+				 									
+	// ef : this seems to get the PDG correctly?
+	int pdg = track.getMipClusEventPDG();
+		                      
+        ParticleInfo2 particleInfo(xRad, yRad, xMip, yMip, th,  ph, refIndex, cluCharge, cluSize, p, pdg);
         
         particleInfo.setVector(clusterPerChamber);
         
@@ -108,9 +111,9 @@ public:
         mtype.insertMember("ye", HOFFSET(ClusterCandidate, ye), H5::PredType::NATIVE_DOUBLE);                                
         
 				
-				mtype.insertMember("candStatus", HOFFSET(ClusterCandidate, candStatus),  H5::PredType::NATIVE_INT); 
-				
-				mtype.insertMember("ch", HOFFSET(ClusterCandidate, ch),  H5::PredType::NATIVE_INT); 
+	mtype.insertMember("candStatus", HOFFSET(ClusterCandidate, candStatus),  H5::PredType::NATIVE_INT); 
+
+	mtype.insertMember("ch", HOFFSET(ClusterCandidate, ch),  H5::PredType::NATIVE_INT); 
 				
 				
     for (size_t i = 0; i < mParticleInfoVector.size(); ++i) {
@@ -178,7 +181,7 @@ public:
         dataset = particleGroup.createDataSet("mSize_values", PredType::NATIVE_INT, dataspace);
         dataset.write(mSize_values.data(), PredType::NATIVE_INT);
         
-        
+						  
 
 
 				std::vector<Candidate2> candsCombined;
@@ -220,6 +223,12 @@ public:
 
 				attribute = particleGroup.createAttribute("TrackPdg", PredType::NATIVE_INT, attr_dataspace);
 				attribute.write(PredType::NATIVE_INT, &particle.mTrackPdg);
+				
+// After writing all attributes
+Printf("Wrote particle with PDG %d, xRad %.1f, yRad %.1f, xMip %.1f, yMip %.1f, ThetaP %.1f, PhiP %.1f, RefractiveIndex %.1f, CluCharge %d, CluSize %d, Momentum %.1f",
+       particle.mTrackPdg, particle.mxRad, particle.myRad, particle.mxMip, particle.myMip, particle.mThetaP, particle.mPhiP, particle.mRefIndex, particle.mCluCharge, particle.mCluSize, particle.mMomentum);
+
+
 
     	}
 				
