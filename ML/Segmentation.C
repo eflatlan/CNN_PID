@@ -15,6 +15,13 @@
 
 #include <utility>
 #include <vector>
+
+#include <TMath.h>
+#include <cmath>
+
+float calcCkovFromMass(float p, float n, int pdg);
+
+
 /*
 struct ShallowDigit {
   int mMotherTrackId;
@@ -477,41 +484,152 @@ void process()
 	mParticleEvents.writeH5();
 }
 
+
+
+
+
 void read_tree() {
+    TCanvas *canvas = new TCanvas("canvas", "Particle Plots", 900, 600);
 
-    
-    auto f = std::make_unique<TFile>("MLOUTPUT.root");
-    
-    std::unique_ptr<TTree> tree;
-    tree.reset((TTree*)f->Get("myTree"));
+    TH2F *pionHist = new TH2F("pion", "Pion;Momentum;Cherenkov Angle", 500, 0, 5, 400, 0, 0.8);
+    pionHist->SetLineColor(kRed);
+    pionHist->Draw();
 
-		std::vector<o2::hmpid::ClusterCandidate>* clusterBranch = nullptr;
-		o2::dataformats::MatchInfoHMP* trackInfoBranch = nullptr;
-		int mcPDGBranch = 0;
-    float pBranch;
-    tree->SetBranchAddress("p", &pBranch);
+    TH2F *kaonHist = new TH2F("kaon", "Kaon;Momentum;Cherenkov Angle", 500, 0, 5, 400, 0, 0.8);
+    kaonHist->SetLineColor(kGreen);
+    kaonHist->Draw("SAME");
 
+    TH2F *protonHist = new TH2F("proton", "Proton;Momentum;Cherenkov Angle", 500, 0, 5, 400, 0, 0.8);
+    protonHist->SetLineColor(kBlue);
+    protonHist->Draw("SAME");
 
-    
-    
-    tree->SetBranchAddress("clusters", &clusterBranch);
-    tree->SetBranchAddress("trackInfo", &trackInfoBranch); 
-    tree->SetBranchAddress("mcPDG", &mcPDGBranch);   
-    
-    Long64_t nEntries = tree->GetEntries();
-    for (Long64_t i = 0; i < nEntries; ++i) {
-        tree->GetEntry(i);
-  	    std::cout << "mcPDGBranch " << mcPDGBranch << std::endl;
+    // Reading for pions
+    auto fp = std::make_unique<TFile>("pion.root");
+    std::unique_ptr<TTree> treeP((TTree*)fp->Get("myTree"));
+
+   std::vector<o2::hmpid::ClusterCandidate>* clusterBranchP = nullptr; // Replace YourClusterType with the actual type
+    o2::dataformats::MatchInfoHMP* trackInfoBranchP = nullptr; // Replace YourTrackInfoType with the actual type
+    int mcPDGBranchP = 0;
+    float pBranchP;
+
+    // Setup branches
+    treeP->SetBranchAddress("clusters", &clusterBranchP);
+    treeP->SetBranchAddress("trackInfo", &trackInfoBranchP);
+    treeP->SetBranchAddress("mcPDG", &mcPDGBranchP);
+    treeP->SetBranchAddress("p", &pBranchP);
+
+    Long64_t nEntriesP = treeP->GetEntries();
+    for (Long64_t i = 0; i < nEntriesP; ++i) {
+        treeP->GetEntry(i);
+//--wer
+        const auto& ckov = calcCkovFromMass(trackInfoBranchP	->getHmpMom(), trackInfoBranchP->getRefIndex(), 221); //  calcCkovFromMass(momentum, n, mass)
+
+        treeP->GetEntry(i);
+  	    std::cout << "mcPDGBranch " << mcPDGBranchP << std::endl;
   	    
   	    float xRad, yRad, xPc, yPc, th, ph;
   	     
-  	    trackInfoBranch->getHMPIDtrk(xRad, yRad, xPc, yPc, th, ph);
+  	    trackInfoBranchP->getHMPIDtrk(xRad, yRad, xPc, yPc, th, ph);
   	    
-        std::cout << "Size of clusterBranch: " << clusterBranch->size() << std::endl;
-  	    Printf("Track : MIP {%.2f %.2f} RAD {%.2f %.2f} Track {th %.2f phi %.2f momentum %.2f p %.2f}", trackInfoBranch->getMipX(), trackInfoBranch->getMipY(), xRad, yRad,th, ph, trackInfoBranch->getHmpMom(), pBranch);
-  	    
+        std::cout << "Size of clusterBranch: " << clusterBranchP->size() << std::endl;
+  	    Printf("Track : MIP {%.2f %.2f} RAD {%.2f %.2f} Track {th %.2f phi %.2f momentum %.2f p %.2f}", trackInfoBranchP->getMipX(), trackInfoBranchP->getMipY(), xRad, yRad,th, ph, trackInfoBranchP->getHmpMom(), pBranchP);
+
+        
+        pionHist->Fill(trackInfoBranchP->getHmpMom(), ckov);
     }
+
+    // Reading for kaons
+    auto fk = std::make_unique<TFile>("kaon.root");
+    std::unique_ptr<TTree> treeK((TTree*)fk->Get("myTree"));
+
+   std::vector<o2::hmpid::ClusterCandidate>* clusterBranchK = nullptr; // Replace YourClusterType with the actual type
+    o2::dataformats::MatchInfoHMP* trackInfoBranchK = nullptr; // Replace YourTrackInfoType with the actual type
+    int mcPDGBranchK = 0;
+    float pBranchK;
+
+    // Setup branches
+    treeK->SetBranchAddress("clusters", &clusterBranchK);
+    treeK->SetBranchAddress("trackInfo", &trackInfoBranchK);
+    treeK->SetBranchAddress("p", &pBranchK);
+
+    Long64_t nEntriesK = treeK->GetEntries();
+    for (Long64_t i = 0; i < nEntriesK; ++i) {
+        treeK->GetEntry(i);
+
+
+        const auto& ckov = calcCkovFromMass(trackInfoBranchK->getHmpMom(), trackInfoBranchK->getRefIndex(), 321); //  calcCkovFromMass(momentum, n, mass)
+        kaonHist->Fill(trackInfoBranchK->getHmpMom(), ckov);
+    }
+
+    // Reading for protons
+    auto fpr = std::make_unique<TFile>("proton.root");
+    std::unique_ptr<TTree> treePr((TTree*)fpr->Get("myTree"));
+
+   std::vector<o2::hmpid::ClusterCandidate>* clusterBranchPr = nullptr; // Replace YourClusterType with the actual type
+    o2::dataformats::MatchInfoHMP *trackInfoBranchPr = nullptr; // Replace YourTrackInfoType with the actual type
+    int mcPDGBranchPr = 0;
+    float pBranchPr;
+
+    // Setup branches
+    treePr->SetBranchAddress("clusters", &clusterBranchPr);
+    treePr->SetBranchAddress("trackInfo", &trackInfoBranchPr);
+    treePr->SetBranchAddress("mcPDG", &mcPDGBranchPr);
+    treePr->SetBranchAddress("p", &pBranchPr);
+
+    Long64_t nEntriesPr = treePr->GetEntries();
+    for (Long64_t i = 0; i < nEntriesPr; ++i) {
+        treePr->GetEntry(i);
+        const auto& ckov = calcCkovFromMass(trackInfoBranchPr->getHmpMom(), trackInfoBranchPr->getRefIndex(), 2212); //  calcCkovFromMass(momentum, n, mass)
+        protonHist->Fill(trackInfoBranchPr->getHmpMom(), ckov);	
+    }
+
+    canvas->Draw();
 }
+
+float calcCkovFromMass(float p, float n, int pdg)
+{
+    // Constants for particle masses (in GeV/c^2)
+    const float mass_Pion = 0.1396, mass_Kaon = 0.4937, mass_Proton = 0.938;
+
+    float m; // variable to hold the mass
+
+    // Switch based on absolute value of PDG code
+    switch (std::abs(pdg))
+    {
+        case 211:
+            m = mass_Pion;
+            break;
+        case 321:
+            m = mass_Kaon;
+            break;
+        case 2212:
+            m = mass_Proton;
+            break;
+        default:
+            return 0;  // return 0 if PDG code doesn't match any known codes
+    }
+
+    const float p_sq = p * p;
+    const float refIndexFreon = n;  // Assuming n is the refractive index
+    const float cos_ckov_denom = p * refIndexFreon;
+
+    // Sanity check
+    if (p_sq + m * m < 0) {
+        return 0;
+    }
+
+    const auto cos_ckov = static_cast<float>(TMath::Sqrt(p_sq + m * m) / cos_ckov_denom);
+
+    // Sanity check
+    if (cos_ckov > 1 || cos_ckov < -1) {
+        return 0;
+    }
+
+    const auto ckovAngle = static_cast<float>(TMath::ACos(cos_ckov));
+
+    return ckovAngle;
+}
+
 
 
 
@@ -589,11 +707,9 @@ void evaluateClusterTrack(std::vector<o2::hmpid::ClusterCandidate>& clusterPerCh
 }
 
 
-
 const float mass_Pion = 0.1396, mass_Kaon = 0.4937, mass_Proton = 0.938; // masses in
 std::array<float, 3> masses = {mass_Pion, mass_Kaon, mass_Proton};
 const float mass_Pion_sq = mass_Pion*mass_Pion, mass_Kaon_sq = mass_Kaon*mass_Kaon,  mass_Proton_sq = mass_Proton*mass_Proton;
-
 std::array<float, 3> calcCherenkovHyp(float p, float n)
 {
   const float p_sq = p*p;
