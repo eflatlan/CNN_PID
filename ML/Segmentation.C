@@ -487,20 +487,19 @@ void process()
 
 
 
-
 void read_tree() {
     TCanvas *canvas = new TCanvas("canvas", "Particle Plots", 900, 600);
 
     TH2F *pionHist = new TH2F("pion", "Pion;Momentum;Cherenkov Angle", 500, 0, 5, 400, 0, 0.8);
-    pionHist->SetLineColor(kRed);
+    pionHist->SetLineColor(kRed);    pionHist->SetMarkerColor(kRed);
     pionHist->Draw();
 
     TH2F *kaonHist = new TH2F("kaon", "Kaon;Momentum;Cherenkov Angle", 500, 0, 5, 400, 0, 0.8);
-    kaonHist->SetLineColor(kGreen);
+    kaonHist->SetLineColor(kGreen); kaonHist->SetMarkerColor(kGreen);
     kaonHist->Draw("SAME");
 
     TH2F *protonHist = new TH2F("proton", "Proton;Momentum;Cherenkov Angle", 500, 0, 5, 400, 0, 0.8);
-    protonHist->SetLineColor(kBlue);
+    protonHist->SetLineColor(kBlue); protonHist->SetMarkerColor(kBlue);
     protonHist->Draw("SAME");
 
     // Reading for pions
@@ -582,9 +581,23 @@ void read_tree() {
         const auto& ckov = calcCkovFromMass(trackInfoBranchPr->getHmpMom(), trackInfoBranchPr->getRefIndex(), 2212); //  calcCkovFromMass(momentum, n, mass)
         protonHist->Fill(trackInfoBranchPr->getHmpMom(), ckov);	
     }
+  // Add a legend
+  TLegend *legend = new TLegend(0.75,0.75,0.9,0.9);
+  legend->AddEntry(pionHist, "Pion", "l");
+  legend->AddEntry(kaonHist, "Kaon", "l");
+  legend->AddEntry(protonHist, "Proton", "l");
+  legend->Draw();
 
+  // Update the canvas to show all drawn histograms and the legend
+  canvas->Update();
     canvas->Draw();
+    
+    canvas->SaveAs("ParticlePlots.png");
+canvas->SaveAs("ParticlePlots.jpg");
+canvas->SaveAs("ParticlePlots.pdf");
+canvas->SaveAs("ParticlePlots.eps");
 }
+
 
 float calcCkovFromMass(float p, float n, int pdg)
 {
