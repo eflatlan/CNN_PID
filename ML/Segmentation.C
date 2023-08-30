@@ -11,6 +11,8 @@
 #include "HmpidDataReader.cpp"
 #include "CkovTools.cpp"
 
+#include "ParticleUtils2.cpp"
+
 #include <utility>
 #include <vector>
 /*
@@ -109,6 +111,7 @@ struct ClusterCandidate {
 
 void process()
 {
+  ParticleUtils2 mParticleEvents; 
 
    auto myTree = std::make_unique<TTree>("myTree", "Tree to store clusters, trackInfo, and mcPDG");
 
@@ -124,11 +127,23 @@ void process()
 
 
 
-  /*
-	myTree->SetBranchAdress("clusters", &clusterBranch);
-	myTree->Branch("trackInfo", &trackInfoBranch);
-	myTree->Branch("mcPDG", &mcPDGBranch);*/
-	
+  int cluChargeBranch, cluSizeBranch;
+  		  
+  		  
+  		  
+  float refIndexBranch, xRadBranch, yRadBranch, xMipBranch, yMipBranch;
+	float thBranch, phBranch, pBranch;
+
+	myTree->Branch("cluCharge", &cluChargeBranch);
+	myTree->Branch("cluSize", &cluSizeBranch);
+	myTree->Branch("refIndex", &refIndexBranch);
+	myTree->Branch("xRad", &xRadBranch);
+	myTree->Branch("yRad", &yRadBranch);
+	myTree->Branch("xMip", &xMipBranch);
+	myTree->Branch("yMip", &yMipBranch);
+	myTree->Branch("th", &thBranch);
+	myTree->Branch("ph", &phBranch);
+	myTree->Branch("p", &pBranch);
 	
     // clusters and triggers 
     std::vector<Cluster>* clusterArr = nullptr;
@@ -293,7 +308,7 @@ void process()
 				      //std::vector<std::pair<int,int>> candStatus;
 				      //candStatus.resize(sortedTracks[iCh].size()); // should now be initialized to (0,0) x numTracks
 							// Printf("ClusterCandidate Ch %d", iCh);
-							o2::hmpid::ClusterCandidate temp(obj.ch(), obj.x(), obj.y(), obj.q(), obj.chi2(), obj.xe(), obj.ye(), obj.getPDG());
+							o2::hmpid::ClusterCandidate temp(obj.ch(), obj.x(), obj.y(), obj.q(), obj.chi2(), obj.xe(), obj.ye(), obj.getPDG(), obj.size());
 							sortedClusters[iCh].emplace_back(temp);
 	          }  else {
             	//std::cerr << "sortedTracks[iCh] " << iCh << " empty " << sortedTracks[iCh].size() << std::endl;
@@ -329,6 +344,9 @@ void process()
             int tNum = 0;
             for(const auto& track : sortedTracks[i]) {
             	  Printf("TrackNumber%d track[iCh%d].size() %d", tNum++, i, sortedTracks[i].size());
+            	  
+            	  Printf("TrackNumberMom%d", track.getHmpMom());
+            	  
                 // pass clusters (and track) by reference, and add its status per track (adding to candStatus vector )
 
                 // for each clusterPerChamber we will have a "candidate-status" for each of the photons, this is a vector of length of sortedTracks[i].size();
@@ -347,19 +365,40 @@ void process()
 
 		              const int mcTrackPdg = mcTrack->GetPdgCode();
 		              
-		              const int momentum = mcTrack->GetPdgCode();
 
 
-		              float xRad,  yRad,  xPc,  yPc,  th,  ph;
-		              float xMip = track.getMipX(), yMip = track.getMipY();
+
+
+									mcPDGBranch = mcTrack->GetPdgCode(); 
+									
+									
+		              float xRad,  yRad,  xPc,  yPc,  th,  ph; // make for these 
+		              float xMip = track.getMipX(), yMip = track.getMipY(); // and thse 
 		              track.getHMPIDtrk(xRad,  yRad,  xPc,  yPc,  th,  ph);
 
 
+		              refIndexBranch = track.getRefIndex(); 
+		              cluChargeBranch = track.getMipClusCharge();
+		              cluSizeBranch = track.getMipClusSize();
+		              		              
+									xRadBranch = xRad; // also for xPc yPc 
+									yRadBranch = yRad; // also for xPc yPc 
+									
+									xMipBranch = xMip; // also for xPc yPc 
+									yMipBranch = yMip; // also for xPc yPc
+
+
+									thBranch = th; // also for xPc yPc 
+									phBranch = ph; // also for xPc yPc
+
+									
+									
+									
 									// clusterPerChamber : vector of ClusterCandidate-objects
 									// track : object with 10 scalar values
 									// mcTradckPDG : MC truth
 									// 
-                  evaluateClusterTrack(clusterPerChamber, track, mipCharges, mcTrackPdg, tNum);
+                  //evaluateClusterTrack(clusterPerChamber, track, mipCharges, mcTrackPdg, tNum);
                   
                   
                   
@@ -374,10 +413,18 @@ void process()
 
 									clusterBranch = const_cast<std::vector<o2::hmpid::ClusterCandidate>*>(&clusterPerChamber); // Make sure your ClusterCandidate class is compatible with ROOT I/O
 									trackInfoBranch = const_cast<o2::dataformats::MatchInfoHMP*>(&track); // Make sure your MatchInfoHMP class is compatible with ROOT I/O
-									mcPDGBranch = mcTrack->GetPdgCode(); // This assumes mcTrack is properly initialized
 									
+									mcPDGBranch = mcTrack->GetPdgCode(); 
+									
+									
+
+									pBranch = track.getHmpMom();  									
 									// Fill the tree
 									myTree->Fill();
+									
+									
+
+									mParticleEvents.fillCandidate(clusterPerChamber, track, mcPDGBranch);
                   
                   // for(auto& clusterPerChamber)
                 }
@@ -404,6 +451,7 @@ void process()
             // 
 
         }
+        
     }
     
     auto fOut = std::make_unique<TFile>("MLOUTPUT.root", "RECREATE");
@@ -424,9 +472,14 @@ void process()
 				
 
 		}
+		
+
+	mParticleEvents.writeH5();
 }
 
 void read_tree() {
+
+    
     auto f = std::make_unique<TFile>("MLOUTPUT.root");
     
     std::unique_ptr<TTree> tree;
@@ -435,8 +488,12 @@ void read_tree() {
 		std::vector<o2::hmpid::ClusterCandidate>* clusterBranch = nullptr;
 		o2::dataformats::MatchInfoHMP* trackInfoBranch = nullptr;
 		int mcPDGBranch = 0;
+    float pBranch;
+    tree->SetBranchAddress("p", &pBranch);
 
 
+    
+    
     tree->SetBranchAddress("clusters", &clusterBranch);
     tree->SetBranchAddress("trackInfo", &trackInfoBranch); 
     tree->SetBranchAddress("mcPDG", &mcPDGBranch);   
@@ -451,7 +508,7 @@ void read_tree() {
   	    trackInfoBranch->getHMPIDtrk(xRad, yRad, xPc, yPc, th, ph);
   	    
         std::cout << "Size of clusterBranch: " << clusterBranch->size() << std::endl;
-  	    Printf("Track : MIP {%.2f %.2f} RAD {%.2f %.2f} Track {th %.2f phi %.2f momentum %.2f}", trackInfoBranch->getMipX(), trackInfoBranch->getMipY(), xRad, yRad,th, ph, trackInfoBranch->getHmpMom());
+  	    Printf("Track : MIP {%.2f %.2f} RAD {%.2f %.2f} Track {th %.2f phi %.2f momentum %.2f p %.2f}", trackInfoBranch->getMipX(), trackInfoBranch->getMipY(), xRad, yRad,th, ph, trackInfoBranch->getHmpMom(), pBranch);
   	    
     }
 }
