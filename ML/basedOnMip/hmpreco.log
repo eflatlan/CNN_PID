@@ -1,0 +1,2584 @@
+Running: TIME="#walltime %e" /usr/bin/time --output=hmpreco.log_time ./hmpreco.log_tmp.sh
+[INFO] Initialising O2 Data Processing Layer. Driver PID: 16701.
+[INFO] Driver listening on port: 24781
+[INFO] Rate limiting set up at 500MB distributed over 1 readers
+[INFO] O2 Data Processing Layer initialised. We brake for nobody.
+[INFO] Optimised build. O2DEBUG / LOG(debug) / LOGF(debug) / assert statement will not be shown.
+[INFO] Redeployment of configuration asked.
+[INFO] Starting internal-dpl-clock on pid 16741
+[INFO] Starting HMP-DigitReader on pid 16742
+[INFO] Starting HMP-Clusterization on pid 16743
+[INFO] Starting HMPClustersWriter on pid 16744
+[INFO] Redeployment of configuration done.
+[16743:HMP-Clusterization]: [INFO] Instrumenting crash signals
+[16743:HMP-Clusterization]: [INFO] Spawing new device HMP-Clusterization in process with pid 16743
+[16743:HMP-Clusterization]: [17:40:12][INFO] 
+[16743:HMP-Clusterization]:       ______      _    _______  _________ 
+[16743:HMP-Clusterization]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[16743:HMP-Clusterization]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[16743:HMP-Clusterization]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[16743:HMP-Clusterization]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[16743:HMP-Clusterization]: 
+[16743:HMP-Clusterization]: [17:40:12][STATE] Starting FairMQ state machine --> IDLE
+[16743:HMP-Clusterization]: [17:40:12][STATE] IDLE ---> INITIALIZING DEVICE
+[16743:HMP-Clusterization]: [17:40:12][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[16743:HMP-Clusterization]: [17:40:12][STATE] INITIALIZED ---> BINDING
+[16743:HMP-Clusterization]: [17:40:12][STATE] BINDING ---> BOUND
+[16743:HMP-Clusterization]: [17:40:12][STATE] BOUND ---> CONNECTING
+[16743:HMP-Clusterization]: [17:40:12][STATE] CONNECTING ---> DEVICE READY
+[16743:HMP-Clusterization]: [17:40:12][STATE] DEVICE READY ---> INITIALIZING TASK
+[16743:HMP-Clusterization]: [17:40:12][STATE] INITIALIZING TASK ---> READY
+[16743:HMP-Clusterization]: [17:40:12][STATE] READY ---> RUNNING
+[16743:HMP-Clusterization]: [17:40:12][INFO] fair::mq::Device running...
+[16743:HMP-Clusterization]: [17:40:12][INFO] LHCPeriod is not available, using current month SEP
+[16741:internal-dpl-clock]: [INFO] Instrumenting crash signals
+[16743:HMP-Clusterization]: [17:40:12][INFO] Correctly handshaken websocket connection.
+[16741:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 16741
+[16741:internal-dpl-clock]: [17:40:12][INFO] 
+[16741:internal-dpl-clock]:       ______      _    _______  _________ 
+[16741:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[16741:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[16741:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[16741:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[16741:internal-dpl-clock]: 
+[16741:internal-dpl-clock]: [17:40:12][STATE] Starting FairMQ state machine --> IDLE
+[16744:HMPClustersWriter]: [INFO] Instrumenting crash signals
+[16744:HMPClustersWriter]: [INFO] Spawing new device HMPClustersWriter in process with pid 16744
+[16744:HMPClustersWriter]: [17:40:12][INFO] 
+[16744:HMPClustersWriter]:       ______      _    _______  _________ 
+[16744:HMPClustersWriter]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[16744:HMPClustersWriter]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[16744:HMPClustersWriter]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[16744:HMPClustersWriter]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[16744:HMPClustersWriter]: 
+[16744:HMPClustersWriter]: [17:40:12][STATE] Starting FairMQ state machine --> IDLE
+[16741:internal-dpl-clock]: [17:40:12][STATE] IDLE ---> INITIALIZING DEVICE
+[16741:internal-dpl-clock]: [17:40:12][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[16741:internal-dpl-clock]: [17:40:12][STATE] INITIALIZED ---> BINDING
+[16741:internal-dpl-clock]: [17:40:12][STATE] BINDING ---> BOUND
+[16741:internal-dpl-clock]: [17:40:12][STATE] BOUND ---> CONNECTING
+[16741:internal-dpl-clock]: [17:40:12][STATE] CONNECTING ---> DEVICE READY
+[16741:internal-dpl-clock]: [17:40:12][STATE] DEVICE READY ---> INITIALIZING TASK
+[16741:internal-dpl-clock]: [17:40:12][STATE] INITIALIZING TASK ---> READY
+[16741:internal-dpl-clock]: [17:40:12][STATE] READY ---> RUNNING
+[16741:internal-dpl-clock]: [17:40:12][INFO] fair::mq::Device running...
+[16741:internal-dpl-clock]: [17:40:12][INFO] LHCPeriod is not available, using current month SEP
+[16741:internal-dpl-clock]: [17:40:12][INFO] Correctly handshaken websocket connection.
+[16744:HMPClustersWriter]: [17:40:12][STATE] IDLE ---> INITIALIZING DEVICE
+[16744:HMPClustersWriter]: [17:40:12][INFO] 0: branch  HMPIDclusters set up
+[16744:HMPClustersWriter]: [17:40:12][INFO] 1: branch  HMPIDDigitTopology set up
+[16744:HMPClustersWriter]: [17:40:12][INFO] 2: branch  InteractionRecords set up
+[16744:HMPClustersWriter]: [17:40:12][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[16744:HMPClustersWriter]: [17:40:12][STATE] INITIALIZED ---> BINDING
+[16744:HMPClustersWriter]: [17:40:12][STATE] BINDING ---> BOUND
+[16744:HMPClustersWriter]: [17:40:12][STATE] BOUND ---> CONNECTING
+[16744:HMPClustersWriter]: [17:40:12][STATE] CONNECTING ---> DEVICE READY
+[16744:HMPClustersWriter]: [17:40:12][STATE] DEVICE READY ---> INITIALIZING TASK
+[16744:HMPClustersWriter]: [17:40:12][STATE] INITIALIZING TASK ---> READY
+[16744:HMPClustersWriter]: [17:40:12][STATE] READY ---> RUNNING
+[16744:HMPClustersWriter]: [17:40:12][INFO] fair::mq::Device running...
+[16744:HMPClustersWriter]: [17:40:12][INFO] LHCPeriod is not available, using current month SEP
+[16744:HMPClustersWriter]: [17:40:12][INFO] Correctly handshaken websocket connection.
+[16742:HMP-DigitReader]: [INFO] Instrumenting crash signals
+[16742:HMP-DigitReader]: [INFO] Spawing new device HMP-DigitReader in process with pid 16742
+[16742:HMP-DigitReader]: [17:40:12][INFO] 
+[16742:HMP-DigitReader]:       ______      _    _______  _________ 
+[16742:HMP-DigitReader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[16742:HMP-DigitReader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[16742:HMP-DigitReader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[16742:HMP-DigitReader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[16742:HMP-DigitReader]: 
+[16742:HMP-DigitReader]: [17:40:12][STATE] Starting FairMQ state machine --> IDLE
+[16742:HMP-DigitReader]: [17:40:12][STATE] IDLE ---> INITIALIZING DEVICE
+[16742:HMP-DigitReader]: [17:40:12][INFO] HMPID DigitWriterSpec::init() : Trying to read File : /root/simGun211Copy/hmpiddigits.root
+[16742:HMP-DigitReader]: [17:40:13][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[16742:HMP-DigitReader]: [17:40:13][STATE] INITIALIZED ---> BINDING
+[16742:HMP-DigitReader]: [17:40:13][STATE] BINDING ---> BOUND
+[16742:HMP-DigitReader]: [17:40:13][STATE] BOUND ---> CONNECTING
+[16742:HMP-DigitReader]: [17:40:13][STATE] CONNECTING ---> DEVICE READY
+[16742:HMP-DigitReader]: [17:40:13][STATE] DEVICE READY ---> INITIALIZING TASK
+[16742:HMP-DigitReader]: [17:40:13][STATE] INITIALIZING TASK ---> READY
+[16742:HMP-DigitReader]: [17:40:13][STATE] READY ---> RUNNING
+[16742:HMP-DigitReader]: [17:40:13][INFO] fair::mq::Device running...
+[16742:HMP-DigitReader]: [17:40:13][INFO] LHCPeriod is not available, using current month SEP
+[16742:HMP-DigitReader]: [17:40:13][INFO] [HMPID DigitsReader - run() ] digits  = 968
+[16742:HMP-DigitReader]: [17:40:13][INFO] End DigitsReader !  digits = 968 Execution time = 0.4
+[16742:HMP-DigitReader]: [17:40:13][INFO] Sending end-of-stream message to channel from_HMP-DigitReader_to_HMP-Clusterization
+[16742:HMP-DigitReader]: [17:40:13][INFO] Correctly handshaken websocket connection.
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - run() ] Enter ...
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu101
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 913
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 913
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 631
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 631
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 359
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 359
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 359
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 359
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 359
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 359
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 540
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 540
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 463
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 463
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 342
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 342
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 212
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 212
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 186
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 186
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 124
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 124
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 123
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 123
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 65
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 65
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 19
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 19
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 0
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 0
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1923
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1923
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1921
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1921
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1900
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1900
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1881
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1881
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1881
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1881
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1874
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1874
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1869
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1869
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1858
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1858
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1840
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1840
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1736
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1443
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1736
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1443
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1678
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1678
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1517
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1517
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1449
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1449
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1441
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1441
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 16 tid 1256
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 16 tid 1256
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 16 tid 1185
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 16 tid 1185
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 16 tid 1185
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 16 tid 1185
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 16 tid 1037
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 16 tid 1037
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 16 tid 945
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 16 tid 945
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 16 tid 923
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 16 tid 923
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 16 tid 500
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 16 tid 500
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 16 tid 500
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 16 tid 500
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 776 tid 1449
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 776 tid 1449
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 16 tid 608
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 16 tid 608
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 16 tid 373
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 16 tid 373
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - return from dig2clu
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu130
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 1
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 1
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1948
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1948
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1897
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1897
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1858
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1858
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1796
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1796
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1771
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1386
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1771
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1386
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1671
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1671
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1448
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1671
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1649
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1649
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1628
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1628
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1480
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1480
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1420
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1420
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1350
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1350
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 619
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 619
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 611
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 611
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 596
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 596
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 498
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 498
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 377
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 377
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 271
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 271
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 269
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 269
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 256
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 256
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 106
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 106
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 45
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 45
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 0
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 0
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1949
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1949
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1902
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1902
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1897
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1897
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1664
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1886
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1664
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1886
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1878
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1878
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1825
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1825
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1817
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1817
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1802
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1802
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1593
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1593
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1589
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1589
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1317
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1317
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 649
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 246
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 649
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 246
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 649
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 649
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 21
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 21
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 551
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 551
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 504
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 504
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 429
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 429
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 347
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 347
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 308
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 308
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 288
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 288
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 208
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 208
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 122
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 122
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 103
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 103
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 42
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 42
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - return from dig2clu
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu89
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 871
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 871
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 359
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 359
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 359
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 359
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 825
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 825
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 801
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 801
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 692 tid 1249
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 692 tid 1249
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 674
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 674
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 648
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 648
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 186
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 186
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 454
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 454
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 199
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 199
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 112
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 112
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 95
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 95
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 80
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 80
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 676
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 676
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 662
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 662
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 645
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 645
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 615
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 615
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 600
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 600
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 566
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 566
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 554
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 554
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 512
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 512
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 413
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 413
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 215
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 352
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 215
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 352
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 301
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 301
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 152
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 152
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 84
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 84
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 64
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 64
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 10
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 10
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1648 tid 1959
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1648 tid 1959
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1949 tid 2125
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1949 tid 2125
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1949 tid 2089
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1949 tid 2089
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1648 tid 1894
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1648 tid 1894
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1648 tid 1835
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1648 tid 1835
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1646 tid 3561
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1646 tid 3561
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - return from dig2clu
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu56
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother 1 tid 340
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother 1 tid 340
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother 1 tid 340
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother 1 tid 340
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 340 tid 1369
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 340 tid 1369
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 340 tid 1357
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 340 tid 1357
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 340 tid 1333
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 340 tid 1333
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 340 tid 1183
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 340 tid 1183
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 340 tid 1130
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 340 tid 1130
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 340 tid 1033
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 340 tid 1033
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 340 tid 890
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 340 tid 890
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 340 tid 712
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 340 tid 712
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 340 tid 500
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 340 tid 500
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 481 tid 1541
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 481 tid 1541
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 0
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 0
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1702
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1702
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1700
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1700
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1700
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1218
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1636
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1636
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1558
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1558
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1521
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1521
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1352
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1352
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1344
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1344
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1331
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1331
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - return from dig2clu
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu195
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg -13 mother 2591 tid 2641
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg -13 mother 2591 tid 2641
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig -13
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig -13
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig -13
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig -13
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig -13
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2641 tid 3568
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2641 tid 3568
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2641 tid 3447
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2641 tid 3546
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2641 tid 3447
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2641 tid 3546
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2641 tid 3233
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2641 tid 3233
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2641 tid 3209
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2641 tid 3209
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2641 tid 3017
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2641 tid 3017
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2641 tid 2849
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2641 tid 2849
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2641 tid 2783
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2641 tid 2783
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2641 tid 2776
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2641 tid 2776
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2641 tid 2767
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2641 tid 2767
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2641 tid 2749
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2641 tid 2749
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2641 tid 2742
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2641 tid 2742
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2641 tid 2711
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2641 tid 2711
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 3539
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 3539
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 3539
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 3966
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 3539
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 3966
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 3955
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 3955
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 3884
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 3884
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 3884
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 3884
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 3884
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 3884
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 3844
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 3204
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 3844
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 3204
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 3674
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 3674
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 3285
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 3285
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 3332
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 3595
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 3492
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 3492
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 2392
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 2626
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 2392
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 2626
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 2914
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 2914
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 2273
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 2273
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1124 tid 1524
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1124 tid 1524
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 4051 tid 4518
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 4051 tid 4518
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 4051 tid 4510
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 4051 tid 4510
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 4051 tid 4420
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 4051 tid 4420
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 4051 tid 4366
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 4051 tid 4366
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 4051 tid 4307
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 4051 tid 4307
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 4051 tid 4207
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 4051 tid 4207
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 4051 tid 4152
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 4051 tid 4152
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 4051 tid 4104
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 4051 tid 4104
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 628
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 628
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 606
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 606
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 598
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 598
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 577
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 577
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 577
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 256
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 552
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 552
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 516
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 516
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 487
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 487
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 459
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 459
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 376
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 64
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 376
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 64
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 361
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 361
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 343
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 343
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 207
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 207
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 186
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 186
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 165
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 165
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 136
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 136
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 111
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 111
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 1
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 1
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1808
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1808
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1761
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1761
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1758
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1758
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1758
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1758
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1727
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1727
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1664
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1664
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1664
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1664
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1661
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1661
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1645
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1645
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1590
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1590
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1498
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1498
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1462
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1462
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1441
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1441
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1359
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1359
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1307
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1307
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1299
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1299
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1278
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1278
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - return from dig2clu
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu87
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 0
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 0
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 5296
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 5296
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 5292
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 5292
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 5264
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 5264
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 5264
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 5264
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 5212
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 4932
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 5212
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 4932
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 5209
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 5209
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 5206
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 5206
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 5076
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 5076
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 5018
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 5018
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 4982
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 4982
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 4878
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 4878
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 11 mother 176 tid 177
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 11 mother 176 tid 177
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 11 mother 176 tid 177
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 11 mother 176 tid 177
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 3431 tid 4285
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 3431 tid 4285
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 3394 tid 4314
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 3394 tid 4314
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 177 tid 2308
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 177 tid 2308
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 177 tid 1527
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 177 tid 1527
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 177 tid 2259
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 177 tid 2259
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 177 tid 2259
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 177 tid 2259
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 177 tid 2259
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 177 tid 2259
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 177 tid 1332
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 177 tid 1332
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 177 tid 1332
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 177 tid 1332
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 177 tid 2064
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 177 tid 1931
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 177 tid 2064
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 177 tid 1931
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 177 tid 1650
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 177 tid 1650
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 177 tid 1896
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 177 tid 1896
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 177 tid 1571
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 177 tid 1571
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 177 tid 1295
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 177 tid 1295
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - return from dig2clu
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu175
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 1
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 1
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 2256
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1762
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 2173
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 2256
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 2248
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 2248
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 2207
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 2207
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 2192
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 2192
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 2161
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 2161
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 2094
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 2094
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 2077
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 2077
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 2066
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 2066
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 2063
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 2063
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1929
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1929
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1926
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1926
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1803
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1803
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1784
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1784
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1734
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1734
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1672
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1672
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1645
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1645
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2630 tid 2638
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2630 tid 2638
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 0
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 0
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 2170
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 2366
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 2211
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 2327
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 2211
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 2327
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 2273
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 2273
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 2265
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 2265
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 2131
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 2131
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 2021
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 2021
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 648
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 648
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 648
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 648
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 627
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 627
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 600
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 600
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 496
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 496
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 282
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 431
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 412
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 412
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 363
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 363
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 280
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 280
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 268
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 268
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 210
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 210
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 184
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 184
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 162
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 162
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 99
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 99
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 11 mother 433 tid 434
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 11 mother 433 tid 434
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1078 tid 1132
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1078 tid 1132
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 363 tid 1115
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 363 tid 1115
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 864 tid 1418
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 864 tid 1418
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 363 tid 597
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 363 tid 597
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 363 tid 575
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 363 tid 575
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 363 tid 512
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 363 tid 512
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 363 tid 402
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 363 tid 402
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 1013
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 1013
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 979
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 979
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 955
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 955
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 841
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 841
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 791
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 791
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 586
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 586
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 586
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 586
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 523
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 523
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 523
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 523
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 341
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 341
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 261
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 261
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 176
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 176
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 150
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 150
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 125 tid 151
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 125 tid 151
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 0
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 0
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 2036
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 2036
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1890
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1890
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1733
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1733
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1700
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1646
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1700
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1646
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1664
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1664
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1659
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1659
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1520
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1520
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1511
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1511
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 0 tid 1461
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 0 tid 1461
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - return from dig2clu
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu54
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 2212 mother 1 tid 48
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 2212 mother 1 tid 48
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 2212
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 2212
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 2212
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 2212
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 153 tid 1420
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 153 tid 1420
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 153 tid 1248
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 153 tid 1248
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 153 tid 847
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 153 tid 847
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 153 tid 775
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 153 tid 775
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 153 tid 708
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 153 tid 708
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 374 tid 1800
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 374 tid 1800
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 1057
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 1057
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 879
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 879
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 799
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 799
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 626
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 626
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 584
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 584
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 494
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 494
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 466
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 466
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 443
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 443
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 357
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 357
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 276
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 276
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 1
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 1
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1725
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1632
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1180
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1180
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - return from dig2clu
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - run() ] nObjects <<< calling clusterer->Dig2Clu81
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 1
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 1
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 1197
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 1197
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 810
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 810
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 712
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 712
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 708
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 708
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 630
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 630
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 615
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 615
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 515
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 515
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 515
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 606
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 432
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 432
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 293
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 293
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 1 tid 263
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 1 tid 263
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 211 mother -1 tid 2
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 211
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 585
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 177
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 585
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 177
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 585
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 177
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 585
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 177
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 11 mother 2 tid 551
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 11 mother 2 tid 551
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 11
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 434
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 434
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 434
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 434
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 434
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 434
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 551 tid 2983
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 551 tid 2983
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 551 tid 2899
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 551 tid 2899
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 551 tid 2766
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 551 tid 2766
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 551 tid 2655
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 551 tid 2655
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 491
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 491
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 403
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 403
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 385
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 385
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 353
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 353
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 336
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 336
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 318
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 318
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 272
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 272
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 237
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 237
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 143
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 143
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] ======================
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on charge : pdg 50000050 mother 2 tid 115
+[16743:HMP-Clusterization]: [17:40:13][INFO] Based on pos : pdg 50000050 mother 2 tid 115
+[16743:HMP-Clusterization]: [17:40:13][INFO] pdg dig 50000050
+[16743:HMP-Clusterization]: [17:40:13][INFO] [HMPID DClusterization - return from dig2clu
+[16743:HMP-Clusterization]: [17:40:13][INFO] Received 10 triggers with 968 digits -> 9 triggers with 394 clusters
+[16743:HMP-Clusterization]: [17:40:13][INFO] End Clusterization !  digits = 968 Execution time = 0.14
+[16743:HMP-Clusterization]: [17:40:13][INFO] Sending end-of-stream message to channel from_HMP-Clusterization_to_HMPClustersWriter
+[INFO] Quitting
+[INFO] QUIT_REQUESTED
+[16742:HMP-DigitReader]: [17:40:13][INFO] Received device shutdown request (signal 15).
+[16742:HMP-DigitReader]: [17:40:13][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[16742:HMP-DigitReader]: [17:40:13][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[16742:HMP-DigitReader]: [17:40:13][STATE] RUNNING ---> READY
+[16742:HMP-DigitReader]: [17:40:13][STATE] READY ---> RESETTING TASK
+[16742:HMP-DigitReader]: [17:40:13][STATE] RESETTING TASK ---> DEVICE READY
+[16742:HMP-DigitReader]: [17:40:13][STATE] DEVICE READY ---> RESETTING DEVICE
+[16742:HMP-DigitReader]: [17:40:13][STATE] RESETTING DEVICE ---> IDLE
+[16742:HMP-DigitReader]: [17:40:13][STATE] IDLE ---> EXITING
+[16742:HMP-DigitReader]: [17:40:13][STATE] Exiting FairMQ state machine
+[16741:internal-dpl-clock]: [17:40:13][INFO] Received device shutdown request (signal 15).
+[16741:internal-dpl-clock]: [17:40:13][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[16744:HMPClustersWriter]: [17:40:13][INFO] Received device shutdown request (signal 15).
+[16744:HMPClustersWriter]: [17:40:13][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[16744:HMPClustersWriter]: [17:40:13][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[16741:internal-dpl-clock]: [17:40:13][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[16743:HMP-Clusterization]: [17:40:13][INFO] Received device shutdown request (signal 15).
+[16743:HMP-Clusterization]: [17:40:13][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[16743:HMP-Clusterization]: [17:40:13][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[16743:HMP-Clusterization]: [17:40:13][STATE] RUNNING ---> READY
+[16743:HMP-Clusterization]: [17:40:13][STATE] READY ---> RESETTING TASK
+[16743:HMP-Clusterization]: [17:40:13][STATE] RESETTING TASK ---> DEVICE READY
+[16743:HMP-Clusterization]: [17:40:13][STATE] DEVICE READY ---> RESETTING DEVICE
+[16743:HMP-Clusterization]: [17:40:13][STATE] RESETTING DEVICE ---> IDLE
+[16743:HMP-Clusterization]: [17:40:13][STATE] IDLE ---> EXITING
+[16743:HMP-Clusterization]: [17:40:13][STATE] Exiting FairMQ state machine
+[16741:internal-dpl-clock]: [17:40:13][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_HMP-DigitReader
+[16741:internal-dpl-clock]: [17:40:13][STATE] RUNNING ---> READY
+[16741:internal-dpl-clock]: [17:40:13][STATE] READY ---> RESETTING TASK
+[16741:internal-dpl-clock]: [17:40:13][STATE] RESETTING TASK ---> DEVICE READY
+[16741:internal-dpl-clock]: [17:40:13][STATE] DEVICE READY ---> RESETTING DEVICE
+[16741:internal-dpl-clock]: [17:40:13][STATE] RESETTING DEVICE ---> IDLE
+[16741:internal-dpl-clock]: [17:40:13][STATE] IDLE ---> EXITING
+[16741:internal-dpl-clock]: [17:40:13][STATE] Exiting FairMQ state machine
+[16744:HMPClustersWriter]: [17:40:13][STATE] RUNNING ---> READY
+[16744:HMPClustersWriter]: [17:40:13][STATE] READY ---> RESETTING TASK
+[16744:HMPClustersWriter]: [17:40:13][STATE] RESETTING TASK ---> DEVICE READY
+[16744:HMPClustersWriter]: [17:40:13][STATE] DEVICE READY ---> RESETTING DEVICE
+[16744:HMPClustersWriter]: [17:40:13][INFO] Cleaning up for shared memory id '53662497'...
+[16744:HMPClustersWriter]: [17:40:13][INFO] Found 0 unmanaged regions...
+[16744:HMPClustersWriter]: [17:40:13][INFO] Found 1 managed segments...
+[16744:HMPClustersWriter]: [17:40:13][INFO] Successfully removed 'fmq_53662497_m_0'.
+[16744:HMPClustersWriter]: [17:40:13][INFO] Successfully removed 'fmq_53662497_mng'.
+[16744:HMPClustersWriter]: [17:40:13][STATE] RESETTING DEVICE ---> IDLE
+[16744:HMPClustersWriter]: [17:40:13][STATE] IDLE ---> EXITING
+[16744:HMPClustersWriter]: [17:40:13][STATE] Exiting FairMQ state machine
+[INFO] ## Processes completed. Run summary:
+[INFO] ### Devices started: 4
+[INFO]  - Device internal-dpl-clock: pid 16741 (exit 0)
+[INFO]  - Device HMP-DigitReader: pid 16742 (exit 0)
+[INFO]  - Device HMP-Clusterization: pid 16743 (exit 0)
+[INFO]  - Device HMPClustersWriter: pid 16744 (exit 0)
+[INFO] Dumping used configuration in dpl-config.json
+TASK-EXIT-CODE: 0
