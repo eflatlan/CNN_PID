@@ -36,31 +36,35 @@ def plot_training_history(history=None, vector_of_weights=None, vector_of_weight
 
         # Binarize the output
         from sklearn.preprocessing import label_binarize
-        y_train_bin = sklearn.preprocessing.label_binarize(y_train_true, classes=[0, 1, 2])
-        y_test_bin = sklearn.preprocessing.label_binarize(y_test_true, classes=[0, 1, 2])
+        try:
+          y_train_bin = label_binarize(y_train_true, classes=[0, 1, 2])
+          y_test_bin = label_binarize(y_test_true, classes=[0, 1, 2])
 
-        # For each class
-        for i in range(3):
-            precision_train, recall_train, _ = precision_recall_curve(y_train_bin[:, i], y_pred_train[:, i])
-            axs[1, 0].plot(recall_train, precision_train, lw=2, label='class {}'.format(i))
+          # For each class
+          for i in range(3):
+              precision_train, recall_train, _ = precision_recall_curve(y_train_bin[:, i], y_pred_train[:, i])
+              axs[1, 0].plot(recall_train, precision_train, lw=2, label='class {}'.format(i))
 
-        axs[1, 0].set_xlabel("recall")
-        axs[1, 0].set_ylabel("precision")
-        axs[1, 0].legend(loc="best")
-        axs[1, 0].set_title("precision vs. recall curve Train")
+          axs[1, 0].set_xlabel("recall")
+          axs[1, 0].set_ylabel("precision")
+          axs[1, 0].legend(loc="best")
+          axs[1, 0].set_title("precision vs. recall curve Train")
 
-        for i in range(3):
-            precision, recall, _ = precision_recall_curve(y_test_bin[:, i], y_pred_test[:, i])
-            axs[1, 1].plot(recall, precision, lw=2, label='class {}'.format(i))
+          for i in range(3):
+              precision, recall, _ = precision_recall_curve(y_test_bin[:, i], y_pred_test[:, i])
+              axs[1, 1].plot(recall, precision, lw=2, label='class {}'.format(i))
 
-        axs[1, 1].set_xlabel("recall")
-        axs[1, 1].set_ylabel("precision")
-        axs[1, 1].legend(loc="best")
-        axs[1, 1].set_title("precision vs. recall curve Test")
+          axs[1, 1].set_xlabel("recall")
+          axs[1, 1].set_ylabel("precision")
+          axs[1, 1].legend(loc="best")
+          axs[1, 1].set_title("precision vs. recall curve Test")
 
-        # Add text for vector_of_weights, vector_of_weights2, and dropout
-        axs[1, 1].text(0.05, 0.05, f'Weights: {len(vector_of_weights)}', transform=axs[1, 1].transAxes, fontsize=12)
-        axs[1, 1].text(0.05, 0.95, f'Weights2: {len(vector_of_weights2)}\nDropout: {dropout}\nLR alpha = {relu_alpha}', transform=axs[1, 1].transAxes, fontsize=12)
+          # Add text for vector_of_weights, vector_of_weights2, and dropout
+          axs[1, 1].text(0.05, 0.05, f'Weights: {len(vector_of_weights)}', transform=axs[1, 1].transAxes, fontsize=12)
+          axs[1, 1].text(0.05, 0.95, f'Weights2: {len(vector_of_weights2)}\nDropout: {dropout}\nLR alpha = {relu_alpha}', transform=axs[1, 1].transAxes, fontsize=12)
+
+        except Exception as e:
+          print("failed labelbin")
 
         # Compute confusion matrices
         cm_train = confusion_matrix(y_train_true.argmax(axis=1), y_pred_train.argmax(axis=1))
