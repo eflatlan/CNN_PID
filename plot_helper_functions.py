@@ -35,6 +35,7 @@ def plot_training_history(history=None, vector_of_weights=None, vector_of_weight
         axs[0, 1].text(0.05, 0.95, f'Dropout: {dropout} LR alpha = {relu_alpha}', transform=axs[0, 1].transAxes, fontsize=12)
 
         # Binarize the output
+        from sklearn.preprocessing import label_binarize
         y_train_bin = label_binarize(y_train_true, classes=[0, 1, 2])
         y_test_bin = label_binarize(y_test_true, classes=[0, 1, 2])
 
