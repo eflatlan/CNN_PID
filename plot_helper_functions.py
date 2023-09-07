@@ -105,9 +105,9 @@ def plot_dist2mip_histograms(X_test_dist2mip = None, resolution = None):
     else:
         try:
             # Define the bin edges for each histogram.
-            bins1 = np.arange(0, self.resolution*10.1, 0.01)
-            bins2 = np.arange(4, self.resolution*8.1, 0.01)
-            bins3 = np.arange(0, self.resolution*2.1, 0.01)
+            bins1 = np.arange(0, 10.1, 0.01)
+            bins2 = np.arange(4, 8.1, 0.01)
+            bins3 = np.arange(0, 2.1, 0.01)
     
 
             print(f'There are {num_zeros} zeros in X_train_dist2mip.')
