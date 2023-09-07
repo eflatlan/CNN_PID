@@ -1,0 +1,204 @@
+Running: TIME="#walltime %e" /usr/bin/time --output=fddreco.log_time ./fddreco.log_tmp.sh
+[INFO] Currently FDDReconstructor does not consume and provide MC truth
+[INFO] Initialising O2 Data Processing Layer. Driver PID: 14937.
+[INFO] Driver listening on port: 23017
+[INFO] Rate limiting set up at 500MB distributed over 1 readers
+[INFO] O2 Data Processing Layer initialised. We brake for nobody.
+[INFO] Optimised build. O2DEBUG / LOG(debug) / LOGF(debug) / assert statement will not be shown.
+[INFO] Redeployment of configuration asked.
+[INFO] Starting internal-dpl-clock on pid 14981
+[INFO] Starting fdd-digit-reader on pid 14983
+[INFO] Starting fdd-reconstructor on pid 14984
+[INFO] Starting fdd-recpoint-writer on pid 14986
+[INFO] Starting internal-dpl-injected-dummy-sink on pid 14987
+[INFO] Redeployment of configuration done.
+[14984:fdd-reconstructor]: [INFO] Currently FDDReconstructor does not consume and provide MC truth
+[14983:fdd-digit-reader]: [INFO] Currently FDDReconstructor does not consume and provide MC truth
+[14984:fdd-reconstructor]: [INFO] Instrumenting crash signals
+[14984:fdd-reconstructor]: [INFO] Spawing new device fdd-reconstructor in process with pid 14984
+[14981:internal-dpl-clock]: [INFO] Currently FDDReconstructor does not consume and provide MC truth
+[14983:fdd-digit-reader]: [INFO] Instrumenting crash signals
+[14983:fdd-digit-reader]: [INFO] Spawing new device fdd-digit-reader in process with pid 14983
+[14983:fdd-digit-reader]: [17:39:57][INFO] 
+[14983:fdd-digit-reader]:       ______      _    _______  _________ 
+[14983:fdd-digit-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[14983:fdd-digit-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[14983:fdd-digit-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[14983:fdd-digit-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[14983:fdd-digit-reader]: 
+[14983:fdd-digit-reader]: [17:39:57][STATE] Starting FairMQ state machine --> IDLE
+[14983:fdd-digit-reader]: [17:39:57][STATE] IDLE ---> INITIALIZING DEVICE
+[14984:fdd-reconstructor]: [17:39:57][INFO] 
+[14984:fdd-reconstructor]:       ______      _    _______  _________ 
+[14984:fdd-reconstructor]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[14984:fdd-reconstructor]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[14984:fdd-reconstructor]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[14984:fdd-reconstructor]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[14984:fdd-reconstructor]: 
+[14984:fdd-reconstructor]: [17:39:57][STATE] Starting FairMQ state machine --> IDLE
+[14984:fdd-reconstructor]: [17:39:57][STATE] IDLE ---> INITIALIZING DEVICE
+[14984:fdd-reconstructor]: [17:39:57][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[14984:fdd-reconstructor]: [17:39:57][STATE] INITIALIZED ---> BINDING
+[14984:fdd-reconstructor]: [17:39:57][STATE] BINDING ---> BOUND
+[14984:fdd-reconstructor]: [17:39:57][STATE] BOUND ---> CONNECTING
+[14984:fdd-reconstructor]: [17:39:57][STATE] CONNECTING ---> DEVICE READY
+[14984:fdd-reconstructor]: [17:39:57][STATE] DEVICE READY ---> INITIALIZING TASK
+[14984:fdd-reconstructor]: [17:39:57][STATE] INITIALIZING TASK ---> READY
+[14984:fdd-reconstructor]: [17:39:57][STATE] READY ---> RUNNING
+[14984:fdd-reconstructor]: [17:39:57][INFO] fair::mq::Device running...
+[14984:fdd-reconstructor]: [17:39:57][INFO] LHCPeriod is not available, using current month SEP
+[14984:fdd-reconstructor]: [17:39:57][INFO] Correctly handshaken websocket connection.
+[14987:internal-dpl-injected-dummy-sink]: [INFO] Currently FDDReconstructor does not consume and provide MC truth
+[14981:internal-dpl-clock]: [INFO] Instrumenting crash signals
+[14981:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 14981
+[14981:internal-dpl-clock]: [17:39:57][INFO] 
+[14981:internal-dpl-clock]:       ______      _    _______  _________ 
+[14981:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[14981:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[14981:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[14981:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[14981:internal-dpl-clock]: 
+[14981:internal-dpl-clock]: [17:39:57][STATE] Starting FairMQ state machine --> IDLE
+[14986:fdd-recpoint-writer]: [INFO] Currently FDDReconstructor does not consume and provide MC truth
+[14981:internal-dpl-clock]: [17:39:57][STATE] IDLE ---> INITIALIZING DEVICE
+[14981:internal-dpl-clock]: [17:39:57][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[14981:internal-dpl-clock]: [17:39:57][STATE] INITIALIZED ---> BINDING
+[14981:internal-dpl-clock]: [17:39:57][STATE] BINDING ---> BOUND
+[14981:internal-dpl-clock]: [17:39:57][STATE] BOUND ---> CONNECTING
+[14981:internal-dpl-clock]: [17:39:57][STATE] CONNECTING ---> DEVICE READY
+[14981:internal-dpl-clock]: [17:39:57][STATE] DEVICE READY ---> INITIALIZING TASK
+[14981:internal-dpl-clock]: [17:39:57][STATE] INITIALIZING TASK ---> READY
+[14981:internal-dpl-clock]: [17:39:57][STATE] READY ---> RUNNING
+[14981:internal-dpl-clock]: [17:39:57][INFO] fair::mq::Device running...
+[14987:internal-dpl-injected-dummy-sink]: [INFO] Instrumenting crash signals
+[14981:internal-dpl-clock]: [17:39:57][INFO] LHCPeriod is not available, using current month SEP
+[14981:internal-dpl-clock]: [17:39:57][INFO] Correctly handshaken websocket connection.
+[14987:internal-dpl-injected-dummy-sink]: [INFO] Spawing new device internal-dpl-injected-dummy-sink in process with pid 14987
+[14987:internal-dpl-injected-dummy-sink]: [17:39:57][INFO] 
+[14987:internal-dpl-injected-dummy-sink]:       ______      _    _______  _________ 
+[14987:internal-dpl-injected-dummy-sink]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[14987:internal-dpl-injected-dummy-sink]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[14987:internal-dpl-injected-dummy-sink]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[14987:internal-dpl-injected-dummy-sink]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[14987:internal-dpl-injected-dummy-sink]: 
+[14987:internal-dpl-injected-dummy-sink]: [17:39:57][STATE] Starting FairMQ state machine --> IDLE
+[14986:fdd-recpoint-writer]: [INFO] Instrumenting crash signals
+[14986:fdd-recpoint-writer]: [INFO] Spawing new device fdd-recpoint-writer in process with pid 14986
+[14986:fdd-recpoint-writer]: [17:39:57][INFO] 
+[14986:fdd-recpoint-writer]:       ______      _    _______  _________ 
+[14986:fdd-recpoint-writer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.6.0
+[14986:fdd-recpoint-writer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[14986:fdd-recpoint-writer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[14986:fdd-recpoint-writer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[14986:fdd-recpoint-writer]: 
+[14986:fdd-recpoint-writer]: [17:39:57][STATE] Starting FairMQ state machine --> IDLE
+[14987:internal-dpl-injected-dummy-sink]: [17:39:57][STATE] IDLE ---> INITIALIZING DEVICE
+[14987:internal-dpl-injected-dummy-sink]: [17:39:57][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[14987:internal-dpl-injected-dummy-sink]: [17:39:57][STATE] INITIALIZED ---> BINDING
+[14987:internal-dpl-injected-dummy-sink]: [17:39:57][STATE] BINDING ---> BOUND
+[14986:fdd-recpoint-writer]: [17:39:57][STATE] IDLE ---> INITIALIZING DEVICE
+[14987:internal-dpl-injected-dummy-sink]: [17:39:57][STATE] BOUND ---> CONNECTING
+[14987:internal-dpl-injected-dummy-sink]: [17:39:57][STATE] CONNECTING ---> DEVICE READY
+[14987:internal-dpl-injected-dummy-sink]: [17:39:57][STATE] DEVICE READY ---> INITIALIZING TASK
+[14987:internal-dpl-injected-dummy-sink]: [17:39:57][STATE] INITIALIZING TASK ---> READY
+[14987:internal-dpl-injected-dummy-sink]: [17:39:57][STATE] READY ---> RUNNING
+[14987:internal-dpl-injected-dummy-sink]: [17:39:57][INFO] fair::mq::Device running...
+[14987:internal-dpl-injected-dummy-sink]: [17:39:57][INFO] LHCPeriod is not available, using current month SEP
+[14987:internal-dpl-injected-dummy-sink]: [17:39:57][INFO] Correctly handshaken websocket connection.
+[14986:fdd-recpoint-writer]: [17:39:57][INFO] 0: branch  FDDCluster set up
+[14986:fdd-recpoint-writer]: [17:39:57][INFO] 1: branch  FDDRecChData set up
+[14986:fdd-recpoint-writer]: [17:39:57][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[14986:fdd-recpoint-writer]: [17:39:57][STATE] INITIALIZED ---> BINDING
+[14986:fdd-recpoint-writer]: [17:39:57][STATE] BINDING ---> BOUND
+[14986:fdd-recpoint-writer]: [17:39:57][STATE] BOUND ---> CONNECTING
+[14986:fdd-recpoint-writer]: [17:39:57][STATE] CONNECTING ---> DEVICE READY
+[14986:fdd-recpoint-writer]: [17:39:57][STATE] DEVICE READY ---> INITIALIZING TASK
+[14986:fdd-recpoint-writer]: [17:39:57][STATE] INITIALIZING TASK ---> READY
+[14986:fdd-recpoint-writer]: [17:39:57][STATE] READY ---> RUNNING
+[14986:fdd-recpoint-writer]: [17:39:58][INFO] fair::mq::Device running...
+[14986:fdd-recpoint-writer]: [17:39:58][INFO] LHCPeriod is not available, using current month SEP
+[14986:fdd-recpoint-writer]: [17:39:58][INFO] Correctly handshaken websocket connection.
+[14983:fdd-digit-reader]: [17:39:58][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[14983:fdd-digit-reader]: [17:39:58][STATE] INITIALIZED ---> BINDING
+[14983:fdd-digit-reader]: [17:39:58][STATE] BINDING ---> BOUND
+[14983:fdd-digit-reader]: [17:39:58][STATE] BOUND ---> CONNECTING
+[14983:fdd-digit-reader]: [17:39:58][STATE] CONNECTING ---> DEVICE READY
+[14983:fdd-digit-reader]: [17:39:58][STATE] DEVICE READY ---> INITIALIZING TASK
+[14983:fdd-digit-reader]: [17:39:58][STATE] INITIALIZING TASK ---> READY
+[14983:fdd-digit-reader]: [17:39:58][STATE] READY ---> RUNNING
+[14983:fdd-digit-reader]: [17:39:58][INFO] fair::mq::Device running...
+[14983:fdd-digit-reader]: [17:39:58][INFO] LHCPeriod is not available, using current month SEP
+[14983:fdd-digit-reader]: [17:39:58][INFO] Will use MC-truth from FDDDigitLabels
+[14983:fdd-digit-reader]: [17:39:58][INFO] FDD DigitReader pushes 0 digits
+[14984:fdd-reconstructor]: [17:39:58][INFO] Ignoring MC info
+[14983:fdd-digit-reader]: [17:39:58][INFO] Sending end-of-stream message to channel from_fdd-digit-reader_to_fdd-reconstructor
+[14983:fdd-digit-reader]: [17:39:58][INFO] Sending end-of-stream message to channel from_fdd-digit-reader_to_internal-dpl-injected-dummy-sink
+[14983:fdd-digit-reader]: [17:39:58][INFO] Correctly handshaken websocket connection.
+[14984:fdd-reconstructor]: [17:39:58][INFO] Sending end-of-stream message to channel from_fdd-reconstructor_to_fdd-recpoint-writer
+[INFO] Quitting
+[INFO] QUIT_REQUESTED
+[14983:fdd-digit-reader]: [17:39:58][INFO] Received device shutdown request (signal 15).
+[14984:fdd-reconstructor]: [17:39:58][INFO] Received device shutdown request (signal 15).
+[14983:fdd-digit-reader]: [17:39:58][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[14984:fdd-reconstructor]: [17:39:58][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[14983:fdd-digit-reader]: [17:39:58][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[14983:fdd-digit-reader]: [17:39:58][STATE] RUNNING ---> READY
+[14984:fdd-reconstructor]: [17:39:58][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[14984:fdd-reconstructor]: [17:39:58][STATE] RUNNING ---> READY
+[14983:fdd-digit-reader]: [17:39:58][STATE] READY ---> RESETTING TASK
+[14984:fdd-reconstructor]: [17:39:58][STATE] READY ---> RESETTING TASK
+[14984:fdd-reconstructor]: [17:39:58][STATE] RESETTING TASK ---> DEVICE READY
+[14983:fdd-digit-reader]: [17:39:58][STATE] RESETTING TASK ---> DEVICE READY
+[14984:fdd-reconstructor]: [17:39:58][STATE] DEVICE READY ---> RESETTING DEVICE
+[14983:fdd-digit-reader]: [17:39:58][STATE] DEVICE READY ---> RESETTING DEVICE
+[14981:internal-dpl-clock]: [17:39:58][INFO] Received device shutdown request (signal 15).
+[14981:internal-dpl-clock]: [17:39:58][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[14981:internal-dpl-clock]: [17:39:58][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[14983:fdd-digit-reader]: [17:39:58][STATE] RESETTING DEVICE ---> IDLE
+[14983:fdd-digit-reader]: [17:39:58][STATE] IDLE ---> EXITING
+[14983:fdd-digit-reader]: [17:39:58][STATE] Exiting FairMQ state machine
+[14984:fdd-reconstructor]: [17:39:58][STATE] RESETTING DEVICE ---> IDLE
+[14986:fdd-recpoint-writer]: [17:39:58][INFO] Received device shutdown request (signal 15).
+[14986:fdd-recpoint-writer]: [17:39:58][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[14986:fdd-recpoint-writer]: [17:39:58][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[14987:internal-dpl-injected-dummy-sink]: [17:39:58][INFO] Received device shutdown request (signal 15).
+[14987:internal-dpl-injected-dummy-sink]: [17:39:58][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[14987:internal-dpl-injected-dummy-sink]: [17:39:58][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[14987:internal-dpl-injected-dummy-sink]: [17:39:58][STATE] RUNNING ---> READY
+[14987:internal-dpl-injected-dummy-sink]: [17:39:58][STATE] READY ---> RESETTING TASK
+[14987:internal-dpl-injected-dummy-sink]: [17:39:58][STATE] RESETTING TASK ---> DEVICE READY
+[14987:internal-dpl-injected-dummy-sink]: [17:39:58][STATE] DEVICE READY ---> RESETTING DEVICE
+[14984:fdd-reconstructor]: [17:39:58][STATE] IDLE ---> EXITING
+[14987:internal-dpl-injected-dummy-sink]: [17:39:58][STATE] RESETTING DEVICE ---> IDLE
+[14984:fdd-reconstructor]: [17:39:58][STATE] Exiting FairMQ state machine
+[14987:internal-dpl-injected-dummy-sink]: [17:39:58][STATE] IDLE ---> EXITING
+[14987:internal-dpl-injected-dummy-sink]: [17:39:58][STATE] Exiting FairMQ state machine
+[14981:internal-dpl-clock]: [17:39:58][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_fdd-digit-reader
+[14981:internal-dpl-clock]: [17:39:58][STATE] RUNNING ---> READY
+[14981:internal-dpl-clock]: [17:39:58][STATE] READY ---> RESETTING TASK
+[14981:internal-dpl-clock]: [17:39:58][STATE] RESETTING TASK ---> DEVICE READY
+[14981:internal-dpl-clock]: [17:39:58][STATE] DEVICE READY ---> RESETTING DEVICE
+[14981:internal-dpl-clock]: [17:39:58][STATE] RESETTING DEVICE ---> IDLE
+[14981:internal-dpl-clock]: [17:39:58][STATE] IDLE ---> EXITING
+[14981:internal-dpl-clock]: [17:39:58][STATE] Exiting FairMQ state machine
+[14986:fdd-recpoint-writer]: [17:39:58][STATE] RUNNING ---> READY
+[14986:fdd-recpoint-writer]: [17:39:58][STATE] READY ---> RESETTING TASK
+[14986:fdd-recpoint-writer]: [17:39:58][STATE] RESETTING TASK ---> DEVICE READY
+[14986:fdd-recpoint-writer]: [17:39:58][STATE] DEVICE READY ---> RESETTING DEVICE
+[14986:fdd-recpoint-writer]: [17:39:58][INFO] Cleaning up for shared memory id '817dbaca'...
+[14986:fdd-recpoint-writer]: [17:39:58][INFO] Found 0 unmanaged regions...
+[14986:fdd-recpoint-writer]: [17:39:58][INFO] Found 1 managed segments...
+[14986:fdd-recpoint-writer]: [17:39:58][INFO] Successfully removed 'fmq_817dbaca_m_0'.
+[14986:fdd-recpoint-writer]: [17:39:58][INFO] Successfully removed 'fmq_817dbaca_mng'.
+[14986:fdd-recpoint-writer]: [17:39:58][STATE] RESETTING DEVICE ---> IDLE
+[14986:fdd-recpoint-writer]: [17:39:58][STATE] IDLE ---> EXITING
+[14986:fdd-recpoint-writer]: [17:39:58][STATE] Exiting FairMQ state machine
+[INFO] ## Processes completed. Run summary:
+[INFO] ### Devices started: 5
+[INFO]  - Device internal-dpl-clock: pid 14981 (exit 0)
+[INFO]  - Device fdd-digit-reader: pid 14983 (exit 0)
+[INFO]  - Device fdd-reconstructor: pid 14984 (exit 0)
+[INFO]  - Device fdd-recpoint-writer: pid 14986 (exit 0)
+[INFO]  - Device internal-dpl-injected-dummy-sink: pid 14987 (exit 0)
+[INFO] Dumping used configuration in dpl-config.json
+TASK-EXIT-CODE: 0
