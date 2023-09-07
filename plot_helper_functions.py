@@ -36,8 +36,8 @@ def plot_training_history(history=None, vector_of_weights=None, vector_of_weight
 
         # Binarize the output
         from sklearn.preprocessing import label_binarize
-        y_train_bin = label_binarize(y_train_true, classes=[0, 1, 2])
-        y_test_bin = label_binarize(y_test_true, classes=[0, 1, 2])
+        y_train_bin = sklearn.preprocessing.label_binarize(y_train_true, classes=[0, 1, 2])
+        y_test_bin = sklearn.preprocessing.label_binarize(y_test_true, classes=[0, 1, 2])
 
         # For each class
         for i in range(3):
