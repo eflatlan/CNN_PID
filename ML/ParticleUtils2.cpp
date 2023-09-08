@@ -38,7 +38,7 @@ public:
 				 
 				std::vector<Candidate2> candsCombined;
 				double mxRad, myRad, mxMip, myMip, mThetaP, mPhiP, mRefIndex;
-				int mCluCharge, mCluSize, mTrackPdg;
+				float mCluCharge, mCluSize, mTrackPdg;
 				double mMomentum;
 
 				ParticleInfo2(float xRad, float yRad, float xMip, float yMip, float th, float ph, float refIndex, int cluCharge, int cluSize, float p, int mcTrackPdg)
@@ -76,13 +76,16 @@ public:
         
         float refIndex = track.getRefIndex(); 
         float cluCharge = track.getMipClusCharge();
+        
+        //Printf("getMipClusCharge() %.2f getMipClusQ() %.2f", track.getMipClusCharge(), track.getMipClusQ());
+        
         float cluSize = track.getMipClusSize();
 		              
 				float p = track.getHmpMom(); 
 				
 				 									
-	// ef : this seems to get the PDG correctly?
-	int pdg = track.getMipClusEventPDG();
+				// ef : this seems to get the PDG correctly?
+				int pdg = track.getMipClusEventPDG();
 		                      
         ParticleInfo2 particleInfo(xRad, yRad, xMip, yMip, th,  ph, refIndex, cluCharge, cluSize, p, pdg);
         
@@ -132,7 +135,7 @@ public:
         
 
 				//ParticleInfo(floxRad, yRad, xMip, yMip, th,  ph, refIndex, cluCharge, cluSize, p, mcTrackPdg) : mxRad(xRad), myRad(yRad), mxMip(xMip), myMip(yMip), mThetaP(th),  mPhiP(ph), mRefIndex(refIndex), mCluCharge(cluCharge), mCluSize(cluSize), mMomentum(p), mTrackPdg(mcTrackPdg)
-
+	Printf("Writing to H5 : ");
         for (const auto& cand : particle.candsCombined) {
             x_values.push_back(cand.mX);
             y_values.push_back(cand.mY);
@@ -143,6 +146,7 @@ public:
             candStatus_values.push_back(cand.mCandidateStatus);
             // ch_values.push_back(cand.mCh);
             mSize_values.push_back(cand.mSize);  // Add mSize to the vector
+	    			// Printf("cstatus %d", cand.mCandidateStatus);
         }
 
 
@@ -181,8 +185,9 @@ public:
         dataset = particleGroup.createDataSet("mSize_values", PredType::NATIVE_INT, dataspace);
         dataset.write(mSize_values.data(), PredType::NATIVE_INT);
         
-						  
 
+
+	    	Printf("particle.mCluCharge %.2f", particle.mCluCharge);
 
 				std::vector<Candidate2> candsCombined;
 
@@ -227,9 +232,10 @@ public:
 // After writing all attributes
 Printf("Wrote particle with PDG %d, xRad %.1f, yRad %.1f, xMip %.1f, yMip %.1f, ThetaP %.1f, PhiP %.1f, RefractiveIndex %.1f, CluCharge %d, CluSize %d, Momentum %.1f",
        particle.mTrackPdg, particle.mxRad, particle.myRad, particle.mxMip, particle.myMip, particle.mThetaP, particle.mPhiP, particle.mRefIndex, particle.mCluCharge, particle.mCluSize, particle.mMomentum);
-
-
-
+       
+Printf("CluCharge %d", particle.mCluCharge);
+Printf("CluCharge %.2f", particle.mCluCharge);
+Printf("CluCharge %f", particle.mCluCharge);
     	}
 				
         
