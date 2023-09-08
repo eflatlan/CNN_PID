@@ -22,24 +22,28 @@ TH2F* thTrackMip[7], *thTrackPc[7], *thTrackRad[7];
 
 void readDigits(char* filename, int nEvent)
 {
-  TFile *fileDigits = TFile::Open(filename);
-    std::map<int, int> pdgCounts;  // Map to store PDG values and their counts
+	TFile *fileDigits = TFile::Open(filename);
+	std::map<int, int> pdgCounts;  // Map to store PDG values and their counts
 
-  TTree *treeDigits = (TTree*)fileDigits->Get("o2sim");
-  
-  TH1F *hCharge[7];
-  TH2F *hMap[7];
-      
-    TH2F *hParticlePdgMapAbove[7];
-    TH2F *hParticlePdgMapBelow[7];
+	TTree *treeDigits = (TTree*)fileDigits->Get("o2sim");
 
+	TH1F *hCharge[7];
+	TH2F *hMap[7];
 
-TH2F* hParticlePdgElectron[7], *hParticlePdgPion[7], *hParticlePdgKaon[7],  *hParticlePdgProton[7], *hParticlePdgPhoton[7], *hParticlePdgPhoton2[7];
+	TH2F *hParticlePdgMapAbove[7];
+	TH2F *hParticlePdgMapBelow[7];
 
 
-//11 111 321 2212 22/50000050
-for (int i = 0; i < 7; i++) {
+	TH2F *hParticleChargeOneEvent[7];
+
+	TH2F* hParticlePdgElectron[7], *hParticlePdgPion[7], *hParticlePdgKaon[7],  *hParticlePdgProton[7], *hParticlePdgPhoton[7], *hParticlePdgPhoton2[7];
+
+	TH2F* hParticlePdgElectron1[7], *hParticlePdgPion1[7], *hParticlePdgKaon1[7],  *hParticlePdgProton1[7], *hParticlePdgPhoton1[7], *hParticlePdgPhoton21[7];
+
+	//11 111 321 2212 22/50000050
+	for (int i = 0; i < 7; i++) {
     // Electron histograms
+    
     hParticlePdgElectron[i] = new TH2F(Form("Electron_ParticlePdg_Chamber%i", i),
                                        Form("Electron PDG Map Chamber%i", i),
                                        160, 0, 159, 144, 0, 143);
@@ -85,31 +89,86 @@ for (int i = 0; i < 7; i++) {
     hParticlePdgPhoton2[i]->SetXTitle("pad X");
     hParticlePdgPhoton2[i]->SetYTitle("pad Y");
     hParticlePdgPhoton2[i]->SetMarkerColor(kCyan); // Example color
+    
+    
+    
+    
+    hParticlePdgElectron1[i] = new TH2F(Form("Electron_Particle  Pdg_Chamber%i", i),
+                                       Form("Electron PDG Map  1 Event Chamber%i", i),
+                                       160, 0, 159, 144, 0, 143);
+    hParticlePdgElectron1[i]->SetXTitle("pad X");
+    hParticlePdgElectron1[i]->SetYTitle("pad Y");
+    hParticlePdgElectron1[i]->SetMarkerColor(kRed); // Example color
 
-}
-// Add a new histogram to collect PDG values
-TH1F* hPDG = new TH1F("hPDG", "Particle PDG values", 5000, -2500, 2500);
-hPDG->SetXTitle("PDG Value");
-hPDG->SetYTitle("Entries");
+    // Pion histograms
+    hParticlePdgPion1[i] = new TH2F(Form("Pion_Particle 1 Event Pdg_Chamber%i", i),
+                                   Form("Pion PDG Map 1 Event Chamber%i", i),
+                                   160, 0, 159, 144, 0, 143);
+    hParticlePdgPion1[i]->SetXTitle("pad X");
+    hParticlePdgPion1[i]->SetYTitle("pad Y");
+    hParticlePdgPion1[i]->SetMarkerColor(kMagenta+2); // Example color
+    hParticlePdgPion1[i]->SetMarkerStyle(2); // Example color
+    // Kaon histograms
+    hParticlePdgKaon1[i] = new TH2F(Form("Kaon_ParticlePdg 1 Event _Chamber%i", i),
+                                   Form("Kaon PDG Map Chamber%i", i),
+                                   160, 0, 159, 144, 0, 143);
+    hParticlePdgKaon1[i]->SetXTitle("pad X");
+    hParticlePdgKaon1[i]->SetYTitle("pad Y");
+    hParticlePdgKaon1[i]->SetMarkerColor(kBlue); // Example color
+    hParticlePdgKaon1[i]->SetMarkerStyle(2); // Example color
+    // Proton histograms
+    hParticlePdgProton1[i] = new TH2F(Form("Proton_ParticlePdg_Chamber%i", i),
+                                     Form("Proton PDG Map 1 Event Chamber%i", i),
+                                     160, 0, 159, 144, 0, 143);
+    hParticlePdgProton[i]->SetXTitle("pad X");
+    hParticlePdgProton1[i]->SetYTitle("pad Y");
+    hParticlePdgProton1[i]->SetMarkerColor(kGreen+3); // Example color
+    hParticlePdgProton1[i]->SetMarkerStyle(2); // Example color
+    // Photon histograms
+    hParticlePdgPhoton1[i] = new TH2F(Form("Photon_Particle Pdg 1 Event Chamber%i", i),
+                                     Form("Photon PDG Map 1 Event Chamber%i", i),
+                                     160, 0, 159, 144, 0, 143);
+    hParticlePdgPhoton1[i]->SetXTitle("pad X");
+    hParticlePdgPhoton1[i]->SetYTitle("pad Y");
+    hParticlePdgPhoton1[i]->SetMarkerColor(kBlack); // Example color
+
+    hParticlePdgPhoton21[i] = new TH2F(Form("Photon2_ParticlePdg 1 Event Chamber%i", i),
+                                     Form("Photon2 PDG Map 1 Event Chamber%i", i),
+                                     160, 0, 159, 144, 0, 143);
+    hParticlePdgPhoton21[i]->SetXTitle("pad X");
+    hParticlePdgPhoton21[i]->SetYTitle("pad Y");
+    hParticlePdgPhoton21[i]->SetMarkerColor(kCyan); // Example color
+    
+
+  }
+	// Add a new histogram to collect PDG values
+	TH1F* hPDG = new TH1F("hPDG", "Particle PDG values", 5000, -2500, 2500);
+	hPDG->SetXTitle("PDG Value");
+	hPDG->SetYTitle("Entries");
 
 
-    for (int i = 0; i < 7; i++) {
-        hParticlePdgMapAbove[i] = new TH2F(Form("Digits ParticlePdg Map Above 10000 chamber%i", i), 
-                                          Form("Digits ParticlePdg Map Above 10000 chamber%i", i), 
-                                          160, 0, 159, 144, 0, 143);
-        hParticlePdgMapAbove[i]->SetXTitle("pad X");
-        hParticlePdgMapAbove[i]->SetYTitle("pad Y");
-        hParticlePdgMapAbove[i]->SetMarkerColor(kRed);
+  for (int i = 0; i < 7; i++) {
+		hParticlePdgMapAbove[i] = new TH2F(Form("Digits ParticlePdg Map Above 10000 chamber%i", i), 
+				                            Form("Digits ParticlePdg Map Above 10000 chamber%i", i), 
+				                            160, 0, 159, 144, 0, 143);
+		hParticlePdgMapAbove[i]->SetXTitle("pad X");
+		hParticlePdgMapAbove[i]->SetYTitle("pad Y");
+		hParticlePdgMapAbove[i]->SetMarkerColor(kRed);
 
-        hParticlePdgMapBelow[i] = new TH2F(Form("Digits ParticlePdg Map Below 10000 chamber%i", i), 
-                                          Form("Digits ParticlePdg Map Below 10000 chamber%i", i), 
-                                          160, 0, 159, 144, 0, 143);
-        hParticlePdgMapBelow[i]->SetXTitle("pad X");
-        hParticlePdgMapBelow[i]->SetYTitle("pad Y");
-        hParticlePdgMapBelow[i]->SetMarkerColor(kGreen);
-    }
+		hParticlePdgMapBelow[i] = new TH2F(Form("Digits ParticlePdg Map Below 10000 chamber%i", i), 
+				                            Form("Digits ParticlePdg Map Below 10000 chamber%i", i), 
+				                            160, 0, 159, 144, 0, 143);
+		hParticlePdgMapBelow[i]->SetXTitle("pad X");
+		hParticlePdgMapBelow[i]->SetYTitle("pad Y");
+		hParticlePdgMapBelow[i]->SetMarkerColor(kGreen);
+  }
 
   for(int i=0; i<7; i++) {
+    hParticleChargeOneEvent[i] = new TH2F(Form("Charge per event map%i",i),Form("Charge per event map%i",i), 160, 0, 159, 144, 0, 143);
+     hParticleChargeOneEvent[i]->SetXTitle("pad X");
+     hParticleChargeOneEvent[i]->SetYTitle("pad Y"); 
+  
+  
      hMap[i] = new TH2F(Form("Digits Map chmaber%i",i),Form("Digits Map chmaber%i",i), 160, 0, 159, 144, 0, 143);
      hMap[i]->SetXTitle("pad X");
      hMap[i]->SetYTitle("pad Y"); 
@@ -147,66 +206,68 @@ hPDG->SetYTitle("Entries");
 
 
 
-//11 111 321 2212 22/50000050
+  //11 111 321 2212 22/50000050
   std::vector<int> particlePDGs;
   for(unsigned int j = 0; j < digits->size(); j++) {
     pDig = (o2::hmpid::Digit*)&digits->at(j);
-	  if(j<15)
-	    std::cout << j << " evnum" << pDig->getEventNumber()<< std::endl; 
+	  //if(j<15)
+    //std::cout << j << " evnum" << pDig->getEventNumber()<< std::endl; 
 
 
 
 
-    hPDG->Fill(pDig->mParticlePdg);
-  pdgCounts[pDig->mParticlePdg]++;
-    o2::hmpid::Digit::pad2Absolute(pDig->getPadID(), &module, &padChX, &padChY);    
-                         
-    hCharge[module]->Fill(pDig->getQ());
+      hPDG->Fill(pDig->mParticlePdg);
+      pdgCounts[pDig->mParticlePdg]++;
+      o2::hmpid::Digit::pad2Absolute(pDig->getPadID(), &module, &padChX, &padChY);    
+                       
+      hCharge[module]->Fill(pDig->getQ());
 
-        if (pDig->mParticlePdg > 10000) {
-            hParticlePdgMapAbove[module]->Fill(padChX, padChY);
-        } else {
-            hParticlePdgMapBelow[module]->Fill(padChX, padChY);
-        }
+      if (pDig->mParticlePdg > 10000) {
+
+          // std::cout << j << " Photon " << pDig->mParticlePdg << " Ch " << module << std::endl; 
+          hParticlePdgMapAbove[module]->Fill(padChX, padChY);
+      } else {
+          hParticlePdgMapBelow[module]->Fill(padChX, padChY);
+      }
 
 
-    switch (TMath::Abs(pDig->mParticlePdg)) {
-      case 11 : 
-	hParticlePdgElectron[module]->Fill(padChX, padChY); 
-	break;
-      case 211 : 
-	hParticlePdgPion[module]->Fill(padChX, padChY);
-	break;
-      case 321 : 
-	hParticlePdgKaon[module]->Fill(padChX, padChY);
-	break;
-      case 2212 : 
-	hParticlePdgProton[module]->Fill(padChX, padChY);
-	break;
-      case 50000050 : 
-	hParticlePdgPhoton[module]->Fill(padChX, padChY);
-	break;
-      case 22 : 
-	hParticlePdgPhoton[module]->Fill(padChX, padChY);
-	break;
-	     default : 
-	hParticlePdgPhoton2[module]->Fill(padChX, padChY);
-	break;
-    }
+			switch (TMath::Abs(pDig->mParticlePdg)) {
+						case 11 : 
+				hParticlePdgElectron[module]->Fill(padChX, padChY); 
+				break;
+						case 211 : 
+				hParticlePdgPion[module]->Fill(padChX, padChY);
+				break;
+						case 321 : 
+				hParticlePdgKaon[module]->Fill(padChX, padChY);
+				break;
+						case 2212 : 
+				hParticlePdgProton[module]->Fill(padChX, padChY);
+				break;
+						case 50000050 : 
+				hParticlePdgPhoton[module]->Fill(padChX, padChY);
+				break;
+						case 22 : 
+				hParticlePdgPhoton[module]->Fill(padChX, padChY);
+				break;
+						 default : 
+				hParticlePdgPhoton2[module]->Fill(padChX, padChY);
+				break;
+			} // end switch
  
-    bool isInPdg = false;
-    for(const auto& pdg: particlePDGs) { if(pdg == pDig->mParticlePdg) {isInPdg = true;} }
-    if(!isInPdg) {particlePDGs.push_back(pDig->mParticlePdg);}    
+	  	bool isInPdg = false;
+	  	for(const auto& pdg: particlePDGs) { if(pdg == pDig->mParticlePdg) {isInPdg = true;} }
+	  	if(!isInPdg) {particlePDGs.push_back(pDig->mParticlePdg);}    
 
-   }
+  } // end for 
 
-  Printf("PDG code counts:");
-  for (const auto& pair : pdgCounts) {
-    Printf("PDG: %d, Count: %d", pair.first, pair.second);
-  }
-for(const auto& pdg: particlePDGs) { 
-  Printf("pdg = %d", pdg); 
- }
+	Printf("PDG code counts:");
+	for (const auto& pair : pdgCounts) {
+		Printf("PDG: %d, Count: %d", pair.first, pair.second);
+	}
+	for(const auto& pdg: particlePDGs) { 
+		Printf("pdg = %d", pdg); 
+	}
        
   Printf("trigger size from digits = %i", trigger->size()); 
    
@@ -214,63 +275,112 @@ for(const auto& pdg: particlePDGs) {
     
     oneEventDigits.clear();
     pTgr = (o2::hmpid::Trigger*)&trigger->at(i);
-		Printf("\n === Event %i", i); 
+		//Printf("\n === Event %i", i); 
     for(int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++) {
       
       digit = (o2::hmpid::Digit)digits->at(j);
       
       o2::hmpid::Digit::pad2Absolute(digit.getPadID(), &module, &padChX, &padChY);
       oneEventDigits.push_back(digit);
-      hMap[module]->Fill(padChX, padChY, pDigEvt->getQ());
-	    std::cout << j << " evnum" << pDig->getEventNumber()<< std::endl; 
+      hMap[module]->Fill(padChX, padChY, digit.getQ());
+	    //std::cout << j << " evnum" << pDig->getEventNumber()<< std::endl; 
       
-     }
+     
       
-    if(i==nEvent) {
-       
-       for(unsigned int k = 0; k < oneEventDigits.size(); k++) {
-      
-       pDigEvt = (o2::hmpid::Digit*)&oneEventDigits.at(k);
-                     
-       o2::hmpid::Digit::pad2Absolute(pDigEvt->getPadID(), &module, &padChX, &padChY);
+      if(i==nEvent) {
+        Printf("in event"); 
+        auto pDig = &digit;
+
+        hPDG->Fill(pDig->mParticlePdg);
+
+        hParticleChargeOneEvent[module]->Fill(padChX, padChY, pDig->getQ());               
+        
+        
          
-       hMap[module]->Fill(padChX, padChY, pDigEvt->getQ());
-                    
-      }              
-     }
-   }
+        hCharge[module]->Fill(pDig->getQ());
+
+
+				switch (TMath::Abs(pDig->mParticlePdg)) {
+					case 11 : 
+					hParticlePdgElectron1[module]->Fill(padChX, padChY); 
+					break;
+							case 211 : 
+					hParticlePdgPion1[module]->Fill(padChX, padChY);
+					break;
+							case 321 : 
+					hParticlePdgKaon1[module]->Fill(padChX, padChY);
+					break;
+							case 2212 : 
+					hParticlePdgProton1[module]->Fill(padChX, padChY);
+					break;
+							case 50000050 : 
+					hParticlePdgPhoton1[module]->Fill(padChX, padChY);
+					break;
+							case 22 : 
+					hParticlePdgPhoton1[module]->Fill(padChX, padChY);
+					break;
+							 default : 
+					hParticlePdgPhoton21[module]->Fill(padChX, padChY);
+					break;
+				} // end switch
+				
+				
+      } // end if        
+    } // end for         
+  } // end for
+
        
    c1->Divide(3,3);
    c2->Divide(3,3);
+
+   /*
    TCanvas* c3 = new TCanvas("c3", "Particle Pdg Map", 800, 600);
    c3->Divide(3, 3); 
 
    TCanvas* c4 = new TCanvas("c4", "Particle Pdg Map Below", 800, 600);
-   c4->Divide(3, 3);
+   c4->Divide(3, 3);*/
 
    TCanvas* c5 = new TCanvas("c5", "Particle Pdg Map", 800, 600);
    c5->Divide(3, 3);
 
 
+  TCanvas* c7 = new TCanvas("c7", "PDG One Event Map", 800, 600);
+  c7->Divide(3, 3);
 
-TCanvas* c6 = new TCanvas("c6", "PDG Histogram", 800, 600);
+  TCanvas* c6 = new TCanvas("c6", "PDG Histogram", 800, 600);
+
 	c6->cd();
 	hPDG->Draw();
 
+  TCanvas* c8 = new TCanvas("c8", "Chamber charg per event", 800, 600);
+  c8->Divide(3, 3);
+
+
+
+
    for(int iCh = 0; iCh<7; iCh++){
+   
+		 auto pad5 = static_cast<TPad*>(c8->cd(pos[iCh]));
+		 //digPerEvent[iCh]->Draw();
+		 pad5->SetLogz(1);
+		 hParticleChargeOneEvent[iCh]->Draw("Colz");
+   
      c1->cd(pos[iCh]); 
      hMap[iCh]->Draw("Colz");
      
      c2->cd(pos[iCh]); 
      hCharge[iCh]->Draw();
 
+
+
+    /*
      c3->cd(pos[iCh]); 
      hParticlePdgMapBelow[iCh]->Draw();
      //hParticlePdgMapAbove[iCh]->Draw("Colz");
 
      c4->cd(pos[iCh]); 
      hParticlePdgMapAbove[iCh]->Draw();
-     //hParticlePdgMapAbove[iCh]->Draw("Colz");
+     //hParticlePdgMapAbove[iCh]->Draw("Colz");*/
 
 
      c5->cd(pos[iCh]); 
@@ -280,14 +390,29 @@ TCanvas* c6 = new TCanvas("c6", "PDG Histogram", 800, 600);
      hParticlePdgProton[iCh]->Draw("same");
      hParticlePdgPhoton[iCh]->Draw("same");
      hParticlePdgPhoton2[iCh]->Draw("same");
+     
+     
+     c7->cd(pos[iCh]); 
+     hParticlePdgElectron1[iCh]->Draw();
+     hParticlePdgPion1[iCh]->Draw("same");
+     hParticlePdgKaon1[iCh]->Draw("same");	
+     hParticlePdgProton1[iCh]->Draw("same");
+     hParticlePdgPhoton1[iCh]->Draw("same");
+     hParticlePdgPhoton21[iCh]->Draw("same");
+
+     
+
    }      
+   c5->SaveAs("pdgap.pdf");
 }
 
 
- TH1F *thcluMIPCharge[7], *thcluMIPSize[7], *thTrackMIPCharge[7], *thTrackMIPSize[7]; // add this
- 
- 
- TH2F *hCluChargeMap[7]; // add this
+TH1F *thcluMIPCharge[7], *thcluMIPSize[7], *thTrackMIPCharge[7], *thTrackMIPSize[7]; // add this
+
+
+TH2F *hCluChargeMap[7]; // * add this
+
+
 void process()
 {
 
@@ -382,7 +507,7 @@ void process()
         } // TODO: throw error? ef:
 
 
-	/*
+				/*
         for (int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++)
         {
             const auto &clu = static_cast<o2::hmpid::Cluster>(clusterArr->at(j));
@@ -416,6 +541,10 @@ void process()
             }
         }
 
+
+
+
+				
         Printf("============\n Cluster Loop \n ===============");
         // find entries in tracksOneEvent which corresponds to correct eventNumber
         Printf("Reading match vector<MatchInfoHMP> for startIndexTrack %d", startIndexTrack);
@@ -446,7 +575,7 @@ void process()
         {
 
 
-						if(!obj.getMatchStatus()) {continue;}
+						//if(!obj.getMatchStatus()) {continue;}
             const auto &iCh = obj.getChamber();
             
             
@@ -468,24 +597,21 @@ void process()
 		        thTrackRad[iCh]->Fill(xRad, yRad);
 		        std::cerr << " MIP Charge Track" << q << " Size  " << obj.getMipClusSize();
 
-            if (iCh < 0 || iCh > 6)
-            {
+            if (iCh < 0 || iCh > 6){
                 std::cerr << "Warning: iCh value out of expected range: " << iCh << std::endl;
-            }
-            else
-            {
-            sortedTracks[iCh].push_back(obj);
+            } else {
+              sortedTracks[iCh].push_back(obj);
                 // sstd::cerr << "sortedTracks[iCh] " << iCh << " pushback" << std::endl;
             }
         }
-
+			
         for (int i = 0; i < 7; i++)
         {
             std::cout << "Length of sortedTracks vector " << i << ": " << sortedTracks[i].size() << std::endl;
         }
 
         // Assuming the range of iCh values is from 0 to 6 (inclusive)
-        std::vector<ClusterCandidate> sortedClusters[7];
+        std::vector<o2::hmpid::ClusterCandidate> sortedClusters[7];
         // Assign MLinfoHMP objects to corresponding vectors based on iCh value
         for (const auto &obj : oneEventClusters)
         {
@@ -496,10 +622,10 @@ void process()
                 if (sortedTracks[iCh].size() > 0)
                 {
                     // make a light copy of digits, just holding the fields charge, x, y
-                    /*std::vector<ShallowDigit> shallowDigits;
+
 
                 
-                    //const std::vector<o2::hmpid::Cluster::Topology>& topology = obj.getClusterTopology();  // some info about digits associated w cluster*/
+                    //const std::vector<o2::hmpid::Cluster::Topology>& topology = obj.getClusterTopology();  // some info about digits associated w cluster* /
 
                     // hCluChargeMap[obj.ch()]->Fill(obj.x(), obj.y(), obj.q());
                     
@@ -507,7 +633,8 @@ void process()
                     
                     std::vector<std::pair<int, int>> candStatus = {{0, 0}};
                     // Printf("ClusterCandidate Ch %d", iCh);
-                    ClusterCandidate temp(obj.ch(), obj.x(), obj.y(), obj.q(), obj.chi2(), obj.xe(), obj.ye(), obj.getPDG(), candStatus);
+                    o2::hmpid::ClusterCandidate temp(obj.ch(), obj.x(), obj.y(), obj.q(), obj.chi2(), obj.xe(), obj.ye(), obj.getPDG(), obj.size());
+                    
                     sortedClusters[iCh].emplace_back(temp);
                 }
                 else
@@ -579,9 +706,9 @@ void process()
                 // add mcTrackPdg
                 //evaluateClusterTrack(clusterPerChamber, track, mipCharges, mcTrackPdg);
             }
-        }
+        } 
     }
-
+		
 
     TCanvas* cCluCharge = new TCanvas("cCluCharge", "Cluster Charge MAP", 800, 600);
     TCanvas* cTrackInfo = new TCanvas("cTrackInfo", "Track impact and mip", 800, 600);
@@ -621,28 +748,29 @@ void process()
 }
 
 
-void printMIP(){
+void printMIP()
+{
 	TCanvas* cthcluMIPCharge = new TCanvas("Cluster Charge", "Cluster Charge", 800, 600);
 	TCanvas* cthcluMIPSize = new TCanvas("thcluMIPSize", "thcluMIPSize", 800, 600);
-		TCanvas* cthTrackMIPCharge = new TCanvas("thTrackMIPCharge", "thTrackMIPCharge", 800, 600);
-			TCanvas* cthTrackMIPSize = new TCanvas("thTrackMIPSize", "thTrackMIPSize", 800, 600);
-			
-		cthcluMIPCharge->Divide(3,3);
-		cthcluMIPSize->Divide(3,3);
-		cthTrackMIPCharge->Divide(3,3);
-		cthTrackMIPSize->Divide(3,3);
+	TCanvas* cthTrackMIPCharge = new TCanvas("thTrackMIPCharge", "thTrackMIPCharge", 800, 600);
+	TCanvas* cthTrackMIPSize = new TCanvas("thTrackMIPSize", "thTrackMIPSize", 800, 600);
+
+	cthcluMIPCharge->Divide(3,3);
+	cthcluMIPSize->Divide(3,3);
+	cthTrackMIPCharge->Divide(3,3);
+	cthTrackMIPSize->Divide(3,3);
 
 
-     for (int i = 0; i < 7; i++) {
-        int iCh = pos[i];
-        cthcluMIPCharge->cd(iCh); 
-        thcluMIPCharge[i]->Draw();
-        cthcluMIPSize->cd(iCh); 
-        thcluMIPSize[i]->Draw();
-        cthTrackMIPCharge->cd(iCh); 
-        thTrackMIPCharge[i]->Draw();  
-        cthTrackMIPSize->cd(iCh); 
-        thTrackMIPSize[i]->Draw();      
- 			}
+	for (int i = 0; i < 7; i++) {
+		int iCh = pos[i];
+		cthcluMIPCharge->cd(iCh); 
+		thcluMIPCharge[i]->Draw();
+		cthcluMIPSize->cd(iCh); 
+		thcluMIPSize[i]->Draw();
+		cthTrackMIPCharge->cd(iCh); 
+		thTrackMIPCharge[i]->Draw();  
+		cthTrackMIPSize->cd(iCh); 
+		thTrackMIPSize[i]->Draw();      
+	}
  
 }

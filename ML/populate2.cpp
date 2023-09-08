@@ -80,8 +80,6 @@ public:
       //fPc.setX()
       Printf("init Populate class");
 
-      Printf("Track pos at RAD : x %.3f y %.3f ", trkPos.X(), trkPos.Y());
-      Printf("nF %.3f : x %.3f y %.3f ", nF, trkPos.X(), trkPos.Y());
       
 		  thetaP = trkDir.Theta();
 		  tanThetaP = TMath::Tan(thetaP);
@@ -105,10 +103,15 @@ public:
 			
 
       // NB! TODO: here PC impact point based on L = rW/2!!
+      //setPcImp(fTrkPos.X() + deltaX, fTrkPos.Y() + deltaY);
+      
       setPcImp(fTrkPos.X() + deltaX, fTrkPos.Y() + deltaY);
+      Printf("Track pos at RAD : x %.3f y %.3f ", trkPos.X(), trkPos.Y());
+      Printf("nF %.3f : x %.3f y %.3f ", nF, trkPos.X(), trkPos.Y());
+      
       Printf("Track pos at PC : x %.3f y %.3f ", fPc.X(), fPc.Y());
 
-      Printf("Track dir at RAD : theta %.3f phi %.3f ", trkDir.Theta(), trkDir.Phi());
+      Printf("Track dir at RAD : theta %.3f phi %.3f ", trkDir.Theta(), trkDir.Phi());      
 				
     }
 

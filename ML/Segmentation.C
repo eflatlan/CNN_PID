@@ -55,7 +55,7 @@ struct ShallowDigit {
 }; */ 
 
 
-void evaluateClusterTrack(std::vector<o2::hmpid::ClusterCandidate>& clusterPerChamber, const o2::dataformats::MatchInfoHMP& track, const std::vector<float>& mipCharges, int mcTrackPdg, int trackNumber);
+void evaluateClusterTrack(std::vector<o2::hmpid::ClusterCandidate>& clusterPerChamber, const o2::dataformats::MatchInfoHMP& track, const std::vector<float>& mipCharges, int mcTrackPdg, int trackNumber, int& plotNumber);
 
 
 std::array<float, 3> calcCherenkovHyp(float p, float n);
@@ -118,6 +118,9 @@ struct ClusterCandidate {
 
 void process()
 {
+
+
+  int plotNumber = 0;
   ParticleUtils2 mParticleEvents; 
 
    auto myTree = std::make_unique<TTree>("myTree", "Tree to store clusters, trackInfo, and mcPDG");
@@ -190,7 +193,7 @@ void process()
         const int firstEntry = pTgr->getFirstEntry();
         const int lastEntry = pTgr->getLastEntry();
         
-        Printf("Checking trigger number %d Range Clu = %d :: %d", i, firstEntry, lastEntry);
+        //Printf("Checking trigger number %d Range Clu = %d :: %d", i, firstEntry, lastEntry);
 
         std::vector<Cluster> oneEventClusters;
 
@@ -215,7 +218,7 @@ void process()
 
         for(int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++) {      
             const auto& clu = static_cast<o2::hmpid::Cluster>(clusterArr->at(j));
-            std::cout << j << " evNum " <<  clu.getEventNumber() << " |";
+            //std::cout << j << " evNum " <<  clu.getEventNumber() << " |";
         }
 
 
@@ -286,16 +289,17 @@ void process()
 							if (obj.getMatchStatus()) {
                 sortedTracks[iCh].push_back(obj);
               } else {
-                Printf("track didnt match MIP skipping");
+                //Printf("track didnt match MIP skipping");
               }
                 //sstd::cerr << "sortedTracks[iCh] " << iCh << " pushback" << std::endl;
             }
         }
-
+				std::cout << "Length of sortedTracks vector ";
         for (int i = 0; i < 7; i++) {
-            std::cout << "Length of sortedTracks vector " << i << ": " << sortedTracks[i].size() << 			std::endl;
+           if (sortedTracks[i].size() != 0)
+             std::cout <<  i << " : " << sortedTracks[i].size() << " |";
         }
-        
+        std::cout << std::endl;
 
         // Assuming the range of iCh values is from 0 to 6 (inclusive)
         std::vector<o2::hmpid::ClusterCandidate> sortedClusters[7];
@@ -332,7 +336,7 @@ void process()
             
             // check if has more than one track --> this means there is no candidates
             if(sortedTracks[i].size() < 1) {
-            	  Printf("sortedTracks[iCh%d].size() %d", i, sortedTracks[i].size());
+            	  //Printf("sortedTracks[iCh%d].size() %d", i, sortedTracks[i].size());
                 continue;
             }
 
@@ -342,17 +346,17 @@ void process()
             std::vector<float> mipCharges;
             // fill charges of MIPs
             for(const auto& track : sortedTracks[i]) {
-                float xMip, yMip; int q, nph;
-                track.getHMPIDmip(xMip, yMip, q, nph);
+
+                auto q = track.getMipClusQ();
                 mipCharges.emplace_back(q);
             }
 
 
             int tNum = 0;
             for(const auto& track : sortedTracks[i]) {
-            	  Printf("TrackNumber%d track[iCh%d].size() %d", tNum++, i, sortedTracks[i].size());
+            	  //Printf("TrackNumber%d track[iCh%d].size() %d", tNum++, i, sortedTracks[i].size());
             	  
-            	  Printf("TrackNumberMom %f", track.getHmpMom());
+            	  //Printf("TrackNumberMom %f", track.getHmpMom());
             	  
                 // pass clusters (and track) by reference, and add its status per track (adding to candStatus vector )
 
@@ -368,24 +372,38 @@ void process()
 		              const auto mcTrackIndex = track.getTrackIndex();
 
 		              // find the PDG code in teh o2Kine_sim.root file by matching the mcTrackIndex for the current event ; 
-		              const o2::MCTrack* mcTrack = HmpidDataReader::getMCEntry(mcTracks, mcTrackIndex);
+		              //--((const o2::MCTrack* mcTrack = HmpidDataReader::getMCEntry(mcTracks, mcTrackIndex);
 
-		              const int mcTrackPdg = mcTrack->GetPdgCode();
+		              //const int mcTrackPdg = mcTrack->GetPdgCode();
 		              
 
+									//mcPDGBranch = mcTrack->GetPdgCode(); 
+	
 
 
-
-									mcPDGBranch = mcTrack->GetPdgCode(); 
-									
-									
+								  const double winThick = 0.5, radThick = 1.5; const int gapThick = 8;
+  								const double gapIdx = 1.0005, winIdx = 1.5787;  
+  								auto dz = 9.25;
+  								
+  
 		              float xRad,  yRad,  xPc,  yPc,  th,  ph; // make for these 
 		              float xMip = track.getMipX(), yMip = track.getMipY(); // and thse 
 		              track.getHMPIDtrk(xRad,  yRad,  xPc,  yPc,  th,  ph);
-
+		              
+		              auto ypc = yRad + dz * TMath::Tan(th)*  TMath::Sin(ph);		              
+		              auto xpc = xRad +  dz * TMath::Tan(th)*  TMath::Cos(ph);		              
+		              
+		              TVector2 mip(xMip, yMip);
+		              
+		              TVector2 pcC(xpc, ypc);		              
+		              
+									if((mip-pcC).Mod() > 1) {
+										Printf("(mip-pcC).Mod() > 1 %.2f", (mip-pcC).Mod());
+										continue;
+									}
 
 		              refIndexBranch = track.getRefIndex(); 
-		              cluChargeBranch = track.getMipClusCharge();
+		              cluChargeBranch = track.getMipClusQ();
 		              cluSizeBranch = track.getMipClusSize();
 		              		              
 									xRadBranch = xRad; // also for xPc yPc 
@@ -405,7 +423,8 @@ void process()
 									// track : object with 10 scalar values
 									// mcTradckPDG : MC truth
 									// 
-                  //evaluateClusterTrack(clusterPerChamber, track, mipCharges, mcTrackPdg, tNum);
+										int pdg = track.getMipClusEventPDG();
+                  evaluateClusterTrack(clusterPerChamber, track, mipCharges, pdg, tNum, plotNumber);
                   
                   
                   
@@ -421,7 +440,7 @@ void process()
 									clusterBranch = const_cast<std::vector<o2::hmpid::ClusterCandidate>*>(&clusterPerChamber); // Make sure your ClusterCandidate class is compatible with ROOT I/O
 									trackInfoBranch = const_cast<o2::dataformats::MatchInfoHMP*>(&track); // Make sure your MatchInfoHMP class is compatible with ROOT I/O
 									
-									mcPDGBranch = mcTrack->GetPdgCode(); 
+									//mcPDGBranch = mcTrack->GetPdgCode(); 
 									
 									
 
@@ -431,13 +450,13 @@ void process()
 									
 									
 
-									mParticleEvents.fillCandidate(clusterPerChamber, track, mcPDGBranch);
+									mParticleEvents.fillCandidate(clusterPerChamber, track, 0);
                   
                   // for(auto& clusterPerChamber)
                 }
 								else  
 								{
-									Printf("Track didnt match!");
+									//Printf("Track didnt match!");
   							}
             }
 
@@ -475,13 +494,13 @@ void process()
 
 				// Perform some checks or analysis using these variables.
 				// For example, to print the size of clusterBranch (assuming it is a std::vector)
-				std::cout << "Size of clusterBranch: " << clusterBranch->size() << std::endl;
+				//std::cout << "Size of clusterBranch: " << clusterBranch->size() << std::endl;
 				
 
 		}
 		
 
-	mParticleEvents.writeH5();
+	   mParticleEvents.writeH5();
 }
 
 
@@ -495,7 +514,7 @@ void read_tree() {
     pionHist->Draw();
 
     TH2F *kaonHist = new TH2F("kaon", "Kaon;Momentum;Cherenkov Angle", 500, 0, 5, 400, 0, 0.8);
-    kaonHist->SetLineColor(kGreen); kaonHist->SetMarkerColor(kGreen);
+    kaonHist->SetLineColor(kGreen+2); kaonHist->SetMarkerColor(kGreen+2);
     kaonHist->Draw("SAME");
 
     TH2F *protonHist = new TH2F("proton", "Proton;Momentum;Cherenkov Angle", 500, 0, 5, 400, 0, 0.8);
@@ -521,7 +540,7 @@ void read_tree() {
     for (Long64_t i = 0; i < nEntriesP; ++i) {
         treeP->GetEntry(i);
 //--wer
-        const auto& ckov = calcCkovFromMass(trackInfoBranchP	->getHmpMom(), trackInfoBranchP->getRefIndex(), 221); //  calcCkovFromMass(momentum, n, mass)
+        const auto& ckov = calcCkovFromMass(trackInfoBranchP	->getHmpMom(), trackInfoBranchP->getRefIndex(), 211); //  calcCkovFromMass(momentum, n, mass)
 
         treeP->GetEntry(i);
   	    std::cout << "mcPDGBranch " << mcPDGBranchP << std::endl;
@@ -646,7 +665,7 @@ float calcCkovFromMass(float p, float n, int pdg)
 
 
 
-void evaluateClusterTrack(std::vector<o2::hmpid::ClusterCandidate>& clusterPerChamber, const o2::dataformats::MatchInfoHMP& track, const std::vector<float>& mipCharges, int mcTrackPdg, int trackNumber)
+void evaluateClusterTrack(std::vector<o2::hmpid::ClusterCandidate>& clusterPerChamber, const o2::dataformats::MatchInfoHMP& track, const std::vector<float>& mipCharges, int mcTrackPdg, int trackNumber, int& plotNumber)
 {
 
         const auto eventCnt = track.getEvent(); // check it corresponds to entry in loop of events?
@@ -716,7 +735,7 @@ void evaluateClusterTrack(std::vector<o2::hmpid::ClusterCandidate>& clusterPerCh
 
         // mcTrackPdg check that it matches with clusterPDG?
         // 
-        ckovTools.segment(clusterPerChamber, arrayInfo, track.getTrackIndex(), mipCharges, xMip, yMip, q /*MIP-charge*/, mcTrackPdg, track, trackNumber); // temp --> mapBins
+        ckovTools.segment(clusterPerChamber, arrayInfo, track.getTrackIndex(), mipCharges, xMip, yMip, q /*MIP-charge*/, mcTrackPdg, track, trackNumber, plotNumber); // temp --> mapBins
 }
 
 
