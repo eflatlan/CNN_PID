@@ -705,7 +705,7 @@ void evaluateClusterTrack(std::vector<o2::hmpid::ClusterCandidate>& clusterPerCh
 	
 	
 				
-        CkovTools ckovTools(radParams, refIndexes, MIP, ckovHyps, ckovAngle, eventCnt, mcTrackPdg);
+        CkovTools ckovTools(radParams, refIndexes, MIP, ckovHyps, ckovAngle, eventCnt, mcTrackPdg, track);
 
         Printf(" Event%d Track%d  : ckovHyps = <%.3f, %.3f> | <%.3f, %.3f> | <%.3f, %.3f>", eventCnt, ckovTools.getMinCkovPion(),ckovTools.getMaxCkovPion(),ckovTools.getMinCkovKaon(), ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovProton(), eventCnt); 
 
