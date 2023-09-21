@@ -11,7 +11,9 @@
 
 #include "populate2.cpp" // TODO: change name of class and file here 
 
-
+#include <iostream>
+#include <thread>
+#include <chrono>
 
 
 #include <math.h>
@@ -44,7 +46,7 @@ class ArrAndMap
   
   vecArray2 arrMaxPionPos, arrMaxKaonPos, arrMaxProtonPos;		
   vecArray2 arrMinPionPos, arrMinKaonPos, arrMinProtonPos;		
-  	
+  TVector2* errPos = new TVector2(0,0);
   	
   void setMaxArrays(const vecArray2& _arrMaxPionPos, const vecArray2& _arrMaxKaonPos, const vecArray2& _arrMaxProtonPos) {
   	arrMaxPionPos = _arrMaxPionPos;
@@ -52,6 +54,22 @@ class ArrAndMap
   	arrMaxProtonPos = _arrMaxProtonPos;
   }	
 		
+ 	std::unique_ptr<TH2F> limMin; 	std::unique_ptr<TH2F> limMax;
+   void setDrawLimits(const TH2F* limMinIn, const TH2F* limMaxIn) 
+   {
+
+      
+			limMin.reset(new TH2F(*limMinIn));
+
+			limMax.reset(new TH2F(*limMaxIn));
+   }
+
+		
+
+		void setErrorPos(const TVector2& posPhoton)
+		{
+			errPos->Set(posPhoton);
+		}	
   	
   void setMinArrays(const vecArray2& _arrMinPionPos, const vecArray2& _arrMinKaonPos, const vecArray2& _arrMinProtonPos) {
     arrMinPionPos = _arrMinPionPos;
@@ -73,11 +91,11 @@ class ArrAndMap
   /*
 	TH2F* ckovCandMapRange = nullptr;
 
-	TH2F* bgCandMapRange  = nullptr;
+	TH2F* mipSizeFilter  = nullptr;
 
 	TH2F* ckovCandMapOutRange = nullptr;
 
-	TH2F* bgCandMapOutRange = nullptr;
+	TH2F* mipChargeFilter = nullptr;
 
 
  TH2F* hSignalAndNoiseMap =  nullptr;
@@ -104,16 +122,16 @@ class ArrAndMap
    	ckovCandMapRange.emplace_back(std::array<double,2>{x,y});
   }
   
-  void fillbgCandMapRange(double x, double y) {
-   	bgCandMapRange.emplace_back(std::array<double,2>{x,y});
+  void fillmipSizeFilter(double x, double y) {
+   	mipSizeFilter.emplace_back(std::array<double,2>{x,y});
   }
 
   void fillckovCandMapOutRange(double x, double y) {
    	ckovCandMapOutRange.emplace_back(std::array<double,2>{x,y});
   }
   
-  void fillbgCandMapOutRange(double x, double y) {
-   	bgCandMapOutRange.emplace_back(std::array<double,2>{x,y});
+  void fillMipCharge(double x, double y) {
+   	mipChargeFilter.emplace_back(std::array<double,2>{x,y});
   }
   
 
@@ -121,7 +139,7 @@ class ArrAndMap
    
 
 
-	vecArray2 bgCandMapOutRange, ckovCandMapRange, bgCandMapRange, ckovCandMapOutRange;
+	vecArray2 mipChargeFilter, ckovCandMapRange, mipSizeFilter, ckovCandMapOutRange;
 		
 		/*
 		~ArrAndMap() {
@@ -140,11 +158,11 @@ class ArrAndMap
 
 			delete ckovCandMapRange;
 
-			delete bgCandMapRange;
+			delete mipSizeFilter;
 
 		delete 	ckovCandMapOutRange;
 
-		delete	bgCandMapOutRange;
+		delete	mipChargeFilter;
 
 
 delete 			hSignalAndNoiseMap;
@@ -168,11 +186,11 @@ delete 			hSignalAndNoiseMap;
 		
 			delete ckovCandMapRange;
 
-			delete bgCandMapRange;
+			delete mipSizeFilter;
 
 			delete ckovCandMapOutRange;
 
-			delete bgCandMapOutRange;
+			delete mipChargeFilter;
 
 
 			delete hSignalAndNoiseMap;
@@ -218,87 +236,158 @@ delete 			hSignalAndNoiseMap;
 	void drawTotalMap(int& plotNumber, int xMip, int yMip)
 	{
 
-	const auto trkRad = populatePtr->getTrackPos();
-	const auto trkPC = populatePtr->getPcImp();
-
-  auto xr = trkRad.X();   auto yr = trkRad.Y();
-	TVector2 mip(xMip, yMip);
-
-	auto  mipPhi = (mip-trkRad).Phi();
-	auto pcPhi = (trkPC-trkRad).Phi();
-
- auto len = 40.;
-
-
-  std::unique_ptr<TLine> tLineMIP(new TLine(xr -len * TMath::Cos(mipPhi),yr - len * TMath::Sin(mipPhi),xr + len * TMath::Cos(mipPhi),yr + len * TMath::Sin(mipPhi)));
-
-  std::unique_ptr<TLine> tLineTRK(new TLine(xr -len * TMath::Cos(pcPhi),yr - len * TMath::Sin(pcPhi),xr + len * TMath::Cos(pcPhi),yr + len * TMath::Sin(pcPhi)));
 
 
 
-	auto distPC2MIP = (mip-trkPC).Mod();
+		const auto trkRad = populatePtr->getTrackPos();
+		const auto trkPC = populatePtr->getPcImp();
 
-   auto st = Form("distPC2MIP %.2f", distPC2MIP);
-   std::unique_ptr<TH2F> hCkovCandMapRange(new TH2F(st, st, 1600, 0, 159, 1440, 0, 143));
-    std::unique_ptr<TH2F> hBgCandMapRange(new TH2F("bgCandMapRange", "bgCandMapRange", 1600, 0, 159, 1440, 0, 143));
-    std::unique_ptr<TH2F> hCkovCandMapOutRange(new TH2F("ckovCandMapOutRange", "ckovCandMapOutRange", 1600, 0, 159, 1440, 0, 143));
-    std::unique_ptr<TH2F> hBgCandMapOutRange(new TH2F("bgCandMapOutRange", "bgCandMapOutRange", 1600, 0, 159, 1440, 0, 143));
-    std::unique_ptr<TH2F> hSignalAndNoiseMap(new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",1600, 0, 159, 1440, 0, 1433));
-    std::unique_ptr<TH2F> hSignalMIP(new TH2F("hmip ", "hmip ; x [cm]; y [cm]", 1600, 0., 159., 1440, 0, 143));
-    std::unique_ptr<TH2F> hSignalMIPpc(new TH2F("hmip pc", "hmip pc; x [cm]; y [cm]", 1600, 0., 159., 1440, 0, 143));
-    std::unique_ptr<TH2F> hMaxProton(new TH2F("maxPoss Ckov Proton", "maxPoss Ckov Proton; x [cm]; y [cm]",1600, 0, 159, 1440, 0, 143));
-    std::unique_ptr<TH2F> hMaxPion(new TH2F("maxPoss Ckov Pion", "maxPoss Ckov Pion; x [cm]; y [cm]",1600, 0, 159, 1440, 0, 143));
-    std::unique_ptr<TH2F> hMaxPionMinL(new TH2F("maxPoss Ckov Pion min L", "maxPoss Ckov Pion min L; x [cm]; y [cm]",1600, 0, 159, 1440, 0, 143));
-    std::unique_ptr<TH2F> hMinPionMaxL(new TH2F("minPoss Ckov Pion max L", "minPoss Ckov Pion max L; x [cm]; y [cm]",1600, 0, 159, 1440, 0, 143));
-    std::unique_ptr<TH2F> hMaxKaon(new TH2F("maxPoss Ckov Kaon", "maxPoss Ckov Kaon; x [cm]; y [cm]",1600, 0, 159, 1440, 0, 143));
-    std::unique_ptr<TH2F> hMinProton(new TH2F("minPoss Ckov Proton", "minPoss Ckov Proton; x [cm]; y [cm]",1600, 0, 159, 1440, 0, 143));
-    std::unique_ptr<TH2F> hMinPion(new TH2F("minPoss Ckov Pion", "minPoss Ckov Pion; x [cm]; y [cm]",1600, 0, 159, 1440, 0, 143));
-    std::unique_ptr<TH2F> hMinKaon(new TH2F("minPoss Ckov Kaon", "minPoss Ckov Kaon; x [cm]; y [cm]",1600, 0, 159, 1440, 0, 143));
-    // ... similarly for other TH2F objects you might have
+		auto xr = trkRad.X();   auto yr = trkRad.Y();
+		TVector2 mip(xMip, yMip);
+
+		auto  mipPhi = (mip-trkRad).Phi();
+		auto pcPhi = (trkPC-trkRad).Phi();
+
+		 auto len = 40.;
+
+
+		std::unique_ptr<TLine> tLineMIP(new TLine(xr -len * TMath::Cos(mipPhi),yr - len * TMath::Sin(mipPhi),xr + len * TMath::Cos(mipPhi),yr + len * TMath::Sin(mipPhi)));
+
+		std::unique_ptr<TLine> tLineTRK(new TLine(xr -len * TMath::Cos(pcPhi),yr - len * TMath::Sin(pcPhi),xr + len * TMath::Cos(pcPhi),yr + len * TMath::Sin(pcPhi)));
 
 
 
-	  Printf("		fillMapFromVec(mArrAndMap->hMaxPion, arrMaxPion);// map, array");
-	  fillMapFromVec(hMaxPion.get(), arrMaxPionPos);// map, array
-	  fillMapFromVec(hMaxKaon.get(), arrMaxKaonPos);// map, array
-	  fillMapFromVec(hMaxProton.get(), arrMaxProtonPos);// map, array
+		auto distPC2MIP = (mip-trkPC).Mod();
 
-	  fillMapFromVec(hMinPion.get(), arrMinPionPos);// map, array
-	  fillMapFromVec(hMinKaon.get(), arrMinKaonPos);// map, array
-	  fillMapFromVec(hMinProton.get(), arrMinProtonPos);
-	  
-	  
+		 auto st = Form("distPC2MIP %.2f", distPC2MIP);
+		 std::unique_ptr<TH2F> hCkovCandMapRange(new TH2F(st, st, 1600, 0, 300, 1440, 0, 143));
+		  std::unique_ptr<TH2F> hmipSizeFilter(new TH2F("mipSizeFilter", "mipSizeFilter", 1600, 0, 300, 1440, 0, 143));
+		  std::unique_ptr<TH2F> hCkovCandMapOutRange(new TH2F("ckovCandMapOutRange", "ckovCandMapOutRange", 1600, 0, 300, 1440, 0, 143));
+		  std::unique_ptr<TH2F> hmipChargeFilter(new TH2F("mipChargeFilter", "mipChargeFilter", 1600, 0, 300, 1440, 0, 143));
+		  std::unique_ptr<TH2F> hSignalAndNoiseMap(new TH2F("Signal and Noise ", "Signal and Noise ; x [cm]; y [cm]",1600, 0, 300, 1440, 0, 1433));
+		  std::unique_ptr<TH2F> hSignalMIP(new TH2F("hmip ", "hmip ; x [cm]; y [cm]", 1600, 0., 300., 1440, 0, 143));
+		  std::unique_ptr<TH2F> hSignalMIPpc(new TH2F("hmip pc", "hmip pc; x [cm]; y [cm]", 1600, 0., 300., 1440, 0, 143));
+		  std::unique_ptr<TH2F> hMaxProton(new TH2F("maxPoss Ckov Proton", "maxPoss Ckov Proton; x [cm]; y [cm]",1600, 0, 300, 1440, 0, 143));
+		  std::unique_ptr<TH2F> hMaxPion(new TH2F("maxPoss Ckov Pion", "maxPoss Ckov Pion; x [cm]; y [cm]",1600, 0, 300, 1440, 0, 143));
+		  std::unique_ptr<TH2F> hMaxPionMinL(new TH2F("maxPoss Ckov Pion min L", "maxPoss Ckov Pion min L; x [cm]; y [cm]",1600, 0, 300, 1440, 0, 143));
+		  std::unique_ptr<TH2F> hMinPionMaxL(new TH2F("minPoss Ckov Pion max L", "minPoss Ckov Pion max L; x [cm]; y [cm]",1600, 0, 300, 1440, 0, 143));
+		  std::unique_ptr<TH2F> hMaxKaon(new TH2F("maxPoss Ckov Kaon", "maxPoss Ckov Kaon; x [cm]; y [cm]",1600, 0, 300, 1440, 0, 143));
+		  std::unique_ptr<TH2F> hMinProton(new TH2F("minPoss Ckov Proton", "minPoss Ckov Proton; x [cm]; y [cm]",1600, 0, 300, 1440, 0, 143));
+		  std::unique_ptr<TH2F> hMinPion(new TH2F("minPoss Ckov Pion", "minPoss Ckov Pion; x [cm]; y [cm]",1600, 0, 300, 1440, 0, 143));
+		  std::unique_ptr<TH2F> hMinKaon(new TH2F("minPoss Ckov Kaon", "minPoss Ckov Kaon; x [cm]; y [cm]",1600, 0, 300, 1440, 0, 143));
+		  // ... similarly for other TH2F objects you might have
 
-		hMaxProton->SetMarkerColor(kGreen+3);
-		hMaxKaon->SetMarkerColor(kRed);
-		hCkovCandMapRange->SetMarkerColor(kGreen);
+
+		  std::unique_ptr<TH2F> herrPos(new TH2F("errPos", "errPos; x [cm]; y [cm]",1600, 0, 300, 1440, 0, 143));
+
+
+
+
+			//printf("		fillMapFromVec(mArrAndMap->hMaxPion, arrMaxPion);// map, array");
+			fillMapFromVec(hMaxPion.get(), arrMaxPionPos);// map, array
+			fillMapFromVec(hMaxKaon.get(), arrMaxKaonPos);// map, array
+			fillMapFromVec(hMaxProton.get(), arrMaxProtonPos);// map, array
+
+			fillMapFromVec(hMinPion.get(), arrMinPionPos);// map, array
+			fillMapFromVec(hMinKaon.get(), arrMinKaonPos);// map, array
+			fillMapFromVec(hMinProton.get(), arrMinProtonPos);
+			
+			
+
+
+		//limMin->SetMarkerStyle(2);
+		//limMax->SetMarkerStyle(2);
+
+		limMin->SetMarkerColor(kOrange-3);
+		limMax->SetMarkerColor(kOrange+2);
+
+		limMin->SetMarkerColor(kCyan);    
+
+
+		hCkovCandMapRange->SetMarkerColor(kGreen );
 		hCkovCandMapOutRange->SetMarkerColor(kGreen + 2);
 
+		//herrPos->SetMarkerColor(kRed+3);
+		//herrPos->SetMarkerStyle(3);
+		
+		
+		//herrPos->Fill(errPos->X(), errPos->Y());
+	
 
-
-		hBgCandMapRange->SetMarkerColor(kRed-3);    // MIP 
-		hBgCandMapOutRange->SetMarkerColor(kRed+3); // MIP of other
+		hmipSizeFilter->SetMarkerColor(kOrange-2);
+		hmipChargeFilter->SetMarkerColor(kOrange+2);
 
 		hCkovCandMapRange->SetMarkerStyle(3);
 		hCkovCandMapOutRange->SetMarkerStyle(2);
 
-		hBgCandMapRange->SetMarkerStyle(3);
-		hBgCandMapOutRange->SetMarkerStyle(2);
+		hmipSizeFilter->SetMarkerStyle(2);
+		hmipChargeFilter->SetMarkerStyle(2);
 
+		int range = 80;
+		const int xMin = xMip - range;
+		const int xMax = xMip + range;
+		const int yMin = yMip - range;
+		const int yMax = yMip + range;
+/*
+		hCkovCandMapRange->SetAxisRange(xMin, xMax, "X");
+		hCkovCandMapRange->SetAxisRange(yMin, yMax, "Y");
 
+		hmipSizeFilter->SetAxisRange(xMin, xMax, "X");
+		hmipSizeFilter->SetAxisRange(yMin, yMax, "Y");
 
+		hCkovCandMapOutRange->SetAxisRange(xMin, xMax, "X");
+		hCkovCandMapOutRange->SetAxisRange(yMin, yMax, "Y");
+
+		hmipChargeFilter->SetAxisRange(xMin, xMax, "X");
+		hmipChargeFilter->SetAxisRange(yMin, yMax, "Y");
+
+		hSignalAndNoiseMap->SetAxisRange(xMin, xMax, "X");
+		hSignalAndNoiseMap->SetAxisRange(yMin, yMax, "Y");
+
+		hSignalMIP->SetAxisRange(xMin, xMax, "X");
+		hSignalMIP->SetAxisRange(yMin, yMax, "Y");
+
+		hSignalMIPpc->SetAxisRange(xMin, xMax, "X");
+		hSignalMIPpc->SetAxisRange(yMin, yMax, "Y");
+
+		hMaxProton->SetAxisRange(xMin, xMax, "X");
+		hMaxProton->SetAxisRange(yMin, yMax, "Y");
+
+		hMaxPion->SetAxisRange(xMin, xMax, "X");
+		hMaxPion->SetAxisRange(yMin, yMax, "Y");
+
+		hMaxPionMinL->SetAxisRange(xMin, xMax, "X");
+		hMaxPionMinL->SetAxisRange(yMin, yMax, "Y");
+
+		hMinPionMaxL->SetAxisRange(xMin, xMax, "X");
+		hMinPionMaxL->SetAxisRange(yMin, yMax, "Y");
+
+		hMaxKaon->SetAxisRange(xMin, xMax, "X");
+		hMaxKaon->SetAxisRange(yMin, yMax, "Y");
+
+		hMinProton->SetAxisRange(xMin, xMax, "X");
+		hMinProton->SetAxisRange(yMin, yMax, "Y");
+
+		hMinPion->SetAxisRange(xMin, xMax, "X");
+		hMinPion->SetAxisRange(yMin, yMax, "Y");
+
+		hMinKaon->SetAxisRange(xMin, xMax, "X");
+		hMinKaon->SetAxisRange(yMin, yMax, "Y");*/
 
 		
 		
 		fillMapFromVec(hCkovCandMapRange.get(), ckovCandMapRange);// map, array
 		fillMapFromVec(hCkovCandMapOutRange.get(), ckovCandMapOutRange);// map, array
-		fillMapFromVec(hBgCandMapRange.get(), bgCandMapRange);// map, array
-		fillMapFromVec(hBgCandMapOutRange.get(), bgCandMapOutRange);
+		fillMapFromVec(hmipSizeFilter.get(), mipSizeFilter);// map, array
+		fillMapFromVec(hmipChargeFilter.get(), mipChargeFilter);
 
+
+		hMaxProton->SetMarkerColor(kGreen+3);
+		hMaxKaon->SetMarkerColor(kRed);
 		hMinProton->SetMarkerColor(kGreen+3);
 		hMinKaon->SetMarkerColor(kRed);
 		hMaxPion->SetMarkerColor(kBlue + 4);    // max ckov max L
-		hMinPion->SetMarkerColor(kBlue); 				// min ckov min L
+		hMinPion->SetMarkerColor(kBlue); 				// min ckov min L/**/
 		hMinPionMaxL->SetMarkerColor(kBlue); 		// min ckov max L
 		hMaxPionMinL->SetMarkerColor(kBlue + 4);// max ckov min L
 		/*
@@ -311,11 +400,11 @@ delete 			hSignalAndNoiseMap;
 		hSignalAndNoiseMap->SetMarkerStyle(2);
 
 
-		auto trkPCMap = std::make_unique<TH2F>("trkPCMap ", "trkPCMap; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
-		auto trkRadMap = std::make_unique<TH2F>("trkRadMap ", "trkRadMap; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
+		auto trkPCMap = std::make_unique<TH2F>("trkPCMap ", "trkPCMap; x [cm]; y [cm]",160*10,0.,300.,144*10,0,143);
+		auto trkRadMap = std::make_unique<TH2F>("trkRadMap ", "trkRadMap; x [cm]; y [cm]",160*10,0.,300.,144*10,0,143);
 
 
-    auto MIP = std::make_unique<TH2F>("MIP ", "MIP; x [cm]; y [cm]",160*10,0.,159.,144*10,0,143);
+    auto MIP = std::make_unique<TH2F>("MIP ", "MIP; x [cm]; y [cm]",160*10,0.,300.,144*10,0,143);
 
 
 		trkRadMap->Fill(trkRad.X(), trkRad.Y());
@@ -326,8 +415,8 @@ delete 			hSignalAndNoiseMap;
 		MIP->SetMarkerStyle(3);    // max ckov max L
 
 
-tLineMIP->SetLineColor(kCyan); 
-tLineTRK->SetLineColor(kRed); 
+		tLineMIP->SetLineColor(kCyan); 
+		tLineTRK->SetLineColor(kRed); 
 
 
 
@@ -335,9 +424,9 @@ tLineTRK->SetLineColor(kRed);
 		tcnvRane->cd();
 		hCkovCandMapRange->Draw();
 		hCkovCandMapOutRange->Draw("same");
-		hBgCandMapRange->Draw("same");
-		hBgCandMapOutRange->Draw("same");
-		MIP->Draw("same");
+		hmipSizeFilter->Draw("same");
+		hmipChargeFilter->Draw("same");
+		//MIP->Draw("same");
 
 		hMaxPion->Draw("same");     //  Printf("makeEvent()  hMaxPion->Draw");
 		hMinPion->Draw("same");
@@ -346,9 +435,20 @@ tLineTRK->SetLineColor(kRed);
 		hMinKaon->Draw("same");
 		hMaxKaon->Draw("same");
 		tLineTRK->Draw("same");
-		tLineMIP->Draw("same");
+		// tLineMIP->Draw("same");
 		trkRadMap->Draw("same");
 		trkPCMap->Draw("same");
+		//herrPos->Draw("same");
+
+						//printf("opulatePtr->limMin->GetEntries() num BinEntries = %f ", populatePtr->limMin->GetEntries());
+			//printf("endlimMax num BinEntries = %f ", limMax->GetEntries());
+			//printf("emdlimMin num BinEntries = %f ", limMin->GetEntries());
+
+
+
+    tcnvRane->SaveAs(Form("Segmented_%d.png", plotNumber));
+		limMin->Draw("same");
+		limMax->Draw("same");
 
     tcnvRane->SaveAs(Form("Segmented%d.png", plotNumber));
     plotNumber++;
@@ -360,8 +460,8 @@ tLineTRK->SetLineColor(kRed);
 
 		const auto trkPC = populatePtr->getPcImp();
 		const auto trkRad = populatePtr->getTrackPos();
-		TH2F* trkPCMap = new TH2F("trkPCMap ", "trkPCMap; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
-		TH2F* trkRadMap = new TH2F("trkRadMap ", "trkRadMap; x [cm]; y [cm]",160*20,0.,159.,144*20,0,143);
+		TH2F* trkPCMap = new TH2F("trkPCMap ", "trkPCMap; x [cm]; y [cm]",160*20,0.,300.,144*20,0,143);
+		TH2F* trkRadMap = new TH2F("trkRadMap ", "trkRadMap; x [cm]; y [cm]",160*20,0.,300.,144*20,0,143);
 	  trkRadMap->Fill(trkRad.X(), trkRad.Y());
 	  trkPCMap->Fill(trkPC.X(), trkPC.Y());
 
@@ -408,8 +508,8 @@ tLineTRK->SetLineColor(kRed);
 		tcnvRane->cd();
 		ckovCandMapRange->Draw();
 		ckovCandMapOutRange->Draw("same");
-		bgCandMapRange->Draw("same");
-		bgCandMapOutRange->Draw("same");
+		mipSizeFilter->Draw("same");
+		mipChargeFilter->Draw("same");
 
 		hSignalAndNoiseMap->Draw();
 
@@ -568,7 +668,7 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
   
   xMip = MIP[0], yMip = MIP[1], qMip = MIP[2]; 
   
-    xRad= radParams[0];
+  xRad= radParams[0];
   yRad= radParams[1];
   L = radParams[2]; 
   thetaP = radParams[3];
@@ -619,39 +719,39 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
  
  
    trackPdgString = getPDG(trackPdg);
-  Printf(" Track PDG %d %s | CkovTools momentum = %.2f, refFreon = %.2f; ckovHyps : %.2f %.2f %.2f", trackPdg, trackPdgString.c_str(),momentum, nF, ckovHyps[0], ckovHyps[1], ckovHyps[2]);
+  //printf(" Track PDG %d %s | CkovTools momentum = %.2f, refFreon = %.2f; ckovHyps : %.2f %.2f %.2f", trackPdg, trackPdgString.c_str(),momentum, nF, ckovHyps[0], ckovHyps[1], ckovHyps[2]);
 
 	if(TMath::IsNaN(ckovHyps[0])){
- 	  Printf("Pion CkovHyps is Nan!");
+ 	  //printf("Pion CkovHyps is Nan!");
 	  setPionStatus(false);
 	  // setIsNan()?
 	} else {
 		setPionStatus(true);
- 	  Printf("Pion CkovHyps %.2f", ckovHyps[0]);
+ 	  //printf("Pion CkovHyps %.2f", ckovHyps[0]);
   }
 
   if(TMath::IsNaN(ckovHyps[1])){
-	  Printf("Kaon CkovHyps is Nan!");
+	  //printf("Kaon CkovHyps is Nan!");
    	setKaonStatus(false);
 	  // setIsNan()?
 	} 
 	else { 
- 	  Printf("Kaon CkovHyps %.2f", ckovHyps[1]);
+ 	  //printf("Kaon CkovHyps %.2f", ckovHyps[1]);
   }
 
   if(TMath::IsNaN(ckovHyps[2])){
-  	  Printf("Proton CkovHyps is Nan!");
+  	  //printf("Proton CkovHyps is Nan!");
 	  	setProtonStatus(false);
 	} else {
- 	  Printf("Proton CkovHyps %.2f", ckovHyps[2]);
+ 	  //printf("Proton CkovHyps %.2f", ckovHyps[2]);
 	}
 
 	if(getPionStatus()){
 	  ckovPionMin = ckovHyps[0] - 2 * stdDevPion;
 	  ckovPionMax = ckovHyps[0] + 2 * stdDevPion;
- 	  Printf("init CkovTools constructor : getPionStatus() true ! minPion %.2f, maxPion %.2f ", ckovPionMin, ckovPionMax);
+ 	  //printf("init CkovTools constructor : getPionStatus() true ! minPion %.2f, maxPion %.2f ", ckovPionMin, ckovPionMax);
   }	else {
- 	  Printf("init CkovTools constructor : getPionStatus() was false !");
+ 	  //printf("init CkovTools constructor : getPionStatus() was false !");
   }
   
   if(getKaonStatus()){
@@ -714,10 +814,10 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
 	//populate.setPcImp(trkPC);
 
 
-	Printf("init Ckovtools \n MIP Root : %f %f %f \n MIP local %f %f",op.Px(),op.Py(),op.Pz(),xMipLocal,yMipLocal);
+	//printf("init Ckovtools \n MIP Root : %f %f %f \n MIP local %f %f",op.Px(),op.Py(),op.Pz(),xMipLocal,yMipLocal);
 		    // constructor body goes here, if needed
 
-	Printf("Ckovtools :: trkPC %.2f %.2f",trkPC.X(), trkPC.Y());
+	//printf("Ckovtools :: trkPC %.2f %.2f",trkPC.X(), trkPC.Y());
 		    // constructor body goes here, if needed
 
 	/*
@@ -842,7 +942,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
   
   ArrAndMap mArrAndMap;// new ArrAndMap(eventCnt);
   
-  Printf("ckovTools enter  ckovTools.segment"); 	 
+  //printf("ckovTools enter  ckovTools.segment"); 	 
   //const auto infString = Form("localRef #Theta_{p}  = %.4f #Phi_{p} = %.4f L = %.2f \n #Theta_{C} = %.4f maxCkov = %.4f ; x [cm]; y [cm]", thetaP,phiP, L,trackCkov,ckovPionMax); 
 
   //TH2F *localRefMIP = new TH2F("localRefMIP ", infString,800,-40.,-40.,900,-40.,40.);
@@ -859,7 +959,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
   // void setArrayMin(Populate* populate, double etaTRS, vecArray3 inPutVector) 
 
 
-  const size_t kN = 400;
+	const size_t kN = 200;
 
 	//array<array<double, 3> ,kN> arrMaxPion; 
 
@@ -896,10 +996,10 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 		//arrMaxProtonPos.resize(kN);
 				
 		// also later add max, i forste runde sjekk at ckov i {minProton, maxPion}
-		Printf("calling setArrayMin w getMinCkovProton() = %.2f", getMinCkovProton());
+		//printf("calling setArrayMin w getMinCkovProton() = %.2f", getMinCkovProton());
   	setArrayMin(getMinCkovProton(), arrMinProton, arrMinProtonPos, kN);
 
-		Printf("calling setArrayMax w getMaxCkovProton() = %.2f", getMaxCkovProton());
+		//printf("calling setArrayMax w getMaxCkovProton() = %.2f", getMaxCkovProton());
   		setArrayMax(getMaxCkovProton(), arrMaxProton, arrMaxProtonPos, kN);
 	}
 	
@@ -918,34 +1018,34 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 		//arrMaxKaonPos.resize(kN);
 		//arrMinKaonPos.resize(kN);
 
-		Printf("calling setArrayMin w getMinCkovKaon() = %.2f", getMinCkovKaon());
+		//printf("calling setArrayMin w getMinCkovKaon() = %.2f", getMinCkovKaon());
   	setArrayMin(getMinCkovKaon(), arrMinKaon, arrMinKaonPos, kN);
 
-		Printf("calling setArrayMax w getMaxCkovKaon() = %.2f", getMaxCkovKaon());
+		//printf("calling setArrayMax w getMaxCkovKaon() = %.2f", getMaxCkovKaon());
   	setArrayMax(getMaxCkovKaon(), arrMaxKaon, arrMaxKaonPos, kN);
 	}
 
 	
 
 
-	Printf("BF : Length of elem vectors : arrMaxPion %zu", arrMaxPion.size());	
-  Printf("calling setArrayMax w getMaxCkovPion() = %.2f", getMaxCkovPion());
+	//printf("BF : Length of elem vectors : arrMaxPion %zu", arrMaxPion.size());	
+  //printf("calling setArrayMax w getMaxCkovPion() = %.2f", getMaxCkovPion());
   setArrayMax(getMaxCkovPion(), arrMaxPion, arrMaxPionPos, kN);
   
   for(const auto& ip : arrMaxPion) {
 		const auto& phiL_ = ip[0];
 		const auto& phiR_ = ip[1]; 
 		const auto& r_ = ip[2];  
-		//Printf("setArrayMax() --> checking arrMaxPionPos | : phiL %.2f, phiR %.2f, r %.2f", phiL_, phiR_, r_);
+		////printf("setArrayMax() --> checking arrMaxPionPos | : phiL %.2f, phiR %.2f, r %.2f", phiL_, phiR_, r_);
 		if(r_ == 0 ) {throw std::invalid_argument("r====??????;");}
   } 
   
-	Printf("AFTER : Length of elem vectors : arrMaxPion %zu", arrMaxPion.size());	
+	//printf("AFTER : Length of elem vectors : arrMaxPion %zu", arrMaxPion.size());	
 
 
 
-	//Printf(" BF : Length of elem vectors : arrMinPion %zu", arrMinPion.size());
-  //Printf("calling setArrayMin w getMinCkovPion() = %.2f", getMinCkovPion());
+	////printf(" BF : Length of elem vectors : arrMinPion %zu", arrMinPion.size());
+  ////printf("calling setArrayMin w getMinCkovPion() = %.2f", getMinCkovPion());
   
   /*
 			// phiL : photon_phi i TRS system 
@@ -988,17 +1088,13 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 	const int scale = 2;
 
 
-  Printf("ckovTools segment : exit const auto& p : segPionLocal"); 	 
+  //printf("ckovTools segment : exit const auto& p : segPionLocal"); 	 
 
   // TODO: ckovHyps : get std-dev for Theta_ckov of pion kaon and proton from the values theta_i
 
  // initialize recon with track input params 
  
 
-    // TODO: change this, xMipLocal just placeholder
-    // not sure if xPC simply is obtained like this
-    double xPC = xMipLocal, yPC = yMipLocal;
-    local2GlobalRef(xPC, yPC);
 
 
     Printf("dX %f dY %f ", xMipLocal, yMipLocal);
@@ -1043,6 +1139,9 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
   int photNum = 0;
 
   int cStatus = 0;
+  
+  TVector2 errorPos;
+  bool drawMap = false;
   for(auto& photons : clusterTrack) 
   {
 
@@ -1054,13 +1153,15 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 		trackPdgString = getPDG(trackPdg);
 
   
-    Printf("\n\n =========== Photon num %d of %zu PDG : %d %s ========================== \n", photNum++, clusterTrack.size(), photons.mPDG, pdgString.c_str());	
+    //printf("\n\n =========== Photon num %d of %zu PDG : %d %s ========================== \n", photNum++, clusterTrack.size(), photons.mPDG, pdgString.c_str());	
     
     
     
     photons.setCandidateStatus(0);
     
-    
+    const auto& x = photons.mX, y = photons.mY;
+
+
     const auto& dist = (photons.mX - mipX)*(photons.mX - mipX) + (photons.mY - mipY)*(photons.mY - mipY);
     
 
@@ -1071,13 +1172,13 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
     if(photons.mX == mipX && photons.mY == mipY /*&& photons.mQ ==  mipCharge*/) { // current cluster is mip
     
       const auto photonPDG = photons.mPDG; // check also other indexes?
-      photons.setCandidateStatus(-2);
-      cStatus = -2;
+      photons.setCandidateStatus(1);
+      cStatus = 1;
       LOGP(info, "Cluster PDG {} Track {}", photonPDG, mcTrackPdg);
  
 
 
-      
+ 			mArrAndMap.fillmipSizeFilter(x,y);
       // check if PDG code matches track's PDG-code
       // : photons has field digits w pdg-code; get this and match w track: 
 
@@ -1095,73 +1196,41 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
           
         }
         else {
-          Printf("photonPDG matched mcTrackPdg!"); 
-
-          //photons.setIsMip(true, trackIndex); // set the mip to have teh tracks trackIndex value?
-          // eller expand denne og set index?
-
-          // cStatus expand her ? have another bit for being a MIP?
-          //clusterTrack.setCandidateStatus(trackIndex, cStatus);
-					// trenger vi egentlig aa gjore dette? 
-					// MIP er der allerede fra Track!
-					//continue;
-
-          // the current photon is the MIP corresponding to the current track
-          // good! set the truth or something? 
+          //printf("photonPDG matched mcTrackPdg!"); 
+          
         } // trackIndex, const std::vector<float>& mipCharges, float mipX, float mipY, const int mcmcTrackPdg
       }
            
     } //<> if()
 
 
-    // small radius as we probably will only see secondary charged particles here TODO: ask Giacomo
 
 
-    /* ef :TODO add this, but what kind of CStatus to define as?
-    if(dist < 2) // add small radius where we dont add; this also to not include the MIP for hte current track;
-      continue;  // also to not add candidates from other MIPs
-    */
+		auto mipCut = 200.;
+		int mipSizeCut = 2;
 
-    // this means current cluster is MIP (probably from other track)
-    bool skip = false;
-    for(const auto& mipCharge : mipCharges ) { 
+
+
     
-       if(photons.mQ ==  mipCharge && cStatus == 0) { 
-         const auto photonPDG = photons.mPDG; // check also other indexes?
-	 LOGP(info, "CluCharge {} Cluster PDG {} Track {}", photons.mQ , photonPDG, mcTrackPdg);
-	 
-	// ef : this corresponds to the photon being a MIP in the same chamber, for the same event
-	// but for a different track
-	photons.setCandidateStatus(-1);
-        skip = true; 
-       } 
-    }
-
-    if(skip) {
+    if(photons.mQ > mipCut && photons.mSize > mipSizeCut && cStatus != 1) {
     
       LOGP(info, "skipping photon beacause its the mip of another track");
 
-      photons.setCandidateStatus(-1);
-      cStatus = -1;
+      photons.setCandidateStatus(1);
+      cStatus = 1;
+ 			mArrAndMap.fillmipSizeFilter(x,y);
       //continue; // this photon charge is a MIP--> dont consider as candidate 
 
     }
-    
-    
-    
-    Printf("Photon(%.1f %.1f) MIP(%.1f %.1f) RAD (%.1f %.1f) Track (%.1f %.1f)", photons.mX, photons.mY, mipX, mipY, xRad, yRad, thetaP, phiP);
-    // this means current entry should be a MIP, this will not be a candidate
 
 
-    // ef : TODO get this value from calibration
-    //if(photons.mQ > mipCut) {continue; } // this means current entry should be a MIP, this will not be a candidate
-
+ 
     iPhotCount++;
 
 
-    Printf("%d", iPhotCount);
+
     //const auto& x = photons[0], y = photons[1];
-    const auto& x = photons.mX, y = photons.mY;
+
     
 
 
@@ -1170,73 +1239,30 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
     double xL = x, yL = y;
     double xG = x, yG = y;
-    /*localRefUnrot->Fill(x,y);
-    // transform to phiRing ref-system
-    local2PhiRing(xL, yL, xMipLocal, yMipLocal);
-    localRef->Fill(xL, yL);*/ 
 
-
-		/*
-    Printf("ckovtools cherenkov photons x > xMaxPhiPi && x < xMaxPhi0 && y > yMaxPhiPi && y < yMaxPhi0");
-    Printf("ckovtools cherenkov photons x  %f > xMaxPhiPi %f && x %f < xMaxPhi0 %f && y %f > yMaxPhiPi  %f && y %f < yMaxPhi0 %f",  x, xMaxPhiPi, x , xMaxPhi0 , y , yMaxPhiPi , y , yMaxPhi0);*/
-    
-	
-    //Printf("\nckovtools cherenkov photons x  %f > -mL1Max %f && x %f < mL2Max %f && y %f > -mRMax  %f && y %f < mRMax %f\n",  x, -mL1Max, x , mL2Max , y , -mRMax , y , mRMax);
 
     double thetaCer, phiCer;
-    //local2GlobalRef(xG, yG);
-    // double cluX, double cluY, double& thetaCer, double& phiCer
-    
-
-    //Printf("CkovTools segment thetaCer %f phiCer %f", thetaCer, phiCer);
-
-
     auto xAbs = TMath::Abs(x);
     auto yAbs = TMath::Abs(y);
 
-    //Printf("\nckovtools cherenkov photons xAbs  %f > mL1Max %f && x %f < mL2Max %f && yAbs %f > mRMax  %f && y %f < mRMax %f\n",  x, mL1Max, xAbs , mL2Max , yAbs , mRMax , y , mRMax);
-
-
-
     bool withinRange = true; 
 
-
-
     const TVector2 posPhoton(x, y);
-
-    // find reference  radius to be compared to segmetation radiuses 
-    // use PC/MIP value?
-    // trkPC = track value at PC
-    // mipPos = MIP at PC
     
     const auto rPhoton = (posPhoton - mipPos).Mod();
     
     
     // ef : TODO here i put a radius of 40, should this be done?
     
-    const int rMax = 210;
-
-    if(rPhoton < rMax && cStatus == 0){
-        //if(x > -mL1Max && x < mL2Max && y > -mRMax  && y < mRMax){
-
-        //double thetaCer, phiCer;
-        //reconG.findPhotCkov(xG, yG, thetaCer, phiCer);	
-        //auto ckov = thetaCer;
+    const auto rMax = 60.;
+    const auto rMin = 2.;
+    if((rPhoton < rMax && rPhoton > rMin) && cStatus == 0){
 
 
-
-
-
-        // skal denne vaere trkRAD? trkPos= trkRAD
         const auto phiPhoton = (posPhoton - trkPos).Phi(); 
         																									
 
         const auto pc = populatePtr->getPcImp();
-
-        
-    
-        // iteration phiL approach init
-        // checking if inside outer pionRadius (Lmin, etaMax)
 
         
         bool isPhotonProtonCand = false, isPhotonKaonCand = false, isPhotonPionCand = false;
@@ -1249,95 +1275,158 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
         Printf(" Track PDG %d %s", trackPdg, trackPdgString.c_str());	
         if(getProtonStatus() and getKaonStatus() and getPionStatus()) {
             
-            Printf("Pion%d can be Pion Kaon and Proton from p-hyp \n", iPhotCount);	
+            //printf("Pion%d can be Pion Kaon and Proton from p-hyp \n", iPhotCount);	
             // verify thatrPhoton > rMinProton(@ phiEstimated = phiPhoton)
 
-            Printf("\n\npopulate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, above, arrMinProton, getMinCkovProton());");
-            isMinProtonOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinProton, getMinCkovProton(), "Proton");
+            //printf("\n\npopulate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, above, arrMinProton, getMinCkovProton());");
+            
+            bool shutDownOnOpen = false;
+            //isMinProtonOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinProton, getMinCkovProton(), "Proton", shutDownOnOpen);
+
+
+								//printf("isMinProtonOk = evaluatePointContour(posPhoton, arrMinProtonPos, false);"); 
+						// to be true; point needs to be outside of contour of minProton
+            isMinProtonOk = evaluatePointContour(posPhoton, arrMinProtonPos, false); // outside = intersection!
+						//printf("isMinProtonOk %d", isMinProtonOk);
+
+
+
+
+
+            if (shutDownOnOpen) {
+        			//printf("shutDownOnOpen!!");	            
+            	drawMap = true;
+            	errorPos.Set(posPhoton);
+            	//break;
+            }      
+            
 
 						/* checkUnder(const TVector2& posPhoton, const double& rPhoton, const double& phiPhoton, vecArray4& vec, const double& etaCkov, const char* hadronType)
 						*/
 
             // check if rPhoton > rMax(@ phiEstimated = phiPhoton)
             if(isMinProtonOk) {
-                Printf("isMinProtonOk = true");
-                Printf("\n\npopulate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion());");
+                //printf("isMinProtonOk = true");
+                //printf("\n\npopulate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion());");
 
-                isMaxPionOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion(), "Pion");
-                
+
+
+
+
+
+                //isMaxPionOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion(), "Pion");
+								//printf("isMaxPionOk = !evaluatePointContour(posPhoton,  arrMaxPionPos, true);"); 
+
+								// to be true; point needs to be inside of contour of isMaxPionOk
+    						isMaxPionOk = !evaluatePointContour(posPhoton,  arrMaxPionPos, true); // inside = no intersection!
+								//printf("isMaxPionOk %d", isMaxPionOk);
                 // this means rProtonMin < rPhoton < rMaxPion
                 if(isMaxPionOk) {
                     
                     
                     // this means rProtonMax > rPhoton; then also the rPh < rPionMax and rPh < rKaonMax
 
-                    isMaxProtonOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxProton, getMaxCkovProton(), "Proton");
-                    Printf("===================================="); 
+                    //isMaxProtonOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxProton, getMaxCkovProton(), "Proton");
+
+
+										// to be true; point needs to be inside of contour of isMaxProtonOk
+    								//printf("		isMaxProtonOk = !evaluatePointContour(posPhoton,  arrMaxProtonPos, true)"); 
+    								isMaxProtonOk = !evaluatePointContour(posPhoton,  arrMaxProtonPos, true);// inside = no intersection!
+										//printf("isMaxProtonOk %d", isMaxProtonOk);
+                    //printf("===================================="); 
                     if(isMaxProtonOk) {
                         // we have proton-candiate
                         isPhotonProtonCand = true;
 
                         protonCandidates.push_back(std::array<double,2>{x,y});
-                        Printf("Photon%d is a Proton Candidate", iPhotCount); 
+                        //printf("Photon%d is a Proton Candidate", iPhotCount); 
                         // isMaxPionOk = true;
                         isMaxKaonOk = true;
                     }	else {
-                        Printf("Photon%d not a Proton Candidate", iPhotCount); 
+                        //printf("Photon%d not a Proton Candidate", iPhotCount); 
                     }
-                    Printf("====================================\n"); 
-                    Printf("===================================="); 
+                    //printf("====================================\n"); 
+                    //printf("===================================="); 
                     // this means rPionMin < rPhoton --> and also rKaonMin < rPhoton
 
 
 
-                    isMinPionOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion");
+								    bool shutDownOnOpen = false;
+								    
+
+      								//printf("	isMinPionOk = evaluatePointContour(posPhoton,  arrMinPionPos, false);"); 
+                    //isMinPionOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion", shutDownOnOpen);
+    								isMinPionOk = evaluatePointContour(posPhoton,  arrMinPionPos, false); 										//printf("isMinPionOk %d", isMinPionOk);
+								    if (shutDownOnOpen) {
+            					errorPos.Set(posPhoton);								    
+											//printf("shutDownOnOpen!!");	            
+								    	drawMap = true;
+								    	//break;
+								    }                    
+                    
                     if(isMinPionOk) {
                         // we have pion-candiate
                         isPhotonPionCand = true;
-                        Printf("Photon%d is a Pion Candidate", iPhotCount); 
+                        //printf("Photon%d is a Pion Candidate", iPhotCount); 
                                             
                         pionCandidates.push_back(std::array<double,2>{x,y});
                         
                         isMinKaonOk = true;
                     }	else {
-                        Printf("Photon%d not a Pion Candidate", iPhotCount); 
+                        //printf("Photon%d not a Pion Candidate", iPhotCount); 
                     }			
-                        Printf("===================================="); 				
+                        //printf("===================================="); 				
                     
                     // if rPhoton < rPhotonMin, check if rPhoton > rKaonMin
                     if(!isMinKaonOk) {
-                        // isMinKaonOk = populate2Ptr->checkCond()
-                    isMinKaonOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinKaon, getMinCkovKaon(), "Kaon");
+                    
+		                  
+										  bool shutDownOnOpen = false;
+										  
+											//isMinKaonOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinKaon, getMinCkovKaon(), "Kaon", shutDownOnOpen);
+      								//printf("isMinKaonOk = evaluatePointContour(posPhoton,  arrMinKaonPos, false);"); 
+    									isMinKaonOk = evaluatePointContour(posPhoton,  arrMinKaonPos, false); //printf("isMinKaonOk %d", isMinKaonOk);
+
+										  if (shutDownOnOpen) {
+					            	errorPos.Set(posPhoton);										  
+												//printf("shutDownOnOpen!!");	            
+										  	drawMap = true;
+										  	//break;
+										  }                          
+
                     }
                     
-                    Printf("\n===================================="); 
+                    //printf("\n===================================="); 
                     // only check isMaxKaon if isMinKaonOk
                     if(isMinKaonOk) {
                         if(!isMaxKaonOk) {
-                            isMaxKaonOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxKaon, getMaxCkovKaon(), "Kaon");
+		        								//printf("isMaxKaonOk = !evaluatePointContour(posPhoton,  arrMaxKaonPos, true)"); 
+                            //isMaxKaonOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxKaon, getMaxCkovKaon(), "Kaon");
+    												isMaxKaonOk = !evaluatePointContour(posPhoton,  arrMaxKaonPos, true); // inside = no intersection!
                             // isMaxKaonOk = populate2Ptr->checkCond()
+	 														//printf("isMaxKaonOk %d", isMaxKaonOk);
                         } 
 
                         if(isMaxKaonOk and isMinKaonOk) {
-                            Printf("Photon%d is a Kaon Candidate", iPhotCount); 
+                            //printf("Photon%d is a Kaon Candidate", iPhotCount); 
                             // we have kaon cand
                             isPhotonKaonCand = true;
                             kaonCandidates.push_back(std::array<double,2>{x,y});
                         } else {
-                            Printf("Photon%d not a Kaon Candidate", iPhotCount); 
+                            //printf("Photon%d not a Kaon Candidate", iPhotCount); 
                         }
                     } else {
-                        Printf("Photon%d not a Kaon Candidate", iPhotCount); 
+                        //printf("Photon%d not a Kaon Candidate", iPhotCount); 
                     }
-                    Printf("====================================\n"); 
+                    //printf("====================================\n"); 
                                 
                 }  // end if isMaxPionOk == true
                             
                 // else isMaxPionOk == false
                 else {
-                    Printf("===============================================================");	
-                    Printf("\n Photon%d not a Hadron Candidate :\n rPhoton %.2f > rPionMax", iPhotCount,  rPhoton);
-                    Printf("===============================================================");	
+                    //printf("===============================================================");	
+                    //printf("\n Photon%d not a Hadron Candidate :\n rPhoton %.2f > rPionMax", iPhotCount,  rPhoton);
+                    //printf("===============================================================");	
                 }
                 
             }	// end if isMinProtonOk == true
@@ -1345,9 +1434,9 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
             // else isMinProtonOk == false
             // this means  rPhoton < rProtonMin : 
             else {
-                Printf("===============================================================");	
-                Printf("\n Photon%d not a Hadron Candidate :\n rPhoton %.2f < rProtonMin",iPhotCount, rPhoton);
-                Printf("===============================================================");	
+                //printf("===============================================================");	
+                //printf("\n Photon%d not a Hadron Candidate :\n rPhoton %.2f < rProtonMin",iPhotCount, rPhoton);
+                //printf("===============================================================");	
             }
 
         
@@ -1355,48 +1444,73 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
         // if Proton not is possible because momentum-threshold is not exceeded:
         else if(!getProtonStatus() and getKaonStatus() and getPionStatus()) {
-            Printf("\n====================================================="); 
-            Printf("Photon%d can be Pion and Kaon from p-hyp", iPhotCount);	
+            //printf("\n====================================================="); 
+            //printf("Photon%d can be Pion and Kaon from p-hyp", iPhotCount);	
             // verify that rPhoton > rMinKaon(@ phiEstimated = phiPhoton)
-            Printf("\npopulate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinKaon, getMinCkovProton());");
-        isMinKaonOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinKaon, getMinCkovKaon(), "Kaon");
 
+
+
+
+					  bool shutDownOnOpen = false;
+          	//printf("isMinKaonOk = evaluatePointContour(posPhoton,  arrMinKaonPos, false)"); 
+						//isMinKaonOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinKaon, getMinCkovKaon(), "Kaon", shutDownOnOpen);
+						isMinKaonOk = evaluatePointContour(posPhoton,  arrMinKaonPos, false); // outside =  intersection!
+					  if (shutDownOnOpen) {            	errorPos.Set(posPhoton);
+							//printf("shutDownOnOpen!!");	            
+					  	drawMap = true;
+					  	//break;
+					  }     
 
             // this means rProtonMin < rPhoton < rMaxPion
             if(isMinKaonOk) {
             
             
                 // denne var feil!!! her var det satt arrRMinPion og gtckovMin
-                isMaxPionOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion(), "Pion");
-
+                //isMaxPionOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion(), "Pion");
+                  //printf("isMaxPionOk = !evaluatePointContour(posPhoton,  arrMaxPionPos, true)"); 
+								isMaxPionOk = !evaluatePointContour(posPhoton,  arrMaxPionPos, true); // inside =  no intersection!
                 if(isMaxPionOk) {
+										bool shutDownOnOpen = false;
+                    //isMinPionOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion", shutDownOnOpen);
+                        //printf("isMinPionOk = evaluatePointContour(posPhoton,  arrMinPionPos, false);"); 
+										isMinPionOk = evaluatePointContour(posPhoton,  arrMinPionPos, false); // outside =  intersection!
 
-                    isMinPionOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion");
+
+										if (shutDownOnOpen) {            	errorPos.Set(posPhoton);
+											//printf("shutDownOnOpen!!");	            
+											drawMap = true;
+											//break;
+										}                      
+                    
                     
                 //isMinPionOk = ...
                     // this means rPionMin < rPhoton
                     if(isMinPionOk) {
                         isPhotonPionCand = true;
                         pionCandidates.push_back(std::array<double,2>{x,y});	
-                        Printf("Photon%d is Pion Candiate", iPhotCount); 
+                        //printf("Photon%d is Pion Candiate", iPhotCount); 
                         // we have pion-candiate
                     }	
 
-                    isMaxKaonOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxKaon, getMaxCkovKaon(), "Kaon");
+                    //isMaxKaonOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxKaon, getMaxCkovKaon(), "Kaon");
+                        //printf("isMaxKaonOk = !evaluatePointContour(posPhoton,  arrMaxKaonPos, true)"); 
+										isMaxKaonOk = !evaluatePointContour(posPhoton,  arrMaxKaonPos, true); // inside =  no intersection!
+
+
                     // isMaxKaonOk = populate2Ptr->
                     if(isMaxKaonOk) {
                         isPhotonKaonCand = true;
                         kaonCandidates.push_back(std::array<double,2>{x,y});
-                        Printf("Photon%d is Kaon Candiate", iPhotCount); 
+                        //printf("Photon%d is Kaon Candiate", iPhotCount); 
                         // we have kaon-candiate
                     }							
                 }	
                 else {
-                    Printf("Photon%d could be Pion/Kaon (from p-hyp) but was out of radius-range",iPhotCount);
+                    //printf("Photon%d could be Pion/Kaon (from p-hyp) but was out of radius-range",iPhotCount);
                 }	
             } // end if isMinKaonOk
             else {
-                Printf("Photon%d could be Pion/Kaon (from p-hyp) but was out of radius-range",iPhotCount);
+                //printf("Photon%d could be Pion/Kaon (from p-hyp) but was out of radius-range",iPhotCount);
             }
         } // end else if (!getProtonStatus() and getKaonStatus() and getPionStatus())
 
@@ -1406,103 +1520,66 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
         // if neither Proton or Kaon is possible because momentum-threshold is not exceeded:
         else if(!getProtonStatus() and !getKaonStatus() and getPionStatus()) {
-            Printf("Photon%d can be Pion from p-hyp", iPhotCount);	
+            //printf("Photon%d can be Pion from p-hyp", iPhotCount);	
 
-            Printf("populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhotob, arrMaxPion, getMaxCkovPion());");
+            //printf("populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhotob, arrMaxPion, getMaxCkovPion());");
 
-            isMaxPionOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion(), "Pion");
-            
+            //isMaxPionOk = populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMaxPion, getMaxCkovPion(), "Pion");
+						isMaxPionOk = !evaluatePointContour(posPhoton,  arrMaxPionPos, true);      // inside =  no intersection!      
             
             if(isMaxPionOk) {
 
-                Printf("populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMinPion, getMaxCkovPion());",iPhotCount);
+                //printf("populate2Ptr->checkOver(posPhoton, rPhoton, phiPhoton, arrMinPion, getMaxCkovPion());",iPhotCount);
                 
-                bool isMinPionOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion");
-                
+								bool shutDownOnOpen = false;                
+                //bool isMinPionOk = populate2Ptr->checkUnder(posPhoton, rPhoton, phiPhoton, arrMinPion, getMinCkovPion(), "Pion", shutDownOnOpen);
+								bool isMinPionOk = evaluatePointContour(posPhoton,  arrMinPionPos, false); // outisde = intersection!      
+
+								if (shutDownOnOpen) {            	errorPos.Set(posPhoton);
+									Printf("shutDownOnOpen!!");	            
+									drawMap = true;
+									//break;
+								}       
                 if(isMinPionOk) {
                     // we have pion candidate
-                    Printf("Photon%d is Pion Candidate", iPhotCount);	
+                    //printf("Photon%d is Pion Candidate", iPhotCount);	
                     isPhotonPionCand = true; 
                     pionCandidates.push_back(std::array<double,2>{x,y});
                 } else {
-                    Printf("Photon%d could only have been Pion, but didnt fall within radius-range",iPhotCount);
+                    //printf("Photon%d could only have been Pion, but didnt fall within radius-range",iPhotCount);
                 }
             } 
             else {
-                Printf("Photon%d could only have been Pion, but didnt fall within radius-range",iPhotCount);
+                //printf("Photon%d could only have been Pion, but didnt fall within radius-range",iPhotCount);
             }			
             
         } // end else if(!getProtonStatus() and !getKaonStatus() and getPionStatus())
 
         // this should not really be "possible", but can be if we have another candidate that is not pion/kaon/proton
         else {
-            Printf("Photon%d was not Pion Kaon or Proton from p-hyp",iPhotCount);
+            //printf("Photon%d was not Pion Kaon or Proton from p-hyp",iPhotCount);
             // we got particle that should not be able to be pion, kaon or proton
         }
 
 
         
-        Printf("\n===============================================================");	
-        Printf("	Photon%d  Candidate: Pion = %d Kaon = %d Proton %d", iPhotCount, isPhotonPionCand, isPhotonKaonCand, isPhotonProtonCand);
-        Printf("===============================================================\n");	
+        //printf("\n===============================================================");	
+        //printf("	Photon%d  Candidate: Pion = %d Kaon = %d Proton %d", iPhotCount, isPhotonPionCand, isPhotonKaonCand, isPhotonProtonCand);
+        //printf("===============================================================\n");	
 
 
-
-        /* ef: kan vi gjoere noe ala dette for clusters?
-        // correctly identified cherenkov photons
-        if((isPhotonPionCand or isPhotonKaonCand or isPhotonProtonCand) and etaC != 0) {
-        numFoundActualCkov ++;
-        }
-        
-        // correctly identified cherenkov photons
-        if(!(isPhotonPionCand or isPhotonKaonCand or isPhotonProtonCand) and etaC != 0) {
-        Printf("Ckov %.2f", etaC);
-        
-        print = true;
-            //throw std::invalid_argument("Photon Ckov not found!??");
-        } if(etaC != 0) {
-            numActualCkov ++;
-        }
-        // number of found bg photons that are labelled as within proper range:
-        if((isPhotonPionCand or isPhotonKaonCand or isPhotonProtonCand) and etaC == 0) {
-        numBackgroundLabeledCkov ++;	
-        }*/
-
-
-        // struct with x, y, phiLocal, phi, R + bool isCandidate? 
-        // or just x, y, /* phiLocal,*/ phi, R; where x, y... = 0 if !isCandidate
-
-        // better to not store rPhot and phiPhot? this can easily be obtained in ML photon
-        /*pionCands.emplace_back(Candidate{x, y, rPhoton, phiPhoton, isPhotonPionCand});	
-        kaonCands.emplace_back(Candidate{x, y, rPhoton, phiPhoton, isPhotonKaonCand});	
-        protonCands.emplace_back(Candidate{x, y, rPhoton, phiPhoton, isPhotonProtonCand});
-        */ 
 
 	      if(cStatus == 0)
-          cStatus = 4*static_cast<int>(isPhotonPionCand) + 2*static_cast<int>(isPhotonKaonCand) + 1*static_cast<int>(isPhotonProtonCand);
+          cStatus = 1  + 4*static_cast<int>(isPhotonPionCand) + 2*static_cast<int>(isPhotonKaonCand) + 1*static_cast<int>(isPhotonProtonCand);
 
-
+	      if(cStatus == 1)
+	        mArrAndMap.fillckovCandMapOutRange(x,y);
 				LOGP(info, "cStatus {}", cStatus);
 
-        //o2::hmpid::ClusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)
-        photons.setCandidateStatus(cStatus);
+            //o2::hmpid::ClusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)
+            photons.setCandidateStatus(cStatus);
 				LOGP(info, "photons.setCandidateStatus(trackIndex {}, cStatus{}); ", trackIndex, cStatus);
-        /// lagre denne istedet :
-        /*
-        if( x > 0 && x < 156 && y < 144 && y > 0) {
-            candidatesCombined.emplace_back(ParticleUtils::Candidate2{x, y, cStatus});
-        } */
-
-
-
-
-
-						
-
-
-            // or store as 1 vector, where candidate status 8 => 2^3 (000, 001, 010, 011, 100, 110, 101, 111)
-            
-            // phiL, phi, R of maxPionVec vectorh
+       
 
 
         }// end if radius ok
@@ -1511,27 +1588,27 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
         // radius was to big to consider : 
 
         
-        else if(rPhoton > rMax && cStatus == 0){
-          rOverMax++;
-		      cStatus = 0; // set other value to indicate out of region?
+        else if((rPhoton > rMax || rPhoton < rMin ) && cStatus == 0){
+            rOverMax++;
+		        cStatus = 0; // set other value to indicate out of region?
+            photons.setCandidateStatus(cStatus);
 
+						LOGP(info, "Radius {} too high ! cStatus {}", rPhoton, cStatus);
 
-					LOGP(info, "Radius {} too high ! cStatus {}", rPhoton, cStatus);
-
-		      //o2::hmpid::ClusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)
+		      	//o2::hmpid::ClusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)
 		      					
-				}
+        }
 
         // this means it falls within range
-        if(cStatus > 0) {
+        if(cStatus > 1) {
 
               // this means  candidate is a ckov-photon
               if(true) {
                   //(mArrAndMap->ckovCandMapRange)->Fill(x,y);
                   mArrAndMap.fillCkovCandMapRange(x,y); 
               }	else { // falls within range, but is bg
-              //(mArrAndMap->bgCandMapRange)->Fill(x,y);
-                  mArrAndMap.fillbgCandMapRange(x,y);
+              //(mArrAndMap->mipSizeFilter)->Fill(x,y);
+                  mArrAndMap.fillmipSizeFilter(x,y);
               }
           }
           // falls out of range
@@ -1541,32 +1618,11 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
                   mArrAndMap.fillckovCandMapOutRange(x,y);
                   //(mArrAndMap->ckovCandMapOutRange)->Fill(x,y);
               }	else { // falls out of range, and is bg
-                  mArrAndMap.fillbgCandMapOutRange(x,y);
-                  //(mArrAndMap->bgCandMapOutRange)->Fill(x,y);			
+                  mArrAndMap.fillMipCharge(x,y);
+                  //(mArrAndMap->mipChargeFilter)->Fill(x,y);			
               }
           }
 
-          else if (cStatus == -1){ // is MIP 
-              // this means  candidate is a ckov-photon, but out of range
-              if(true) {
-                  mArrAndMap.fillbgCandMapOutRange(x,y);
-                  //(mArrAndMap->ckovCandMapOutRange)->Fill(x,y);
-              }	else { // falls out of range, and is bg
-                  mArrAndMap.fillbgCandMapOutRange(x,y);
-                  //(mArrAndMap->bgCandMapOutRange)->Fill(x,y);			
-              }
-          }
-
-          else if (cStatus == -2){ // is MIP of other tracj
-              // this means  candidate is a ckov-photon, but out of range
-              if(true) {
-                  mArrAndMap.fillbgCandMapRange(x,y);
-                  //(mArrAndMap->ckovCandMapOutRange)->Fill(x,y);
-              }	else { // falls out of range, and is bg
-                  mArrAndMap.fillbgCandMapOutRange(x,y);
-                  //(mArrAndMap->bgCandMapOutRange)->Fill(x,y);			
-              }
-          } 		
         
     }   // end for ckovPhotons
 
@@ -1587,29 +1643,29 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
                 throw std::invalid_argument("wtf value does numActualCkov have?");
     }*/ 
 
-	Printf("=========================================================================");
-	Printf("CkovHyps, possible candidates from Momentum | Pion = %d, Kaon = %d, Proton = %d", getPionStatus(), getKaonStatus(), getProtonStatus());
+	//printf("=========================================================================");
+	//printf("CkovHyps, possible candidates from Momentum | Pion = %d, Kaon = %d, Proton = %d", getPionStatus(), getKaonStatus(), getProtonStatus());
 
 
     /*int cntTemp = 0;
   for(const auto& c : candidatesCombined){
-		//Printf("Phot%d : x = %.2f, y = %.2f || statusCand = %d", cntTemp++, c.x, c.y, c.candStatus); 
+		////printf("Phot%d : x = %.2f, y = %.2f || statusCand = %d", cntTemp++, c.x, c.y, c.candStatus); 
 	}*/
-	Printf("=========================================================================");
+	//printf("=========================================================================");
 
 
-    Printf("number of candidates : proton %zu, kaon %zu, pion %zu | total %zu, radius over Limit %d ", protonCandidates.size(), kaonCandidates.size(), pionCandidates.size(), clusterTrack.size(), rOverMax);
+    //printf("number of candidates : proton %zu, kaon %zu, pion %zu | total %zu, radius over Limit %d ", protonCandidates.size(), kaonCandidates.size(), pionCandidates.size(), clusterTrack.size(), rOverMax);
  
-      Printf("MIP(%.1f %.1f) RAD (%.1f %.1f) Track (%.1f %.1f)", mipX, mipY, xRad, yRad, thetaP, phiP);
+      //printf("MIP(%.1f %.1f) RAD (%.1f %.1f) Track (%.1f %.1f)", mipX, mipY, xRad, yRad, thetaP, phiP);
       
       
       
     //for(const auto& pair: filledBins)
-    //	Printf("CkovTools segment candidates: x%f y%f", pair.first, pair.second);    
+    //	//printf("CkovTools segment candidates: x%f y%f", pair.first, pair.second);    
 
 
     // hNoiseMap->SetMarkerColor(kRed);
-    Printf("CkovTools segment filledBins Size %zu", filledBins.size());
+    //printf("CkovTools segment filledBins Size %zu", filledBins.size());
 
 
    /*
@@ -1675,21 +1731,27 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 
   // to draw maps:
-	if(false) {
+	if(/*drawMap*/false) {
 
 		
  		mArrAndMap.setEventCount(eventCnt);
 		
-		
+		mArrAndMap.setErrorPos(errorPos);
 		Populate2* pPtr = new Populate2(trkPos, trkDir, nF);
-		mArrAndMap.setPopulatePtr(pPtr);
+		mArrAndMap.setPopulatePtr(populate2Ptr);
 		
-		if(false) { Printf("populate2Ptr was nullptr!");}
+		if(false) { //printf("populate2Ptr was nullptr!");
+    }
 	  else {	
 		mArrAndMap.setMinArrays(arrMinPionPos, arrMinKaonPos, arrMinProtonPos);
 		mArrAndMap.setMaxArrays(arrMaxPionPos, arrMaxKaonPos, arrMaxProtonPos);		
-	
-	  
+
+			//printf("populatePtr->GetHistogram()->GetEntries() num BinEntries = %f ", populate2Ptr->getLimMin()->GetEntries());
+			//printf("mArrAndMap->limMin->GetEntries() num BinEntries = %f ", populate2Ptr->limMin->GetEntries());
+    // to draw the "split-phi"...
+		mArrAndMap.setDrawLimits(populate2Ptr->limMin, populate2Ptr->limMax);
+
+	  			//printf("mArrAndMap->limMin->GetEntries() num BinEntries = %f ", populate2Ptr->limMin->GetEntries());
 	  
 		auto d = (rW- L + tGap + qW);
 
@@ -1699,35 +1761,40 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 		auto cosP = TMath::Cos(phiP);
 		auto sinP = TMath::Sin(phiP);
 	
-		Printf("delta %.2f | x %.2f y %.2f ", d*tanP, d*tanP*cosP, d*tanP*sinP);
+		//printf("delta %.2f | x %.2f y %.2f ", d*tanP, d*tanP*cosP, d*tanP*sinP);
 		//mArrAndMap->drawTotalMapAndMaxRegions();
-		
+				
+	mArrAndMap.drawTotalMap(plotNumber, xMip, yMip);
     // to drqw the maps :: 
-    //mArrAndMap.drawTotalMap(plotNumber, xMip, yMip);
+
 		
 
    //mArrAndMap->drawMaxRegions();		  
-  
-		Printf("Event Number%d, momentum %.2f | mass %.2f | thetaP %.2f | phiP %.2f | L %.2f", eventCnt,momentum, mass, thetaP, phiP, L);
+  		//printf("==========================================================================");
+  		//printf("==========================================================================");
+  		//printf("==========================================================================");
+
+		//printf("\n\n\nEvent Number%d, momentum %.2f | mass %.2f | thetaP %.2f | phiP %.2f | L %.2f", eventCnt,momentum, mass, thetaP, phiP, L);
 					
 		// const double& ckovThe, const double& ckovPhi, const double & L
 		const auto l1 = populatePtr->tracePhot(getMaxCkovPion(), 0, L);
 		const auto l2 = populatePtr->tracePhot(getMinCkovPion(), 3.14159285, L);
 
-		Printf("phiP %.5f: angle rad --> pc = %.5f | Acos %.5f Asin %.5f"  , phiP, (trkPos-trkPC).Phi(), TMath::ACos(d*tanP*cosP/(trkPos-trkPC).Mod()), TMath::ASin(d*tanP*sinP/(trkPos-trkPC).Mod()));
+		//printf("phiP %.5f: angle rad --> pc = %.5f | Acos %.5f Asin %.5f"  , phiP, (trkPos-trkPC).Phi(), TMath::ACos(d*tanP*cosP/(trkPos-trkPC).Mod()), TMath::ASin(d*tanP*sinP/(trkPos-trkPC).Mod()));
 		
-		Printf("PHI : l1 %.5f | l2 %.5f ", (l1-trkPos).Phi(),(l2-trkPos).Phi());
-		Printf("RADIUS : l1 %.5f | l2 %.5f ", (l1-trkPC).Mod(),(l2-trkPC).Mod());
+		//printf("PHI : l1 %.5f | l2 %.5f ", (l1-trkPos).Phi(),(l2-trkPos).Phi());
+		//printf("RADIUS : l1 %.5f | l2 %.5f ", (l1-trkPC).Mod(),(l2-trkPC).Mod());
 
-		Printf("CkovHyps %.2f %.2f %.2f", ckovHyps[0], ckovHyps[1], ckovHyps[2]);
+		//printf("CkovHyps %.2f %.2f %.2f", ckovHyps[0], ckovHyps[1], ckovHyps[2]);
 		//Printf("CkovHyps %.2f %.2f %.2f", ckovHyps[0], ckovHyps[1], ckovHyps[2]);
+    std::this_thread::sleep_for(std::chrono::seconds(20));
 
-     
+    //return;
 		//throw std::invalid_argument("print invoked"); 
     }
   // drawTotalMap / drawMaxRegions
   } else {
-    // NB! lagre denne istedet : 
+    // NB! lagre denne istedet : s
 
     /*
     candCombined = candidatesCombined; // x, y, cStatus
@@ -1748,116 +1815,111 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 } // end segment
 
 
-//r0G = rGL + rLP' ; rLP' = Rz(phi)[rLP]
-void phiRing2Local(double &xL, double &yL, const double& xMipL, const double& yMipL)
-{	  
-  TRotation mThetaRot;
-  mThetaRot.RotateZ(phiP);
-  
-  TVector3 mip(xMipL, yMipL, 0);
-  TVector3 phiRingPos(xL, yL, 0);
-  TVector3 op = mip + mThetaRot*phiRingPos;
-  xL = op.Px();
-  yL = op.Py();
-}
-  
-//r0G = rGL + rLP' ; rLP' = Rz(phi)[rLP]
-// rLP = Rz(-phi) * [r0G-rGL]
-void local2PhiRing(double &xL, double &yL, const double& xMipL, const double& yMipL)
-{	  
-  TRotation mThetaRot;
-  mThetaRot.RotateZ(-phiP);
-  
-  TVector3 pos(xL-xMipL, yL-yMipL, 0);
-  TVector3 op = mThetaRot*pos;
-  xL = op.Px();
-  yL = op.Py();
-}
+bool lineIntersects(const TVector2& MIP, const TVector2& B, const std::array<double, 2>& C, const std::array<double, 2>& D, double rUncertainty, TVector2& intersection, bool& pointIsInside  ) { 
 
-void local2GlobalRef(double& xL, double& yL)
-{	  
-  xL = xL  + xRad;
-  yL = yL  + yRad;	  
-}
+    // Existing code for calculating line intersection
+    double a1 = B.Y() - MIP.Y();
+    double b1 = MIP.X() - B.X();
+    double c1 = a1 * MIP.X() + b1 * MIP.Y();
 
+    double a2 = D[1] - C[1];
+    double b2 = C[0] - D[0];
+    double c2 = a2 * C[0] + b2 * C[1];
 
-std::pair<double, double> local2Global(double xL, double yL)
-{
-  
-  const auto x = xL  + xRad;
-  const auto y = yL  + yRad;	  
-  return {x, y};
-}
+    double det = a1 * b2 - a2 * b1;
+    if (det == 0) {
 
-std::pair<double, double> global2Local(double xG, double yG)
-{
+				// Printf("dlineIntersects :: parellel lines, returnign false");
+        return false;  // Lines are parallel
+    }
 
-  //mTheta.RotateY
-  
-  const auto x =  xG - xRad;
-  const auto y =  yG - yRad;
-  return std::make_pair(x, y);
-}
+    double x = (b2 * c1 - b1 * c2) / det;
+    double y = (a1 * c2 - a2 * c1) / det;
 
 
 
 
-// NB! not uses L by simulation here!
-// get radius from MIP to a specific phiL, etaC pair
-double getR(double etaC, double phiL)
-{
+    intersection.Set(x, y);
 
-	const auto cosPhiL = TMath::Cos(phiL); // 
-	const auto sinPhiL = TMath::Cos(phiL); // --||-- 
-	
-	const auto cosEtaC = TMath::Cos(etaC);
-	const auto sinEtaC = TMath::Sin(etaC);
-
-	const auto rwlDeltaR = (rW - L)/(TMath::Sqrt(1-sinEtaC*sinEtaC));
-	const auto qwDeltaR = (qW*nF)/(TMath::Sqrt(nQ*nQ-sinEtaC*sinEtaC*nF*nF));
-	const auto num = (tGap + tanThetaP*cosPhiL*sinEtaC * (rwlDeltaR + qwDeltaR));
+		bool isOutOfBounds = (x < std::min(MIP.X(), B.X()) || x > std::max(MIP.X(), B.X()) ||
+    	                  x < std::min(C[0], D[0]) || x > std::max(C[0], D[0]) ||
+    	                  y < std::min(MIP.Y(), B.Y()) || y > std::max(MIP.Y(), B.Y()) ||
+    	                  y < std::min(C[1], D[1]) || y > std::max(C[1], D[1]));
 
 
- // ef :error was on this line :
- // 		const auto denum = 1- (tanThetaP*cosPhiL*sinPhiP*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
 
-	const auto denum = 1 - (tanThetaP*cosPhiL*sinEtaC*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
+	if (isOutOfBounds) {
+			// Printf("Out of bounds, adj nec");
+		  TVector2 unitDirMIPtoIntersection = (intersection - MIP).Unit();
+		  TVector2 adjustedIntersection = intersection + unitDirMIPtoIntersection * rUncertainty;
+		  x = adjustedIntersection.X();
+		  y = adjustedIntersection.Y();
+		  isOutOfBounds = (x < std::min(MIP.X(), B.X()) || x > std::max(MIP.X(), B.X()) ||
+		                   x < std::min(C[0], D[0]) || x > std::max(C[0], D[0]) ||
+		                   y < std::min(MIP.Y(), B.Y()) || y > std::max(MIP.Y(), B.Y()) ||
+		                   y < std::min(C[1], D[1]) || y > std::max(C[1], D[1]));
 
-	const auto tZ = num/denum;
+			auto dist1 = (B - MIP).Mod();
+			auto dist2 = (adjustedIntersection - MIP).Mod();
 
-	const auto Lz = (rW-L) + qW + tZ;
 
-	const auto tGapDeltaR = (tZ*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
+		  if (isOutOfBounds) {
+					// Printf("dlineIntersects :: adjusted point is still out of bounds, returning false");
+		      return false;  // Adjusted intersection is still out of bounds
+		  } else {
+		      intersection = adjustedIntersection;
+    			pointIsInside = (adjustedIntersection - MIP).Mod() < (B - MIP).Mod();
+					//printf("OK :: dist2 Point %.2f | dist2 adj %.2f |  adj %.2f", dist1, dist2, rUncertainty);
+		  }
+	} else { 
 
-	const auto R = sinEtaC*(rwlDeltaR+qwDeltaR+tGapDeltaR)/cosThetaP;
-  //Printf("getR_Lmax : R %f |  wlGap %f qwDeltaR %f tGapDeltaR %f", R, rwlDeltaR,qwDeltaR,tGapDeltaR);
-	return R;
+			//printf("Not out of bounds, adj not nec");
+			pointIsInside = (intersection - MIP).Mod() < (B - MIP).Mod();
+			auto dist1 = (B - MIP).Mod();
+			auto dist2 = (intersection - MIP).Mod();
+			//printf("dist2 Point %.2f | dist2 adj %.2f", dist1, dist2, rUncertainty);
+  }
+
+
+    return true;
 }
 
-	// get radius from MIP to a specific phiL, etaC pair
-double getR_Lmax(double etaC, double phiL)
-{ 
+bool evaluatePointContour(const TVector2& posPhoton, const vecArray2& contour, bool checkInside) {
 
+    double rUncertainty = 2;
+    if (!checkInside) {
+        rUncertainty = -2;
+    }
 
-	const auto cosPhiL = TMath::Cos(phiL); // 
-	const auto sinPhiL = TMath::Cos(phiL); // --||-- 
-	
-	const auto cosEtaC = TMath::Cos(etaC);
-	const auto sinEtaC = TMath::Sin(etaC);
+    bool intersects = false;
+    bool pointIsInside = false; // To hold the result from lineIntersects
+    const auto& shortSidePoint = contour[0];
+    TVector2 intersection; // To store the intersection point
 
-	const auto rwlDeltaR = (rW - lMax)/(TMath::Sqrt(1-sinEtaC*sinEtaC));
-	const auto qwDeltaR = (qW*nF)/(TMath::Sqrt(nQ*nQ-sinEtaC*sinEtaC*nF*nF));
-	const auto num = (tGap + tanThetaP*cosPhiL*sinEtaC * (rwlDeltaR + qwDeltaR));
+    double d = (posPhoton.X() - shortSidePoint[0]) * (mipPos.Y() - shortSidePoint[1]) -
+               (posPhoton.Y() - shortSidePoint[1]) * (mipPos.X() - shortSidePoint[0]);
 
-	const auto denum = 1 - (tanThetaP*cosPhiL*sinEtaC*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
-	const auto tZ = num/denum;
-	const auto Lz = (rW-lMax) + qW + tZ;
-
-	const auto tGapDeltaR = (tZ*nF)/(TMath::Sqrt(nG*nG-sinEtaC*sinEtaC*nF*nF));
-
-	const auto R = sinEtaC*(rwlDeltaR+qwDeltaR+tGapDeltaR)/cosThetaP;
-  //Printf("getR_Lmax : R %f |  wlGap %f qwDeltaR %f tGapDeltaR %f", R, rwlDeltaR,qwDeltaR,tGapDeltaR);
-	return R;
+    if (d > 0) {
+        for (size_t i = 0; i < contour.size() - 1; ++i) {
+            size_t next = i + 1;
+            if (lineIntersects(mipPos, posPhoton, contour[i], contour[next], rUncertainty, intersection, pointIsInside)) {
+                intersects = true;
+                if (pointIsInside) return true; // Point is inside the contour
+                else return false; // Point is outside the contour
+            }
+        }
+    } else {
+        for (size_t i = contour.size() - 1; i > 0; --i) {
+            size_t prev = i - 1;
+            if (lineIntersects(mipPos, posPhoton, contour[i], contour[prev], rUncertainty, intersection, pointIsInside)) {
+                intersects = true;
+                if (pointIsInside) return true; // Point is inside the contour
+                else return false; // Point is outside the contour
+            }
+        }
+    }
+		//printf("evaluatePointContour checkInside %d  : pointIsInside == %d", checkInside, pointIsInside);
+    return intersects;
 }
 
 
@@ -1993,8 +2055,8 @@ void setArrayMax(double etaTRS, vecArray4& inPutVectorAngle, vecArray2& inPutVec
     	inPutVectorPos.emplace_back(std::array<double, 2>{max.X(), max.Y()}); 
     	inPutVectorAngle.emplace_back(std::array<double, 4>{phiL, phiR, phiPC, r});   	
 			const auto r = (max - trkPC2).Mod(); // trkPC2 : track impact @ PC
-				// from alinot_paattrec : this is MIP2photon distance?
-				// const auto r = (max - trkPC2).Mod(); // trkPC2 : track impact @ PC
+			// from alinot_paattrec : this is MIP2photon distance?
+			// const auto r = (max - trkPC2).Mod(); // trkPC2 : track impact @ PC
 
     	
     	

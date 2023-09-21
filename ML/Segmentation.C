@@ -116,7 +116,7 @@ struct ClusterCandidate {
 
 
 
-void process()
+void Segmentation()
 {
 
 
