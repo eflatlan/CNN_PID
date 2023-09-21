@@ -1,4 +1,5 @@
 from __future__ import print_function
+from Pad_and_classify import classify_candidates_with_pad_sequences
 
 from sklearn.metrics import precision_recall_curve
 from sklearn.preprocessing import label_binarize
