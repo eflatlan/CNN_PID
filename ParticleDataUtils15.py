@@ -46,9 +46,6 @@ def classify_candidates_with_pad_sequences(x_values_data, y_values_data, q_value
 
     # Modify candStatus based on charge and size threshold
     candStatus_padded[(q_padded >= 150) & (size_padded >= 3)] = 1
-    # Modify for samples outside fiducial zones
-    # (Assuming you have some logic to determine this. Insert that logic here.)
-    # For example:
     # candStatus_padded[outside_fiducial_zones] = 0
 
     # Define masks for different particle statuses
@@ -65,7 +62,7 @@ def classify_candidates_with_pad_sequences(x_values_data, y_values_data, q_value
 
     # Create masks for positive and non statuses
     positive_mask = (candStatus_padded > 0).astype(bool)
-    non_mask = (candStatus_padded <= 0).astype(bool)
+    non_mask = (candStatus_padded <= 1).astype(bool)
 
     # Populate particle candidates arrays
     pion_candidates = np.zeros_like(padded_data)
