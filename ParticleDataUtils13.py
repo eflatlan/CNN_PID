@@ -55,7 +55,16 @@ def classify_candidates_with_pad_sequences(x_values_data, y_values_data, q_value
     pion_values = [4, 5, 6, 7]
     kaon_values = [2, 3, 6, 7]  # Similar logic for kaon
     proton_values = [1, 3, 5, 7]  # Similar logic for proton
-    c
+
+    
+    q_filt = np.zeros_like(q_padded)
+    size_filt = np.zeros_like(size_padded)
+    q_filt = q_padded < 150
+    size_filt = size_padded < 3
+    mip_filt = np.zeros_like(size_padded)
+    mip_filt = np.logical_and(q_filt, size_filt)
+
+    
     pion_mask = np.zeros_like(candStatus_padded)
     kaon_mask = np.zeros_like(candStatus_padded)
     proton_mask = np.zeros_like(candStatus_padded)
@@ -70,8 +79,8 @@ def classify_candidates_with_pad_sequences(x_values_data, y_values_data, q_value
     proton_candidates = np.zeros_like(padded_data)
     non_candidates = np.zeros_like(padded_data)
 
-    pion_candidates[positive_mask & pion_mask] = padded_data[positive_mask & pion_mask]
-    kaon_candidates[kaon_mask] = padded_data[kaon_mask]
+    pion_candidates[positive_mask & pion_mask & mip_filt] = padded_data[positive_mask & pion_mask & mip_filt]
+    kaon_candidates[kaon_mask & mip_filt] = padded_data[kaon_mask & mip_filt]
     proton_candidates[positive_mask & proton_mask] = padded_data[positive_mask & proton_mask]
     non_candidates[non_mask] = padded_data[non_mask]
 
