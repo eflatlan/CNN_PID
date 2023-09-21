@@ -71,11 +71,13 @@ def classify_candidates_with_pad_sequences(x_values_data, y_values_data, q_value
     kaon_mask = (candStatus_padded & 2).astype(bool)
     proton_mask = (candStatus_padded & 1).astype(bool)
 
-    # Create masks that are True for all elements
-    pion_mask = np.ones_like(candStatus_padded, dtype=bool)
-    kaon_mask = np.ones_like(candStatus_padded, dtype=bool)
-    proton_mask = np.ones_like(candStatus_padded, dtype=bool)
-    non_mask = np.ones_like(candStatus_padded, dtype=bool)
+    positive_mask = candStatus_padded >= 0  # mask for non-negative values
+    
+    pion_mask = np.logical_and(positive_mask, (candStatus_padded & 4).astype(bool))
+    kaon_mask = np.logical_and(positive_mask, (candStatus_padded & 2).astype(bool))
+    proton_mask = np.logical_and(positive_mask, (candStatus_padded & 1).astype(bool))
+    
+    non_mask = (candStatus_padded < 1).astype(bool)  # Mask for values less than 1
 
     # Initialize arrays for particle candidates
     pion_candidates = np.zeros_like(padded_data)
