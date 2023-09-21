@@ -448,14 +448,6 @@ def plot_lr(num_epochs = 10, history = None):
 
   plt.title("Learning rate vs. loss");
 
-!wget -O helper_functions.py https://raw.githubusercontent.com/eflatlan/CNN_PID/models_sacved/helper_functions.py
-!wget -O plot_helper_functions.py https://raw.githubusercontent.com/eflatlan/CNN_PID/models_sacved/plot_helper_functions.py
-
-import plot_helper_functions
-
-from plot_helper_functions import plot_training_history
-#from plot_helper_functions import plot_training_history#, plot_dist2mip_histograms, plot_maps
-
 
 
 #@title Default title text
