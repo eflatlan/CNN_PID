@@ -707,3 +707,68 @@ def create_cnn_model(input_shape=None, name="default_name"):
     cnn_output = layers.Reshape((-1, 1), name=f"Reshape_{name}")(x)
 
     return models.Model(inputs=cnn_input, outputs=cnn_output)
+
+
+
+
+def plot_worst(model, y_test, X_test_map, X_test_momentum, X_test_refractive_index, X_test_ckov, X_test_mip_position, y_pred):
+  # 1. Predict labels on validation data
+
+  # 2. Calculate the difference between predicted and actual labels
+  losses = tf.keras.losses.categorical_crossentropy(y_test, y_pred).numpy()
+
+  # Sort the indices of the losses from highest to lowest
+  sorted_indices = np.argsort(losses)[::-1]
+
+  # Get the indices of the worst performing 10%
+  worst_10_percent_indices = sorted_indices[:int(0.1*len(sorted_indices))]
+
+  # Create figure and axes
+  num_plots = len(worst_10_percent_indices)
+  #fig, axes = plt.subplots(num_plots, 1, figsize=(8, 20))
+  fig, axes = plt.subplots(num_plots,figsize=(8, 20))
+
+  # Define mass categories
+  mass_categories = ["pion", "kaon", "proton"]
+
+  # 3. Create plots for these cases, including their feature information and predicted vs actual labels
+  for i, index in enumerate(worst_10_percent_indices):
+      # Get the map and corresponding information
+      map_data = X_test_map[index, :, :]
+      actual_mass_category = mass_categories[np.argmax(y_test[index])]
+
+      print(f"y_test[index] = {y_test[index]}")
+
+      predicted_mass_category = mass_categories[np.argmax(y_pred[index])]
+      ckov = X_test_ckov[index]
+      mip_position = X_test_mip_position[index]
+      momentum = X_test_momentum[index]
+      refractive_index = X_test_refractive_index[index]
+
+      mass_actual = momentum * np.sqrt(refractive_index**2 * np.cos(ckov)*np.cos(ckov) - 1)
+
+      # Check if the value is NaN (invalid Cherenkov angle)
+      if np.isnan(mass_actual):
+          mass_actual = "Invalid"
+
+      # Plot the map
+      axes[i].imshow(map_data, cmap='gray')
+
+      # Add a red dot at the MIP position
+      axes[i].plot(mip_position[0], mip_position[1], 'ro')
+
+      # Set the title with the information
+      axes[i].set_title(f"Actual Mass")#: {actual_mass_category}, Predicted Mass: {predicted_mass_category},\nMass: {mass_actual}, Mass_prob = {y_pred[index]} \nCKOV: {ckov}, MIP Position: {mip_position}, \nMomentum: {momentum}, Refractive Index: {refractive_index}")
+      #
+      axes[i].set_title(f"Actual Mass: {actual_mass_category}, Predicted Mass: {predicted_mass_category},\nMass: {mass_actual}, Mass_prob = {y_pred[index]} \nCKOV: {ckov}, MIP Position: {mip_position}, \nMomentum: {momentum}, Refractive Index: {refractive_index}")
+
+      #axes[i].set_title(f"Actual Mass: {actual_mass_category}, Predicted Mass: {predicted_mass_category}, Mass: {mass_actual}\nCKOV: {ckov}, MIP Position: {mip_position}, Momentum: {momentum}, Refractive Index: {refractive_index}")
+      axes[i].axis('off')
+
+      print("\n")
+      print(f"  Actual Mass: {actual_mass_category}, Predicted Mass: {predicted_mass_category},\n Mass: {mass_actual}, Mass_prob = {y_pred[index]} \n CKOV: {ckov}, MIP Position: {mip_position}, \n  Momentum: {momentum}, Refractive Index: {refractive_index}")
+  # Adjust the spacing between subplots
+  plt.tight_layout()
+
+  # Show the plot
+  plt.show()
