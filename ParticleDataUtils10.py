@@ -29,6 +29,7 @@ def pad_and_stack(sequences, max_length=None):
 
 
 import numpy as np
+import numpy as np
 
 def classify_candidates_with_pad_sequences(x_values_data, y_values_data, q_values_data, mCluSize_lista, candStatus_values_data, max_length_nested, xmip_list, ymip_list):
     
@@ -49,20 +50,15 @@ def classify_candidates_with_pad_sequences(x_values_data, y_values_data, q_value
     # Create masks for positive and non statuses
     positive_mask = (candStatus_padded > 0).astype(bool)
     non_mask = (candStatus_padded < 1).astype(bool)
-    positive_statuses = candStatus_padded[positive_mask]
 
     # Define masks for different particle statuses
-    pion_mask = (positive_statuses & 4).astype(bool)
-    kaon_mask = (positive_statuses & 2).astype(bool)
-    proton_mask = (positive_statuses & 1).astype(bool)
+    pion_values = [4, 5, 6, 7]
+    kaon_values = [2, 3, 6, 7]  # Similar logic for kaon
+    proton_values = [1, 3, 5, 7]  # Similar logic for proton
 
-    # Compute the distance to the mip point
-    x_np = np.array(xmip_list)
-    y_np = np.array(ymip_list)
-    diffx = x_padded - x_np
-    diffy = y_padded - y_np
-    dist = np.sqrt(diffx**2 + diffy**2)
-    dist_to_mip_mask = dist > 5
+    pion_mask = np.isin(candStatus_padded, pion_values)
+    kaon_mask = np.isin(candStatus_padded, kaon_values)
+    proton_mask = np.isin(candStatus_padded, proton_values)
 
     # Populate particle candidates arrays
     pion_candidates = np.zeros_like(padded_data)
@@ -70,9 +66,9 @@ def classify_candidates_with_pad_sequences(x_values_data, y_values_data, q_value
     proton_candidates = np.zeros_like(padded_data)
     non_candidates = np.zeros_like(padded_data)
 
-    pion_candidates[positive_mask] = padded_data[positive_mask & pion_mask[:, None, None]]
-    kaon_candidates[positive_mask] = padded_data[positive_mask & kaon_mask[:, None, None]]
-    proton_candidates[positive_mask] = padded_data[positive_mask & proton_mask[:, None, None]]
+    pion_candidates[positive_mask & pion_mask] = padded_data[positive_mask & pion_mask]
+    kaon_candidates[positive_mask & kaon_mask] = padded_data[positive_mask & kaon_mask]
+    proton_candidates[positive_mask & proton_mask] = padded_data[positive_mask & proton_mask]
     non_candidates[non_mask] = padded_data[non_mask]
 
     return pion_candidates, kaon_candidates, proton_candidates, non_candidates, candStatus_padded
