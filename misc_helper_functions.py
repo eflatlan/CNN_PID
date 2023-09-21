@@ -1,3 +1,4 @@
+from __future__ import print_function
 from statsmodels.stats.diagnostic import lilliefors
 from scipy.stats import normaltest, anderson
 import numpy as np
@@ -451,7 +452,7 @@ def plot_lr(num_epochs = 10, history = None):
 
 
 #@title Default title text
-from __future__ import print_function
+
 import numpy as np
 import matplotlib.pyplot as plt
 from numpy.linalg import norm
