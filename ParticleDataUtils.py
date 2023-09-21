@@ -1,4 +1,4 @@
-#resolution = 4
+from __future__ import print_function
 
 from sklearn.metrics import precision_recall_curve
 from sklearn.preprocessing import label_binarize
@@ -17,7 +17,6 @@ from sklearn.metrics import precision_recall_curve, confusion_matrix
 
 from scipy.signal import find_peaks
 
-from __future__ import print_function
 import os
 import h5py
 import numpy as np
