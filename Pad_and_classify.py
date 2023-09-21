@@ -124,11 +124,13 @@ def classify_candidates_with_pad_sequences(x_values_data, y_values_data, q_value
     print(f"shape dist_to_mip_mask: {np.shape(dist_to_mip_mask)}")
     print(f"shape dist : {np.shape(dist)}")
     print(f"shape diffx : {np.shape(diffx)}")
-
-    pion_mask = (candStatus_padded & 4).astype(bool) 
-    kaon_mask = (candStatus_padded & 2).astype(bool)
-    proton_mask = (candStatus_padded & 1).astype(bool)
-    non_mask = (candStatus_padded == 0).astype(bool)  # Create a mask for non-candidates
+    positive_mask = candStatus_padded >= 0  # mask for non-negative values
+    
+    pion_mask = np.logical_and(positive_mask, (candStatus_padded & 4).astype(bool))
+    kaon_mask = np.logical_and(positive_mask, (candStatus_padded & 2).astype(bool))
+    proton_mask = np.logical_and(positive_mask, (candStatus_padded & 1).astype(bool))
+    
+    non_mask = (candStatus_padded < 1).astype(bool)  # Mask for values less than 1
 
     # Assuming pion_candidates, kaon_candidates are initialized and have the same shape as padded_data
     pion_candidates[pion_mask & dist_to_mip_mask] = padded_data[pion_mask & dist_to_mip_mask]
