@@ -69,7 +69,7 @@ def classify_candidates_with_pad_sequences(x_values_data, y_values_data, q_value
 
     non_mask = (candStatus_padded < 1).astype(bool)  # Mask for values less than 1
     # now you have a mask for the pion_kaon etc because this also has to be fullfilled
-    
+    positive_cand = np.zeros_like(padded_data)
     positive_cand[positive_mask] = padded_data[positive_mask]
 
 
