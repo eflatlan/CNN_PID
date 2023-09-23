@@ -69,7 +69,6 @@ def classify_candidates_with_pad_sequences(x_values_data, y_values_data, q_value
     kaon_candidates = np.zeros_like(padded_data)
     proton_candidates = np.zeros_like(padded_data)
     non_candidates = np.zeros_like(padded_data)
-|
     pion_candidates[positive_mask & pion_mask] = padded_data[positive_mask & pion_mask]
     kaon_candidates[positive_mask & kaon_mask] = padded_data[positive_mask & kaon_mask]
     proton_candidates[positive_mask & proton_mask] = padded_data[positive_mask & proton_mask]
