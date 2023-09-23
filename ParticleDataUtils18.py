@@ -423,7 +423,7 @@ class ParticleDataUtils:
           non_zero_proton = np.count_nonzero(proton_candidates[i])
           
           # Check if any candidate has more than 5 non-zero values
-          if abs_pdg in [211, 321, 2212] and (non_zero_pion > 5 or non_zero_kaon > 5 or non_zero_proton > 5):
+          if abs_pdg in [211, 321, 2212] and (non_zero_pion > 20 or non_zero_kaon > 20 or non_zero_proton > 20):
             cnt_min = 3
             cnt_max = 50
             particle_vector[i] = particle_info
