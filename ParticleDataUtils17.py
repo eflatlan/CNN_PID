@@ -418,9 +418,9 @@ class ParticleDataUtils:
             print(f"pion_candidates[i] shape {pion_candidates[i].shape}")
             print(f"Dtype : {pion_candidates[i].dtype}")  # Output will be something like: int64
 
-          non_zero_pion = count_nonzero(pion_candidates[i])
-          non_zero_kaon = count_nonzero(kaon_candidates[i])
-          non_zero_proton = count_nonzero(proton_candidates[i])
+          non_zero_pion = np.count_nonzero(pion_candidates[i])
+          non_zero_kaon = np.count_nonzero(kaon_candidates[i])
+          non_zero_proton = np.count_nonzero(proton_candidates[i])
           
           # Check if any candidate has more than 5 non-zero values
           if abs_pdg in [211, 321, 2212] and (non_zero_pion > 5 or non_zero_kaon > 5 or non_zero_proton > 5):
