@@ -16,9 +16,29 @@ def plot_confusion_matrix(ax, cm):
             percent = cm[x, y] / np.sum(cm[x, :]) * 100  # Percentage formula
             ax.text(y, x, f"{cm[x, y]} ({percent:.1f}%)", ha='center', va='center', color='red')
 
-def plot_training_history(history, y_pred_train, y_pred_test, y_train_true, y_test_true):
+def plot_training_history(history, y_pred_train, y_pred_test, y_train_true, y_test_true,
+                          vector_of_weights=None, vector_of_weights2=None, dropout=None, relu_alpha=None):
 
     fig, axs = plt.subplots(4, 4, figsize=(25, 20))
+    
+    # Parameters for annotation
+    params = []
+    if vector_of_weights:
+        params.append(f"VoW: {vector_of_weights}")
+    if vector_of_weights2:
+        params.append(f"VoW2: {vector_of_weights2}")
+    if dropout:
+        params.append(f"Dropout: {dropout}")
+    if relu_alpha:
+        params.append(f"ReLU alpha: {relu_alpha}")
+    annotation = '\n'.join(params)
+
+    # Add annotation to each axis
+    for row_axes in axs:
+        for ax in row_axes:
+            ax.annotate(annotation, (0.05, 0.95), textcoords='axes fraction',
+                        bbox=dict(boxstyle="square", fc="white", ec="black"),
+                        va="top", ha="left")
     
     # Plots for Overall data
     labels = ['Overall Loss', 'Overall Accuracy', 'Overall P-R Curve', 'Overall Confusion Matrix']
@@ -67,4 +87,3 @@ def plot_training_history(history, y_pred_train, y_pred_test, y_train_true, y_te
 
     plt.tight_layout()
     plt.show()
-        
