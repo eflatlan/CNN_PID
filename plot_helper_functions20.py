@@ -21,7 +21,7 @@ def plot_confusion_matrix(ax, cm):
             percent = cm[x, y] / np.sum(cm[x, :]) * 100  # Percentage formula
             ax.text(y, x, f"{cm[x, y]} ({percent:.1f}%)", ha='center', va='center', color='red')
 
-def plot_training_history(history, y_pred_train, y_pred_test, y_train_true, y_test_tru):
+def plot_training_history(history, y_pred_train, y_pred_test, y_train_true, y_test_true):
 
     fig, axs = plt.subplots(4, 4, figsize=(25, 20))
     
