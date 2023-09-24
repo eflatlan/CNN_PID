@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import label_binarize
 from sklearn.metrics import precision_recall_curve, confusion_matrix
 
-def plot_hist(self, X_train=None, X_test=None, description=None):
+def plot_hist(X_train=None, X_test=None, description=None):
     import numpy as np
     import matplotlib.pyplot as plt
     import warnings
