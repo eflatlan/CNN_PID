@@ -85,13 +85,28 @@ def check_nan_inf(arr):
     """Check if array contains NaN or Inf values."""
     return np.isnan(arr).any(), np.isinf(arr).any()
 
+
+
+
 def plot_hist(X_train=None, X_test=None, description=None):
+
+
+    print(type(X_train))
+    print(X_train.keys())
+    
+    print(type(X_test))
+    print(X_test.keys())
+
     fig, axs = plt.subplots(2, 5, figsize=(25, 10))
     fig.suptitle(f"Training and Testing Data: {description}", fontsize=20)
     fig1, axs1 = plt.subplots(2, 3, figsize=(18, 10))
     fig1.suptitle(f"2D Maps and Projections: {description}", fontsize=20)
     fig2, axs2 = plt.subplots(2, 4, figsize=(16, 10))
     fig2.suptitle(f"Pion Candidate Distributions: {description}", fontsize=20)
+    print(X_train.keys())
+    print(X_test.keys())
+    for key, value in X_train.items():
+        print(key, type(value))
 
     def plot_routine(variables, row_idx):
         axs_idx = 0
