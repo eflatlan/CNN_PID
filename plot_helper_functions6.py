@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import label_binarize
 from sklearn.metrics import precision_recall_curve, confusion_matrix
-from __future__ import print_function
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import label_binarize
