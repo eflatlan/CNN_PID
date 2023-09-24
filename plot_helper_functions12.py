@@ -50,10 +50,20 @@ def plot_hist(X_train=None, X_test=None, description=None):
                 mask = np.any(variable != 0, axis=-1)
                 filtered_variable = variable[mask]
                 variable = np.asarray(variable)
+                ranges = [(0,125),(0,125),(0,11),(0,200)]
+                bins = [10, 0, 1, 20]
                 for i in range(4):
-                    axs2[row_idx, i].hist(variable[:, :, i][variable[:, :, i] > 0], bins=bins, range=range_val, edgecolor='black')
+                    axs2[row_idx, i].hist(variable[:, :, i][variable[:, :, i] > 0], bins=bins[i], range=ranges[i], edgecolor='black')
                     titles = ['Pion X', 'Pion Y', 'Pion Size', 'Pion Charge']
                     axs2[row_idx, i].set_title(f"{'Train' if row_idx == 0 else 'Test'} {titles[i]}")
+                    
+            elif label == 'mCluSize':
+                axs[row_idx, axs_idx].hist(variable, bins=13, range=(0, 12), edgecolor='black')
+                axs[row_idx, axs_idx].set_title(f"{'Train' if row_idx == 0 else 'Test'} {label}")
+
+            elif label == 'Momentum':
+                axs[row_idx, axs_idx].hist(variable, bins=50, range=(0, 5), edgecolor='black')
+                axs[row_idx, axs_idx].set_title(f"{'Train' if row_idx == 0 else 'Test'} {label}")
             else:
                 axs[row_idx, axs_idx].hist(variable, bins=bins, range=range_val, edgecolor='black')
                 axs[row_idx, axs_idx].set_title(f"{'Train' if row_idx == 0 else 'Test'} {label}")
@@ -85,14 +95,18 @@ def plot_hist(X_train=None, X_test=None, description=None):
     plot_routine(X_test_variables, 1)
 
     plt.show()
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import label_binarize
+from sklearn.metrics import precision_recall_curve, confusion_matrix
 
-def plot_confusion_matrix(ax, cm, title):
+def plot_confusion_matrix(ax, cm):
+    """Utility function to plot the confusion matrix."""
     ax.imshow(cm, cmap='Blues', interpolation='nearest')
     ax.set_xticks(np.arange(3))
     ax.set_yticks(np.arange(3))
     ax.set_xticklabels(['0', '1', '2'])
     ax.set_yticklabels(['0', '1', '2'])
-    ax.set_title(title)
     for x in range(3):
         for y in range(3):
             percent = cm[x, y] / np.sum(cm[x, :]) * 100  # Percentage formula
@@ -121,47 +135,51 @@ def plot_training_history(history, y_pred_train, y_pred_test, y_train_true, y_te
                     bbox=dict(boxstyle="square", fc="white", ec="black"),
                     va="top", ha="left")
 
-    # Plot training & validation accuracy values
-    axs[0, 0].plot(history.history['accuracy'])
-    axs[0, 0].plot(history.history['val_accuracy'])
-    axs[0, 0].set_title('Model accuracy')
-    axs[0, 0].set_ylabel('Accuracy')
-    axs[0, 0].set_xlabel('Epoch')
-    axs[0, 0].legend(['Train', 'Test'], loc='upper left')
+    # Overall Loss & Accuracy
+    axs[0, 0].plot(history.history['loss'], label="Train")
+    axs[0, 0].plot(history.history['val_loss'], label="Validation")
+    axs[0, 0].legend()
+    axs[0, 0].set_title("Overall Loss")
 
-    # Plot training & validation loss values
-    axs[0, 1].plot(history.history['loss'])
-    axs[0, 1].plot(history.history['val_loss'])
-    axs[0, 1].set_title('Model loss')
-    axs[0, 1].set_ylabel('Loss')
-    axs[0, 1].set_xlabel('Epoch')
-    axs[0, 1].legend(['Train', 'Test'], loc='upper left')
+    axs[0, 1].plot(history.history['accuracy'], label="Train")
+    axs[0, 1].plot(history.history['val_accuracy'], label="Validation")
+    axs[0, 1].legend()
+    axs[0, 1].set_title("Overall Accuracy")
 
-    # Assuming binary classification
-    precision_train, recall_train, _ = precision_recall_curve(y_train_true, y_pred_train)
-    precision_test, recall_test, _ = precision_recall_curve(y_test_true, y_pred_test)
-    axs[1, 0].plot(recall_train, precision_train, lw=2, label='Train')
-    axs[1, 0].plot(recall_test, precision_test, lw=2, label='Test')
-    axs[1, 0].set_xlabel('Recall')
-    axs[1, 0].set_ylabel('Precision')
+    # P-R Curves (Train & Test)
+    y_train_bin = label_binarize(y_train_true, classes=[0, 1, 2])
+    y_test_bin = label_binarize(y_test_true, classes=[0, 1, 2])
+    for i in range(3):
+        precision_train, recall_train, _ = precision_recall_curve(y_train_bin[:, i], y_pred_train[:, i])
+        precision_test, recall_test, _ = precision_recall_curve(y_test_bin[:, i], y_pred_test[:, i])
+        axs[1, 0].plot(recall_train, precision_train, lw=2, label=f"Class {i} Train")
+        axs[1, 1].plot(recall_test, precision_test, lw=2, label=f"Class {i} Test")
     axs[1, 0].legend()
-    axs[1, 0].set_title('Precision-Recall Curve')
+    axs[1, 0].set_title("Precision-Recall Curve (Train)")
+    axs[1, 1].legend()
+    axs[1, 1].set_title("Precision-Recall Curve (Test)")
 
-    # Confusion matrix for training data
-    cm_train = confusion_matrix(y_train_true, np.round(y_pred_train))
-    axs[2, 0].imshow(cm_train, interpolation='nearest', cmap=plt.cm.Blues)
-    axs[2, 0].set_title('Train Confusion Matrix')
-    axs[2, 0].set_ylabel('True label')
-    axs[2, 0].set_xlabel('Predicted label')
-    
-    # Confusion matrix for test data
-    cm_test = confusion_matrix(y_test_true, np.round(y_pred_test))
-    axs[2, 1].imshow(cm_test, interpolation='nearest', cmap=plt.cm.Blues)
-    axs[2, 1].set_title('Test Confusion Matrix')
-    axs[2, 1].set_ylabel('True label')
-    axs[2, 1].set_xlabel('Predicted label')
+    # Confusion Matrices (Train & Test)
+    cm_train = confusion_matrix(y_train_true.argmax(axis=1), y_pred_train.argmax(axis=1))
+    axs[2, 0].set_title("Training Confusion Matrix")
+    plot_confusion_matrix(axs[2, 0], cm_train)
 
-    # Further plots can be added based on your requirements
+    cm_test = confusion_matrix(y_test_true.argmax(axis=1), y_pred_test.argmax(axis=1))
+    axs[2, 1].set_title("Testing Confusion Matrix")
+    plot_confusion_matrix(axs[2, 1], cm_test)
+
+    # Loss & Accuracy plots for each species
+    for idx in range(3):
+        axs[3 + idx, 0].plot(history.history['loss'], label="Train")
+        axs[3 + idx, 0].plot(history.history['val_loss'], label="Validation")
+        axs[3 + idx, 0].legend()
+        axs[3 + idx, 0].set_title(f"Species {idx+1} - Loss")
+
+        axs[3 + idx, 1].plot(history.history['accuracy'], label="Train")
+        axs[3 + idx, 1].plot(history.history['val_accuracy'], label="Validation")
+        axs[3 + idx, 1].legend()
+        axs[3 + idx, 1].set_title(f"Species {idx+1} - Accuracy")
 
     plt.tight_layout()
     plt.show()
+
