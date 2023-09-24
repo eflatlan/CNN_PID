@@ -131,7 +131,15 @@ def plot_hist(X_train=None, X_test=None, description=None):
                 ranges = [(0,125),(0,125),(0,11),(0,200)]
                 bins = [10, 0, 1, 20]
                 for i in range(4):
-                    axs2[row_idx, i].hist(variable[:, :, i][variable[:, :, i] > 0], bins=bins[i], range=ranges[i], edgecolor='black')
+
+                    if i = 3: 
+                        range = (0, 11)
+                        bins = 12
+                    elif i == 4: range = (0,300)
+                        bins = 30
+                    else: range = (0, 125)
+                        bins = 25
+                    axs2[row_idx, i].hist(variable[:, :, i][variable[:, :, i] > 0], bins=bins, range=range, edgecolor='black')
                     titles = ['Pion X', 'Pion Y', 'Pion Size', 'Pion Charge']
                     axs2[row_idx, i].set_title(f"{'Train' if row_idx == 0 else 'Test'} {titles[i]}")
                     
