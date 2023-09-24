@@ -1,18 +1,13 @@
+python
+Copy code
 from __future__ import print_function
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import label_binarize
 from sklearn.metrics import precision_recall_curve, confusion_matrix
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.preprocessing import label_binarize
-from sklearn.metrics import precision_recall_curve, confusion_matrix
+import warnings
 
 def plot_hist(X_train=None, X_test=None, description=None):
-    import numpy as np
-    import matplotlib.pyplot as plt
-    import warnings
-
     def freedman_diaconis_bins(data):
         data = np.asarray(data)
         data_range = np.nanmax(data) - np.nanmin(data)
@@ -92,7 +87,6 @@ def plot_hist(X_train=None, X_test=None, description=None):
 
     plt.show()
 
-
 def plot_confusion_matrix(ax, cm, title):
     ax.imshow(cm, cmap='Blues', interpolation='nearest')
     ax.set_xticks(np.arange(3))
@@ -105,53 +99,70 @@ def plot_confusion_matrix(ax, cm, title):
             percent = cm[x, y] / np.sum(cm[x, :]) * 100  # Percentage formula
             ax.text(y, x, f"{cm[x, y]} ({percent:.1f}%)", ha='center', va='center', color='red')
 
-def plot_training_history(history, y_pred_train, y_pred_test, y_train_true, y_test_true):
+def plot_training_history(history, y_pred_train, y_pred_test, y_train_true, y_test_true,
+                          vector_of_weights=None, vector_of_weights2=None, dropout=None, relu_alpha=None):
 
-    fig, axs = plt.subplots(5, 2, figsize=(20, 40))
+    fig, axs = plt.subplots(5, 2, figsize=(15, 40))
+    
+    # Parameters for annotation
+    params = []
+    if vector_of_weights:
+        params.append(f"VoW: {vector_of_weights}")
+    if vector_of_weights2:
+        params.append(f"VoW2: {vector_of_weights2}")
+    if dropout:
+        params.append(f"Dropout: {dropout}")
+    if relu_alpha:
+        params.append(f"ReLU alpha: {relu_alpha}")
+    annotation = '\n'.join(params)
 
-    # Overall Loss & Accuracy
-    axs[0, 0].plot(history.history['loss'], label="Train")
-    axs[0, 0].plot(history.history['val_loss'], label="Validation")
-    axs[0, 0].legend()
-    axs[0, 0].set_title("Overall Loss")
+    # Add annotation to each axis
+    for ax in axs.ravel():
+        ax.annotate(annotation, (0.05, 0.95), textcoords='axes fraction',
+                    bbox=dict(boxstyle="square", fc="white", ec="black"),
+                    va="top", ha="left")
 
-    axs[0, 1].plot(history.history['accuracy'], label="Train")
-    axs[0, 1].plot(history.history['val_accuracy'], label="Validation")
-    axs[0, 1].legend()
-    axs[0, 1].set_title("Overall Accuracy")
+    # Plot training & validation accuracy values
+    axs[0, 0].plot(history.history['accuracy'])
+    axs[0, 0].plot(history.history['val_accuracy'])
+    axs[0, 0].set_title('Model accuracy')
+    axs[0, 0].set_ylabel('Accuracy')
+    axs[0, 0].set_xlabel('Epoch')
+    axs[0, 0].legend(['Train', 'Test'], loc='upper left')
 
-    # P-R Curves
-    y_train_bin = label_binarize(y_train_true, classes=[0, 1, 2])
-    y_test_bin = label_binarize(y_test_true, classes=[0, 1, 2])
-    for i in range(3):
-        precision_train, recall_train, _ = precision_recall_curve(y_train_bin[:, i], y_pred_train[:, i])
-        precision_test, recall_test, _ = precision_recall_curve(y_test_bin[:, i], y_pred_test[:, i])
-        axs[1, 0].plot(recall_train, precision_train, lw=2, label=f"Class {i} Train")
-        axs[1, 1].plot(recall_test, precision_test, lw=2, label=f"Class {i} Test")
+    # Plot training & validation loss values
+    axs[0, 1].plot(history.history['loss'])
+    axs[0, 1].plot(history.history['val_loss'])
+    axs[0, 1].set_title('Model loss')
+    axs[0, 1].set_ylabel('Loss')
+    axs[0, 1].set_xlabel('Epoch')
+    axs[0, 1].legend(['Train', 'Test'], loc='upper left')
+
+    # Assuming binary classification
+    precision_train, recall_train, _ = precision_recall_curve(y_train_true, y_pred_train)
+    precision_test, recall_test, _ = precision_recall_curve(y_test_true, y_pred_test)
+    axs[1, 0].plot(recall_train, precision_train, lw=2, label='Train')
+    axs[1, 0].plot(recall_test, precision_test, lw=2, label='Test')
+    axs[1, 0].set_xlabel('Recall')
+    axs[1, 0].set_ylabel('Precision')
     axs[1, 0].legend()
-    axs[1, 0].set_title("Precision-Recall Curve (Train)")
-    axs[1, 1].legend()
-    axs[1, 1].set_title("Precision-Recall Curve (Test)")
+    axs[1, 0].set_title('Precision-Recall Curve')
 
-    # Confusion Matrices
-    cm_train = confusion_matrix(y_train_true.argmax(axis=1), y_pred_train.argmax(axis=1))
-    plot_confusion_matrix(axs[2, 0], cm_train, "Training Confusion Matrix")
+    # Confusion matrix for training data
+    cm_train = confusion_matrix(y_train_true, np.round(y_pred_train))
+    axs[2, 0].imshow(cm_train, interpolation='nearest', cmap=plt.cm.Blues)
+    axs[2, 0].set_title('Train Confusion Matrix')
+    axs[2, 0].set_ylabel('True label')
+    axs[2, 0].set_xlabel('Predicted label')
+    
+    # Confusion matrix for test data
+    cm_test = confusion_matrix(y_test_true, np.round(y_pred_test))
+    axs[2, 1].imshow(cm_test, interpolation='nearest', cmap=plt.cm.Blues)
+    axs[2, 1].set_title('Test Confusion Matrix')
+    axs[2, 1].set_ylabel('True label')
+    axs[2, 1].set_xlabel('Predicted label')
 
-    cm_test = confusion_matrix(y_test_true.argmax(axis=1), y_pred_test.argmax(axis=1))
-    plot_confusion_matrix(axs[2, 1], cm_test, "Testing Confusion Matrix")
-
-    # Loss & Accuracy plots for each species
-    for idx in range(3):
-        axs[3 + idx, 0].plot(history.history['loss'], label="Train")
-        axs[3 + idx, 0].plot(history.history['val_loss'], label="Validation")
-        axs[3 + idx, 0].legend()
-        axs[3 + idx, 0].set_title(f"Species {idx+1} - Loss")
-
-        axs[3 + idx, 1].plot(history.history['accuracy'], label="Train")
-        axs[3 + idx, 1].plot(history.history['val_accuracy'], label="Validation")
-        axs[3 + idx, 1].legend()
-        axs[3 + idx, 1].set_title(f"Species {idx+1} - Accuracy")
+    # Further plots can be added based on your requirements
 
     plt.tight_layout()
     plt.show()
-
