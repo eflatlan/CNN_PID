@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import label_binarize
 from sklearn.metrics import precision_recall_curve, confusion_matrix
 
+
 def plot_confusion_matrix(ax, cm, title):
     ax.imshow(cm, cmap='Blues', interpolation='nearest')
     ax.set_xticks(np.arange(3))
