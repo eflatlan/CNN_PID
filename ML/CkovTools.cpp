@@ -54,14 +54,15 @@ class ArrAndMap
   	arrMaxProtonPos = _arrMaxProtonPos;
   }	
 		
- 	std::unique_ptr<TH2F> limMin; 	std::unique_ptr<TH2F> limMax;
+ 	std::unique_ptr<TH2F> limMin; 	
+  std::unique_ptr<TH2F> limMax;
    void setDrawLimits(const TH2F* limMinIn, const TH2F* limMaxIn) 
    {
 
       
-			limMin.reset(new TH2F(*limMinIn));
+			//// limMin.reset(new TH2F(*// limMinIn));
 
-			limMax.reset(new TH2F(*limMaxIn));
+			//// limMax.reset(new TH2F(*// limMaxIn));
    }
 
 		
@@ -216,16 +217,16 @@ delete 			hSignalAndNoiseMap;
 
 		int eventCnt;
 		
+  std::unique_ptr<Populate2> populatePtr;
 
 
-
-	Populate2* populatePtr = nullptr;
-	
-	void setPopulatePtr(Populate2* _populatePtr) { 
-		populatePtr = _populatePtr; 
-	}	
+  void setPopulatePtr(std::unique_ptr<Populate2> &&_populatePtr) { 
+      populatePtr = std::move(_populatePtr); 
+  }
 	
 	int eventCount = 0;
+
+
 	void setEventCount(int _eventCount) { 
 		eventCount = _eventCount; 
 	}	
@@ -295,13 +296,13 @@ delete 			hSignalAndNoiseMap;
 			
 
 
-		//limMin->SetMarkerStyle(2);
-		//limMax->SetMarkerStyle(2);
+		//// limMin->SetMarkerStyle(2);
+		//// limMax->SetMarkerStyle(2);
 
-		limMin->SetMarkerColor(kOrange-3);
-		limMax->SetMarkerColor(kOrange+2);
+		// limMin->SetMarkerColor(kOrange-3);
+		// limMax->SetMarkerColor(kOrange+2);
 
-		limMin->SetMarkerColor(kCyan);    
+		// limMin->SetMarkerColor(kCyan);    
 
 
 		hCkovCandMapRange->SetMarkerColor(kGreen );
@@ -440,15 +441,15 @@ delete 			hSignalAndNoiseMap;
 		trkPCMap->Draw("same");
 		//herrPos->Draw("same");
 
-						//printf("opulatePtr->limMin->GetEntries() num BinEntries = %f ", populatePtr->limMin->GetEntries());
-			//printf("endlimMax num BinEntries = %f ", limMax->GetEntries());
-			//printf("emdlimMin num BinEntries = %f ", limMin->GetEntries());
+						//printf("opulatePtr->// limMin->GetEntries() num BinEntries = %f ", populatePtr->// limMin->GetEntries());
+			//printf("end// limMax num BinEntries = %f ", // limMax->GetEntries());
+			//printf("emd// limMin num BinEntries = %f ", // limMin->GetEntries());
 
 
 
     tcnvRane->SaveAs(Form("Segmented_%d.png", plotNumber));
-		limMin->Draw("same");
-		limMax->Draw("same");
+		// limMin->Draw("same");
+		// limMax->Draw("same");
 
     tcnvRane->SaveAs(Form("Segmented%d.png", plotNumber));
     plotNumber++;
@@ -546,13 +547,14 @@ private:
 
   bool print = false; // ef: TODO : later pass this in ctor 
 
-  Populate2* populate2Ptr = nullptr;// =  
-	Populate2* populatePtr = nullptr;// 
 
-// using array = std::array;
-using vecArray4 = std::vector<std::array<double,4>>;
-using vecArray3 = std::vector<std::array<double,3>>;
-using vecArray2 = std::vector<std::array<double,2>>;
+  std::unique_ptr<Populate2> populatePtr, populatePtrCp, populate2Ptr, populatePtrOuter, populatePtrInner;
+
+
+	// using array = std::array;
+	using vecArray4 = std::vector<std::array<double,4>>;
+	using vecArray3 = std::vector<std::array<double,3>>;
+	using vecArray2 = std::vector<std::array<double,2>>;
 
 using vecArrayPair = std::vector<std::pair<double,double>>;
 
@@ -705,13 +707,18 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
 	trkDir.SetMagThetaPhi(1, thetaP, phiP);  // track direction in LORS at RAD
 
 
+  populatePtrInner.reset(new Populate2(trkPos, trkDir, nF - 0.02));
+  populatePtrOuter.reset(new Populate2(trkPos, trkDir, nF + 0.02));
+  populatePtr.reset(new Populate2(trkPos, trkDir, nF));
+  populatePtrCp.reset(new Populate2(trkPos, trkDir, nF));
 
+	populate2Ptr.reset(new Populate2(trkPos, trkDir, nF));
 
-	populatePtr = new Populate2(trkPos, trkDir, nF/*, L*/);
-	populatePtr->setPcImp(trkPC);
-	
-
-  
+	populate2Ptr->setPcImp(trkPC);
+	populatePtrCp->setPcImp(trkPC);	
+	populatePtr->setPcImp(trkPC);	
+	populatePtrOuter->setPcImp(trkPC);
+	populatePtrInner->setPcImp(trkPC);  
   
 	// set tehse to be constant?
   nQ = 1.5787; // ??? 1.5787;// TODO: check this !
@@ -805,9 +812,6 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
 	(mArrAndMap->hSignalMIPpc)->Fill(xPC, yPC);
 	*/ 
 
-	populate2Ptr = new Populate2(trkPos, trkDir, nF);
-
-	populate2Ptr->setPcImp(trkPC);
 
 	//Populate* populate = new Populate(trkPos, trkDir, nF);
 
@@ -1262,7 +1266,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
         const auto phiPhoton = (posPhoton - trkPos).Phi(); 
         																									
 
-        const auto pc = populatePtr->getPcImp();
+        const auto pc = populatePtrOuter->getPcImp();
 
         
         bool isPhotonProtonCand = false, isPhotonKaonCand = false, isPhotonPionCand = false;
@@ -1730,15 +1734,19 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 
 
-  // to draw maps:
+  // to draw maps: false
 	if(/*drawMap*/false) {
 
 		
  		mArrAndMap.setEventCount(eventCnt);
 		
 		mArrAndMap.setErrorPos(errorPos);
-		Populate2* pPtr = new Populate2(trkPos, trkDir, nF);
-		mArrAndMap.setPopulatePtr(populate2Ptr);
+
+
+
+
+mArrAndMap.setPopulatePtr(std::move(populatePtrCp));
+
 		
 		if(false) { //printf("populate2Ptr was nullptr!");
     }
@@ -1747,11 +1755,11 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 		mArrAndMap.setMaxArrays(arrMaxPionPos, arrMaxKaonPos, arrMaxProtonPos);		
 
 			//printf("populatePtr->GetHistogram()->GetEntries() num BinEntries = %f ", populate2Ptr->getLimMin()->GetEntries());
-			//printf("mArrAndMap->limMin->GetEntries() num BinEntries = %f ", populate2Ptr->limMin->GetEntries());
+			//printf("mArrAndMap->// limMin->GetEntries() num BinEntries = %f ", populate2Ptr->// limMin->GetEntries());
     // to draw the "split-phi"...
-		mArrAndMap.setDrawLimits(populate2Ptr->limMin, populate2Ptr->limMax);
+		//mArrAndMap.setDrawLimits(populate2Ptr->// limMin, populate2Ptr->// limMax);
 
-	  			//printf("mArrAndMap->limMin->GetEntries() num BinEntries = %f ", populate2Ptr->limMin->GetEntries());
+	  			//printf("mArrAndMap->// limMin->GetEntries() num BinEntries = %f ", populate2Ptr->// limMin->GetEntries());
 	  
 		auto d = (rW- L + tGap + qW);
 
@@ -1934,8 +1942,8 @@ void setArrayMax(double etaTRS, vecArray4& inPutVectorAngle, vecArray2& inPutVec
 {
   // const size_t kN = inPutVector.size();
   const float lMin = 0.;
-  const auto trkPC2 = populatePtr->getPcImp();      // track at PC
-  const auto trkRad2 = populatePtr->getTrackPos();  // track at RAD
+  const auto trkPC2 = populatePtrOuter->getPcImp();      // track at PC
+  const auto trkRad2 = populatePtrOuter->getTrackPos();  // track at RAD
 
 
   //Printf("\n\n setArrayMax() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
@@ -1953,7 +1961,7 @@ void setArrayMax(double etaTRS, vecArray4& inPutVectorAngle, vecArray2& inPutVec
 		double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
 
 
-		populatePtr->trs2Lors(dirTrs, thetaR, phiR);
+		populatePtrOuter->trs2Lors(dirTrs, thetaR, phiR);
 		
 		//Printf("setArrayMax() called trs2Lors on dirTRS : return { thetaR = %.2f, phiR = %.2f}", thetaR, phiR);
 		
@@ -1966,12 +1974,12 @@ void setArrayMax(double etaTRS, vecArray4& inPutVectorAngle, vecArray2& inPutVec
 		// temp
 		// ckovThe, const double& ckovPhi, const double & L
 		// this should return the same as max
-		//const auto t = populatePtr->tracePhot(etaTRS, phiL, lMin);
+		//const auto t = populatePtrOuter->tracePhot(etaTRS, phiL, lMin);
 
 		// temp
 		
-		//Printf("setArrayMax() called  populatePtr->traceForward(dirLORS (thetaR %.2f, phiR %.2f) lMin =  %.2f", thetaR, phiR, lMin);
-		const auto& max = populatePtr->traceForward(dirLORS, lMin); 
+		//Printf("setArrayMax() called  populatePtrOuter->traceForward(dirLORS (thetaR %.2f, phiR %.2f) lMin =  %.2f", thetaR, phiR, lMin);
+		const auto& max = populatePtrOuter->traceForward(dirLORS, lMin); 
 		// max = pos of tracked photon at PC
 		
 		const auto r = (max - trkPC2).Mod(); // trkPC2 : track impact @ PC
@@ -2094,8 +2102,8 @@ void setArrayMin(double etaTRS, vecArray4& inPutVectorAngle, vecArray2& inPutVec
 {
   // const size_t kN = inPutVector.size();
   const float lMax = 1.5;
-  const auto trkPC2 = populatePtr->getPcImp();      // track at PC
-  const auto trkRad2 = populatePtr->getTrackPos();  // track at RAD
+  const auto trkPC2 = populatePtrInner->getPcImp();      // track at PC
+  const auto trkRad2 = populatePtrInner->getTrackPos();  // track at RAD
 
 
   //Printf("\n\n setArrayMax() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
@@ -2113,7 +2121,7 @@ void setArrayMin(double etaTRS, vecArray4& inPutVectorAngle, vecArray2& inPutVec
 		double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
 
 
-		populatePtr->trs2Lors(dirTrs, thetaR, phiR);
+		populatePtrInner->trs2Lors(dirTrs, thetaR, phiR);
 		
 		//Printf("setArrayMax() called trs2Lors on dirTRS : return { thetaR = %.2f, phiR = %.2f}", thetaR, phiR);
 		
@@ -2130,8 +2138,8 @@ void setArrayMin(double etaTRS, vecArray4& inPutVectorAngle, vecArray2& inPutVec
 
 		// temp
 		
-		//Printf("setArrayMax() called  populatePtr->traceForward(dirLORS (thetaR %.2f, phiR %.2f) lMin =  %.2f", thetaR, phiR, lMin);
-		const auto& max = populatePtr->traceForward(dirLORS, lMax); 
+		//Printf("setArrayMax() called  populatePtrInner->traceForward(dirLORS (thetaR %.2f, phiR %.2f) lMin =  %.2f", thetaR, phiR, lMin);
+		const auto& max = populatePtrInner->traceForward(dirLORS, lMax); 
 		// max = pos of tracked photon at PC
 		
 		const auto r = (max - trkPC2).Mod(); // trkPC2 : track impact @ PC

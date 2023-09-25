@@ -74,11 +74,13 @@ public:
 
     Populate2(TVector2 trkPos, TVector3 trkDir, double _nF) : fTrkPos(trkPos),  fTrkDir(trkDir), nF(_nF) 
     {
+
+ 			/*
 	    limMin = new TH2F("minPos","minPos", 1600, 0, 159, 1440, 0, 143);
 
 			limMax = new TH2F("maxPos", "maxPos", 1600, 0, 159, 1440, 0, 143);
 
-			/*
+			
 
 				TVector3 fTrkDir; // track direction in LORS at RAD
 
