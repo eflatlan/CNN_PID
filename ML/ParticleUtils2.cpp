@@ -80,8 +80,8 @@ public:
 
 
         float refIndex = track.getRefIndex(); 
-        float cluCharge = track.getMipClusCharge();
-        float cluSize = track.getMipClusSize();
+        int cluCharge = track.getMipClusCharge();
+        int cluSize = track.getMipClusSize();
 		              
 				float p = track.getHmpMom(); 
 				
