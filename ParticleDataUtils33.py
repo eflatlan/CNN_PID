@@ -450,6 +450,7 @@ class ParticleDataUtils:
 			print(f"Dtype : {pion_candidates[i].dtype}")  # Output will be something like: int64
 
 		if abs_pdg in [211, 321, 2212]:
+			print(f"p { momentum_list[i]} pdg {abs_pdg}")
 
 			# check if exceeds momentum limit for ckov photons
 			if threshold_momentum(abs_pdg, momentum_list[i]):
