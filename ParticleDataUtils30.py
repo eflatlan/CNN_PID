@@ -456,22 +456,22 @@ class ParticleDataUtils:
 
 		if abs_pdg in [211, 321, 2212]:
 
-		# check if exceeds momentum limit for ckov photons
-		if threshold_momentum(abs_pdg, momentum_list[i]):
-			if abs_pdg == 211: non_zero_val =  np.count_nonzero(pion_candidates[i])
-			if abs_pdg == 321: non_zero_val = np.count_nonzero(kaon_candidates[i])
-			if abs_pdg == 2212: non_zero_val =  np.count_nonzero(proton_candidates[i])
-
-
-			# Check if any candidate has more than 5 non-zero values
-			if non_zero_val > 20:
-
-				cnt_min = 3
-				cnt_max = 50
-				particle_vector[i] = particle_info
-				self.particle_vector.append(particle_info)
-
-				print(f"Slenght particle_vector {len(self.particle_vector)}")
+			# check if exceeds momentum limit for ckov photons
+			if threshold_momentum(abs_pdg, momentum_list[i]):
+				if abs_pdg == 211: non_zero_val =  np.count_nonzero(pion_candidates[i])
+				if abs_pdg == 321: non_zero_val = np.count_nonzero(kaon_candidates[i])
+				if abs_pdg == 2212: non_zero_val =  np.count_nonzero(proton_candidates[i])
+				
+				
+				# Check if any candidate has more than 5 non-zero values
+				if non_zero_val > 20:
+					
+					cnt_min = 3
+					cnt_max = 50
+					particle_vector[i] = particle_info
+					self.particle_vector.append(particle_info)
+					
+					print(f"Slenght particle_vector {len(self.particle_vector)}")
 
 
 
