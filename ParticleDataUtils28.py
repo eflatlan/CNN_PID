@@ -4,7 +4,6 @@ from __future__ import print_function
 
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
-
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
 
