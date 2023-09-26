@@ -451,8 +451,8 @@ class ParticleDataUtils:
 			)
 		abs_pdg = abs(mTrackPdg_list[i])
 		if i == 0:
-		print(f"pion_candidates[i] shape {pion_candidates[i].shape}")
-		print(f"Dtype : {pion_candidates[i].dtype}")  # Output will be something like: int64
+			print(f"pion_candidates[i] shape {pion_candidates[i].shape}")
+			print(f"Dtype : {pion_candidates[i].dtype}")  # Output will be something like: int64
 
 		if abs_pdg in [211, 321, 2212]:
 
