@@ -12,6 +12,48 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
 
 import numpy as np
+MASS_PION = 0.1396
+MASS_KAON = 0.4937
+MASS_PROTON = 0.938
+
+# Squared masses
+MASS_PION_SQ = MASS_PION * MASS_PION
+MASS_KAON_SQ = MASS_KAON * MASS_KAON
+MASS_PROTON_SQ = MASS_PROTON * MASS_PROTON
+REF_INDEX_FREON_SQ = REF_INDEX_FREON_SQ * REF_INDEX_FREON_SQ
+REF_INDEX_FREON = 1.29  # Given refraction index
+
+def threshold_momentum(pdg_code, p):
+    """
+    Calculate the threshold momentum based on the given PDG code.
+
+    :param pdg_code: PDG code of the particle.
+		   p : momentum of track
+		   (tbd : refindex)
+	
+    :return : boolean value for Cherenkov radiation.
+    """
+
+    # Determine mass based on PDG code
+    if abs(pdg_code) == 211:
+        mass_sq = MASS_PION_SQ
+    elif abs(pdg_code) == 321:
+        mass_sq = MASS_KAON_SQ
+    elif abs(pdg_code) == 2212:
+        mass_sq = MASS_PROTON_SQ
+    else:
+        raise ValueError(f"Unsupported PDG code: {pdg_code}")
+
+    # Find the threshold momentum
+    cos_ckov_denom = REF_INDEX_FREON 
+    threshold_p_sq = ((cos_ckov_denom * cos_ckov_denom) - 1) * mass_sq
+
+
+	p_lim = mass/(np.sqrt(REF_INDEX_FREON_SQ-1))
+
+	return p_lim < p
+ 
+
 
 def pad_and_stack(sequences, max_length=None):
     # Your existing code
@@ -188,7 +230,7 @@ class ParticleDataUtils:
 
 
     class ParticleInfo: # p
-        def __init__(self,  momentum, refractiveIndex, xRad, yRad, xMIP, yMIP, thetaP, phiP, mCluCharge, mCluSize, non_candidates, pion_candidates, kaon_candidates, proton_candidates, mTrackPdg):
+        def __init__(self,  momentum, refractiveIndex, xRad, yRad, xMIP, yMIP, thetaP, phiP, mCluCharge, mCluSize, non_candidates, pion_candidates, kaon_candidates, proton_candidates, mTrackPdg, index):
             self.momentum = momentum # this dhould be with
             self.refractiveIndex = refractiveIndex # with
             self.xRad = xRad # with
@@ -213,6 +255,7 @@ class ParticleDataUtils:
 
 
             self.mTrackPdg = mTrackPdg # with
+            self.index = index # with
 
             abs_mTrackPdg = abs(self.mTrackPdg)  # Take the absolute value
 
@@ -409,10 +452,10 @@ class ParticleDataUtils:
               momentum_list[i], refractiveIndex_list[i], xRad_list[i], yRad_list[i],
               xMIP_list[i], yMIP_list[i], thetaP_list[i], phiP_list[i],
               mCluCharge_list[i], mCluSize_list[i], non_candidates[i], pion_candidates[i],
-              kaon_candidates[i], proton_candidates[i], mTrackPdg_list[i]
+              kaon_candidates[i], proton_candidates[i], mTrackPdg_list[i],
+			  index_particle # index of particle to compare w C++ plots
           )
           abs_pdg = abs(mTrackPdg_list[i])
-
           if i == 0:
             print(f"pion_candidates[i] shape {pion_candidates[i].shape}")
             print(f"Dtype : {pion_candidates[i].dtype}")  # Output will be something like: int64
@@ -421,27 +464,34 @@ class ParticleDataUtils:
           non_zero_kaon = np.count_nonzero(kaon_candidates[i])
           non_zero_proton = np.count_nonzero(proton_candidates[i])
           
+
+
           # Check if any candidate has more than 5 non-zero values
           if abs_pdg in [211, 321, 2212]:
               if abs_pdg == 211: non_zero_val = non_zero_pion
               if abs_pdg == 321: non_zero_val = non_zero_kaon
               if abs_pdg == 2212: non_zero_val = non_zero_proton
-          
-              if non_zero_val > 20:
-                  cnt_min = 3
-                  cnt_max = 50
-                  particle_vector[i] = particle_info
-                  self.particle_vector.append(particle_info)
-                  # if count_within_r[i] > cnt_min and count_within_r[i] < cnt_max:
-      
-                  #   if mCluCharge_list[i] == 200:
-                  #     a =1 #print(f"mCluCharge_list[i] {mCluCharge_list[i]}")
-                  #   else :
-                  #     #print(f"mCluCharge_list[i] {mCluCharge_list[i]}")
-                  #     particle_vector[i] = particle_info
-                  #     self.particle_vector.append(particle_info)
-                  # else:
-                  #   print(f"Number withing ", count_within_r[i])
+	
+			  
+			  # check if exceeds momentum limit for ckov photons
+			  if threshold_momentum(abs_pdg, momentum_list[i]):
+
+				if non_zero_val > 20:
+					
+					cnt_min = 3
+					cnt_max = 50
+					particle_vector[i] = particle_info
+					self.particle_vector.append(particle_info)
+					# if count_within_r[i] > cnt_min and count_within_r[i] < cnt_max:
+		
+					#   if mCluCharge_list[i] == 200:
+					#     a =1 #print(f"mCluCharge_list[i] {mCluCharge_list[i]}")
+					#   else :
+					#     #print(f"mCluCharge_list[i] {mCluCharge_list[i]}")
+					#     particle_vector[i] = particle_info
+					#     self.particle_vector.append(particle_info)
+					# else:
+					#   print(f"Number withing ", count_within_r[i])
 
 
           #else :
