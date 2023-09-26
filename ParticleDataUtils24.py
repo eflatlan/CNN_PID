@@ -468,30 +468,28 @@ class ParticleDataUtils:
 
           # Check if any candidate has more than 5 non-zero values
           if abs_pdg in [211, 321, 2212]:
-              if abs_pdg == 211: non_zero_val = non_zero_pion
-              if abs_pdg == 321: non_zero_val = non_zero_kaon
-              if abs_pdg == 2212: non_zero_val = non_zero_proton
-	
-			  
-			  # check if exceeds momentum limit for ckov photons
-			  if threshold_momentum(abs_pdg, momentum_list[i]):
-
-				if non_zero_val > 20:
+				  
+			  			# check if exceeds momentum limit for ckov photons
+							if threshold_momentum(abs_pdg, momentum_list[i]):
+									if abs_pdg == 211: non_zero_val =  np.count_nonzero(pion_candidates[i])
+              		if abs_pdg == 321: non_zero_val = np.count_nonzero(kaon_candidates[i])
+             	 		if abs_pdg == 2212: non_zero_val =  np.count_nonzero(proton_candidates[i])
+									if non_zero_val > 20:
 					
-					cnt_min = 3
-					cnt_max = 50
-					particle_vector[i] = particle_info
-					self.particle_vector.append(particle_info)
-					# if count_within_r[i] > cnt_min and count_within_r[i] < cnt_max:
-		
-					#   if mCluCharge_list[i] == 200:
-					#     a =1 #print(f"mCluCharge_list[i] {mCluCharge_list[i]}")
-					#   else :
-					#     #print(f"mCluCharge_list[i] {mCluCharge_list[i]}")
-					#     particle_vector[i] = particle_info
-					#     self.particle_vector.append(particle_info)
-					# else:
-					#   print(f"Number withing ", count_within_r[i])
+											cnt_min = 3
+											cnt_max = 50
+											particle_vector[i] = particle_info
+											self.particle_vector.append(particle_info)
+											# if count_within_r[i] > cnt_min and count_within_r[i] < cnt_max:
+								
+											#   if mCluCharge_list[i] == 200:
+											#     a =1 #print(f"mCluCharge_list[i] {mCluCharge_list[i]}")
+											#   else :
+											#     #print(f"mCluCharge_list[i] {mCluCharge_list[i]}")
+											#     particle_vector[i] = particle_info
+											#     self.particle_vector.append(particle_info)
+											# else:
+											#   print(f"Number withing ", count_within_r[i])
 
 
           #else :
