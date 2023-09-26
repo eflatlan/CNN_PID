@@ -42,7 +42,7 @@ def threshold_momentum(pdg_code, p):
     elif abs(pdg_code) == 2212:
         mass_sq = MASS_PROTON_SQ
     else:
-        raise ValueError(f"Unsupported PDG code: {pdg_code}")
+		raise ValueError(f"Unsupported PDG code: {pdg_code}")
 
     # Find the threshold momentum
     cos_ckov_denom = REF_INDEX_FREON 
@@ -313,189 +313,169 @@ class ParticleDataUtils:
 
 
     def load_data(self, filenames):
-      drive_path = '/content/drive/MyDrive/Colab Notebooks/CERN_ML/CNN_PID/'
+		drive_path = '/content/drive/MyDrive/Colab Notebooks/CERN_ML/CNN_PID/'
 
-      max_length_nested = 0
-      num_particles = 0
-      file_num = 0
-      for filename in filenames:
-        file_path = os.path.join(drive_path, filename)
-        print(f"Reading file {file_num} : {filename}")
-        with h5py.File(file_path, 'r') as file:
-            for i, group_name in enumerate(file):
-                group = file[group_name]
-                num_particles = num_particles + 1
-                current_length = len(group['ye_values'][...])
-                if current_length > max_length_nested:
-                    max_length_nested = current_length
-                    print(f" i {i} max_length_nested {max_length_nested}")
-
-
-      # Lists to store scalar and array-like attributes
-      momentum_list = np.zeros((num_particles, 1))
-      refractiveIndex_list = np.zeros((num_particles, 1))
-      xRad_list = np.zeros((num_particles, 1))
-      yRad_list = np.zeros((num_particles, 1))
-      xMIP_list = np.zeros((num_particles, 1))
-      yMIP_list = np.zeros((num_particles, 1))
-      thetaP_list = np.zeros((num_particles, 1))
-      phiP_list = np.zeros((num_particles, 1))
-      mCluCharge_list = np.zeros((num_particles, 1))
-      mCluSize_list = np.zeros((num_particles, 1))
-      mTrackPdg_list = np.zeros((num_particles, 1))
+		max_length_nested = 0
+		num_particles = 0
+		file_num = 0
+		for filename in filenames:
+			file_path = os.path.join(drive_path, filename)
+			print(f"Reading file {file_num} : {filename}")
+			with h5py.File(file_path, 'r') as file:
+				for i, group_name in enumerate(file):
+					group = file[group_name]
+					num_particles = num_particles + 1
+					current_length = len(group['ye_values'][...])
+					if current_length > max_length_nested:
+						max_length_nested = current_length
+						print(f" i {i} max_length_nested {max_length_nested}")
 
 
-      x_values_data_list = np.zeros((num_particles, max_length_nested))
-      y_values_data_list =  np.zeros((num_particles, max_length_nested))
-      chi2_values_data_list =  np.zeros((num_particles, max_length_nested))
-      q_values_data_list =  np.zeros((num_particles, max_length_nested))
-      xe_values_data_list =  np.zeros((num_particles, max_length_nested))
-      ye_values_data_list =  np.zeros((num_particles, max_length_nested))
-      candStatus_values_data_list =  np.zeros((num_particles, max_length_nested))
-      size_clu_lst =  np.zeros((num_particles, max_length_nested))
+		# Lists to store scalar and array-like attributes
+		momentum_list = np.zeros((num_particles, 1))
+		refractiveIndex_list = np.zeros((num_particles, 1))
+		xRad_list = np.zeros((num_particles, 1))
+		yRad_list = np.zeros((num_particles, 1))
+		xMIP_list = np.zeros((num_particles, 1))
+		yMIP_list = np.zeros((num_particles, 1))
+		thetaP_list = np.zeros((num_particles, 1))
+		phiP_list = np.zeros((num_particles, 1))
+		mCluCharge_list = np.zeros((num_particles, 1))
+		mCluSize_list = np.zeros((num_particles, 1))
+		mTrackPdg_list = np.zeros((num_particles, 1))
 
 
-      index_particle = 0
-      for filename in filenames:
-        file_path = os.path.join(drive_path, filename)
-        print(f"Reading file {file_num} : {filename}")
-        with h5py.File(file_path, 'r') as file:
-            for i, group_name in enumerate(file):
-                group = file[group_name]
-
-                # Store scalar attributes into lists
-                momentum_list[index_particle] = group.attrs['Momentum']
-                refractiveIndex_list[index_particle] = group.attrs['RefractiveIndex']
-                xRad_list[index_particle] = group.attrs['xRad']
-                yRad_list[index_particle] = group.attrs['yRad']
-                xMIP_list[index_particle] = group.attrs['xMip']
-                yMIP_list[index_particle] = group.attrs['yMip']
-                thetaP_list[index_particle] = group.attrs['ThetaP']
-                phiP_list[index_particle] = group.attrs['PhiP']
-                mCluCharge_list[index_particle] = group.attrs['CluCharge']
-                mCluSize_list[index_particle] = group.attrs['CluSize']
-                mTrackPdg_list[index_particle] = group.attrs['TrackPdg']
-
-                actual_length = len(group['x_values'][...])
-                x_values_data_list[index_particle, :actual_length] = group['x_values'][...]
-
-                actual_length = len(group['y_values'][...])
-                y_values_data_list[index_particle, :actual_length] = group['y_values'][...]
-
-                actual_length = len(group['chi2_values'][...])
-                chi2_values_data_list[index_particle, :actual_length] = group['chi2_values'][...]
-
-                actual_length = len(group['q_values'][...])
-                q_values_data_list[index_particle, :actual_length] = group['q_values'][...]
-
-                actual_length = len(group['xe_values'][...])
-                xe_values_data_list[index_particle, :actual_length] = group['xe_values'][...]
-
-                actual_length = len(group['ye_values'][...])
-                ye_values_data_list[index_particle, :actual_length] = group['ye_values'][...]
-
-                actual_length = len(group['candStatus_values'][...])
-                candStatus_values_data_list[index_particle, :actual_length] = group['candStatus_values'][...]
+		x_values_data_list = np.zeros((num_particles, max_length_nested))
+		y_values_data_list =  np.zeros((num_particles, max_length_nested))
+		chi2_values_data_list =  np.zeros((num_particles, max_length_nested))
+		q_values_data_list =  np.zeros((num_particles, max_length_nested))
+		xe_values_data_list =  np.zeros((num_particles, max_length_nested))
+		ye_values_data_list =  np.zeros((num_particles, max_length_nested))
+		candStatus_values_data_list =  np.zeros((num_particles, max_length_nested))
+		size_clu_lst =  np.zeros((num_particles, max_length_nested))
 
 
-                actual_length = len(group['mSize_values'][...])
-                size_clu_lst[index_particle, :actual_length] = group['mSize_values'][...]
+		index_particle = 0
+		for filename in filenames:
+			file_path = os.path.join(drive_path, filename)
+			print(f"Reading file {file_num} : {filename}")
+			with h5py.File(file_path, 'r') as file:
+				for i, group_name in enumerate(file):
+					group = file[group_name]
 
-                index_particle += 1
+					# Store scalar attributes into lists
+					momentum_list[index_particle] = group.attrs['Momentum']
+					refractiveIndex_list[index_particle] = group.attrs['RefractiveIndex']
+					xRad_list[index_particle] = group.attrs['xRad']
+					yRad_list[index_particle] = group.attrs['yRad']
+					xMIP_list[index_particle] = group.attrs['xMip']
+					yMIP_list[index_particle] = group.attrs['yMip']
+					thetaP_list[index_particle] = group.attrs['ThetaP']
+					phiP_list[index_particle] = group.attrs['PhiP']
+					mCluCharge_list[index_particle] = group.attrs['CluCharge']
+					mCluSize_list[index_particle] = group.attrs['CluSize']
+					mTrackPdg_list[index_particle] = group.attrs['TrackPdg']
 
-                # cehck the length of current entry inn   ye_values_data_list and update max_length_nested if logner
-                current_length = len(group['ye_values'][...])
-                if current_length > max_length_nested:
-                    max_length_nested = current_length
-                    print(f" i {i} max_length_nested {max_length_nested}")
+					actual_length = len(group['x_values'][...])
+					x_values_data_list[index_particle, :actual_length] = group['x_values'][...]
 
-      # Perform your vectorized operations here
-      # ...
+					actual_length = len(group['y_values'][...])
+					y_values_data_list[index_particle, :actual_length] = group['y_values'][...]
 
-      # Create ParticleInfo objects
+					actual_length = len(group['chi2_values'][...])
+					chi2_values_data_list[index_particle, :actual_length] = group['chi2_values'][...]
 
-      # Assuming that classify_candidates_with_pad_sequences can work on lists
-      # of data arrays, and it pads them to a uniform size
-      pion_candidates, kaon_candidates, proton_candidates, non_candidates, cand_combined = classify_candidates_with_pad_sequences(
-          x_values_data_list, y_values_data_list, size_clu_lst,
-          q_values_data_list, candStatus_values_data_list,
-          max_length_nested,xMIP_list,yMIP_list
+					actual_length = len(group['q_values'][...])
+					q_values_data_list[index_particle, :actual_length] = group['q_values'][...]
 
-      )
-      print(f"pion_candidates shape {pion_candidates.shape}")
+					actual_length = len(group['xe_values'][...])
+					xe_values_data_list[index_particle, :actual_length] = group['xe_values'][...]
 
-      print(f"Dtype : {pion_candidates.dtype}")  # Output will be something like: int64
+					actual_length = len(group['ye_values'][...])
+					ye_values_data_list[index_particle, :actual_length] = group['ye_values'][...]
 
-      particle_vector = [None] * len(momentum_list)
-
-      MIP_list = np.hstack([xMIP_list, yMIP_list])
-
-      # Reshape the array to (N, 1, 2)
-      MIP_list_reshaped = MIP_list[:, np.newaxis, :]
-
-      # Extract only the x and y coordinates from pion_candidates
-      pion_candidates_xy = pion_candidates[:, :, :2]
-
-      # Compute squared differences
-      diff = np.sum((pion_candidates_xy - MIP_list_reshaped)**2, axis=2)
-      r_max = 35
-      r_min = 0.5
-      # Count the number of points within radius r (5 to 40)
-      non_padded_mask = np.any(pion_candidates[:, :, :2] != 0, axis=2)
-      within_r_mask = (diff >= r_min**2) & (diff <= r_max**2) & non_padded_mask
-
-      count_within_r = np.sum(within_r_mask, axis=1)
+					actual_length = len(group['candStatus_values'][...])
+					candStatus_values_data_list[index_particle, :actual_length] = group['candStatus_values'][...]
 
 
-      for i in range(len(momentum_list)):
-          particle_info = ParticleDataUtils.ParticleInfo(
-              momentum_list[i], refractiveIndex_list[i], xRad_list[i], yRad_list[i],
-              xMIP_list[i], yMIP_list[i], thetaP_list[i], phiP_list[i],
-              mCluCharge_list[i], mCluSize_list[i], non_candidates[i], pion_candidates[i],
-              kaon_candidates[i], proton_candidates[i], mTrackPdg_list[i],
-			  index_particle # index of particle to compare w C++ plots
-          )
-          abs_pdg = abs(mTrackPdg_list[i])
-          if i == 0:
-            print(f"pion_candidates[i] shape {pion_candidates[i].shape}")
-            print(f"Dtype : {pion_candidates[i].dtype}")  # Output will be something like: int64
+					actual_length = len(group['mSize_values'][...])
+					size_clu_lst[index_particle, :actual_length] = group['mSize_values'][...]
 
-          non_zero_pion = np.count_nonzero(pion_candidates[i])
-          non_zero_kaon = np.count_nonzero(kaon_candidates[i])
-          non_zero_proton = np.count_nonzero(proton_candidates[i])
-          
+					index_particle += 1
+
+					# cehck the length of current entry inn   ye_values_data_list and update max_length_nested if logner
+					current_length = len(group['ye_values'][...])
+					if current_length > max_length_nested:
+						max_length_nested = current_length
+						print(f" i {i} max_length_nested {max_length_nested}")
 
 
-          # Check if any candidate has more than 5 non-zero values
-          if abs_pdg in [211, 321, 2212]:
-				  
-			  			# check if exceeds momentum limit for ckov photons
-							if threshold_momentum(abs_pdg, momentum_list[i]):
-									if abs_pdg == 211: non_zero_val =  np.count_nonzero(pion_candidates[i])
-              		if abs_pdg == 321: non_zero_val = np.count_nonzero(kaon_candidates[i])
-             	 		if abs_pdg == 2212: non_zero_val =  np.count_nonzero(proton_candidates[i])
-									if non_zero_val > 20:
-					
-											cnt_min = 3
-											cnt_max = 50
-											particle_vector[i] = particle_info
-											self.particle_vector.append(particle_info)
-											# if count_within_r[i] > cnt_min and count_within_r[i] < cnt_max:
-								
-											#   if mCluCharge_list[i] == 200:
-											#     a =1 #print(f"mCluCharge_list[i] {mCluCharge_list[i]}")
-											#   else :
-											#     #print(f"mCluCharge_list[i] {mCluCharge_list[i]}")
-											#     particle_vector[i] = particle_info
-											#     self.particle_vector.append(particle_info)
-											# else:
-											#   print(f"Number withing ", count_within_r[i])
+
+		pion_candidates, kaon_candidates, proton_candidates, non_candidates, cand_combined = classify_candidates_with_pad_sequences(
+			x_values_data_list, y_values_data_list, size_clu_lst,
+			q_values_data_list, candStatus_values_data_list,
+			max_length_nested,xMIP_list,yMIP_list
+      	)	
+      	print(f"pion_candidates shape {pion_candidates.shape}")
+
+      	print(f"Dtype : {pion_candidates.dtype}")  # Output will be something like: int64
+
+      	particle_vector = [None] * len(momentum_list)
+
+     	MIP_list = np.hstack([xMIP_list, yMIP_list])
+
+		# Reshape the array to (N, 1, 2)
+		MIP_list_reshaped = MIP_list[:, np.newaxis, :]
+
+		# Extract only the x and y coordinates from pion_candidates
+		pion_candidates_xy = pion_candidates[:, :, :2]
+
+		# Compute squared differences
+		diff = np.sum((pion_candidates_xy - MIP_list_reshaped)**2, axis=2)
+		r_max = 35
+		r_min = 0.5
+		# Count the number of points within radius r (5 to 40)
+		non_padded_mask = np.any(pion_candidates[:, :, :2] != 0, axis=2)
+		within_r_mask = (diff >= r_min**2) & (diff <= r_max**2) & non_padded_mask
+
+		count_within_r = np.sum(within_r_mask, axis=1)
 
 
-          #else :
-          #  print(f"PDG Type: {mTrackPdg_list[i]}")
+      	for i in range(len(momentum_list)):
+          	particle_info = ParticleDataUtils.ParticleInfo(
+			  	momentum_list[i], refractiveIndex_list[i], xRad_list[i], yRad_list[i],
+              	xMIP_list[i], yMIP_list[i], thetaP_list[i], phiP_list[i],
+              	mCluCharge_list[i], mCluSize_list[i], non_candidates[i], pion_candidates[i],
+              	kaon_candidates[i], proton_candidates[i], mTrackPdg_list[i],
+			  	index_particle # index of particle to compare w C++ plots
+          	)
+			abs_pdg = abs(mTrackPdg_list[i])
+			if i == 0:
+				print(f"pion_candidates[i] shape {pion_candidates[i].shape}")
+				print(f"Dtype : {pion_candidates[i].dtype}")  # Output will be something like: int64
 
-      print(f"Slenght particle_vector {len(self.particle_vector)}")
+		
+			
+
+
+			if abs_pdg in [211, 321, 2212]:
+				
+				# check if exceeds momentum limit for ckov photons
+				if threshold_momentum(abs_pdg, momentum_list[i]):
+					if abs_pdg == 211: non_zero_val =  np.count_nonzero(pion_candidates[i])
+					if abs_pdg == 321: non_zero_val = np.count_nonzero(kaon_candidates[i])
+					if abs_pdg == 2212: non_zero_val =  np.count_nonzero(proton_candidates[i])
+
+
+					# Check if any candidate has more than 5 non-zero values 
+					if non_zero_val > 20:
+
+						cnt_min = 3
+						cnt_max = 50
+						particle_vector[i] = particle_info
+						self.particle_vector.append(particle_info)
+
+	print(f"Slenght particle_vector {len(self.particle_vector)}")
 
 
 
@@ -586,7 +566,7 @@ class ParticleDataUtils:
                 scalers = []
 
                 for i in range(n_features):
-                    scaler = StandardScaler()
+					scaler = StandardScaler()
                     feature_values = values[:, :, i].reshape(-1, 1)
                     scaled_values = scaler.fit_transform(feature_values).reshape(n_samples, n_clusters)
                     values[:, :, i] = scaled_values
