@@ -399,6 +399,8 @@ class ParticleDataUtils:
 
 					# cehck the length of current entry inn   ye_values_data_list and update max_length_nested if logner
 					current_length = len(group['ye_values'][...])
+					print(f" i {i} appending")
+
 					if current_length > max_length_nested:
 						max_length_nested = current_length
 						print(f" i {i} max_length_nested {max_length_nested}")
@@ -412,8 +414,10 @@ class ParticleDataUtils:
 	  	)
 
 		print(f"pion_candidates shape {pion_candidates.shape}")
+		print(f"Dtype pion_candidates : {pion_candidates.dtype}")  # Output will be something like: int64
+		print(f"Dtype mo_arry : {momentum_list.dtype}")  # Output will be something like: int64
 
-		print(f"Dtype : {pion_candidates.dtype}")  # Output will be something like: int64
+		print(f"momentum_list shape {mo_arry.shape}")
 
 		particle_vector = [None] * len(momentum_list)
 
@@ -438,13 +442,7 @@ class ParticleDataUtils:
 		print(f"momentum_list shape {np.array(momentum_list).shape}")
 
 		for i in range(len(momentum_list)):
-			particle_info = ParticleDataUtils.ParticleInfo(
-				momentum_list[i], refractiveIndex_list[i], xRad_list[i], yRad_list[i],
-				xMIP_list[i], yMIP_list[i], thetaP_list[i], phiP_list[i],
-				mCluCharge_list[i], mCluSize_list[i], non_candidates[i], pion_candidates[i],
-				kaon_candidates[i], proton_candidates[i], mTrackPdg_list[i],
-				index_particle # index of particle to compare w C++ plots
-			)
+
 
 			print(f"p { momentum_list[i]} pdg {mTrackPdg_list[i]}")
 
@@ -463,7 +461,14 @@ class ParticleDataUtils:
 					if abs_pdg == 2212: non_zero_val =  np.count_nonzero(proton_candidates[i])				
 					print(f"non_zero_val {non_zero_val}")
 					# Check if any candidate has more than 5 non-zero values
-					if non_zero_val > 20:					
+					if non_zero_val > 20:	
+						particle_info = ParticleDataUtils.ParticleInfo(
+							momentum_list[i], refractiveIndex_list[i], xRad_list[i], yRad_list[i],
+							xMIP_list[i], yMIP_list[i], thetaP_list[i], phiP_list[i],
+							mCluCharge_list[i], mCluSize_list[i], non_candidates[i], pion_candidates[i],
+							kaon_candidates[i], proton_candidates[i], mTrackPdg_list[i],
+							index_particle # index of particle to compare w C++ plots
+						)
 						cnt_min = 3
 						cnt_max = 50
 						particle_vector[i] = particle_info
