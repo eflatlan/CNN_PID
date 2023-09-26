@@ -24,35 +24,35 @@ REF_INDEX_FREON_SQ = REF_INDEX_FREON_SQ * REF_INDEX_FREON_SQ
 REF_INDEX_FREON = 1.29  # Given refraction index
 
 def threshold_momentum(pdg_code, p):
-    """
-    Calculate the threshold momentum based on the given PDG code.
+	"""
+	Calculate the threshold momentum based on the given PDG code.
 
-    :param pdg_code: PDG code of the particle.
-		   p : momentum of track
-		   (tbd : refindex)
-	
-    :return : boolean value for Cherenkov radiation.
-    """
+	:param pdg_code: PDG code of the particle.
+	p : momentum of track
+	(tbd : refindex)
 
-    # Determine mass based on PDG code
-    if abs(pdg_code) == 211:
-        mass_sq = MASS_PION_SQ
-    elif abs(pdg_code) == 321:
-        mass_sq = MASS_KAON_SQ
-    elif abs(pdg_code) == 2212:
-        mass_sq = MASS_PROTON_SQ
-    else:
+	:return : boolean value for Cherenkov radiation.
+	"""
+
+	# Determine mass based on PDG code
+	if abs(pdg_code) == 211:
+		mass_sq = MASS_PION_SQ
+	elif abs(pdg_code) == 321:
+		mass_sq = MASS_KAON_SQ
+	elif abs(pdg_code) == 2212:
+		mass_sq = MASS_PROTON_SQ
+	else:
 		raise ValueError(f"Unsupported PDG code: {pdg_code}")
 
-    # Find the threshold momentum
-    cos_ckov_denom = REF_INDEX_FREON 
-    threshold_p_sq = ((cos_ckov_denom * cos_ckov_denom) - 1) * mass_sq
+	# Find the threshold momentum
+	cos_ckov_denom = REF_INDEX_FREON 
+	threshold_p_sq = ((cos_ckov_denom * cos_ckov_denom) - 1) * mass_sq
 
 
-p_lim = mass/(np.sqrt(REF_INDEX_FREON_SQ-1))
+	p_lim = mass/(np.sqrt(REF_INDEX_FREON_SQ-1))
 
-return p_lim < p
- 
+	return p_lim < p
+
 
 
 def pad_and_stack(sequences, max_length=None):
