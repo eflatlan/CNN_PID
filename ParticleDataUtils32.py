@@ -35,17 +35,16 @@ def threshold_momentum(pdg_code, p):
 
 	# Determine mass based on PDG code
 	if abs(pdg_code) == 211:
-		mass_sq = MASS_PION_SQ
+		mass = MASS_PION
 	elif abs(pdg_code) == 321:
-		mass_sq = MASS_KAON_SQ
+		mass = MASS_KAON
 	elif abs(pdg_code) == 2212:
-		mass_sq = MASS_PROTON_SQ
+		mass = MASS_PROTON
 	else:
 		raise ValueError(f"Unsupported PDG code: {pdg_code}")
 
 	# Find the threshold momentum
 	cos_ckov_denom = REF_INDEX_FREON
-	threshold_p_sq = ((cos_ckov_denom * cos_ckov_denom) - 1) * mass_sq
 
 
 	p_lim = mass/(np.sqrt(REF_INDEX_FREON_SQ-1))
