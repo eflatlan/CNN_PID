@@ -314,7 +314,7 @@ class ParticleDataUtils:
 
 	def load_data(self, filenames):
 		drive_path = '/content/drive/MyDrive/Colab Notebooks/CERN_ML/CNN_PID/'
-		
+
 		max_length_nested = 0
 		num_particles = 0
 		file_num = 0
@@ -414,15 +414,16 @@ class ParticleDataUtils:
 		pion_candidates, kaon_candidates, proton_candidates, non_candidates, cand_combined = classify_candidates_with_pad_sequences(
 			x_values_data_list, y_values_data_list, size_clu_lst,
 			q_values_data_list, candStatus_values_data_list,
-			max_length_nested,xMIP_list,yMIP_list
+			max_length_nested,xMIP_list, yMIP_list
 	  	)
-	  	print(f"pion_candidates shape {pion_candidates.shape}")
 
-	  	print(f"Dtype : {pion_candidates.dtype}")  # Output will be something like: int64
+		print(f"pion_candidates shape {pion_candidates.shape}")
 
-	  	particle_vector = [None] * len(momentum_list)
+		print(f"Dtype : {pion_candidates.dtype}")  # Output will be something like: int64
 
-	 	MIP_list = np.hstack([xMIP_list, yMIP_list])
+		particle_vector = [None] * len(momentum_list)
+
+		MIP_list = np.hstack([xMIP_list, yMIP_list])
 
 		# Reshape the array to (N, 1, 2)
 		MIP_list_reshaped = MIP_list[:, np.newaxis, :]
@@ -441,41 +442,37 @@ class ParticleDataUtils:
 		count_within_r = np.sum(within_r_mask, axis=1)
 
 
-	  	for i in range(len(momentum_list)):
-		  	particle_info = ParticleDataUtils.ParticleInfo(
-			  	momentum_list[i], refractiveIndex_list[i], xRad_list[i], yRad_list[i],
-			  	xMIP_list[i], yMIP_list[i], thetaP_list[i], phiP_list[i],
-			  	mCluCharge_list[i], mCluSize_list[i], non_candidates[i], pion_candidates[i],
-			  	kaon_candidates[i], proton_candidates[i], mTrackPdg_list[i],
-			  	index_particle # index of particle to compare w C++ plots
-		  	)
-			abs_pdg = abs(mTrackPdg_list[i])
-			if i == 0:
-				print(f"pion_candidates[i] shape {pion_candidates[i].shape}")
-				print(f"Dtype : {pion_candidates[i].dtype}")  # Output will be something like: int64
+		for i in range(len(momentum_list)):
+			particle_info = ParticleDataUtils.ParticleInfo(
+				momentum_list[i], refractiveIndex_list[i], xRad_list[i], yRad_list[i],
+				xMIP_list[i], yMIP_list[i], thetaP_list[i], phiP_list[i],
+				mCluCharge_list[i], mCluSize_list[i], non_candidates[i], pion_candidates[i],
+				kaon_candidates[i], proton_candidates[i], mTrackPdg_list[i],
+				index_particle # index of particle to compare w C++ plots
+			)
+		abs_pdg = abs(mTrackPdg_list[i])
+		if i == 0:
+		print(f"pion_candidates[i] shape {pion_candidates[i].shape}")
+		print(f"Dtype : {pion_candidates[i].dtype}")  # Output will be something like: int64
+
+		if abs_pdg in [211, 321, 2212]:
+
+		# check if exceeds momentum limit for ckov photons
+		if threshold_momentum(abs_pdg, momentum_list[i]):
+			if abs_pdg == 211: non_zero_val =  np.count_nonzero(pion_candidates[i])
+			if abs_pdg == 321: non_zero_val = np.count_nonzero(kaon_candidates[i])
+			if abs_pdg == 2212: non_zero_val =  np.count_nonzero(proton_candidates[i])
 
 
+			# Check if any candidate has more than 5 non-zero values
+			if non_zero_val > 20:
 
+				cnt_min = 3
+				cnt_max = 50
+				particle_vector[i] = particle_info
+				self.particle_vector.append(particle_info)
 
-
-			if abs_pdg in [211, 321, 2212]:
-
-				# check if exceeds momentum limit for ckov photons
-				if threshold_momentum(abs_pdg, momentum_list[i]):
-					if abs_pdg == 211: non_zero_val =  np.count_nonzero(pion_candidates[i])
-					if abs_pdg == 321: non_zero_val = np.count_nonzero(kaon_candidates[i])
-					if abs_pdg == 2212: non_zero_val =  np.count_nonzero(proton_candidates[i])
-
-
-					# Check if any candidate has more than 5 non-zero values
-					if non_zero_val > 20:
-
-						cnt_min = 3
-						cnt_max = 50
-						particle_vector[i] = particle_info
-						self.particle_vector.append(particle_info)
-
-	print(f"Slenght particle_vector {len(self.particle_vector)}")
+				print(f"Slenght particle_vector {len(self.particle_vector)}")
 
 
 
@@ -589,7 +586,7 @@ class ParticleDataUtils:
 
 # TODO : denne skal mulgiens fjernes helt ?
 # create a map, the resolution is the "inverse"
-	def create_map(filledBins=None, resolution=4):
+def create_map(filledBins=None, resolution=4):
 	# Add an offset to your map shape calculation to handle edge cases
 	offset = 0
 	map_shape = (int(144 * resolution + offset), int(160 * resolution + offset))
