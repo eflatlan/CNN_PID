@@ -49,9 +49,9 @@ def threshold_momentum(pdg_code, p):
     threshold_p_sq = ((cos_ckov_denom * cos_ckov_denom) - 1) * mass_sq
 
 
-	p_lim = mass/(np.sqrt(REF_INDEX_FREON_SQ-1))
+p_lim = mass/(np.sqrt(REF_INDEX_FREON_SQ-1))
 
-	return p_lim < p
+return p_lim < p
  
 
 
