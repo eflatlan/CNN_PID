@@ -43,12 +43,8 @@ def threshold_momentum(pdg_code, p):
 	else:
 		raise ValueError(f"Unsupported PDG code: {pdg_code}")
 
-	# Find the threshold momentum
-	cos_ckov_denom = REF_INDEX_FREON
-
-
 	p_lim = mass/(np.sqrt(REF_INDEX_FREON_SQ-1))
-
+	print(f" p_lim {p_lim} p {p}")
 	return p_lim < p
 
 
@@ -459,12 +455,10 @@ class ParticleDataUtils:
 			if threshold_momentum(abs_pdg, momentum_list[i]):
 				if abs_pdg == 211: non_zero_val =  np.count_nonzero(pion_candidates[i])
 				if abs_pdg == 321: non_zero_val = np.count_nonzero(kaon_candidates[i])
-				if abs_pdg == 2212: non_zero_val =  np.count_nonzero(proton_candidates[i])
-				
-				
+				if abs_pdg == 2212: non_zero_val =  np.count_nonzero(proton_candidates[i])				
+				print(f"non_zero_val {non_zero_val}")
 				# Check if any candidate has more than 5 non-zero values
-				if non_zero_val > 20:
-					
+				if non_zero_val > 20:					
 					cnt_min = 3
 					cnt_max = 50
 					particle_vector[i] = particle_info
