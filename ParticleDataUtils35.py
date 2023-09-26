@@ -435,6 +435,7 @@ class ParticleDataUtils:
 
 		count_within_r = np.sum(within_r_mask, axis=1)
 
+		print(f"momentum_list shape {np.array(momentum_list).shape}")
 
 		for i in range(len(momentum_list)):
 			particle_info = ParticleDataUtils.ParticleInfo(
@@ -444,28 +445,31 @@ class ParticleDataUtils:
 				kaon_candidates[i], proton_candidates[i], mTrackPdg_list[i],
 				index_particle # index of particle to compare w C++ plots
 			)
-		abs_pdg = abs(mTrackPdg_list[i])
-		if i == 0:
-			print(f"pion_candidates[i] shape {pion_candidates[i].shape}")
-			print(f"Dtype : {pion_candidates[i].dtype}")  # Output will be something like: int64
 
-		if abs_pdg in [211, 321, 2212]:
-			print(f"p { momentum_list[i]} pdg {abs_pdg}")
+			print(f"p { momentum_list[i]} pdg {mTrackPdg_list[i]}")
 
-			# check if exceeds momentum limit for ckov photons
-			if threshold_momentum(abs_pdg, momentum_list[i]):
-				if abs_pdg == 211: non_zero_val =  np.count_nonzero(pion_candidates[i])
-				if abs_pdg == 321: non_zero_val = np.count_nonzero(kaon_candidates[i])
-				if abs_pdg == 2212: non_zero_val =  np.count_nonzero(proton_candidates[i])				
-				print(f"non_zero_val {non_zero_val}")
-				# Check if any candidate has more than 5 non-zero values
-				if non_zero_val > 20:					
-					cnt_min = 3
-					cnt_max = 50
-					particle_vector[i] = particle_info
-					self.particle_vector.append(particle_info)
-					
-					print(f"Slenght particle_vector {len(self.particle_vector)}")
+			abs_pdg = abs(mTrackPdg_list[i])
+			if i == 0:
+				print(f"pion_candidates[i] shape {pion_candidates[i].shape}")
+				print(f"Dtype : {pion_candidates[i].dtype}")  # Output will be something like: int64
+	
+			if abs_pdg in [211, 321, 2212]:
+				print(f"p { momentum_list[i]} pdg {abs_pdg}")
+	
+				# check if exceeds momentum limit for ckov photons
+				if threshold_momentum(abs_pdg, momentum_list[i]):
+					if abs_pdg == 211: non_zero_val =  np.count_nonzero(pion_candidates[i])
+					if abs_pdg == 321: non_zero_val = np.count_nonzero(kaon_candidates[i])
+					if abs_pdg == 2212: non_zero_val =  np.count_nonzero(proton_candidates[i])				
+					print(f"non_zero_val {non_zero_val}")
+					# Check if any candidate has more than 5 non-zero values
+					if non_zero_val > 20:					
+						cnt_min = 3
+						cnt_max = 50
+						particle_vector[i] = particle_info
+						self.particle_vector.append(particle_info)
+						
+						print(f"Slenght particle_vector {len(self.particle_vector)}")
 
 
 
