@@ -234,7 +234,7 @@ delete 			hSignalAndNoiseMap;
 	 
   
   
-	void drawTotalMap(int& plotNumber, int xMip, int yMip)
+	void drawTotalMap(int& plotNumber, int xMip, int yMip, vecArray2 pionCandidates, vecArray2 kaonCandidates, vecArray2 protonCandidates, vecArray2 canCombined)
 	{
 
 
@@ -260,8 +260,8 @@ delete 			hSignalAndNoiseMap;
 
 		auto distPC2MIP = (mip-trkPC).Mod();
 
-		 auto st = Form("distPC2MIP %.2f", distPC2MIP);
-		 std::unique_ptr<TH2F> hCkovCandMapRange(new TH2F(st, st, 1600, 0, 300, 1440, 0, 143));
+		  auto st = Form("distPC2MIP %.2f | mipPhi %.2f | pcPhi %.2f", distPC2MIP, mipPhi, pcPhi);
+		  std::unique_ptr<TH2F> hCkovCandMapRange(new TH2F(st, st, 1600, 0, 300, 1440, 0, 143));
 		  std::unique_ptr<TH2F> hmipSizeFilter(new TH2F("mipSizeFilter", "mipSizeFilter", 1600, 0, 300, 1440, 0, 143));
 		  std::unique_ptr<TH2F> hCkovCandMapOutRange(new TH2F("ckovCandMapOutRange", "ckovCandMapOutRange", 1600, 0, 300, 1440, 0, 143));
 		  std::unique_ptr<TH2F> hmipChargeFilter(new TH2F("mipChargeFilter", "mipChargeFilter", 1600, 0, 300, 1440, 0, 143));
@@ -440,12 +440,32 @@ delete 			hSignalAndNoiseMap;
 		trkRadMap->Draw("same");
 		trkPCMap->Draw("same");
 		//herrPos->Draw("same");
+			  int numPion = pionCandidates.size();
+  int numKaon = kaonCandidates.size();
+  int numProton = protonCandidates.size();
+  int numTotal = canCombined.size();
 
 						//printf("opulatePtr->// limMin->GetEntries() num BinEntries = %f ", populatePtr->// limMin->GetEntries());
 			//printf("end// limMax num BinEntries = %f ", // limMax->GetEntries());
 			//printf("emd// limMin num BinEntries = %f ", // limMin->GetEntries());
 
 
+
+    auto textNumPion = new TLatex(10, 5, ("Pions: " + std::to_string(numPion)).c_str()); 
+    textNumPion->SetTextSize(0.04);
+    textNumPion->Draw("same");
+
+    auto textNumKaon = new TLatex(45, 5, (" K: " + std::to_string(numKaon)).c_str()); 
+    textNumKaon->SetTextSize(0.04);
+    textNumKaon->Draw("same");
+
+    auto textNumProton = new TLatex(65, 5, (" Pr: " + std::to_string(numProton)).c_str()); 
+    textNumProton->SetTextSize(0.04);
+    textNumProton->Draw("same");
+
+    auto textNumTotal = new TLatex(90, 5, ("Total : " + std::to_string(numTotal)).c_str()); 
+    textNumTotal->SetTextSize(0.04);
+    textNumTotal->Draw("same");
 
     tcnvRane->SaveAs(Form("Segmented_%d.png", plotNumber));
 		// limMin->Draw("same");
@@ -597,7 +617,7 @@ float L = rW/2;
 
   float thetaP, phiP, xPC, yPC, xRad, yRad; 
  float nF, nQ, nG;  
- std::array<float, 3> ckovHyps;
+ std::array<float, 3> ckovHypsMin, ckovHypsMax;
  std::vector<std::pair<double, double>> photons;
 
 
@@ -657,9 +677,9 @@ double refIndexes[3] = {nF, nQ, nG};
 
 
 CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
-           std::array<float, 3> ckovHyps, float trackCkov, int eventCnt, int _trackPdg)
+           std::array<float, 3> ckovHypsMin,  std::array<float, 3> ckovHypsMax, float trackCkov, int eventCnt, int _trackPdg)
   : 
-    ckovHyps(ckovHyps),  trackCkov(trackCkov), eventCnt(eventCnt) { 
+    ckovHypsMin(ckovHypsMin),  ckovHypsMax(ckovHypsMax), trackCkov(trackCkov), eventCnt(eventCnt) { 
     
      
     
@@ -706,9 +726,10 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
 	trkDir; 
 	trkDir.SetMagThetaPhi(1, thetaP, phiP);  // track direction in LORS at RAD
 
-
-  populatePtrInner.reset(new Populate2(trkPos, trkDir, nF - 0.02));
-  populatePtrOuter.reset(new Populate2(trkPos, trkDir, nF + 0.02));
+  nF = 1.2928; // ef got this from 1 run .. assuming T = 20 for sim
+	auto nFstd2 = 0.01; // 2 times std-dev for tejh run
+  populatePtrInner.reset(new Populate2(trkPos, trkDir, nF - nFstd2));
+  populatePtrOuter.reset(new Populate2(trkPos, trkDir, nF + nFstd2));
   populatePtr.reset(new Populate2(trkPos, trkDir, nF));
   populatePtrCp.reset(new Populate2(trkPos, trkDir, nF));
 
@@ -728,7 +749,11 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
    trackPdgString = getPDG(trackPdg);
   //printf(" Track PDG %d %s | CkovTools momentum = %.2f, refFreon = %.2f; ckovHyps : %.2f %.2f %.2f", trackPdg, trackPdgString.c_str(),momentum, nF, ckovHyps[0], ckovHyps[1], ckovHyps[2]);
 
-	if(TMath::IsNaN(ckovHyps[0])){
+
+
+
+  // TODO ; later check how to deal w this: set it to highest value in range that makes it valid ? 
+	if(TMath::IsNaN(ckovHypsMax[0])){
  	  //printf("Pion CkovHyps is Nan!");
 	  setPionStatus(false);
 	  // setIsNan()?
@@ -737,7 +762,7 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
  	  //printf("Pion CkovHyps %.2f", ckovHyps[0]);
   }
 
-  if(TMath::IsNaN(ckovHyps[1])){
+  if(TMath::IsNaN(ckovHypsMax[1])){
 	  //printf("Kaon CkovHyps is Nan!");
    	setKaonStatus(false);
 	  // setIsNan()?
@@ -746,7 +771,7 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
  	  //printf("Kaon CkovHyps %.2f", ckovHyps[1]);
   }
 
-  if(TMath::IsNaN(ckovHyps[2])){
+  if(TMath::IsNaN(ckovHypsMax[2])){
   	  //printf("Proton CkovHyps is Nan!");
 	  	setProtonStatus(false);
 	} else {
@@ -754,19 +779,19 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
 	}
 
 	if(getPionStatus()){
-	  ckovPionMin = ckovHyps[0] - 2 * stdDevPion;
-	  ckovPionMax = ckovHyps[0] + 2 * stdDevPion;
+	  ckovPionMin = ckovHypsMin[0] - 2 * stdDevPion;
+	  ckovPionMax = ckovHypsMax[0] + 2 * stdDevPion;
  	  //printf("init CkovTools constructor : getPionStatus() true ! minPion %.2f, maxPion %.2f ", ckovPionMin, ckovPionMax);
   }	else {
  	  //printf("init CkovTools constructor : getPionStatus() was false !");
   }
   
   if(getKaonStatus()){
-	  ckovKaonMin = ckovHyps[1] - 2 * stdDevKaon;
-  	ckovKaonMax = ckovHyps[1] + 2 * stdDevKaon;
+	  ckovKaonMin = ckovHypsMin[1] - 2 * stdDevKaon;
+  	ckovKaonMax = ckovHypsMax[1] + 2 * stdDevKaon;
   } if(getProtonStatus()){
-		ckovProtonMin = ckovHyps[2] - 2 * stdDevProton;
-		ckovProtonMax = ckovHyps[2] + 2 * stdDevProton;
+		ckovProtonMin = ckovHypsMin[2] - 2 * stdDevProton;
+		ckovProtonMax = ckovHypsMax[2] + 2 * stdDevProton;
 	}
 
 	cosThetaP = TMath::Cos(thetaP);
@@ -941,7 +966,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 { 
 
 
-  vecArray2 pionCandidates, kaonCandidates, protonCandidates;
+  vecArray2 pionCandidates, kaonCandidates, protonCandidates, canCombined;
   
   
   ArrAndMap mArrAndMap;// new ArrAndMap(eventCnt);
@@ -1605,7 +1630,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
         // this means it falls within range
         if(cStatus > 1) {
-
+							canCombined.push_back(std::array<double,2>{x,y});
               // this means  candidate is a ckov-photon
               if(true) {
                   //(mArrAndMap->ckovCandMapRange)->Fill(x,y);
@@ -1772,7 +1797,7 @@ mArrAndMap.setPopulatePtr(std::move(populatePtrCp));
 		//printf("delta %.2f | x %.2f y %.2f ", d*tanP, d*tanP*cosP, d*tanP*sinP);
 		//mArrAndMap->drawTotalMapAndMaxRegions();
 				
-	mArrAndMap.drawTotalMap(plotNumber, xMip, yMip);
+    mArrAndMap.drawTotalMap(plotNumber, xMip, yMip, pionCandidates, kaonCandidates, protonCandidates, canCombined);
     // to drqw the maps :: 
 
 		

@@ -152,17 +152,17 @@ void Segmentation()
 
 
 	myTree->Branch("reconCkov", &reconCkovBranch);
-		myTree->Branch("cluCharge", &cluChargeBranch);
-		myTree->Branch("cluSize", &cluSizeBranch);
-		myTree->Branch("refIndex", &refIndexBranch);
-		myTree->Branch("xRad", &xRadBranch);
-		myTree->Branch("yRad", &yRadBranch);
-		myTree->Branch("xMip", &xMipBranch);
-		myTree->Branch("yMip", &yMipBranch);
-		myTree->Branch("th", &thBranch);
-		myTree->Branch("ph", &phBranch);
-		myTree->Branch("p", &pBranch);
-	
+	myTree->Branch("cluCharge", &cluChargeBranch);
+	myTree->Branch("cluSize", &cluSizeBranch);
+	myTree->Branch("refIndex", &refIndexBranch);
+	myTree->Branch("xRad", &xRadBranch);
+	myTree->Branch("yRad", &yRadBranch);
+	myTree->Branch("xMip", &xMipBranch);
+	myTree->Branch("yMip", &yMipBranch);
+	myTree->Branch("th", &thBranch);
+	myTree->Branch("ph", &phBranch);
+	myTree->Branch("p", &pBranch);
+		
     // clusters and triggers 
     std::vector<Cluster>* clusterArr = nullptr;
     std::vector<o2::hmpid::Topology> mTopologyFromFile, *mTopologyFromFilePtr = &mTopologyFromFile;
@@ -674,15 +674,11 @@ void evaluateClusterTrack(std::vector<o2::hmpid::ClusterCandidate>& clusterPerCh
         const auto nG = 1.0005;
 
         // make static?
-        const auto& ckovHyps = calcCherenkovHyp(momentum, nF); 
-
-        // TODO: this must be changed??
 
 
-        //double radParams[7] = {xRad,yRad,L,thetaP, phiP, randomValue.momentum,    randomValue.mass};
-
-
-			
+				// make account for varying nF ? +- 2 std ? 
+        const auto& ckovHypsMin = calcCherenkovHyp(momentum, 1.2929 - 0.01); 
+        const auto& ckovHypsMax = calcCherenkovHyp(momentum,  1.2929 + 0.01); 
 
         float xRad, yRad, xPc, yPc, thetaP, phiP;
         track.getHMPIDtrk(xRad, yRad, xPc, yPc, thetaP, phiP);
@@ -698,14 +694,14 @@ void evaluateClusterTrack(std::vector<o2::hmpid::ClusterCandidate>& clusterPerCh
 
 
         double MIP[3] = {xMip, yMip, static_cast<double>(q*1.0)};
-	// (double radParams[7], double refIndexes[3], double MIP[3],
+				// (double radParams[7], double refIndexes[3], double MIP[3],
         //  std::array<float, 3> ckovHyps, float trackCkov, int eventCnt)
         // ef: TODO use MIP to get radius and phi in CkovTools: 
-	auto ckovAngle = 0.;
+				auto ckovAngle = 0.;
 	
 	
 				
-        CkovTools ckovTools(radParams, refIndexes, MIP, ckovHyps, ckovAngle, eventCnt, mcTrackPdg);
+        CkovTools ckovTools(radParams, refIndexes, MIP, ckovHypsMin, ckovHypsMax, ckovAngle, eventCnt, mcTrackPdg);
 
         Printf(" Event%d Track%d  : ckovHyps = <%.3f, %.3f> | <%.3f, %.3f> | <%.3f, %.3f>", eventCnt, ckovTools.getMinCkovPion(),ckovTools.getMaxCkovPion(),ckovTools.getMinCkovKaon(), ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovProton(), eventCnt); 
 
@@ -713,7 +709,7 @@ void evaluateClusterTrack(std::vector<o2::hmpid::ClusterCandidate>& clusterPerCh
         // only consider if adequate momentum? 
         //LOGP(info, "Momentum {} ckovHyps {} {} {}", ckov[0], ckov[1], ckov[2]);
         
-        if(TMath::IsNaN(ckovHyps[0])) { 
+        if(TMath::IsNaN(ckovHypsMax[0])) { 
         	Printf("was isnan!!!");
         	return;
         }
