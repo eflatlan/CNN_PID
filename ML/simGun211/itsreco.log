@@ -1,0 +1,519 @@
+Running: TIME="#walltime %e" /usr/bin/time --output=itsreco.log_time ./itsreco.log_tmp.sh
+[INFO] Initialising O2 Data Processing Layer. Driver PID: 545353.
+[INFO] Driver listening on port: 13433
+[INFO] Rate limiting set up at 500MB distributed over 1 readers
+[INFO] O2 Data Processing Layer initialised. We brake for nobody.
+[INFO] Optimised build. O2DEBUG / LOG(debug) / LOGF(debug) / assert statement will not be shown.
+[INFO] Redeployment of configuration asked.
+[INFO] Starting internal-dpl-clock on pid 545393
+[INFO] Starting its-digit-reader on pid 545394
+[INFO] Starting internal-dpl-ccdb-backend on pid 545395
+[INFO] Starting its-clusterer on pid 545396
+[INFO] Starting its-cluster-writer on pid 545397
+[INFO] Starting its-tracker on pid 545398
+[INFO] Starting irframe-writer-its on pid 545399
+[INFO] Starting its-track-writer on pid 545400
+[INFO] Starting internal-dpl-injected-dummy-sink on pid 545401
+[INFO] Redeployment of configuration done.
+[545396:its-clusterer]: [INFO] Instrumenting crash signals
+[545396:its-clusterer]: [INFO] Spawing new device its-clusterer in process with pid 545396
+[545396:its-clusterer]: [14:04:11][INFO] 
+[545396:its-clusterer]:       ______      _    _______  _________ 
+[545396:its-clusterer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[545396:its-clusterer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[545396:its-clusterer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[545396:its-clusterer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[545396:its-clusterer]: 
+[545396:its-clusterer]: [14:04:11][STATE] Starting FairMQ state machine --> IDLE
+[545398:its-tracker]: [INFO] Instrumenting crash signals
+[545396:its-clusterer]: [14:04:11][STATE] IDLE ---> INITIALIZING DEVICE
+[545396:its-clusterer]: [14:04:11][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[545397:its-cluster-writer]: [INFO] Instrumenting crash signals
+[545397:its-cluster-writer]: [INFO] Spawing new device its-cluster-writer in process with pid 545397
+[545397:its-cluster-writer]: [14:04:11][INFO] 
+[545397:its-cluster-writer]:       ______      _    _______  _________ 
+[545397:its-cluster-writer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[545397:its-cluster-writer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[545397:its-cluster-writer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[545397:its-cluster-writer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[545397:its-cluster-writer]: 
+[545397:its-cluster-writer]: [14:04:11][STATE] Starting FairMQ state machine --> IDLE
+[545398:its-tracker]: [INFO] Spawing new device its-tracker in process with pid 545398
+[545398:its-tracker]: [14:04:11][INFO] 
+[545398:its-tracker]:       ______      _    _______  _________ 
+[545398:its-tracker]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[545398:its-tracker]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[545398:its-tracker]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[545398:its-tracker]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[545398:its-tracker]: 
+[545398:its-tracker]: [14:04:11][STATE] Starting FairMQ state machine --> IDLE
+[545396:its-clusterer]: [14:04:11][STATE] INITIALIZED ---> BINDING
+[545396:its-clusterer]: [14:04:11][STATE] BINDING ---> BOUND
+[545398:its-tracker]: [14:04:11][STATE] IDLE ---> INITIALIZING DEVICE
+[545398:its-tracker]: [14:04:11][INFO] Created GPUReconstruction instance for device type CPU (1) 
+[545398:its-tracker]: [14:04:11][INFO] Initializing tracker in async. phase reconstruction with 3 passes
+[545393:internal-dpl-clock]: [INFO] Instrumenting crash signals
+[545393:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 545393
+[545393:internal-dpl-clock]: [14:04:11][INFO] 
+[545393:internal-dpl-clock]:       ______      _    _______  _________ 
+[545393:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[545393:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[545393:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[545393:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[545393:internal-dpl-clock]: 
+[545393:internal-dpl-clock]: [14:04:11][STATE] Starting FairMQ state machine --> IDLE
+[545393:internal-dpl-clock]: [14:04:11][STATE] IDLE ---> INITIALIZING DEVICE
+[545393:internal-dpl-clock]: [14:04:11][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[545393:internal-dpl-clock]: [14:04:11][STATE] INITIALIZED ---> BINDING
+[545393:internal-dpl-clock]: [14:04:11][STATE] BINDING ---> BOUND
+[545393:internal-dpl-clock]: [14:04:11][STATE] BOUND ---> CONNECTING
+[545393:internal-dpl-clock]: [14:04:11][STATE] CONNECTING ---> DEVICE READY
+[545393:internal-dpl-clock]: [14:04:11][STATE] DEVICE READY ---> INITIALIZING TASK
+[545393:internal-dpl-clock]: [14:04:11][STATE] INITIALIZING TASK ---> READY
+[545396:its-clusterer]: [14:04:11][STATE] BOUND ---> CONNECTING
+[545396:its-clusterer]: [14:04:11][STATE] CONNECTING ---> DEVICE READY
+[545396:its-clusterer]: [14:04:11][STATE] DEVICE READY ---> INITIALIZING TASK
+[545397:its-cluster-writer]: [14:04:11][STATE] IDLE ---> INITIALIZING DEVICE
+[545398:its-tracker]: [14:04:11][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[545398:its-tracker]: [14:04:11][STATE] INITIALIZED ---> BINDING
+[545398:its-tracker]: [14:04:11][STATE] BINDING ---> BOUND
+[545398:its-tracker]: [14:04:11][STATE] BOUND ---> CONNECTING
+[545398:its-tracker]: [14:04:11][STATE] CONNECTING ---> DEVICE READY
+[545398:its-tracker]: [14:04:11][STATE] DEVICE READY ---> INITIALIZING TASK
+[545393:internal-dpl-clock]: [14:04:11][STATE] READY ---> RUNNING
+[545393:internal-dpl-clock]: [14:04:11][INFO] fair::mq::Device running...
+[545393:internal-dpl-clock]: [14:04:11][INFO] LHCPeriod is not available, using current month SEP
+[545393:internal-dpl-clock]: [14:04:11][INFO] Correctly handshaken websocket connection.
+[545397:its-cluster-writer]: [14:04:11][INFO] 0: branch  ITSClusterComp set up
+[545397:its-cluster-writer]: [14:04:11][INFO] 1: branch  ITSClusterPatt set up
+[545397:its-cluster-writer]: [14:04:11][INFO] 2: branch  ITSClustersROF set up
+[545397:its-cluster-writer]: [14:04:11][INFO] 3: branch  ITSClusterMCTruth set up
+[545397:its-cluster-writer]: [14:04:11][INFO] 4: branch  ITSClustersMC2ROF set up
+[545397:its-cluster-writer]: [14:04:11][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[545397:its-cluster-writer]: [14:04:11][STATE] INITIALIZED ---> BINDING
+[545398:its-tracker]: [14:04:11][STATE] INITIALIZING TASK ---> READY
+[545398:its-tracker]: [14:04:11][STATE] READY ---> RUNNING
+[545398:its-tracker]: [14:04:11][INFO] fair::mq::Device running...
+[545398:its-tracker]: [14:04:11][INFO] LHCPeriod is not available, using current month SEP
+[545398:its-tracker]: [14:04:11][INFO] Correctly handshaken websocket connection.
+[545397:its-cluster-writer]: [14:04:11][STATE] BINDING ---> BOUND
+[545397:its-cluster-writer]: [14:04:11][STATE] BOUND ---> CONNECTING
+[545397:its-cluster-writer]: [14:04:11][STATE] CONNECTING ---> DEVICE READY
+[545397:its-cluster-writer]: [14:04:11][STATE] DEVICE READY ---> INITIALIZING TASK
+[545397:its-cluster-writer]: [14:04:11][STATE] INITIALIZING TASK ---> READY
+[545397:its-cluster-writer]: [14:04:11][STATE] READY ---> RUNNING
+[545397:its-cluster-writer]: [14:04:11][INFO] fair::mq::Device running...
+[545397:its-cluster-writer]: [14:04:11][INFO] LHCPeriod is not available, using current month SEP
+[545397:its-cluster-writer]: [14:04:11][INFO] Correctly handshaken websocket connection.
+[545396:its-clusterer]: [14:04:11][STATE] INITIALIZING TASK ---> READY
+[545396:its-clusterer]: [14:04:11][STATE] READY ---> RUNNING
+[545396:its-clusterer]: [14:04:11][INFO] fair::mq::Device running...
+[545396:its-clusterer]: [14:04:11][INFO] LHCPeriod is not available, using current month SEP
+[545396:its-clusterer]: [14:04:11][INFO] Correctly handshaken websocket connection.
+[545395:internal-dpl-ccdb-backend]: [INFO] Instrumenting crash signals
+[545395:internal-dpl-ccdb-backend]: [INFO] Spawing new device internal-dpl-ccdb-backend in process with pid 545395
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] 
+[545395:internal-dpl-ccdb-backend]:       ______      _    _______  _________ 
+[545395:internal-dpl-ccdb-backend]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[545395:internal-dpl-ccdb-backend]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[545395:internal-dpl-ccdb-backend]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[545395:internal-dpl-ccdb-backend]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[545395:internal-dpl-ccdb-backend]: 
+[545395:internal-dpl-ccdb-backend]: [14:04:11][STATE] Starting FairMQ state machine --> IDLE
+[545395:internal-dpl-ccdb-backend]: [14:04:11][STATE] IDLE ---> INITIALIZING DEVICE
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] CCDB Backend at: http://alice-ccdb.cern.ch, validity check for every 2147483647 TF
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1694606651-pNv3rF, Host: http://alice-ccdb.cern.ch
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] Initialised default CCDB host http://alice-ccdb.cern.ch
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] The following route is a condition ITS/CLUSDICT/0
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] - ccdb-path: ITS/Calib/ClusterDictionary
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] The following route is a condition GLO/GRPECS/0
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] - ccdb-path: GLO/Config/GRPECS
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] The following route is a condition ITS/ALPIDEPARAM/0
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] - ccdb-path: ITS/Config/AlpideParam
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] The following route is a condition ITS/CLUSPARAM/0
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] - ccdb-path: ITS/Config/ClustererParam
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] The following route is a condition GLO/MATLUT/0
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] - ccdb-path: GLO/Param/MatLUT
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] The following route is a condition GLO/GRPMAGFIELD/0
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] - ccdb-path: GLO/Config/GRPMagField
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] The following route is a condition GLO/GEOMALIGN/0
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] - ccdb-path: GLO/Config/GeometryAligned
+[545395:internal-dpl-ccdb-backend]: [14:04:11][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[545395:internal-dpl-ccdb-backend]: [14:04:11][STATE] INITIALIZED ---> BINDING
+[545395:internal-dpl-ccdb-backend]: [14:04:11][STATE] BINDING ---> BOUND
+[545395:internal-dpl-ccdb-backend]: [14:04:11][STATE] BOUND ---> CONNECTING
+[545395:internal-dpl-ccdb-backend]: [14:04:11][STATE] CONNECTING ---> DEVICE READY
+[545395:internal-dpl-ccdb-backend]: [14:04:11][STATE] DEVICE READY ---> INITIALIZING TASK
+[545395:internal-dpl-ccdb-backend]: [14:04:11][STATE] INITIALIZING TASK ---> READY
+[545395:internal-dpl-ccdb-backend]: [14:04:11][STATE] READY ---> RUNNING
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] fair::mq::Device running...
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] LHCPeriod is not available, using current month SEP
+[545395:internal-dpl-ccdb-backend]: [14:04:11][INFO] Correctly handshaken websocket connection.
+[545399:irframe-writer-its]: [INFO] Instrumenting crash signals
+[545399:irframe-writer-its]: [INFO] Spawing new device irframe-writer-its in process with pid 545399
+[545399:irframe-writer-its]: [14:04:11][INFO] 
+[545399:irframe-writer-its]:       ______      _    _______  _________ 
+[545399:irframe-writer-its]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[545399:irframe-writer-its]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[545399:irframe-writer-its]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[545399:irframe-writer-its]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[545399:irframe-writer-its]: 
+[545399:irframe-writer-its]: [14:04:11][STATE] Starting FairMQ state machine --> IDLE
+[545399:irframe-writer-its]: [14:04:11][STATE] IDLE ---> INITIALIZING DEVICE
+[545400:its-track-writer]: [INFO] Instrumenting crash signals
+[545399:irframe-writer-its]: [14:04:11][INFO] 0: branch  IRFrames set up
+[545400:its-track-writer]: [INFO] Spawing new device its-track-writer in process with pid 545400
+[545399:irframe-writer-its]: [14:04:11][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[545400:its-track-writer]: [14:04:11][INFO] 
+[545400:its-track-writer]:       ______      _    _______  _________ 
+[545400:its-track-writer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[545400:its-track-writer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[545400:its-track-writer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[545400:its-track-writer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[545400:its-track-writer]: 
+[545400:its-track-writer]: [14:04:11][STATE] Starting FairMQ state machine --> IDLE
+[545399:irframe-writer-its]: [14:04:11][STATE] INITIALIZED ---> BINDING
+[545399:irframe-writer-its]: [14:04:11][STATE] BINDING ---> BOUND
+[545400:its-track-writer]: [14:04:11][STATE] IDLE ---> INITIALIZING DEVICE
+[545399:irframe-writer-its]: [14:04:11][STATE] BOUND ---> CONNECTING
+[545399:irframe-writer-its]: [14:04:11][STATE] CONNECTING ---> DEVICE READY
+[545399:irframe-writer-its]: [14:04:11][STATE] DEVICE READY ---> INITIALIZING TASK
+[545399:irframe-writer-its]: [14:04:11][STATE] INITIALIZING TASK ---> READY
+[545399:irframe-writer-its]: [14:04:11][STATE] READY ---> RUNNING
+[545399:irframe-writer-its]: [14:04:11][INFO] fair::mq::Device running...
+[545399:irframe-writer-its]: [14:04:11][INFO] LHCPeriod is not available, using current month SEP
+[545399:irframe-writer-its]: [14:04:11][INFO] Correctly handshaken websocket connection.
+[545400:its-track-writer]: [14:04:12][INFO] 0: branch  ITSTrack set up
+[545400:its-track-writer]: [14:04:12][INFO] 1: branch  ITSTrackClusIdx set up
+[545394:its-digit-reader]: [INFO] Instrumenting crash signals
+[545400:its-track-writer]: [14:04:12][INFO] 2: branch  Vertices set up
+[545400:its-track-writer]: [14:04:12][INFO] 3: branch  VerticesROF set up
+[545400:its-track-writer]: [14:04:12][INFO] 4: branch  ITSTracksROF set up
+[545400:its-track-writer]: [14:04:12][INFO] 5: branch  ITSTrackMCTruth set up
+[545400:its-track-writer]: [14:04:12][INFO] 6: branch  ITSVertexMCTruth set up
+[545400:its-track-writer]: [14:04:12][INFO] 7: branch  ITSTracksMC2ROF set up
+[545400:its-track-writer]: [14:04:12][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[545400:its-track-writer]: [14:04:12][STATE] INITIALIZED ---> BINDING
+[545400:its-track-writer]: [14:04:12][STATE] BINDING ---> BOUND
+[545400:its-track-writer]: [14:04:12][STATE] BOUND ---> CONNECTING
+[545400:its-track-writer]: [14:04:12][STATE] CONNECTING ---> DEVICE READY
+[545394:its-digit-reader]: [INFO] Spawing new device its-digit-reader in process with pid 545394
+[545400:its-track-writer]: [14:04:12][STATE] DEVICE READY ---> INITIALIZING TASK
+[545400:its-track-writer]: [14:04:12][STATE] INITIALIZING TASK ---> READY
+[545394:its-digit-reader]: [14:04:12][INFO] 
+[545394:its-digit-reader]:       ______      _    _______  _________ 
+[545394:its-digit-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[545394:its-digit-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[545394:its-digit-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[545394:its-digit-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[545394:its-digit-reader]: 
+[545400:its-track-writer]: [14:04:12][STATE] READY ---> RUNNING
+[545400:its-track-writer]: [14:04:12][INFO] fair::mq::Device running...
+[545400:its-track-writer]: [14:04:12][INFO] LHCPeriod is not available, using current month SEP
+[545394:its-digit-reader]: [14:04:12][STATE] Starting FairMQ state machine --> IDLE
+[545400:its-track-writer]: [14:04:12][INFO] Correctly handshaken websocket connection.
+[545394:its-digit-reader]: [14:04:12][STATE] IDLE ---> INITIALIZING DEVICE
+[545401:internal-dpl-injected-dummy-sink]: [INFO] Instrumenting crash signals
+[545401:internal-dpl-injected-dummy-sink]: [INFO] Spawing new device internal-dpl-injected-dummy-sink in process with pid 545401
+[545401:internal-dpl-injected-dummy-sink]: [14:04:12][INFO] 
+[545401:internal-dpl-injected-dummy-sink]:       ______      _    _______  _________ 
+[545401:internal-dpl-injected-dummy-sink]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[545401:internal-dpl-injected-dummy-sink]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[545401:internal-dpl-injected-dummy-sink]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[545401:internal-dpl-injected-dummy-sink]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[545401:internal-dpl-injected-dummy-sink]: 
+[545401:internal-dpl-injected-dummy-sink]: [14:04:12][STATE] Starting FairMQ state machine --> IDLE
+[545401:internal-dpl-injected-dummy-sink]: [14:04:12][STATE] IDLE ---> INITIALIZING DEVICE
+[545401:internal-dpl-injected-dummy-sink]: [14:04:12][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[545401:internal-dpl-injected-dummy-sink]: [14:04:12][STATE] INITIALIZED ---> BINDING
+[545401:internal-dpl-injected-dummy-sink]: [14:04:12][STATE] BINDING ---> BOUND
+[545401:internal-dpl-injected-dummy-sink]: [14:04:12][STATE] BOUND ---> CONNECTING
+[545401:internal-dpl-injected-dummy-sink]: [14:04:12][STATE] CONNECTING ---> DEVICE READY
+[545401:internal-dpl-injected-dummy-sink]: [14:04:12][STATE] DEVICE READY ---> INITIALIZING TASK
+[545401:internal-dpl-injected-dummy-sink]: [14:04:12][STATE] INITIALIZING TASK ---> READY
+[545401:internal-dpl-injected-dummy-sink]: [14:04:12][STATE] READY ---> RUNNING
+[545401:internal-dpl-injected-dummy-sink]: [14:04:12][INFO] fair::mq::Device running...
+[545401:internal-dpl-injected-dummy-sink]: [14:04:12][INFO] LHCPeriod is not available, using current month SEP
+[545401:internal-dpl-injected-dummy-sink]: [14:04:12][INFO] Correctly handshaken websocket connection.
+[545394:its-digit-reader]: [14:04:12][INFO] Loaded tree from itsdigits.root with 1 entries
+[545394:its-digit-reader]: [14:04:12][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[545394:its-digit-reader]: [14:04:12][STATE] INITIALIZED ---> BINDING
+[545394:its-digit-reader]: [14:04:12][STATE] BINDING ---> BOUND
+[545394:its-digit-reader]: [14:04:12][STATE] BOUND ---> CONNECTING
+[545394:its-digit-reader]: [14:04:12][STATE] CONNECTING ---> DEVICE READY
+[545394:its-digit-reader]: [14:04:12][STATE] DEVICE READY ---> INITIALIZING TASK
+[545394:its-digit-reader]: [14:04:12][STATE] INITIALIZING TASK ---> READY
+[545394:its-digit-reader]: [14:04:12][STATE] READY ---> RUNNING
+[545394:its-digit-reader]: [14:04:12][INFO] fair::mq::Device running...
+[545394:its-digit-reader]: [14:04:12][INFO] LHCPeriod is not available, using current month SEP
+[545394:its-digit-reader]: [14:04:12][INFO] ITSDigitReader pushes 1515 ROFRecords, 1794164 digits at entry 0
+[545394:its-digit-reader]: [14:04:12][INFO] Sending end-of-stream message to channel from_its-digit-reader_to_internal-dpl-ccdb-backend
+[545394:its-digit-reader]: [14:04:12][INFO] Sending end-of-stream message to channel from_its-digit-reader_to_its-clusterer
+[545394:its-digit-reader]: [14:04:12][INFO] Sending end-of-stream message to channel from_its-digit-reader_to_internal-dpl-injected-dummy-sink
+[545394:its-digit-reader]: [14:04:12][INFO] Correctly handshaken websocket connection.
+[545395:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to JCentral. Please wait
+[545395:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to 137.138.99.141
+[545395:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Successfully connected to 137.138.99.141
+[545395:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/CTP/Calib/OrbitReset/06/62200/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee in SE <ALICE::CERN::EOS>
+[545395:internal-dpl-ccdb-backend]: [14:04:13][INFO] ccdb reads http://alice-ccdb.cern.ch/CTP/Calib/OrbitReset/1546300800000/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee for 1546300800000 (load to memory, agent_id: localhost.localdomain-1694606651-pNv3rF), 
+[545395:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/ITS/Calib/ClusterDictionary/09/10449/c245a720-9fe3-11ec-975c-200114580202 in SE <ALICE::CERN::OCDB>
+[545395:internal-dpl-ccdb-backend]: [14:04:13][INFO] ccdb reads http://alice-ccdb.cern.ch/ITS/Calib/ClusterDictionary/0/c245a720-9fe3-11ec-975c-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1694606651-pNv3rF), 
+[545395:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPECS/03/07584/646e9be2-0210-11ed-8000-200114580202 in SE <ALICE::CERN::OCDB>
+[545395:internal-dpl-ccdb-backend]: [14:04:13][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPECS/1546300800000/646e9be2-0210-11ed-8000-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1694606651-pNv3rF), 
+[545395:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/ITS/Config/AlpideParam/02/10715/76f24ad5-e339-11ec-9e90-200114580204 in SE <ALICE::CERN::OCDB>
+[545395:internal-dpl-ccdb-backend]: [14:04:13][INFO] ccdb reads http://alice-ccdb.cern.ch/ITS/Config/AlpideParam/1546300800000/76f24ad5-e339-11ec-9e90-200114580204 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1694606651-pNv3rF), 
+[545395:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/ITS/Config/ClustererParam/06/44918/b0c41285-f1ae-11ec-b9c0-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[545395:internal-dpl-ccdb-backend]: [14:04:13][INFO] ccdb reads http://alice-ccdb.cern.ch/ITS/Config/ClustererParam/1/b0c41285-f1ae-11ec-b9c0-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1694606651-pNv3rF), 
+[545395:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Param/MatLUT/05/24630/d5a2a33e-dba4-11ec-9e90-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[545395:internal-dpl-ccdb-backend]: [14:04:13][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Param/MatLUT/1546300800000/d5a2a33e-dba4-11ec-9e90-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1694606651-pNv3rF), 
+[545395:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPMagField/06/62924/01d633ab-efdf-11ec-841e-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[545395:internal-dpl-ccdb-backend]: [14:04:13][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPMagField/1546300800000/01d633ab-efdf-11ec-841e-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1694606651-pNv3rF), 
+[545395:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GeometryAligned/06/21224/787687c0-287a-11ed-8141-200114580202 in SE <ALICE::CERN::OCDB>
+[545395:internal-dpl-ccdb-backend]: [14:04:14][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GeometryAligned/1546300800000/787687c0-287a-11ed-8141-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1694606651-pNv3rF), 
+[545395:internal-dpl-ccdb-backend]: [14:04:14][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_its-clusterer
+[545395:internal-dpl-ccdb-backend]: [14:04:14][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_its-tracker
+[545395:internal-dpl-ccdb-backend]: [14:04:14][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_internal-dpl-injected-dummy-sink
+[545396:its-clusterer]: [14:04:14][INFO] GRP ECS object updated
+[545396:its-clusterer]: [14:04:14][INFO] Caching in 140009733738256 ptr to GLO/GRPECS/0 (0x442db80)
+[545396:its-clusterer]: [14:04:14][INFO] cluster dictionary updated
+[545396:its-clusterer]: [14:04:14][INFO] Caching in 140009733710384 ptr to ITS/CLUSDICT/0 (0x63c7160)
+[545396:its-clusterer]: [14:04:14][INFO] Alpide param updated
+[545396:its-clusterer]: ITSAlpideParam.roFrameLengthInBC : 198		[ CCDB ]
+[545396:its-clusterer]: ITSAlpideParam.roFrameLengthTrig : 6000		[ CCDB ]
+[545396:its-clusterer]: ITSAlpideParam.strobeDelay : 99.8031		[ CCDB ]
+[545396:its-clusterer]: ITSAlpideParam.strobeLengthCont : -1		[ CCDB ]
+[545396:its-clusterer]: ITSAlpideParam.strobeLengthTrig : 100		[ CCDB ]
+[545396:its-clusterer]: ITSAlpideParam.roFrameBiasInBC : 64		[ CCDB ]
+[545396:its-clusterer]: [14:04:14][INFO] Caching in 140009733740528 ptr to ITS/ALPIDEPARAM/0 (0x7f590b836860)
+[545396:its-clusterer]: [14:04:14][INFO] Cluster param updated
+[545396:its-clusterer]: ITSClustererParam.maxRowColDiffToMask : 1		[ CCDB ]
+[545396:its-clusterer]: ITSClustererParam.maxBCDiffToMaskBias : 10		[ CCDB ]
+[545396:its-clusterer]: ITSClustererParam.maxBCDiffToSquashBias : -10		[ CCDB ]
+[545396:its-clusterer]: ITSClustererParam.maxSOTMUS : 8		[ CCDB ]
+[545396:its-clusterer]: [14:04:14][INFO] Caching in 140009733742800 ptr to ITS/CLUSPARAM/0 (0x7f590b836830)
+[545396:its-clusterer]: [14:04:14][INFO] Clusterizer squashes overflow pixels separated by 188 BC and <= 1 in row/col seeking down to 0 neighbour ROFs
+[545396:its-clusterer]: [14:04:14][INFO] Clusterizer masks overflow pixels separated by < 208 BC and <= 1 in row/col
+[545396:its-clusterer]: [14:04:14][INFO] Inclusive clusterization timing (w/o disk IO): Cpu: 0 Real: 0 s in 1 slots
+[545396:its-clusterer]: [14:04:14][INFO] Threads output merging timing                : Cpu: 0 Real: 0 s in 1 slots
+[545396:its-clusterer]: [14:04:14][INFO] ITSClusterer pulled 1794164 digits, in 1515 RO frames
+[545396:its-clusterer]: [14:04:14][INFO] ITSClusterer pulled 1910882 labels 
+[545396:its-clusterer]: [14:04:14][INFO] ITSClusterer pushed 341462 clusters, in 1515 RO frames
+[545396:its-clusterer]: [14:04:14][INFO] Clusterizer squashes overflow pixels separated by 188 BC and <= 1 in row/col seeking down to 0 neighbour ROFs
+[545396:its-clusterer]: [14:04:14][INFO] Clusterizer masks overflow pixels separated by < 208 BC and <= 1 in row/col
+[545396:its-clusterer]: [14:04:14][INFO] Inclusive clusterization timing (w/o disk IO): Cpu: 0.14 Real: 0.135067 s in 2 slots
+[545396:its-clusterer]: [14:04:14][INFO] Threads output merging timing                : Cpu: 0 Real: 0 s in 1 slots
+[545396:its-clusterer]: [14:04:14][INFO] Sending end-of-stream message to channel from_its-clusterer_to_its-cluster-writer
+[545396:its-clusterer]: [14:04:14][INFO] Sending end-of-stream message to channel from_its-clusterer_to_its-tracker
+[545397:its-cluster-writer]: [14:04:14][INFO] ITSClusterWriter pulled 341462 clusters, in 1515 RO frames
+[545397:its-cluster-writer]: [14:04:14][INFO] Sending end-of-stream message to channel from_its-cluster-writer_to_its-tracker
+[545398:its-tracker]: [14:04:14][INFO] GRP MagField object updated
+[545398:its-tracker]: [14:04:14][INFO] MagneticField::Print: MagneticFieldMap:
+[545398:its-tracker]: [14:04:14][INFO] MagneticField::Print: Solenoid (-1*)5 kG, Dipole ON (-1) 
+[545398:its-tracker]: [14:04:14][INFO] MagneticField::Print: Machine B fields for p-p  beam (7000 GeV): QGrad: 22.0002 Dipole: 37.8781
+[545398:its-tracker]: [14:04:14][INFO] MagneticField::Print: Uses Sol30_Dip6_Hole  of /root/alice/sw/slc8_x86-64/O2/segment-local1/share/Common/maps/mfchebKGI_sym.root
+[545398:its-tracker]: Info in <TGeoGlobalMagField::SetField>: Global magnetic field set to <MagneticFieldMap>
+[545398:its-tracker]: Info in <TGeoGlobalMagField::Lock>: Global magnetic field <MagneticFieldMap> is now locked
+[545398:its-tracker]: [14:04:14][INFO] Caching in 140388780543632 ptr to GLO/GRPMAGFIELD/0 (0x54d5220)
+[545398:its-tracker]: [14:04:14][INFO] GRP ECS object updated
+[545398:its-tracker]: [14:04:14][INFO] Caching in 140388771311376 ptr to GLO/GRPECS/0 (0x3fbdc20)
+[545398:its-tracker]: [14:04:14][INFO] material LUT updated
+[545398:its-tracker]: [14:04:14][INFO] Loaded 440 params from $(O2_ROOT)/share/Common/maps/sol5k.txt
+[545398:its-tracker]: [14:04:14][INFO] Caching in 140388771318192 ptr to GLO/MATLUT/0 (0x62eb8b0)
+[545398:its-tracker]: Info in <TGeoManager::CloseGeometry>: Geometry loaded from file...
+[545398:its-tracker]: Info in <TGeoManager::SetTopVolume>: Top volume is cave. Master volume is cave
+[545398:its-tracker]: Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+[545398:its-tracker]: Info in <TGeoManager::Voxelize>: Voxelizing...
+[545398:its-tracker]: Info in <TGeoManager::CountLevels>: max level = 13, max placements = 735
+[545398:its-tracker]: Info in <TGeoManager::CloseGeometry>: 5346742 nodes/ 27442 volume UID's in FAIR geometry
+[545398:its-tracker]: Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+[545398:its-tracker]: [14:04:15][INFO] aligned geometry updated
+[545398:its-tracker]: [14:04:15][INFO] Caching in 140388780544880 ptr to GLO/GEOMALIGN/0 (0x63c90b0)
+[545398:its-tracker]: [14:04:15][INFO] cluster dictionary updated
+[545398:its-tracker]: [14:04:15][INFO] Caching in 140388771283504 ptr to ITS/CLUSDICT/0 (0x5a250a0)
+[545398:its-tracker]: [14:04:15][INFO] Alpide param updated
+[545398:its-tracker]: ITSAlpideParam.roFrameLengthInBC : 198		[ CCDB ]
+[545398:its-tracker]: ITSAlpideParam.roFrameLengthTrig : 6000		[ CCDB ]
+[545398:its-tracker]: ITSAlpideParam.strobeDelay : 99.8031		[ CCDB ]
+[545398:its-tracker]: ITSAlpideParam.strobeLengthCont : -1		[ CCDB ]
+[545398:its-tracker]: ITSAlpideParam.strobeLengthTrig : 100		[ CCDB ]
+[545398:its-tracker]: ITSAlpideParam.roFrameBiasInBC : 64		[ CCDB ]
+[545398:its-tracker]: [14:04:15][INFO] Caching in 140388771313648 ptr to ITS/ALPIDEPARAM/0 (0x7fb14be9c860)
+[545398:its-tracker]: [14:04:15][INFO] Loading ITS T2L matrices from TGeo
+[545398:its-tracker]: [14:04:15][WARN] It is faster to use 2D rotation for T2G instead of full Transform3D matrices
+[545398:its-tracker]: [14:04:15][INFO] Loading ITS T2G matrices from TGeo
+[545398:its-tracker]: [14:04:15][INFO] Loading ITS T2G rotation 2D matrices
+[545398:its-tracker]: [14:04:15][INFO] Setting seeding vertexer with 1 threads.
+[545398:its-tracker]: [14:04:15][INFO] ITSTracker pulled 341462 clusters, 1515 RO frames
+[545398:its-tracker]: [14:04:15][INFO] 341462 MC label objects , in 2997 MC events
+[545398:its-tracker]: [14:04:15][INFO] ITSTracker RO: continuous=1
+[545398:its-tracker]: [14:04:15][INFO] Loading ITS L2G matrices from TGeo
+[545398:its-tracker]: [14:04:15][INFO]  - Vertexer initialisation completed in: 3.46097 ms
+[545398:its-tracker]: [14:04:16][INFO]  - Vertexer tracklet finding completed in: 64.5296 ms
+[545398:its-tracker]: [14:04:16][INFO]  - Vertexer adjacent tracklets validation completed in: 34.0886 ms
+[545398:its-tracker]: [14:04:16][INFO]  - Vertexer vertex finding completed in: 20.1519 ms
+[545398:its-tracker]: [14:04:16][INFO]  - Timeframe 0 vertexing completed in: 122.23103 ms, using 1 thread(s).
+[545398:its-tracker]: [14:04:16][INFO]  - rejected 0/1515 ROFs: random/mult.sel:0 (seed 624), vtx.sel:0
+[545398:its-tracker]: [14:04:16][INFO]  - Vertex seeding total elapsed time: 122.23103 ms for 324 vertices found in 1515 ROFs
+[545398:its-tracker]: [14:04:16][INFO]  - Beam position computed for the TF: 0.0012921045, -0.0013214867
+[545398:its-tracker]: [14:04:16][INFO]  - Timeframe initialisation completed in: 79.678 ms
+[545398:its-tracker]: [14:04:16][INFO]  - Tracklet finding completed in: 6.34553 ms
+[545398:its-tracker]: [14:04:16][INFO] 	- Number of tracklets: 42832
+[545398:its-tracker]: [14:04:16][INFO]  - Cell finding completed in: 20.5931 ms
+[545398:its-tracker]: [14:04:16][INFO] 	- Number of Cells: 64428
+[545398:its-tracker]: [14:04:16][INFO]  - Neighbour finding completed in: 25.9779 ms
+[545398:its-tracker]: [14:04:16][INFO]  - Road finding completed in: 0.905161 ms
+[545398:its-tracker]: [14:04:16][INFO] 	- Number of Roads: 20787
+[545398:its-tracker]: [14:04:16][INFO]  - Track finding completed in: 252.791 ms
+[545398:its-tracker]: [14:04:16][INFO] 	- Number of Tracks: 3509
+[545398:its-tracker]: [14:04:16][INFO]  - Extending tracks completed in: 0.000701 ms
+[545398:its-tracker]: [14:04:16][INFO]  - Timeframe initialisation completed in: 0.710442 ms
+[545398:its-tracker]: [14:04:16][INFO]  - Tracklet finding completed in: 5.08822 ms
+[545398:its-tracker]: [14:04:16][INFO] 	- Number of tracklets: 5546
+[545398:its-tracker]: [14:04:16][INFO]  - Cell finding completed in: 3.3385 ms
+[545398:its-tracker]: [14:04:16][INFO] 	- Number of Cells: 4666
+[545398:its-tracker]: [14:04:16][INFO]  - Neighbour finding completed in: 1.18831 ms
+[545398:its-tracker]: [14:04:16][INFO]  - Road finding completed in: 0.012113 ms
+[545398:its-tracker]: [14:04:16][INFO] 	- Number of Roads: 135
+[545398:its-tracker]: [14:04:16][INFO]  - Track finding completed in: 1.38039 ms
+[545398:its-tracker]: [14:04:16][INFO] 	- Number of Tracks: 3513
+[545398:its-tracker]: [14:04:16][INFO]  - Extending tracks completed in: 0.000255 ms
+[545398:its-tracker]: [14:04:16][INFO]  - Timeframe initialisation completed in: 0.070404 ms
+[545398:its-tracker]: [14:04:16][INFO]  - Tracklet finding completed in: 3.36795 ms
+[545398:its-tracker]: [14:04:16][INFO] 	- Number of tracklets: 9305
+[545398:its-tracker]: [14:04:16][INFO]  - Cell finding completed in: 3.81486 ms
+[545398:its-tracker]: [14:04:16][INFO] 	- Number of Cells: 12134
+[545398:its-tracker]: [14:04:16][INFO]  - Neighbour finding completed in: 3.15916 ms
+[545398:its-tracker]: [14:04:16][INFO]  - Road finding completed in: 0.234112 ms
+[545398:its-tracker]: [14:04:16][INFO] 	- Number of Roads: 11178
+[545398:its-tracker]: [14:04:16][INFO]  - Track finding completed in: 62.8883 ms
+[545398:its-tracker]: [14:04:16][INFO] 	- Number of Tracks: 4088
+[545398:its-tracker]: [14:04:16][INFO]  - Extending tracks completed in: 0.00046 ms
+[545398:its-tracker]: [14:04:16][INFO]  - Short primaries finding completed in: 0.000185 ms
+[545398:its-tracker]: [14:04:16][INFO]  - Timeframe 0 processing completed in: 471.545ms using 1 threads.
+[545398:its-tracker]: [14:04:16][INFO] ITSTracker pushed 4088 tracks and 324 vertices
+[545398:its-tracker]: [14:04:16][INFO] ITSTracker pushed 4088 track labels
+[545398:its-tracker]: [14:04:16][INFO] ITSTracker pushed 4501 vertex labels
+[545398:its-tracker]: [14:04:16][INFO] ITS CA-Tracker total timing: Cpu: 1.920e+00 Real: 1.967e+00 s in 1 slots
+[545398:its-tracker]: [14:04:16][INFO] Sending end-of-stream message to channel from_its-tracker_to_irframe-writer-its
+[545398:its-tracker]: [14:04:16][INFO] Sending end-of-stream message to channel from_its-tracker_to_its-track-writer
+[545400:its-track-writer]: [14:04:16][INFO] ITSTrackWriter pulled 4088 tracks, in 1515 RO frames
+[INFO] Quitting
+[INFO] QUIT_REQUESTED
+[545400:its-track-writer]: [14:04:16][INFO] Received device shutdown request (signal 15).
+[545400:its-track-writer]: [14:04:16][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[545400:its-track-writer]: [14:04:16][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[545396:its-clusterer]: [14:04:16][INFO] Received device shutdown request (signal 15).
+[545396:its-clusterer]: [14:04:16][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[545397:its-cluster-writer]: [14:04:16][INFO] Received device shutdown request (signal 15).
+[545397:its-cluster-writer]: [14:04:16][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[545401:internal-dpl-injected-dummy-sink]: [14:04:16][INFO] Received device shutdown request (signal 15).
+[545401:internal-dpl-injected-dummy-sink]: [14:04:16][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[545398:its-tracker]: [14:04:16][INFO] Received device shutdown request (signal 15).
+[545398:its-tracker]: [14:04:16][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[545399:irframe-writer-its]: [14:04:16][INFO] Received device shutdown request (signal 15).
+[545399:irframe-writer-its]: [14:04:16][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[545395:internal-dpl-ccdb-backend]: [14:04:16][INFO] Received device shutdown request (signal 15).
+[545395:internal-dpl-ccdb-backend]: [14:04:16][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[545393:internal-dpl-clock]: [14:04:16][INFO] Received device shutdown request (signal 15).
+[545393:internal-dpl-clock]: [14:04:16][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[545394:its-digit-reader]: [14:04:16][INFO] Received device shutdown request (signal 15).
+[545394:its-digit-reader]: [14:04:16][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[545394:its-digit-reader]: [14:04:16][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[545394:its-digit-reader]: [14:04:16][STATE] RUNNING ---> READY
+[545394:its-digit-reader]: [14:04:16][STATE] READY ---> RESETTING TASK
+[545394:its-digit-reader]: [14:04:16][STATE] RESETTING TASK ---> DEVICE READY
+[545394:its-digit-reader]: [14:04:16][STATE] DEVICE READY ---> RESETTING DEVICE
+[545401:internal-dpl-injected-dummy-sink]: [14:04:16][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[545401:internal-dpl-injected-dummy-sink]: [14:04:16][STATE] RUNNING ---> READY
+[545401:internal-dpl-injected-dummy-sink]: [14:04:16][STATE] READY ---> RESETTING TASK
+[545401:internal-dpl-injected-dummy-sink]: [14:04:16][STATE] RESETTING TASK ---> DEVICE READY
+[545396:its-clusterer]: [14:04:16][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[545396:its-clusterer]: [14:04:16][STATE] RUNNING ---> READY
+[545396:its-clusterer]: [14:04:16][STATE] READY ---> RESETTING TASK
+[545396:its-clusterer]: [14:04:16][STATE] RESETTING TASK ---> DEVICE READY
+[545397:its-cluster-writer]: [14:04:16][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[545398:its-tracker]: [14:04:16][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[545398:its-tracker]: [14:04:16][STATE] RUNNING ---> READY
+[545401:internal-dpl-injected-dummy-sink]: [14:04:16][STATE] DEVICE READY ---> RESETTING DEVICE
+[545393:internal-dpl-clock]: [14:04:16][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[545393:internal-dpl-clock]: [14:04:16][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_its-digit-reader
+[545393:internal-dpl-clock]: [14:04:16][STATE] RUNNING ---> READY
+[545395:internal-dpl-ccdb-backend]: [14:04:16][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[545395:internal-dpl-ccdb-backend]: [14:04:16][INFO] CCDB cache miss/hit ratio:
+[545395:internal-dpl-ccdb-backend]: [14:04:16][INFO]   GLO/Config/GRPMagField: 1/0 (1024-1024 bytes)
+[545395:internal-dpl-ccdb-backend]: [14:04:16][INFO]   GLO/Config/GeometryAligned: 1/0 (1847296-1847296 bytes)
+[545395:internal-dpl-ccdb-backend]: [14:04:16][INFO]   ITS/Config/ClustererParam: 1/0 (2048-2048 bytes)
+[545395:internal-dpl-ccdb-backend]: [14:04:16][INFO]   ITS/Config/AlpideParam: 1/0 (2048-2048 bytes)
+[545395:internal-dpl-ccdb-backend]: [14:04:16][INFO]   GLO/Config/GRPECS: 1/0 (2048-2048 bytes)
+[545395:internal-dpl-ccdb-backend]: [14:04:16][INFO]   GLO/Param/MatLUT: 1/0 (9225216-9225216 bytes)
+[545395:internal-dpl-ccdb-backend]: [14:04:16][INFO]   ITS/Calib/ClusterDictionary: 1/0 (27648-27648 bytes)
+[545395:internal-dpl-ccdb-backend]: [14:04:16][INFO]   CTP/Calib/OrbitReset: 1/1 (1024-1024 bytes)
+[545395:internal-dpl-ccdb-backend]: [14:04:16][STATE] RUNNING ---> READY
+[545396:its-clusterer]: [14:04:16][STATE] DEVICE READY ---> RESETTING DEVICE
+[545398:its-tracker]: [14:04:16][STATE] READY ---> RESETTING TASK
+[545398:its-tracker]: [14:04:16][STATE] RESETTING TASK ---> DEVICE READY
+[545395:internal-dpl-ccdb-backend]: [14:04:16][STATE] READY ---> RESETTING TASK
+[545395:internal-dpl-ccdb-backend]: [14:04:16][STATE] RESETTING TASK ---> DEVICE READY
+[545393:internal-dpl-clock]: [14:04:16][STATE] READY ---> RESETTING TASK
+[545393:internal-dpl-clock]: [14:04:16][STATE] RESETTING TASK ---> DEVICE READY
+[545393:internal-dpl-clock]: [14:04:16][STATE] DEVICE READY ---> RESETTING DEVICE
+[545395:internal-dpl-ccdb-backend]: [14:04:16][STATE] DEVICE READY ---> RESETTING DEVICE
+[545398:its-tracker]: [14:04:16][STATE] DEVICE READY ---> RESETTING DEVICE
+[545399:irframe-writer-its]: [14:04:16][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[545396:its-clusterer]: [14:04:16][STATE] RESETTING DEVICE ---> IDLE
+[545396:its-clusterer]: [14:04:16][STATE] IDLE ---> EXITING
+[545401:internal-dpl-injected-dummy-sink]: [14:04:16][STATE] RESETTING DEVICE ---> IDLE
+[545401:internal-dpl-injected-dummy-sink]: [14:04:16][STATE] IDLE ---> EXITING
+[545401:internal-dpl-injected-dummy-sink]: [14:04:16][STATE] Exiting FairMQ state machine
+[545395:internal-dpl-ccdb-backend]: [14:04:16][STATE] RESETTING DEVICE ---> IDLE
+[545396:its-clusterer]: [14:04:16][STATE] Exiting FairMQ state machine
+[545395:internal-dpl-ccdb-backend]: [14:04:16][STATE] IDLE ---> EXITING
+[545393:internal-dpl-clock]: [14:04:16][STATE] RESETTING DEVICE ---> IDLE
+[545394:its-digit-reader]: [14:04:16][STATE] RESETTING DEVICE ---> IDLE
+[545393:internal-dpl-clock]: [14:04:16][STATE] IDLE ---> EXITING
+[545398:its-tracker]: [14:04:16][STATE] RESETTING DEVICE ---> IDLE
+[545395:internal-dpl-ccdb-backend]: [14:04:16][STATE] Exiting FairMQ state machine
+[545398:its-tracker]: [14:04:16][STATE] IDLE ---> EXITING
+[545393:internal-dpl-clock]: [14:04:16][STATE] Exiting FairMQ state machine
+[545394:its-digit-reader]: [14:04:16][STATE] IDLE ---> EXITING
+[545394:its-digit-reader]: [14:04:16][STATE] Exiting FairMQ state machine
+[545398:its-tracker]: [14:04:16][STATE] Exiting FairMQ state machine
+[545400:its-track-writer]: [14:04:17][STATE] RUNNING ---> READY
+[545400:its-track-writer]: [14:04:17][STATE] READY ---> RESETTING TASK
+[545400:its-track-writer]: [14:04:17][STATE] RESETTING TASK ---> DEVICE READY
+[545400:its-track-writer]: [14:04:17][STATE] DEVICE READY ---> RESETTING DEVICE
+[545400:its-track-writer]: [14:04:17][STATE] RESETTING DEVICE ---> IDLE
+[545400:its-track-writer]: [14:04:17][STATE] IDLE ---> EXITING
+[545400:its-track-writer]: [14:04:17][STATE] Exiting FairMQ state machine
+[545399:irframe-writer-its]: [14:04:17][STATE] RUNNING ---> READY
+[545397:its-cluster-writer]: [14:04:17][STATE] RUNNING ---> READY
+[545399:irframe-writer-its]: [14:04:17][STATE] READY ---> RESETTING TASK
+[545397:its-cluster-writer]: [14:04:17][STATE] READY ---> RESETTING TASK
+[545397:its-cluster-writer]: [14:04:17][STATE] RESETTING TASK ---> DEVICE READY
+[545399:irframe-writer-its]: [14:04:17][STATE] RESETTING TASK ---> DEVICE READY
+[545397:its-cluster-writer]: [14:04:17][STATE] DEVICE READY ---> RESETTING DEVICE
+[545399:irframe-writer-its]: [14:04:17][STATE] DEVICE READY ---> RESETTING DEVICE
+[545399:irframe-writer-its]: [14:04:17][STATE] RESETTING DEVICE ---> IDLE
+[545399:irframe-writer-its]: [14:04:17][STATE] IDLE ---> EXITING
+[545399:irframe-writer-its]: [14:04:17][STATE] Exiting FairMQ state machine
+[545397:its-cluster-writer]: [14:04:17][INFO] Cleaning up for shared memory id '64dadfe2'...
+[545397:its-cluster-writer]: [14:04:17][INFO] Found 0 unmanaged regions...
+[545397:its-cluster-writer]: [14:04:17][INFO] Found 1 managed segments...
+[545397:its-cluster-writer]: [14:04:17][INFO] Successfully removed 'fmq_64dadfe2_m_0'.
+[545397:its-cluster-writer]: [14:04:17][INFO] Successfully removed 'fmq_64dadfe2_mng'.
+[545397:its-cluster-writer]: [14:04:17][STATE] RESETTING DEVICE ---> IDLE
+[545397:its-cluster-writer]: [14:04:17][STATE] IDLE ---> EXITING
+[545397:its-cluster-writer]: [14:04:17][STATE] Exiting FairMQ state machine
+[INFO] ## Processes completed. Run summary:
+[INFO] ### Devices started: 9
+[INFO]  - Device internal-dpl-clock: pid 545393 (exit 0)
+[INFO]  - Device its-digit-reader: pid 545394 (exit 0)
+[INFO]  - Device internal-dpl-ccdb-backend: pid 545395 (exit 0)
+[INFO]  - Device its-clusterer: pid 545396 (exit 0)
+[INFO]  - Device its-cluster-writer: pid 545397 (exit 0)
+[INFO]  - Device its-tracker: pid 545398 (exit 0)
+[INFO]  - Device irframe-writer-its: pid 545399 (exit 0)
+[INFO]  - Device its-track-writer: pid 545400 (exit 0)
+[INFO]  - Device internal-dpl-injected-dummy-sink: pid 545401 (exit 0)
+[INFO] Dumping used configuration in dpl-config.json
+TASK-EXIT-CODE: 0

@@ -1,0 +1,347 @@
+Running: TIME="#walltime %e" /usr/bin/time --output=midreco.log_time ./midreco.log_tmp.sh
+[INFO] Initialising O2 Data Processing Layer. Driver PID: 2761389.
+[INFO] Driver listening on port: 9469
+[INFO] Rate limiting set up at 500MB distributed over 1 readers
+[INFO] O2 Data Processing Layer initialised. We brake for nobody.
+[INFO] Optimised build. O2DEBUG / LOG(debug) / LOGF(debug) / assert statement will not be shown.
+[INFO] Redeployment of configuration asked.
+[INFO] Starting internal-dpl-clock on pid 2761483
+[INFO] Starting MIDDigitsReader on pid 2761484
+[INFO] Starting internal-dpl-ccdb-backend on pid 2761485
+[INFO] Starting MIDFiltering on pid 2761486
+[INFO] Starting MIDClusterizer on pid 2761487
+[INFO] Starting MIDTracker on pid 2761488
+[INFO] Starting MIDRecoWriter on pid 2761489
+[INFO] Starting internal-dpl-injected-dummy-sink on pid 2761490
+[INFO] Redeployment of configuration done.
+[2761483:internal-dpl-clock]: [INFO] Instrumenting crash signals
+[2761483:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 2761483
+[2761483:internal-dpl-clock]: [20:03:32][INFO] 
+[2761483:internal-dpl-clock]:       ______      _    _______  _________ 
+[2761483:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2761483:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2761483:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2761483:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2761483:internal-dpl-clock]: 
+[2761483:internal-dpl-clock]: [20:03:32][STATE] Starting FairMQ state machine --> IDLE
+[2761483:internal-dpl-clock]: [20:03:32][STATE] IDLE ---> INITIALIZING DEVICE
+[2761483:internal-dpl-clock]: [20:03:32][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2761483:internal-dpl-clock]: [20:03:32][STATE] INITIALIZED ---> BINDING
+[2761483:internal-dpl-clock]: [20:03:32][STATE] BINDING ---> BOUND
+[2761483:internal-dpl-clock]: [20:03:32][STATE] BOUND ---> CONNECTING
+[2761483:internal-dpl-clock]: [20:03:32][STATE] CONNECTING ---> DEVICE READY
+[2761483:internal-dpl-clock]: [20:03:32][STATE] DEVICE READY ---> INITIALIZING TASK
+[2761483:internal-dpl-clock]: [20:03:32][STATE] INITIALIZING TASK ---> READY
+[2761483:internal-dpl-clock]: [20:03:32][STATE] READY ---> RUNNING
+[2761483:internal-dpl-clock]: [20:03:32][INFO] fair::mq::Device running...
+[2761483:internal-dpl-clock]: [20:03:32][INFO] LHCPeriod is not available, using current month SEP
+[2761483:internal-dpl-clock]: [20:03:32][INFO] Correctly handshaken websocket connection.
+[2761488:MIDTracker]: [INFO] Instrumenting crash signals
+[2761488:MIDTracker]: [INFO] Spawing new device MIDTracker in process with pid 2761488
+[2761488:MIDTracker]: [20:03:32][INFO] 
+[2761488:MIDTracker]:       ______      _    _______  _________ 
+[2761488:MIDTracker]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2761488:MIDTracker]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2761488:MIDTracker]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2761488:MIDTracker]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2761488:MIDTracker]: 
+[2761488:MIDTracker]: [20:03:32][STATE] Starting FairMQ state machine --> IDLE
+[2761488:MIDTracker]: [20:03:32][STATE] IDLE ---> INITIALIZING DEVICE
+[2761484:MIDDigitsReader]: [INFO] Instrumenting crash signals
+[2761486:MIDFiltering]: [INFO] Instrumenting crash signals
+[2761484:MIDDigitsReader]: [INFO] Spawing new device MIDDigitsReader in process with pid 2761484
+[2761484:MIDDigitsReader]: [20:03:32][INFO] 
+[2761484:MIDDigitsReader]:       ______      _    _______  _________ 
+[2761484:MIDDigitsReader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2761484:MIDDigitsReader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2761484:MIDDigitsReader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2761484:MIDDigitsReader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2761484:MIDDigitsReader]: 
+[2761484:MIDDigitsReader]: [20:03:32][STATE] Starting FairMQ state machine --> IDLE
+[2761486:MIDFiltering]: [INFO] Spawing new device MIDFiltering in process with pid 2761486
+[2761486:MIDFiltering]: [20:03:32][INFO] 
+[2761486:MIDFiltering]:       ______      _    _______  _________ 
+[2761486:MIDFiltering]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2761486:MIDFiltering]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2761486:MIDFiltering]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2761486:MIDFiltering]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2761486:MIDFiltering]: 
+[2761486:MIDFiltering]: [20:03:32][STATE] Starting FairMQ state machine --> IDLE
+[2761484:MIDDigitsReader]: [20:03:32][STATE] IDLE ---> INITIALIZING DEVICE
+[2761490:internal-dpl-injected-dummy-sink]: [INFO] Instrumenting crash signals
+[2761488:MIDTracker]: [20:03:32][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2761486:MIDFiltering]: [20:03:32][STATE] IDLE ---> INITIALIZING DEVICE
+[2761486:MIDFiltering]: [20:03:32][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2761488:MIDTracker]: [20:03:32][STATE] INITIALIZED ---> BINDING
+[2761488:MIDTracker]: [20:03:32][STATE] BINDING ---> BOUND
+[2761488:MIDTracker]: [20:03:32][STATE] BOUND ---> CONNECTING
+[2761488:MIDTracker]: [20:03:32][STATE] CONNECTING ---> DEVICE READY
+[2761490:internal-dpl-injected-dummy-sink]: [INFO] Spawing new device internal-dpl-injected-dummy-sink in process with pid 2761490
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:32][INFO] 
+[2761490:internal-dpl-injected-dummy-sink]:       ______      _    _______  _________ 
+[2761490:internal-dpl-injected-dummy-sink]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2761490:internal-dpl-injected-dummy-sink]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2761490:internal-dpl-injected-dummy-sink]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2761490:internal-dpl-injected-dummy-sink]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2761490:internal-dpl-injected-dummy-sink]: 
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:32][STATE] Starting FairMQ state machine --> IDLE
+[2761488:MIDTracker]: [20:03:32][STATE] DEVICE READY ---> INITIALIZING TASK
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:32][STATE] IDLE ---> INITIALIZING DEVICE
+[2761486:MIDFiltering]: [20:03:32][STATE] INITIALIZED ---> BINDING
+[2761486:MIDFiltering]: [20:03:32][STATE] BINDING ---> BOUND
+[2761486:MIDFiltering]: [20:03:32][STATE] BOUND ---> CONNECTING
+[2761486:MIDFiltering]: [20:03:32][STATE] CONNECTING ---> DEVICE READY
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:32][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2761486:MIDFiltering]: [20:03:32][STATE] DEVICE READY ---> INITIALIZING TASK
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:32][STATE] INITIALIZED ---> BINDING
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:32][STATE] BINDING ---> BOUND
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:32][STATE] BOUND ---> CONNECTING
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:32][STATE] CONNECTING ---> DEVICE READY
+[2761485:internal-dpl-ccdb-backend]: [INFO] Instrumenting crash signals
+[2761485:internal-dpl-ccdb-backend]: [INFO] Spawing new device internal-dpl-ccdb-backend in process with pid 2761485
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][INFO] 
+[2761485:internal-dpl-ccdb-backend]:       ______      _    _______  _________ 
+[2761485:internal-dpl-ccdb-backend]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2761485:internal-dpl-ccdb-backend]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2761485:internal-dpl-ccdb-backend]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2761485:internal-dpl-ccdb-backend]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2761485:internal-dpl-ccdb-backend]: 
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][STATE] Starting FairMQ state machine --> IDLE
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:32][STATE] DEVICE READY ---> INITIALIZING TASK
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:32][STATE] INITIALIZING TASK ---> READY
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:32][STATE] READY ---> RUNNING
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:32][INFO] fair::mq::Device running...
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:32][INFO] LHCPeriod is not available, using current month SEP
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:32][INFO] Correctly handshaken websocket connection.
+[2761486:MIDFiltering]: [20:03:32][STATE] INITIALIZING TASK ---> READY
+[2761486:MIDFiltering]: [20:03:32][STATE] READY ---> RUNNING
+[2761486:MIDFiltering]: [20:03:32][INFO] fair::mq::Device running...
+[2761486:MIDFiltering]: [20:03:32][INFO] LHCPeriod is not available, using current month SEP
+[2761486:MIDFiltering]: [20:03:32][INFO] Correctly handshaken websocket connection.
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][STATE] IDLE ---> INITIALIZING DEVICE
+[2761488:MIDTracker]: [20:03:32][STATE] INITIALIZING TASK ---> READY
+[2761488:MIDTracker]: [20:03:32][STATE] READY ---> RUNNING
+[2761488:MIDTracker]: [20:03:32][INFO] fair::mq::Device running...
+[2761488:MIDTracker]: [20:03:32][INFO] LHCPeriod is not available, using current month SEP
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][INFO] CCDB Backend at: http://alice-ccdb.cern.ch, validity check for every 2147483647 TF
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1694541812-Z7fvZv, Host: http://alice-ccdb.cern.ch
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][INFO] Initialised default CCDB host http://alice-ccdb.cern.ch
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][INFO] The following route is a condition MID/BAD_CHANNELS/0
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][INFO] - ccdb-path: MID/Calib/BadChannels
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][INFO] The following route is a condition MID/MASKED_CHANNELS/0
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][INFO] - ccdb-path: MID/Calib/BadChannels
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][INFO] The following route is a condition GLO/GEOMALIGN/0
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][INFO] - ccdb-path: GLO/Config/GeometryAligned
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][STATE] INITIALIZED ---> BINDING
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][STATE] BINDING ---> BOUND
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][STATE] BOUND ---> CONNECTING
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][STATE] CONNECTING ---> DEVICE READY
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][STATE] DEVICE READY ---> INITIALIZING TASK
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][STATE] INITIALIZING TASK ---> READY
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][STATE] READY ---> RUNNING
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][INFO] fair::mq::Device running...
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][INFO] LHCPeriod is not available, using current month SEP
+[2761485:internal-dpl-ccdb-backend]: [20:03:32][INFO] Correctly handshaken websocket connection.
+[2761488:MIDTracker]: [20:03:32][INFO] Correctly handshaken websocket connection.
+[2761489:MIDRecoWriter]: [INFO] Instrumenting crash signals
+[2761489:MIDRecoWriter]: [INFO] Spawing new device MIDRecoWriter in process with pid 2761489
+[2761489:MIDRecoWriter]: [20:03:32][INFO] 
+[2761489:MIDRecoWriter]:       ______      _    _______  _________ 
+[2761489:MIDRecoWriter]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2761489:MIDRecoWriter]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2761489:MIDRecoWriter]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2761489:MIDRecoWriter]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2761489:MIDRecoWriter]: 
+[2761489:MIDRecoWriter]: [20:03:32][STATE] Starting FairMQ state machine --> IDLE
+[2761489:MIDRecoWriter]: [20:03:32][STATE] IDLE ---> INITIALIZING DEVICE
+[2761487:MIDClusterizer]: [INFO] Instrumenting crash signals
+[2761487:MIDClusterizer]: [INFO] Spawing new device MIDClusterizer in process with pid 2761487
+[2761489:MIDRecoWriter]: [20:03:32][INFO] 0: branch  MIDTrack set up
+[2761487:MIDClusterizer]: [20:03:32][INFO] 
+[2761487:MIDClusterizer]:       ______      _    _______  _________ 
+[2761487:MIDClusterizer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2761487:MIDClusterizer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2761487:MIDClusterizer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2761487:MIDClusterizer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2761487:MIDClusterizer]: 
+[2761489:MIDRecoWriter]: [20:03:32][INFO] 1: branch  MIDTrackCluster set up
+[2761487:MIDClusterizer]: [20:03:32][STATE] Starting FairMQ state machine --> IDLE
+[2761489:MIDRecoWriter]: [20:03:32][INFO] 2: branch  MIDTrackROF set up
+[2761489:MIDRecoWriter]: [20:03:32][INFO] 3: branch  MIDTrackClusterROF set up
+[2761489:MIDRecoWriter]: [20:03:32][INFO] 4: branch  MIDTrackLabels set up
+[2761489:MIDRecoWriter]: [20:03:32][INFO] 5: branch  MIDTrackClusterLabels set up
+[2761489:MIDRecoWriter]: [20:03:32][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2761489:MIDRecoWriter]: [20:03:32][STATE] INITIALIZED ---> BINDING
+[2761489:MIDRecoWriter]: [20:03:32][STATE] BINDING ---> BOUND
+[2761489:MIDRecoWriter]: [20:03:32][STATE] BOUND ---> CONNECTING
+[2761489:MIDRecoWriter]: [20:03:32][STATE] CONNECTING ---> DEVICE READY
+[2761489:MIDRecoWriter]: [20:03:32][STATE] DEVICE READY ---> INITIALIZING TASK
+[2761489:MIDRecoWriter]: [20:03:32][STATE] INITIALIZING TASK ---> READY
+[2761489:MIDRecoWriter]: [20:03:32][STATE] READY ---> RUNNING
+[2761489:MIDRecoWriter]: [20:03:32][INFO] fair::mq::Device running...
+[2761489:MIDRecoWriter]: [20:03:32][INFO] LHCPeriod is not available, using current month SEP
+[2761489:MIDRecoWriter]: [20:03:32][INFO] Correctly handshaken websocket connection.
+[2761487:MIDClusterizer]: [20:03:32][STATE] IDLE ---> INITIALIZING DEVICE
+[2761487:MIDClusterizer]: [20:03:32][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2761487:MIDClusterizer]: [20:03:32][STATE] INITIALIZED ---> BINDING
+[2761487:MIDClusterizer]: [20:03:32][STATE] BINDING ---> BOUND
+[2761487:MIDClusterizer]: [20:03:32][STATE] BOUND ---> CONNECTING
+[2761487:MIDClusterizer]: [20:03:32][STATE] CONNECTING ---> DEVICE READY
+[2761487:MIDClusterizer]: [20:03:32][STATE] DEVICE READY ---> INITIALIZING TASK
+[2761487:MIDClusterizer]: [20:03:32][STATE] INITIALIZING TASK ---> READY
+[2761487:MIDClusterizer]: [20:03:32][STATE] READY ---> RUNNING
+[2761487:MIDClusterizer]: [20:03:32][INFO] fair::mq::Device running...
+[2761487:MIDClusterizer]: [20:03:32][INFO] LHCPeriod is not available, using current month SEP
+[2761487:MIDClusterizer]: [20:03:32][INFO] Correctly handshaken websocket connection.
+[2761484:MIDDigitsReader]: [20:03:33][INFO] branch set up: MIDDigit
+[2761484:MIDDigitsReader]: [20:03:33][INFO] branch set up: MIDROFRecords
+[2761484:MIDDigitsReader]: [20:03:33][INFO] branch set up: MIDDigitMCLabels
+[2761484:MIDDigitsReader]: [20:03:33][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2761484:MIDDigitsReader]: [20:03:33][STATE] INITIALIZED ---> BINDING
+[2761484:MIDDigitsReader]: [20:03:33][STATE] BINDING ---> BOUND
+[2761484:MIDDigitsReader]: [20:03:33][STATE] BOUND ---> CONNECTING
+[2761484:MIDDigitsReader]: [20:03:33][STATE] CONNECTING ---> DEVICE READY
+[2761484:MIDDigitsReader]: [20:03:33][STATE] DEVICE READY ---> INITIALIZING TASK
+[2761484:MIDDigitsReader]: [20:03:33][STATE] INITIALIZING TASK ---> READY
+[2761484:MIDDigitsReader]: [20:03:33][STATE] READY ---> RUNNING
+[2761484:MIDDigitsReader]: [20:03:33][INFO] fair::mq::Device running...
+[2761484:MIDDigitsReader]: [20:03:33][INFO] LHCPeriod is not available, using current month SEP
+[2761484:MIDDigitsReader]: [20:03:33][INFO] Correctly handshaken websocket connection.
+[2761484:MIDDigitsReader]: [20:03:33][INFO] Sending end-of-stream message to channel from_MIDDigitsReader_to_internal-dpl-ccdb-backend
+[2761484:MIDDigitsReader]: [20:03:33][INFO] Sending end-of-stream message to channel from_MIDDigitsReader_to_MIDFiltering
+[2761485:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to JCentral. Please wait
+[2761485:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to 137.138.99.141
+[2761485:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Successfully connected to 137.138.99.141
+[2761485:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/CTP/Calib/OrbitReset/06/62200/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee in SE <ALICE::CERN::EOS>
+[2761485:internal-dpl-ccdb-backend]: [20:03:36][INFO] ccdb reads http://alice-ccdb.cern.ch/CTP/Calib/OrbitReset/1546300800000/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee for 1546300800000 (load to memory, agent_id: localhost.localdomain-1694541812-Z7fvZv), 
+[2761485:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/MID/Calib/BadChannels/02/17415/639eaa1c-d070-11ec-8000-0aa204881b9a in SE <ALICE::CERN::OCDB>
+[2761485:internal-dpl-ccdb-backend]: [20:03:37][INFO] ccdb reads http://alice-ccdb.cern.ch/MID/Calib/BadChannels/6635/639eaa1c-d070-11ec-8000-0aa204881b9a for 1546300800000 (load to memory, agent_id: localhost.localdomain-1694541812-Z7fvZv), 
+[2761485:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GeometryAligned/06/21224/787687c0-287a-11ed-8141-200114580202 in SE <ALICE::CERN::OCDB>
+[2761485:internal-dpl-ccdb-backend]: [20:03:37][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GeometryAligned/1546300800000/787687c0-287a-11ed-8141-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1694541812-Z7fvZv), 
+[2761485:internal-dpl-ccdb-backend]: [20:03:37][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_MIDFiltering
+[2761485:internal-dpl-ccdb-backend]: [20:03:37][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_MIDTracker
+[2761485:internal-dpl-ccdb-backend]: [20:03:37][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_internal-dpl-injected-dummy-sink
+[2761486:MIDFiltering]: [20:03:39][INFO] Update MID_BAD_CHANNELS
+[2761486:MIDFiltering]: [20:03:39][INFO] Caching in 140331792049856 ptr to MID/BAD_CHANNELS/0 (0x4f34f00)
+[2761486:MIDFiltering]: [20:03:39][INFO] Sending end-of-stream message to channel from_MIDFiltering_to_MIDClusterizer
+[2761487:MIDClusterizer]: [20:03:39][INFO] Sending end-of-stream message to channel from_MIDClusterizer_to_MIDTracker
+[2761488:MIDTracker]: Info in <TGeoManager::CloseGeometry>: Geometry loaded from file...
+[2761488:MIDTracker]: Info in <TGeoManager::SetTopVolume>: Top volume is cave. Master volume is cave
+[2761488:MIDTracker]: Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+[2761488:MIDTracker]: Info in <TGeoManager::Voxelize>: Voxelizing...
+[2761488:MIDTracker]: Info in <TGeoManager::CountLevels>: max level = 13, max placements = 735
+[2761488:MIDTracker]: Info in <TGeoManager::CloseGeometry>: 5346742 nodes/ 27442 volume UID's in FAIR geometry
+[2761488:MIDTracker]: Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+[2761488:MIDTracker]: [20:03:40][INFO] aligned geometry updated
+[2761488:MIDTracker]: [20:03:40][INFO] Caching in 139914760552544 ptr to GLO/GEOMALIGN/0 (0x3dca4a0)
+[2761488:MIDTracker]: [20:03:42][INFO] Update MID_MASKED_CHANNELS
+[2761488:MIDTracker]: [20:03:42][INFO] Caching in 139914760550080 ptr to MID/MASKED_CHANNELS/0 (0x3c110d0)
+[2761488:MIDTracker]: [20:03:42][INFO] Sending end-of-stream message to channel from_MIDTracker_to_MIDRecoWriter
+[2761489:MIDRecoWriter]: [20:03:42][ERROR] Some Lifetime::Timeframe data got dropped starting at 1
+[INFO] Quitting
+[INFO] QUIT_REQUESTED
+[2761483:internal-dpl-clock]: [20:03:42][INFO] Received device shutdown request (signal 15).
+[2761483:internal-dpl-clock]: [20:03:42][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2761487:MIDClusterizer]: [20:03:42][INFO] Received device shutdown request (signal 15).
+[2761487:MIDClusterizer]: [20:03:42][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:42][INFO] Received device shutdown request (signal 15).
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:42][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2761487:MIDClusterizer]: [20:03:42][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2761487:MIDClusterizer]: [20:03:42][INFO] Processing time / 0 ROFs: full: 0 us  pre-clustering: 0 us  clustering: 0 us
+[2761487:MIDClusterizer]: [20:03:42][STATE] RUNNING ---> READY
+[2761487:MIDClusterizer]: [20:03:42][STATE] READY ---> RESETTING TASK
+[2761487:MIDClusterizer]: [20:03:42][STATE] RESETTING TASK ---> DEVICE READY
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:42][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:42][STATE] RUNNING ---> READY
+[2761483:internal-dpl-clock]: [20:03:42][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2761487:MIDClusterizer]: [20:03:42][STATE] DEVICE READY ---> RESETTING DEVICE
+[2761483:internal-dpl-clock]: [20:03:42][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_MIDDigitsReader
+[2761483:internal-dpl-clock]: [20:03:42][STATE] RUNNING ---> READY
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:42][STATE] READY ---> RESETTING TASK
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:42][STATE] RESETTING TASK ---> DEVICE READY
+[2761483:internal-dpl-clock]: [20:03:42][STATE] READY ---> RESETTING TASK
+[2761483:internal-dpl-clock]: [20:03:42][STATE] RESETTING TASK ---> DEVICE READY
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:42][STATE] DEVICE READY ---> RESETTING DEVICE
+[2761483:internal-dpl-clock]: [20:03:42][STATE] DEVICE READY ---> RESETTING DEVICE
+[2761488:MIDTracker]: [20:03:42][INFO] Received device shutdown request (signal 15).
+[2761488:MIDTracker]: [20:03:42][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2761483:internal-dpl-clock]: [20:03:42][STATE] RESETTING DEVICE ---> IDLE
+[2761484:MIDDigitsReader]: [20:03:42][INFO] Received device shutdown request (signal 15).
+[2761484:MIDDigitsReader]: [20:03:42][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2761485:internal-dpl-ccdb-backend]: [20:03:42][INFO] Received device shutdown request (signal 15).
+[2761485:internal-dpl-ccdb-backend]: [20:03:42][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:42][STATE] RESETTING DEVICE ---> IDLE
+[2761486:MIDFiltering]: [20:03:42][INFO] Received device shutdown request (signal 15).
+[2761486:MIDFiltering]: [20:03:42][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2761489:MIDRecoWriter]: [20:03:42][INFO] Received device shutdown request (signal 15).
+[2761489:MIDRecoWriter]: [20:03:42][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2761489:MIDRecoWriter]: [20:03:42][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:42][STATE] IDLE ---> EXITING
+[2761490:internal-dpl-injected-dummy-sink]: [20:03:42][STATE] Exiting FairMQ state machine
+[2761485:internal-dpl-ccdb-backend]: [20:03:42][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2761485:internal-dpl-ccdb-backend]: [20:03:42][INFO] CCDB cache miss/hit ratio:
+[2761485:internal-dpl-ccdb-backend]: [20:03:42][INFO]   GLO/Config/GeometryAligned: 1/0 (1847296-1847296 bytes)
+[2761485:internal-dpl-ccdb-backend]: [20:03:42][INFO]   MID/Calib/BadChannels: 1/1 (2048-2048 bytes)
+[2761485:internal-dpl-ccdb-backend]: [20:03:42][INFO]   CTP/Calib/OrbitReset: 1/1 (1024-1024 bytes)
+[2761485:internal-dpl-ccdb-backend]: [20:03:42][STATE] RUNNING ---> READY
+[2761486:MIDFiltering]: [20:03:42][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2761486:MIDFiltering]: [20:03:42][STATE] RUNNING ---> READY
+[2761487:MIDClusterizer]: [20:03:42][STATE] RESETTING DEVICE ---> IDLE
+[2761488:MIDTracker]: [20:03:42][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2761484:MIDDigitsReader]: [20:03:42][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2761484:MIDDigitsReader]: [20:03:42][STATE] RUNNING ---> READY
+[2761488:MIDTracker]: [20:03:42][INFO] Processing time / 0 ROFs: full: 0 us  tracking: 0 us  hitMapBuilder: 1.122e-06 us
+[2761483:internal-dpl-clock]: [20:03:42][STATE] IDLE ---> EXITING
+[2761485:internal-dpl-ccdb-backend]: [20:03:42][STATE] READY ---> RESETTING TASK
+[2761485:internal-dpl-ccdb-backend]: [20:03:42][STATE] RESETTING TASK ---> DEVICE READY
+[2761486:MIDFiltering]: [20:03:42][STATE] READY ---> RESETTING TASK
+[2761486:MIDFiltering]: [20:03:42][STATE] RESETTING TASK ---> DEVICE READY
+[2761488:MIDTracker]: [20:03:42][STATE] RUNNING ---> READY
+[2761484:MIDDigitsReader]: [20:03:42][STATE] READY ---> RESETTING TASK
+[2761484:MIDDigitsReader]: [20:03:42][STATE] RESETTING TASK ---> DEVICE READY
+[2761485:internal-dpl-ccdb-backend]: [20:03:42][STATE] DEVICE READY ---> RESETTING DEVICE
+[2761486:MIDFiltering]: [20:03:42][STATE] DEVICE READY ---> RESETTING DEVICE
+[2761487:MIDClusterizer]: [20:03:42][STATE] IDLE ---> EXITING
+[2761483:internal-dpl-clock]: [20:03:42][STATE] Exiting FairMQ state machine
+[2761488:MIDTracker]: [20:03:42][STATE] READY ---> RESETTING TASK
+[2761488:MIDTracker]: [20:03:42][STATE] RESETTING TASK ---> DEVICE READY
+[2761488:MIDTracker]: [20:03:42][STATE] DEVICE READY ---> RESETTING DEVICE
+[2761487:MIDClusterizer]: [20:03:42][STATE] Exiting FairMQ state machine
+[2761484:MIDDigitsReader]: [20:03:42][STATE] DEVICE READY ---> RESETTING DEVICE
+[2761484:MIDDigitsReader]: [20:03:42][STATE] RESETTING DEVICE ---> IDLE
+[2761484:MIDDigitsReader]: [20:03:42][STATE] IDLE ---> EXITING
+[2761484:MIDDigitsReader]: [20:03:42][STATE] Exiting FairMQ state machine
+[2761485:internal-dpl-ccdb-backend]: [20:03:42][STATE] RESETTING DEVICE ---> IDLE
+[2761485:internal-dpl-ccdb-backend]: [20:03:42][STATE] IDLE ---> EXITING
+[2761485:internal-dpl-ccdb-backend]: [20:03:42][STATE] Exiting FairMQ state machine
+[2761486:MIDFiltering]: [20:03:42][STATE] RESETTING DEVICE ---> IDLE
+[2761486:MIDFiltering]: [20:03:42][STATE] IDLE ---> EXITING
+[2761486:MIDFiltering]: [20:03:42][STATE] Exiting FairMQ state machine
+[2761488:MIDTracker]: [20:03:42][STATE] RESETTING DEVICE ---> IDLE
+[2761488:MIDTracker]: [20:03:42][STATE] IDLE ---> EXITING
+[2761488:MIDTracker]: [20:03:42][STATE] Exiting FairMQ state machine
+[2761489:MIDRecoWriter]: [20:03:43][STATE] RUNNING ---> READY
+[2761489:MIDRecoWriter]: [20:03:43][STATE] READY ---> RESETTING TASK
+[2761489:MIDRecoWriter]: [20:03:43][STATE] RESETTING TASK ---> DEVICE READY
+[2761489:MIDRecoWriter]: [20:03:43][STATE] DEVICE READY ---> RESETTING DEVICE
+[2761489:MIDRecoWriter]: [20:03:43][INFO] Cleaning up for shared memory id '8fe3a039'...
+[2761489:MIDRecoWriter]: [20:03:43][INFO] Found 0 unmanaged regions...
+[2761489:MIDRecoWriter]: [20:03:43][INFO] Found 1 managed segments...
+[2761489:MIDRecoWriter]: [20:03:43][INFO] Successfully removed 'fmq_8fe3a039_m_0'.
+[2761489:MIDRecoWriter]: [20:03:43][INFO] Successfully removed 'fmq_8fe3a039_mng'.
+[2761489:MIDRecoWriter]: [20:03:43][STATE] RESETTING DEVICE ---> IDLE
+[2761489:MIDRecoWriter]: [20:03:43][STATE] IDLE ---> EXITING
+[2761489:MIDRecoWriter]: [20:03:43][STATE] Exiting FairMQ state machine
+[INFO] ## Processes completed. Run summary:
+[INFO] ### Devices started: 8
+[INFO]  - Device internal-dpl-clock: pid 2761483 (exit 0)
+[INFO]  - Device MIDDigitsReader: pid 2761484 (exit 0)
+[INFO]  - Device internal-dpl-ccdb-backend: pid 2761485 (exit 0)
+[INFO]  - Device MIDFiltering: pid 2761486 (exit 0)
+[INFO]  - Device MIDClusterizer: pid 2761487 (exit 0)
+[INFO]  - Device MIDTracker: pid 2761488 (exit 0)
+[INFO]  - Device MIDRecoWriter: pid 2761489 (exit 0)
+[INFO]  - Device internal-dpl-injected-dummy-sink: pid 2761490 (exit 0)
+[INFO] Dumping used configuration in dpl-config.json
+TASK-EXIT-CODE: 0

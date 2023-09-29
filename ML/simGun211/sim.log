@@ -1,0 +1,28 @@
+Running: TIME="#walltime %e" /usr/bin/time --output=sim.log_time ./sim.log_tmp.sh
+[INFO] This is o2-sim version 1.2.0 (94520835f)
+[INFO] Built by ALIBUILD:1.14.5, ALIDIST-REV:cd6a9a51f8e88515c8c0b2d782e486722e205983 on OS:Linux-4.18.0-477.21.1.el8_8.x86_64
+[INFO] BINDING TO ADDRESS ipc:///tmp/o2sim-notifications-139774 type pub
+[INFO] Running with 3 sim workers 
+[INFO] CREATING SIM SHARED MEM SEGMENT FOR 3 WORKERS
+Spawning particle server on PID 139808; Redirect output to o2sim_serverlog
+Spawning sim worker 0 on PID 139842; Redirect output to o2sim_workerlog0
+Spawning hit merger on PID 139844; Redirect output to o2sim_mergerlog
+[INFO] DISTRIBUTING EVENT : 1
+[INFO] DISTRIBUTING EVENT : 2
+[INFO] DISTRIBUTING EVENT : 3
+[INFO] EVENT FINISHED : 1
+[INFO] EVENT FINISHED : 2
+[INFO] SIMULATION IS DONE. INITIATING SHUTDOWN.
+[INFO] EVENT FINISHED : 3
+[INFO] Merger process 139844 returned
+[INFO] Simulation process took 21.1562 s
+[INFO] SIMULATION RETURNED SUCCESFULLY
+./sim.log_tmp.sh: line 3: BoxGun.phirange[0]=-5: command not found
+./sim.log_tmp.sh: line 3: BoxGun.phirange[1]=60: command not found
+./sim.log_tmp.sh: line 3: BoxGun.number=3: command not found
+./sim.log_tmp.sh: line 3: BoxGun.eta[0]=-0.5: command not found
+./sim.log_tmp.sh: line 3: BoxGun.eta[1]=0.5: command not found
+./sim.log_tmp.sh: line 3: BoxGun.prange[0]=2.78: command not found
+./sim.log_tmp.sh: line 3: BoxGun.prange[1]=3,: command not found
+./sim.log_tmp.sh: line 3: --run: command not found
+TASK-EXIT-CODE: 127
