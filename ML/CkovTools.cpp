@@ -8,7 +8,7 @@
 #include <cmath>
 #include <random>
 #include "populate.cpp"
-
+#include "Sigma.cpp"
 #include "populate2.cpp" // TODO: change name of class and file here 
 
 #include <iostream>
@@ -695,6 +695,14 @@ private:
 	bool kaonStatus = true, pionStatus = true, protonStatus = true;
 	//TLine* tlinePion;
 
+
+
+	// used in SigCrom
+	//  double f = 0.00928*(7.75-5.635)/TMath::Sqrt(12.);
+  // static constexpr double f = 0.0172*(7.75-5.635)/TMath::Sqrt(24.);
+  static constexpr double sq6 = 2.44948974278;
+  static constexpr double f = 0.0172*(7.75-5.635)/(2 * sq6);
+
 	static constexpr double PI = M_PI;
 	static constexpr double halfPI = M_PI/2;
 	static constexpr double twoPI = M_PI*2;
@@ -777,6 +785,10 @@ private:
  float nF, nQ, nG;  
  std::array<float, 3> ckovHypsMin, ckovHypsMax;
  std::vector<std::pair<double, double>> photons;
+
+
+
+ double ckovProton = 999, ckovKaon = 999, ckovPion = 999;
 
 
  // instantiate ckovhyp boundaries to "invalid values" 
@@ -942,6 +954,7 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
 	if(getPionStatus()){
 	  ckovPionMin = ckovHypsMin[0] - sigmaAngles;
 	  ckovPionMax = ckovHypsMax[0] + sigmaAngles;
+    ckovPion =  ckovHypsMax[0];
  	  //printf("init CkovTools constructor : getPionStatus() true ! minPion %.2f, maxPion %.2f ", ckovPionMin, ckovPionMax);
   }	else {
  	  //printf("init CkovTools constructor : getPionStatus() was false !");
@@ -950,9 +963,11 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
   if(getKaonStatus()){
 	  ckovKaonMin = ckovHypsMin[1] - sigmaAngles;
   	ckovKaonMax = ckovHypsMax[1] + sigmaAngles;
+    ckovKaon =  ckovHypsMax[1];
   } if(getProtonStatus()){
 		ckovProtonMin = ckovHypsMin[2] - sigmaAngles;
 		ckovProtonMax = ckovHypsMax[2] + sigmaAngles;
+    ckovProton =  ckovHypsMax[2];
  }
 
 	cosThetaP = TMath::Cos(thetaP);
@@ -990,8 +1005,6 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
 
 
 
-
-
 void setPionStatus(bool status)
 { 
   pionStatus = status;
@@ -1020,6 +1033,24 @@ void setProtonStatus(bool status)
 bool getProtonStatus() const
 {
   return protonStatus;
+}
+
+
+
+
+double getCkovPion()
+{
+  return ckovPion;
+}
+
+double getCkovKaon()
+{
+  return ckovKaon;
+}
+
+double getCkovProton()
+{
+  return ckovProton;
 }
 
 
@@ -1128,8 +1159,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 	arrMaxPionPos.reserve(kN);
 	arrMinPionPos.reserve(kN);
-	arrMaxPionPos.resize(kN);
-	arrMinPionPos.resize(kN);
+
 
 	// arrMaxPion.resize(kN);
 		
@@ -1142,10 +1172,10 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 		arrMinProtonPos.reserve(kN);
 		arrMaxProtonPos.reserve(kN);
-		arrMinProtonPos.resize(kN);
-		arrMaxProtonPos.resize(kN);
-				
-    calculateDifference(arrMaxProtonPos, arrMinProtonPos, getMaxCkovProton(), getMinCkovProton()); 
+
+		Sigma 	sigmaProton(getCkovProton(), phiP, thetaP, nF);
+	Printf(" getCkovProton() %.4f", getCkovProton());
+    calculateDifference(arrMaxProtonPos, arrMinProtonPos, getCkovProton(), sigmaProton); 
 	}
 	
 
@@ -1160,11 +1190,10 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 		arrMaxKaonPos.reserve(kN);
 		arrMinKaonPos.reserve(kN);				
 
-		arrMaxKaonPos.resize(kN);
-		arrMinKaonPos.resize(kN);
 
-		//printf("calling setArrayMin w getMinCkovKaon() = %.2f", getMinCkovKaon());
-  	calculateDifference(arrMaxKaonPos, arrMinKaonPos, getMaxCkovKaon(), getMinCkovKaon()); 
+	Printf(" getCkovKaon() %.4f", getCkovKaon());
+		Sigma 	sigmaKaon(getCkovKaon(), phiP, thetaP, nF); //(double thetaC, double phiP, double thetaP, double _nF)  
+		calculateDifference(arrMaxKaonPos, arrMinKaonPos, getCkovKaon(), sigmaKaon); 
 	}
 
 	
@@ -1175,7 +1204,12 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 	Printf("BF : Length of elem vectors : arrMinPionPos %zu", arrMinPionPos.size());
   // void calculateDifference(vecArray2& maxVec, vecArray2& minVec, double etaTrsMax, double etaTrsMin) {
-  calculateDifference(arrMaxPionPos, arrMinPionPos, getMaxCkovPion(), getMinCkovPion()); 
+
+  Sigma 	sigmaPion(getCkovPion(), phiP, thetaP, nF); //(double thetaC, double phiP, double thetaP, double _nF)  
+
+
+	Printf(" getCkovPion() %.4f", getCkovPion());
+  calculateDifference(arrMaxPionPos, arrMinPionPos, getCkovPion(), sigmaPion); 
 
 	Printf("AFTER : Length of elem vectors : arrMinPionPos %zu", arrMinPionPos.size());
 	// fill all the values in the maps 
@@ -2031,7 +2065,7 @@ void setArrayMax(double etaTRS, vecArray4& inPutVectorAngle, vecArray2& inPutVec
   //Printf("\n\n setArrayMax() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
 	for(int i = 0; i < kN; i++){
 
-		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
+		const auto phiL = double(TMath::TwoPi()*(i+1)/kN);
 		TVector3 dirTrs, dirLORS;
 		
 		// set TRS values :
@@ -2183,101 +2217,34 @@ double calculatePhi(const std::array<double, 2>& a, const std::array<double, 2>&
 
 
 // chane function name 
-void calculateDifference(vecArray2& maxVec, vecArray2& minVec, double etaTrsMax, double etaTrsMin) {
+void calculateDifference(vecArray2& maxVec, vecArray2& minVec, double ckovHypVal, const Sigma& sigma) {
 //vecArray2 calculateDifference(const vecArray2& maxVec, const vecArray2& minVec) {
     assert(maxVec.size() == minVec.size());
 
+		const int kN = 200;
+    for (size_t i = 0; i < kN; ++i) {
+			  const auto phiL = double(TMath::TwoPi()*(i+1)/ kN);
+				const double sigma2 = sigma.sigma2(phiL); // calculate the combined 	 
+				TVector2 min, max;
 
-    for (size_t i = 0; i < maxVec.size(); ++i) {
-			  const auto phiL = Double_t(TMath::TwoPi()*(i+1)/ maxVec.size());
+				Printf("ckovHypVal %.2f | sigma %.2f" , ckovHypVal, TMath::Sqrt(sigma2));
+				setMeanSingle(min, ckovHypVal - TMath::Sqrt(sigma2), phiL);
+				setMeanSingle(max, ckovHypVal + TMath::Sqrt(sigma2), phiL);
 
-				TVector2 minPos, maxPos;
-				setMinSingle(minPos, etaTrsMin, phiL);
-				setMaxSingle(maxPos, etaTrsMax, phiL);
-
-				if(maxPos.X() <  0 || maxPos.Y() <  0 ) {
-					if(minPos.X() <  0 || minPos.Y() <  0 ) {
-						// both contours are open; just continue with original values 
-
-						maxVec[i] = std::array<double, 2>{maxPos.X(), maxPos.Y()};
-						minVec[i] = std::array<double, 2>{minPos.X(), minPos.Y()};
-
-					} else { // inner contour is closed, outer conter is open 
-						// no changes to outer contour
-						maxVec[i] = std::array<double, 2>{maxPos.X(), maxPos.Y()};
-						TVector2 meanPos;
-
-						double etaTrsMean = (etaTrsMax + etaTrsMin)/2.;
-						setMinSingle(meanPos, etaTrsMean, phiL); //setMaxSingle(TVector2& vectorOut, double etaTRS, double phiL);
-						if(meanPos.X() <  0 || meanPos.Y() <  0 ) {
-							/* / linearise around min??*/
-							TVector2 temp;
-							auto etaDiff = 0.001;
-							setMinSingle(temp, etaTrsMin - etaDiff, phiL); //setMaxSingle(TVector2& vectorOut, double etaTRS, double phiL);
-							auto drDeta = (temp - minPos).Mod();					
-							auto rDelta = drDeta / etaDiff; 
-		  				double phiMin = (minPos - mipPos).Phi();
-
-							auto sigmaPos = getTotalSigmaPos(rDelta);
-							auto dx = TMath::Cos(phiMin)  * sigmaPos;
-							auto dy = TMath::Sin(phiMin)  * sigmaPos;
-							TVector2 diff(dx, dy);
-
-						  minVec[i] = std::array<double, 2>{minPos.X() - dx, minPos.Y() - dy};
-							Printf("Outer open Mean open :  interpolated  drDeta %.2f rDelta %.2f", drDeta, rDelta);
-							Printf("phiMin %.2f  sigmaPos %.2f", phiMin, sigmaPos);
-
-						} else {
+				if((max.Y() == -999) or (max.X() == -999)) {
+					Printf("max.Y() == -999) or (max.X() == -999");
+				} else {
+					Printf("maxVec %.2f  %.2f" , max.X(), max.Y());							 
+					maxVec.emplace_back(std::array<double, 2>{max.X(), max.Y()});
+				}
+				if((min.Y() == -999) or (min.X() == -999)) {
+					Printf("min.Y() == -999) or (min.X() == -999");
+				} else {										 
+					Printf("maminVecxVec %.2f  %.2f" , min.X(), min.Y());							 
+					minVec.emplace_back(std::array<double, 2>{min.X(), min.Y()});
+				}
 				
-		  				double phiMin = (minPos - mipPos).Phi();
-		  				double phiMean = (meanPos - mipPos).Phi();
-							Printf("Outer open Mean closed :  phiMin %.2f  phiMean %.2f", phiMin, phiMean);
-
-							auto rDeltaMin = (minPos - meanPos).Mod();
-
-							auto sigmaPos = getTotalSigmaPos(rDeltaMin);
-							auto dx = TMath::Cos(phiMin)  * sigmaPos;
-							auto dy = TMath::Sin(phiMin)  * sigmaPos;
-							TVector2 diff(dx, dy);
-							Printf("phiMin %.2f  phiMean %.2f | rDeltaMin %.2f | sigmaPos %.2f", phiMin, phiMean, rDeltaMin, sigmaPos);
-						  minVec[i] = std::array<double, 2>{minPos.X() - dx, minPos.Y() - dy};
-						} // end else mean is closed 
-					} // end else inner is closed
-        }   // end else open contour
-			  else {
-						TVector2 meanPos;
-
-						double etaTrsMean = (etaTrsMax + etaTrsMin)/2.;
-						{ 
-
-							setMinSingle(meanPos, etaTrsMean, phiL);
-    					double phiMin = (minPos - mipPos).Phi();
-    					double phiMean = (meanPos - mipPos).Phi();
-							auto rDeltaMin = (minPos - meanPos).Mod();
-							auto sigmaPos = getTotalSigmaPos(rDeltaMin);
-
-							Printf("phiMin %.2f  phiMean %.2f | rDeltaMin %.2f | sigmaPos %.2f", phiMin, phiMean, rDeltaMin, sigmaPos);
-							auto dx = TMath::Cos(phiMin)  * sigmaPos;
-							auto dy = TMath::Sin(phiMin)  * sigmaPos;
-							TVector2 diff(dx, dy);
-							minVec[i] = std::array<double, 2>{minPos.X() -dx, minPos.Y() - dy};
-						} 
-
-						{ 
-							setMaxSingle(meanPos, etaTrsMean, phiL);
-		  				double phiMax = (maxPos - mipPos).Phi();
-    					double phiMean = (meanPos - mipPos).Phi();
-							auto rDeltaMax = (maxPos - meanPos).Mod();
-							auto sigmaPos = getTotalSigmaPos(rDeltaMax);
-							Printf("phiMax %.2f  phiMean %.2f | rDeltaMax %.2f | sigmaPos %.2f",  phiMax, phiMean, rDeltaMax, sigmaPos);
-
-							auto dx = TMath::Cos(phiMax)  * sigmaPos;
-							auto dy = TMath::Sin(phiMax)  * sigmaPos;
-							TVector2 diff(dx, dy);
-						  maxVec[i] = std::array<double, 2>{maxPos.X() + dx, maxPos.Y() + dy};
-						} 
-      	}	// end else no open contours	 
-    } // end for 
+    } 
 
 }
 
@@ -2310,7 +2277,7 @@ void setMeanSingle(TVector2& vectorOut, double etaTRS, double phiL)
 void setMinSingle(TVector2& vectorOut, double etaTRS, double phiL)
 {
   const float lMax = 1.5;
-
+  const float lMean =  0.75;
 	TVector3 dirTrs, dirLORS;
 		
 
@@ -2318,13 +2285,13 @@ void setMinSingle(TVector2& vectorOut, double etaTRS, double phiL)
 	double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
 	populatePtrOuter->trs2Lors(dirTrs, thetaR, phiR);
 	dirLORS.SetMagThetaPhi(1, thetaR, phiR);		
-	vectorOut = populatePtrOuter->traceForward(dirLORS, lMax); 
+	vectorOut = populatePtrOuter->traceForward(dirLORS, lMean); 
 }
 
 void setMaxSingle(TVector2& vectorOut, double etaTRS, double phiL)
 {
   const float lMin = 0.;
-
+  const float lMean =  0.75;
 	TVector3 dirTrs, dirLORS;
 		
 	// set TRS values :
@@ -2332,7 +2299,7 @@ void setMaxSingle(TVector2& vectorOut, double etaTRS, double phiL)
 	double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
 	populatePtrOuter->trs2Lors(dirTrs, thetaR, phiR);
 	dirLORS.SetMagThetaPhi(1, thetaR, phiR);		
-	vectorOut = populatePtrOuter->traceForward(dirLORS, lMin); 
+	vectorOut = populatePtrOuter->traceForward(dirLORS, lMean); 
 }
 
 
@@ -2351,7 +2318,7 @@ void setArrayMax(double etaTRS, vecArray2& inPutVectorPos, const size_t kN)
   //Printf("\n\n setArrayMax() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
 	for(int i = 0; i < kN; i++){
 
-		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
+		const auto phiL = double(TMath::TwoPi()*(i+1)/kN);
 		TVector3 dirTrs, dirLORS;
 		
 		// set TRS values :
@@ -2395,7 +2362,7 @@ void setArrayMin(double etaTRS, vecArray2& inPutVectorPos, const size_t kN)
   //Printf("\n\n setArrayMax() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
 	for(int i = 0; i < kN; i++){
 
-		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
+		const auto phiL = double(TMath::TwoPi()*(i+1)/kN);
 		TVector3 dirTrs, dirLORS;
 		
 		// set TRS values :
@@ -2466,7 +2433,7 @@ void setArrayMin(double etaTRS, vecArray4& inPutVectorAngle, vecArray2& inPutVec
   //Printf("\n\n setArrayMax() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
 	for(int i = 0; i < kN; i++){
 
-		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
+		const auto phiL = double(TMath::TwoPi()*(i+1)/kN);
 		TVector3 dirTrs, dirLORS;
 		
 		// set TRS values :
@@ -2621,7 +2588,7 @@ void setArrayMin2(Populate* populate, double etaTRS, vecArray3& inPutVector)
 		
 	for(int i = 0; i < kN; i++){
 
-		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
+		const auto phiL = double(TMath::TwoPi()*(i+1)/kN);
 		TVector3 dirTrs, dirLORS;
 		dirTrs.SetMagThetaPhi(1, etaTRS, phiL);
 		double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
@@ -2641,7 +2608,7 @@ void setArrayMin2(Populate* populate, double etaTRS, vecArray3& inPutVector)
 void populateRegions(std::vector<std::pair<double, double>>& vecArr, TH2F* map, const double& eta, const double& l) {	 
 	 const int kN = vecArr.size();
 	 for(int i = 0; i < vecArr.size(); i++){
-		  const auto& value = populatePtr->tracePhot(eta, Double_t(TMath::TwoPi()*(i+1)/kN), l);
+		  const auto& value = populatePtr->tracePhot(eta, double(TMath::TwoPi()*(i+1)/kN), l);
 		  if(/*value.X() > 0 && value.X() < 156.0 && value.Y() > 0 && value.Y() < 144*/true) {
 		    map->Fill(value.X(), value.Y());
 		    vecArr[i] = std::make_pair(value.X(), value.Y());
