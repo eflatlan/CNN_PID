@@ -15,7 +15,11 @@
 #include <thread>
 #include <chrono>
 
-
+#include <vector>
+#include <array>
+#include <cassert>
+#include <cmath>
+#include <iostream>
 #include <math.h>
 //#include "ReconE.cpp"
 //#include "ReconG.cpp"
@@ -418,12 +422,12 @@ delete 			hSignalAndNoiseMap;
 		fillMapFromVec(hmipChargeFilter.get(), mipChargeFilter);
 
 
-		hMaxProton->SetMarkerColor(kGreen+3);
-		hMaxKaon->SetMarkerColor(kRed);
+		hMaxProton->SetMarkerColor(kGreen+4);
+		hMaxKaon->SetMarkerColor(kRed +1);
 		hMinProton->SetMarkerColor(kGreen+3);
 		hMinKaon->SetMarkerColor(kRed);
 		hMaxPion->SetMarkerColor(kBlue + 4);    // max ckov max L
-		hMinPion->SetMarkerColor(kBlue); 				// min ckov min L/**/
+		hMinPion->SetMarkerColor(kBlue +3 ); 				// min ckov min L/**/
 		hMinPionMaxL->SetMarkerColor(kBlue); 		// min ckov max L
 		hMaxPionMinL->SetMarkerColor(kBlue + 4);// max ckov min L
 		/*
@@ -466,6 +470,16 @@ delete 			hSignalAndNoiseMap;
 		tcnvRane->cd(1);
 
 
+		hMaxProton->SetMarkerColor(kGreen+4);
+		hMaxKaon->SetMarkerColor(kRed +1);
+		hMinProton->SetMarkerColor(kGreen+3);
+		hMinKaon->SetMarkerColor(kRed);
+		hMaxPion->SetMarkerColor(kBlue + 4);    // max ckov max L
+		hMinPion->SetMarkerColor(kBlue +3 ); 				// min ckov min L/**/
+		hMinPionMaxL->SetMarkerColor(kBlue); 		// min ckov max L
+		hMaxPionMinL->SetMarkerColor(kBlue + 4);// max ckov min L
+
+
 	TLegend *legend = new TLegend(0.758,0.758, 0.975,0.925); // 
 
 	// Add entries to the legend
@@ -474,6 +488,13 @@ delete 			hSignalAndNoiseMap;
 	legend->AddEntry(hCkovCandMapOutRange.get(), "Out of region", "p");
 	legend->AddEntry(hmipSizeFilter.get(), "Size > 2 && Charge > 200", "p");
 	legend->AddEntry(hCkovCandMapRange.get(), "Cluster Candidates", "p");
+
+
+	legend->AddEntry(hMaxProton.get(), "hMaxProton", "p"); //
+	legend->AddEntry(hMaxKaon.get(), "hMaxKaon", "p");
+	legend->AddEntry(hMinProton.get(), "OhMinProton", "p");
+
+
 
 		hCkovCandMapRange->Draw();
 	  hCkovCandMapRange->SetStats(kFALSE);
@@ -682,8 +703,11 @@ private:
 	static constexpr double stdDevPion = 0.001; 
 	static constexpr double stdDevKaon = 0.001; 
 	static constexpr double stdDevProton = 0.001;
+
+
 	static constexpr float tGap = 8;
-	static constexpr float  rW = 1.5; // was 1?
+	static constexpr float  rW = 1.5; // was 1?, 
+
 	static constexpr float  qW = 0.5;
 	static constexpr float lMax = 1.5;
 
@@ -693,6 +717,54 @@ private:
 	static constexpr float  QuartzWindowWidth = 0.5;
 
 	static constexpr float  L_CONST = rW/2;
+
+
+
+	static constexpr double dnDE = 0.0172; // σE = (dn/dE)σdet dn/dE is 0.0172 eV−1. 
+																				 // σdet represents the standard deviation of the detected Cherenkov photon spectrum
+
+
+  // for simulation :  mean photonergny assumed to be cosntant
+	static constexpr double photEnergyMean = 6.82/1000.; // jsut based on some runs  
+	
+	
+
+  // 1: chromacity error
+	// std-dev of single-photon angular resolution, contribution from fluctuation in photon-energy
+	static constexpr double sigmaE = dnDE * photEnergyMean; // given in Rad
+	
+
+
+  // 4 : 
+  // The track incidence angle error, related to the particle angle θp and to the precision of the tracking
+  // devices. In the following, the θp error, assumed to be of the order of 2 mrad at the considered incidence angles, will not be quoted in tables and plots but simply included in the calculation of the
+  // total angular resolution.
+	static constexpr double sigmaThetaP = 0.002; // given in Rad
+
+
+
+	// combined angular resolution 
+	static constexpr float sigmaAnglesSq = sigmaE * sigmaE + sigmaThetaP * sigmaThetaP;
+	const float sigmaAngles = TMath::Sqrt(sigmaE * sigmaE + sigmaThetaP * sigmaThetaP);
+
+
+
+  // (3) The localization error, related to the precision with which the photon and particle impact coordinates can be measured. It is determined by the detector characteristics (pad size, sense wire pitch)
+  // and by the photon feedback.
+
+	// error of position of clusters 
+	static constexpr float sigmaR = .2;    // TDR : sizeY / sqrt(12)
+	static constexpr float sigmaRsq = .2 * .2;    // TDR : sizeY / sqrt(12)
+
+
+
+  // (2) The geometric error, related to the spread of the emission point along the particle path in the Cherenkov radiator.
+  // It depends on the ratio RW/GAP between the radiator thickness, RW, and he proximity gap width, GAP; 
+  // it can be minimized by increasing GAP and reducing RW, provided the number of photoelectrons per ring is sufficient for pattern recognition (Chapter 4).
+ const float  sigmaLfactor = rW/TMath::Sqrt(12);    // sigmaL = sigmaLfactor/ cosThetaP
+ float sigmaL = 0.0;
+ float sigmaLsq = 0.0;
+
 
 	// ef : set this constexpr ins
 	float L = rW/2;
@@ -802,7 +874,7 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
   phiP = (pc-rad).Phi();
   thetaP = (pc-rad).Theta();
 
- Printf("Phi  %.2f Thta %.2f of rad--MIP", phiP, thetaP);
+  Printf("Phi  %.2f Thta %.2f of rad--MIP", phiP, thetaP);
   
   trkPC.Set(xMip, yMip); // MIP pos at PC
         
@@ -868,19 +940,19 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
 	}
 
 	if(getPionStatus()){
-	  ckovPionMin = ckovHypsMin[0] - 2 * stdDevPion;
-	  ckovPionMax = ckovHypsMax[0] + 2 * stdDevPion;
+	  ckovPionMin = ckovHypsMin[0] - sigmaAngles;
+	  ckovPionMax = ckovHypsMax[0] + sigmaAngles;
  	  //printf("init CkovTools constructor : getPionStatus() true ! minPion %.2f, maxPion %.2f ", ckovPionMin, ckovPionMax);
   }	else {
  	  //printf("init CkovTools constructor : getPionStatus() was false !");
   }
   
   if(getKaonStatus()){
-	  ckovKaonMin = ckovHypsMin[1] - 2 * stdDevKaon;
-  	ckovKaonMax = ckovHypsMax[1] + 2 * stdDevKaon;
+	  ckovKaonMin = ckovHypsMin[1] - sigmaAngles;
+  	ckovKaonMax = ckovHypsMax[1] + sigmaAngles;
   } if(getProtonStatus()){
-		ckovProtonMin = ckovHypsMin[2] - 2 * stdDevProton;
-		ckovProtonMax = ckovHypsMax[2] + 2 * stdDevProton;
+		ckovProtonMin = ckovHypsMin[2] - sigmaAngles;
+		ckovProtonMax = ckovHypsMax[2] + sigmaAngles;
  }
 
 	cosThetaP = TMath::Cos(thetaP);
@@ -890,6 +962,12 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
 	cosPhiP = TMath::Cos(phiP);
 	sinPhiP = TMath::Sin(phiP);
 
+
+
+
+  // set the geometric error std-dev 
+  sigmaL = sigmaLfactor/ cosThetaP;
+  sigmaLsq = sigmaL * sigmaL;
 
 	TRotation rotZ; rotZ.RotateZ(phiP);
 	TRotation rotY; rotY.RotateY(thetaP);
@@ -908,53 +986,6 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
 	yPC = dY + yRad;
 
 
-	// fyll : 
-
-
-	// trkPC.Set(xPC, yPC); // TODO :check it equals populate.getPcImp();
-
-
-
-
-	//mArrAndMap = new ArrAndMap(eventCnt, populatePtr);
-	//mArrAndMap = std::make_unique<ArrAndMap>(eventCnt, populatePtr);
-
-
-
-	/*
-	(mArrAndMap->hSignalMIP)->Fill(xRad, yRad);
-	(mArrAndMap->hSignalMIPpc)->Fill(xPC, yPC);
-	*/ 
-
-
-	//Populate* populate = new Populate(trkPos, trkDir, nF);
-
-	//populate.setPcImp(trkPC);
-
-
-	//printf("init Ckovtools \n MIP Root : %f %f %f \n MIP local %f %f",op.Px(),op.Py(),op.Pz(),xMipLocal,yMipLocal);
-		    // constructor body goes here, if needed
-
-	//printf("Ckovtools :: trkPC %.2f %.2f",trkPC.X(), trkPC.Y());
-		    // constructor body goes here, if needed
-
-	/*
-	mRMax = getR_Lmax(ckovPionMax, halfPI);
-	mL2Max = getR_Lmax(ckovPionMax, 0);
-	mL1Max = getR_Lmax(ckovPionMax, PI);
-
-
-	// needs to be changed if to be used! now uses L = lMax
-	mRMin = getR_Lmax(ckovProtonMin, halfPI);
-		    mL1Min = getR_Lmax(ckovProtonMin, PI);
-		    mL2Min = getR_Lmax(ckovProtonMin, 0);*/ 
-			
-				/*for(const auto& c : ckovHyps) {
-					auto R = getR_Lmax(c, halfPI);
-					auto l2 = getR_Lmax(c, 0);
-					auto l1 = getR_Lmax(c, PI);
-					Printf(" CkovTools : CkovHyp %f, R %f, l1 %f l2 %f", c, R, l2, l1);
-		    } */  
 }
 
 
@@ -1090,43 +1121,38 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 	vecArray2 arrMaxPionPos, arrMinPionPos, arrMinProtonPos, arrMaxProtonPos, arrMinKaonPos, arrMaxKaonPos;
 
 	// do not reserve size? NO prob just dont resize :) 
-	arrMaxPion.reserve(kN);
-	arrMinPion.reserve(kN);
+	//arrMaxPion.reserve(kN);
+	//arrMinPion.reserve(kN);
 	//arrMaxPion.resize(kN);
 	//arrMinPion.resize(kN);
 
 	arrMaxPionPos.reserve(kN);
 	arrMinPionPos.reserve(kN);
-	//arrMaxPionPos.resize(kN);
-	//arrMinPionPos.resize(kN);
+	arrMaxPionPos.resize(kN);
+	arrMinPionPos.resize(kN);
 
 	// arrMaxPion.resize(kN);
 		
 	// check if candidate can be proton (i.e., that it exceeds momentum threshold)
 	if(getProtonStatus()) {
-		arrMaxProton.reserve(kN);
-		arrMinProton.reserve(kN);
+		//arrMaxProton.reserve(kN);
+		//arrMinProton.reserve(kN);
 		//arrMaxProton.resize(kN);
 		//arrMinProton.resize(kN);
 
 		arrMinProtonPos.reserve(kN);
 		arrMaxProtonPos.reserve(kN);
-		//arrMinProtonPos.resize(kN);
-		//arrMaxProtonPos.resize(kN);
+		arrMinProtonPos.resize(kN);
+		arrMaxProtonPos.resize(kN);
 				
-		// also later add max, i forste runde sjekk at ckov i {minProton, maxPion}
-		//printf("calling setArrayMin w getMinCkovProton() = %.2f", getMinCkovProton());
-  	setArrayMin(getMinCkovProton(), arrMinProton, arrMinProtonPos, kN);
-
-		//printf("calling setArrayMax w getMaxCkovProton() = %.2f", getMaxCkovProton());
-  		setArrayMax(getMaxCkovProton(), arrMaxProton, arrMaxProtonPos, kN);
+    calculateDifference(arrMaxProtonPos, arrMinProtonPos, getMaxCkovProton(), getMinCkovProton()); 
 	}
 	
 
 	// check if candidate can be Kaon (i.e., that it exceeds momentum threshold)
 	if(getKaonStatus()) {
-		arrMaxKaon.reserve(kN);
-		arrMinKaon.reserve(kN);				
+		//arrMaxKaon.reserve(kN);
+		//arrMinKaon.reserve(kN);				
 
 		//arrMaxKaon.resize(kN);
 		//arrMinKaon.resize(kN);	
@@ -1134,14 +1160,11 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 		arrMaxKaonPos.reserve(kN);
 		arrMinKaonPos.reserve(kN);				
 
-		//arrMaxKaonPos.resize(kN);
-		//arrMinKaonPos.resize(kN);
+		arrMaxKaonPos.resize(kN);
+		arrMinKaonPos.resize(kN);
 
 		//printf("calling setArrayMin w getMinCkovKaon() = %.2f", getMinCkovKaon());
-  	setArrayMin(getMinCkovKaon(), arrMinKaon, arrMinKaonPos, kN);
-
-		//printf("calling setArrayMax w getMaxCkovKaon() = %.2f", getMaxCkovKaon());
-  	setArrayMax(getMaxCkovKaon(), arrMaxKaon, arrMaxKaonPos, kN);
+  	calculateDifference(arrMaxKaonPos, arrMinKaonPos, getMaxCkovKaon(), getMinCkovKaon()); 
 	}
 
 	
@@ -1149,57 +1172,27 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 	//printf("BF : Length of elem vectors : arrMaxPion %zu", arrMaxPion.size());	
   //printf("calling setArrayMax w getMaxCkovPion() = %.2f", getMaxCkovPion());
-  setArrayMax(getMaxCkovPion(), arrMaxPion, arrMaxPionPos, kN);
-  
-  for(const auto& ip : arrMaxPion) {
-		const auto& phiL_ = ip[0];
-		const auto& phiR_ = ip[1]; 
-		const auto& r_ = ip[2];  
-		////printf("setArrayMax() --> checking arrMaxPionPos | : phiL %.2f, phiR %.2f, r %.2f", phiL_, phiR_, r_);
-		if(r_ == 0 ) {throw std::invalid_argument("r====??????;");}
-  } 
-  
-  setArrayMin(getMinCkovPion(), arrMinPion, arrMinPionPos, kN);
-	//Printf("AFTER : Length of elem vectors : arrMinPion %zu", arrMinPion.size());
+
+	Printf("BF : Length of elem vectors : arrMinPionPos %zu", arrMinPionPos.size());
+  // void calculateDifference(vecArray2& maxVec, vecArray2& minVec, double etaTrsMax, double etaTrsMin) {
+  calculateDifference(arrMaxPionPos, arrMinPionPos, getMaxCkovPion(), getMinCkovPion()); 
+
+	Printf("AFTER : Length of elem vectors : arrMinPionPos %zu", arrMinPionPos.size());
 	// fill all the values in the maps 
 	
 	//Printf("Length of elem vectors : arrMinPion %zu", arrMinPion.size());
 	//Printf("Length of elem vectors : arrMaxPion %zu", arrMaxPion.size());
 	
-	if(true) {
-
-		/*Printf("		fillMapFromVec(mArrAndMap->hMaxPion, arrMaxPion);// map, array");
-		fillMapFromVec(mArrAndMap->hMaxPion, arrMaxPionPos);// map, array
-		fillMapFromVec(mArrAndMap->hMaxKaon, arrMaxKaonPos);// map, array
-		fillMapFromVec(mArrAndMap->hMaxProton, arrMaxProtonPos);// map, array
-
-		fillMapFromVec(mArrAndMap->hMinPion, arrMinPionPos);// map, array
-		fillMapFromVec(mArrAndMap->hMinKaon, arrMinKaonPos);// map, array
-		fillMapFromVec(mArrAndMap->hMinProton, arrMinProtonPos);// map, array
-		*/ 
-	} 
-  
-
-
-
   // get track impacrt point at PC
 
 
 	const int scale = 2;
 
 
-  //printf("ckovTools segment : exit const auto& p : segPionLocal"); 	 
 
-  // TODO: ckovHyps : get std-dev for Theta_ckov of pion kaon and proton from the values theta_i
+  Printf("dX %f dY %f ", xMipLocal, yMipLocal);
 
- // initialize recon with track input params 
- 
-
-
-
-    Printf("dX %f dY %f ", xMipLocal, yMipLocal);
-
-    int numPhotons= 0;
+  int numPhotons= 0;
 
 
   const auto area = 144*156; 
@@ -1211,21 +1204,9 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 
  
-    double xML = xMipLocal, yML = yMipLocal;
+  double xML = xMipLocal, yML = yMipLocal;
 
-    //int iPhotCount = 0;
-
-
-
-
-	
-	//Printf("length ckovPhotons %zu length background %zu length total %zu",cherenkovPhotons.size(), backGroundPhotons.size(), ckovAndBackground.size());
-	
-	// gjør dette mer elegant snre
-	
-  // ckovAndBackground
-
-
+  //int iPhotCount = 0;
 
   int iPhotCount = 0;
   //for(const auto& photons : ckovAndBackground) {
@@ -1235,7 +1216,6 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
   int rOverMax = 0;
   
-
   int photNum = 0;
 
   int cStatus = 0;
@@ -1260,7 +1240,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
     photons.setCandidateStatus(0);
     
     const auto& x = photons.mX, y = photons.mY;
-                        allCand.push_back(std::array<double,2>{x,y});
+    allCand.push_back(std::array<double,2>{x,y});
 
     const auto& dist = (photons.mX - mipX)*(photons.mX - mipX) + (photons.mY - mipY)*(photons.mY - mipY);
     
@@ -1925,12 +1905,12 @@ mArrAndMap.setPopulatePtr(std::move(populatePtrCp));
 } // end segment
 
 
-bool lineIntersects(const TVector2& MIP, const TVector2& B, const std::array<double, 2>& C, const std::array<double, 2>& D, double rUncertainty, TVector2& intersection, bool& pointIsInside  ) { 
+bool lineIntersects(const TVector2& B, const std::array<double, 2>& C, const std::array<double, 2>& D, double rUncertainty, TVector2& intersection, bool& pointIsInside  ) { 
 
     // Existing code for calculating line intersection
-    double a1 = B.Y() - MIP.Y();
-    double b1 = MIP.X() - B.X();
-    double c1 = a1 * MIP.X() + b1 * MIP.Y();
+    double a1 = B.Y() - mipPos.Y();
+    double b1 = mipPos.X() - B.X();
+    double c1 = a1 * mipPos.X() + b1 * mipPos.Y();
 
     double a2 = D[1] - C[1];
     double b2 = C[0] - D[0];
@@ -1951,26 +1931,26 @@ bool lineIntersects(const TVector2& MIP, const TVector2& B, const std::array<dou
 
     intersection.Set(x, y);
 
-		bool isOutOfBounds = (x < std::min(MIP.X(), B.X()) || x > std::max(MIP.X(), B.X()) ||
+		bool isOutOfBounds = (x < std::min(mipPos.X(), B.X()) || x > std::max(mipPos.X(), B.X()) ||
     	                  x < std::min(C[0], D[0]) || x > std::max(C[0], D[0]) ||
-    	                  y < std::min(MIP.Y(), B.Y()) || y > std::max(MIP.Y(), B.Y()) ||
+    	                  y < std::min(mipPos.Y(), B.Y()) || y > std::max(mipPos.Y(), B.Y()) ||
     	                  y < std::min(C[1], D[1]) || y > std::max(C[1], D[1]));
 
 
 
 	if (isOutOfBounds) {
 			// Printf("Out of bounds, adj nec");
-		  TVector2 unitDirMIPtoIntersection = (intersection - MIP).Unit();
+		  TVector2 unitDirMIPtoIntersection = (intersection - mipPos).Unit();
 		  TVector2 adjustedIntersection = intersection + unitDirMIPtoIntersection * rUncertainty;
 		  x = adjustedIntersection.X();
 		  y = adjustedIntersection.Y();
-		  isOutOfBounds = (x < std::min(MIP.X(), B.X()) || x > std::max(MIP.X(), B.X()) ||
+		  isOutOfBounds = (x < std::min(mipPos.X(), B.X()) || x > std::max(mipPos.X(), B.X()) ||
 		                   x < std::min(C[0], D[0]) || x > std::max(C[0], D[0]) ||
-		                   y < std::min(MIP.Y(), B.Y()) || y > std::max(MIP.Y(), B.Y()) ||
+		                   y < std::min(mipPos.Y(), B.Y()) || y > std::max(mipPos.Y(), B.Y()) ||
 		                   y < std::min(C[1], D[1]) || y > std::max(C[1], D[1]));
 
-			auto dist1 = (B - MIP).Mod();
-			auto dist2 = (adjustedIntersection - MIP).Mod();
+			auto dist1 = (B - mipPos).Mod();
+			auto dist2 = (adjustedIntersection - mipPos).Mod();
 
 
 		  if (isOutOfBounds) {
@@ -1978,15 +1958,15 @@ bool lineIntersects(const TVector2& MIP, const TVector2& B, const std::array<dou
 		      return false;  // Adjusted intersection is still out of bounds
 		  } else {
 		      intersection = adjustedIntersection;
-    			pointIsInside = (adjustedIntersection - MIP).Mod() < (B - MIP).Mod();
+    			pointIsInside = (adjustedIntersection - mipPos).Mod() < (B - mipPos).Mod();
 					//printf("OK :: dist2 Point %.2f | dist2 adj %.2f |  adj %.2f", dist1, dist2, rUncertainty);
 		  }
 	} else { 
 
 			//printf("Not out of bounds, adj not nec");
-			pointIsInside = (intersection - MIP).Mod() < (B - MIP).Mod();
-			auto dist1 = (B - MIP).Mod();
-			auto dist2 = (intersection - MIP).Mod();
+			pointIsInside = (intersection - mipPos).Mod() < (B - mipPos).Mod();
+			auto dist1 = (B - mipPos).Mod();
+			auto dist2 = (intersection - mipPos).Mod();
 			//printf("dist2 Point %.2f | dist2 adj %.2f", dist1, dist2, rUncertainty);
   }
 
@@ -2012,7 +1992,7 @@ bool evaluatePointContour(const TVector2& posPhoton, const vecArray2& contour, b
     if (d > 0) {
         for (size_t i = 0; i < contour.size() - 1; ++i) {
             size_t next = i + 1;
-            if (lineIntersects(mipPos, posPhoton, contour[i], contour[next], rUncertainty, intersection, pointIsInside)) {
+            if (lineIntersects(posPhoton, contour[i], contour[next], rUncertainty, intersection, pointIsInside)) {
                 intersects = true;
                 if (pointIsInside) return true; // Point is inside the contour
                 else return false; // Point is outside the contour
@@ -2021,7 +2001,7 @@ bool evaluatePointContour(const TVector2& posPhoton, const vecArray2& contour, b
     } else {
         for (size_t i = contour.size() - 1; i > 0; --i) {
             size_t prev = i - 1;
-            if (lineIntersects(mipPos, posPhoton, contour[i], contour[prev], rUncertainty, intersection, pointIsInside)) {
+            if (lineIntersects(posPhoton, contour[i], contour[prev], rUncertainty, intersection, pointIsInside)) {
                 intersects = true;
                 if (pointIsInside) return true; // Point is inside the contour
                 else return false; // Point is outside the contour
@@ -2194,6 +2174,209 @@ void setArrayMax(double etaTRS, vecArray4& inPutVectorAngle, vecArray2& inPutVec
 
 
 
+double calculatePhi(const std::array<double, 2>& a, const std::array<double, 2>& b) {
+    double dx = a[0] - b[0];
+    double dy = a[1] - b[1];
+    return std::atan2(dy, dx);  // atan2 gives the angle in [-π, π] range
+}
+
+
+
+// chane function name 
+void calculateDifference(vecArray2& maxVec, vecArray2& minVec, double etaTrsMax, double etaTrsMin) {
+//vecArray2 calculateDifference(const vecArray2& maxVec, const vecArray2& minVec) {
+    assert(maxVec.size() == minVec.size());
+
+
+    for (size_t i = 0; i < maxVec.size(); ++i) {
+			  const auto phiL = Double_t(TMath::TwoPi()*(i+1)/ maxVec.size());
+
+				TVector2 minPos, maxPos;
+				setMinSingle(minPos, etaTrsMin, phiL);
+				setMaxSingle(maxPos, etaTrsMax, phiL);
+
+				if(maxPos.X() <  0 || maxPos.Y() <  0 ) {
+					if(minPos.X() <  0 || minPos.Y() <  0 ) {
+						// both contours are open; just continue with original values 
+
+						maxVec[i] = std::array<double, 2>{maxPos.X(), maxPos.Y()};
+						minVec[i] = std::array<double, 2>{minPos.X(), minPos.Y()};
+
+					} else { // inner contour is closed, outer conter is open 
+						// no changes to outer contour
+						maxVec[i] = std::array<double, 2>{maxPos.X(), maxPos.Y()};
+						TVector2 meanPos;
+
+						double etaTrsMean = (etaTrsMax + etaTrsMin)/2.;
+						setMinSingle(meanPos, etaTrsMean, phiL); //setMaxSingle(TVector2& vectorOut, double etaTRS, double phiL);
+						if(meanPos.X() <  0 || meanPos.Y() <  0 ) {
+							/* / linearise around min??*/
+							TVector2 temp;
+							auto etaDiff = 0.001;
+							setMinSingle(temp, etaTrsMin - etaDiff, phiL); //setMaxSingle(TVector2& vectorOut, double etaTRS, double phiL);
+							auto drDeta = (temp - minPos).Mod();					
+							auto rDelta = drDeta / etaDiff; 
+		  				double phiMin = (minPos - mipPos).Phi();
+
+							auto sigmaPos = getTotalSigmaPos(rDelta);
+							auto dx = TMath::Cos(phiMin)  * sigmaPos;
+							auto dy = TMath::Sin(phiMin)  * sigmaPos;
+							TVector2 diff(dx, dy);
+
+						  minVec[i] = std::array<double, 2>{minPos.X() - dx, minPos.Y() - dy};
+							Printf("Outer open Mean open :  interpolated  drDeta %.2f rDelta %.2f", drDeta, rDelta);
+							Printf("phiMin %.2f  sigmaPos %.2f", phiMin, sigmaPos);
+
+						} else {
+				
+		  				double phiMin = (minPos - mipPos).Phi();
+		  				double phiMean = (meanPos - mipPos).Phi();
+							Printf("Outer open Mean closed :  phiMin %.2f  phiMean %.2f", phiMin, phiMean);
+
+							auto rDeltaMin = (minPos - meanPos).Mod();
+
+							auto sigmaPos = getTotalSigmaPos(rDeltaMin);
+							auto dx = TMath::Cos(phiMin)  * sigmaPos;
+							auto dy = TMath::Sin(phiMin)  * sigmaPos;
+							TVector2 diff(dx, dy);
+							Printf("phiMin %.2f  phiMean %.2f | rDeltaMin %.2f | sigmaPos %.2f", phiMin, phiMean, rDeltaMin, sigmaPos);
+						  minVec[i] = std::array<double, 2>{minPos.X() - dx, minPos.Y() - dy};
+						} // end else mean is closed 
+					} // end else inner is closed
+        }   // end else open contour
+			  else {
+						TVector2 meanPos;
+
+						double etaTrsMean = (etaTrsMax + etaTrsMin)/2.;
+						{ 
+
+							setMinSingle(meanPos, etaTrsMean, phiL);
+    					double phiMin = (minPos - mipPos).Phi();
+    					double phiMean = (meanPos - mipPos).Phi();
+							auto rDeltaMin = (minPos - meanPos).Mod();
+							auto sigmaPos = getTotalSigmaPos(rDeltaMin);
+
+							Printf("phiMin %.2f  phiMean %.2f | rDeltaMin %.2f | sigmaPos %.2f", phiMin, phiMean, rDeltaMin, sigmaPos);
+							auto dx = TMath::Cos(phiMin)  * sigmaPos;
+							auto dy = TMath::Sin(phiMin)  * sigmaPos;
+							TVector2 diff(dx, dy);
+							minVec[i] = std::array<double, 2>{minPos.X() -dx, minPos.Y() - dy};
+						} 
+
+						{ 
+							setMaxSingle(meanPos, etaTrsMean, phiL);
+		  				double phiMax = (maxPos - mipPos).Phi();
+    					double phiMean = (meanPos - mipPos).Phi();
+							auto rDeltaMax = (maxPos - meanPos).Mod();
+							auto sigmaPos = getTotalSigmaPos(rDeltaMax);
+							Printf("phiMax %.2f  phiMean %.2f | rDeltaMax %.2f | sigmaPos %.2f",  phiMax, phiMean, rDeltaMax, sigmaPos);
+
+							auto dx = TMath::Cos(phiMax)  * sigmaPos;
+							auto dy = TMath::Sin(phiMax)  * sigmaPos;
+							TVector2 diff(dx, dy);
+						  maxVec[i] = std::array<double, 2>{maxPos.X() + dx, maxPos.Y() + dy};
+						} 
+      	}	// end else no open contours	 
+    } // end for 
+
+}
+
+
+double getTotalSigmaPos(double sigmaPositions)
+{
+
+	// sigmaAngles sigmaE sigmaThetaP --- sigmaPositions
+	Printf(" getTotalSigmaPos : sigmaPositionssq %.2f  sigmaLsq %.2f sigmaRsq %.2f", sigmaPositions * sigmaPositions, sigmaLsq, sigmaRsq);
+	return TMath::Sqrt(sigmaPositions * sigmaPositions + sigmaLsq + sigmaRsq);
+
+}
+
+
+void setMeanSingle(TVector2& vectorOut, double etaTRS, double phiL)
+{
+  const float lMean =  0.75;
+
+	TVector3 dirTrs, dirLORS;
+		
+	// set TRS values :
+	dirTrs.SetMagThetaPhi(1, etaTRS, phiL);
+	double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
+	populatePtrOuter->trs2Lors(dirTrs, thetaR, phiR);
+	dirLORS.SetMagThetaPhi(1, thetaR, phiR);		
+	vectorOut = populatePtrInner->traceForward(dirLORS, lMean); 
+}
+
+
+void setMinSingle(TVector2& vectorOut, double etaTRS, double phiL)
+{
+  const float lMax = 1.5;
+
+	TVector3 dirTrs, dirLORS;
+		
+
+	dirTrs.SetMagThetaPhi(1, etaTRS, phiL);
+	double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
+	populatePtrOuter->trs2Lors(dirTrs, thetaR, phiR);
+	dirLORS.SetMagThetaPhi(1, thetaR, phiR);		
+	vectorOut = populatePtrOuter->traceForward(dirLORS, lMax); 
+}
+
+void setMaxSingle(TVector2& vectorOut, double etaTRS, double phiL)
+{
+  const float lMin = 0.;
+
+	TVector3 dirTrs, dirLORS;
+		
+	// set TRS values :
+	dirTrs.SetMagThetaPhi(1, etaTRS, phiL);
+	double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
+	populatePtrOuter->trs2Lors(dirTrs, thetaR, phiR);
+	dirLORS.SetMagThetaPhi(1, thetaR, phiR);		
+	vectorOut = populatePtrOuter->traceForward(dirLORS, lMin); 
+}
+
+
+// Trace a single Ckov photon from emission point somewhere in radiator up to photocathode taking into account ref indexes of materials it travereses
+// Arguments: ckovThe,ckovPhi- photon ckov angles in TRS, [rad]
+//   Returns: distance between photon point on PC and track projection
+// placeholder...
+void setArrayMax(double etaTRS, vecArray2& inPutVectorPos, const size_t kN)
+{
+  // const size_t kN = inPutVector.size();
+  const float lMin = 0.;
+  const auto trkPC2 = populatePtrOuter->getPcImp();      // track at PC
+  const auto trkRad2 = populatePtrOuter->getTrackPos();  // track at RAD
+
+
+  //Printf("\n\n setArrayMax() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
+	for(int i = 0; i < kN; i++){
+
+		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
+		TVector3 dirTrs, dirLORS;
+		
+		// set TRS values :
+		dirTrs.SetMagThetaPhi(1, etaTRS, phiL);
+
+		//Printf("\n setArrayMax() dirTrs.SetMagThetaPhi(1, etaTRS = x %.2f, phiL = x %.2f); ", etaTRS, phiL);
+		
+
+		double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
+
+
+		populatePtrOuter->trs2Lors(dirTrs, thetaR, phiR);
+
+		dirLORS.SetMagThetaPhi(1, thetaR, phiR);
+		
+		const auto& max = populatePtrOuter->traceForward(dirLORS, lMin); 
+
+  	inPutVectorPos.emplace_back(std::array<double, 2>{max.X(), max.Y()}); 
+
+
+	}
+}
+
+
+
 
 
 
@@ -2235,6 +2418,8 @@ void setArrayMin(double etaTRS, vecArray2& inPutVectorPos, const size_t kN)
 
 		const auto& max = populatePtrInner->traceForward(dirLORS, lMax); 
 
+
+    inPutVectorPos.emplace_back(std::array<double, 2>{max.X(), max.Y()});
 		if((max.Y() == -999) or (max.X() == -999)) {
     	//inPutVector[i] = {0,0,0, 0, 0};
     	//inPutVector.emplace_back(std::array<double, 3>{0, 0, 0});
@@ -2253,14 +2438,16 @@ void setArrayMin(double etaTRS, vecArray2& inPutVectorPos, const size_t kN)
     	// phiL : photon_phi i TRS system 
     	// phiR : photon_phi i LORS system
     	// phiPC : (photon - MIP).Phi();
-    	 
-    	inPutVectorPos.emplace_back(std::array<double, 2>{max.X(), max.Y()});
+    	
     	
     }
 
 	}
 
 }
+
+
+
 
 
 
@@ -2393,8 +2580,8 @@ void setArrayMin(double etaTRS, vecArray4& inPutVectorAngle, vecArray2& inPutVec
     	inPutVectorPos.emplace_back(std::array<double, 2>{max.X(), max.Y()}); 
     	inPutVectorAngle.emplace_back(std::array<double, 4>{phiL, phiR, phiPC, r});   	
 			const auto r = (max - trkPC2).Mod(); // trkPC2 : track impact @ PC
-				// from alinot_paattrec : this is MIP2photon distance?
-				// const auto r = (max - trkPC2).Mod(); // trkPC2 : track impact @ PC
+			// from alinot_paattrec : this is MIP2photon distance?
+			// const auto r = (max - trkPC2).Mod(); // trkPC2 : track impact @ PC
 
     	
     	
