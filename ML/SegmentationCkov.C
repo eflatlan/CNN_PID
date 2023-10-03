@@ -9,7 +9,7 @@
 #include "SimulationDataFormat/MCCompLabel.h"
 
 #include "HmpidDataReader.cpp"
-#include "CkovTools.cpp"
+#include "CkovToolsSingle.cpp"
 //#include "CkovToolsErlend.cpp"
 #include "ParticleUtils2.cpp"
 
@@ -116,7 +116,7 @@ struct ClusterCandidate {
 
 
 
-void Segmentation()
+void SegmentationCkov()
 {
 
 

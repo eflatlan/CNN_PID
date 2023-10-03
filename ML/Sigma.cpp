@@ -15,7 +15,7 @@ class Sigma {
 		double trkBeta; 
   // static constexpr double f = 0.0172*(7.75-5.635)/TMath::Sqrt(24.);
   static constexpr double sq6 = 2.44948974278;
-  static constexpr double f = 0.0172*(7.75-5.635)/(2 * sq6);
+  const  double f =  0.0172*(7.75-5.635)/TMath::Sqrt(24.);
 		 double getTrkBeta() const { return trkBeta;}
   const double winThick = 0.5, radThick = 1.5; const int gapThick = 8;
   const double gapIdx = 1.0005, winIdx = 1.583; // inIdx = 1.5787;
@@ -169,7 +169,7 @@ class Sigma {
 			double sigCrom2 = SigCrom (ckovPh);
 
 			Printf("sigmaLoc2 %.5f | sigGeom2 %.5f | sigCrom2 %.5f" , TMath::Sqrt(sigmaLoc2),TMath::Sqrt(sigGeom2), TMath::Sqrt(sigCrom2));
-			return  sigmaThetaP*sigmaThetaP + sigmaLoc2 + sigGeom2 + sigCrom2;
+			return  TMath::Sqrt(sigmaThetaP*sigmaThetaP + sigmaLoc2 + sigGeom2 + sigCrom2);
 
 		}
 

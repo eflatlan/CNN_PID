@@ -273,7 +273,7 @@ delete 			hSignalAndNoiseMap;
 
 		auto distPC2MIP = (mip-trkPC).Mod();
 
-	  int numPion = pionCandidates.size();
+	        int numPion = pionCandidates.size();
 		int numKaon = kaonCandidates.size();
 		int numProton = protonCandidates.size();
 		int numTotal = canCombined.size();
@@ -1256,14 +1256,14 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
   
   int photNum = 0;
 
-  int cStatus = 0;
+  int cStatusCkov = 0, cStatus = 0;
   
   TVector2 errorPos;
   bool drawMap = false;
   for(auto& photons : clusterTrack) 
   {
 
-    cStatus = 0;
+    cStatusCkov = 0;
 
 		auto pdgString = getPDG(photons.mPDG);
 
@@ -1291,7 +1291,8 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
     
       const auto photonPDG = photons.mPDG; // check also other indexes?
       photons.setCandidateStatus(1);
-      cStatus = 1;
+      cStatusCkov = 1;
+	cStatus = 1;
       //LOGP(info, "Cluster PDG {} Track {}", photonPDG, mcTrackPdg);
  
 
@@ -1330,12 +1331,13 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 
     
-    if(photons.mQ > mipCut && photons.mSize > mipSizeCut && cStatus != 1) {
+    if(photons.mQ > mipCut && photons.mSize > mipSizeCut && cStatusCkov != 1) {
     
       //LOGP(info, "skipping photon beacause its the mip of another track");
 
       photons.setCandidateStatus(1);
-      cStatus = 1;
+      cStatusCkov = 1;
+      cStatus= 1;
  			mArrAndMap.fillmipSizeFilter(x,y);
       //continue; // this photon charge is a MIP--> dont consider as candidate 
 
@@ -1371,10 +1373,31 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
     
     
     // ef : TODO here i put a radius of 40, should this be done?
-    
+	bool isPhotonProtonCand = false, isPhotonKaonCand = false, isPhotonPionCand = false;
+	bool isPhotonProtonCandCkov = false, isPhotonKaonCandCkov = false, isPhotonPionCandCkov = false;
+
     const auto rMax = 60.;
     const auto rMin = 2.;
-    if((rPhoton < rMax && rPhoton > rMin) && cStatus == 0){
+    if((rPhoton < rMax && rPhoton > rMin) && cStatusCkov == 0){
+        double thetaCer, phiCer;
+	if (findPhotCkov(photons.mX, photons.mY, thetaCer, phiCer)) { // find ckov angle for this  photon candidate
+           
+                                  // increment counter of photon candidates
+            auto sigmaRing = aliSigma2(thetaP, phiP, thetaCer, phiCer);	 // rms of all contributing errors 
+	     Printf("thetaCer %.4f phiCer %.2f, sigmaRing %.5f" , thetaCer, phiCer, sigmaRing);
+	     
+	     
+	     Printf("getCkovPion %.4f getCkovKaon %.4f, getCkovProton %.4f" , getCkovPion(), getCkovKaon(), getCkovProton());
+	     
+	     Printf("getCkovPion %.4f getCkovKaon %.4f, getCkovProton %.4f" , getCkovPion(), getCkovKaon(), getCkovProton());
+	     
+	     
+            if(TMath::Abs(thetaCer-getCkovPion()) < 2*sigmaRing)  {isPhotonPionCandCkov = true;}
+            if(TMath::Abs(thetaCer-getCkovKaon()) < 2*sigmaRing) {isPhotonKaonCandCkov = true; }
+            if(TMath::Abs(thetaCer-getCkovProton()) < 2*sigmaRing) { isPhotonProtonCandCkov = true;} 
+
+        }
+
 
 
         const auto phiPhoton = (posPhoton - trkPos).Phi(); 
@@ -1383,7 +1406,6 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
         const auto pc = populatePtrOuter->getPcImp();
 
         
-        bool isPhotonProtonCand = false, isPhotonKaonCand = false, isPhotonPionCand = false;
 
         bool isMaxProtonOk = false, isMinProtonOk = false, isMaxKaonOk = false, isMinKaonOk = false, isMaxPionOk = false, isMinPionOk = false;
   
@@ -1681,22 +1703,32 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 
         
-        //printf("\n===============================================================");	
-        //printf("	Photon%d  Candidate: Pion = %d Kaon = %d Proton %d", iPhotCount, isPhotonPionCand, isPhotonKaonCand, isPhotonProtonCand);
-        //printf("===============================================================\n");	
+        printf("\n===============================================================");	
+        printf("	Photon%d  Candidate Ckov: Pion = %d Kaon = %d Proton %d", iPhotCount, isPhotonPionCandCkov, isPhotonKaonCandCkov, isPhotonProtonCandCkov);
+		printf("	Photon%d  Candidate segm: Pion = %d Kaon = %d Proton %d", iPhotCount, isPhotonPionCand, isPhotonKaonCand, isPhotonProtonCand);
+
+        printf("===============================================================\n");	
 
 
 
-	      if(cStatus == 0)
+	      if(cStatusCkov == 0)
+          cStatusCkov = 1  + 4*static_cast<int>(isPhotonPionCandCkov) + 2*static_cast<int>(isPhotonKaonCandCkov) + 1*static_cast<int>(isPhotonProtonCandCkov);
+
+  	      if(cStatus == 0)
           cStatus = 1  + 4*static_cast<int>(isPhotonPionCand) + 2*static_cast<int>(isPhotonKaonCand) + 1*static_cast<int>(isPhotonProtonCand);
 
-	      if(cStatus == 1)
+cStatus
+
+	      if(cStatusCkov == 1)
 	        mArrAndMap.fillckovCandMapOutRange(x,y);
-				//LOGP(info, "cStatus {}", cStatus);
+				//LOGP(info, "cStatusCkov {}", cStatusCkov);
 
             //o2::hmpid::ClusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)
-            photons.setCandidateStatus(cStatus);
-				//LOGP(info, "photons.setCandidateStatus(trackIndex {}, cStatus{}); ", trackIndex, cStatus);
+            photons.setCandidateStatus(cStatusCkov);
+
+            photons.setCandidateStatus(cStatusCkov);
+
+				//LOGP(info, "photons.setCandidateStatus(trackIndex {}, cStatusCkov{}); ", trackIndex, cStatusCkov);
        
 
 
@@ -1706,19 +1738,19 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
         // radius was to big to consider : 
 
         
-        else if((rPhoton > rMax || rPhoton < rMin ) && cStatus == 0){
+        else if((rPhoton > rMax || rPhoton < rMin ) && cStatusCkov == 0){
             rOverMax++;
-		        cStatus = 0; // set other value to indicate out of region?
-            photons.setCandidateStatus(cStatus);
+		        cStatusCkov = 0; // set other value to indicate out of region?
+            photons.setCandidateStatus(cStatusCkov);
 
-						//LOGP(info, "Radius {} too high ! cStatus {}", rPhoton, cStatus);
+						//LOGP(info, "Radius {} too high ! cStatusCkov {}", rPhoton, cStatusCkov);
 
 		      	//o2::hmpid::ClusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)
 		      					
         }
 
         // this means it falls within range
-        if(cStatus > 1) {
+        if(cStatusCkov > 1) {
 							canCombined.push_back(std::array<double,2>{x,y});
               // this means  candidate is a ckov-photon
               if(true) {
@@ -1730,7 +1762,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
               }
           }
           // falls out of range
-          else if (cStatus == 0){
+          else if (cStatusCkov == 0){
               // this means  candidate is a ckov-photon, but out of range
               if(true) {
                   mArrAndMap.fillckovCandMapOutRange(x,y);
@@ -1849,7 +1881,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 
   // to draw maps: false
-	if(/*drawMap*/false) {
+	if(/*drawMap*/ false) {
 
 		
  		mArrAndMap.setEventCount(eventCnt);
@@ -1925,7 +1957,7 @@ mArrAndMap.setPopulatePtr(std::move(populatePtrCp));
     // NB! lagre denne istedet : s
 
     /*
-    candCombined = candidatesCombined; // x, y, cStatus
+    candCombined = candidatesCombined; // x, y, cStatusCkov
 
     protonCands = protonCandidates;//.emplace_back()
     kaonCands = kaonCandidates;//.emplace_back()
@@ -2235,7 +2267,7 @@ void calculateDifference(vecArray2& maxVec, vecArray2& minVec, double ckovHypVal
 
         auto sigma2Ali = 2*aliSigma2(thetaP, phiP, ckovHypVal, phiL);
 
-Printf(" phiP TRS_deg %.2f | thetaP_deg %.2f ckovHypVal %.2f | sigma %.5f sigma2Ali %.5f ", phiL*180/3.14, thetaP*180/3.14,  ckovHypVal, sigma2, sigma2Ali);
+//Printf(" phiP TRS_deg %.2f | thetaP_deg %.2f ckovHypVal %.2f | sigma %.5f sigma2Ali %.5f ", phiL*180/3.14, thetaP*180/3.14,  ckovHypVal, sigma2, sigma2Ali);
 
 				setMeanSingle(min, ckovHypVal - sigma2Ali, phiL);
 				setMeanSingle(max, ckovHypVal + sigma2Ali, phiL);
@@ -2378,6 +2410,8 @@ Double_t aliSigma2(Double_t trkTheta,Double_t trkPhi,Double_t ckovTh, Double_t c
   v.SetY(SigGeom(trkTheta,trkPhi,ckovTh,ckovPh,trkBeta));
   v.SetZ(SigCrom(trkTheta,trkPhi,ckovTh,ckovPh,trkBeta));
 
+
+  // adding 0.002 ckov from thetaP unc
   return TMath::Sqrt(v.Mag2() + 0.002 * 0.002);
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -2781,6 +2815,65 @@ string getPDG(int pdg)
     Double_t GetRefIdx          (                                                                    ) const {return 1.2905;}                                                    //running refractive index
     Double_t WinIdx             (                                                                    ) const {return 1.583;}                                                     //Mean refractive index of WIN material (SiO2) 
     Double_t GapIdx             (                                                                    ) const {return 1.0005;}        
+
+
+
+
+
+
+
+bool findPhotCkov(double cluX, double cluY, double& thetaCer, double& phiCer)
+{
+  // Finds Cerenkov angle  for this photon candidate
+  // Arguments: cluX,cluY - position of cadidate's cluster
+  // Returns: Cerenkov angle
+
+
+ /*
+TVector2 trkPos; // trk at RAD
+TVector3 trkDir; // trk mag theta phi
+TVector2 mipPos; // MIP PC
+ */
+
+  TVector3 dirCkov;
+
+  double zRad = -0.5 * RadThick() - 0.5 * WinThick();     // z position of middle of RAD
+  TVector3 rad(trkPos.X(), trkPos.Y(), zRad);                           // impact point at middle of RAD
+  TVector3 pc(cluX, cluY, 0.5 * WinThick() +GapThick()); // mip at PC
+  double cluR = TMath::Sqrt((cluX - mipPos.X()) * (cluX - mipPos.X()) +
+                            (cluY - mipPos.Y()) * (cluY - mipPos.Y())); // ref. distance impact RAD-CLUSTER
+  double phi = (pc - rad).Phi();                                  // phi of photon
+
+  double ckov1 = 0;
+  double ckov2 = 0.75 + thetaP; // start to find theta cerenkov in DRS
+  const double kTol = 0.01;
+  Int_t iIterCnt = 0;
+  while (1) {
+    if (iIterCnt >= 50) {
+      return kFALSE;
+    }
+    double ckov = 0.5 * (ckov1 + ckov2);
+    dirCkov.SetMagThetaPhi(1, ckov, phi);
+    TVector2 posC = populatePtrInner->traceForward(dirCkov, 0.75);   // trace photon with actual angles
+    double dist = cluR - (posC - mipPos).Mod(); // get distance between trial point and cluster position
+    if (posC.X() == -999) {
+      dist = -999;
+    }           // total reflection problem
+    iIterCnt++; // counter step
+    if (dist > kTol) {
+      ckov1 = ckov;
+    } // cluster @ larger ckov
+    else if (dist < -kTol) {
+      ckov2 = ckov;
+    }                                       // cluster @ smaller ckov
+    else {                                  // precision achived: ckov in DRS found
+      dirCkov.SetMagThetaPhi(1, ckov, phi); //
+      populatePtrInner->lors2Trs(dirCkov, thetaCer, phiCer);  // find ckov (in TRS:the effective Cherenkov angle!)
+      return kTRUE;
+    }
+  }
+} // FindPhotTheta()
+
 }; // end class CkovTools
 
 #endif

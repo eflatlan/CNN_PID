@@ -43,7 +43,7 @@ private:
     double nF, getRefIdx;	     // refIdnex of freon
 
     const double winThick = 0.5, radThick = 1.5; const int gapThick = 8;
-    const double gapIdx = 1.0005, winIdx = 1.5787;
+    const double gapIdx = 1.0005, winIdx = 1.583;
 
     const double nQ = winIdx, nG = gapIdx;
 
@@ -163,6 +163,7 @@ public:
         double sinref = (n1 / n2) * TMath::Sin(dir.Theta());
         if (TMath::Abs(sinref) > 1.) {
             dir.SetXYZ(-999, -999, -999);
+						LOGP(debug, "refract -999");
         } else {
             dir.SetTheta(TMath::ASin(sinref));
         }
@@ -196,7 +197,7 @@ public:
         		//thetaCer = TMath::ASin(1. / getRefIdx);
             return pos; // ef: TODO this was changed to the above
         }
-        
+       // thetaCer = TMath::ASin(1. / getRefIdx);
 
 
 				// change radThick to other value to change L
@@ -326,7 +327,7 @@ public:
 		Printf("\n\n enter checkOver(%s) phiPhoton %.4f, phiP %.4f", hadronType, phiPhoton, phiP);
 
 
-		//LOGP(info, "Some radius checks checkOver rPhoton {} : [sizeVec - 2]{} [sizeVec - 1]{} [0]{} [1]{}", rPhoton, vec[sizeVec - 2][3],vec[sizeVec - 1][3],vec[0][3],vec[1][3]);
+		//LOGP(debu, "Some radius checks checkOver rPhoton {} : [sizeVec - 2]{} [sizeVec - 1]{} [0]{} [1]{}", rPhoton, vec[sizeVec - 2][3],vec[sizeVec - 1][3],vec[0][3],vec[1][3]);
 		
 		if (phiC < TMath::Pi()/2)
 			initValue = 0;
@@ -673,7 +674,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 
 		Printf("\n\n enter checkUnder(%s) phiPhoton %.4f, phiP %.4f",  hadronType, phiPhoton, phiP);
 
-		//LOGP(info, "Some radius checks checkUnder rPhoton {} : [sizeVec - 2]{} [sizeVec - 1]{} [0]{} [1]{}", rPhoton,vec[sizeVec - 2][3],vec[sizeVec - 1][3],vec[0][3],vec[1][3]);
+		//LOGP(debu, "Some radius checks checkUnder rPhoton {} : [sizeVec - 2]{} [sizeVec - 1]{} [0]{} [1]{}", rPhoton,vec[sizeVec - 2][3],vec[sizeVec - 1][3],vec[0][3],vec[1][3]);
 		
 
 

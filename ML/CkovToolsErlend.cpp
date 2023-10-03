@@ -8,8 +8,7 @@
 #include <cmath>
 #include <random>
 #include "populate.cpp"
-#include "Sigma.cpp"
-#include "Sigma2.cpp"
+
 #include "populate2.cpp" // TODO: change name of class and file here 
 
 #include <iostream>
@@ -349,15 +348,12 @@ delete 			hSignalAndNoiseMap;
 		int xrange = 30;
 		int yrange = 30;
 
-		int xMin = xMip - xrange;
-		int xMax = xMip + xrange;
-		int yMin = yMip - yrange;
-		int yMax = yMip + yrange;
+		const int xMin = xMip - xrange;
+		const int xMax = xMip + xrange;
+		const int yMin = yMip - yrange;
+		const int yMax = yMip + yrange;
 
-		//xMin = 0;
-		//xMax = 160*0.8;
-		//yMin = 0;
-		//yMax = 144*0.84;
+
 
 		std::unique_ptr<TH2F> totalCluMap(new TH2F("All clusters", "All clusters ; x [cm]; y [cm]",320, 0, 159, 288, 0, 143));
 
@@ -572,7 +568,7 @@ legend->Draw("same");
 
 
 
-    tcnvRane->SaveAs(Form("Segmented_%d.png", plotNumber));
+    tcnvRane->SaveAs(Form("SegmentedE_%d.png", plotNumber));
 		// limMin->Draw("same");
 		// limMax->Draw("same");
 
@@ -699,14 +695,6 @@ private:
 	bool kaonStatus = true, pionStatus = true, protonStatus = true;
 	//TLine* tlinePion;
 
-
-
-	// used in SigCrom
-	//  double f = 0.00928*(7.75-5.635)/TMath::Sqrt(12.);
-  // static constexpr double f = 0.0172*(7.75-5.635)/TMath::Sqrt(24.);
-  static constexpr double sq6 = 2.44948974278;
-  static constexpr double f = 0.0172*(7.75-5.635)/(2 * sq6);
-
 	static constexpr double PI = M_PI;
 	static constexpr double halfPI = M_PI/2;
 	static constexpr double twoPI = M_PI*2;
@@ -789,10 +777,6 @@ private:
  float nF, nQ, nG;  
  std::array<float, 3> ckovHypsMin, ckovHypsMax;
  std::vector<std::pair<double, double>> photons;
-
-
-
- double ckovProton = 999, ckovKaon = 999, ckovPion = 999;
 
 
  // instantiate ckovhyp boundaries to "invalid values" 
@@ -958,7 +942,6 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
 	if(getPionStatus()){
 	  ckovPionMin = ckovHypsMin[0] - sigmaAngles;
 	  ckovPionMax = ckovHypsMax[0] + sigmaAngles;
-    ckovPion =  ckovHypsMax[0];
  	  //printf("init CkovTools constructor : getPionStatus() true ! minPion %.2f, maxPion %.2f ", ckovPionMin, ckovPionMax);
   }	else {
  	  //printf("init CkovTools constructor : getPionStatus() was false !");
@@ -967,11 +950,9 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
   if(getKaonStatus()){
 	  ckovKaonMin = ckovHypsMin[1] - sigmaAngles;
   	ckovKaonMax = ckovHypsMax[1] + sigmaAngles;
-    ckovKaon =  ckovHypsMax[1];
   } if(getProtonStatus()){
 		ckovProtonMin = ckovHypsMin[2] - sigmaAngles;
 		ckovProtonMax = ckovHypsMax[2] + sigmaAngles;
-    ckovProton =  ckovHypsMax[2];
  }
 
 	cosThetaP = TMath::Cos(thetaP);
@@ -1009,6 +990,8 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
 
 
 
+
+
 void setPionStatus(bool status)
 { 
   pionStatus = status;
@@ -1037,24 +1020,6 @@ void setProtonStatus(bool status)
 bool getProtonStatus() const
 {
   return protonStatus;
-}
-
-
-
-
-double getCkovPion()
-{
-  return ckovPion;
-}
-
-double getCkovKaon()
-{
-  return ckovKaon;
-}
-
-double getCkovProton()
-{
-  return ckovProton;
 }
 
 
@@ -1177,9 +1142,8 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 		arrMinProtonPos.reserve(kN);
 		arrMaxProtonPos.reserve(kN);
 
-		Sigma2 	sigmaProton(getCkovProton(), phiP, thetaP, nF);
-	  Printf(" getCkovProton() %.4f", getCkovProton());
-    calculateDifference(arrMaxProtonPos, arrMinProtonPos, getCkovProton(), sigmaProton); 
+				
+    calculateDifference(arrMaxProtonPos, arrMinProtonPos, getMaxCkovProton(), getMinCkovProton()); 
 	}
 	
 
@@ -1195,9 +1159,9 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 		arrMinKaonPos.reserve(kN);				
 
 
-	Printf(" getCkovKaon() %.4f", getCkovKaon());
-		Sigma2 	sigmaKaon(getCkovKaon(), phiP, thetaP, nF); //(double thetaC, double phiP, double thetaP, double _nF)  
-		calculateDifference(arrMaxKaonPos, arrMinKaonPos, getCkovKaon(), sigmaKaon); 
+
+		//printf("calling setArrayMin w getMinCkovKaon() = %.2f", getMinCkovKaon());
+  	calculateDifference(arrMaxKaonPos, arrMinKaonPos, getMaxCkovKaon(), getMinCkovKaon()); 
 	}
 
 	
@@ -1208,12 +1172,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 	Printf("BF : Length of elem vectors : arrMinPionPos %zu", arrMinPionPos.size());
   // void calculateDifference(vecArray2& maxVec, vecArray2& minVec, double etaTrsMax, double etaTrsMin) {
-
-  Sigma2 	sigmaPion(getCkovPion(), phiP, thetaP, nF); //(double thetaC, double phiP, double thetaP, double _nF)  
-
-
-	Printf(" getCkovPion() %.4f", getCkovPion());
-  calculateDifference(arrMaxPionPos, arrMinPionPos, getCkovPion(), sigmaPion); 
+  calculateDifference(arrMaxPionPos, arrMinPionPos, getMaxCkovPion(), getMinCkovPion()); 
 
 	Printf("AFTER : Length of elem vectors : arrMinPionPos %zu", arrMinPionPos.size());
 	// fill all the values in the maps 
@@ -1250,7 +1209,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
   //for(const auto& photons : ckovAndBackground) {
 
 
-  //LOGP(info, "CkovTools : number of photons = {} ", clusterTrack.size());
+  LOGP(debug, "CkovTools : number of photons = {} ", clusterTrack.size());
 
   int rOverMax = 0;
   
@@ -1292,7 +1251,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
       const auto photonPDG = photons.mPDG; // check also other indexes?
       photons.setCandidateStatus(1);
       cStatus = 1;
-      //LOGP(info, "Cluster PDG {} Track {}", photonPDG, mcTrackPdg);
+      LOGP(debug, "Cluster PDG {} Track {}", photonPDG, mcTrackPdg);
  
 
 
@@ -1308,7 +1267,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 
         if(photonPDG != mcTrackPdg) {
-          //Printf("photonPDG != mcTrackPdg");		
+          Printf("photonPDG != mcTrackPdg");		
 					//continue; // not really important atm, see below
 					
           
@@ -1332,7 +1291,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
     
     if(photons.mQ > mipCut && photons.mSize > mipSizeCut && cStatus != 1) {
     
-      //LOGP(info, "skipping photon beacause its the mip of another track");
+      LOGP(debug, "skipping photon beacause its the mip of another track");
 
       photons.setCandidateStatus(1);
       cStatus = 1;
@@ -1654,7 +1613,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 								bool isMinPionOk = evaluatePointContour(posPhoton,  arrMinPionPos, false); // outisde = intersection!      
 
 								if (shutDownOnOpen) {            	errorPos.Set(posPhoton);
-									//Printf("shutDownOnOpen!!");	            
+									Printf("shutDownOnOpen!!");	            
 									drawMap = true;
 									//break;
 								}       
@@ -1692,11 +1651,11 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 	      if(cStatus == 1)
 	        mArrAndMap.fillckovCandMapOutRange(x,y);
-				//LOGP(info, "cStatus {}", cStatus);
+				LOGP(debug, "cStatus {}", cStatus);
 
             //o2::hmpid::ClusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)
             photons.setCandidateStatus(cStatus);
-				//LOGP(info, "photons.setCandidateStatus(trackIndex {}, cStatus{}); ", trackIndex, cStatus);
+				LOGP(debug, "photons.setCandidateStatus(trackIndex {}, cStatus{}); ", trackIndex, cStatus);
        
 
 
@@ -1711,7 +1670,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 		        cStatus = 0; // set other value to indicate out of region?
             photons.setCandidateStatus(cStatus);
 
-						//LOGP(info, "Radius {} too high ! cStatus {}", rPhoton, cStatus);
+						LOGP(debug, "Radius {} too high ! cStatus {}", rPhoton, cStatus);
 
 		      	//o2::hmpid::ClusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)
 		      					
@@ -1849,7 +1808,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 
   // to draw maps: false
-	if(/*drawMap*/false) {
+	if(/*drawMap*/true) {
 
 		
  		mArrAndMap.setEventCount(eventCnt);
@@ -2069,7 +2028,7 @@ void setArrayMax(double etaTRS, vecArray4& inPutVectorAngle, vecArray2& inPutVec
   //Printf("\n\n setArrayMax() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
 	for(int i = 0; i < kN; i++){
 
-		const auto phiL = double(TMath::TwoPi()*(i+1)/kN);
+		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
 		TVector3 dirTrs, dirLORS;
 		
 		// set TRS values :
@@ -2221,48 +2180,173 @@ double calculatePhi(const std::array<double, 2>& a, const std::array<double, 2>&
 
 
 // chane function name 
-void calculateDifference(vecArray2& maxVec, vecArray2& minVec, double ckovHypVal, const Sigma2& sigma) {
+void calculateDifference(vecArray2& maxVec, vecArray2& minVec, double etaTrsMax, double etaTrsMin) {
 //vecArray2 calculateDifference(const vecArray2& maxVec, const vecArray2& minVec) {
-    assert(maxVec.size() == minVec.size());
+
 
 		const int kN = 200;
+    assert(maxVec.size() == minVec.size());
+
+
     for (size_t i = 0; i < kN; ++i) {
-			  const auto phiL = double(TMath::TwoPi()*(i+1)/ kN);
-				const double sigma2 = sigma.sigma2(phiL); // calculate the combined 	 
-				TVector2 min, max;
+			  const auto phiL = Double_t(TMath::TwoPi()*(i)/ kN);
 
-				
+				TVector2 minPos, maxPos;
+				setMeanSingle(minPos, etaTrsMin, phiL);
+				setMeanSingle(maxPos, etaTrsMax, phiL);
 
-        auto sigma2Ali = 2*aliSigma2(thetaP, phiP, ckovHypVal, phiL);
+				if(maxPos.X() <  -800 || maxPos.Y() <  -800 ) {
+					if(minPos.X() <  -800 || minPos.Y() <  -800 ) {
+						// both contours are open; dont place anything
 
-Printf(" phiP TRS_deg %.2f | thetaP_deg %.2f ckovHypVal %.2f | sigma %.5f sigma2Ali %.5f ", phiL*180/3.14, thetaP*180/3.14,  ckovHypVal, sigma2, sigma2Ali);
+					} else { // inner contour is closed, outer conter is open 
+						// no changes to outer contour
+						Printf("======================");
+						Printf("IC closed OC open");
+						//maxVec[i] = std::array<double, 2>{maxPos.X(), maxPos.Y()};
+						TVector2 meanPos;
 
-				setMeanSingle(min, ckovHypVal - sigma2Ali, phiL);
-				setMeanSingle(max, ckovHypVal + sigma2Ali, phiL);
+						double etaTrsMean = (etaTrsMax + etaTrsMin)/2.;
+						setMinSingle(meanPos, etaTrsMean, phiL); //setMaxSingle(TVector2& vectorOut, double etaTRS, double phiL);
+						if(meanPos.X() <  -800 || meanPos.Y() <  -800 ) {
 
-				if((max.Y() == -999) or (max.X() == -999)) {
-					Printf("max.Y() == -999) or (max.X() == -999");
-				} else {
-					Printf("maxVec %.2f  %.2f" , max.X(), max.Y());							 
-					maxVec.emplace_back(std::array<double, 2>{max.X(), max.Y()});
-				}
-				if((min.Y() == -999) or (min.X() == -999)) {
-					Printf("min.Y() == -999) or (min.X() == -999");
-				} else {										 
-					Printf("maminVecxVec %.2f  %.2f" , min.X(), min.Y());							 
-					minVec.emplace_back(std::array<double, 2>{min.X(), min.Y()});
-				}
-				
-    } 
+						Printf("	mean open");
+							/* / linearise around min??*/
+							TVector2 temp;
+							auto etaDiff = 0.001;
+							setMeanSingle(temp, etaTrsMin - etaDiff, phiL); //setMaxSingle(TVector2& vectorOut, double etaTRS, double phiL);
+
+
+							auto drDetaMin = (minPos - mipPos).Mod();					
+							auto drDetaTemp = (temp - mipPos).Mod();					
+					
+
+
+							auto rDelta = (etaTrsMean - etaTrsMin)*(drDetaMin - drDetaTemp) / etaDiff; 
+		  				double phiMin = (minPos - mipPos).Phi();
+		  				double rMin = (minPos - mipPos).Mod();
+							auto sigmaPos = 2*getTotalSigmaPos(rDelta);
+							auto newR = (rMin - sigmaPos);
+							auto dx = TMath::Cos(phiMin)  * newR;
+							auto dy = TMath::Sin(phiMin)  * newR;
+
+							Printf("	minPos.X() %.2f  dx %.2f ",  minPos.X(), dx);
+							Printf("	minPos.y() %.2f  dy %.2f ",  minPos.Y(), dy);
+
+							if(minPos.X() >  -800 && minPos.Y() >  -800 )
+						  	minVec.push_back({mipPos.X() + dx, mipPos.Y() + dy});
+							  Printf("	Outer open Mean open :  interpolated  drDetaMin %.2f drDetaTemp %.2f rDelta %.2f", drDetaMin, drDetaTemp, rDelta);
+							  Printf("	phiMin %.4f  sigmaPos %.4f", phiMin, sigmaPos);
+
+						} else {
+
+							Printf("======================");
+							Printf("	IC closed OC open | mean closes");
+
+		  				double phiMin = (minPos - mipPos).Phi();
+		  				double phiMean = (meanPos - mipPos).Phi();
+							Printf("	Outer open Mean closed :  phiMin %.4f  phiMean %.4f", phiMin, phiMean);
+
+
+
+		  				double rMean = (meanPos - mipPos).Mod();
+		  				double rMin = (minPos - mipPos).Mod();
+		  				double rDeltaMin = rMean - rMin;
+
+							auto sigmaPos = 2*getTotalSigmaPos(rDeltaMin);
+
+							auto newR = (rMin - sigmaPos);
+
+							auto dx = TMath::Cos(phiMin)  * newR;
+							auto dy = TMath::Sin(phiMin)  * newR;
+							TVector2 diff(dx, dy);
+
+							Printf("	phiMin %4f  phiMean %.4f ",  phiMin, phiMean);
+
+
+							Printf("	rMin %.2f  rMean %.2f | rDeltaMin %.2f | sigmaPos %.2f",  rMin, rMean, rDeltaMin, sigmaPos);
+							Printf("	minPos.X() %.2f  dx %.2f ",  minPos.X(), dx);
+							Printf("	minPos.y() %.2f  dy %.2f ",  minPos.Y(), dy);
+
+
+							if(minPos.X() >  -800 && minPos.Y() >  -800 )
+						  	minVec.push_back({mipPos.X() + dx, mipPos.Y() + dy});
+						} // end else mean is closed 
+					} // end else inner is closed
+        }   // end else open contour
+			  else {
+						TVector2 meanPos;
+						Printf("======================");
+						Printf("IC and OC closes");
+						double etaTrsMean = (etaTrsMax + etaTrsMin)/2.;
+						{ 
+							Printf("	min");
+
+							Printf("	======================");
+							setMeanSingle(meanPos, etaTrsMean, phiL);
+    					double phiMin = (minPos - mipPos).Phi();
+    					double phiMean = (meanPos - mipPos).Phi();
+		  				double rMean = (meanPos - mipPos).Mod();
+		  				double rMin = (minPos - mipPos).Mod();
+		  				double rDeltaMin = rMean - rMin;
+							auto sigmaPos = 2*getTotalSigmaPos(rDeltaMin);
+							
+
+							auto newR = (rMin - sigmaPos);
+
+							Printf("	phiMin %.4f  phiMean %.4f ",  phiMin, phiMean);
+
+
+							Printf("	rMin %.2f  rMean %.2f | rDeltaMin %.2f | sigmaPos %.2f newR %.2f",  rMin, rMean, rDeltaMin, sigmaPos, newR);
+
+
+							auto dx = TMath::Cos(phiMin)  * newR;
+							auto dy = TMath::Sin(phiMin)  * newR;
+
+							Printf("	minPos.X() %.2f  dx %.2f ",  minPos.X(), dx);
+							Printf("	minPos.y() %.2f  dy %.2f ",  minPos.Y(), dy);
+
+							if(minPos.X() >  -800 && minPos.Y() >  -800 )
+						  	minVec.push_back({mipPos.X() + dx, mipPos.Y() + dy});
+						} 
+
+						{ 
+							Printf("======================");
+							Printf("	max");
+							setMeanSingle(meanPos, etaTrsMean, phiL);
+		  				double phiMax = (maxPos - mipPos).Phi();
+    					double phiMean = (meanPos - mipPos).Phi();
+		  				double rMean = (meanPos - mipPos).Mod();
+		  				double rMax = (maxPos - mipPos).Mod();
+
+							auto rDeltaMax = rMax - rMean;
+							auto sigmaPos = 2*getTotalSigmaPos(rDeltaMax);
+							Printf("	phiMax %.4f  phiMean %.4f ",  phiMax, phiMean);
+							Printf("	rMax %.2f  rMean %.2f | rDeltaMax %.2f | sigmaPos %.2f",  rMax, rMean, rDeltaMax, sigmaPos);
+
+							auto newR = (rMax + sigmaPos);
+							auto dx = TMath::Cos(phiMax)  * newR;
+							auto dy = TMath::Sin(phiMax)  * newR;
+
+							Printf("	maxPos.X() %.2f  dx %.2f ",  maxPos.X(), dx);
+							Printf("	maxPos.y() %.2f  dy %.2f ",  maxPos.Y(), dy);
+
+							TVector2 diff(dx, dy);
+							if(maxPos.X() >  0 && maxPos.Y() >  0 )
+
+						  	maxVec.push_back({mipPos.X() + dx, mipPos.Y() + dy});
+						} 
+      	}	// end else no open contours	 
+    } // end for 
 
 }
 
 
 double getTotalSigmaPos(double sigmaPositions)
 {
-
+  Printf(" getTotalSigmaPos : sigmaPositions %.2f  sigmaL %.2f sigmaR %.2f", sigmaPositions, TMath::Sqrt(sigmaLsq), TMath::Sqrt(sigmaRsq));
 	// sigmaAngles sigmaE sigmaThetaP --- sigmaPositions
-	Printf(" getTotalSigmaPos : sigmaPositionssq %.3f  sigmaLsq %.23f sigmaRsq %.3f", sigmaPositions * sigmaPositions, sigmaLsq, sigmaRsq);
+	//Printf(" getTotalSigmaPos : sigmaPositionssq %.2f  sigmaLsq %.2f sigmaRsq %.2f", sigmaPositions * sigmaPositions, sigmaLsq, sigmaRsq);
 	return TMath::Sqrt(sigmaPositions * sigmaPositions + sigmaLsq + sigmaRsq);
 
 }
@@ -2286,7 +2370,7 @@ void setMeanSingle(TVector2& vectorOut, double etaTRS, double phiL)
 void setMinSingle(TVector2& vectorOut, double etaTRS, double phiL)
 {
   const float lMax = 1.5;
-  const float lMean =  0.75;
+
 	TVector3 dirTrs, dirLORS;
 		
 
@@ -2294,13 +2378,13 @@ void setMinSingle(TVector2& vectorOut, double etaTRS, double phiL)
 	double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
 	populatePtrOuter->trs2Lors(dirTrs, thetaR, phiR);
 	dirLORS.SetMagThetaPhi(1, thetaR, phiR);		
-	vectorOut = populatePtrOuter->traceForward(dirLORS, lMean); 
+	vectorOut = populatePtrOuter->traceForward(dirLORS, lMax); 
 }
 
 void setMaxSingle(TVector2& vectorOut, double etaTRS, double phiL)
 {
   const float lMin = 0.;
-  const float lMean =  0.75;
+
 	TVector3 dirTrs, dirLORS;
 		
 	// set TRS values :
@@ -2308,7 +2392,7 @@ void setMaxSingle(TVector2& vectorOut, double etaTRS, double phiL)
 	double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
 	populatePtrOuter->trs2Lors(dirTrs, thetaR, phiR);
 	dirLORS.SetMagThetaPhi(1, thetaR, phiR);		
-	vectorOut = populatePtrOuter->traceForward(dirLORS, lMean); 
+	vectorOut = populatePtrOuter->traceForward(dirLORS, lMin); 
 }
 
 
@@ -2327,7 +2411,7 @@ void setArrayMax(double etaTRS, vecArray2& inPutVectorPos, const size_t kN)
   //Printf("\n\n setArrayMax() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
 	for(int i = 0; i < kN; i++){
 
-		const auto phiL = double(TMath::TwoPi()*(i+1)/kN);
+		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
 		TVector3 dirTrs, dirLORS;
 		
 		// set TRS values :
@@ -2352,128 +2436,7 @@ void setArrayMax(double etaTRS, vecArray2& inPutVectorPos, const size_t kN)
 }
 
 
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Double_t aliSigma2(Double_t trkTheta,Double_t trkPhi,Double_t ckovTh, Double_t ckovPh)
-{
-// Analithical calculation of total error (as a sum of localization, geometrical and chromatic errors) on Cerenkov angle for a given Cerenkov photon 
-// created by a given MIP. Fromulae according to CERN-EP-2000-058 
-// Arguments: Cerenkov and azimuthal angles for Cerenkov photon, [radians]
-//            dip and azimuthal angles for MIP taken at the entrance to radiator, [radians]        
-//            MIP beta
-//   Returns: absolute error on Cerenkov angle, [radians]    
-  
-  TVector3 v(-999,-999,-999);
-  Double_t trkBeta = 1./(TMath::Cos(ckovTh)*GetRefIdx());
-  
-	if(TMath::Cos(ckovTh) )
-  if (ckovTh > TMath::ASin(1. / GetRefIdx())) {  
-    ckovTh = TMath::ASin(1. / GetRefIdx()) -0.01;
-	}
 
-
-  if(trkBeta > 1) trkBeta = 1;                 //protection against bad measured thetaCer  
-  if(trkBeta < 0) trkBeta = 0.0001;            //
-
-  v.SetX(SigLoc (trkTheta,trkPhi,ckovTh,ckovPh,trkBeta));
-  v.SetY(SigGeom(trkTheta,trkPhi,ckovTh,ckovPh,trkBeta));
-  v.SetZ(SigCrom(trkTheta,trkPhi,ckovTh,ckovPh,trkBeta));
-
-  return TMath::Sqrt(v.Mag2() + 0.002 * 0.002);
-}
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Double_t SigLoc(Double_t trkTheta,Double_t trkPhi,Double_t thetaC, Double_t phiC,Double_t betaM)
-{
-// Analitical calculation of localization error (due to finite segmentation of PC) on Cerenkov angle for a given Cerenkov photon 
-// created by a given MIP. Fromulae according to CERN-EP-2000-058 
-// Arguments: Cerenkov and azimuthal angles for Cerenkov photon, [radians]
-//            dip and azimuthal angles for MIP taken at the entrance to radiator, [radians]        
-//            MIP beta
-//   Returns: absolute error on Cerenkov angle, [radians]    
-  
-  Double_t phiDelta = phiC - trkPhi;
-
-  Double_t sint     = TMath::Sin(trkTheta);
-  Double_t cost     = TMath::Cos(trkTheta);
-  Double_t sinf     = TMath::Sin(trkPhi);
-  Double_t cosf     = TMath::Cos(trkPhi);
-  Double_t sinfd    = TMath::Sin(phiDelta);
-  Double_t cosfd    = TMath::Cos(phiDelta);
-  Double_t tantheta = TMath::Tan(thetaC);
-  
-  Double_t alpha =cost-tantheta*cosfd*sint;                                                 // formula (11)
-  Double_t k = 1.-GetRefIdx()*GetRefIdx()+alpha*alpha/(betaM*betaM);        // formula (after 8 in the text)
-  if (k<0) return 1e10;
-  Double_t mu =sint*sinf+tantheta*(cost*cosfd*sinf+sinfd*cosf);                             // formula (10)
-  Double_t e  =sint*cosf+tantheta*(cost*cosfd*cosf-sinfd*sinf);                             // formula (9)
-
-  Double_t kk = betaM*TMath::Sqrt(k)/(GapThick()*alpha);                            // formula (6) and (7)
-  Double_t dtdxc = kk*(k*(cosfd*cosf-cost*sinfd*sinf)-(alpha*mu/(betaM*betaM))*sint*sinfd); // formula (6)           
-  Double_t dtdyc = kk*(k*(cosfd*sinf+cost*sinfd*cosf)+(alpha* e/(betaM*betaM))*sint*sinfd); // formula (7)            pag.4
-
-  Double_t errX = 0.2,errY=0.25;                                                            //end of page 7
-  return  TMath::Sqrt(errX*errX*dtdxc*dtdxc + errY*errY*dtdyc*dtdyc);
-}
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Double_t SigCrom(Double_t trkTheta,Double_t trkPhi,Double_t thetaC, Double_t phiC,Double_t betaM)
-{
-// Analitical calculation of chromatic error (due to lack of knowledge of Cerenkov photon energy) on Cerenkov angle for a given Cerenkov photon 
-// created by a given MIP. Fromulae according to CERN-EP-2000-058 
-// Arguments: Cerenkov and azimuthal angles for Cerenkov photon, [radians]
-//            dip and azimuthal angles for MIP taken at the entrance to radiator, [radians]        
-//            MIP beta
-//   Returns: absolute error on Cerenkov angle, [radians]    
-  
-  Double_t phiDelta = phiC - trkPhi;
-
-  Double_t sint     = TMath::Sin(trkTheta);
-  Double_t cost     = TMath::Cos(trkTheta);
-  Double_t cosfd    = TMath::Cos(phiDelta);
-  Double_t tantheta = TMath::Tan(thetaC);
-  
-  Double_t alpha =cost-tantheta*cosfd*sint;                                                 // formula (11)
-  Double_t dtdn = cost*GetRefIdx()*betaM*betaM/(alpha*tantheta);                    // formula (12)
-            
-//  Double_t f = 0.00928*(7.75-5.635)/TMath::Sqrt(12.);
-  Double_t f = 0.0172*(7.75-5.635)/TMath::Sqrt(24.);
-
-  return f*dtdn;
-}//SigCrom()
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Double_t SigGeom(Double_t trkTheta,Double_t trkPhi,Double_t thetaC, Double_t phiC,Double_t betaM)
-{
-// Analitical calculation of geometric error (due to lack of knowledge of creation point in radiator) on Cerenkov angle for a given Cerenkov photon 
-// created by a given MIP. Formulae according to CERN-EP-2000-058 
-// Arguments: Cerenkov and azimuthal angles for Cerenkov photon, [radians]
-//            dip and azimuthal angles for MIP taken at the entrance to radiator, [radians]        
-//            MIP beta
-//   Returns: absolute error on Cerenkov angle, [radians]    
-
-  Double_t phiDelta = phiC - trkPhi;
-
-  Double_t sint     = TMath::Sin(trkTheta);
-  Double_t cost     = TMath::Cos(trkTheta);
-  Double_t sinf     = TMath::Sin(trkPhi);
-  Double_t cosfd    = TMath::Cos(phiDelta);
-  Double_t costheta = TMath::Cos(thetaC);
-  Double_t tantheta = TMath::Tan(thetaC);
-  
-  Double_t alpha =cost-tantheta*cosfd*sint;                                                  // formula (11)
-  
-  Double_t k = 1.-GetRefIdx()*GetRefIdx()+alpha*alpha/(betaM*betaM);         // formula (after 8 in the text)
-  if (k<0) return 1e10;
-
-  Double_t eTr = 0.5*RadThick()*betaM*TMath::Sqrt(k)/(GapThick()*alpha);     // formula (14)
-  Double_t lambda = (1.-sint*sinf)*(1.+sint*sinf);                                                  // formula (15)
-
-  Double_t c1 = 1./(1.+ eTr*k/(alpha*alpha*costheta*costheta));                              // formula (13.a)
-  Double_t c2 = betaM*TMath::Power(k,1.5)*tantheta*lambda/(GapThick()*alpha*alpha);  // formula (13.b)
-  Double_t c3 = (1.+eTr*k*betaM*betaM)/((1+eTr)*alpha*alpha);                                // formula (13.c)
-  Double_t c4 = TMath::Sqrt(k)*tantheta*(1-lambda)/(GapThick()*betaM);               // formula (13.d)
-  Double_t dtdT = c1 * (c2+c3*c4);
-  Double_t trErr = RadThick()/(TMath::Sqrt(12.)*cost);
-
-  return trErr*dtdT;
-}//SigGeom()
 
 
 
@@ -2492,7 +2455,7 @@ void setArrayMin(double etaTRS, vecArray2& inPutVectorPos, const size_t kN)
   //Printf("\n\n setArrayMax() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
 	for(int i = 0; i < kN; i++){
 
-		const auto phiL = double(TMath::TwoPi()*(i+1)/kN);
+		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
 		TVector3 dirTrs, dirLORS;
 		
 		// set TRS values :
@@ -2563,7 +2526,7 @@ void setArrayMin(double etaTRS, vecArray4& inPutVectorAngle, vecArray2& inPutVec
   //Printf("\n\n setArrayMax() enter --> kN %zu, etaTRS %.2f", kN, etaTRS);
 	for(int i = 0; i < kN; i++){
 
-		const auto phiL = double(TMath::TwoPi()*(i+1)/kN);
+		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
 		TVector3 dirTrs, dirLORS;
 		
 		// set TRS values :
@@ -2718,7 +2681,7 @@ void setArrayMin2(Populate* populate, double etaTRS, vecArray3& inPutVector)
 		
 	for(int i = 0; i < kN; i++){
 
-		const auto phiL = double(TMath::TwoPi()*(i+1)/kN);
+		const auto phiL = Double_t(TMath::TwoPi()*(i+1)/kN);
 		TVector3 dirTrs, dirLORS;
 		dirTrs.SetMagThetaPhi(1, etaTRS, phiL);
 		double thetaR, phiR; // phiR is value of phi @ estimated R in LORS
@@ -2738,7 +2701,7 @@ void setArrayMin2(Populate* populate, double etaTRS, vecArray3& inPutVector)
 void populateRegions(std::vector<std::pair<double, double>>& vecArr, TH2F* map, const double& eta, const double& l) {	 
 	 const int kN = vecArr.size();
 	 for(int i = 0; i < vecArr.size(); i++){
-		  const auto& value = populatePtr->tracePhot(eta, double(TMath::TwoPi()*(i+1)/kN), l);
+		  const auto& value = populatePtr->tracePhot(eta, Double_t(TMath::TwoPi()*(i+1)/kN), l);
 		  if(/*value.X() > 0 && value.X() < 156.0 && value.Y() > 0 && value.Y() < 144*/true) {
 		    map->Fill(value.X(), value.Y());
 		    vecArr[i] = std::make_pair(value.X(), value.Y());
@@ -2775,12 +2738,7 @@ string getPDG(int pdg)
 	  }
    	return pdgString;
  	}
-    Double_t RadThick           (                                                                    ) const {return 1.5;}                                                        //Radiator thickness
-    Double_t WinThick           (                                                                    ) const {return 0.5;}                                                        //Window thickness
-    Double_t GapThick           (                                                                    ) const {return 8.0;}                                                        //Proximity gap thicknes
-    Double_t GetRefIdx          (                                                                    ) const {return 1.2905;}                                                    //running refractive index
-    Double_t WinIdx             (                                                                    ) const {return 1.583;}                                                     //Mean refractive index of WIN material (SiO2) 
-    Double_t GapIdx             (                                                                    ) const {return 1.0005;}        
+
 }; // end class CkovTools
 
 #endif
