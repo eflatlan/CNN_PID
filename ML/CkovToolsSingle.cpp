@@ -241,8 +241,11 @@ delete 			hSignalAndNoiseMap;
 
   
   
-	void drawTotalMap(std::vector<o2::hmpid::ClusterCandidate>& clusterTrack, int& plotNumber, float xMip, float yMip, vecArray2 pionCandidates, vecArray2 kaonCandidates, vecArray2 protonCandidates, vecArray2 canCombined, int trackPdg, vecArray2 allCand)
+	void drawTotalMap(std::vector<o2::hmpid::ClusterCandidate>& clusterTrack, int& plotNumber, float xMip, float yMip, vecArray2 pionCandidates, vecArray2 kaonCandidates, vecArray2 protonCandidates, vecArray2 canCombined, int trackPdg, vecArray2 allCand, float sigSep)
 	{
+
+
+
 
 
 
@@ -257,10 +260,10 @@ delete 			hSignalAndNoiseMap;
 		auto pcPhi = (trkPC-trkRad).Phi();
 
 
-		Printf(" mip { %.2f,  %.2f}  trkPC { %.2f,  %.2f} trkRad { %.2f,  %.2f}", mip.X(), mip.Y(), trkPC.X(), trkPC.Y(), trkRad.X(), trkRad.Y());
+		//Printf(" mip { %.2f,  %.2f}  trkPC { %.2f,  %.2f} trkRad { %.2f,  %.2f}", mip.X(), mip.Y(), trkPC.X(), trkPC.Y(), trkRad.X(), trkRad.Y());
 
 
-		Printf(" (mip-trkRad) %.2f(trkPC-trkRad)  %.2f", (mip-trkRad).Phi(), (trkPC-trkRad).Phi());
+		//Printf(" (mip-trkRad) %.2f(trkPC-trkRad)  %.2f", (mip-trkRad).Phi(), (trkPC-trkRad).Phi());
 		//Printf(" (mip-trkRad) { %.2f,  %.2f}  (trkPC-trkRad) { %.2f,  %.2f}", (mip-trkRad).Phi(), (mip-trkRad).Theta(), (trkPC-trkRad).Phi(), (trkPC-trkRad).Theta());
 		 auto len1 = 15.; auto len2 = 10.;
 
@@ -279,10 +282,10 @@ delete 			hSignalAndNoiseMap;
 		int numTotal = canCombined.size();
 
 
-
-
-		  //auto st = Form(" pdg %d | \#Pi %d K %d Pr %d T %d | \n distPC2MIP %.2f | pcPhi %.2f", trackPdg, numPion, numKaon, numProton, numTotal,  distPC2MIP, mipPhi, pcPhi);
-		  auto st = Form(" pdg %d | \#Pi %d K %d P %d T %d | \n | pcPhi %.2f", trackPdg, numPion, numKaon, numProton, numTotal, pcPhi);
+		const auto trkdir = populatePtr->getTrkDir();
+		auto theta = trkdir.Theta();
+		  auto st = Form("\#Pi %d K %d Pr %d T %d | theta %.3f pPhi %.3f | MIP %.2f %.2f",  numPion, numKaon, numProton, numTotal, theta, pcPhi, mip.X(), mip.Y());
+		  
 		  std::unique_ptr<TH2F> hCkovCandMapRange(new TH2F(st, st, 1600, 0, 300, 1440, 0, 143));
 		  std::unique_ptr<TH2F> hmipSizeFilter(new TH2F("mipSizeFilter", "mipSizeFilter", 1600, 0, 300, 1440, 0, 143));
 		  std::unique_ptr<TH2F> hCkovCandMapOutRange(new TH2F("ckovCandMapOutRange", "ckovCandMapOutRange", 1600, 0, 300, 1440, 0, 143));
@@ -346,8 +349,8 @@ delete 			hSignalAndNoiseMap;
 		hmipSizeFilter->SetMarkerStyle(2);
 		hmipChargeFilter->SetMarkerStyle(2);
 
-		int xrange = 30;
-		int yrange = 30;
+		int xrange = 100;
+		int yrange = 100;
 
 		int xMin = xMip - xrange;
 		int xMax = xMip + xrange;
@@ -359,7 +362,9 @@ delete 			hSignalAndNoiseMap;
 		//yMin = 0;
 		//yMax = 144*0.84;
 
-		std::unique_ptr<TH2F> totalCluMap(new TH2F("All clusters", "All clusters ; x [cm]; y [cm]",320, 0, 159, 288, 0, 143));
+
+auto st2 = Form("All clusters pdg %d ; x [cm]; y [cm]",trackPdg);
+		std::unique_ptr<TH2F> totalCluMap(new TH2F("All clusters", st2,320, 0, 159, 288, 0, 143));
 
 
 
@@ -572,9 +577,9 @@ legend->Draw("same");
 
 
 
-    tcnvRane->SaveAs(Form("Segmented_%d.png", plotNumber));
-		// limMin->Draw("same");
-		// limMax->Draw("same");
+    tcnvRane->SaveAs(Form("Segmented_%dCkov%.2f.png", plotNumber, sigSep));
+    // limMin->Draw("same");
+    // limMax->Draw("same");
 
     //tcnvRane->SaveAs(Form("Segmented%d.png", plotNumber));
     plotNumber++;
@@ -700,7 +705,7 @@ private:
 	//TLine* tlinePion;
 
 
-
+        float mSigmaSep = 1.5;
 	// used in SigCrom
 	//  double f = 0.00928*(7.75-5.635)/TMath::Sqrt(12.);
   // static constexpr double f = 0.0172*(7.75-5.635)/TMath::Sqrt(24.);
@@ -851,12 +856,12 @@ double refIndexes[3] = {nF, nQ, nG};
 
 
 CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
-           std::array<float, 3> ckovHypsMin,  std::array<float, 3> ckovHypsMax, float trackCkov, int eventCnt, int _trackPdg)
+           std::array<float, 3> ckovHypsMin,  std::array<float, 3> ckovHypsMax, float trackCkov, int eventCnt, int _trackPdg, float sigmaSep)
   : 
     ckovHypsMin(ckovHypsMin),  ckovHypsMax(ckovHypsMax), trackCkov(trackCkov), eventCnt(eventCnt) { 
     
-     
-    
+      
+  mSigmaSep = sigmaSep;
   trackPdg = _trackPdg;
   
   trackPdgString = getPDG(trackPdg);
@@ -886,7 +891,7 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
   
   
 
-  Printf("Phi  %.2f Thta %.2f of Track", phiP, thetaP);
+ // Printf("Phi  %.2f Thta %.2f of Track", phiP, thetaP);
   phiP = (pc-rad).Phi();
   thetaP = (pc-rad).Theta();
 
@@ -1178,7 +1183,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 		arrMaxProtonPos.reserve(kN);
 
 		Sigma2 	sigmaProton(getCkovProton(), phiP, thetaP, nF);
-	  Printf(" getCkovProton() %.4f", getCkovProton());
+	  //Printf(" getCkovProton() %.4f", getCkovProton());
     calculateDifference(arrMaxProtonPos, arrMinProtonPos, getCkovProton(), sigmaProton); 
 	}
 	
@@ -1385,12 +1390,16 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 	if (findPhotCkov(photons.mX, photons.mY, thetaCer, phiCer)) { // find ckov angle for this  photon candidate
            
                                   // increment counter of photon candidates
-            auto sigmaRing = aliSigma2(thetaP, phiP, thetaCer, phiCer);	 // rms of all contributing errors 
-	     Printf("thetaCer %.4f phiCer %.2f, sigmaRing %.5f" , thetaCer, phiCer, sigmaRing);
+            auto sigmaRing = aliSigma2(thetaP, phiP, thetaCer,
+ phiCer);	 // rms of all contributing errors 
+
+
+	    if(sigmaRing < 0.025) {
+	     	Printf("thetaCer %.4f phiCer %.2f, sigmaRing %.5f" , thetaCer, phiCer, sigmaRing);
 	     
 	     
-	     Printf("getCkovPion %.4f getCkovKaon %.4f, getCkovProton %.4f" , getCkovPion(), getCkovKaon(), getCkovProton());	     
-	     
+	        //Printf("getCkovPion %.4f getCkovKaon %.4f, getCkovProton %.4f" , getCkovPion(), getCkovKaon(), getCkovProton());	     
+	     }
 	     
 	    /*if(TMath::Cos(thetaCer) > 1/nF)
     	    { 
@@ -1403,12 +1412,22 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 	    } 
 
 	    else {
-		    if(sigmaRing > 0.1) {
-		      Printf("jævla stor sigmaRing !");
+		    if(sigmaRing > 0.2) {
+		      //Printf("jævla stor sigmaRing !");
 		    } else {
-		      if(TMath::Abs(thetaCer-getCkovPion()) < 2*sigmaRing)  {isPhotonPionCandCkov = true; Printf("ckovPionOk");}
-		      if(TMath::Abs(thetaCer-getCkovKaon()) < 2*sigmaRing) {isPhotonKaonCandCkov = true; Printf("ckovKaonOk");}
-		      if(TMath::Abs(thetaCer-getCkovProton()) < 2*sigmaRing) { isPhotonProtonCandCkov = true; Printf("ckovProtonOk");} 
+
+		    if(sigmaRing > 0.02) { sigmaRing = 0.02;
+		      //Printf("sigmaRing = 0.02 !");
+		    }
+
+		      if(TMath::Abs(thetaCer-getCkovPion()) < mSigmaSep*sigmaRing)  {isPhotonPionCandCkov = true; //Printf("ckovPionOk");
+pionCandidates.push_back(std::array<double,2>{x,y});
+}
+		      if(TMath::Abs(thetaCer-getCkovKaon()) < mSigmaSep*sigmaRing) {isPhotonKaonCandCkov = true; //Printf("ckovKaonOk");
+kaonCandidates.push_back(std::array<double,2>{x,y});
+}
+		      if(TMath::Abs(thetaCer-getCkovProton()) < mSigmaSep*sigmaRing) { isPhotonProtonCandCkov = true; //Printf("ckovProtonOk");
+protonCandidates.push_back(std::array<double,2>{x,y});} 
 		    }
 	  }
 
@@ -1494,7 +1513,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
                         // we have proton-candiate
                         isPhotonProtonCand = true;
 
-                        protonCandidates.push_back(std::array<double,2>{x,y});
+                        //protonCandidates.push_back(std::array<double,2>{x,y});
                         //printf("Photon%d is a Proton Candidate", iPhotCount); 
                         // isMaxPionOk = true;
                         isMaxKaonOk = true;
@@ -1525,7 +1544,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
                         isPhotonPionCand = true;
                         //printf("Photon%d is a Pion Candidate", iPhotCount); 
                                             
-                        pionCandidates.push_back(std::array<double,2>{x,y});
+                        //pionCandidates.push_back(std::array<double,2>{x,y});
                         
                         isMinKaonOk = true;
                     }	else {
@@ -1567,7 +1586,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
                             //printf("Photon%d is a Kaon Candidate", iPhotCount); 
                             // we have kaon cand
                             isPhotonKaonCand = true;
-                            kaonCandidates.push_back(std::array<double,2>{x,y});
+                            //kaonCandidates.push_back(std::array<double,2>{x,y});
                         } else {
                             //printf("Photon%d not a Kaon Candidate", iPhotCount); 
                         }
@@ -1643,7 +1662,6 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
                     // this means rPionMin < rPhoton
                     if(isMinPionOk) {
                         isPhotonPionCand = true;
-                        pionCandidates.push_back(std::array<double,2>{x,y});	
                         //printf("Photon%d is Pion Candiate", iPhotCount); 
                         // we have pion-candiate
                     }	
@@ -1656,7 +1674,6 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
                     // isMaxKaonOk = populate2Ptr->
                     if(isMaxKaonOk) {
                         isPhotonKaonCand = true;
-                        kaonCandidates.push_back(std::array<double,2>{x,y});
                         //printf("Photon%d is Kaon Candiate", iPhotCount); 
                         // we have kaon-candiate
                     }							
@@ -1700,7 +1717,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
                     // we have pion candidate
                     //printf("Photon%d is Pion Candidate", iPhotCount);	
                     isPhotonPionCand = true; 
-                    pionCandidates.push_back(std::array<double,2>{x,y});
+                    
                 } else {
                     //printf("Photon%d could only have been Pion, but didnt fall within radius-range",iPhotCount);
                 }
@@ -1719,19 +1736,33 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 
         
-        printf("\n===============================================================");	
+       /*if (isPhotonPionCandCkov || isPhotonKaonCandCkov || isPhotonProtonCandCkov) { printf("\n======================");	
         printf("	Photon%d  Candidate Ckov: Pion = %d Kaon = %d Proton %d", iPhotCount, isPhotonPionCandCkov, isPhotonKaonCandCkov, isPhotonProtonCandCkov);
 		printf("	Photon%d  Candidate segm: Pion = %d Kaon = %d Proton %d", iPhotCount, isPhotonPionCand, isPhotonKaonCand, isPhotonProtonCand);
 
-        printf("===============================================================\n");	
+        printf("============================\n");	
+}*/
 
 
+	      if(cStatusCkov == 0) {
 
-	      if(cStatusCkov == 0)
-          cStatusCkov = 1  + 4*static_cast<int>(isPhotonPionCandCkov) + 2*static_cast<int>(isPhotonKaonCandCkov) + 1*static_cast<int>(isPhotonProtonCandCkov);
+auto pionBit = 4*static_cast<int>(isPhotonPionCandCkov); 
+auto kaonBit =2*static_cast<int>(isPhotonKaonCandCkov); 
+auto protonBit = 1*static_cast<int>(isPhotonProtonCandCkov);
 
-  	      if(cStatus == 0)
-          cStatus = 1  + 4*static_cast<int>(isPhotonPionCand) + 2*static_cast<int>(isPhotonKaonCand) + 1*static_cast<int>(isPhotonProtonCand);
+          	cStatusCkov = 1  + pionBit + kaonBit +protonBit;
+
+//printf("	Photon%d  Candidate Ckov: pionBit = %d kaonBit = %d protonBit %d", iPhotCount, pionBit, kaonBit, protonBit);
+
+
+	      }
+
+
+  	      if(cStatus == 0){
+          cStatus = 1  + 4*static_cast<int>(isPhotonPionCand) + 2*static_cast<int>(isPhotonKaonCand) +
+
+
+ 1*static_cast<int>(isPhotonProtonCand);}
 
 
 
@@ -1744,7 +1775,9 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
             photons.setCandidateStatusCkov(cStatusCkov);
 
-				//LOGP(info, "photons.setCandidateStatus(trackIndex {}, cStatusCkov{}); ", trackIndex, cStatusCkov);
+	
+
+	//LOGP(info, "Set Track {} : cStatusCkov {} | cStatus {} ", trackIndex, cStatusCkov, cStatus);
        
 
 
@@ -1917,6 +1950,19 @@ mArrAndMap.setPopulatePtr(std::move(populatePtrCp));
 		if(false) { //printf("populate2Ptr was nullptr!");
     }
 	  else {	
+
+
+
+    int numPion = pionCandidates.size();
+		int numKaon = kaonCandidates.size();
+		int numProton = protonCandidates.size();
+		int numTotal = canCombined.size();
+		 
+		Printf("SigmaSep %.2f  | nPi %d nK %d nPr %d == nT %d | PDG %d | thetaP %.2f phiP %.2f", mSigmaSep, numPion, numKaon,numProton,numTotal, trackPdg, thetaP, phiP);
+
+		
+
+
 		mArrAndMap.setMinArrays(arrMinPionPos, arrMinKaonPos, arrMinProtonPos);
 		mArrAndMap.setMaxArrays(arrMaxPionPos, arrMaxKaonPos, arrMaxProtonPos);		
 
@@ -1942,7 +1988,7 @@ mArrAndMap.setPopulatePtr(std::move(populatePtrCp));
 
 
 
-    mArrAndMap.drawTotalMap(clusterTrack, plotNumber, xMip, yMip, pionCandidates, kaonCandidates, protonCandidates, canCombined, trackPdg, allCand);
+    mArrAndMap.drawTotalMap(clusterTrack, plotNumber, xMip, yMip, pionCandidates, kaonCandidates, protonCandidates, canCombined, trackPdg, allCand, mSigmaSep);
     // to drqw the maps :: 
 
 		
@@ -1965,7 +2011,7 @@ mArrAndMap.setPopulatePtr(std::move(populatePtrCp));
 
 		//printf("CkovHyps %.2f %.2f %.2f", ckovHyps[0], ckovHyps[1], ckovHyps[2]);
 		//Printf("CkovHyps %.2f %.2f %.2f", ckovHyps[0], ckovHyps[1], ckovHyps[2]);
-    std::this_thread::sleep_for(std::chrono::seconds(20));
+    //std::this_thread::sleep_for(std::chrono::seconds(0.1));
 
     //return;
 		//throw std::invalid_argument("print invoked"); 
@@ -2299,7 +2345,7 @@ void calculateDifference(vecArray2& maxVec, vecArray2& minVec, double ckovHypVal
 				if((min.Y() == -999) or (min.X() == -999)) {
 					Printf("min.Y() == -999) or (min.X() == -999");
 				} else {										 
-					Printf("maminVecxVec %.2f  %.2f" , min.X(), min.Y());							 
+					//Printf("maminVecxVec %.2f  %.2f" , min.X(), min.Y());							 
 					minVec.emplace_back(std::array<double, 2>{min.X(), min.Y()});
 				}
 				
@@ -2424,13 +2470,26 @@ Double_t aliSigma2(Double_t trkTheta,Double_t trkPhi,Double_t ckovTh, Double_t c
   if(trkBeta > 1) trkBeta = 1;                 //protection against bad measured thetaCer  
   if(trkBeta < 0) trkBeta = 0.0001;            //
 
-  v.SetX(SigLoc (trkTheta,trkPhi,ckovTh,ckovPh,trkBeta));
-  v.SetY(SigGeom(trkTheta,trkPhi,ckovTh,ckovPh,trkBeta));
-  v.SetZ(SigCrom(trkTheta,trkPhi,ckovTh,ckovPh,trkBeta));
+	double x = SigLoc(trkTheta, trkPhi, ckovTh, ckovPh, trkBeta);
+	double y = SigGeom(trkTheta, trkPhi, ckovTh, ckovPh, trkBeta);
+	double z = SigCrom(trkTheta, trkPhi, ckovTh, ckovPh, trkBeta);
+
+	v.SetX(x);
+	v.SetY(y);
+	v.SetZ(z);
 
 
+	Double_t sigRMS =  TMath::Sqrt(v.Mag2() + 0.002 * 0.002);
+
+
+	if(sigRMS  < 0.00000002)
+ 		Printf("SigLoc %.5f, SigGeom %.5f, z (SigCrom): %.5f  == %.5f (sigRMS): | Inputs: trkTheta: %.5f, trkPhi: %.5f, ckovTh: %.5f, ckovPh: %.5f, trkBeta: %.5f", 
+       x, y, z, sigRMS, trkTheta, trkPhi, ckovTh, ckovPh, trkBeta);
+
+
+	return sigRMS;
   // adding 0.002 ckov from thetaP unc
-  return TMath::Sqrt(v.Mag2() + 0.002 * 0.002);
+
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Double_t SigLoc(Double_t trkTheta,Double_t trkPhi,Double_t thetaC, Double_t phiC,Double_t betaM)

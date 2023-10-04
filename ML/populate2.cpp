@@ -43,7 +43,7 @@ private:
     double nF, getRefIdx;	     // refIdnex of freon
 
     const double winThick = 0.5, radThick = 1.5; const int gapThick = 8;
-    const double gapIdx = 1.0005, winIdx = 1.583;
+    const double gapIdx = 1.0005, winIdx = 1.5787;
 
     const double nQ = winIdx, nG = gapIdx;
 
@@ -94,7 +94,7 @@ public:
 
 
       //fPc.setX()
-      Printf("init Populate class");
+      //Printf("init Populate class");
 
       
 		  thetaP = trkDir.Theta();
@@ -122,12 +122,12 @@ public:
       //setPcImp(fTrkPos.X() + deltaX, fTrkPos.Y() + deltaY);
       
       setPcImp(fTrkPos.X() + deltaX, fTrkPos.Y() + deltaY);
-      Printf("Track pos at RAD : x %.3f y %.3f ", trkPos.X(), trkPos.Y());
-      Printf("nF %.3f : x %.3f y %.3f ", nF, trkPos.X(), trkPos.Y());
+      //Printf("Track pos at RAD : x %.3f y %.3f ", trkPos.X(), trkPos.Y());
+      //Printf("nF %.3f : x %.3f y %.3f ", nF, trkPos.X(), trkPos.Y());
       
-      Printf("Track pos at PC : x %.3f y %.3f ", fPc.X(), fPc.Y());
+      //Printf("Track pos at PC : x %.3f y %.3f ", fPc.X(), fPc.Y());
 
-      Printf("Track dir at RAD : theta %.3f phi %.3f ", trkDir.Theta(), trkDir.Phi());      
+      //Printf("Track dir at RAD : theta %.3f phi %.3f ", trkDir.Theta(), trkDir.Phi());      
 				
     }
 
@@ -163,7 +163,6 @@ public:
         double sinref = (n1 / n2) * TMath::Sin(dir.Theta());
         if (TMath::Abs(sinref) > 1.) {
             dir.SetXYZ(-999, -999, -999);
-						LOGP(debug, "refract -999");
         } else {
             dir.SetTheta(TMath::ASin(sinref));
         }
@@ -197,7 +196,7 @@ public:
         		//thetaCer = TMath::ASin(1. / getRefIdx);
             return pos; // ef: TODO this was changed to the above
         }
-       // thetaCer = TMath::ASin(1. / getRefIdx);
+        
 
 
 				// change radThick to other value to change L
@@ -303,6 +302,12 @@ public:
     }
 
 
+    TVector3 getTrkDir() const
+    {
+			return fTrkDir;
+    }
+
+
 	bool checkOver(const TVector2& posPhoton, const double& rPhoton, const double& phiPhoton, vecArray4& vec, const double& etaCkov, const char* hadronType) {
 		// vec : contains phiL, phi, R w etaMin/etaMax for hadron species
 		
@@ -327,7 +332,7 @@ public:
 		Printf("\n\n enter checkOver(%s) phiPhoton %.4f, phiP %.4f", hadronType, phiPhoton, phiP);
 
 
-		//LOGP(debu, "Some radius checks checkOver rPhoton {} : [sizeVec - 2]{} [sizeVec - 1]{} [0]{} [1]{}", rPhoton, vec[sizeVec - 2][3],vec[sizeVec - 1][3],vec[0][3],vec[1][3]);
+		//LOGP(info, "Some radius checks checkOver rPhoton {} : [sizeVec - 2]{} [sizeVec - 1]{} [0]{} [1]{}", rPhoton, vec[sizeVec - 2][3],vec[sizeVec - 1][3],vec[0][3],vec[1][3]);
 		
 		if (phiC < TMath::Pi()/2)
 			initValue = 0;
@@ -674,7 +679,7 @@ Printf("	phiMin = %.4f <  phiPhoton %.4f <  phiMax = %.4f, ",phiMin, phiPhoton, 
 
 		Printf("\n\n enter checkUnder(%s) phiPhoton %.4f, phiP %.4f",  hadronType, phiPhoton, phiP);
 
-		//LOGP(debu, "Some radius checks checkUnder rPhoton {} : [sizeVec - 2]{} [sizeVec - 1]{} [0]{} [1]{}", rPhoton,vec[sizeVec - 2][3],vec[sizeVec - 1][3],vec[0][3],vec[1][3]);
+		//LOGP(info, "Some radius checks checkUnder rPhoton {} : [sizeVec - 2]{} [sizeVec - 1]{} [0]{} [1]{}", rPhoton,vec[sizeVec - 2][3],vec[sizeVec - 1][3],vec[0][3],vec[1][3]);
 		
 
 
