@@ -1276,7 +1276,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
     
     
     photons.setCandidateStatus(0);
-    
+        photons.setCandidateStatusCkov(0);
     const auto& x = photons.mX, y = photons.mY;
     allCand.push_back(std::array<double,2>{x,y});
 
@@ -1291,6 +1291,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
     
       const auto photonPDG = photons.mPDG; // check also other indexes?
       photons.setCandidateStatus(1);
+      photons.setCandidateStatusCkov(1);
       cStatusCkov = 1;
 	cStatus = 1;
       //LOGP(info, "Cluster PDG {} Track {}", photonPDG, mcTrackPdg);
@@ -1336,6 +1337,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
       //LOGP(info, "skipping photon beacause its the mip of another track");
 
       photons.setCandidateStatus(1);
+      photons.setCandidateStatusCkov(1);
       cStatusCkov = 1;
       cStatus= 1;
  			mArrAndMap.fillmipSizeFilter(x,y);
@@ -1387,14 +1389,28 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 	     Printf("thetaCer %.4f phiCer %.2f, sigmaRing %.5f" , thetaCer, phiCer, sigmaRing);
 	     
 	     
-	     Printf("getCkovPion %.4f getCkovKaon %.4f, getCkovProton %.4f" , getCkovPion(), getCkovKaon(), getCkovProton());
-	     
-	     Printf("getCkovPion %.4f getCkovKaon %.4f, getCkovProton %.4f" , getCkovPion(), getCkovKaon(), getCkovProton());
+	     Printf("getCkovPion %.4f getCkovKaon %.4f, getCkovProton %.4f" , getCkovPion(), getCkovKaon(), getCkovProton());	     
 	     
 	     
-            if(TMath::Abs(thetaCer-getCkovPion()) < 2*sigmaRing)  {isPhotonPionCandCkov = true;}
-            if(TMath::Abs(thetaCer-getCkovKaon()) < 2*sigmaRing) {isPhotonKaonCandCkov = true; }
-            if(TMath::Abs(thetaCer-getCkovProton()) < 2*sigmaRing) { isPhotonProtonCandCkov = true;} 
+	    /*if(TMath::Cos(thetaCer) > 1/nF)
+    	    { 
+	      Printf("cosThetaCer %.2f > 1/nF", TMath::Cos(thetaCer), 1/nF);
+	    } */
+
+            // 
+	    if (thetaCer > TMath::ASin(1. / (nF - 3*0.0055))) {
+	      Printf("jævla stor thetaCer !");
+	    } 
+
+	    else {
+		    if(sigmaRing > 0.1) {
+		      Printf("jævla stor sigmaRing !");
+		    } else {
+		      if(TMath::Abs(thetaCer-getCkovPion()) < 2*sigmaRing)  {isPhotonPionCandCkov = true; Printf("ckovPionOk");}
+		      if(TMath::Abs(thetaCer-getCkovKaon()) < 2*sigmaRing) {isPhotonKaonCandCkov = true; Printf("ckovKaonOk");}
+		      if(TMath::Abs(thetaCer-getCkovProton()) < 2*sigmaRing) { isPhotonProtonCandCkov = true; Printf("ckovProtonOk");} 
+		    }
+	  }
 
         }
 
@@ -1717,16 +1733,16 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
   	      if(cStatus == 0)
           cStatus = 1  + 4*static_cast<int>(isPhotonPionCand) + 2*static_cast<int>(isPhotonKaonCand) + 1*static_cast<int>(isPhotonProtonCand);
 
-cStatus
+
 
 	      if(cStatusCkov == 1)
 	        mArrAndMap.fillckovCandMapOutRange(x,y);
 				//LOGP(info, "cStatusCkov {}", cStatusCkov);
 
             //o2::hmpid::ClusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)
-            photons.setCandidateStatus(cStatusCkov);
+            photons.setCandidateStatus(cStatus);
 
-            photons.setCandidateStatus(cStatusCkov);
+            photons.setCandidateStatusCkov(cStatusCkov);
 
 				//LOGP(info, "photons.setCandidateStatus(trackIndex {}, cStatusCkov{}); ", trackIndex, cStatusCkov);
        
@@ -1740,9 +1756,11 @@ cStatus
         
         else if((rPhoton > rMax || rPhoton < rMin ) && cStatusCkov == 0){
             rOverMax++;
-		        cStatusCkov = 0; // set other value to indicate out of region?
-            photons.setCandidateStatus(cStatusCkov);
+            cStatusCkov = 0; // set other value to indicate out of region?
 
+	    cStatus = 0; // set other value to indicate out of region?
+            photons.setCandidateStatus(cStatusCkov);
+            photons.setCandidateStatusCkov(cStatusCkov);
 						//LOGP(info, "Radius {} too high ! cStatusCkov {}", rPhoton, cStatusCkov);
 
 		      	//o2::hmpid::ClusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)

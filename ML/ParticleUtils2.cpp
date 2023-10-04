@@ -18,13 +18,13 @@ public:
 		  double mXe, mYe;
 		  int mSize;
 		  int mCandidateStatus;
+		  int mCandidateStatusCkov;
 
-
-			Candidate2() : mX(0), mY(0), mQ(0), mChi2(0), mXe(0), mYe(0), mSize(0), mCandidateStatus(0) {}
+			Candidate2() : mX(0), mY(0), mQ(0), mChi2(0), mXe(0), mYe(0), mSize(0), mCandidateStatus(0), mCandidateStatusCkov(0) {}
  
  
-		  Candidate2(double x = 0, double y = 0, int q = 0, double chi2 = 0, double xe = 0, double ye = 0, int size = 0, int candidateStatus = 0)
-		      : mX(x), mY(y), mQ(q), mChi2(chi2), mXe(xe), mYe(ye), mSize(size), mCandidateStatus(candidateStatus)
+		  Candidate2(double x = 0, double y = 0, int q = 0, double chi2 = 0, double xe = 0, double ye = 0, int size = 0, int candidateStatus = 0, int candidateStatusCkov = 0)
+		      : mX(x), mY(y), mQ(q), mChi2(chi2), mXe(xe), mYe(ye), mSize(size), mCandidateStatus(candidateStatus) , mCandidateStatusCkov(candidateStatusCkov)
 		  {
 		  }
 		};
@@ -55,7 +55,7 @@ public:
           for(const auto& clu : clusterPerChamber) {
 
 		
-		candsCombined.emplace_back(clu.mX,clu.mY,clu.mQ,clu.mChi2,clu.mXe,clu.mYe,clu.mSize, clu.mCandidateStatus);
+		candsCombined.emplace_back(clu.mX,clu.mY,clu.mQ,clu.mChi2,clu.mXe,clu.mYe,clu.mSize, clu.mCandidateStatus, clu.mCandidateStatusCkov);
           }
         }
     };
@@ -63,7 +63,7 @@ public:
 
     struct ClusterCandidate {
         double x, y, chi2, q, xe, ye;
-        int candStatus, ch, mSize;
+        int candStatus, candStatusCkov, ch, mSize;
     };
 
     std::vector<ParticleInfo2> mParticleInfoVector;
@@ -115,7 +115,10 @@ public:
         mtype.insertMember("xe", HOFFSET(ClusterCandidate, xe), H5::PredType::NATIVE_DOUBLE);
         mtype.insertMember("ye", HOFFSET(ClusterCandidate, ye), H5::PredType::NATIVE_DOUBLE);                                
         
-				
+	
+
+mtype.insertMember("candStatusCkov", HOFFSET(ClusterCandidate, candStatusCkov),  H5::PredType::NATIVE_INT); 
+			
 	mtype.insertMember("candStatus", HOFFSET(ClusterCandidate, candStatus),  H5::PredType::NATIVE_INT); 
 
 	mtype.insertMember("ch", HOFFSET(ClusterCandidate, ch),  H5::PredType::NATIVE_INT); 
@@ -135,7 +138,7 @@ public:
         std::vector<double> x_values, y_values, chi2_values, xe_values, ye_values;
 
 
-        std::vector<int> candStatus_values, ch_values, mSize_values, q_values;  // Add a vector for mSize
+        std::vector<int> candStatus_values, candStatusCkov_values, ch_values, mSize_values, q_values;  // Add a vector for mSize
         
 
 				//ParticleInfo(floxRad, yRad, xMip, yMip, th,  ph, refIndex, cluCharge, cluSize, p, mcTrackPdg) : mxRad(xRad), myRad(yRad), mxMip(xMip), myMip(yMip), mThetaP(th),  mPhiP(ph), mRefIndex(refIndex), mCluCharge(cluCharge), mCluSize(cluSize), mMomentum(p), mTrackPdg(mcTrackPdg)
@@ -150,7 +153,8 @@ public:
             q_values.push_back(cand.mQ);
             xe_values.push_back(cand.mXe);
             ye_values.push_back(cand.mYe);
-            candStatus_values.push_back(cand.mCandidateStatus);
+            candStatus_values.push_back(cand.mCandidateStatusCkov);
+            candStatusCkov_values.push_back(cand.mCandidateStatus);
             // ch_values.push_back(cand.mCh);
             mSize_values.push_back(cand.mSize);  // Add mSize to the vector
 	    // Printf("size %d", cand.mSize);
@@ -182,6 +186,12 @@ public:
 
         dataset = particleGroup.createDataSet("candStatus_values", PredType::NATIVE_INT, dataspace);
         dataset.write(candStatus_values.data(), PredType::NATIVE_INT);
+
+
+
+        dataset = particleGroup.createDataSet("candStatusCkov_values", PredType::NATIVE_INT, dataspace);
+        dataset.write(candStatusCkov_values.data(), PredType::NATIVE_INT);
+
 
         //dataset = particleGroup.createDataSet("ch_values", PredType::NATIVE_INT, dataspace);
         //dataset.write(ch_values.data(), PredType::NATIVE_INT);
@@ -242,7 +252,7 @@ public:
 
 				
 // After writing all attributes
-Printf("Wrote particle with PDG %d : Ckov Reconstructed : %.2f xRad %.1f, yRad %.1f, xMip %.1f, yMip %.1f, ThetaP %.1f, PhiP %.1f, RefractiveIndex %.1f, CluCharge %d, CluSize %d, Momentum %.1f",
+Printf("Wrote particle with PDG %d : Ckov Reconstructed : %.2f xRad %.1f, yRad %.1f, xMip %.1f, yMip %.1f, ThetaP %.1f, PhiP %.1f, RefractiveIndex %.1f, CluCharge %d, CluSize %d, Momentum %.1f ",
        particle.mTrackPdg, particle.ckovReconstructed, particle.mxRad, particle.myRad, particle.mxMip, particle.myMip, particle.mThetaP, particle.mPhiP, particle.mRefIndex, particle.mCluCharge, particle.mCluSize, particle.mMomentum);
 
 
