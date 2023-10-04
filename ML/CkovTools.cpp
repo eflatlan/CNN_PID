@@ -9,7 +9,6 @@
 #include <random>
 #include "populate.cpp"
 #include "Sigma.cpp"
-#include "Sigma2.cpp"
 #include "populate2.cpp" // TODO: change name of class and file here 
 
 #include <iostream>
@@ -349,15 +348,12 @@ delete 			hSignalAndNoiseMap;
 		int xrange = 30;
 		int yrange = 30;
 
-		int xMin = xMip - xrange;
-		int xMax = xMip + xrange;
-		int yMin = yMip - yrange;
-		int yMax = yMip + yrange;
+		const int xMin = xMip - xrange;
+		const int xMax = xMip + xrange;
+		const int yMin = yMip - yrange;
+		const int yMax = yMip + yrange;
 
-		//xMin = 0;
-		//xMax = 160*0.8;
-		//yMin = 0;
-		//yMax = 144*0.84;
+
 
 		std::unique_ptr<TH2F> totalCluMap(new TH2F("All clusters", "All clusters ; x [cm]; y [cm]",320, 0, 159, 288, 0, 143));
 
@@ -572,7 +568,7 @@ legend->Draw("same");
 
 
 
-    tcnvRane->SaveAs(Form("Segmented_%d.png", plotNumber));
+    tcnvRane->SaveAs(Form("Segmented_%dSigma.png", plotNumber));
 		// limMin->Draw("same");
 		// limMax->Draw("same");
 
@@ -1177,8 +1173,8 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 		arrMinProtonPos.reserve(kN);
 		arrMaxProtonPos.reserve(kN);
 
-		Sigma2 	sigmaProton(getCkovProton(), phiP, thetaP, nF);
-	  Printf(" getCkovProton() %.4f", getCkovProton());
+		Sigma 	sigmaProton(getCkovProton(), phiP, thetaP, nF);
+	Printf(" getCkovProton() %.4f", getCkovProton());
     calculateDifference(arrMaxProtonPos, arrMinProtonPos, getCkovProton(), sigmaProton); 
 	}
 	
@@ -1196,7 +1192,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 
 	Printf(" getCkovKaon() %.4f", getCkovKaon());
-		Sigma2 	sigmaKaon(getCkovKaon(), phiP, thetaP, nF); //(double thetaC, double phiP, double thetaP, double _nF)  
+		Sigma 	sigmaKaon(getCkovKaon(), phiP, thetaP, nF); //(double thetaC, double phiP, double thetaP, double _nF)  
 		calculateDifference(arrMaxKaonPos, arrMinKaonPos, getCkovKaon(), sigmaKaon); 
 	}
 
@@ -1209,7 +1205,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 	Printf("BF : Length of elem vectors : arrMinPionPos %zu", arrMinPionPos.size());
   // void calculateDifference(vecArray2& maxVec, vecArray2& minVec, double etaTrsMax, double etaTrsMin) {
 
-  Sigma2 	sigmaPion(getCkovPion(), phiP, thetaP, nF); //(double thetaC, double phiP, double thetaP, double _nF)  
+  Sigma 	sigmaPion(getCkovPion(), phiP, thetaP, nF); //(double thetaC, double phiP, double thetaP, double _nF)  
 
 
 	Printf(" getCkovPion() %.4f", getCkovPion());
@@ -1250,7 +1246,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
   //for(const auto& photons : ckovAndBackground) {
 
 
-  //LOGP(info, "CkovTools : number of photons = {} ", clusterTrack.size());
+  LOGP(info, "CkovTools : number of photons = {} ", clusterTrack.size());
 
   int rOverMax = 0;
   
@@ -1292,7 +1288,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
       const auto photonPDG = photons.mPDG; // check also other indexes?
       photons.setCandidateStatus(1);
       cStatus = 1;
-      //LOGP(info, "Cluster PDG {} Track {}", photonPDG, mcTrackPdg);
+      LOGP(info, "Cluster PDG {} Track {}", photonPDG, mcTrackPdg);
  
 
 
@@ -1308,7 +1304,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 
         if(photonPDG != mcTrackPdg) {
-          //Printf("photonPDG != mcTrackPdg");		
+          Printf("photonPDG != mcTrackPdg");		
 					//continue; // not really important atm, see below
 					
           
@@ -1332,7 +1328,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
     
     if(photons.mQ > mipCut && photons.mSize > mipSizeCut && cStatus != 1) {
     
-      //LOGP(info, "skipping photon beacause its the mip of another track");
+      LOGP(info, "skipping photon beacause its the mip of another track");
 
       photons.setCandidateStatus(1);
       cStatus = 1;
@@ -1390,7 +1386,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
         
         
-        //Printf(" Track PDG %d %s", trackPdg, trackPdgString.c_str());	
+        Printf(" Track PDG %d %s", trackPdg, trackPdgString.c_str());	
         if(getProtonStatus() and getKaonStatus() and getPionStatus()) {
             
             //printf("Pion%d can be Pion Kaon and Proton from p-hyp \n", iPhotCount);	
@@ -1654,7 +1650,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 								bool isMinPionOk = evaluatePointContour(posPhoton,  arrMinPionPos, false); // outisde = intersection!      
 
 								if (shutDownOnOpen) {            	errorPos.Set(posPhoton);
-									//Printf("shutDownOnOpen!!");	            
+									Printf("shutDownOnOpen!!");	            
 									drawMap = true;
 									//break;
 								}       
@@ -1692,11 +1688,11 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 	      if(cStatus == 1)
 	        mArrAndMap.fillckovCandMapOutRange(x,y);
-				//LOGP(info, "cStatus {}", cStatus);
+				LOGP(info, "cStatus {}", cStatus);
 
             //o2::hmpid::ClusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)
             photons.setCandidateStatus(cStatus);
-				//LOGP(info, "photons.setCandidateStatus(trackIndex {}, cStatus{}); ", trackIndex, cStatus);
+				LOGP(info, "photons.setCandidateStatus(trackIndex {}, cStatus{}); ", trackIndex, cStatus);
        
 
 
@@ -1711,7 +1707,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 		        cStatus = 0; // set other value to indicate out of region?
             photons.setCandidateStatus(cStatus);
 
-						//LOGP(info, "Radius {} too high ! cStatus {}", rPhoton, cStatus);
+						LOGP(info, "Radius {} too high ! cStatus {}", rPhoton, cStatus);
 
 		      	//o2::hmpid::ClusterCandidate :setCandidateStatus(int iTrack, int hadronCandidateBit)
 		      					
@@ -1849,7 +1845,7 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 
 
   // to draw maps: false
-	if(/*drawMap*/false) {
+	if(/*drawMap*/true) {
 
 		
  		mArrAndMap.setEventCount(eventCnt);
@@ -1915,7 +1911,7 @@ mArrAndMap.setPopulatePtr(std::move(populatePtrCp));
 
 		//printf("CkovHyps %.2f %.2f %.2f", ckovHyps[0], ckovHyps[1], ckovHyps[2]);
 		//Printf("CkovHyps %.2f %.2f %.2f", ckovHyps[0], ckovHyps[1], ckovHyps[2]);
-    std::this_thread::sleep_for(std::chrono::seconds(20));
+
 
     //return;
 		//throw std::invalid_argument("print invoked"); 
@@ -2221,7 +2217,7 @@ double calculatePhi(const std::array<double, 2>& a, const std::array<double, 2>&
 
 
 // chane function name 
-void calculateDifference(vecArray2& maxVec, vecArray2& minVec, double ckovHypVal, const Sigma2& sigma) {
+void calculateDifference(vecArray2& maxVec, vecArray2& minVec, double ckovHypVal, const Sigma& sigma) {
 //vecArray2 calculateDifference(const vecArray2& maxVec, const vecArray2& minVec) {
     assert(maxVec.size() == minVec.size());
 
@@ -2231,14 +2227,9 @@ void calculateDifference(vecArray2& maxVec, vecArray2& minVec, double ckovHypVal
 				const double sigma2 = sigma.sigma2(phiL); // calculate the combined 	 
 				TVector2 min, max;
 
-				
-
-        auto sigma2Ali = 2*aliSigma2(thetaP, phiP, ckovHypVal, phiL);
-
-Printf(" phiP TRS_deg %.2f | thetaP_deg %.2f ckovHypVal %.2f | sigma %.5f sigma2Ali %.5f ", phiL*180/3.14, thetaP*180/3.14,  ckovHypVal, sigma2, sigma2Ali);
-
-				setMeanSingle(min, ckovHypVal - sigma2Ali, phiL);
-				setMeanSingle(max, ckovHypVal + sigma2Ali, phiL);
+				Printf("ckovHypVal %.2f | sigma %.2f" , ckovHypVal, TMath::Sqrt(sigma2));
+				setMeanSingle(min, ckovHypVal - 1.2*TMath::Sqrt(sigma2), phiL);
+				setMeanSingle(max, ckovHypVal + 1.2*TMath::Sqrt(sigma2), phiL);
 
 				if((max.Y() == -999) or (max.X() == -999)) {
 					Printf("max.Y() == -999) or (max.X() == -999");
@@ -2262,7 +2253,7 @@ double getTotalSigmaPos(double sigmaPositions)
 {
 
 	// sigmaAngles sigmaE sigmaThetaP --- sigmaPositions
-	Printf(" getTotalSigmaPos : sigmaPositionssq %.3f  sigmaLsq %.23f sigmaRsq %.3f", sigmaPositions * sigmaPositions, sigmaLsq, sigmaRsq);
+	Printf(" getTotalSigmaPos : sigmaPositionssq %.2f  sigmaLsq %.2f sigmaRsq %.2f", sigmaPositions * sigmaPositions, sigmaLsq, sigmaRsq);
 	return TMath::Sqrt(sigmaPositions * sigmaPositions + sigmaLsq + sigmaRsq);
 
 }
@@ -2352,128 +2343,7 @@ void setArrayMax(double etaTRS, vecArray2& inPutVectorPos, const size_t kN)
 }
 
 
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Double_t aliSigma2(Double_t trkTheta,Double_t trkPhi,Double_t ckovTh, Double_t ckovPh)
-{
-// Analithical calculation of total error (as a sum of localization, geometrical and chromatic errors) on Cerenkov angle for a given Cerenkov photon 
-// created by a given MIP. Fromulae according to CERN-EP-2000-058 
-// Arguments: Cerenkov and azimuthal angles for Cerenkov photon, [radians]
-//            dip and azimuthal angles for MIP taken at the entrance to radiator, [radians]        
-//            MIP beta
-//   Returns: absolute error on Cerenkov angle, [radians]    
-  
-  TVector3 v(-999,-999,-999);
-  Double_t trkBeta = 1./(TMath::Cos(ckovTh)*GetRefIdx());
-  
-	if(TMath::Cos(ckovTh) )
-  if (ckovTh > TMath::ASin(1. / GetRefIdx())) {  
-    ckovTh = TMath::ASin(1. / GetRefIdx()) -0.01;
-	}
 
-
-  if(trkBeta > 1) trkBeta = 1;                 //protection against bad measured thetaCer  
-  if(trkBeta < 0) trkBeta = 0.0001;            //
-
-  v.SetX(SigLoc (trkTheta,trkPhi,ckovTh,ckovPh,trkBeta));
-  v.SetY(SigGeom(trkTheta,trkPhi,ckovTh,ckovPh,trkBeta));
-  v.SetZ(SigCrom(trkTheta,trkPhi,ckovTh,ckovPh,trkBeta));
-
-  return TMath::Sqrt(v.Mag2() + 0.002 * 0.002);
-}
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Double_t SigLoc(Double_t trkTheta,Double_t trkPhi,Double_t thetaC, Double_t phiC,Double_t betaM)
-{
-// Analitical calculation of localization error (due to finite segmentation of PC) on Cerenkov angle for a given Cerenkov photon 
-// created by a given MIP. Fromulae according to CERN-EP-2000-058 
-// Arguments: Cerenkov and azimuthal angles for Cerenkov photon, [radians]
-//            dip and azimuthal angles for MIP taken at the entrance to radiator, [radians]        
-//            MIP beta
-//   Returns: absolute error on Cerenkov angle, [radians]    
-  
-  Double_t phiDelta = phiC - trkPhi;
-
-  Double_t sint     = TMath::Sin(trkTheta);
-  Double_t cost     = TMath::Cos(trkTheta);
-  Double_t sinf     = TMath::Sin(trkPhi);
-  Double_t cosf     = TMath::Cos(trkPhi);
-  Double_t sinfd    = TMath::Sin(phiDelta);
-  Double_t cosfd    = TMath::Cos(phiDelta);
-  Double_t tantheta = TMath::Tan(thetaC);
-  
-  Double_t alpha =cost-tantheta*cosfd*sint;                                                 // formula (11)
-  Double_t k = 1.-GetRefIdx()*GetRefIdx()+alpha*alpha/(betaM*betaM);        // formula (after 8 in the text)
-  if (k<0) return 1e10;
-  Double_t mu =sint*sinf+tantheta*(cost*cosfd*sinf+sinfd*cosf);                             // formula (10)
-  Double_t e  =sint*cosf+tantheta*(cost*cosfd*cosf-sinfd*sinf);                             // formula (9)
-
-  Double_t kk = betaM*TMath::Sqrt(k)/(GapThick()*alpha);                            // formula (6) and (7)
-  Double_t dtdxc = kk*(k*(cosfd*cosf-cost*sinfd*sinf)-(alpha*mu/(betaM*betaM))*sint*sinfd); // formula (6)           
-  Double_t dtdyc = kk*(k*(cosfd*sinf+cost*sinfd*cosf)+(alpha* e/(betaM*betaM))*sint*sinfd); // formula (7)            pag.4
-
-  Double_t errX = 0.2,errY=0.25;                                                            //end of page 7
-  return  TMath::Sqrt(errX*errX*dtdxc*dtdxc + errY*errY*dtdyc*dtdyc);
-}
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Double_t SigCrom(Double_t trkTheta,Double_t trkPhi,Double_t thetaC, Double_t phiC,Double_t betaM)
-{
-// Analitical calculation of chromatic error (due to lack of knowledge of Cerenkov photon energy) on Cerenkov angle for a given Cerenkov photon 
-// created by a given MIP. Fromulae according to CERN-EP-2000-058 
-// Arguments: Cerenkov and azimuthal angles for Cerenkov photon, [radians]
-//            dip and azimuthal angles for MIP taken at the entrance to radiator, [radians]        
-//            MIP beta
-//   Returns: absolute error on Cerenkov angle, [radians]    
-  
-  Double_t phiDelta = phiC - trkPhi;
-
-  Double_t sint     = TMath::Sin(trkTheta);
-  Double_t cost     = TMath::Cos(trkTheta);
-  Double_t cosfd    = TMath::Cos(phiDelta);
-  Double_t tantheta = TMath::Tan(thetaC);
-  
-  Double_t alpha =cost-tantheta*cosfd*sint;                                                 // formula (11)
-  Double_t dtdn = cost*GetRefIdx()*betaM*betaM/(alpha*tantheta);                    // formula (12)
-            
-//  Double_t f = 0.00928*(7.75-5.635)/TMath::Sqrt(12.);
-  Double_t f = 0.0172*(7.75-5.635)/TMath::Sqrt(24.);
-
-  return f*dtdn;
-}//SigCrom()
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Double_t SigGeom(Double_t trkTheta,Double_t trkPhi,Double_t thetaC, Double_t phiC,Double_t betaM)
-{
-// Analitical calculation of geometric error (due to lack of knowledge of creation point in radiator) on Cerenkov angle for a given Cerenkov photon 
-// created by a given MIP. Formulae according to CERN-EP-2000-058 
-// Arguments: Cerenkov and azimuthal angles for Cerenkov photon, [radians]
-//            dip and azimuthal angles for MIP taken at the entrance to radiator, [radians]        
-//            MIP beta
-//   Returns: absolute error on Cerenkov angle, [radians]    
-
-  Double_t phiDelta = phiC - trkPhi;
-
-  Double_t sint     = TMath::Sin(trkTheta);
-  Double_t cost     = TMath::Cos(trkTheta);
-  Double_t sinf     = TMath::Sin(trkPhi);
-  Double_t cosfd    = TMath::Cos(phiDelta);
-  Double_t costheta = TMath::Cos(thetaC);
-  Double_t tantheta = TMath::Tan(thetaC);
-  
-  Double_t alpha =cost-tantheta*cosfd*sint;                                                  // formula (11)
-  
-  Double_t k = 1.-GetRefIdx()*GetRefIdx()+alpha*alpha/(betaM*betaM);         // formula (after 8 in the text)
-  if (k<0) return 1e10;
-
-  Double_t eTr = 0.5*RadThick()*betaM*TMath::Sqrt(k)/(GapThick()*alpha);     // formula (14)
-  Double_t lambda = (1.-sint*sinf)*(1.+sint*sinf);                                                  // formula (15)
-
-  Double_t c1 = 1./(1.+ eTr*k/(alpha*alpha*costheta*costheta));                              // formula (13.a)
-  Double_t c2 = betaM*TMath::Power(k,1.5)*tantheta*lambda/(GapThick()*alpha*alpha);  // formula (13.b)
-  Double_t c3 = (1.+eTr*k*betaM*betaM)/((1+eTr)*alpha*alpha);                                // formula (13.c)
-  Double_t c4 = TMath::Sqrt(k)*tantheta*(1-lambda)/(GapThick()*betaM);               // formula (13.d)
-  Double_t dtdT = c1 * (c2+c3*c4);
-  Double_t trErr = RadThick()/(TMath::Sqrt(12.)*cost);
-
-  return trErr*dtdT;
-}//SigGeom()
 
 
 
@@ -2775,12 +2645,7 @@ string getPDG(int pdg)
 	  }
    	return pdgString;
  	}
-    Double_t RadThick           (                                                                    ) const {return 1.5;}                                                        //Radiator thickness
-    Double_t WinThick           (                                                                    ) const {return 0.5;}                                                        //Window thickness
-    Double_t GapThick           (                                                                    ) const {return 8.0;}                                                        //Proximity gap thicknes
-    Double_t GetRefIdx          (                                                                    ) const {return 1.2905;}                                                    //running refractive index
-    Double_t WinIdx             (                                                                    ) const {return 1.583;}                                                     //Mean refractive index of WIN material (SiO2) 
-    Double_t GapIdx             (                                                                    ) const {return 1.0005;}        
+
 }; // end class CkovTools
 
 #endif

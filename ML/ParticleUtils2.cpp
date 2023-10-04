@@ -153,8 +153,8 @@ mtype.insertMember("candStatusCkov", HOFFSET(ClusterCandidate, candStatusCkov), 
             q_values.push_back(cand.mQ);
             xe_values.push_back(cand.mXe);
             ye_values.push_back(cand.mYe);
-            candStatus_values.push_back(cand.mCandidateStatusCkov);
-            candStatusCkov_values.push_back(cand.mCandidateStatus);
+            candStatus_values.push_back(cand.mCandidateStatus);
+            candStatusCkov_values.push_back(cand.mCandidateStatusCkov);
             // ch_values.push_back(cand.mCh);
             mSize_values.push_back(cand.mSize);  // Add mSize to the vector
 	    // Printf("size %d", cand.mSize);
@@ -252,7 +252,7 @@ mtype.insertMember("candStatusCkov", HOFFSET(ClusterCandidate, candStatusCkov), 
 
 				
 // After writing all attributes
-Printf("Wrote particle with PDG %d : Ckov Reconstructed : %.2f xRad %.1f, yRad %.1f, xMip %.1f, yMip %.1f, ThetaP %.1f, PhiP %.1f, RefractiveIndex %.1f, CluCharge %d, CluSize %d, Momentum %.1f ",
+Printf("Wrote particle with PDG %d : Ckov Reconstructed : %.3f xRad %.3f, yRad %.3f, xMip %.3f, yMip %.3f, ThetaP %.3f, PhiP %.3f, RefractiveIndex %.3f, CluCharge %d, CluSize %d, Momentum %.3f ",
        particle.mTrackPdg, particle.ckovReconstructed, particle.mxRad, particle.myRad, particle.mxMip, particle.myMip, particle.mThetaP, particle.mPhiP, particle.mRefIndex, particle.mCluCharge, particle.mCluSize, particle.mMomentum);
 
 

@@ -115,10 +115,10 @@ struct ClusterCandidate {
 };*/
 
 
-
-void SegmentationCkov()
+float sigmaSep = 1.5;
+void SegmentationCkov(double _sigmaSep = 1.5)
 {
-
+  sigmaSep = _sigmaSep;
 
   int plotNumber = 0;
   ParticleUtils2 mParticleEvents; 
@@ -460,7 +460,7 @@ void SegmentationCkov()
 									
 									
 
-									mParticleEvents.fillCandidate(clusterPerChamber, track, 0);
+ 									mParticleEvents.fillCandidate(clusterPerChamber, track, 0);
                   
                   // for(auto& clusterPerChamber)
                 }
@@ -705,7 +705,7 @@ void evaluateClusterTrack(std::vector<o2::hmpid::ClusterCandidate>& clusterPerCh
 	
 	
 				
-        CkovTools ckovTools(radParams, refIndexes, MIP, ckovHypsMin, ckovHypsMax, ckovAngle, eventCnt, mcTrackPdg);
+        CkovTools ckovTools(radParams, refIndexes, MIP, ckovHypsMin, ckovHypsMax, ckovAngle, eventCnt, mcTrackPdg, sigmaSep);
 
         Printf(" Event%d Track%d  : ckovHyps = <%.3f, %.3f> | <%.3f, %.3f> | <%.3f, %.3f>", eventCnt, ckovTools.getMinCkovPion(),ckovTools.getMaxCkovPion(),ckovTools.getMinCkovKaon(), ckovTools.getMaxCkovKaon(),ckovTools.getMinCkovProton(), ckovTools.getMaxCkovProton(), eventCnt); 
 
