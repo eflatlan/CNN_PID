@@ -1388,10 +1388,12 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
     if((rPhoton < rMax && rPhoton > rMin) && cStatusCkov == 0){
         double thetaCer, phiCer;
 	if (findPhotCkov(photons.mX, photons.mY, thetaCer, phiCer)) { // find ckov angle for this  photon candidate
-           
+
                                   // increment counter of photon candidates
             auto sigmaRing = aliSigma2(thetaP, phiP, thetaCer,
  phiCer);	 // rms of all contributing errors 
+
+
 
 
 	    if(sigmaRing < 0.025) {
@@ -1412,6 +1414,11 @@ std::vector<std::pair<double, double>> segment(std::vector<o2::hmpid::ClusterCan
 	    } 
 
 	    else {
+
+
+		    photons.mThetaCer = thetaCer;
+		    photons.mPhiCer = phiCer;
+		    photons.mSigmaRing = sigmaRing;
 		    if(sigmaRing > 0.2) {
 		      //Printf("jævla stor sigmaRing !");
 		    } else {

@@ -16,6 +16,13 @@ public:
 		  int mQ;
 		  double mChi2;
 		  double mXe, mYe;
+
+
+    double mPhiCer = -13., mThetaCer = -13.; // initialzie to unvalid values 
+
+    double mSigmaRing = -13.; // resolution of single photon ckov angle
+
+
 		  int mSize;
 		  int mCandidateStatus;
 		  int mCandidateStatusCkov;
@@ -23,8 +30,8 @@ public:
 			Candidate2() : mX(0), mY(0), mQ(0), mChi2(0), mXe(0), mYe(0), mSize(0), mCandidateStatus(0), mCandidateStatusCkov(0) {}
  
  
-		  Candidate2(double x = 0, double y = 0, int q = 0, double chi2 = 0, double xe = 0, double ye = 0, int size = 0, int candidateStatus = 0, int candidateStatusCkov = 0)
-		      : mX(x), mY(y), mQ(q), mChi2(chi2), mXe(xe), mYe(ye), mSize(size), mCandidateStatus(candidateStatus) , mCandidateStatusCkov(candidateStatusCkov)
+		  Candidate2(double x = 0, double y = 0, int q = 0, double chi2 = 0, double xe = 0, double ye = 0, int size = 0, int candidateStatus = 0, int candidateStatusCkov = 0, double phiCer = -13., double thetaCer= -13., double sigmaRing= -13.)
+		      : mX(x), mY(y), mQ(q), mChi2(chi2), mXe(xe), mYe(ye), mSize(size), mCandidateStatus(candidateStatus) , mCandidateStatusCkov(candidateStatusCkov), mPhiCer(phiCer), mThetaCer(thetaCer), mSigmaRing(sigmaRing)
 		  {
 		  }
 		};
@@ -39,6 +46,7 @@ public:
 				std::vector<Candidate2> candsCombined;
 				double mxRad, myRad, mxMip, myMip, mThetaP, mPhiP, mRefIndex;
 				int mCluCharge, mCluSize, mTrackPdg;
+
 				double mMomentum;
 
 				double ckovReconstructed;
@@ -55,14 +63,17 @@ public:
           for(const auto& clu : clusterPerChamber) {
 
 		
-		candsCombined.emplace_back(clu.mX,clu.mY,clu.mQ,clu.mChi2,clu.mXe,clu.mYe,clu.mSize, clu.mCandidateStatus, clu.mCandidateStatusCkov);
+	 //mX(x), mY(y), mQ(q), mChi2(chi2), mXe(xe), mYe(ye), mSize(size), mCandidateStatus(candidateStatus) , mCandidateStatusCkov(candidateStatusCkov), mPhiCer(phiCer), mThetaCer(thetaCer), mSigmaRig(sigmaRig)
+
+
+	candsCombined.emplace_back(clu.mX,clu.mY,clu.mQ,clu.mChi2,clu.mXe,clu.mYe,clu.mSize, clu.mCandidateStatus, clu.mCandidateStatusCkov, clu.mPhiCer, clu.mThetaCer, clu.mSigmaRing);
           }
         }
     };
         
 
     struct ClusterCandidate {
-        double x, y, chi2, q, xe, ye;
+        double x, y, chi2, q, xe, ye, thetaCer, phiCer;
         int candStatus, candStatusCkov, ch, mSize;
     };
 
@@ -117,6 +128,11 @@ public:
         
 	
 
+				mtype.insertMember("phiCer", HOFFSET(ClusterCandidate, xe), H5::PredType::NATIVE_DOUBLE);
+				mtype.insertMember("thetaCer", HOFFSET(ClusterCandidate, ye), H5::PredType::NATIVE_DOUBLE);     
+
+
+
 mtype.insertMember("candStatusCkov", HOFFSET(ClusterCandidate, candStatusCkov),  H5::PredType::NATIVE_INT); 
 			
 	mtype.insertMember("candStatus", HOFFSET(ClusterCandidate, candStatus),  H5::PredType::NATIVE_INT); 
@@ -135,7 +151,7 @@ mtype.insertMember("candStatusCkov", HOFFSET(ClusterCandidate, candStatusCkov), 
     
         // do padding w zeroes here ? 
         auto& particle = mParticleInfoVector[i];
-        std::vector<double> x_values, y_values, chi2_values, xe_values, ye_values;
+        std::vector<double> x_values, y_values, chi2_values, xe_values, ye_values, phiCerValues, thetaCerValues, sigmaRingValues;
 
 
         std::vector<int> candStatus_values, candStatusCkov_values, ch_values, mSize_values, q_values;  // Add a vector for mSize
@@ -154,9 +170,17 @@ mtype.insertMember("candStatusCkov", HOFFSET(ClusterCandidate, candStatusCkov), 
             xe_values.push_back(cand.mXe);
             ye_values.push_back(cand.mYe);
             candStatus_values.push_back(cand.mCandidateStatus);
-            candStatusCkov_values.push_back(cand.mCandidateStatusCkov);
-            // ch_values.push_back(cand.mCh);
+  				 candStatusCkov_values.push_back(cand.mCandidateStatusCkov);
+  				 sigmaRingValues.push_back(cand.mSigmaRing);
+
+
+  				 phiCerValues.push_back(cand.mPhiCer);
+  				 thetaCerValues.push_back(cand.mThetaCer);
             mSize_values.push_back(cand.mSize);  // Add mSize to the vector
+
+
+
+
 	    // Printf("size %d", cand.mSize);
         }
 
