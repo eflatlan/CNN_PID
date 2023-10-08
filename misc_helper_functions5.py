@@ -5,7 +5,7 @@ import numpy as np
 from tensorflow.keras.layers import Conv2D, BatchNormalization, LeakyReLU, MaxPooling2D, Dropout, Flatten
 import tensorflow as tf
 from tensorflow.keras.layers import Conv2D, BatchNormalization, LeakyReLU, MaxPooling2D, Dropout, Flatten
-from tensorflow.keras.regularizers import l1, l2
+from tensorflow.keras.regularizers import l1, l2, l1_l2
 
 def build_species_layers(input_map, filters, filter_sizes, stride_arr, alpha, dropout_rate, l1_reg=0.0, l2_reg=0.0):
 
