@@ -4,14 +4,21 @@ from scipy.stats import normaltest, anderson
 import numpy as np
 from tensorflow.keras.layers import Conv2D, BatchNormalization, LeakyReLU, MaxPooling2D, Dropout, Flatten
 import tensorflow as tf
-def build_species_layers(input_map, filters, filter_sizes, stride_arr, alpha):
+from tensorflow.keras.layers import Conv2D, BatchNormalization, LeakyReLU, MaxPooling2D, Dropout, Flatten
+from tensorflow.keras.regularizers import l1, l2
+
+def build_species_layers(input_map, filters, filter_sizes, stride_arr, alpha, dropout_rate, l1_reg=0.0, l2_reg=0.0):
     layers = input_map
     for i in range(len(filters)):
-        layers = Conv2D(filters[i], (filter_sizes[i], filter_sizes[i]), strides=(stride_arr[i], stride_arr[i]), padding='same')(layers)
+        layers = Conv2D(filters[i], 
+                        (filter_sizes[i], filter_sizes[i]), 
+                        strides=(stride_arr[i], stride_arr[i]), 
+                        padding='same', 
+                        kernel_regularizer=l1(l1_reg) if l2_reg == 0.0 else l2(l2_reg) if l1_reg == 0.0 else l1_l2(l1=l1_reg, l2=l2_reg))(layers)
         layers = BatchNormalization()(layers)
         layers = LeakyReLU(alpha=alpha)(layers)
         layers = MaxPooling2D((2, 2))(layers)
-        layers = Dropout(0.2)(layers)
+        layers = Dropout(dropout_rate)(layers)
     flat_map = Flatten()(layers)
     return flat_map
 def eval_data(data):
