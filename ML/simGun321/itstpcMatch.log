@@ -1,0 +1,683 @@
+Running: TIME="#walltime %e" /usr/bin/time --output=itstpcMatch.log_time ./itstpcMatch.log_tmp.sh
+[WARN] MC-truth is not supported for FT0 recpoints currently
+[INFO] Initialising O2 Data Processing Layer. Driver PID: 1161331.
+[INFO] Driver listening on port: 29411
+[INFO] Rate limiting set up at 500MB distributed over 1 readers
+[INFO] O2 Data Processing Layer initialised. We brake for nobody.
+[INFO] Optimised build. O2DEBUG / LOG(debug) / LOGF(debug) / assert statement will not be shown.
+[INFO] Redeployment of configuration asked.
+[INFO] Starting internal-dpl-clock on pid 1161366
+[INFO] Starting tpc-native-cluster-reader on pid 1161367
+[INFO] Starting its-track-reader on pid 1161368
+[INFO] Starting its-cluster-reader on pid 1161369
+[INFO] Starting ft0-recpoints-reader on pid 1161370
+[INFO] Starting tpc-track-reader on pid 1161371
+[INFO] Starting internal-dpl-ccdb-backend on pid 1161372
+[INFO] Starting tpc-clusters-sharing-map-producer on pid 1161373
+[INFO] Starting itstpc-track-matcher on pid 1161374
+[INFO] Starting itstpc-track-writer on pid 1161375
+[INFO] Starting internal-dpl-injected-dummy-sink on pid 1161376
+[INFO] Redeployment of configuration done.
+[1161370:ft0-recpoints-reader]: [WARN] MC-truth is not supported for FT0 recpoints currently
+[1161368:its-track-reader]: [WARN] MC-truth is not supported for FT0 recpoints currently
+[1161367:tpc-native-cluster-reader]: [WARN] MC-truth is not supported for FT0 recpoints currently
+[1161368:its-track-reader]: [INFO] Instrumenting crash signals
+[1161367:tpc-native-cluster-reader]: [INFO] Instrumenting crash signals
+[1161370:ft0-recpoints-reader]: [INFO] Instrumenting crash signals
+[1161370:ft0-recpoints-reader]: [INFO] Spawing new device ft0-recpoints-reader in process with pid 1161370
+[1161368:its-track-reader]: [INFO] Spawing new device its-track-reader in process with pid 1161368
+[1161368:its-track-reader]: [22:55:10][INFO] 
+[1161368:its-track-reader]:       ______      _    _______  _________ 
+[1161368:its-track-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1161368:its-track-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1161368:its-track-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1161368:its-track-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1161368:its-track-reader]: 
+[1161368:its-track-reader]: [22:55:10][STATE] Starting FairMQ state machine --> IDLE
+[1161370:ft0-recpoints-reader]: [22:55:10][INFO] 
+[1161370:ft0-recpoints-reader]:       ______      _    _______  _________ 
+[1161370:ft0-recpoints-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1161370:ft0-recpoints-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1161370:ft0-recpoints-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1161370:ft0-recpoints-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1161370:ft0-recpoints-reader]: 
+[1161370:ft0-recpoints-reader]: [22:55:10][STATE] Starting FairMQ state machine --> IDLE
+[1161367:tpc-native-cluster-reader]: [INFO] Spawing new device tpc-native-cluster-reader in process with pid 1161367
+[1161367:tpc-native-cluster-reader]: [22:55:10][INFO] 
+[1161367:tpc-native-cluster-reader]:       ______      _    _______  _________ 
+[1161367:tpc-native-cluster-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1161367:tpc-native-cluster-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1161367:tpc-native-cluster-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1161367:tpc-native-cluster-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1161367:tpc-native-cluster-reader]: 
+[1161367:tpc-native-cluster-reader]: [22:55:10][STATE] Starting FairMQ state machine --> IDLE
+[1161370:ft0-recpoints-reader]: [22:55:10][STATE] IDLE ---> INITIALIZING DEVICE
+[1161368:its-track-reader]: [22:55:10][STATE] IDLE ---> INITIALIZING DEVICE
+[1161367:tpc-native-cluster-reader]: [22:55:10][STATE] IDLE ---> INITIALIZING DEVICE
+[1161369:its-cluster-reader]: [WARN] MC-truth is not supported for FT0 recpoints currently
+[1161369:its-cluster-reader]: [INFO] Instrumenting crash signals
+[1161369:its-cluster-reader]: [INFO] Spawing new device its-cluster-reader in process with pid 1161369
+[1161369:its-cluster-reader]: [22:55:10][INFO] 
+[1161369:its-cluster-reader]:       ______      _    _______  _________ 
+[1161369:its-cluster-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1161369:its-cluster-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1161369:its-cluster-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1161369:its-cluster-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1161369:its-cluster-reader]: 
+[1161369:its-cluster-reader]: [22:55:10][STATE] Starting FairMQ state machine --> IDLE
+[1161376:internal-dpl-injected-dummy-sink]: [WARN] MC-truth is not supported for FT0 recpoints currently
+[1161369:its-cluster-reader]: [22:55:10][STATE] IDLE ---> INITIALIZING DEVICE
+[1161373:tpc-clusters-sharing-map-producer]: [WARN] MC-truth is not supported for FT0 recpoints currently
+[1161366:internal-dpl-clock]: [WARN] MC-truth is not supported for FT0 recpoints currently
+[1161373:tpc-clusters-sharing-map-producer]: [INFO] Instrumenting crash signals
+[1161366:internal-dpl-clock]: [INFO] Instrumenting crash signals
+[1161373:tpc-clusters-sharing-map-producer]: [INFO] Spawing new device tpc-clusters-sharing-map-producer in process with pid 1161373
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:11][INFO] 
+[1161373:tpc-clusters-sharing-map-producer]:       ______      _    _______  _________ 
+[1161373:tpc-clusters-sharing-map-producer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1161373:tpc-clusters-sharing-map-producer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1161373:tpc-clusters-sharing-map-producer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1161373:tpc-clusters-sharing-map-producer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1161373:tpc-clusters-sharing-map-producer]: 
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:11][STATE] Starting FairMQ state machine --> IDLE
+[1161371:tpc-track-reader]: [WARN] MC-truth is not supported for FT0 recpoints currently
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:11][STATE] IDLE ---> INITIALIZING DEVICE
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:11][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:11][STATE] INITIALIZED ---> BINDING
+[1161366:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 1161366
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:11][STATE] BINDING ---> BOUND
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:11][STATE] BOUND ---> CONNECTING
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:11][STATE] CONNECTING ---> DEVICE READY
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:11][STATE] DEVICE READY ---> INITIALIZING TASK
+[1161366:internal-dpl-clock]: [22:55:11][INFO] 
+[1161366:internal-dpl-clock]:       ______      _    _______  _________ 
+[1161366:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1161366:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1161366:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1161366:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1161366:internal-dpl-clock]: 
+[1161366:internal-dpl-clock]: [22:55:11][STATE] Starting FairMQ state machine --> IDLE
+[1161366:internal-dpl-clock]: [22:55:11][STATE] IDLE ---> INITIALIZING DEVICE
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:11][STATE] INITIALIZING TASK ---> READY
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:11][STATE] READY ---> RUNNING
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:11][INFO] fair::mq::Device running...
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:11][INFO] LHCPeriod is not available, using current month OCT
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:11][INFO] Correctly handshaken websocket connection.
+[1161366:internal-dpl-clock]: [22:55:11][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1161366:internal-dpl-clock]: [22:55:11][STATE] INITIALIZED ---> BINDING
+[1161366:internal-dpl-clock]: [22:55:11][STATE] BINDING ---> BOUND
+[1161366:internal-dpl-clock]: [22:55:11][STATE] BOUND ---> CONNECTING
+[1161366:internal-dpl-clock]: [22:55:11][STATE] CONNECTING ---> DEVICE READY
+[1161366:internal-dpl-clock]: [22:55:11][STATE] DEVICE READY ---> INITIALIZING TASK
+[1161376:internal-dpl-injected-dummy-sink]: [INFO] Instrumenting crash signals
+[1161371:tpc-track-reader]: [INFO] Instrumenting crash signals
+[1161376:internal-dpl-injected-dummy-sink]: [INFO] Spawing new device internal-dpl-injected-dummy-sink in process with pid 1161376
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:11][INFO] 
+[1161376:internal-dpl-injected-dummy-sink]:       ______      _    _______  _________ 
+[1161376:internal-dpl-injected-dummy-sink]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1161376:internal-dpl-injected-dummy-sink]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1161376:internal-dpl-injected-dummy-sink]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1161376:internal-dpl-injected-dummy-sink]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1161376:internal-dpl-injected-dummy-sink]: 
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:11][STATE] Starting FairMQ state machine --> IDLE
+[1161371:tpc-track-reader]: [INFO] Spawing new device tpc-track-reader in process with pid 1161371
+[1161371:tpc-track-reader]: [22:55:11][INFO] 
+[1161371:tpc-track-reader]:       ______      _    _______  _________ 
+[1161371:tpc-track-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1161371:tpc-track-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1161371:tpc-track-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1161371:tpc-track-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1161371:tpc-track-reader]: 
+[1161371:tpc-track-reader]: [22:55:11][STATE] Starting FairMQ state machine --> IDLE
+[1161371:tpc-track-reader]: [22:55:11][STATE] IDLE ---> INITIALIZING DEVICE
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:11][STATE] IDLE ---> INITIALIZING DEVICE
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:11][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:11][STATE] INITIALIZED ---> BINDING
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:11][STATE] BINDING ---> BOUND
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:11][STATE] BOUND ---> CONNECTING
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:11][STATE] CONNECTING ---> DEVICE READY
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:11][STATE] DEVICE READY ---> INITIALIZING TASK
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:11][STATE] INITIALIZING TASK ---> READY
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:11][STATE] READY ---> RUNNING
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:11][INFO] fair::mq::Device running...
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:11][INFO] LHCPeriod is not available, using current month OCT
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:11][INFO] Correctly handshaken websocket connection.
+[1161366:internal-dpl-clock]: [22:55:11][STATE] INITIALIZING TASK ---> READY
+[1161366:internal-dpl-clock]: [22:55:11][STATE] READY ---> RUNNING
+[1161366:internal-dpl-clock]: [22:55:11][INFO] fair::mq::Device running...
+[1161366:internal-dpl-clock]: [22:55:11][INFO] LHCPeriod is not available, using current month OCT
+[1161366:internal-dpl-clock]: [22:55:11][INFO] Correctly handshaken websocket connection.
+[1161372:internal-dpl-ccdb-backend]: [WARN] MC-truth is not supported for FT0 recpoints currently
+[1161375:itstpc-track-writer]: [WARN] MC-truth is not supported for FT0 recpoints currently
+[1161375:itstpc-track-writer]: [INFO] Instrumenting crash signals
+[1161372:internal-dpl-ccdb-backend]: [INFO] Instrumenting crash signals
+[1161375:itstpc-track-writer]: [INFO] Spawing new device itstpc-track-writer in process with pid 1161375
+[1161375:itstpc-track-writer]: [22:55:11][INFO] 
+[1161375:itstpc-track-writer]:       ______      _    _______  _________ 
+[1161375:itstpc-track-writer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1161375:itstpc-track-writer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1161375:itstpc-track-writer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1161375:itstpc-track-writer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1161375:itstpc-track-writer]: 
+[1161375:itstpc-track-writer]: [22:55:11][STATE] Starting FairMQ state machine --> IDLE
+[1161375:itstpc-track-writer]: [22:55:11][STATE] IDLE ---> INITIALIZING DEVICE
+[1161372:internal-dpl-ccdb-backend]: [INFO] Spawing new device internal-dpl-ccdb-backend in process with pid 1161372
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] 
+[1161372:internal-dpl-ccdb-backend]:       ______      _    _______  _________ 
+[1161372:internal-dpl-ccdb-backend]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1161372:internal-dpl-ccdb-backend]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1161372:internal-dpl-ccdb-backend]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1161372:internal-dpl-ccdb-backend]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1161372:internal-dpl-ccdb-backend]: 
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][STATE] Starting FairMQ state machine --> IDLE
+[1161374:itstpc-track-matcher]: [WARN] MC-truth is not supported for FT0 recpoints currently
+[1161375:itstpc-track-writer]: [22:55:11][INFO] 0: branch  TPCITS set up
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][STATE] IDLE ---> INITIALIZING DEVICE
+[1161375:itstpc-track-writer]: [22:55:11][INFO] 1: branch  TPCITSABRefs set up
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] CCDB Backend at: http://alice-ccdb.cern.ch, validity check for every 2147483647 TF
+[1161375:itstpc-track-writer]: [22:55:11][INFO] 2: branch  TPCITSABCLID set up
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1697144111-X5XmfX, Host: http://alice-ccdb.cern.ch
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] Initialised default CCDB host http://alice-ccdb.cern.ch
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] The following route is a condition GLO/MATLUT/0
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] - ccdb-path: GLO/Param/MatLUT
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] The following route is a condition CTP/ORBITRESET/0
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] - ccdb-path: CTP/Calib/OrbitReset
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] The following route is a condition ITS/CLUSDICT/0
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] - ccdb-path: ITS/Calib/ClusterDictionary
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] The following route is a condition ITS/ALPIDEPARAM/0
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] - ccdb-path: ITS/Config/AlpideParam
+[1161375:itstpc-track-writer]: [22:55:11][INFO] 3: branch  MatchMCTruth set up
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] The following route is a condition GLO/GEOMALIGN/0
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] - ccdb-path: GLO/Config/GeometryAligned
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] The following route is a condition TPC/CalibLaserTracks/0
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] - ccdb-path: TPC/Calib/LaserTracks
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] The following route is a condition TPC/CorrMap/0
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] - ccdb-path: TPC/Calib/CorrectionMapV2
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] The following route is a condition TPC/CorrMapRef/0
+[1161375:itstpc-track-writer]: [22:55:11][INFO] 4: branch  MatchABMCTruth set up
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] - ccdb-path: TPC/Calib/CorrectionMapRefV2
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] The following route is a condition GLO/GRPECS/0
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] - ccdb-path: GLO/Config/GRPECS
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] The following route is a condition TPC/VDriftTgl/0
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] - ccdb-path: TPC/Calib/VDriftTgl
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] The following route is a condition GLO/GRPLHCIF/0
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] - ccdb-path: GLO/Config/GRPLHCIF
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] The following route is a condition GLO/GRPMAGFIELD/0
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] - ccdb-path: GLO/Config/GRPMagField
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1161375:itstpc-track-writer]: [22:55:11][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1161375:itstpc-track-writer]: [22:55:11][STATE] INITIALIZED ---> BINDING
+[1161375:itstpc-track-writer]: [22:55:11][STATE] BINDING ---> BOUND
+[1161375:itstpc-track-writer]: [22:55:11][STATE] BOUND ---> CONNECTING
+[1161375:itstpc-track-writer]: [22:55:11][STATE] CONNECTING ---> DEVICE READY
+[1161375:itstpc-track-writer]: [22:55:11][STATE] DEVICE READY ---> INITIALIZING TASK
+[1161375:itstpc-track-writer]: [22:55:11][STATE] INITIALIZING TASK ---> READY
+[1161375:itstpc-track-writer]: [22:55:11][STATE] READY ---> RUNNING
+[1161375:itstpc-track-writer]: [22:55:11][INFO] fair::mq::Device running...
+[1161375:itstpc-track-writer]: [22:55:11][INFO] LHCPeriod is not available, using current month OCT
+[1161375:itstpc-track-writer]: [22:55:11][INFO] Correctly handshaken websocket connection.
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][STATE] INITIALIZED ---> BINDING
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][STATE] BINDING ---> BOUND
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][STATE] BOUND ---> CONNECTING
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][STATE] CONNECTING ---> DEVICE READY
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][STATE] DEVICE READY ---> INITIALIZING TASK
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][STATE] INITIALIZING TASK ---> READY
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][STATE] READY ---> RUNNING
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] fair::mq::Device running...
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] LHCPeriod is not available, using current month OCT
+[1161372:internal-dpl-ccdb-backend]: [22:55:11][INFO] Correctly handshaken websocket connection.
+[1161374:itstpc-track-matcher]: [INFO] Instrumenting crash signals
+[1161374:itstpc-track-matcher]: [INFO] Spawing new device itstpc-track-matcher in process with pid 1161374
+[1161374:itstpc-track-matcher]: [22:55:11][INFO] 
+[1161374:itstpc-track-matcher]:       ______      _    _______  _________ 
+[1161374:itstpc-track-matcher]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1161374:itstpc-track-matcher]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1161374:itstpc-track-matcher]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1161374:itstpc-track-matcher]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1161374:itstpc-track-matcher]: 
+[1161374:itstpc-track-matcher]: [22:55:11][STATE] Starting FairMQ state machine --> IDLE
+[1161374:itstpc-track-matcher]: [22:55:11][STATE] IDLE ---> INITIALIZING DEVICE
+[1161374:itstpc-track-matcher]: [22:55:11][INFO] CTP Lumi request for TPC corr.map scaling=OFF, override values: lumiMean=0 lumiInst=0 lumiScaleMode=0
+[1161374:itstpc-track-matcher]: [22:55:11][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1161374:itstpc-track-matcher]: [22:55:11][STATE] INITIALIZED ---> BINDING
+[1161374:itstpc-track-matcher]: [22:55:11][STATE] BINDING ---> BOUND
+[1161374:itstpc-track-matcher]: [22:55:11][STATE] BOUND ---> CONNECTING
+[1161374:itstpc-track-matcher]: [22:55:11][STATE] CONNECTING ---> DEVICE READY
+[1161374:itstpc-track-matcher]: [22:55:11][STATE] DEVICE READY ---> INITIALIZING TASK
+[1161374:itstpc-track-matcher]: [22:55:11][STATE] INITIALIZING TASK ---> READY
+[1161374:itstpc-track-matcher]: [22:55:11][STATE] READY ---> RUNNING
+[1161374:itstpc-track-matcher]: [22:55:11][INFO] fair::mq::Device running...
+[1161374:itstpc-track-matcher]: [22:55:11][INFO] LHCPeriod is not available, using current month OCT
+[1161374:itstpc-track-matcher]: [22:55:11][INFO] Correctly handshaken websocket connection.
+[1161370:ft0-recpoints-reader]: [22:55:11][INFO] Loaded FT0 RecPoints tree from o2reco_ft0.root with 1 entries
+[1161370:ft0-recpoints-reader]: [22:55:11][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1161370:ft0-recpoints-reader]: [22:55:11][STATE] INITIALIZED ---> BINDING
+[1161370:ft0-recpoints-reader]: [22:55:11][STATE] BINDING ---> BOUND
+[1161370:ft0-recpoints-reader]: [22:55:11][STATE] BOUND ---> CONNECTING
+[1161370:ft0-recpoints-reader]: [22:55:11][STATE] CONNECTING ---> DEVICE READY
+[1161370:ft0-recpoints-reader]: [22:55:11][STATE] DEVICE READY ---> INITIALIZING TASK
+[1161370:ft0-recpoints-reader]: [22:55:11][STATE] INITIALIZING TASK ---> READY
+[1161370:ft0-recpoints-reader]: [22:55:11][STATE] READY ---> RUNNING
+[1161370:ft0-recpoints-reader]: [22:55:11][INFO] fair::mq::Device running...
+[1161370:ft0-recpoints-reader]: [22:55:11][INFO] LHCPeriod is not available, using current month OCT
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_0
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_1
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_2
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_3
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_4
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_5
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_6
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_7
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_8
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_9
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_10
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_11
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_12
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_13
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_14
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_15
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_16
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_17
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_18
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_19
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_20
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_21
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_22
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_23
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_24
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_25
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_26
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_27
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_28
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_29
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_30
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_31
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_32
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_33
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_34
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] binary branch set up: TPCClusterNative_35
+[1161367:tpc-native-cluster-reader]: [22:55:11][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1161367:tpc-native-cluster-reader]: [22:55:11][STATE] INITIALIZED ---> BINDING
+[1161367:tpc-native-cluster-reader]: [22:55:11][STATE] BINDING ---> BOUND
+[1161367:tpc-native-cluster-reader]: [22:55:11][STATE] BOUND ---> CONNECTING
+[1161367:tpc-native-cluster-reader]: [22:55:11][STATE] CONNECTING ---> DEVICE READY
+[1161367:tpc-native-cluster-reader]: [22:55:11][STATE] DEVICE READY ---> INITIALIZING TASK
+[1161367:tpc-native-cluster-reader]: [22:55:11][STATE] INITIALIZING TASK ---> READY
+[1161367:tpc-native-cluster-reader]: [22:55:11][STATE] READY ---> RUNNING
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] fair::mq::Device running...
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] LHCPeriod is not available, using current month OCT
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_0: publishing binary chunk of 210528 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_1: publishing binary chunk of 167748 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_2: publishing binary chunk of 182928 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_3: publishing binary chunk of 193536 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_4: publishing binary chunk of 177792 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_5: publishing binary chunk of 194004 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_6: publishing binary chunk of 182316 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_7: publishing binary chunk of 186012 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_8: publishing binary chunk of 186960 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_9: publishing binary chunk of 158208 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_10: publishing binary chunk of 182376 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_11: publishing binary chunk of 166824 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_12: publishing binary chunk of 207168 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_13: publishing binary chunk of 145764 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_14: publishing binary chunk of 198432 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_15: publishing binary chunk of 193080 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_16: publishing binary chunk of 190716 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_17: publishing binary chunk of 175056 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_18: publishing binary chunk of 197304 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_19: publishing binary chunk of 202560 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_20: publishing binary chunk of 182988 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_21: publishing binary chunk of 180732 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_22: publishing binary chunk of 161616 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_23: publishing binary chunk of 210384 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_24: publishing binary chunk of 202080 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_25: publishing binary chunk of 184800 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_26: publishing binary chunk of 157704 bytes(s)
+[1161370:ft0-recpoints-reader]: [22:55:11][INFO] Sending end-of-stream message to channel from_ft0-recpoints-reader_to_internal-dpl-ccdb-backend
+[1161370:ft0-recpoints-reader]: [22:55:11][INFO] Sending end-of-stream message to channel from_ft0-recpoints-reader_to_itstpc-track-matcher
+[1161370:ft0-recpoints-reader]: [22:55:11][INFO] Correctly handshaken websocket connection.
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_27: publishing binary chunk of 188580 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_28: publishing binary chunk of 187728 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_29: publishing binary chunk of 139104 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_30: publishing binary chunk of 170856 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_31: publishing binary chunk of 170556 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_32: publishing binary chunk of 171996 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_33: publishing binary chunk of 182448 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_34: publishing binary chunk of 184092 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] branch TPCClusterNative_35: publishing binary chunk of 202488 bytes(s)
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] Correctly handshaken websocket connection.
+[1161367:tpc-native-cluster-reader]: [22:55:11][INFO] Sending end-of-stream message to channel from_tpc-native-cluster-reader_to_tpc-clusters-sharing-map-producer
+[1161368:its-track-reader]: [22:55:12][INFO] Loaded tree from o2trac_its.root with 1 entries
+[1161368:its-track-reader]: [22:55:12][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1161368:its-track-reader]: [22:55:12][STATE] INITIALIZED ---> BINDING
+[1161368:its-track-reader]: [22:55:12][STATE] BINDING ---> BOUND
+[1161368:its-track-reader]: [22:55:12][STATE] BOUND ---> CONNECTING
+[1161368:its-track-reader]: [22:55:12][STATE] CONNECTING ---> DEVICE READY
+[1161368:its-track-reader]: [22:55:12][STATE] DEVICE READY ---> INITIALIZING TASK
+[1161368:its-track-reader]: [22:55:12][STATE] INITIALIZING TASK ---> READY
+[1161368:its-track-reader]: [22:55:12][STATE] READY ---> RUNNING
+[1161368:its-track-reader]: [22:55:12][INFO] fair::mq::Device running...
+[1161368:its-track-reader]: [22:55:12][INFO] LHCPeriod is not available, using current month OCT
+[1161368:its-track-reader]: [22:55:12][INFO] Pushing 2469 track in 130 ROFs at entry 0
+[1161369:its-cluster-reader]: [22:55:12][INFO] Loaded tree from o2clus_its.root with 1 entries
+[1161369:its-cluster-reader]: [22:55:12][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1161369:its-cluster-reader]: [22:55:12][STATE] INITIALIZED ---> BINDING
+[1161369:its-cluster-reader]: [22:55:12][STATE] BINDING ---> BOUND
+[1161369:its-cluster-reader]: [22:55:12][STATE] BOUND ---> CONNECTING
+[1161369:its-cluster-reader]: [22:55:12][STATE] CONNECTING ---> DEVICE READY
+[1161369:its-cluster-reader]: [22:55:12][STATE] DEVICE READY ---> INITIALIZING TASK
+[1161369:its-cluster-reader]: [22:55:12][STATE] INITIALIZING TASK ---> READY
+[1161369:its-cluster-reader]: [22:55:12][STATE] READY ---> RUNNING
+[1161369:its-cluster-reader]: [22:55:12][INFO] fair::mq::Device running...
+[1161369:its-cluster-reader]: [22:55:12][INFO] LHCPeriod is not available, using current month OCT
+[1161369:its-cluster-reader]: [22:55:12][INFO] ITSClusterReader pushes 130 ROFRecords,37143 compact clusters at entry 0
+[1161368:its-track-reader]: [22:55:12][INFO] Sending end-of-stream message to channel from_its-track-reader_to_itstpc-track-matcher
+[1161368:its-track-reader]: [22:55:12][INFO] Sending end-of-stream message to channel from_its-track-reader_to_internal-dpl-injected-dummy-sink
+[1161368:its-track-reader]: [22:55:12][INFO] Correctly handshaken websocket connection.
+[1161371:tpc-track-reader]: [22:55:12][INFO] Will use MC-truth from TPCTracksMCTruth
+[1161371:tpc-track-reader]: [22:55:12][INFO] Loaded tree from tpctracks.root with 1 entries
+[1161371:tpc-track-reader]: [22:55:12][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1161371:tpc-track-reader]: [22:55:12][STATE] INITIALIZED ---> BINDING
+[1161371:tpc-track-reader]: [22:55:12][STATE] BINDING ---> BOUND
+[1161371:tpc-track-reader]: [22:55:12][STATE] BOUND ---> CONNECTING
+[1161371:tpc-track-reader]: [22:55:12][STATE] CONNECTING ---> DEVICE READY
+[1161371:tpc-track-reader]: [22:55:12][STATE] DEVICE READY ---> INITIALIZING TASK
+[1161371:tpc-track-reader]: [22:55:12][STATE] INITIALIZING TASK ---> READY
+[1161371:tpc-track-reader]: [22:55:12][STATE] READY ---> RUNNING
+[1161371:tpc-track-reader]: [22:55:12][INFO] fair::mq::Device running...
+[1161371:tpc-track-reader]: [22:55:12][INFO] LHCPeriod is not available, using current month OCT
+[1161371:tpc-track-reader]: [22:55:12][INFO] TPCTrackReader pushes 3062 tracks from entries 0 : 0
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:12][INFO] Timing for TPC clusters sharing map creation: Cpu: 1.000e-02 Real: 3.482e-03 s
+[1161369:its-cluster-reader]: [22:55:12][INFO] Sending end-of-stream message to channel from_its-cluster-reader_to_itstpc-track-matcher
+[1161369:its-cluster-reader]: [22:55:12][INFO] Sending end-of-stream message to channel from_its-cluster-reader_to_internal-dpl-injected-dummy-sink
+[1161369:its-cluster-reader]: [22:55:12][INFO] Correctly handshaken websocket connection.
+[1161371:tpc-track-reader]: [22:55:12][INFO] Sending end-of-stream message to channel from_tpc-track-reader_to_tpc-clusters-sharing-map-producer
+[1161371:tpc-track-reader]: [22:55:12][INFO] Sending end-of-stream message to channel from_tpc-track-reader_to_itstpc-track-matcher
+[1161371:tpc-track-reader]: [22:55:12][INFO] Correctly handshaken websocket connection.
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:12][INFO] Sending end-of-stream message to channel from_tpc-clusters-sharing-map-producer_to_itstpc-track-matcher
+[1161372:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to JCentral. Please wait
+[1161372:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to 137.138.99.189
+[1161372:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Successfully connected to 137.138.99.189
+[1161372:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/CTP/Calib/OrbitReset/06/62200/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee in SE <ALICE::CERN::EOS>
+[1161372:internal-dpl-ccdb-backend]: [22:55:13][INFO] ccdb reads http://alice-ccdb.cern.ch/CTP/Calib/OrbitReset/1546300800000/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697144111-X5XmfX), 
+[1161372:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Param/MatLUT/05/24630/d5a2a33e-dba4-11ec-9e90-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[1161372:internal-dpl-ccdb-backend]: [22:55:13][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Param/MatLUT/1546300800000/d5a2a33e-dba4-11ec-9e90-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697144111-X5XmfX), 
+[1161372:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/ITS/Calib/ClusterDictionary/09/10449/c245a720-9fe3-11ec-975c-200114580202 in SE <ALICE::CERN::OCDB>
+[1161372:internal-dpl-ccdb-backend]: [22:55:13][INFO] ccdb reads http://alice-ccdb.cern.ch/ITS/Calib/ClusterDictionary/0/c245a720-9fe3-11ec-975c-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697144111-X5XmfX), 
+[1161372:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/ITS/Config/AlpideParam/02/10715/76f24ad5-e339-11ec-9e90-200114580204 in SE <ALICE::CERN::OCDB>
+[1161372:internal-dpl-ccdb-backend]: [22:55:13][INFO] ccdb reads http://alice-ccdb.cern.ch/ITS/Config/AlpideParam/1546300800000/76f24ad5-e339-11ec-9e90-200114580204 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697144111-X5XmfX), 
+[1161372:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GeometryAligned/06/21224/787687c0-287a-11ed-8141-200114580202 in SE <ALICE::CERN::OCDB>
+[1161372:internal-dpl-ccdb-backend]: [22:55:13][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GeometryAligned/1546300800000/787687c0-287a-11ed-8141-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697144111-X5XmfX), 
+[1161372:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TPC/Calib/LaserTracks/14/60057/dd26d771-0929-11ed-8000-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[1161372:internal-dpl-ccdb-backend]: [22:55:13][INFO] ccdb reads http://alice-ccdb.cern.ch/TPC/Calib/LaserTracks/1546300800000/dd26d771-0929-11ed-8000-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697144111-X5XmfX), 
+[1161372:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TPC/Calib/CorrectionMapV2/04/24306/188b3306-3a84-11ee-a1e3-200114580202 in SE <ALICE::CERN::OCDB>
+[1161372:internal-dpl-ccdb-backend]: [22:55:13][INFO] ccdb reads http://alice-ccdb.cern.ch/TPC/Calib/CorrectionMapV2/1/188b3306-3a84-11ee-a1e3-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697144111-X5XmfX), 
+[1161372:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TPC/Calib/CorrectionMapRefV2/10/16377/1f4bfb7e-3a84-11ee-a1e3-200114580202 in SE <ALICE::CERN::OCDB>
+[1161372:internal-dpl-ccdb-backend]: [22:55:13][INFO] ccdb reads http://alice-ccdb.cern.ch/TPC/Calib/CorrectionMapRefV2/1/1f4bfb7e-3a84-11ee-a1e3-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697144111-X5XmfX), 
+[1161372:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPECS/03/07584/646e9be2-0210-11ed-8000-200114580202 in SE <ALICE::CERN::OCDB>
+[1161372:internal-dpl-ccdb-backend]: [22:55:14][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPECS/1546300800000/646e9be2-0210-11ed-8000-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697144111-X5XmfX), 
+[1161372:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TPC/Calib/VDriftTgl/04/00148/01683855-2e90-11ed-ac0b-200114580202 in SE <ALICE::CERN::OCDB>
+[1161372:internal-dpl-ccdb-backend]: [22:55:14][INFO] ccdb reads http://alice-ccdb.cern.ch/TPC/Calib/VDriftTgl/1546300800000/01683855-2e90-11ed-ac0b-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697144111-X5XmfX), 
+[1161372:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPLHCIF/04/60609/b3296373-efea-11ec-b9c0-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[1161372:internal-dpl-ccdb-backend]: [22:55:14][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPLHCIF/1546300800000/b3296373-efea-11ec-b9c0-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697144111-X5XmfX), 
+[1161372:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPMagField/06/62924/01d633ab-efdf-11ec-841e-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[1161372:internal-dpl-ccdb-backend]: [22:55:14][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPMagField/1546300800000/01d633ab-efdf-11ec-841e-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697144111-X5XmfX), 
+[1161372:internal-dpl-ccdb-backend]: [22:55:14][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_itstpc-track-matcher
+[1161372:internal-dpl-ccdb-backend]: [22:55:14][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_internal-dpl-injected-dummy-sink
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] ITS Alpide param updated
+[1161374:itstpc-track-matcher]: ITSAlpideParam.roFrameLengthInBC : 198		[ CCDB ]
+[1161374:itstpc-track-matcher]: ITSAlpideParam.roFrameLengthTrig : 6000		[ CCDB ]
+[1161374:itstpc-track-matcher]: ITSAlpideParam.strobeDelay : 99.8031		[ CCDB ]
+[1161374:itstpc-track-matcher]: ITSAlpideParam.strobeLengthCont : -1		[ CCDB ]
+[1161374:itstpc-track-matcher]: ITSAlpideParam.strobeLengthTrig : 100		[ CCDB ]
+[1161374:itstpc-track-matcher]: ITSAlpideParam.roFrameBiasInBC : 64		[ CCDB ]
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] Caching in 140683157779632 ptr to ITS/ALPIDEPARAM/0 (0x7ff5d8b222c0)
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] cluster dictionary updated
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] Caching in 140683170449168 ptr to ITS/CLUSDICT/0 (0x5f33db0)
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] GRP MagField object updated
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] MagneticField::Print: MagneticFieldMap:
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] MagneticField::Print: Solenoid (-1*)5 kG, Dipole ON (-1) 
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] MagneticField::Print: Machine B fields for p-p  beam (7000 GeV): QGrad: 22.0002 Dipole: 37.8781
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] MagneticField::Print: Uses Sol30_Dip6_Hole  of /root/alice/sw/slc9_x86-64/O2/segment-local1/share/Common/maps/mfchebKGI_sym.root
+[1161374:itstpc-track-matcher]: Info in <TGeoGlobalMagField::SetField>: Global magnetic field set to <MagneticFieldMap>
+[1161374:itstpc-track-matcher]: Info in <TGeoGlobalMagField::Lock>: Global magnetic field <MagneticFieldMap> is now locked
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] Caching in 140683172344944 ptr to GLO/GRPMAGFIELD/0 (0x5f378c0)
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] GRP LHCIF object updated
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] Caching in 140683172342672 ptr to GLO/GRPLHCIF/0 (0x6aa91e0)
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] GRP ECS object updated
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] Caching in 140683156996016 ptr to GLO/GRPECS/0 (0x4688d00)
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] orbit reset time updated to 1546300800000
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] Caching in 140683157778000 ptr to CTP/ORBITRESET/0 (0x6aabec0)
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] material LUT updated
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] Loaded 440 params from $(O2_ROOT)/share/Common/maps/sol5k.txt
+[1161374:itstpc-track-matcher]: [22:55:14][INFO] Caching in 140683161223920 ptr to GLO/MATLUT/0 (0x6bba690)
+[1161374:itstpc-track-matcher]: Info in <TGeoManager::CloseGeometry>: Geometry loaded from file...
+[1161374:itstpc-track-matcher]: Info in <TGeoManager::SetTopVolume>: Top volume is cave. Master volume is cave
+[1161374:itstpc-track-matcher]: Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+[1161374:itstpc-track-matcher]: Info in <TGeoManager::Voxelize>: Voxelizing...
+[1161374:itstpc-track-matcher]: Info in <TGeoManager::CountLevels>: max level = 13, max placements = 735
+[1161374:itstpc-track-matcher]: Info in <TGeoManager::CloseGeometry>: 5346742 nodes/ 27442 volume UID's in FAIR geometry
+[1161374:itstpc-track-matcher]: Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] aligned geometry updated
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] Caching in 140683170476848 ptr to GLO/GEOMALIGN/0 (0x725ba40)
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] accountLaserCalibration 1 t 10 vs 0
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] Caching in 140683156993552 ptr to TPC/CalibLaserTracks/0 (0x4d3cb90)
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] accountDriftCorrectionITSTPCTgl 1 t 0 vs 0
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] Caching in 140683156998288 ptr to TPC/VDriftTgl/0 (0x70a4ef0)
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] Will prefer TPC Drift from Laser with time 10 to TPCITSTgl with time 0
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] InstLumiOverride=0, UseCTPLumi=false -> instLumi=0, meanLumi=1 -> LumiScale=0, lumiScaleMode=0
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] Caching in 140683172324176 ptr to TPC/CorrMap/0 (0x6fc1f80)
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] Caching in 140683172333424 ptr to TPC/CorrMapRef/0 (0x6fc41c0)
+[1161374:itstpc-track-matcher]: tpcitsMatch.runAfterBurner : true		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.validateMatchByFIT : Prefer		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.crudeAbsDiffCut[0] : 2		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.crudeAbsDiffCut[1] : 2		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.crudeAbsDiffCut[2] : 0.2		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.crudeAbsDiffCut[3] : 0.2		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.crudeAbsDiffCut[4] : 4		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.crudeNSigma2Cut[0] : 49		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.crudeNSigma2Cut[1] : 49		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.crudeNSigma2Cut[2] : 49		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.crudeNSigma2Cut[3] : 49		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.crudeNSigma2Cut[4] : 49		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.XMatchingRef : 70		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.minTPCTrackR : 50		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.minITSTrackR : 50		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.minTPCClusters : 25		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.askMinTPCRow : 15		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.cutMatchingChi2 : 30		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.maxMatchCandidates : 5		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.safeMarginTimeCorrErr : 0		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.safeMarginTPCITSTimeBin : 1		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.safeMarginTPCTimeEdge : 20		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.tpcTimeICMatchingNSigma : 4		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.tpcExtConstrainedNSigma : 4		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.tfEdgeTimeToleranceMUS : 1		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.maxVDriftUncertainty : 0.02		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.maxVDriftTrackQ2Pt : 1		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.maxVDritTimeOffset : 5		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.globalTimeBiasMUS : 0		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.globalTimeExtraErrorMUS : 0		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.requireToReachLayerAB : 5		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.lowestLayerAB : 3		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.minContributingLayersAB : 2		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.maxABLinksOnLayer : 10		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.maxABFinalHyp : 20		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.cutABTrack2ClChi2 : 30		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.nABSigmaY : 4		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.nABSigmaZ : 4		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.err2ABExtraY : 0.01		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.err2ABExtraZ : 0.01		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.verbosity : 0		[ CODE ]
+[1161374:itstpc-track-matcher]: tpcitsMatch.matCorr : 2		[ CODE ]
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] Loading ITS T2L matrices from TGeo
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] Loading ITS T2G rotation 2D matrices
+[1161374:itstpc-track-matcher]: 
+[1161374:itstpc-track-matcher]: ******************** TPC-ITS matching component ********************
+[1161374:itstpc-track-matcher]: MC truth: on
+[1161374:itstpc-track-matcher]: Matching reference X: 70.000
+[1161374:itstpc-track-matcher]: Account Z dimension: off
+[1161374:itstpc-track-matcher]: Cut on matching chi2: 30.000
+[1161374:itstpc-track-matcher]: Max number ITS candidates per TPC track: 5
+[1161374:itstpc-track-matcher]: Crude cut on track params:  2.000e+00 2.000e+00 2.000e-01 2.000e-01 4.000e+00
+[1161374:itstpc-track-matcher]: NSigma^2 cut on track params:   49.00  49.00  49.00  49.00  49.00
+[1161374:itstpc-track-matcher]: TPC Z->time(bins) bracketing safety margin:  20.00
+[1161374:itstpc-track-matcher]: Output debug tree (off) file: dbg_TPCITSmatch.root
+[1161374:itstpc-track-matcher]: **********************************************************************
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] Updating TPC fast transform map with new VDrift factor of 1 wrt reference 2.58 and DriftTimeOffset correction 0 wrt 0 from source Laser
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] RecoContainer::createTracks took 0.004483 CPU s.
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] Validated 1933 matches out of 1949 for 2475 TPC and 2852 ITS tracks in 2 iterations
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] AfterBurner will check 0 seeds from 480 TPC tracks and 0 interaction candidates with 1 threads
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] TPC-ITS matching total timing: Cpu: 1.550e+00 Real: 1.454e+00 s in 1 slots
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] Sending end-of-stream message to channel from_itstpc-track-matcher_to_itstpc-track-writer
+[1161375:itstpc-track-writer]: [22:55:15][INFO] Writing 1933 TPC-ITS matches
+[INFO] Quitting
+[INFO] QUIT_REQUESTED
+[1161367:tpc-native-cluster-reader]: [22:55:15][INFO] Received device shutdown request (signal 15).
+[1161367:tpc-native-cluster-reader]: [22:55:15][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1161368:its-track-reader]: [22:55:15][INFO] Received device shutdown request (signal 15).
+[1161368:its-track-reader]: [22:55:15][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:15][INFO] Received device shutdown request (signal 15).
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:15][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1161369:its-cluster-reader]: [22:55:15][INFO] Received device shutdown request (signal 15).
+[1161369:its-cluster-reader]: [22:55:15][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][INFO] Received device shutdown request (signal 15).
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1161367:tpc-native-cluster-reader]: [22:55:15][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1161367:tpc-native-cluster-reader]: [22:55:15][STATE] RUNNING ---> READY
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] Received device shutdown request (signal 15).
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1161374:itstpc-track-matcher]: [22:55:15][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1161374:itstpc-track-matcher]: [22:55:15][STATE] RUNNING ---> READY
+[1161374:itstpc-track-matcher]: [22:55:15][STATE] READY ---> RESETTING TASK
+[1161374:itstpc-track-matcher]: [22:55:15][STATE] RESETTING TASK ---> DEVICE READY
+[1161374:itstpc-track-matcher]: [22:55:15][STATE] DEVICE READY ---> RESETTING DEVICE
+[1161367:tpc-native-cluster-reader]: [22:55:15][STATE] READY ---> RESETTING TASK
+[1161367:tpc-native-cluster-reader]: [22:55:15][STATE] RESETTING TASK ---> DEVICE READY
+[1161367:tpc-native-cluster-reader]: [22:55:15][STATE] DEVICE READY ---> RESETTING DEVICE
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][INFO] CCDB cache miss/hit ratio:
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][INFO]   GLO/Config/GRPMagField: 1/0 (1024-1024 bytes)
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][INFO]   GLO/Config/GRPLHCIF: 1/0 (2048-2048 bytes)
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][INFO]   TPC/Calib/CorrectionMapRefV2: 1/0 (9216-9216 bytes)
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][INFO]   TPC/Calib/VDriftTgl: 1/0 (2048-2048 bytes)
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][INFO]   GLO/Config/GRPECS: 1/0 (2048-2048 bytes)
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][INFO]   TPC/Calib/CorrectionMapV2: 1/0 (9216-9216 bytes)
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][INFO]   TPC/Calib/LaserTracks: 1/0 (2048-2048 bytes)
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][INFO]   GLO/Config/GeometryAligned: 1/0 (1847296-1847296 bytes)
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][INFO]   ITS/Config/AlpideParam: 1/0 (2048-2048 bytes)
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][INFO]   ITS/Calib/ClusterDictionary: 1/0 (27648-27648 bytes)
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][INFO]   GLO/Param/MatLUT: 1/0 (9225216-9225216 bytes)
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][INFO]   CTP/Calib/OrbitReset: 1/2 (1024-1024 bytes)
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][STATE] RUNNING ---> READY
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:15][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:15][STATE] RUNNING ---> READY
+[1161368:its-track-reader]: [22:55:15][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1161368:its-track-reader]: [22:55:15][STATE] RUNNING ---> READY
+[1161369:its-cluster-reader]: [22:55:15][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1161369:its-cluster-reader]: [22:55:15][STATE] RUNNING ---> READY
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][STATE] READY ---> RESETTING TASK
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:15][STATE] READY ---> RESETTING TASK
+[1161368:its-track-reader]: [22:55:15][STATE] READY ---> RESETTING TASK
+[1161368:its-track-reader]: [22:55:15][STATE] RESETTING TASK ---> DEVICE READY
+[1161369:its-cluster-reader]: [22:55:15][STATE] READY ---> RESETTING TASK
+[1161369:its-cluster-reader]: [22:55:15][STATE] RESETTING TASK ---> DEVICE READY
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][STATE] RESETTING TASK ---> DEVICE READY
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:15][STATE] RESETTING TASK ---> DEVICE READY
+[1161368:its-track-reader]: [22:55:15][STATE] DEVICE READY ---> RESETTING DEVICE
+[1161369:its-cluster-reader]: [22:55:15][STATE] DEVICE READY ---> RESETTING DEVICE
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][STATE] DEVICE READY ---> RESETTING DEVICE
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:15][STATE] DEVICE READY ---> RESETTING DEVICE
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:15][STATE] RESETTING DEVICE ---> IDLE
+[1161367:tpc-native-cluster-reader]: [22:55:15][STATE] RESETTING DEVICE ---> IDLE
+[1161374:itstpc-track-matcher]: [22:55:15][STATE] RESETTING DEVICE ---> IDLE
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:15][STATE] IDLE ---> EXITING
+[1161367:tpc-native-cluster-reader]: [22:55:15][STATE] IDLE ---> EXITING
+[1161368:its-track-reader]: [22:55:15][STATE] RESETTING DEVICE ---> IDLE
+[1161374:itstpc-track-matcher]: [22:55:15][STATE] IDLE ---> EXITING
+[1161376:internal-dpl-injected-dummy-sink]: [22:55:15][STATE] Exiting FairMQ state machine
+[1161368:its-track-reader]: [22:55:15][STATE] IDLE ---> EXITING
+[1161369:its-cluster-reader]: [22:55:15][STATE] RESETTING DEVICE ---> IDLE
+[1161369:its-cluster-reader]: [22:55:15][STATE] IDLE ---> EXITING
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][STATE] RESETTING DEVICE ---> IDLE
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][STATE] IDLE ---> EXITING
+[1161374:itstpc-track-matcher]: [22:55:15][STATE] Exiting FairMQ state machine
+[1161368:its-track-reader]: [22:55:15][STATE] Exiting FairMQ state machine
+[1161372:internal-dpl-ccdb-backend]: [22:55:15][STATE] Exiting FairMQ state machine
+[1161367:tpc-native-cluster-reader]: [22:55:15][STATE] Exiting FairMQ state machine
+[1161369:its-cluster-reader]: [22:55:15][STATE] Exiting FairMQ state machine
+[1161366:internal-dpl-clock]: [22:55:15][INFO] Received device shutdown request (signal 15).
+[1161366:internal-dpl-clock]: [22:55:15][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1161371:tpc-track-reader]: [22:55:15][INFO] Received device shutdown request (signal 15).
+[1161371:tpc-track-reader]: [22:55:15][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:15][INFO] Received device shutdown request (signal 15).
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:15][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1161370:ft0-recpoints-reader]: [22:55:15][INFO] Received device shutdown request (signal 15).
+[1161370:ft0-recpoints-reader]: [22:55:15][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1161375:itstpc-track-writer]: [22:55:15][INFO] Received device shutdown request (signal 15).
+[1161375:itstpc-track-writer]: [22:55:15][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1161371:tpc-track-reader]: [22:55:15][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1161371:tpc-track-reader]: [22:55:15][STATE] RUNNING ---> READY
+[1161375:itstpc-track-writer]: [22:55:15][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1161366:internal-dpl-clock]: [22:55:15][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1161370:ft0-recpoints-reader]: [22:55:15][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1161370:ft0-recpoints-reader]: [22:55:15][STATE] RUNNING ---> READY
+[1161371:tpc-track-reader]: [22:55:15][STATE] READY ---> RESETTING TASK
+[1161371:tpc-track-reader]: [22:55:15][STATE] RESETTING TASK ---> DEVICE READY
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:15][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:15][STATE] RUNNING ---> READY
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:15][STATE] READY ---> RESETTING TASK
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:15][STATE] RESETTING TASK ---> DEVICE READY
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:15][STATE] DEVICE READY ---> RESETTING DEVICE
+[1161370:ft0-recpoints-reader]: [22:55:15][STATE] READY ---> RESETTING TASK
+[1161370:ft0-recpoints-reader]: [22:55:15][STATE] RESETTING TASK ---> DEVICE READY
+[1161370:ft0-recpoints-reader]: [22:55:15][STATE] DEVICE READY ---> RESETTING DEVICE
+[1161371:tpc-track-reader]: [22:55:15][STATE] DEVICE READY ---> RESETTING DEVICE
+[1161371:tpc-track-reader]: [22:55:15][STATE] RESETTING DEVICE ---> IDLE
+[1161371:tpc-track-reader]: [22:55:15][STATE] IDLE ---> EXITING
+[1161371:tpc-track-reader]: [22:55:15][STATE] Exiting FairMQ state machine
+[1161370:ft0-recpoints-reader]: [22:55:15][STATE] RESETTING DEVICE ---> IDLE
+[1161370:ft0-recpoints-reader]: [22:55:15][STATE] IDLE ---> EXITING
+[1161370:ft0-recpoints-reader]: [22:55:15][STATE] Exiting FairMQ state machine
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:15][STATE] RESETTING DEVICE ---> IDLE
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:15][STATE] IDLE ---> EXITING
+[1161373:tpc-clusters-sharing-map-producer]: [22:55:15][STATE] Exiting FairMQ state machine
+[1161366:internal-dpl-clock]: [22:55:16][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_tpc-native-cluster-reader
+[1161366:internal-dpl-clock]: [22:55:16][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_its-track-reader
+[1161375:itstpc-track-writer]: [22:55:16][STATE] RUNNING ---> READY
+[1161375:itstpc-track-writer]: [22:55:16][STATE] READY ---> RESETTING TASK
+[1161375:itstpc-track-writer]: [22:55:16][STATE] RESETTING TASK ---> DEVICE READY
+[1161375:itstpc-track-writer]: [22:55:16][STATE] DEVICE READY ---> RESETTING DEVICE
+[1161366:internal-dpl-clock]: [22:55:16][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_its-cluster-reader
+[1161375:itstpc-track-writer]: [22:55:16][STATE] RESETTING DEVICE ---> IDLE
+[1161375:itstpc-track-writer]: [22:55:16][STATE] IDLE ---> EXITING
+[1161375:itstpc-track-writer]: [22:55:16][STATE] Exiting FairMQ state machine
+[1161366:internal-dpl-clock]: [22:57:57][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_ft0-recpoints-reader
+[1161366:internal-dpl-clock]: [22:57:57][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_tpc-track-reader
+[1161366:internal-dpl-clock]: [22:57:57][STATE] RUNNING ---> READY
+[1161366:internal-dpl-clock]: [22:57:57][STATE] READY ---> RESETTING TASK
+[1161366:internal-dpl-clock]: [22:57:57][STATE] RESETTING TASK ---> DEVICE READY
+[1161366:internal-dpl-clock]: [22:57:57][STATE] DEVICE READY ---> RESETTING DEVICE
+[1161366:internal-dpl-clock]: [22:57:57][INFO] Cleaning up for shared memory id '6d61090b'...
+[1161366:internal-dpl-clock]: [22:57:57][INFO] Found 0 unmanaged regions...
+[1161366:internal-dpl-clock]: [22:57:57][INFO] Found 1 managed segments...
+[1161366:internal-dpl-clock]: [22:57:57][INFO] Successfully removed 'fmq_6d61090b_m_0'.
+[1161366:internal-dpl-clock]: [22:57:57][INFO] Successfully removed 'fmq_6d61090b_mng'.
+[1161366:internal-dpl-clock]: [22:57:57][STATE] RESETTING DEVICE ---> IDLE
+[1161366:internal-dpl-clock]: [22:57:57][STATE] IDLE ---> EXITING
+[1161366:internal-dpl-clock]: [22:57:57][STATE] Exiting FairMQ state machine
+[INFO] ## Processes completed. Run summary:
+[INFO] ### Devices started: 11
+[INFO]  - Device internal-dpl-clock: pid 1161366 (exit 0)
+[INFO]  - Device tpc-native-cluster-reader: pid 1161367 (exit 0)
+[INFO]  - Device its-track-reader: pid 1161368 (exit 0)
+[INFO]  - Device its-cluster-reader: pid 1161369 (exit 0)
+[INFO]  - Device ft0-recpoints-reader: pid 1161370 (exit 0)
+[INFO]  - Device tpc-track-reader: pid 1161371 (exit 0)
+[INFO]  - Device internal-dpl-ccdb-backend: pid 1161372 (exit 0)
+[INFO]  - Device tpc-clusters-sharing-map-producer: pid 1161373 (exit 0)
+[INFO]  - Device itstpc-track-matcher: pid 1161374 (exit 0)
+[INFO]  - Device itstpc-track-writer: pid 1161375 (exit 0)
+[INFO]  - Device internal-dpl-injected-dummy-sink: pid 1161376 (exit 0)
+[INFO] Dumping used configuration in dpl-config.json
+TASK-EXIT-CODE: 0

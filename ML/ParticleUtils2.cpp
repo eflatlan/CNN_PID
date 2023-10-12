@@ -128,8 +128,8 @@ public:
         
 	
 
-				mtype.insertMember("phiCer", HOFFSET(ClusterCandidate, xe), H5::PredType::NATIVE_DOUBLE);
-				mtype.insertMember("thetaCer", HOFFSET(ClusterCandidate, ye), H5::PredType::NATIVE_DOUBLE);     
+				mtype.insertMember("phiCer", HOFFSET(ClusterCandidate, phiCer), H5::PredType::NATIVE_DOUBLE);
+				mtype.insertMember("thetaCer", HOFFSET(ClusterCandidate, thetaCer), H5::PredType::NATIVE_DOUBLE);     
 
 
 
@@ -189,7 +189,7 @@ mtype.insertMember("candStatusCkov", HOFFSET(ClusterCandidate, candStatusCkov), 
         hsize_t dims[1] = { x_values.size() };
         DataSpace dataspace(1, dims);
 
-        // Here I'm assuming particleGroup is defined and is of type H5::Group
+
         DataSet dataset = particleGroup.createDataSet("x_values", PredType::NATIVE_DOUBLE, dataspace);
         dataset.write(x_values.data(), PredType::NATIVE_DOUBLE);
 
@@ -210,8 +210,6 @@ mtype.insertMember("candStatusCkov", HOFFSET(ClusterCandidate, candStatusCkov), 
 
         dataset = particleGroup.createDataSet("candStatus_values", PredType::NATIVE_INT, dataspace);
         dataset.write(candStatus_values.data(), PredType::NATIVE_INT);
-
-
 
         dataset = particleGroup.createDataSet("candStatusCkov_values", PredType::NATIVE_INT, dataspace);
         dataset.write(candStatusCkov_values.data(), PredType::NATIVE_INT);

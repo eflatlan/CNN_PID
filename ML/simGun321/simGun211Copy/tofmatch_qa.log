@@ -1,0 +1,22 @@
+Running: TIME="#walltime %e" /usr/bin/time --output=tofmatch_qa.log_time ./tofmatch_qa.log_tmp.sh
+
+Processing /root/alice/sw/slc8_x86-64/O2/segment-local1/share/macro/checkTOFMatching.C...
+[INFO] Number of      matches = 131
+[INFO] Number of GOOD matches = 119 (0.91)
+[INFO] Number of BAD  matches = 12 (0.09)
+[INFO] Fraction of multiple hits = (21.8 +/- 3.8)%
+
+****************************************
+Minimizer is Linear / Migrad
+Chi2                      =      30.5454
+NDf                       =           36
+p0                        =     0.519405   +/-   0.0318196   
+[INFO] TOF matching eff (pt > 1) = 0.519405 +/- 0.031820
+
+****************************************
+Minimizer is Linear / Migrad
+Chi2                      =      2.39887
+NDf                       =            9
+p0                        =     0.212468   +/-   0.0581999   
+[INFO] TOF-track mismatch (pt > 1) = 0.212468 +/- 0.058200
+TASK-EXIT-CODE: 0
