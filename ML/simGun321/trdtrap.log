@@ -1,226 +1,226 @@
 Running: TIME="#walltime %e" /usr/bin/time --output=trdtrap.log_time ./trdtrap.log_tmp.sh
-[INFO] Initialising O2 Data Processing Layer. Driver PID: 2103553.
-[INFO] Driver listening on port: 11633
+[INFO] Initialising O2 Data Processing Layer. Driver PID: 2140916.
+[INFO] Driver listening on port: 18996
 [INFO] Rate limiting set up at 500MB distributed over 1 readers
 [INFO] O2 Data Processing Layer initialised. We brake for nobody.
 [INFO] Optimised build. O2DEBUG / LOG(debug) / LOGF(debug) / assert statement will not be shown.
 [INFO] Redeployment of configuration asked.
-[INFO] Starting internal-dpl-clock on pid 2103615
-[INFO] Starting TRDDIGITREADER on pid 2103616
-[INFO] Starting TRAP on pid 2103617
-[INFO] Starting TRD-tracklet-writer on pid 2103618
-[INFO] Starting internal-dpl-injected-dummy-sink on pid 2103619
+[INFO] Starting internal-dpl-clock on pid 2140978
+[INFO] Starting TRDDIGITREADER on pid 2140979
+[INFO] Starting TRAP on pid 2140980
+[INFO] Starting TRD-tracklet-writer on pid 2140981
+[INFO] Starting internal-dpl-injected-dummy-sink on pid 2140982
 [INFO] Redeployment of configuration done.
-[2103616:TRDDIGITREADER]: [INFO] Instrumenting crash signals
-[2103619:internal-dpl-injected-dummy-sink]: [INFO] Instrumenting crash signals
-[2103616:TRDDIGITREADER]: [INFO] Spawing new device TRDDIGITREADER in process with pid 2103616
-[2103619:internal-dpl-injected-dummy-sink]: [INFO] Spawing new device internal-dpl-injected-dummy-sink in process with pid 2103619
-[2103616:TRDDIGITREADER]: [14:34:34][INFO] 
-[2103616:TRDDIGITREADER]:       ______      _    _______  _________ 
-[2103616:TRDDIGITREADER]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2103616:TRDDIGITREADER]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2103616:TRDDIGITREADER]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2103616:TRDDIGITREADER]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2103616:TRDDIGITREADER]: 
-[2103616:TRDDIGITREADER]: [14:34:34][STATE] Starting FairMQ state machine --> IDLE
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:34][INFO] 
-[2103619:internal-dpl-injected-dummy-sink]:       ______      _    _______  _________ 
-[2103619:internal-dpl-injected-dummy-sink]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2103619:internal-dpl-injected-dummy-sink]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2103619:internal-dpl-injected-dummy-sink]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2103619:internal-dpl-injected-dummy-sink]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2103619:internal-dpl-injected-dummy-sink]: 
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:34][STATE] Starting FairMQ state machine --> IDLE
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:34][STATE] IDLE ---> INITIALIZING DEVICE
-[2103616:TRDDIGITREADER]: [14:34:34][STATE] IDLE ---> INITIALIZING DEVICE
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:34][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:34][STATE] INITIALIZED ---> BINDING
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:34][STATE] BINDING ---> BOUND
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:34][STATE] BOUND ---> CONNECTING
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:34][STATE] CONNECTING ---> DEVICE READY
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:34][STATE] DEVICE READY ---> INITIALIZING TASK
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:34][STATE] INITIALIZING TASK ---> READY
-[2103615:internal-dpl-clock]: [INFO] Instrumenting crash signals
-[2103615:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 2103615
-[2103615:internal-dpl-clock]: [14:34:34][INFO] 
-[2103615:internal-dpl-clock]:       ______      _    _______  _________ 
-[2103615:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2103615:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2103615:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2103615:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2103615:internal-dpl-clock]: 
-[2103615:internal-dpl-clock]: [14:34:34][STATE] Starting FairMQ state machine --> IDLE
-[2103615:internal-dpl-clock]: [14:34:34][STATE] IDLE ---> INITIALIZING DEVICE
-[2103615:internal-dpl-clock]: [14:34:34][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2103615:internal-dpl-clock]: [14:34:34][STATE] INITIALIZED ---> BINDING
-[2103615:internal-dpl-clock]: [14:34:34][STATE] BINDING ---> BOUND
-[2103615:internal-dpl-clock]: [14:34:34][STATE] BOUND ---> CONNECTING
-[2103615:internal-dpl-clock]: [14:34:34][STATE] CONNECTING ---> DEVICE READY
-[2103615:internal-dpl-clock]: [14:34:34][STATE] DEVICE READY ---> INITIALIZING TASK
-[2103615:internal-dpl-clock]: [14:34:34][STATE] INITIALIZING TASK ---> READY
-[2103615:internal-dpl-clock]: [14:34:34][STATE] READY ---> RUNNING
-[2103615:internal-dpl-clock]: [14:34:34][INFO] fair::mq::Device running...
-[2103615:internal-dpl-clock]: [14:34:34][INFO] LHCPeriod is not available, using current month OCT
-[2103615:internal-dpl-clock]: [14:34:34][INFO] Correctly handshaken websocket connection.
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:34][STATE] READY ---> RUNNING
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:34][INFO] fair::mq::Device running...
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:34][INFO] LHCPeriod is not available, using current month OCT
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:34][INFO] Correctly handshaken websocket connection.
-[2103618:TRD-tracklet-writer]: [INFO] Instrumenting crash signals
-[2103617:TRAP]: [INFO] Instrumenting crash signals
-[2103618:TRD-tracklet-writer]: [INFO] Spawing new device TRD-tracklet-writer in process with pid 2103618
-[2103618:TRD-tracklet-writer]: [14:34:34][INFO] 
-[2103618:TRD-tracklet-writer]:       ______      _    _______  _________ 
-[2103618:TRD-tracklet-writer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2103618:TRD-tracklet-writer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2103618:TRD-tracklet-writer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2103618:TRD-tracklet-writer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2103618:TRD-tracklet-writer]: 
-[2103617:TRAP]: [INFO] Spawing new device TRAP in process with pid 2103617
-[2103618:TRD-tracklet-writer]: [14:34:34][STATE] Starting FairMQ state machine --> IDLE
-[2103617:TRAP]: [14:34:34][INFO] 
-[2103617:TRAP]:       ______      _    _______  _________ 
-[2103617:TRAP]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2103617:TRAP]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2103617:TRAP]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2103617:TRAP]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2103617:TRAP]: 
-[2103617:TRAP]: [14:34:34][STATE] Starting FairMQ state machine --> IDLE
-[2103618:TRD-tracklet-writer]: [14:34:34][STATE] IDLE ---> INITIALIZING DEVICE
-[2103617:TRAP]: [14:34:34][STATE] IDLE ---> INITIALIZING DEVICE
-[2103617:TRAP]: [14:34:34][INFO] Tracklet charges will be calculated using a fixed multiplier
-[2103617:TRAP]: [14:34:34][INFO] Trap simulation running with 4 threads 
-[2103617:TRAP]: [14:34:34][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2103617:TRAP]: [14:34:34][STATE] INITIALIZED ---> BINDING
-[2103617:TRAP]: [14:34:34][STATE] BINDING ---> BOUND
-[2103617:TRAP]: [14:34:34][STATE] BOUND ---> CONNECTING
-[2103617:TRAP]: [14:34:34][STATE] CONNECTING ---> DEVICE READY
-[2103617:TRAP]: [14:34:34][STATE] DEVICE READY ---> INITIALIZING TASK
-[2103617:TRAP]: [14:34:34][STATE] INITIALIZING TASK ---> READY
-[2103618:TRD-tracklet-writer]: [14:34:34][INFO] 0: branch  Tracklet set up
-[2103618:TRD-tracklet-writer]: [14:34:34][INFO] 1: branch  TRKLabels set up
-[2103618:TRD-tracklet-writer]: [14:34:34][INFO] 2: branch  TrackTrg set up
-[2103617:TRAP]: [14:34:34][STATE] READY ---> RUNNING
-[2103617:TRAP]: [14:34:34][INFO] fair::mq::Device running...
-[2103617:TRAP]: [14:34:34][INFO] LHCPeriod is not available, using current month OCT
-[2103618:TRD-tracklet-writer]: [14:34:34][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2103618:TRD-tracklet-writer]: [14:34:34][STATE] INITIALIZED ---> BINDING
-[2103618:TRD-tracklet-writer]: [14:34:34][STATE] BINDING ---> BOUND
-[2103618:TRD-tracklet-writer]: [14:34:34][STATE] BOUND ---> CONNECTING
-[2103618:TRD-tracklet-writer]: [14:34:34][STATE] CONNECTING ---> DEVICE READY
-[2103618:TRD-tracklet-writer]: [14:34:34][STATE] DEVICE READY ---> INITIALIZING TASK
-[2103618:TRD-tracklet-writer]: [14:34:34][STATE] INITIALIZING TASK ---> READY
-[2103617:TRAP]: [14:34:34][INFO] Correctly handshaken websocket connection.
-[2103618:TRD-tracklet-writer]: [14:34:34][STATE] READY ---> RUNNING
-[2103618:TRD-tracklet-writer]: [14:34:34][INFO] fair::mq::Device running...
-[2103618:TRD-tracklet-writer]: [14:34:34][INFO] LHCPeriod is not available, using current month OCT
-[2103618:TRD-tracklet-writer]: [14:34:34][INFO] Correctly handshaken websocket connection.
-[2103616:TRDDIGITREADER]: [14:34:35][INFO] Loaded tree from trddigits.root with 1 entries
-[2103616:TRDDIGITREADER]: [14:34:35][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2103616:TRDDIGITREADER]: [14:34:35][STATE] INITIALIZED ---> BINDING
-[2103616:TRDDIGITREADER]: [14:34:35][STATE] BINDING ---> BOUND
-[2103616:TRDDIGITREADER]: [14:34:35][STATE] BOUND ---> CONNECTING
-[2103616:TRDDIGITREADER]: [14:34:35][STATE] CONNECTING ---> DEVICE READY
-[2103616:TRDDIGITREADER]: [14:34:35][STATE] DEVICE READY ---> INITIALIZING TASK
-[2103616:TRDDIGITREADER]: [14:34:35][STATE] INITIALIZING TASK ---> READY
-[2103616:TRDDIGITREADER]: [14:34:35][STATE] READY ---> RUNNING
-[2103616:TRDDIGITREADER]: [14:34:35][INFO] fair::mq::Device running...
-[2103616:TRDDIGITREADER]: [14:34:35][INFO] LHCPeriod is not available, using current month OCT
-[2103616:TRDDIGITREADER]: [14:34:35][INFO] Pushing 27 TRD trigger records at entry 0
-[2103616:TRDDIGITREADER]: [14:34:35][INFO] Pushing 710814 digits for these trigger records
-[2103616:TRDDIGITREADER]: [14:34:35][INFO] Sending end-of-stream message to channel from_TRDDIGITREADER_to_TRAP
-[2103616:TRDDIGITREADER]: [14:34:35][INFO] Correctly handshaken websocket connection.
-[2103617:TRAP]: [14:34:35][INFO] TRD Trap Simulator Device running over incoming message
-[2103617:TRAP]: [14:34:35][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1697200475-ZlDpvt, Host: http://alice-ccdb.cern.ch/
-[2103617:TRAP]: Info in <TJAlienConnectionManager>: Opening connection to JCentral. Please wait
-[2103617:TRAP]: Info in <TJAlienConnectionManager>: Opening connection to 137.138.99.188
-[2103617:TRAP]: Info in <TJAlienConnectionManager>: Successfully connected to 137.138.99.188
-[2103617:TRAP]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TRD/Calib/ChamberCalibrations/07/05389/e704b36a-d22d-11ec-8dd8-511cc1ec24ee in SE <ALICE::CERN::OCDB>
-[2103617:TRAP]: [14:34:37][INFO] ccdb reads http://alice-ccdb.cern.ch/TRD/Calib/ChamberCalibrations/1/e704b36a-d22d-11ec-8dd8-511cc1ec24ee for 1546300800000 (retrieve, agent_id: localhost.localdomain-1697200475-ZlDpvt), 
-[2103617:TRAP]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TRD/Calib/LocalGainFactor/15/61343/100756ad-4ec7-11ed-bee3-200114580202 in SE <ALICE::CERN::OCDB>
-[2103617:TRAP]: [14:34:38][INFO] ccdb reads http://alice-ccdb.cern.ch/TRD/Calib/LocalGainFactor/1/100756ad-4ec7-11ed-bee3-200114580202 for 1546300800000 (retrieve, agent_id: localhost.localdomain-1697200475-ZlDpvt), 
-[2103617:TRAP]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TRD/Calib/PadNoise/15/62708/e81c639a-d22d-11ec-8dd8-511cc1ec24ee in SE <ALICE::CERN::OCDB>
-[2103617:TRAP]: [14:34:38][INFO] ccdb reads http://alice-ccdb.cern.ch/TRD/Calib/PadNoise/1/e81c639a-d22d-11ec-8dd8-511cc1ec24ee for 1546300800000 (retrieve, agent_id: localhost.localdomain-1697200475-ZlDpvt), 
-[2103617:TRAP]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TRD/Calib/ChamberStatus/13/46772/e724d29a-d22d-11ec-8dd8-511cc1ec24ee in SE <ALICE::CERN::OCDB>
-[2103617:TRAP]: [14:34:38][INFO] ccdb reads http://alice-ccdb.cern.ch/TRD/Calib/ChamberStatus/1/e724d29a-d22d-11ec-8dd8-511cc1ec24ee for 1546300800000 (retrieve, agent_id: localhost.localdomain-1697200475-ZlDpvt), 
-[2103617:TRAP]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TRD/Calib/PadStatus/01/08482/e8418bc7-d22d-11ec-8dd8-511cc1ec24ee in SE <ALICE::CERN::OCDB>
-[2103617:TRAP]: [14:34:38][INFO] ccdb reads http://alice-ccdb.cern.ch/TRD/Calib/PadStatus/1/e8418bc7-d22d-11ec-8dd8-511cc1ec24ee for 1546300800000 (retrieve, agent_id: localhost.localdomain-1697200475-ZlDpvt), 
-[2103617:TRAP]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TRD/TrapConfig/cf_pg-fpnp32_zs-s16-deh_tb30_trkl-b5n-fs1e24-ht200-qs0e24s24e23-pidlinear-pt100_ptrg.r5549/15/64250/e6c280c9-d22d-11ec-8dd8-511cc1ec24ee in SE <ALICE::CERN::OCDB>
-[2103617:TRAP]: [14:34:40][INFO] ccdb reads http://alice-ccdb.cern.ch/TRD/TrapConfig/cf_pg-fpnp32_zs-s16-deh_tb30_trkl-b5n-fs1e24-ht200-qs0e24s24e23-pidlinear-pt100_ptrg.r5549/1/e6c280c9-d22d-11ec-8dd8-511cc1ec24ee for 1546300800000 (retrieve, agent_id: localhost.localdomain-1697200475-ZlDpvt), 
-[2103617:TRAP]: [14:34:40][INFO] using TRAPconfig: cf_pg-fpnp32_zs-s16-deh_tb30_trkl-b5n-fs1e24-ht200-qs0e24s24e23-pidlinear-pt100_ptrg.r5549
-[2103617:TRAP]: [14:34:40][WARN] you have asked to not use online gain calibrations but the selected trap config does have FGBY enabled. Gain calibrations will be 1, i.e. no effect
-[2103617:TRAP]: [14:34:42][INFO] Trap simulator found 31518 tracklets from 710814 Digits.
-[2103617:TRAP]: [14:34:42][INFO] In total 0 digits were rejected due to digit downscaling factor of 1
-[2103617:TRAP]: [14:34:42][INFO] In total 41750 MC labels are associated to the 31518 tracklets
-[2103617:TRAP]: [14:34:42][INFO] Total processing time : 1532ms
-[2103617:TRAP]: [14:34:42][INFO] Digit Sorting took: 37ms
-[2103617:TRAP]: [14:34:42][INFO] Processing time for parallel region: 1471ms
-[2103617:TRAP]: [14:34:42][INFO] Sending end-of-stream message to channel from_TRAP_to_TRD-tracklet-writer
-[2103617:TRAP]: [14:34:42][INFO] Sending end-of-stream message to channel from_TRAP_to_internal-dpl-injected-dummy-sink
+[2140981:TRD-tracklet-writer]: [INFO] Instrumenting crash signals
+[2140981:TRD-tracklet-writer]: [INFO] Spawing new device TRD-tracklet-writer in process with pid 2140981
+[2140981:TRD-tracklet-writer]: [14:50:55][INFO] 
+[2140981:TRD-tracklet-writer]:       ______      _    _______  _________ 
+[2140981:TRD-tracklet-writer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2140981:TRD-tracklet-writer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2140981:TRD-tracklet-writer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2140981:TRD-tracklet-writer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2140981:TRD-tracklet-writer]: 
+[2140981:TRD-tracklet-writer]: [14:50:55][STATE] Starting FairMQ state machine --> IDLE
+[2140981:TRD-tracklet-writer]: [14:50:55][STATE] IDLE ---> INITIALIZING DEVICE
+[2140979:TRDDIGITREADER]: [INFO] Instrumenting crash signals
+[2140981:TRD-tracklet-writer]: [14:50:55][INFO] 0: branch  Tracklet set up
+[2140981:TRD-tracklet-writer]: [14:50:55][INFO] 1: branch  TRKLabels set up
+[2140981:TRD-tracklet-writer]: [14:50:55][INFO] 2: branch  TrackTrg set up
+[2140979:TRDDIGITREADER]: [INFO] Spawing new device TRDDIGITREADER in process with pid 2140979
+[2140981:TRD-tracklet-writer]: [14:50:55][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2140981:TRD-tracklet-writer]: [14:50:55][STATE] INITIALIZED ---> BINDING
+[2140981:TRD-tracklet-writer]: [14:50:55][STATE] BINDING ---> BOUND
+[2140979:TRDDIGITREADER]: [14:50:55][INFO] 
+[2140979:TRDDIGITREADER]:       ______      _    _______  _________ 
+[2140979:TRDDIGITREADER]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2140979:TRDDIGITREADER]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2140979:TRDDIGITREADER]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2140979:TRDDIGITREADER]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2140979:TRDDIGITREADER]: 
+[2140979:TRDDIGITREADER]: [14:50:55][STATE] Starting FairMQ state machine --> IDLE
+[2140979:TRDDIGITREADER]: [14:50:55][STATE] IDLE ---> INITIALIZING DEVICE
+[2140981:TRD-tracklet-writer]: [14:50:55][STATE] BOUND ---> CONNECTING
+[2140981:TRD-tracklet-writer]: [14:50:55][STATE] CONNECTING ---> DEVICE READY
+[2140981:TRD-tracklet-writer]: [14:50:55][STATE] DEVICE READY ---> INITIALIZING TASK
+[2140981:TRD-tracklet-writer]: [14:50:55][STATE] INITIALIZING TASK ---> READY
+[2140982:internal-dpl-injected-dummy-sink]: [INFO] Instrumenting crash signals
+[2140981:TRD-tracklet-writer]: [14:50:55][STATE] READY ---> RUNNING
+[2140981:TRD-tracklet-writer]: [14:50:55][INFO] fair::mq::Device running...
+[2140981:TRD-tracklet-writer]: [14:50:55][INFO] LHCPeriod is not available, using current month OCT
+[2140981:TRD-tracklet-writer]: [14:50:55][INFO] Correctly handshaken websocket connection.
+[2140982:internal-dpl-injected-dummy-sink]: [INFO] Spawing new device internal-dpl-injected-dummy-sink in process with pid 2140982
+[2140982:internal-dpl-injected-dummy-sink]: [14:50:55][INFO] 
+[2140982:internal-dpl-injected-dummy-sink]:       ______      _    _______  _________ 
+[2140982:internal-dpl-injected-dummy-sink]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2140982:internal-dpl-injected-dummy-sink]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2140982:internal-dpl-injected-dummy-sink]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2140982:internal-dpl-injected-dummy-sink]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2140982:internal-dpl-injected-dummy-sink]: 
+[2140982:internal-dpl-injected-dummy-sink]: [14:50:55][STATE] Starting FairMQ state machine --> IDLE
+[2140982:internal-dpl-injected-dummy-sink]: [14:50:55][STATE] IDLE ---> INITIALIZING DEVICE
+[2140982:internal-dpl-injected-dummy-sink]: [14:50:55][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2140982:internal-dpl-injected-dummy-sink]: [14:50:55][STATE] INITIALIZED ---> BINDING
+[2140982:internal-dpl-injected-dummy-sink]: [14:50:55][STATE] BINDING ---> BOUND
+[2140982:internal-dpl-injected-dummy-sink]: [14:50:55][STATE] BOUND ---> CONNECTING
+[2140982:internal-dpl-injected-dummy-sink]: [14:50:55][STATE] CONNECTING ---> DEVICE READY
+[2140982:internal-dpl-injected-dummy-sink]: [14:50:55][STATE] DEVICE READY ---> INITIALIZING TASK
+[2140982:internal-dpl-injected-dummy-sink]: [14:50:55][STATE] INITIALIZING TASK ---> READY
+[2140982:internal-dpl-injected-dummy-sink]: [14:50:55][STATE] READY ---> RUNNING
+[2140982:internal-dpl-injected-dummy-sink]: [14:50:55][INFO] fair::mq::Device running...
+[2140982:internal-dpl-injected-dummy-sink]: [14:50:55][INFO] LHCPeriod is not available, using current month OCT
+[2140982:internal-dpl-injected-dummy-sink]: [14:50:55][INFO] Correctly handshaken websocket connection.
+[2140980:TRAP]: [INFO] Instrumenting crash signals
+[2140980:TRAP]: [INFO] Spawing new device TRAP in process with pid 2140980
+[2140980:TRAP]: [14:50:55][INFO] 
+[2140980:TRAP]:       ______      _    _______  _________ 
+[2140980:TRAP]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2140980:TRAP]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2140980:TRAP]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2140980:TRAP]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2140980:TRAP]: 
+[2140980:TRAP]: [14:50:55][STATE] Starting FairMQ state machine --> IDLE
+[2140980:TRAP]: [14:50:55][STATE] IDLE ---> INITIALIZING DEVICE
+[2140980:TRAP]: [14:50:55][INFO] Tracklet charges will be calculated using a fixed multiplier
+[2140980:TRAP]: [14:50:55][INFO] Trap simulation running with 4 threads 
+[2140980:TRAP]: [14:50:55][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2140978:internal-dpl-clock]: [INFO] Instrumenting crash signals
+[2140980:TRAP]: [14:50:55][STATE] INITIALIZED ---> BINDING
+[2140980:TRAP]: [14:50:55][STATE] BINDING ---> BOUND
+[2140980:TRAP]: [14:50:55][STATE] BOUND ---> CONNECTING
+[2140980:TRAP]: [14:50:55][STATE] CONNECTING ---> DEVICE READY
+[2140980:TRAP]: [14:50:55][STATE] DEVICE READY ---> INITIALIZING TASK
+[2140978:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 2140978
+[2140980:TRAP]: [14:50:55][STATE] INITIALIZING TASK ---> READY
+[2140980:TRAP]: [14:50:55][STATE] READY ---> RUNNING
+[2140980:TRAP]: [14:50:55][INFO] fair::mq::Device running...
+[2140978:internal-dpl-clock]: [14:50:55][INFO] 
+[2140978:internal-dpl-clock]:       ______      _    _______  _________ 
+[2140978:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2140978:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2140978:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2140978:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2140978:internal-dpl-clock]: 
+[2140980:TRAP]: [14:50:55][INFO] LHCPeriod is not available, using current month OCT
+[2140978:internal-dpl-clock]: [14:50:55][STATE] Starting FairMQ state machine --> IDLE
+[2140980:TRAP]: [14:50:55][INFO] Correctly handshaken websocket connection.
+[2140978:internal-dpl-clock]: [14:50:55][STATE] IDLE ---> INITIALIZING DEVICE
+[2140978:internal-dpl-clock]: [14:50:55][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2140978:internal-dpl-clock]: [14:50:55][STATE] INITIALIZED ---> BINDING
+[2140978:internal-dpl-clock]: [14:50:55][STATE] BINDING ---> BOUND
+[2140978:internal-dpl-clock]: [14:50:55][STATE] BOUND ---> CONNECTING
+[2140978:internal-dpl-clock]: [14:50:55][STATE] CONNECTING ---> DEVICE READY
+[2140978:internal-dpl-clock]: [14:50:55][STATE] DEVICE READY ---> INITIALIZING TASK
+[2140978:internal-dpl-clock]: [14:50:55][STATE] INITIALIZING TASK ---> READY
+[2140978:internal-dpl-clock]: [14:50:55][STATE] READY ---> RUNNING
+[2140978:internal-dpl-clock]: [14:50:55][INFO] fair::mq::Device running...
+[2140978:internal-dpl-clock]: [14:50:55][INFO] LHCPeriod is not available, using current month OCT
+[2140978:internal-dpl-clock]: [14:50:55][INFO] Correctly handshaken websocket connection.
+[2140979:TRDDIGITREADER]: [14:50:56][INFO] Loaded tree from trddigits.root with 1 entries
+[2140979:TRDDIGITREADER]: [14:50:56][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2140979:TRDDIGITREADER]: [14:50:56][STATE] INITIALIZED ---> BINDING
+[2140979:TRDDIGITREADER]: [14:50:56][STATE] BINDING ---> BOUND
+[2140979:TRDDIGITREADER]: [14:50:56][STATE] BOUND ---> CONNECTING
+[2140979:TRDDIGITREADER]: [14:50:56][STATE] CONNECTING ---> DEVICE READY
+[2140979:TRDDIGITREADER]: [14:50:56][STATE] DEVICE READY ---> INITIALIZING TASK
+[2140979:TRDDIGITREADER]: [14:50:56][STATE] INITIALIZING TASK ---> READY
+[2140979:TRDDIGITREADER]: [14:50:56][STATE] READY ---> RUNNING
+[2140979:TRDDIGITREADER]: [14:50:56][INFO] fair::mq::Device running...
+[2140979:TRDDIGITREADER]: [14:50:56][INFO] LHCPeriod is not available, using current month OCT
+[2140979:TRDDIGITREADER]: [14:50:56][INFO] Pushing 32 TRD trigger records at entry 0
+[2140979:TRDDIGITREADER]: [14:50:56][INFO] Pushing 720039 digits for these trigger records
+[2140979:TRDDIGITREADER]: [14:50:56][INFO] Sending end-of-stream message to channel from_TRDDIGITREADER_to_TRAP
+[2140979:TRDDIGITREADER]: [14:50:56][INFO] Correctly handshaken websocket connection.
+[2140980:TRAP]: [14:50:56][INFO] TRD Trap Simulator Device running over incoming message
+[2140980:TRAP]: [14:50:56][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1697201456-yHZJIq, Host: http://alice-ccdb.cern.ch/
+[2140980:TRAP]: Info in <TJAlienConnectionManager>: Opening connection to JCentral. Please wait
+[2140980:TRAP]: Info in <TJAlienConnectionManager>: Opening connection to 137.138.47.221
+[2140980:TRAP]: Info in <TJAlienConnectionManager>: Successfully connected to 137.138.47.221
+[2140980:TRAP]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TRD/Calib/ChamberCalibrations/07/05389/e704b36a-d22d-11ec-8dd8-511cc1ec24ee in SE <ALICE::CERN::OCDB>
+[2140980:TRAP]: [14:50:58][INFO] ccdb reads http://alice-ccdb.cern.ch/TRD/Calib/ChamberCalibrations/1/e704b36a-d22d-11ec-8dd8-511cc1ec24ee for 1546300800000 (retrieve, agent_id: localhost.localdomain-1697201456-yHZJIq), 
+[2140980:TRAP]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TRD/Calib/LocalGainFactor/15/61343/100756ad-4ec7-11ed-bee3-200114580202 in SE <ALICE::CERN::OCDB>
+[2140980:TRAP]: [14:50:59][INFO] ccdb reads http://alice-ccdb.cern.ch/TRD/Calib/LocalGainFactor/1/100756ad-4ec7-11ed-bee3-200114580202 for 1546300800000 (retrieve, agent_id: localhost.localdomain-1697201456-yHZJIq), 
+[2140980:TRAP]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TRD/Calib/PadNoise/15/62708/e81c639a-d22d-11ec-8dd8-511cc1ec24ee in SE <ALICE::CERN::OCDB>
+[2140980:TRAP]: [14:51:00][INFO] ccdb reads http://alice-ccdb.cern.ch/TRD/Calib/PadNoise/1/e81c639a-d22d-11ec-8dd8-511cc1ec24ee for 1546300800000 (retrieve, agent_id: localhost.localdomain-1697201456-yHZJIq), 
+[2140980:TRAP]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TRD/Calib/ChamberStatus/13/46772/e724d29a-d22d-11ec-8dd8-511cc1ec24ee in SE <ALICE::CERN::OCDB>
+[2140980:TRAP]: [14:51:00][INFO] ccdb reads http://alice-ccdb.cern.ch/TRD/Calib/ChamberStatus/1/e724d29a-d22d-11ec-8dd8-511cc1ec24ee for 1546300800000 (retrieve, agent_id: localhost.localdomain-1697201456-yHZJIq), 
+[2140980:TRAP]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TRD/Calib/PadStatus/01/08482/e8418bc7-d22d-11ec-8dd8-511cc1ec24ee in SE <ALICE::CERN::OCDB>
+[2140980:TRAP]: [14:51:00][INFO] ccdb reads http://alice-ccdb.cern.ch/TRD/Calib/PadStatus/1/e8418bc7-d22d-11ec-8dd8-511cc1ec24ee for 1546300800000 (retrieve, agent_id: localhost.localdomain-1697201456-yHZJIq), 
+[2140980:TRAP]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/TRD/TrapConfig/cf_pg-fpnp32_zs-s16-deh_tb30_trkl-b5n-fs1e24-ht200-qs0e24s24e23-pidlinear-pt100_ptrg.r5549/15/64250/e6c280c9-d22d-11ec-8dd8-511cc1ec24ee in SE <ALICE::CERN::OCDB>
+[2140980:TRAP]: [14:51:02][INFO] ccdb reads http://alice-ccdb.cern.ch/TRD/TrapConfig/cf_pg-fpnp32_zs-s16-deh_tb30_trkl-b5n-fs1e24-ht200-qs0e24s24e23-pidlinear-pt100_ptrg.r5549/1/e6c280c9-d22d-11ec-8dd8-511cc1ec24ee for 1546300800000 (retrieve, agent_id: localhost.localdomain-1697201456-yHZJIq), 
+[2140980:TRAP]: [14:51:02][INFO] using TRAPconfig: cf_pg-fpnp32_zs-s16-deh_tb30_trkl-b5n-fs1e24-ht200-qs0e24s24e23-pidlinear-pt100_ptrg.r5549
+[2140980:TRAP]: [14:51:02][WARN] you have asked to not use online gain calibrations but the selected trap config does have FGBY enabled. Gain calibrations will be 1, i.e. no effect
+[2140980:TRAP]: [14:51:03][INFO] Trap simulator found 43831 tracklets from 720039 Digits.
+[2140980:TRAP]: [14:51:03][INFO] In total 0 digits were rejected due to digit downscaling factor of 1
+[2140980:TRAP]: [14:51:03][INFO] In total 57710 MC labels are associated to the 43831 tracklets
+[2140980:TRAP]: [14:51:03][INFO] Total processing time : 1446ms
+[2140980:TRAP]: [14:51:03][INFO] Digit Sorting took: 37ms
+[2140980:TRAP]: [14:51:03][INFO] Processing time for parallel region: 1379ms
+[2140980:TRAP]: [14:51:03][INFO] Sending end-of-stream message to channel from_TRAP_to_TRD-tracklet-writer
+[2140980:TRAP]: [14:51:03][INFO] Sending end-of-stream message to channel from_TRAP_to_internal-dpl-injected-dummy-sink
 [INFO] Quitting
 [INFO] QUIT_REQUESTED
-[2103617:TRAP]: [14:34:42][INFO] Received device shutdown request (signal 15).
-[2103617:TRAP]: [14:34:42][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2103617:TRAP]: [14:34:42][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2103617:TRAP]: [14:34:42][STATE] RUNNING ---> READY
-[2103617:TRAP]: [14:34:42][STATE] READY ---> RESETTING TASK
-[2103617:TRAP]: [14:34:42][STATE] RESETTING TASK ---> DEVICE READY
-[2103617:TRAP]: [14:34:42][STATE] DEVICE READY ---> RESETTING DEVICE
-[2103618:TRD-tracklet-writer]: [14:34:42][INFO] Received device shutdown request (signal 15).
-[2103618:TRD-tracklet-writer]: [14:34:42][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2103618:TRD-tracklet-writer]: [14:34:42][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2103617:TRAP]: [14:34:42][STATE] RESETTING DEVICE ---> IDLE
-[2103617:TRAP]: [14:34:42][STATE] IDLE ---> EXITING
-[2103617:TRAP]: [14:34:42][STATE] Exiting FairMQ state machine
-[2103615:internal-dpl-clock]: [14:34:42][INFO] Received device shutdown request (signal 15).
-[2103615:internal-dpl-clock]: [14:34:42][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2103616:TRDDIGITREADER]: [14:34:42][INFO] Received device shutdown request (signal 15).
-[2103616:TRDDIGITREADER]: [14:34:42][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:42][INFO] Received device shutdown request (signal 15).
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:42][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2103615:internal-dpl-clock]: [14:34:42][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2103615:internal-dpl-clock]: [14:34:42][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_TRDDIGITREADER
-[2103615:internal-dpl-clock]: [14:34:42][STATE] RUNNING ---> READY
-[2103615:internal-dpl-clock]: [14:34:42][STATE] READY ---> RESETTING TASK
-[2103615:internal-dpl-clock]: [14:34:42][STATE] RESETTING TASK ---> DEVICE READY
-[2103615:internal-dpl-clock]: [14:34:42][STATE] DEVICE READY ---> RESETTING DEVICE
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:42][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:42][STATE] RUNNING ---> READY
-[2103616:TRDDIGITREADER]: [14:34:42][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:42][STATE] READY ---> RESETTING TASK
-[2103616:TRDDIGITREADER]: [14:34:42][STATE] RUNNING ---> READY
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:42][STATE] RESETTING TASK ---> DEVICE READY
-[2103616:TRDDIGITREADER]: [14:34:42][STATE] READY ---> RESETTING TASK
-[2103616:TRDDIGITREADER]: [14:34:42][STATE] RESETTING TASK ---> DEVICE READY
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:42][STATE] DEVICE READY ---> RESETTING DEVICE
-[2103616:TRDDIGITREADER]: [14:34:42][STATE] DEVICE READY ---> RESETTING DEVICE
-[2103615:internal-dpl-clock]: [14:34:42][STATE] RESETTING DEVICE ---> IDLE
-[2103615:internal-dpl-clock]: [14:34:42][STATE] IDLE ---> EXITING
-[2103615:internal-dpl-clock]: [14:34:42][STATE] Exiting FairMQ state machine
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:42][STATE] RESETTING DEVICE ---> IDLE
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:42][STATE] IDLE ---> EXITING
-[2103619:internal-dpl-injected-dummy-sink]: [14:34:42][STATE] Exiting FairMQ state machine
-[2103616:TRDDIGITREADER]: [14:34:42][STATE] RESETTING DEVICE ---> IDLE
-[2103616:TRDDIGITREADER]: [14:34:42][STATE] IDLE ---> EXITING
-[2103616:TRDDIGITREADER]: [14:34:42][STATE] Exiting FairMQ state machine
-[2103618:TRD-tracklet-writer]: [14:34:43][STATE] RUNNING ---> READY
-[2103618:TRD-tracklet-writer]: [14:34:43][STATE] READY ---> RESETTING TASK
-[2103618:TRD-tracklet-writer]: [14:34:43][STATE] RESETTING TASK ---> DEVICE READY
-[2103618:TRD-tracklet-writer]: [14:34:43][STATE] DEVICE READY ---> RESETTING DEVICE
-[2103618:TRD-tracklet-writer]: [14:34:43][INFO] Cleaning up for shared memory id 'fc242806'...
-[2103618:TRD-tracklet-writer]: [14:34:43][INFO] Found 0 unmanaged regions...
-[2103618:TRD-tracklet-writer]: [14:34:43][INFO] Found 1 managed segments...
-[2103618:TRD-tracklet-writer]: [14:34:43][INFO] Successfully removed 'fmq_fc242806_m_0'.
-[2103618:TRD-tracklet-writer]: [14:34:43][INFO] Successfully removed 'fmq_fc242806_mng'.
-[2103618:TRD-tracklet-writer]: [14:34:43][STATE] RESETTING DEVICE ---> IDLE
-[2103618:TRD-tracklet-writer]: [14:34:43][STATE] IDLE ---> EXITING
-[2103618:TRD-tracklet-writer]: [14:34:43][STATE] Exiting FairMQ state machine
+[2140982:internal-dpl-injected-dummy-sink]: [14:51:03][INFO] Received device shutdown request (signal 15).
+[2140982:internal-dpl-injected-dummy-sink]: [14:51:03][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2140981:TRD-tracklet-writer]: [14:51:03][INFO] Received device shutdown request (signal 15).
+[2140981:TRD-tracklet-writer]: [14:51:03][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2140978:internal-dpl-clock]: [14:51:03][INFO] Received device shutdown request (signal 15).
+[2140978:internal-dpl-clock]: [14:51:03][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2140981:TRD-tracklet-writer]: [14:51:03][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2140982:internal-dpl-injected-dummy-sink]: [14:51:03][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2140982:internal-dpl-injected-dummy-sink]: [14:51:03][STATE] RUNNING ---> READY
+[2140978:internal-dpl-clock]: [14:51:03][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2140982:internal-dpl-injected-dummy-sink]: [14:51:03][STATE] READY ---> RESETTING TASK
+[2140982:internal-dpl-injected-dummy-sink]: [14:51:03][STATE] RESETTING TASK ---> DEVICE READY
+[2140982:internal-dpl-injected-dummy-sink]: [14:51:03][STATE] DEVICE READY ---> RESETTING DEVICE
+[2140978:internal-dpl-clock]: [14:51:03][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_TRDDIGITREADER
+[2140978:internal-dpl-clock]: [14:51:03][STATE] RUNNING ---> READY
+[2140982:internal-dpl-injected-dummy-sink]: [14:51:03][STATE] RESETTING DEVICE ---> IDLE
+[2140982:internal-dpl-injected-dummy-sink]: [14:51:03][STATE] IDLE ---> EXITING
+[2140982:internal-dpl-injected-dummy-sink]: [14:51:03][STATE] Exiting FairMQ state machine
+[2140978:internal-dpl-clock]: [14:51:03][STATE] READY ---> RESETTING TASK
+[2140978:internal-dpl-clock]: [14:51:03][STATE] RESETTING TASK ---> DEVICE READY
+[2140978:internal-dpl-clock]: [14:51:03][STATE] DEVICE READY ---> RESETTING DEVICE
+[2140980:TRAP]: [14:51:03][INFO] Received device shutdown request (signal 15).
+[2140980:TRAP]: [14:51:03][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2140979:TRDDIGITREADER]: [14:51:03][INFO] Received device shutdown request (signal 15).
+[2140979:TRDDIGITREADER]: [14:51:03][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2140979:TRDDIGITREADER]: [14:51:03][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2140979:TRDDIGITREADER]: [14:51:03][STATE] RUNNING ---> READY
+[2140979:TRDDIGITREADER]: [14:51:03][STATE] READY ---> RESETTING TASK
+[2140980:TRAP]: [14:51:03][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2140980:TRAP]: [14:51:03][STATE] RUNNING ---> READY
+[2140979:TRDDIGITREADER]: [14:51:03][STATE] RESETTING TASK ---> DEVICE READY
+[2140980:TRAP]: [14:51:03][STATE] READY ---> RESETTING TASK
+[2140979:TRDDIGITREADER]: [14:51:03][STATE] DEVICE READY ---> RESETTING DEVICE
+[2140978:internal-dpl-clock]: [14:51:03][STATE] RESETTING DEVICE ---> IDLE
+[2140978:internal-dpl-clock]: [14:51:03][STATE] IDLE ---> EXITING
+[2140980:TRAP]: [14:51:03][STATE] RESETTING TASK ---> DEVICE READY
+[2140980:TRAP]: [14:51:03][STATE] DEVICE READY ---> RESETTING DEVICE
+[2140978:internal-dpl-clock]: [14:51:03][STATE] Exiting FairMQ state machine
+[2140979:TRDDIGITREADER]: [14:51:03][STATE] RESETTING DEVICE ---> IDLE
+[2140979:TRDDIGITREADER]: [14:51:03][STATE] IDLE ---> EXITING
+[2140979:TRDDIGITREADER]: [14:51:03][STATE] Exiting FairMQ state machine
+[2140980:TRAP]: [14:51:03][STATE] RESETTING DEVICE ---> IDLE
+[2140980:TRAP]: [14:51:03][STATE] IDLE ---> EXITING
+[2140980:TRAP]: [14:51:03][STATE] Exiting FairMQ state machine
+[2140981:TRD-tracklet-writer]: [14:51:04][STATE] RUNNING ---> READY
+[2140981:TRD-tracklet-writer]: [14:51:04][STATE] READY ---> RESETTING TASK
+[2140981:TRD-tracklet-writer]: [14:51:04][STATE] RESETTING TASK ---> DEVICE READY
+[2140981:TRD-tracklet-writer]: [14:51:04][STATE] DEVICE READY ---> RESETTING DEVICE
+[2140981:TRD-tracklet-writer]: [14:51:04][INFO] Cleaning up for shared memory id 'f13f4b8f'...
+[2140981:TRD-tracklet-writer]: [14:51:04][INFO] Found 0 unmanaged regions...
+[2140981:TRD-tracklet-writer]: [14:51:04][INFO] Found 1 managed segments...
+[2140981:TRD-tracklet-writer]: [14:51:04][INFO] Successfully removed 'fmq_f13f4b8f_m_0'.
+[2140981:TRD-tracklet-writer]: [14:51:04][INFO] Successfully removed 'fmq_f13f4b8f_mng'.
+[2140981:TRD-tracklet-writer]: [14:51:04][STATE] RESETTING DEVICE ---> IDLE
+[2140981:TRD-tracklet-writer]: [14:51:04][STATE] IDLE ---> EXITING
+[2140981:TRD-tracklet-writer]: [14:51:04][STATE] Exiting FairMQ state machine
 [INFO] ## Processes completed. Run summary:
 [INFO] ### Devices started: 5
-[INFO]  - Device internal-dpl-clock: pid 2103615 (exit 0)
-[INFO]  - Device TRDDIGITREADER: pid 2103616 (exit 0)
-[INFO]  - Device TRAP: pid 2103617 (exit 0)
-[INFO]  - Device TRD-tracklet-writer: pid 2103618 (exit 0)
-[INFO]  - Device internal-dpl-injected-dummy-sink: pid 2103619 (exit 0)
+[INFO]  - Device internal-dpl-clock: pid 2140978 (exit 0)
+[INFO]  - Device TRDDIGITREADER: pid 2140979 (exit 0)
+[INFO]  - Device TRAP: pid 2140980 (exit 0)
+[INFO]  - Device TRD-tracklet-writer: pid 2140981 (exit 0)
+[INFO]  - Device internal-dpl-injected-dummy-sink: pid 2140982 (exit 0)
 [INFO] Dumping used configuration in dpl-config.json
 TASK-EXIT-CODE: 0

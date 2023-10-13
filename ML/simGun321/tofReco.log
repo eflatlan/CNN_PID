@@ -1,272 +1,272 @@
 Running: TIME="#walltime %e" /usr/bin/time --output=tofReco.log_time ./tofReco.log_tmp.sh
-[INFO] Initialising O2 Data Processing Layer. Driver PID: 2112313.
-[INFO] Driver listening on port: 20393
+[INFO] Initialising O2 Data Processing Layer. Driver PID: 2149408.
+[INFO] Driver listening on port: 27488
 [INFO] Rate limiting set up at 500MB distributed over 1 readers
 [INFO] O2 Data Processing Layer initialised. We brake for nobody.
 [INFO] Optimised build. O2DEBUG / LOG(debug) / LOGF(debug) / assert statement will not be shown.
 [INFO] Redeployment of configuration asked.
-[INFO] Starting internal-dpl-clock on pid 2112348
-[INFO] Starting tof-digit-reader on pid 2112349
-[INFO] Starting internal-dpl-ccdb-backend on pid 2112350
-[INFO] Starting TOFClusterer on pid 2112351
-[INFO] Starting TOFClusterWriter on pid 2112352
-[INFO] Starting internal-dpl-injected-dummy-sink on pid 2112353
+[INFO] Starting internal-dpl-clock on pid 2149444
+[INFO] Starting tof-digit-reader on pid 2149445
+[INFO] Starting internal-dpl-ccdb-backend on pid 2149446
+[INFO] Starting TOFClusterer on pid 2149447
+[INFO] Starting TOFClusterWriter on pid 2149448
+[INFO] Starting internal-dpl-injected-dummy-sink on pid 2149449
 [INFO] Redeployment of configuration done.
-[2112348:internal-dpl-clock]: [INFO] Instrumenting crash signals
-[2112348:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 2112348
-[2112348:internal-dpl-clock]: [14:36:45][INFO] 
-[2112348:internal-dpl-clock]:       ______      _    _______  _________ 
-[2112348:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2112348:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2112348:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2112348:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2112348:internal-dpl-clock]: 
-[2112348:internal-dpl-clock]: [14:36:45][STATE] Starting FairMQ state machine --> IDLE
-[2112348:internal-dpl-clock]: [14:36:45][STATE] IDLE ---> INITIALIZING DEVICE
-[2112348:internal-dpl-clock]: [14:36:45][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2112348:internal-dpl-clock]: [14:36:45][STATE] INITIALIZED ---> BINDING
-[2112348:internal-dpl-clock]: [14:36:45][STATE] BINDING ---> BOUND
-[2112348:internal-dpl-clock]: [14:36:45][STATE] BOUND ---> CONNECTING
-[2112348:internal-dpl-clock]: [14:36:45][STATE] CONNECTING ---> DEVICE READY
-[2112348:internal-dpl-clock]: [14:36:45][STATE] DEVICE READY ---> INITIALIZING TASK
-[2112348:internal-dpl-clock]: [14:36:45][STATE] INITIALIZING TASK ---> READY
-[2112348:internal-dpl-clock]: [14:36:45][STATE] READY ---> RUNNING
-[2112348:internal-dpl-clock]: [14:36:45][INFO] fair::mq::Device running...
-[2112348:internal-dpl-clock]: [14:36:45][INFO] LHCPeriod is not available, using current month OCT
-[2112348:internal-dpl-clock]: [14:36:45][INFO] Correctly handshaken websocket connection.
-[2112351:TOFClusterer]: [INFO] Instrumenting crash signals
-[2112351:TOFClusterer]: [INFO] Spawing new device TOFClusterer in process with pid 2112351
-[2112351:TOFClusterer]: [14:36:45][INFO] 
-[2112351:TOFClusterer]:       ______      _    _______  _________ 
-[2112351:TOFClusterer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2112351:TOFClusterer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2112351:TOFClusterer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2112351:TOFClusterer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2112351:TOFClusterer]: 
-[2112351:TOFClusterer]: [14:36:45][STATE] Starting FairMQ state machine --> IDLE
-[2112351:TOFClusterer]: [14:36:45][STATE] IDLE ---> INITIALIZING DEVICE
-[2112351:TOFClusterer]: [14:36:45][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2112351:TOFClusterer]: [14:36:45][STATE] INITIALIZED ---> BINDING
-[2112351:TOFClusterer]: [14:36:45][STATE] BINDING ---> BOUND
-[2112351:TOFClusterer]: [14:36:45][STATE] BOUND ---> CONNECTING
-[2112351:TOFClusterer]: [14:36:45][STATE] CONNECTING ---> DEVICE READY
-[2112351:TOFClusterer]: [14:36:45][STATE] DEVICE READY ---> INITIALIZING TASK
-[2112351:TOFClusterer]: [14:36:45][STATE] INITIALIZING TASK ---> READY
-[2112351:TOFClusterer]: [14:36:45][STATE] READY ---> RUNNING
-[2112351:TOFClusterer]: [14:36:45][INFO] fair::mq::Device running...
-[2112351:TOFClusterer]: [14:36:45][INFO] LHCPeriod is not available, using current month OCT
-[2112351:TOFClusterer]: [14:36:45][INFO] Correctly handshaken websocket connection.
-[2112349:tof-digit-reader]: [INFO] Instrumenting crash signals
-[2112349:tof-digit-reader]: [INFO] Spawing new device tof-digit-reader in process with pid 2112349
-[2112349:tof-digit-reader]: [14:36:45][INFO] 
-[2112349:tof-digit-reader]:       ______      _    _______  _________ 
-[2112349:tof-digit-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2112349:tof-digit-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2112349:tof-digit-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2112349:tof-digit-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2112349:tof-digit-reader]: 
-[2112349:tof-digit-reader]: [14:36:45][STATE] Starting FairMQ state machine --> IDLE
-[2112350:internal-dpl-ccdb-backend]: [INFO] Instrumenting crash signals
-[2112349:tof-digit-reader]: [14:36:45][STATE] IDLE ---> INITIALIZING DEVICE
-[2112350:internal-dpl-ccdb-backend]: [INFO] Spawing new device internal-dpl-ccdb-backend in process with pid 2112350
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][INFO] 
-[2112350:internal-dpl-ccdb-backend]:       ______      _    _______  _________ 
-[2112350:internal-dpl-ccdb-backend]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2112350:internal-dpl-ccdb-backend]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2112350:internal-dpl-ccdb-backend]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2112350:internal-dpl-ccdb-backend]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2112350:internal-dpl-ccdb-backend]: 
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][STATE] Starting FairMQ state machine --> IDLE
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][STATE] IDLE ---> INITIALIZING DEVICE
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][INFO] CCDB Backend at: http://alice-ccdb.cern.ch, validity check for every 2147483647 TF
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1697200605-1mW8hG, Host: http://alice-ccdb.cern.ch
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][INFO] Initialised default CCDB host http://alice-ccdb.cern.ch
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][INFO] The following route is a condition GLO/GEOMALIGN/0
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][INFO] - ccdb-path: GLO/Config/GeometryAligned
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][INFO] The following route is a condition GLO/GRPECS/0
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][INFO] - ccdb-path: GLO/Config/GRPECS
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][INFO] The following route is a condition GLO/GRPLHCIF/0
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][INFO] - ccdb-path: GLO/Config/GRPLHCIF
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][STATE] INITIALIZED ---> BINDING
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][STATE] BINDING ---> BOUND
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][STATE] BOUND ---> CONNECTING
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][STATE] CONNECTING ---> DEVICE READY
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][STATE] DEVICE READY ---> INITIALIZING TASK
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][STATE] INITIALIZING TASK ---> READY
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][STATE] READY ---> RUNNING
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][INFO] fair::mq::Device running...
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][INFO] LHCPeriod is not available, using current month OCT
-[2112350:internal-dpl-ccdb-backend]: [14:36:45][INFO] Correctly handshaken websocket connection.
-[2112353:internal-dpl-injected-dummy-sink]: [INFO] Instrumenting crash signals
-[2112353:internal-dpl-injected-dummy-sink]: [INFO] Spawing new device internal-dpl-injected-dummy-sink in process with pid 2112353
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:45][INFO] 
-[2112353:internal-dpl-injected-dummy-sink]:       ______      _    _______  _________ 
-[2112353:internal-dpl-injected-dummy-sink]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2112353:internal-dpl-injected-dummy-sink]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2112353:internal-dpl-injected-dummy-sink]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2112353:internal-dpl-injected-dummy-sink]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2112353:internal-dpl-injected-dummy-sink]: 
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:45][STATE] Starting FairMQ state machine --> IDLE
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:45][STATE] IDLE ---> INITIALIZING DEVICE
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:45][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:45][STATE] INITIALIZED ---> BINDING
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:45][STATE] BINDING ---> BOUND
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:45][STATE] BOUND ---> CONNECTING
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:45][STATE] CONNECTING ---> DEVICE READY
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:45][STATE] DEVICE READY ---> INITIALIZING TASK
-[2112352:TOFClusterWriter]: [INFO] Instrumenting crash signals
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:45][STATE] INITIALIZING TASK ---> READY
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:45][STATE] READY ---> RUNNING
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:45][INFO] fair::mq::Device running...
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:45][INFO] LHCPeriod is not available, using current month OCT
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:45][INFO] Correctly handshaken websocket connection.
-[2112352:TOFClusterWriter]: [INFO] Spawing new device TOFClusterWriter in process with pid 2112352
-[2112352:TOFClusterWriter]: [14:36:45][INFO] 
-[2112352:TOFClusterWriter]:       ______      _    _______  _________ 
-[2112352:TOFClusterWriter]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2112352:TOFClusterWriter]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2112352:TOFClusterWriter]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2112352:TOFClusterWriter]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2112352:TOFClusterWriter]: 
-[2112352:TOFClusterWriter]: [14:36:45][STATE] Starting FairMQ state machine --> IDLE
-[2112352:TOFClusterWriter]: [14:36:45][STATE] IDLE ---> INITIALIZING DEVICE
-[2112352:TOFClusterWriter]: [14:36:45][INFO] 0: branch  TOFCluster set up
-[2112352:TOFClusterWriter]: [14:36:45][INFO] 1: branch  TOFClusterMult set up
-[2112352:TOFClusterWriter]: [14:36:45][INFO] 2: branch  TOFClusterMCTruth set up
-[2112352:TOFClusterWriter]: [14:36:45][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2112352:TOFClusterWriter]: [14:36:45][STATE] INITIALIZED ---> BINDING
-[2112352:TOFClusterWriter]: [14:36:45][STATE] BINDING ---> BOUND
-[2112352:TOFClusterWriter]: [14:36:45][STATE] BOUND ---> CONNECTING
-[2112352:TOFClusterWriter]: [14:36:45][STATE] CONNECTING ---> DEVICE READY
-[2112352:TOFClusterWriter]: [14:36:45][STATE] DEVICE READY ---> INITIALIZING TASK
-[2112352:TOFClusterWriter]: [14:36:45][STATE] INITIALIZING TASK ---> READY
-[2112352:TOFClusterWriter]: [14:36:45][STATE] READY ---> RUNNING
-[2112352:TOFClusterWriter]: [14:36:45][INFO] fair::mq::Device running...
-[2112352:TOFClusterWriter]: [14:36:45][INFO] LHCPeriod is not available, using current month OCT
-[2112352:TOFClusterWriter]: [14:36:45][INFO] Correctly handshaken websocket connection.
-[2112349:tof-digit-reader]: [14:36:45][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2112349:tof-digit-reader]: [14:36:45][STATE] INITIALIZED ---> BINDING
-[2112349:tof-digit-reader]: [14:36:45][STATE] BINDING ---> BOUND
-[2112349:tof-digit-reader]: [14:36:45][STATE] BOUND ---> CONNECTING
-[2112349:tof-digit-reader]: [14:36:45][STATE] CONNECTING ---> DEVICE READY
-[2112349:tof-digit-reader]: [14:36:45][STATE] DEVICE READY ---> INITIALIZING TASK
-[2112349:tof-digit-reader]: [14:36:45][STATE] INITIALIZING TASK ---> READY
-[2112349:tof-digit-reader]: [14:36:45][STATE] READY ---> RUNNING
-[2112349:tof-digit-reader]: [14:36:45][INFO] fair::mq::Device running...
-[2112349:tof-digit-reader]: [14:36:45][INFO] LHCPeriod is not available, using current month OCT
-[2112349:tof-digit-reader]: [14:36:45][INFO] Sending end-of-stream message to channel from_tof-digit-reader_to_internal-dpl-ccdb-backend
-[2112349:tof-digit-reader]: [14:36:45][INFO] Sending end-of-stream message to channel from_tof-digit-reader_to_TOFClusterer
-[2112349:tof-digit-reader]: [14:36:45][INFO] Sending end-of-stream message to channel from_tof-digit-reader_to_internal-dpl-injected-dummy-sink
-[2112349:tof-digit-reader]: [14:36:45][INFO] Correctly handshaken websocket connection.
-[2112350:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to JCentral. Please wait
-[2112350:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to 137.138.99.189
-[2112350:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Successfully connected to 137.138.99.189
-[2112350:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/CTP/Calib/OrbitReset/06/62200/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee in SE <ALICE::CERN::EOS>
-[2112350:internal-dpl-ccdb-backend]: [14:36:46][INFO] ccdb reads http://alice-ccdb.cern.ch/CTP/Calib/OrbitReset/1546300800000/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200605-1mW8hG), 
-[2112350:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GeometryAligned/06/21224/787687c0-287a-11ed-8141-200114580202 in SE <ALICE::CERN::OCDB>
-[2112350:internal-dpl-ccdb-backend]: [14:36:46][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GeometryAligned/1546300800000/787687c0-287a-11ed-8141-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200605-1mW8hG), 
-[2112350:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPECS/03/07584/646e9be2-0210-11ed-8000-200114580202 in SE <ALICE::CERN::OCDB>
-[2112350:internal-dpl-ccdb-backend]: [14:36:46][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPECS/1546300800000/646e9be2-0210-11ed-8000-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200605-1mW8hG), 
-[2112350:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPLHCIF/04/60609/b3296373-efea-11ec-b9c0-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
-[2112350:internal-dpl-ccdb-backend]: [14:36:46][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPLHCIF/1546300800000/b3296373-efea-11ec-b9c0-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200605-1mW8hG), 
-[2112350:internal-dpl-ccdb-backend]: [14:36:46][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_TOFClusterer
-[2112350:internal-dpl-ccdb-backend]: [14:36:46][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_internal-dpl-injected-dummy-sink
-[2112351:TOFClusterer]: [14:36:46][INFO] GRP LHCIF object updated
-[2112351:TOFClusterer]: [14:36:46][INFO] Caching in 140439637159472 ptr to GLO/GRPLHCIF/0 (0x3d08be0)
-[2112351:TOFClusterer]: [14:36:46][INFO] GRP ECS object updated
-[2112351:TOFClusterer]: [14:36:46][INFO] Caching in 140439637157200 ptr to GLO/GRPECS/0 (0x30359b0)
-[2112351:TOFClusterer]: Info in <TGeoManager::CloseGeometry>: Geometry loaded from file...
-[2112351:TOFClusterer]: Info in <TGeoManager::SetTopVolume>: Top volume is cave. Master volume is cave
-[2112351:TOFClusterer]: Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
-[2112351:TOFClusterer]: Info in <TGeoManager::Voxelize>: Voxelizing...
-[2112351:TOFClusterer]: Info in <TGeoManager::CountLevels>: max level = 13, max placements = 735
-[2112351:TOFClusterer]: Info in <TGeoManager::CloseGeometry>: 5346742 nodes/ 27442 volume UID's in FAIR geometry
-[2112351:TOFClusterer]: Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
-[2112351:TOFClusterer]: [14:36:47][INFO] aligned geometry updated
-[2112351:TOFClusterer]: [14:36:47][INFO] Caching in 140439635309680 ptr to GLO/GEOMALIGN/0 (0x405f4d0)
-[2112351:TOFClusterer]: [14:36:47][INFO] tof::Geo: Initialization of TOF rotation parameters
-[2112351:TOFClusterer]: [14:36:47][INFO] Sending end-of-stream message to channel from_TOFClusterer_to_TOFClusterWriter
+[2149447:TOFClusterer]: [INFO] Instrumenting crash signals
+[2149447:TOFClusterer]: [INFO] Spawing new device TOFClusterer in process with pid 2149447
+[2149447:TOFClusterer]: [14:52:57][INFO] 
+[2149447:TOFClusterer]:       ______      _    _______  _________ 
+[2149447:TOFClusterer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2149447:TOFClusterer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2149447:TOFClusterer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2149447:TOFClusterer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2149447:TOFClusterer]: 
+[2149447:TOFClusterer]: [14:52:57][STATE] Starting FairMQ state machine --> IDLE
+[2149447:TOFClusterer]: [14:52:57][STATE] IDLE ---> INITIALIZING DEVICE
+[2149447:TOFClusterer]: [14:52:57][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2149447:TOFClusterer]: [14:52:57][STATE] INITIALIZED ---> BINDING
+[2149447:TOFClusterer]: [14:52:57][STATE] BINDING ---> BOUND
+[2149447:TOFClusterer]: [14:52:57][STATE] BOUND ---> CONNECTING
+[2149447:TOFClusterer]: [14:52:57][STATE] CONNECTING ---> DEVICE READY
+[2149447:TOFClusterer]: [14:52:57][STATE] DEVICE READY ---> INITIALIZING TASK
+[2149447:TOFClusterer]: [14:52:57][STATE] INITIALIZING TASK ---> READY
+[2149447:TOFClusterer]: [14:52:57][STATE] READY ---> RUNNING
+[2149447:TOFClusterer]: [14:52:57][INFO] fair::mq::Device running...
+[2149447:TOFClusterer]: [14:52:57][INFO] LHCPeriod is not available, using current month OCT
+[2149447:TOFClusterer]: [14:52:57][INFO] Correctly handshaken websocket connection.
+[2149448:TOFClusterWriter]: [INFO] Instrumenting crash signals
+[2149448:TOFClusterWriter]: [INFO] Spawing new device TOFClusterWriter in process with pid 2149448
+[2149448:TOFClusterWriter]: [14:52:57][INFO] 
+[2149448:TOFClusterWriter]:       ______      _    _______  _________ 
+[2149448:TOFClusterWriter]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2149448:TOFClusterWriter]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2149448:TOFClusterWriter]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2149448:TOFClusterWriter]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2149448:TOFClusterWriter]: 
+[2149448:TOFClusterWriter]: [14:52:57][STATE] Starting FairMQ state machine --> IDLE
+[2149448:TOFClusterWriter]: [14:52:57][STATE] IDLE ---> INITIALIZING DEVICE
+[2149445:tof-digit-reader]: [INFO] Instrumenting crash signals
+[2149449:internal-dpl-injected-dummy-sink]: [INFO] Instrumenting crash signals
+[2149448:TOFClusterWriter]: [14:52:57][INFO] 0: branch  TOFCluster set up
+[2149445:tof-digit-reader]: [INFO] Spawing new device tof-digit-reader in process with pid 2149445
+[2149445:tof-digit-reader]: [14:52:57][INFO] 
+[2149445:tof-digit-reader]:       ______      _    _______  _________ 
+[2149445:tof-digit-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2149445:tof-digit-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2149445:tof-digit-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2149445:tof-digit-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2149445:tof-digit-reader]: 
+[2149445:tof-digit-reader]: [14:52:57][STATE] Starting FairMQ state machine --> IDLE
+[2149449:internal-dpl-injected-dummy-sink]: [INFO] Spawing new device internal-dpl-injected-dummy-sink in process with pid 2149449
+[2149449:internal-dpl-injected-dummy-sink]: [14:52:57][INFO] 
+[2149449:internal-dpl-injected-dummy-sink]:       ______      _    _______  _________ 
+[2149449:internal-dpl-injected-dummy-sink]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2149449:internal-dpl-injected-dummy-sink]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2149449:internal-dpl-injected-dummy-sink]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2149449:internal-dpl-injected-dummy-sink]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2149449:internal-dpl-injected-dummy-sink]: 
+[2149449:internal-dpl-injected-dummy-sink]: [14:52:57][STATE] Starting FairMQ state machine --> IDLE
+[2149445:tof-digit-reader]: [14:52:57][STATE] IDLE ---> INITIALIZING DEVICE
+[2149448:TOFClusterWriter]: [14:52:57][INFO] 1: branch  TOFClusterMult set up
+[2149448:TOFClusterWriter]: [14:52:57][INFO] 2: branch  TOFClusterMCTruth set up
+[2149448:TOFClusterWriter]: [14:52:57][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2149449:internal-dpl-injected-dummy-sink]: [14:52:57][STATE] IDLE ---> INITIALIZING DEVICE
+[2149448:TOFClusterWriter]: [14:52:57][STATE] INITIALIZED ---> BINDING
+[2149448:TOFClusterWriter]: [14:52:57][STATE] BINDING ---> BOUND
+[2149448:TOFClusterWriter]: [14:52:57][STATE] BOUND ---> CONNECTING
+[2149449:internal-dpl-injected-dummy-sink]: [14:52:57][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2149448:TOFClusterWriter]: [14:52:57][STATE] CONNECTING ---> DEVICE READY
+[2149449:internal-dpl-injected-dummy-sink]: [14:52:57][STATE] INITIALIZED ---> BINDING
+[2149449:internal-dpl-injected-dummy-sink]: [14:52:57][STATE] BINDING ---> BOUND
+[2149448:TOFClusterWriter]: [14:52:57][STATE] DEVICE READY ---> INITIALIZING TASK
+[2149449:internal-dpl-injected-dummy-sink]: [14:52:57][STATE] BOUND ---> CONNECTING
+[2149448:TOFClusterWriter]: [14:52:57][STATE] INITIALIZING TASK ---> READY
+[2149448:TOFClusterWriter]: [14:52:57][STATE] READY ---> RUNNING
+[2149448:TOFClusterWriter]: [14:52:57][INFO] fair::mq::Device running...
+[2149448:TOFClusterWriter]: [14:52:57][INFO] LHCPeriod is not available, using current month OCT
+[2149449:internal-dpl-injected-dummy-sink]: [14:52:57][STATE] CONNECTING ---> DEVICE READY
+[2149448:TOFClusterWriter]: [14:52:57][INFO] Correctly handshaken websocket connection.
+[2149449:internal-dpl-injected-dummy-sink]: [14:52:57][STATE] DEVICE READY ---> INITIALIZING TASK
+[2149444:internal-dpl-clock]: [INFO] Instrumenting crash signals
+[2149449:internal-dpl-injected-dummy-sink]: [14:52:57][STATE] INITIALIZING TASK ---> READY
+[2149449:internal-dpl-injected-dummy-sink]: [14:52:57][STATE] READY ---> RUNNING
+[2149449:internal-dpl-injected-dummy-sink]: [14:52:57][INFO] fair::mq::Device running...
+[2149449:internal-dpl-injected-dummy-sink]: [14:52:57][INFO] LHCPeriod is not available, using current month OCT
+[2149449:internal-dpl-injected-dummy-sink]: [14:52:57][INFO] Correctly handshaken websocket connection.
+[2149446:internal-dpl-ccdb-backend]: [INFO] Instrumenting crash signals
+[2149444:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 2149444
+[2149444:internal-dpl-clock]: [14:52:57][INFO] 
+[2149444:internal-dpl-clock]:       ______      _    _______  _________ 
+[2149444:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2149444:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2149444:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2149444:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2149444:internal-dpl-clock]: 
+[2149444:internal-dpl-clock]: [14:52:57][STATE] Starting FairMQ state machine --> IDLE
+[2149446:internal-dpl-ccdb-backend]: [INFO] Spawing new device internal-dpl-ccdb-backend in process with pid 2149446
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][INFO] 
+[2149446:internal-dpl-ccdb-backend]:       ______      _    _______  _________ 
+[2149446:internal-dpl-ccdb-backend]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2149446:internal-dpl-ccdb-backend]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2149446:internal-dpl-ccdb-backend]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2149446:internal-dpl-ccdb-backend]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2149446:internal-dpl-ccdb-backend]: 
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][STATE] Starting FairMQ state machine --> IDLE
+[2149444:internal-dpl-clock]: [14:52:57][STATE] IDLE ---> INITIALIZING DEVICE
+[2149444:internal-dpl-clock]: [14:52:57][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2149444:internal-dpl-clock]: [14:52:57][STATE] INITIALIZED ---> BINDING
+[2149444:internal-dpl-clock]: [14:52:57][STATE] BINDING ---> BOUND
+[2149444:internal-dpl-clock]: [14:52:57][STATE] BOUND ---> CONNECTING
+[2149444:internal-dpl-clock]: [14:52:57][STATE] CONNECTING ---> DEVICE READY
+[2149444:internal-dpl-clock]: [14:52:57][STATE] DEVICE READY ---> INITIALIZING TASK
+[2149444:internal-dpl-clock]: [14:52:57][STATE] INITIALIZING TASK ---> READY
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][STATE] IDLE ---> INITIALIZING DEVICE
+[2149444:internal-dpl-clock]: [14:52:57][STATE] READY ---> RUNNING
+[2149444:internal-dpl-clock]: [14:52:57][INFO] fair::mq::Device running...
+[2149444:internal-dpl-clock]: [14:52:57][INFO] LHCPeriod is not available, using current month OCT
+[2149444:internal-dpl-clock]: [14:52:57][INFO] Correctly handshaken websocket connection.
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][INFO] CCDB Backend at: http://alice-ccdb.cern.ch, validity check for every 2147483647 TF
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1697201577-Xl33Y1, Host: http://alice-ccdb.cern.ch
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][INFO] Initialised default CCDB host http://alice-ccdb.cern.ch
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][INFO] The following route is a condition GLO/GEOMALIGN/0
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][INFO] - ccdb-path: GLO/Config/GeometryAligned
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][INFO] The following route is a condition GLO/GRPECS/0
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][INFO] - ccdb-path: GLO/Config/GRPECS
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][INFO] The following route is a condition GLO/GRPLHCIF/0
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][INFO] - ccdb-path: GLO/Config/GRPLHCIF
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][STATE] INITIALIZED ---> BINDING
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][STATE] BINDING ---> BOUND
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][STATE] BOUND ---> CONNECTING
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][STATE] CONNECTING ---> DEVICE READY
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][STATE] DEVICE READY ---> INITIALIZING TASK
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][STATE] INITIALIZING TASK ---> READY
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][STATE] READY ---> RUNNING
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][INFO] fair::mq::Device running...
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][INFO] LHCPeriod is not available, using current month OCT
+[2149446:internal-dpl-ccdb-backend]: [14:52:57][INFO] Correctly handshaken websocket connection.
+[2149445:tof-digit-reader]: [14:52:58][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2149445:tof-digit-reader]: [14:52:58][STATE] INITIALIZED ---> BINDING
+[2149445:tof-digit-reader]: [14:52:58][STATE] BINDING ---> BOUND
+[2149445:tof-digit-reader]: [14:52:58][STATE] BOUND ---> CONNECTING
+[2149445:tof-digit-reader]: [14:52:58][STATE] CONNECTING ---> DEVICE READY
+[2149445:tof-digit-reader]: [14:52:58][STATE] DEVICE READY ---> INITIALIZING TASK
+[2149445:tof-digit-reader]: [14:52:58][STATE] INITIALIZING TASK ---> READY
+[2149445:tof-digit-reader]: [14:52:58][STATE] READY ---> RUNNING
+[2149445:tof-digit-reader]: [14:52:58][INFO] fair::mq::Device running...
+[2149445:tof-digit-reader]: [14:52:58][INFO] LHCPeriod is not available, using current month OCT
+[2149445:tof-digit-reader]: [14:52:58][INFO] Sending end-of-stream message to channel from_tof-digit-reader_to_internal-dpl-ccdb-backend
+[2149445:tof-digit-reader]: [14:52:58][INFO] Sending end-of-stream message to channel from_tof-digit-reader_to_TOFClusterer
+[2149445:tof-digit-reader]: [14:52:58][INFO] Sending end-of-stream message to channel from_tof-digit-reader_to_internal-dpl-injected-dummy-sink
+[2149445:tof-digit-reader]: [14:52:58][INFO] Correctly handshaken websocket connection.
+[2149446:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to JCentral. Please wait
+[2149446:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to 137.138.47.219
+[2149446:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Successfully connected to 137.138.47.219
+[2149446:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/CTP/Calib/OrbitReset/06/62200/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee in SE <ALICE::CERN::EOS>
+[2149446:internal-dpl-ccdb-backend]: [14:52:58][INFO] ccdb reads http://alice-ccdb.cern.ch/CTP/Calib/OrbitReset/1546300800000/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697201577-Xl33Y1), 
+[2149446:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GeometryAligned/06/21224/787687c0-287a-11ed-8141-200114580202 in SE <ALICE::CERN::OCDB>
+[2149446:internal-dpl-ccdb-backend]: [14:52:59][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GeometryAligned/1546300800000/787687c0-287a-11ed-8141-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697201577-Xl33Y1), 
+[2149446:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPECS/03/07584/646e9be2-0210-11ed-8000-200114580202 in SE <ALICE::CERN::OCDB>
+[2149446:internal-dpl-ccdb-backend]: [14:52:59][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPECS/1546300800000/646e9be2-0210-11ed-8000-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697201577-Xl33Y1), 
+[2149446:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPLHCIF/04/60609/b3296373-efea-11ec-b9c0-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[2149446:internal-dpl-ccdb-backend]: [14:52:59][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPLHCIF/1546300800000/b3296373-efea-11ec-b9c0-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697201577-Xl33Y1), 
+[2149446:internal-dpl-ccdb-backend]: [14:52:59][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_TOFClusterer
+[2149446:internal-dpl-ccdb-backend]: [14:52:59][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_internal-dpl-injected-dummy-sink
+[2149447:TOFClusterer]: [14:52:59][INFO] GRP LHCIF object updated
+[2149447:TOFClusterer]: [14:52:59][INFO] Caching in 139944857883520 ptr to GLO/GRPLHCIF/0 (0x54344a0)
+[2149447:TOFClusterer]: [14:52:59][INFO] GRP ECS object updated
+[2149447:TOFClusterer]: [14:52:59][INFO] Caching in 139944857881248 ptr to GLO/GRPECS/0 (0x4713560)
+[2149447:TOFClusterer]: Info in <TGeoManager::CloseGeometry>: Geometry loaded from file...
+[2149447:TOFClusterer]: Info in <TGeoManager::SetTopVolume>: Top volume is cave. Master volume is cave
+[2149447:TOFClusterer]: Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+[2149447:TOFClusterer]: Info in <TGeoManager::Voxelize>: Voxelizing...
+[2149447:TOFClusterer]: Info in <TGeoManager::CountLevels>: max level = 13, max placements = 735
+[2149447:TOFClusterer]: Info in <TGeoManager::CloseGeometry>: 5346742 nodes/ 27442 volume UID's in FAIR geometry
+[2149447:TOFClusterer]: Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+[2149447:TOFClusterer]: [14:52:59][INFO] aligned geometry updated
+[2149447:TOFClusterer]: [14:52:59][INFO] Caching in 139944856033728 ptr to GLO/GEOMALIGN/0 (0x573d670)
+[2149447:TOFClusterer]: [14:52:59][INFO] tof::Geo: Initialization of TOF rotation parameters
+[2149447:TOFClusterer]: [14:53:00][INFO] Sending end-of-stream message to channel from_TOFClusterer_to_TOFClusterWriter
 [INFO] Quitting
 [INFO] QUIT_REQUESTED
-[2112349:tof-digit-reader]: [14:36:47][INFO] Received device shutdown request (signal 15).
-[2112349:tof-digit-reader]: [14:36:47][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2112352:TOFClusterWriter]: [14:36:47][INFO] Received device shutdown request (signal 15).
-[2112352:TOFClusterWriter]: [14:36:47][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:47][INFO] Received device shutdown request (signal 15).
-[2112351:TOFClusterer]: [14:36:47][INFO] Received device shutdown request (signal 15).
-[2112351:TOFClusterer]: [14:36:47][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2112348:internal-dpl-clock]: [14:36:47][INFO] Received device shutdown request (signal 15).
-[2112348:internal-dpl-clock]: [14:36:47][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:47][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2112348:internal-dpl-clock]: [14:36:47][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2112348:internal-dpl-clock]: [14:36:47][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_tof-digit-reader
-[2112348:internal-dpl-clock]: [14:36:47][STATE] RUNNING ---> READY
-[2112349:tof-digit-reader]: [14:36:47][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2112349:tof-digit-reader]: [14:36:47][STATE] RUNNING ---> READY
-[2112349:tof-digit-reader]: [14:36:47][STATE] READY ---> RESETTING TASK
-[2112349:tof-digit-reader]: [14:36:47][STATE] RESETTING TASK ---> DEVICE READY
-[2112349:tof-digit-reader]: [14:36:47][STATE] DEVICE READY ---> RESETTING DEVICE
-[2112350:internal-dpl-ccdb-backend]: [14:36:47][INFO] Received device shutdown request (signal 15).
-[2112350:internal-dpl-ccdb-backend]: [14:36:47][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2112352:TOFClusterWriter]: [14:36:47][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:47][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:47][STATE] RUNNING ---> READY
-[2112351:TOFClusterer]: [14:36:47][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2112351:TOFClusterer]: [14:36:47][STATE] RUNNING ---> READY
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:47][STATE] READY ---> RESETTING TASK
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:47][STATE] RESETTING TASK ---> DEVICE READY
-[2112350:internal-dpl-ccdb-backend]: [14:36:47][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2112350:internal-dpl-ccdb-backend]: [14:36:47][INFO] CCDB cache miss/hit ratio:
-[2112350:internal-dpl-ccdb-backend]: [14:36:47][INFO]   GLO/Config/GRPLHCIF: 1/0 (2048-2048 bytes)
-[2112350:internal-dpl-ccdb-backend]: [14:36:47][INFO]   GLO/Config/GRPECS: 1/0 (2048-2048 bytes)
-[2112350:internal-dpl-ccdb-backend]: [14:36:47][INFO]   GLO/Config/GeometryAligned: 1/0 (1847296-1847296 bytes)
-[2112350:internal-dpl-ccdb-backend]: [14:36:47][INFO]   CTP/Calib/OrbitReset: 1/1 (1024-1024 bytes)
-[2112350:internal-dpl-ccdb-backend]: [14:36:47][STATE] RUNNING ---> READY
-[2112348:internal-dpl-clock]: [14:36:47][STATE] READY ---> RESETTING TASK
-[2112348:internal-dpl-clock]: [14:36:47][STATE] RESETTING TASK ---> DEVICE READY
-[2112350:internal-dpl-ccdb-backend]: [14:36:47][STATE] READY ---> RESETTING TASK
-[2112350:internal-dpl-ccdb-backend]: [14:36:47][STATE] RESETTING TASK ---> DEVICE READY
-[2112350:internal-dpl-ccdb-backend]: [14:36:47][STATE] DEVICE READY ---> RESETTING DEVICE
-[2112348:internal-dpl-clock]: [14:36:47][STATE] DEVICE READY ---> RESETTING DEVICE
-[2112351:TOFClusterer]: [14:36:47][STATE] READY ---> RESETTING TASK
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:47][STATE] DEVICE READY ---> RESETTING DEVICE
-[2112351:TOFClusterer]: [14:36:47][STATE] RESETTING TASK ---> DEVICE READY
-[2112351:TOFClusterer]: [14:36:47][STATE] DEVICE READY ---> RESETTING DEVICE
-[2112350:internal-dpl-ccdb-backend]: [14:36:47][STATE] RESETTING DEVICE ---> IDLE
-[2112350:internal-dpl-ccdb-backend]: [14:36:47][STATE] IDLE ---> EXITING
-[2112349:tof-digit-reader]: [14:36:47][STATE] RESETTING DEVICE ---> IDLE
-[2112349:tof-digit-reader]: [14:36:47][STATE] IDLE ---> EXITING
-[2112350:internal-dpl-ccdb-backend]: [14:36:47][STATE] Exiting FairMQ state machine
-[2112348:internal-dpl-clock]: [14:36:47][STATE] RESETTING DEVICE ---> IDLE
-[2112349:tof-digit-reader]: [14:36:47][STATE] Exiting FairMQ state machine
-[2112348:internal-dpl-clock]: [14:36:47][STATE] IDLE ---> EXITING
-[2112348:internal-dpl-clock]: [14:36:47][STATE] Exiting FairMQ state machine
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:47][STATE] RESETTING DEVICE ---> IDLE
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:47][STATE] IDLE ---> EXITING
-[2112353:internal-dpl-injected-dummy-sink]: [14:36:47][STATE] Exiting FairMQ state machine
-[2112351:TOFClusterer]: [14:36:47][STATE] RESETTING DEVICE ---> IDLE
-[2112351:TOFClusterer]: [14:36:47][STATE] IDLE ---> EXITING
-[2112351:TOFClusterer]: [14:36:47][STATE] Exiting FairMQ state machine
-[2112352:TOFClusterWriter]: [14:36:47][STATE] RUNNING ---> READY
-[2112352:TOFClusterWriter]: [14:36:47][STATE] READY ---> RESETTING TASK
-[2112352:TOFClusterWriter]: [14:36:47][STATE] RESETTING TASK ---> DEVICE READY
-[2112352:TOFClusterWriter]: [14:36:47][STATE] DEVICE READY ---> RESETTING DEVICE
-[2112352:TOFClusterWriter]: [14:36:47][INFO] Cleaning up for shared memory id '64847dc6'...
-[2112352:TOFClusterWriter]: [14:36:47][INFO] Found 0 unmanaged regions...
-[2112352:TOFClusterWriter]: [14:36:47][INFO] Found 1 managed segments...
-[2112352:TOFClusterWriter]: [14:36:47][INFO] Successfully removed 'fmq_64847dc6_m_0'.
-[2112352:TOFClusterWriter]: [14:36:47][INFO] Successfully removed 'fmq_64847dc6_mng'.
-[2112352:TOFClusterWriter]: [14:36:47][STATE] RESETTING DEVICE ---> IDLE
-[2112352:TOFClusterWriter]: [14:36:47][STATE] IDLE ---> EXITING
-[2112352:TOFClusterWriter]: [14:36:47][STATE] Exiting FairMQ state machine
+[2149446:internal-dpl-ccdb-backend]: [14:53:00][INFO] Received device shutdown request (signal 15).
+[2149446:internal-dpl-ccdb-backend]: [14:53:00][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2149446:internal-dpl-ccdb-backend]: [14:53:00][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2149446:internal-dpl-ccdb-backend]: [14:53:00][INFO] CCDB cache miss/hit ratio:
+[2149446:internal-dpl-ccdb-backend]: [14:53:00][INFO]   GLO/Config/GRPLHCIF: 1/0 (2048-2048 bytes)
+[2149446:internal-dpl-ccdb-backend]: [14:53:00][INFO]   GLO/Config/GRPECS: 1/0 (2048-2048 bytes)
+[2149446:internal-dpl-ccdb-backend]: [14:53:00][INFO]   GLO/Config/GeometryAligned: 1/0 (1847296-1847296 bytes)
+[2149446:internal-dpl-ccdb-backend]: [14:53:00][INFO]   CTP/Calib/OrbitReset: 1/1 (1024-1024 bytes)
+[2149446:internal-dpl-ccdb-backend]: [14:53:00][STATE] RUNNING ---> READY
+[2149446:internal-dpl-ccdb-backend]: [14:53:00][STATE] READY ---> RESETTING TASK
+[2149446:internal-dpl-ccdb-backend]: [14:53:00][STATE] RESETTING TASK ---> DEVICE READY
+[2149446:internal-dpl-ccdb-backend]: [14:53:00][STATE] DEVICE READY ---> RESETTING DEVICE
+[2149446:internal-dpl-ccdb-backend]: [14:53:00][STATE] RESETTING DEVICE ---> IDLE
+[2149446:internal-dpl-ccdb-backend]: [14:53:00][STATE] IDLE ---> EXITING
+[2149446:internal-dpl-ccdb-backend]: [14:53:00][STATE] Exiting FairMQ state machine
+[2149444:internal-dpl-clock]: [14:53:00][INFO] Received device shutdown request (signal 15).
+[2149444:internal-dpl-clock]: [14:53:00][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2149449:internal-dpl-injected-dummy-sink]: [14:53:00][INFO] Received device shutdown request (signal 15).
+[2149449:internal-dpl-injected-dummy-sink]: [14:53:00][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2149449:internal-dpl-injected-dummy-sink]: [14:53:00][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2149449:internal-dpl-injected-dummy-sink]: [14:53:00][STATE] RUNNING ---> READY
+[2149449:internal-dpl-injected-dummy-sink]: [14:53:00][STATE] READY ---> RESETTING TASK
+[2149449:internal-dpl-injected-dummy-sink]: [14:53:00][STATE] RESETTING TASK ---> DEVICE READY
+[2149449:internal-dpl-injected-dummy-sink]: [14:53:00][STATE] DEVICE READY ---> RESETTING DEVICE
+[2149444:internal-dpl-clock]: [14:53:00][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2149444:internal-dpl-clock]: [14:53:00][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_tof-digit-reader
+[2149444:internal-dpl-clock]: [14:53:00][STATE] RUNNING ---> READY
+[2149444:internal-dpl-clock]: [14:53:00][STATE] READY ---> RESETTING TASK
+[2149444:internal-dpl-clock]: [14:53:00][STATE] RESETTING TASK ---> DEVICE READY
+[2149444:internal-dpl-clock]: [14:53:00][STATE] DEVICE READY ---> RESETTING DEVICE
+[2149449:internal-dpl-injected-dummy-sink]: [14:53:00][STATE] RESETTING DEVICE ---> IDLE
+[2149449:internal-dpl-injected-dummy-sink]: [14:53:00][STATE] IDLE ---> EXITING
+[2149449:internal-dpl-injected-dummy-sink]: [14:53:00][STATE] Exiting FairMQ state machine
+[2149444:internal-dpl-clock]: [14:53:00][STATE] RESETTING DEVICE ---> IDLE
+[2149448:TOFClusterWriter]: [14:53:00][INFO] Received device shutdown request (signal 15).
+[2149448:TOFClusterWriter]: [14:53:00][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2149444:internal-dpl-clock]: [14:53:00][STATE] IDLE ---> EXITING
+[2149445:tof-digit-reader]: [14:53:00][INFO] Received device shutdown request (signal 15).
+[2149445:tof-digit-reader]: [14:53:00][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2149444:internal-dpl-clock]: [14:53:00][STATE] Exiting FairMQ state machine
+[2149445:tof-digit-reader]: [14:53:00][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2149445:tof-digit-reader]: [14:53:00][STATE] RUNNING ---> READY
+[2149448:TOFClusterWriter]: [14:53:00][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2149445:tof-digit-reader]: [14:53:00][STATE] READY ---> RESETTING TASK
+[2149445:tof-digit-reader]: [14:53:00][STATE] RESETTING TASK ---> DEVICE READY
+[2149445:tof-digit-reader]: [14:53:00][STATE] DEVICE READY ---> RESETTING DEVICE
+[2149445:tof-digit-reader]: [14:53:00][STATE] RESETTING DEVICE ---> IDLE
+[2149445:tof-digit-reader]: [14:53:00][STATE] IDLE ---> EXITING
+[2149445:tof-digit-reader]: [14:53:00][STATE] Exiting FairMQ state machine
+[2149448:TOFClusterWriter]: [14:53:00][STATE] RUNNING ---> READY
+[2149448:TOFClusterWriter]: [14:53:00][STATE] READY ---> RESETTING TASK
+[2149448:TOFClusterWriter]: [14:53:00][STATE] RESETTING TASK ---> DEVICE READY
+[2149448:TOFClusterWriter]: [14:53:00][STATE] DEVICE READY ---> RESETTING DEVICE
+[2149448:TOFClusterWriter]: [14:53:00][STATE] RESETTING DEVICE ---> IDLE
+[2149448:TOFClusterWriter]: [14:53:00][STATE] IDLE ---> EXITING
+[2149448:TOFClusterWriter]: [14:53:00][STATE] Exiting FairMQ state machine
+[2149447:TOFClusterer]: [14:53:01][INFO] Received device shutdown request (signal 15).
+[2149447:TOFClusterer]: [14:53:01][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2149447:TOFClusterer]: [14:53:01][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2149447:TOFClusterer]: [14:53:01][STATE] RUNNING ---> READY
+[2149447:TOFClusterer]: [14:53:01][STATE] READY ---> RESETTING TASK
+[2149447:TOFClusterer]: [14:53:01][STATE] RESETTING TASK ---> DEVICE READY
+[2149447:TOFClusterer]: [14:53:01][STATE] DEVICE READY ---> RESETTING DEVICE
+[2149447:TOFClusterer]: [14:53:01][INFO] Cleaning up for shared memory id 'f24a8273'...
+[2149447:TOFClusterer]: [14:53:01][INFO] Found 0 unmanaged regions...
+[2149447:TOFClusterer]: [14:53:01][INFO] Found 1 managed segments...
+[2149447:TOFClusterer]: [14:53:01][INFO] Successfully removed 'fmq_f24a8273_m_0'.
+[2149447:TOFClusterer]: [14:53:01][INFO] Successfully removed 'fmq_f24a8273_mng'.
+[2149447:TOFClusterer]: [14:53:01][STATE] RESETTING DEVICE ---> IDLE
+[2149447:TOFClusterer]: [14:53:01][STATE] IDLE ---> EXITING
+[2149447:TOFClusterer]: [14:53:01][STATE] Exiting FairMQ state machine
 [INFO] ## Processes completed. Run summary:
 [INFO] ### Devices started: 6
-[INFO]  - Device internal-dpl-clock: pid 2112348 (exit 0)
-[INFO]  - Device tof-digit-reader: pid 2112349 (exit 0)
-[INFO]  - Device internal-dpl-ccdb-backend: pid 2112350 (exit 0)
-[INFO]  - Device TOFClusterer: pid 2112351 (exit 0)
-[INFO]  - Device TOFClusterWriter: pid 2112352 (exit 0)
-[INFO]  - Device internal-dpl-injected-dummy-sink: pid 2112353 (exit 0)
+[INFO]  - Device internal-dpl-clock: pid 2149444 (exit 0)
+[INFO]  - Device tof-digit-reader: pid 2149445 (exit 0)
+[INFO]  - Device internal-dpl-ccdb-backend: pid 2149446 (exit 0)
+[INFO]  - Device TOFClusterer: pid 2149447 (exit 0)
+[INFO]  - Device TOFClusterWriter: pid 2149448 (exit 0)
+[INFO]  - Device internal-dpl-injected-dummy-sink: pid 2149449 (exit 0)
 [INFO] Dumping used configuration in dpl-config.json
 TASK-EXIT-CODE: 0

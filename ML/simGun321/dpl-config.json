@@ -11,6 +11,17 @@
         "end-value-enumeration": "-1",
         "step-value-enumeration": "1"
     },
+    "HMP-ClusterReader": {
+        "hmpid-cluster-infile": "hmpidclusters.root",
+        "input-dir": ".\/",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
     "itstpctrd-track-reader": {
         "track-infile": "trdmatches_itstpc.root",
         "input-dir": "none",
@@ -33,9 +44,10 @@
         "end-value-enumeration": "-1",
         "step-value-enumeration": "1"
     },
-    "tof-cluster-reader": {
-        "tof-cluster-infile": "tofclusters.root",
+    "TOFMatchedReader_TPC": {
+        "tof-matched-infile": "o2match_tof_tpc.root",
         "input-dir": "none",
+        "treename": "matchTOF",
         "tf-info-source": "hbfutils",
         "reader-delay": "0",
         "orbit-offset-enumeration": "0",
@@ -44,10 +56,33 @@
         "end-value-enumeration": "-1",
         "step-value-enumeration": "1"
     },
-    "tpc-track-reader": {
-        "infile": "tpctracks.root",
+    "TOFMatchedReader_ITSTPC": {
+        "tof-matched-infile": "o2match_tof_itstpc.root",
         "input-dir": "none",
-        "skip-clusref": "false",
+        "treename": "matchTOF",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "TOFMatchedReader_ITSTPCTRD": {
+        "tof-matched-infile": "o2match_tof_itstpctrd.root",
+        "input-dir": "none",
+        "treename": "matchTOF",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "tof-cluster-reader": {
+        "tof-cluster-infile": "tofclusters.root",
+        "input-dir": "none",
         "tf-info-source": "hbfutils",
         "reader-delay": "0",
         "orbit-offset-enumeration": "0",
@@ -70,57 +105,20 @@
         "end-value-enumeration": "-1",
         "step-value-enumeration": "1"
     },
-    "tof-matcher": {
-        "corrmap-lumi-mean": "0",
-        "corrmap-lumi-inst": "0",
-        "corrmap-lumi-mode": "0",
+    "hmp-matcher": {
         "condition-backend": "http:\/\/alice-ccdb.cern.ch",
         "condition-timestamp": "0"
     },
-    "TOFMatchedWriter_ITSTPC": {
-        "outfile": "o2match_tof_itstpc.root",
+    "HMPMatchedWriter": {
+        "outfile": "o2match_hmp.root",
         "output-dir": "none",
-        "treename": "matchTOF",
-        "treetitle": "matchTOF",
+        "treename": "matchHMP",
+        "treetitle": "matchHMP",
         "nevents": "-1",
         "autosave": "-1",
         "terminate": "process",
-        "TOFMatchInfo-branch-name": "TOFMatchInfo",
-        "MatchTOFMCTruth-branch-name": "MatchTOFMCTruth"
-    },
-    "TOFMatchedWriter_ITSTPCTRD": {
-        "outfile": "o2match_tof_itstpctrd.root",
-        "output-dir": "none",
-        "treename": "matchTOF",
-        "treetitle": "matchTOF",
-        "nevents": "-1",
-        "autosave": "-1",
-        "terminate": "process",
-        "TOFMatchInfo-branch-name": "TOFMatchInfo",
-        "MatchTOFMCTruth-branch-name": "MatchTOFMCTruth"
-    },
-    "TOFMatchedWriter_TPC": {
-        "outfile": "o2match_tof_tpc.root",
-        "output-dir": "none",
-        "treename": "matchTOF",
-        "treetitle": "matchTOF",
-        "nevents": "-1",
-        "autosave": "-1",
-        "terminate": "process",
-        "TOFMatchInfo-branch-name": "TOFMatchInfo",
-        "TPCTOFTracks-branch-name": "TPCTOFTracks",
-        "MatchTOFMCTruth-branch-name": "MatchTOFMCTruth"
-    },
-    "TOFMatchedWriter_TPCTRD": {
-        "outfile": "o2match_tof_tpctrd.root",
-        "output-dir": "none",
-        "treename": "matchTOF",
-        "treetitle": "matchTOF",
-        "nevents": "-1",
-        "autosave": "-1",
-        "terminate": "process",
-        "TOFMatchInfo-branch-name": "TOFMatchInfo",
-        "MatchTOFMCTruth-branch-name": "MatchTOFMCTruth"
+        "HMPMatchInfo-branch-name": "HMPMatchInfo",
+        "MatchHMPMCTruth-branch-name": "MatchHMPMCTruth"
     },
     "internal-dpl-injected-dummy-sink": ""
 }
