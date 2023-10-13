@@ -133,7 +133,7 @@ public:
 
 
 
-mtype.insertMember("candStatusCkov", HOFFSET(ClusterCandidate, candStatusCkov),  H5::PredType::NATIVE_INT); 
+  	mtype.insertMember("candStatusCkov", HOFFSET(ClusterCandidate, candStatusCkov),  H5::PredType::NATIVE_INT); 
 			
 	mtype.insertMember("candStatus", HOFFSET(ClusterCandidate, candStatus),  H5::PredType::NATIVE_INT); 
 
@@ -170,24 +170,21 @@ mtype.insertMember("candStatusCkov", HOFFSET(ClusterCandidate, candStatusCkov), 
             xe_values.push_back(cand.mXe);
             ye_values.push_back(cand.mYe);
             candStatus_values.push_back(cand.mCandidateStatus);
-  				 candStatusCkov_values.push_back(cand.mCandidateStatusCkov);
-  				 sigmaRingValues.push_back(cand.mSigmaRing);
+  				  candStatusCkov_values.push_back(cand.mCandidateStatusCkov);
+  				  sigmaRingValues.push_back(cand.mSigmaRing);
 
 
-  				 phiCerValues.push_back(cand.mPhiCer);
-  				 thetaCerValues.push_back(cand.mThetaCer);
-            mSize_values.push_back(cand.mSize);  // Add mSize to the vector
-
-
-
-
-	    // Printf("size %d", cand.mSize);
+  				  phiCerValues.push_back(cand.mPhiCer);
+  				  thetaCerValues.push_back(cand.mThetaCer);
+            mSize_values.push_back(cand.mSize);  
         }
 
 
 				// ef: fix this to hte dimensio that is highest?
         hsize_t dims[1] = { x_values.size() };
         DataSpace dataspace(1, dims);
+        
+        
 
         // Here I'm assuming particleGroup is defined and is of type H5::Group
         DataSet dataset = particleGroup.createDataSet("x_values", PredType::NATIVE_DOUBLE, dataspace);
@@ -196,11 +193,23 @@ mtype.insertMember("candStatusCkov", HOFFSET(ClusterCandidate, candStatusCkov), 
         dataset = particleGroup.createDataSet("y_values", PredType::NATIVE_DOUBLE, dataspace);
         dataset.write(y_values.data(), PredType::NATIVE_DOUBLE);
 
-        dataset = particleGroup.createDataSet("chi2_values", PredType::NATIVE_DOUBLE, dataspace);
-        dataset.write(chi2_values.data(), PredType::NATIVE_DOUBLE);
-
         dataset = particleGroup.createDataSet("q_values", PredType::NATIVE_INT, dataspace);
         dataset.write(q_values.data(), PredType::NATIVE_INT);
+
+        dataset = particleGroup.createDataSet("mSize_values", PredType::NATIVE_INT, dataspace);
+        dataset.write(mSize_values.data(), PredType::NATIVE_INT);
+
+        dataset = particleGroup.createDataSet("thetaCerValues", PredType::NATIVE_DOUBLE, dataspace);
+        dataset.write(thetaCerValues.data(), PredType::NATIVE_DOUBLE);
+
+        dataset = particleGroup.createDataSet("sigmaRingValues", PredType::NATIVE_DOUBLE, dataspace);
+        dataset.write(sigmaRingValues.data(), PredType::NATIVE_DOUBLE);
+
+        dataset = particleGroup.createDataSet("phiCerValues", PredType::NATIVE_DOUBLE, dataspace);
+        dataset.write(phiCerValues.data(), PredType::NATIVE_DOUBLE);
+
+        dataset = particleGroup.createDataSet("chi2_values", PredType::NATIVE_DOUBLE, dataspace);
+        dataset.write(chi2_values.data(), PredType::NATIVE_DOUBLE);
 
         dataset = particleGroup.createDataSet("xe_values", PredType::NATIVE_DOUBLE, dataspace);
         dataset.write(xe_values.data(), PredType::NATIVE_DOUBLE);
@@ -210,6 +219,9 @@ mtype.insertMember("candStatusCkov", HOFFSET(ClusterCandidate, candStatusCkov), 
 
         dataset = particleGroup.createDataSet("candStatus_values", PredType::NATIVE_INT, dataspace);
         dataset.write(candStatus_values.data(), PredType::NATIVE_INT);
+
+
+
 
 
 
@@ -223,9 +235,6 @@ mtype.insertMember("candStatusCkov", HOFFSET(ClusterCandidate, candStatusCkov), 
         // Add a dataset for mSize
 
 
-        dataset = particleGroup.createDataSet("mSize_values", PredType::NATIVE_INT, dataspace);
-        dataset.write(mSize_values.data(), PredType::NATIVE_INT);
-        
 						  
 
 

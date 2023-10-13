@@ -7,7 +7,7 @@ for i in {0..100}; do
     echo "Iteration: $i"
 
     # Run your sim_challenge.sh script
-    /root/alice/O2/prodtests/sim_challengeCustom.sh -f simk -n 250 || { echo "sim_challenge.sh failed"; exit 1; }
+    /root/alice/O2/prodtests/sim_challengeCustom.sh -f simk -n 250 || { echo "sim_challengeCustom.sh failed"; exit 1; }
 
     # Run ROOT framework and load macro, then call function with value 1.75 and exit
     root -b -q -l "SegmentationCkov.C(1.75)" || { echo "ROOT commands failed"; exit 1; }

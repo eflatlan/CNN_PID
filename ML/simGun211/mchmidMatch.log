@@ -1,255 +1,255 @@
 Running: TIME="#walltime %e" /usr/bin/time --output=mchmidMatch.log_time ./mchmidMatch.log_tmp.sh
-[INFO] Initialising O2 Data Processing Layer. Driver PID: 2764927.
-[INFO] Driver listening on port: 13007
+[INFO] Initialising O2 Data Processing Layer. Driver PID: 1993711.
+[INFO] Driver listening on port: 21791
 [INFO] Rate limiting set up at 500MB distributed over 1 readers
 [INFO] O2 Data Processing Layer initialised. We brake for nobody.
 [INFO] Optimised build. O2DEBUG / LOG(debug) / LOGF(debug) / assert statement will not be shown.
 [INFO] Redeployment of configuration asked.
-[INFO] Starting internal-dpl-clock on pid 2764971
-[INFO] Starting mid-track-reader on pid 2764972
-[INFO] Starting mch-track-reader0 on pid 2764973
-[INFO] Starting muon-track-matcher on pid 2764974
-[INFO] Starting muon-track-writer on pid 2764975
-[INFO] Starting internal-dpl-injected-dummy-sink on pid 2764976
+[INFO] Starting internal-dpl-clock on pid 1993747
+[INFO] Starting mid-track-reader on pid 1993748
+[INFO] Starting mch-track-reader0 on pid 1993749
+[INFO] Starting muon-track-matcher on pid 1993750
+[INFO] Starting muon-track-writer on pid 1993751
+[INFO] Starting internal-dpl-injected-dummy-sink on pid 1993752
 [INFO] Redeployment of configuration done.
-[2764974:muon-track-matcher]: [INFO] Instrumenting crash signals
-[2764974:muon-track-matcher]: [INFO] Spawing new device muon-track-matcher in process with pid 2764974
-[2764974:muon-track-matcher]: [20:04:19][INFO] 
-[2764974:muon-track-matcher]:       ______      _    _______  _________ 
-[2764974:muon-track-matcher]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2764974:muon-track-matcher]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2764974:muon-track-matcher]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2764974:muon-track-matcher]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2764974:muon-track-matcher]: 
-[2764974:muon-track-matcher]: [20:04:19][STATE] Starting FairMQ state machine --> IDLE
-[2764974:muon-track-matcher]: [20:04:19][STATE] IDLE ---> INITIALIZING DEVICE
-[2764974:muon-track-matcher]: [20:04:19][INFO] initializing track matching
-[2764974:muon-track-matcher]: [20:04:19][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2764974:muon-track-matcher]: [20:04:19][STATE] INITIALIZED ---> BINDING
-[2764974:muon-track-matcher]: [20:04:19][STATE] BINDING ---> BOUND
-[2764974:muon-track-matcher]: [20:04:19][STATE] BOUND ---> CONNECTING
-[2764974:muon-track-matcher]: [20:04:19][STATE] CONNECTING ---> DEVICE READY
-[2764974:muon-track-matcher]: [20:04:19][STATE] DEVICE READY ---> INITIALIZING TASK
-[2764971:internal-dpl-clock]: [INFO] Instrumenting crash signals
-[2764971:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 2764971
-[2764971:internal-dpl-clock]: [20:04:19][INFO] 
-[2764971:internal-dpl-clock]:       ______      _    _______  _________ 
-[2764971:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2764971:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2764971:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2764971:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2764971:internal-dpl-clock]: 
-[2764971:internal-dpl-clock]: [20:04:19][STATE] Starting FairMQ state machine --> IDLE
-[2764974:muon-track-matcher]: [20:04:19][STATE] INITIALIZING TASK ---> READY
-[2764971:internal-dpl-clock]: [20:04:19][STATE] IDLE ---> INITIALIZING DEVICE
-[2764971:internal-dpl-clock]: [20:04:19][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2764971:internal-dpl-clock]: [20:04:19][STATE] INITIALIZED ---> BINDING
-[2764971:internal-dpl-clock]: [20:04:19][STATE] BINDING ---> BOUND
-[2764971:internal-dpl-clock]: [20:04:19][STATE] BOUND ---> CONNECTING
-[2764971:internal-dpl-clock]: [20:04:19][STATE] CONNECTING ---> DEVICE READY
-[2764971:internal-dpl-clock]: [20:04:19][STATE] DEVICE READY ---> INITIALIZING TASK
-[2764971:internal-dpl-clock]: [20:04:19][STATE] INITIALIZING TASK ---> READY
-[2764971:internal-dpl-clock]: [20:04:19][STATE] READY ---> RUNNING
-[2764971:internal-dpl-clock]: [20:04:19][INFO] fair::mq::Device running...
-[2764971:internal-dpl-clock]: [20:04:19][INFO] LHCPeriod is not available, using current month SEP
-[2764974:muon-track-matcher]: [20:04:19][STATE] READY ---> RUNNING
-[2764974:muon-track-matcher]: [20:04:19][INFO] fair::mq::Device running...
-[2764974:muon-track-matcher]: [20:04:19][INFO] LHCPeriod is not available, using current month SEP
-[2764971:internal-dpl-clock]: [20:04:19][INFO] Correctly handshaken websocket connection.
-[2764974:muon-track-matcher]: [20:04:19][INFO] Correctly handshaken websocket connection.
-[2764976:internal-dpl-injected-dummy-sink]: [INFO] Instrumenting crash signals
-[2764976:internal-dpl-injected-dummy-sink]: [INFO] Spawing new device internal-dpl-injected-dummy-sink in process with pid 2764976
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:20][INFO] 
-[2764976:internal-dpl-injected-dummy-sink]:       ______      _    _______  _________ 
-[2764976:internal-dpl-injected-dummy-sink]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2764976:internal-dpl-injected-dummy-sink]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2764976:internal-dpl-injected-dummy-sink]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2764976:internal-dpl-injected-dummy-sink]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2764976:internal-dpl-injected-dummy-sink]: 
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:20][STATE] Starting FairMQ state machine --> IDLE
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:20][STATE] IDLE ---> INITIALIZING DEVICE
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:20][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:20][STATE] INITIALIZED ---> BINDING
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:20][STATE] BINDING ---> BOUND
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:20][STATE] BOUND ---> CONNECTING
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:20][STATE] CONNECTING ---> DEVICE READY
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:20][STATE] DEVICE READY ---> INITIALIZING TASK
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:20][STATE] INITIALIZING TASK ---> READY
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:20][STATE] READY ---> RUNNING
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:20][INFO] fair::mq::Device running...
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:20][INFO] LHCPeriod is not available, using current month SEP
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:20][INFO] Correctly handshaken websocket connection.
-[2764975:muon-track-writer]: [INFO] Instrumenting crash signals
-[2764975:muon-track-writer]: [INFO] Spawing new device muon-track-writer in process with pid 2764975
-[2764975:muon-track-writer]: [20:04:20][INFO] 
-[2764975:muon-track-writer]:       ______      _    _______  _________ 
-[2764975:muon-track-writer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2764975:muon-track-writer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2764975:muon-track-writer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2764975:muon-track-writer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2764975:muon-track-writer]: 
-[2764975:muon-track-writer]: [20:04:20][STATE] Starting FairMQ state machine --> IDLE
-[2764975:muon-track-writer]: [20:04:20][STATE] IDLE ---> INITIALIZING DEVICE
-[2764975:muon-track-writer]: [20:04:20][INFO] 0: branch  tracks set up
-[2764975:muon-track-writer]: [20:04:20][INFO] 1: branch  tracklabels set up
-[2764975:muon-track-writer]: [20:04:20][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2764975:muon-track-writer]: [20:04:20][STATE] INITIALIZED ---> BINDING
-[2764975:muon-track-writer]: [20:04:20][STATE] BINDING ---> BOUND
-[2764975:muon-track-writer]: [20:04:20][STATE] BOUND ---> CONNECTING
-[2764975:muon-track-writer]: [20:04:20][STATE] CONNECTING ---> DEVICE READY
-[2764975:muon-track-writer]: [20:04:20][STATE] DEVICE READY ---> INITIALIZING TASK
-[2764975:muon-track-writer]: [20:04:20][STATE] INITIALIZING TASK ---> READY
-[2764975:muon-track-writer]: [20:04:20][STATE] READY ---> RUNNING
-[2764975:muon-track-writer]: [20:04:20][INFO] fair::mq::Device running...
-[2764975:muon-track-writer]: [20:04:20][INFO] LHCPeriod is not available, using current month SEP
-[2764975:muon-track-writer]: [20:04:20][INFO] Correctly handshaken websocket connection.
-[2764973:mch-track-reader0]: [INFO] Instrumenting crash signals
-[2764973:mch-track-reader0]: [INFO] Spawing new device mch-track-reader0 in process with pid 2764973
-[2764973:mch-track-reader0]: [20:04:20][INFO] 
-[2764973:mch-track-reader0]:       ______      _    _______  _________ 
-[2764973:mch-track-reader0]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2764973:mch-track-reader0]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2764973:mch-track-reader0]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2764973:mch-track-reader0]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2764973:mch-track-reader0]: 
-[2764973:mch-track-reader0]: [20:04:20][STATE] Starting FairMQ state machine --> IDLE
-[2764973:mch-track-reader0]: [20:04:20][STATE] IDLE ---> INITIALIZING DEVICE
-[2764972:mid-track-reader]: [INFO] Instrumenting crash signals
-[2764972:mid-track-reader]: [INFO] Spawing new device mid-track-reader in process with pid 2764972
-[2764972:mid-track-reader]: [20:04:20][INFO] 
-[2764972:mid-track-reader]:       ______      _    _______  _________ 
-[2764972:mid-track-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2764972:mid-track-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2764972:mid-track-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2764972:mid-track-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2764972:mid-track-reader]: 
-[2764972:mid-track-reader]: [20:04:20][STATE] Starting FairMQ state machine --> IDLE
-[2764972:mid-track-reader]: [20:04:21][STATE] IDLE ---> INITIALIZING DEVICE
-[2764972:mid-track-reader]: [20:04:21][INFO] branch set up: MIDTrack
-[2764972:mid-track-reader]: [20:04:21][INFO] branch set up: MIDTrackROF
-[2764972:mid-track-reader]: [20:04:21][INFO] branch set up: MIDTrackCluster
-[2764972:mid-track-reader]: [20:04:21][INFO] branch set up: MIDTrackClusterROF
-[2764972:mid-track-reader]: [20:04:21][INFO] branch set up: MIDTrackLabels
-[2764972:mid-track-reader]: [20:04:21][INFO] branch set up: MIDTrackClusterLabels
-[2764972:mid-track-reader]: [20:04:21][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2764972:mid-track-reader]: [20:04:21][STATE] INITIALIZED ---> BINDING
-[2764972:mid-track-reader]: [20:04:21][STATE] BINDING ---> BOUND
-[2764972:mid-track-reader]: [20:04:21][STATE] BOUND ---> CONNECTING
-[2764972:mid-track-reader]: [20:04:21][STATE] CONNECTING ---> DEVICE READY
-[2764972:mid-track-reader]: [20:04:21][STATE] DEVICE READY ---> INITIALIZING TASK
-[2764972:mid-track-reader]: [20:04:21][STATE] INITIALIZING TASK ---> READY
-[2764972:mid-track-reader]: [20:04:21][STATE] READY ---> RUNNING
-[2764972:mid-track-reader]: [20:04:21][INFO] fair::mq::Device running...
-[2764972:mid-track-reader]: [20:04:21][INFO] LHCPeriod is not available, using current month SEP
-[2764972:mid-track-reader]: [20:04:21][INFO] MID 0 TRACKS
-[2764972:mid-track-reader]: [20:04:21][INFO] MID 0 TRACKROFS
-[2764972:mid-track-reader]: [20:04:21][INFO] MID 0 TRACKCLUSTERS
-[2764972:mid-track-reader]: [20:04:21][INFO] MID 0 TRCLUSROFS
-[2764972:mid-track-reader]: [20:04:21][INFO] MID 0 TRACKLABELS
-[2764972:mid-track-reader]: [20:04:21][INFO] MID 0 TRCLUSLABELS
-[2764972:mid-track-reader]: [20:04:21][INFO] Correctly handshaken websocket connection.
-[2764972:mid-track-reader]: [20:04:21][INFO] Sending end-of-stream message to channel from_mid-track-reader_to_muon-track-matcher
-[2764972:mid-track-reader]: [20:04:21][INFO] Sending end-of-stream message to channel from_mid-track-reader_to_internal-dpl-injected-dummy-sink
-[2764973:mch-track-reader0]: [20:04:21][INFO] branch set up: trackrofs
-[2764973:mch-track-reader0]: [20:04:21][INFO] branch set up: tracks
-[2764973:mch-track-reader0]: [20:04:21][INFO] branch set up: trackclusters
-[2764973:mch-track-reader0]: [20:04:21][INFO] branch set up: tracklabels
-[2764973:mch-track-reader0]: [20:04:21][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2764973:mch-track-reader0]: [20:04:21][STATE] INITIALIZED ---> BINDING
-[2764973:mch-track-reader0]: [20:04:21][STATE] BINDING ---> BOUND
-[2764973:mch-track-reader0]: [20:04:21][STATE] BOUND ---> CONNECTING
-[2764973:mch-track-reader0]: [20:04:21][STATE] CONNECTING ---> DEVICE READY
-[2764973:mch-track-reader0]: [20:04:21][STATE] DEVICE READY ---> INITIALIZING TASK
-[2764973:mch-track-reader0]: [20:04:21][STATE] INITIALIZING TASK ---> READY
-[2764973:mch-track-reader0]: [20:04:21][STATE] READY ---> RUNNING
-[2764973:mch-track-reader0]: [20:04:21][INFO] fair::mq::Device running...
-[2764973:mch-track-reader0]: [20:04:21][INFO] LHCPeriod is not available, using current month SEP
-[2764973:mch-track-reader0]: [20:04:21][INFO] MCH 0 ROFS
-[2764973:mch-track-reader0]: [20:04:21][INFO] MCH 0 TRACKS
-[2764973:mch-track-reader0]: [20:04:21][INFO] MCH 0 CLUSTERS
-[2764973:mch-track-reader0]: [20:04:21][INFO] MCH 0 LABELS
-[2764973:mch-track-reader0]: [20:04:21][INFO] Correctly handshaken websocket connection.
-[2764973:mch-track-reader0]: [20:04:21][INFO] Sending end-of-stream message to channel from_mch-track-reader0_to_muon-track-matcher
-[2764973:mch-track-reader0]: [20:04:21][INFO] Sending end-of-stream message to channel from_mch-track-reader0_to_internal-dpl-injected-dummy-sink
-[2764974:muon-track-matcher]: [20:04:21][INFO] Sending end-of-stream message to channel from_muon-track-matcher_to_muon-track-writer
-[2764975:muon-track-writer]: [20:04:21][ERROR] Some Lifetime::Timeframe data got dropped starting at 1
+[1993749:mch-track-reader0]: [INFO] Instrumenting crash signals
+[1993749:mch-track-reader0]: [INFO] Spawing new device mch-track-reader0 in process with pid 1993749
+[1993749:mch-track-reader0]: [12:47:34][INFO] 
+[1993749:mch-track-reader0]:       ______      _    _______  _________ 
+[1993749:mch-track-reader0]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1993749:mch-track-reader0]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1993749:mch-track-reader0]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1993749:mch-track-reader0]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1993749:mch-track-reader0]: 
+[1993749:mch-track-reader0]: [12:47:34][STATE] Starting FairMQ state machine --> IDLE
+[1993749:mch-track-reader0]: [12:47:34][STATE] IDLE ---> INITIALIZING DEVICE
+[1993750:muon-track-matcher]: [INFO] Instrumenting crash signals
+[1993750:muon-track-matcher]: [INFO] Spawing new device muon-track-matcher in process with pid 1993750
+[1993750:muon-track-matcher]: [12:47:34][INFO] 
+[1993750:muon-track-matcher]:       ______      _    _______  _________ 
+[1993750:muon-track-matcher]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1993750:muon-track-matcher]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1993750:muon-track-matcher]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1993750:muon-track-matcher]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1993750:muon-track-matcher]: 
+[1993750:muon-track-matcher]: [12:47:34][STATE] Starting FairMQ state machine --> IDLE
+[1993750:muon-track-matcher]: [12:47:34][STATE] IDLE ---> INITIALIZING DEVICE
+[1993750:muon-track-matcher]: [12:47:34][INFO] initializing track matching
+[1993750:muon-track-matcher]: [12:47:34][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1993750:muon-track-matcher]: [12:47:34][STATE] INITIALIZED ---> BINDING
+[1993750:muon-track-matcher]: [12:47:34][STATE] BINDING ---> BOUND
+[1993750:muon-track-matcher]: [12:47:34][STATE] BOUND ---> CONNECTING
+[1993750:muon-track-matcher]: [12:47:34][STATE] CONNECTING ---> DEVICE READY
+[1993750:muon-track-matcher]: [12:47:34][STATE] DEVICE READY ---> INITIALIZING TASK
+[1993750:muon-track-matcher]: [12:47:34][STATE] INITIALIZING TASK ---> READY
+[1993750:muon-track-matcher]: [12:47:34][STATE] READY ---> RUNNING
+[1993750:muon-track-matcher]: [12:47:34][INFO] fair::mq::Device running...
+[1993750:muon-track-matcher]: [12:47:34][INFO] LHCPeriod is not available, using current month OCT
+[1993750:muon-track-matcher]: [12:47:34][INFO] Correctly handshaken websocket connection.
+[1993747:internal-dpl-clock]: [INFO] Instrumenting crash signals
+[1993747:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 1993747
+[1993747:internal-dpl-clock]: [12:47:34][INFO] 
+[1993747:internal-dpl-clock]:       ______      _    _______  _________ 
+[1993747:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1993747:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1993747:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1993747:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1993747:internal-dpl-clock]: 
+[1993747:internal-dpl-clock]: [12:47:34][STATE] Starting FairMQ state machine --> IDLE
+[1993752:internal-dpl-injected-dummy-sink]: [INFO] Instrumenting crash signals
+[1993747:internal-dpl-clock]: [12:47:34][STATE] IDLE ---> INITIALIZING DEVICE
+[1993747:internal-dpl-clock]: [12:47:34][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1993747:internal-dpl-clock]: [12:47:34][STATE] INITIALIZED ---> BINDING
+[1993752:internal-dpl-injected-dummy-sink]: [INFO] Spawing new device internal-dpl-injected-dummy-sink in process with pid 1993752
+[1993747:internal-dpl-clock]: [12:47:34][STATE] BINDING ---> BOUND
+[1993747:internal-dpl-clock]: [12:47:34][STATE] BOUND ---> CONNECTING
+[1993747:internal-dpl-clock]: [12:47:34][STATE] CONNECTING ---> DEVICE READY
+[1993747:internal-dpl-clock]: [12:47:34][STATE] DEVICE READY ---> INITIALIZING TASK
+[1993747:internal-dpl-clock]: [12:47:34][STATE] INITIALIZING TASK ---> READY
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][INFO] 
+[1993752:internal-dpl-injected-dummy-sink]:       ______      _    _______  _________ 
+[1993752:internal-dpl-injected-dummy-sink]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1993752:internal-dpl-injected-dummy-sink]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1993752:internal-dpl-injected-dummy-sink]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1993752:internal-dpl-injected-dummy-sink]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1993752:internal-dpl-injected-dummy-sink]: 
+[1993747:internal-dpl-clock]: [12:47:34][STATE] READY ---> RUNNING
+[1993747:internal-dpl-clock]: [12:47:34][INFO] fair::mq::Device running...
+[1993747:internal-dpl-clock]: [12:47:34][INFO] LHCPeriod is not available, using current month OCT
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][STATE] Starting FairMQ state machine --> IDLE
+[1993747:internal-dpl-clock]: [12:47:34][INFO] Correctly handshaken websocket connection.
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][STATE] IDLE ---> INITIALIZING DEVICE
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][STATE] INITIALIZED ---> BINDING
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][STATE] BINDING ---> BOUND
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][STATE] BOUND ---> CONNECTING
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][STATE] CONNECTING ---> DEVICE READY
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][STATE] DEVICE READY ---> INITIALIZING TASK
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][STATE] INITIALIZING TASK ---> READY
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][STATE] READY ---> RUNNING
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][INFO] fair::mq::Device running...
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][INFO] LHCPeriod is not available, using current month OCT
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][INFO] Correctly handshaken websocket connection.
+[1993748:mid-track-reader]: [INFO] Instrumenting crash signals
+[1993751:muon-track-writer]: [INFO] Instrumenting crash signals
+[1993748:mid-track-reader]: [INFO] Spawing new device mid-track-reader in process with pid 1993748
+[1993751:muon-track-writer]: [INFO] Spawing new device muon-track-writer in process with pid 1993751
+[1993748:mid-track-reader]: [12:47:34][INFO] 
+[1993748:mid-track-reader]:       ______      _    _______  _________ 
+[1993748:mid-track-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1993748:mid-track-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1993748:mid-track-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1993748:mid-track-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1993748:mid-track-reader]: 
+[1993751:muon-track-writer]: [12:47:34][INFO] 
+[1993751:muon-track-writer]:       ______      _    _______  _________ 
+[1993751:muon-track-writer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1993751:muon-track-writer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1993751:muon-track-writer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1993751:muon-track-writer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1993751:muon-track-writer]: 
+[1993748:mid-track-reader]: [12:47:34][STATE] Starting FairMQ state machine --> IDLE
+[1993751:muon-track-writer]: [12:47:34][STATE] Starting FairMQ state machine --> IDLE
+[1993748:mid-track-reader]: [12:47:34][STATE] IDLE ---> INITIALIZING DEVICE
+[1993751:muon-track-writer]: [12:47:34][STATE] IDLE ---> INITIALIZING DEVICE
+[1993751:muon-track-writer]: [12:47:34][INFO] 0: branch  tracks set up
+[1993751:muon-track-writer]: [12:47:34][INFO] 1: branch  tracklabels set up
+[1993751:muon-track-writer]: [12:47:34][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1993751:muon-track-writer]: [12:47:34][STATE] INITIALIZED ---> BINDING
+[1993751:muon-track-writer]: [12:47:34][STATE] BINDING ---> BOUND
+[1993751:muon-track-writer]: [12:47:34][STATE] BOUND ---> CONNECTING
+[1993751:muon-track-writer]: [12:47:34][STATE] CONNECTING ---> DEVICE READY
+[1993751:muon-track-writer]: [12:47:34][STATE] DEVICE READY ---> INITIALIZING TASK
+[1993751:muon-track-writer]: [12:47:34][STATE] INITIALIZING TASK ---> READY
+[1993751:muon-track-writer]: [12:47:34][STATE] READY ---> RUNNING
+[1993751:muon-track-writer]: [12:47:34][INFO] fair::mq::Device running...
+[1993751:muon-track-writer]: [12:47:34][INFO] LHCPeriod is not available, using current month OCT
+[1993751:muon-track-writer]: [12:47:34][INFO] Correctly handshaken websocket connection.
+[1993749:mch-track-reader0]: [12:47:34][INFO] branch set up: trackrofs
+[1993749:mch-track-reader0]: [12:47:34][INFO] branch set up: tracks
+[1993749:mch-track-reader0]: [12:47:34][INFO] branch set up: trackclusters
+[1993749:mch-track-reader0]: [12:47:34][INFO] branch set up: tracklabels
+[1993749:mch-track-reader0]: [12:47:34][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1993749:mch-track-reader0]: [12:47:34][STATE] INITIALIZED ---> BINDING
+[1993749:mch-track-reader0]: [12:47:34][STATE] BINDING ---> BOUND
+[1993749:mch-track-reader0]: [12:47:34][STATE] BOUND ---> CONNECTING
+[1993749:mch-track-reader0]: [12:47:34][STATE] CONNECTING ---> DEVICE READY
+[1993749:mch-track-reader0]: [12:47:34][STATE] DEVICE READY ---> INITIALIZING TASK
+[1993749:mch-track-reader0]: [12:47:34][STATE] INITIALIZING TASK ---> READY
+[1993749:mch-track-reader0]: [12:47:34][STATE] READY ---> RUNNING
+[1993749:mch-track-reader0]: [12:47:34][INFO] fair::mq::Device running...
+[1993749:mch-track-reader0]: [12:47:34][INFO] LHCPeriod is not available, using current month OCT
+[1993749:mch-track-reader0]: [12:47:34][INFO] MCH 0 ROFS
+[1993749:mch-track-reader0]: [12:47:34][INFO] MCH 0 TRACKS
+[1993749:mch-track-reader0]: [12:47:34][INFO] MCH 0 CLUSTERS
+[1993749:mch-track-reader0]: [12:47:34][INFO] MCH 0 LABELS
+[1993748:mid-track-reader]: [12:47:34][INFO] branch set up: MIDTrack
+[1993748:mid-track-reader]: [12:47:34][INFO] branch set up: MIDTrackROF
+[1993748:mid-track-reader]: [12:47:34][INFO] branch set up: MIDTrackCluster
+[1993748:mid-track-reader]: [12:47:34][INFO] branch set up: MIDTrackClusterROF
+[1993748:mid-track-reader]: [12:47:34][INFO] branch set up: MIDTrackLabels
+[1993748:mid-track-reader]: [12:47:34][INFO] branch set up: MIDTrackClusterLabels
+[1993748:mid-track-reader]: [12:47:34][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1993748:mid-track-reader]: [12:47:34][STATE] INITIALIZED ---> BINDING
+[1993748:mid-track-reader]: [12:47:34][STATE] BINDING ---> BOUND
+[1993748:mid-track-reader]: [12:47:34][STATE] BOUND ---> CONNECTING
+[1993748:mid-track-reader]: [12:47:34][STATE] CONNECTING ---> DEVICE READY
+[1993748:mid-track-reader]: [12:47:34][STATE] DEVICE READY ---> INITIALIZING TASK
+[1993748:mid-track-reader]: [12:47:34][STATE] INITIALIZING TASK ---> READY
+[1993748:mid-track-reader]: [12:47:34][STATE] READY ---> RUNNING
+[1993748:mid-track-reader]: [12:47:34][INFO] fair::mq::Device running...
+[1993748:mid-track-reader]: [12:47:34][INFO] LHCPeriod is not available, using current month OCT
+[1993748:mid-track-reader]: [12:47:34][INFO] MID 0 TRACKS
+[1993748:mid-track-reader]: [12:47:34][INFO] MID 1 TRACKROFS
+[1993748:mid-track-reader]: [12:47:34][INFO] MID 1 TRACKCLUSTERS
+[1993748:mid-track-reader]: [12:47:34][INFO] MID 1 TRCLUSROFS
+[1993748:mid-track-reader]: [12:47:34][INFO] MID 0 TRACKLABELS
+[1993748:mid-track-reader]: [12:47:34][INFO] MID 1 TRCLUSLABELS
+[1993748:mid-track-reader]: [12:47:34][INFO] Correctly handshaken websocket connection.
+[1993748:mid-track-reader]: [12:47:34][INFO] Sending end-of-stream message to channel from_mid-track-reader_to_muon-track-matcher
+[1993748:mid-track-reader]: [12:47:34][INFO] Sending end-of-stream message to channel from_mid-track-reader_to_internal-dpl-injected-dummy-sink
+[1993749:mch-track-reader0]: [12:47:34][INFO] Correctly handshaken websocket connection.
+[1993749:mch-track-reader0]: [12:47:34][INFO] Sending end-of-stream message to channel from_mch-track-reader0_to_muon-track-matcher
+[1993749:mch-track-reader0]: [12:47:34][INFO] Sending end-of-stream message to channel from_mch-track-reader0_to_internal-dpl-injected-dummy-sink
+[1993750:muon-track-matcher]: [12:47:34][INFO] Sending end-of-stream message to channel from_muon-track-matcher_to_muon-track-writer
+[1993751:muon-track-writer]: [12:47:34][ERROR] Some Lifetime::Timeframe data got dropped starting at 1
 [INFO] Quitting
 [INFO] QUIT_REQUESTED
-[2764971:internal-dpl-clock]: [20:04:22][INFO] Received device shutdown request (signal 15).
-[2764971:internal-dpl-clock]: [20:04:22][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2764972:mid-track-reader]: [20:04:22][INFO] Received device shutdown request (signal 15).
-[2764972:mid-track-reader]: [20:04:22][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2764973:mch-track-reader0]: [20:04:22][INFO] Received device shutdown request (signal 15).
-[2764973:mch-track-reader0]: [20:04:22][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2764974:muon-track-matcher]: [20:04:22][INFO] Received device shutdown request (signal 15).
-[2764974:muon-track-matcher]: [20:04:22][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2764975:muon-track-writer]: [20:04:22][INFO] Received device shutdown request (signal 15).
-[2764975:muon-track-writer]: [20:04:22][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:22][INFO] Received device shutdown request (signal 15).
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:22][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2764975:muon-track-writer]: [20:04:22][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:22][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:22][STATE] RUNNING ---> READY
-[2764973:mch-track-reader0]: [20:04:22][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2764973:mch-track-reader0]: [20:04:22][STATE] RUNNING ---> READY
-[2764974:muon-track-matcher]: [20:04:22][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:22][STATE] READY ---> RESETTING TASK
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:22][STATE] RESETTING TASK ---> DEVICE READY
-[2764973:mch-track-reader0]: [20:04:22][STATE] READY ---> RESETTING TASK
-[2764974:muon-track-matcher]: [20:04:22][INFO] track matching duration = 2.146e-06 s
-[2764974:muon-track-matcher]: [20:04:22][STATE] RUNNING ---> READY
-[2764972:mid-track-reader]: [20:04:22][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2764972:mid-track-reader]: [20:04:22][STATE] RUNNING ---> READY
-[2764973:mch-track-reader0]: [20:04:22][STATE] RESETTING TASK ---> DEVICE READY
-[2764973:mch-track-reader0]: [20:04:22][STATE] DEVICE READY ---> RESETTING DEVICE
-[2764974:muon-track-matcher]: [20:04:22][STATE] READY ---> RESETTING TASK
-[2764974:muon-track-matcher]: [20:04:22][STATE] RESETTING TASK ---> DEVICE READY
-[2764972:mid-track-reader]: [20:04:22][STATE] READY ---> RESETTING TASK
-[2764972:mid-track-reader]: [20:04:22][STATE] RESETTING TASK ---> DEVICE READY
-[2764972:mid-track-reader]: [20:04:22][STATE] DEVICE READY ---> RESETTING DEVICE
-[2764974:muon-track-matcher]: [20:04:22][STATE] DEVICE READY ---> RESETTING DEVICE
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:22][STATE] DEVICE READY ---> RESETTING DEVICE
-[2764971:internal-dpl-clock]: [20:04:22][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2764971:internal-dpl-clock]: [20:04:22][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_mid-track-reader
-[2764971:internal-dpl-clock]: [20:04:22][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_mch-track-reader0
-[2764971:internal-dpl-clock]: [20:04:22][STATE] RUNNING ---> READY
-[2764971:internal-dpl-clock]: [20:04:22][STATE] READY ---> RESETTING TASK
-[2764971:internal-dpl-clock]: [20:04:22][STATE] RESETTING TASK ---> DEVICE READY
-[2764971:internal-dpl-clock]: [20:04:22][STATE] DEVICE READY ---> RESETTING DEVICE
-[2764972:mid-track-reader]: [20:04:22][STATE] RESETTING DEVICE ---> IDLE
-[2764971:internal-dpl-clock]: [20:04:22][STATE] RESETTING DEVICE ---> IDLE
-[2764972:mid-track-reader]: [20:04:22][STATE] IDLE ---> EXITING
-[2764973:mch-track-reader0]: [20:04:22][STATE] RESETTING DEVICE ---> IDLE
-[2764973:mch-track-reader0]: [20:04:22][STATE] IDLE ---> EXITING
-[2764971:internal-dpl-clock]: [20:04:22][STATE] IDLE ---> EXITING
-[2764971:internal-dpl-clock]: [20:04:22][STATE] Exiting FairMQ state machine
-[2764973:mch-track-reader0]: [20:04:22][STATE] Exiting FairMQ state machine
-[2764972:mid-track-reader]: [20:04:22][STATE] Exiting FairMQ state machine
-[2764974:muon-track-matcher]: [20:04:22][STATE] RESETTING DEVICE ---> IDLE
-[2764974:muon-track-matcher]: [20:04:22][STATE] IDLE ---> EXITING
-[2764974:muon-track-matcher]: [20:04:22][STATE] Exiting FairMQ state machine
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:22][STATE] RESETTING DEVICE ---> IDLE
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:22][STATE] IDLE ---> EXITING
-[2764976:internal-dpl-injected-dummy-sink]: [20:04:22][STATE] Exiting FairMQ state machine
-[2764975:muon-track-writer]: [20:04:23][STATE] RUNNING ---> READY
-[2764975:muon-track-writer]: [20:04:23][STATE] READY ---> RESETTING TASK
-[2764975:muon-track-writer]: [20:04:23][STATE] RESETTING TASK ---> DEVICE READY
-[2764975:muon-track-writer]: [20:04:23][STATE] DEVICE READY ---> RESETTING DEVICE
-[2764975:muon-track-writer]: [20:04:23][INFO] Cleaning up for shared memory id '288e7717'...
-[2764975:muon-track-writer]: [20:04:23][INFO] Found 0 unmanaged regions...
-[2764975:muon-track-writer]: [20:04:23][INFO] Found 1 managed segments...
-[2764975:muon-track-writer]: [20:04:23][INFO] Successfully removed 'fmq_288e7717_m_0'.
-[2764975:muon-track-writer]: [20:04:23][INFO] Successfully removed 'fmq_288e7717_mng'.
-[2764975:muon-track-writer]: [20:04:23][STATE] RESETTING DEVICE ---> IDLE
-[2764975:muon-track-writer]: [20:04:23][STATE] IDLE ---> EXITING
-[2764975:muon-track-writer]: [20:04:23][STATE] Exiting FairMQ state machine
+[1993749:mch-track-reader0]: [12:47:34][INFO] Received device shutdown request (signal 15).
+[1993749:mch-track-reader0]: [12:47:34][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1993750:muon-track-matcher]: [12:47:34][INFO] Received device shutdown request (signal 15).
+[1993750:muon-track-matcher]: [12:47:34][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1993749:mch-track-reader0]: [12:47:34][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1993749:mch-track-reader0]: [12:47:34][STATE] RUNNING ---> READY
+[1993747:internal-dpl-clock]: [12:47:34][INFO] Received device shutdown request (signal 15).
+[1993747:internal-dpl-clock]: [12:47:34][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1993749:mch-track-reader0]: [12:47:34][STATE] READY ---> RESETTING TASK
+[1993750:muon-track-matcher]: [12:47:34][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1993750:muon-track-matcher]: [12:47:34][INFO] track matching duration = 2.27e-06 s
+[1993750:muon-track-matcher]: [12:47:34][STATE] RUNNING ---> READY
+[1993747:internal-dpl-clock]: [12:47:34][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1993749:mch-track-reader0]: [12:47:34][STATE] RESETTING TASK ---> DEVICE READY
+[1993749:mch-track-reader0]: [12:47:34][STATE] DEVICE READY ---> RESETTING DEVICE
+[1993750:muon-track-matcher]: [12:47:34][STATE] READY ---> RESETTING TASK
+[1993750:muon-track-matcher]: [12:47:34][STATE] RESETTING TASK ---> DEVICE READY
+[1993747:internal-dpl-clock]: [12:47:34][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_mid-track-reader
+[1993747:internal-dpl-clock]: [12:47:34][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_mch-track-reader0
+[1993750:muon-track-matcher]: [12:47:34][STATE] DEVICE READY ---> RESETTING DEVICE
+[1993747:internal-dpl-clock]: [12:47:34][STATE] RUNNING ---> READY
+[1993747:internal-dpl-clock]: [12:47:34][STATE] READY ---> RESETTING TASK
+[1993747:internal-dpl-clock]: [12:47:34][STATE] RESETTING TASK ---> DEVICE READY
+[1993747:internal-dpl-clock]: [12:47:34][STATE] DEVICE READY ---> RESETTING DEVICE
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][INFO] Received device shutdown request (signal 15).
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1993749:mch-track-reader0]: [12:47:34][STATE] RESETTING DEVICE ---> IDLE
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][STATE] RUNNING ---> READY
+[1993749:mch-track-reader0]: [12:47:34][STATE] IDLE ---> EXITING
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][STATE] READY ---> RESETTING TASK
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][STATE] RESETTING TASK ---> DEVICE READY
+[1993749:mch-track-reader0]: [12:47:34][STATE] Exiting FairMQ state machine
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][STATE] DEVICE READY ---> RESETTING DEVICE
+[1993750:muon-track-matcher]: [12:47:34][STATE] RESETTING DEVICE ---> IDLE
+[1993747:internal-dpl-clock]: [12:47:34][STATE] RESETTING DEVICE ---> IDLE
+[1993747:internal-dpl-clock]: [12:47:34][STATE] IDLE ---> EXITING
+[1993750:muon-track-matcher]: [12:47:34][STATE] IDLE ---> EXITING
+[1993747:internal-dpl-clock]: [12:47:34][STATE] Exiting FairMQ state machine
+[1993750:muon-track-matcher]: [12:47:34][STATE] Exiting FairMQ state machine
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][STATE] RESETTING DEVICE ---> IDLE
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][STATE] IDLE ---> EXITING
+[1993752:internal-dpl-injected-dummy-sink]: [12:47:34][STATE] Exiting FairMQ state machine
+[1993748:mid-track-reader]: [12:47:34][INFO] Received device shutdown request (signal 15).
+[1993748:mid-track-reader]: [12:47:34][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1993751:muon-track-writer]: [12:47:34][INFO] Received device shutdown request (signal 15).
+[1993751:muon-track-writer]: [12:47:34][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1993748:mid-track-reader]: [12:47:34][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1993748:mid-track-reader]: [12:47:34][STATE] RUNNING ---> READY
+[1993751:muon-track-writer]: [12:47:34][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1993748:mid-track-reader]: [12:47:34][STATE] READY ---> RESETTING TASK
+[1993748:mid-track-reader]: [12:47:34][STATE] RESETTING TASK ---> DEVICE READY
+[1993748:mid-track-reader]: [12:47:34][STATE] DEVICE READY ---> RESETTING DEVICE
+[1993748:mid-track-reader]: [12:47:34][STATE] RESETTING DEVICE ---> IDLE
+[1993748:mid-track-reader]: [12:47:34][STATE] IDLE ---> EXITING
+[1993748:mid-track-reader]: [12:47:34][STATE] Exiting FairMQ state machine
+[1993751:muon-track-writer]: [12:47:34][STATE] RUNNING ---> READY
+[1993751:muon-track-writer]: [12:47:34][STATE] READY ---> RESETTING TASK
+[1993751:muon-track-writer]: [12:47:34][STATE] RESETTING TASK ---> DEVICE READY
+[1993751:muon-track-writer]: [12:47:34][STATE] DEVICE READY ---> RESETTING DEVICE
+[1993751:muon-track-writer]: [12:47:34][INFO] Cleaning up for shared memory id '97602026'...
+[1993751:muon-track-writer]: [12:47:34][INFO] Found 0 unmanaged regions...
+[1993751:muon-track-writer]: [12:47:34][INFO] Found 1 managed segments...
+[1993751:muon-track-writer]: [12:47:34][INFO] Successfully removed 'fmq_97602026_m_0'.
+[1993751:muon-track-writer]: [12:47:34][INFO] Successfully removed 'fmq_97602026_mng'.
+[1993751:muon-track-writer]: [12:47:34][STATE] RESETTING DEVICE ---> IDLE
+[1993751:muon-track-writer]: [12:47:34][STATE] IDLE ---> EXITING
+[1993751:muon-track-writer]: [12:47:34][STATE] Exiting FairMQ state machine
 [INFO] ## Processes completed. Run summary:
 [INFO] ### Devices started: 6
-[INFO]  - Device internal-dpl-clock: pid 2764971 (exit 0)
-[INFO]  - Device mid-track-reader: pid 2764972 (exit 0)
-[INFO]  - Device mch-track-reader0: pid 2764973 (exit 0)
-[INFO]  - Device muon-track-matcher: pid 2764974 (exit 0)
-[INFO]  - Device muon-track-writer: pid 2764975 (exit 0)
-[INFO]  - Device internal-dpl-injected-dummy-sink: pid 2764976 (exit 0)
+[INFO]  - Device internal-dpl-clock: pid 1993747 (exit 0)
+[INFO]  - Device mid-track-reader: pid 1993748 (exit 0)
+[INFO]  - Device mch-track-reader0: pid 1993749 (exit 0)
+[INFO]  - Device muon-track-matcher: pid 1993750 (exit 0)
+[INFO]  - Device muon-track-writer: pid 1993751 (exit 0)
+[INFO]  - Device internal-dpl-injected-dummy-sink: pid 1993752 (exit 0)
 [INFO] Dumping used configuration in dpl-config.json
 TASK-EXIT-CODE: 0

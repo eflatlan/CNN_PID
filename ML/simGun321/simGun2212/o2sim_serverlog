@@ -1,0 +1,140 @@
+o2-sim-primary-server-device-runner
+--control
+static
+--id
+primary-server
+--mq-config
+o2simtopology_1917063.json
+--severity
+debug
+--color
+false
+-n150
+-e
+TGeant3
+-g
+boxgen
+--configKeyValues
+BoxGun.pdg=2212; BBoxGun.phirange[0]=-5; BoxGun.phirange[1]=60; BoxGun.number=95; BoxGun.eta[0]=-0.5 ; BoxGun.eta[1]=0.5; BoxGun.prange[0]=2.8; BoxGun.prange[1]=2.83;
+--run
+300000
+--timestamp
+1546300800000
+$$$$
+[12:01:20][INFO] 
+      ______      _    _______  _________ 
+     / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+    / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+   / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+  /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+
+[12:01:20][STATE] Starting FairMQ state machine --> IDLE
+[12:01:20][DEBUG] PID: 1917067
+[12:01:20][DEBUG] Loaded plugin: 'config', version '1.8.0', maintainer 'FairRootGroup <fairroot@gsi.de>', homepage 'https://github.com/FairRootGroup/FairMQ'
+[12:01:20][DEBUG] Loaded plugin: 'control', version '1.8.0', maintainer 'FairRootGroup <fairroot@gsi.de>', homepage 'https://github.com/FairRootGroup/FairMQ'
+[12:01:20][DEBUG] Running builtin controller: static
+[12:01:20][DEBUG] Plugin 'control' is setting up signal handling for SIGINT and SIGTERM
+[12:01:20][DEBUG] Configuration: 
+CCDBUrl                       = http://alice-ccdb.cern.ch                                                                            <string>         [default] 
+asservice                     = false                                                                                                <bool>           [default] 
+bMax                          = 0                                                                                                    <float>          [default] 
+bad-alloc-attempt-interval    = 50                                                                                                   <int>            [default] 
+catch-signals                 = 1                                                                                                    <int>            [default] 
+chunkSize                     = 500                                                                                                  <unsigned>       [default] 
+chunkSizeI                    = -1                                                                                                   <int>            [default] 
+color                         = false                                                                                                <bool>           [provided]
+configFile                    =                                                                                                      <string>         [default] 
+configKeyValues               = BoxGun.pdg=2212; BBoxGun.phirange[0]=-5; BoxGun.phirange[1]=60; BoxGun.number=95; BoxGun.eta[0]=-0.5 ; BoxGun.eta[1]=0.5; BoxGun.prange[0]=2.8; BoxGun.prange[1]=2.83; <string>         [provided]
+control                       = static                                                                                               <string>         [provided]
+embedIntoFile                 =                                                                                                      <string>         [default] 
+extKinFile                    = Kinematics.root                                                                                      <string>         [default] 
+field                         = -5                                                                                                   <string>         [default] 
+file-severity                 = debug                                                                                                <string>         [default] 
+forwardKine                   = false                                                                                                <bool>           [default] 
+fromCollContext               =                                                                                                      <string>         [default] 
+generator                     = boxgen                                                                                               <string>         [provided]
+id                            = primary-server                                                                                       <string>         [provided]
+init-timeout                  = 120                                                                                                  <int>            [default] 
+io-threads                    = 1                                                                                                    <int>            [default] 
+isMT                          = false                                                                                                <bool>           [default] 
+log-to-file                   =                                                                                                      <string>         [default] 
+logseverity                   = INFO                                                                                                 <string>         [default] 
+logverbosity                  = medium                                                                                               <string>         [default] 
+mcEngine                      = TGeant3                                                                                              <string>         [provided]
+modules                       = all                                                                                                  <vector<string>> [default] 
+mq-config                     = o2simtopology_1917063.json                                                                           <string>         [provided]
+nEvents                       = 150                                                                                                  <unsigned>       [provided]
+network-interface             = default                                                                                              <string>         [default] 
+noDiscOutput                  = false                                                                                                <bool>           [default] 
+noGeant                       = false                                                                                                <bool>           [default] 
+nworkers                      = 3                                                                                                    <int>            [default] 
+outPrefix                     = o2sim                                                                                                <string>         [default] 
+rate                          = 0                                                                                                    <float>          [default] 
+readoutDetectors              =                                                                                                      <vector<string>> [default] 
+run                           = 300000                                                                                               <int>            [provided]
+seed                          = 0                                                                                                    <unsigned long>  [default] 
+session                       = default                                                                                              <string>         [default] 
+severity                      = debug                                                                                                <string>         [provided]
+shm-allocation                = rbtree_best_fit                                                                                      <string>         [default] 
+shm-metadata-msg-size         = 0                                                                                                    <unsigned long>  [default] 
+shm-mlock-segment             = false                                                                                                <bool>           [default] 
+shm-mlock-segment-on-creation = false                                                                                                <bool>           [default] 
+shm-monitor                   = false                                                                                                <bool>           [default] 
+shm-no-cleanup                = false                                                                                                <bool>           [default] 
+shm-segment-id                = 0                                                                                                    <unsigned short> [default] 
+shm-segment-size              = 2147483648                                                                                           <unsigned long>  [default] 
+shm-throw-bad-alloc           = true                                                                                                 <bool>           [default] 
+shm-zero-segment              = false                                                                                                <bool>           [default] 
+shm-zero-segment-on-creation  = false                                                                                                <bool>           [default] 
+skipModules                   =                                                                                                      <vector<string>> [default] 
+skipReadoutDetectors          =                                                                                                      <vector<string>> [default] 
+startEvent                    = 0                                                                                                    <unsigned>       [default] 
+timestamp                     = 1546300800000                                                                                        <unsigned long>  [provided]
+transport                     = zeromq                                                                                               <string>         [default] 
+trigger                       =                                                                                                      <string>         [default] 
+verbosity                     = medium                                                                                               <string>         [default] 
+vertexMode                    = kDiamondParam                                                                                        <string>         [default] 
+
+[12:01:20][STATE] IDLE ---> INITIALIZING DEVICE
+[12:01:20][DEBUG] mq-config: Using default JSON parser
+[12:01:20][DEBUG] Parsing JSON from o2simtopology_1917063.json ...
+[12:01:20][DEBUG] Setting 'zeromq' as default transport for the device
+[12:01:20][DEBUG] Adding 'zeromq' transport
+[12:01:20][DEBUG] Transport: Using ZeroMQ library, version: 4.3.3
+[12:01:20][DEBUG] Initializing transport for channel o2sim-primserv-info[0]: default
+[12:01:20][DEBUG] Reusing existing 'zeromq' transport
+[12:01:20][DEBUG] Initializing transport for channel primary-notifications[0]: default
+[12:01:20][DEBUG] Reusing existing 'zeromq' transport
+[12:01:20][DEBUG] Initializing transport for channel primary-get[0]: default
+[12:01:20][DEBUG] Reusing existing 'zeromq' transport
+[12:01:20][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[12:01:20][STATE] INITIALIZED ---> BINDING
+[12:01:20][DEBUG] Validating channel 'o2sim-primserv-info[0]'... VALID
+[12:01:20][DEBUG] Created socket primary-server.o2sim-primserv-info[0].rep
+[12:01:20][DEBUG] Attached channel o2sim-primserv-info[0] to ipc:///tmp/o2sim-primserv-info-1917063 (bind) (rep)
+[12:01:20][DEBUG] Validating channel 'primary-notifications[0]'... VALID
+[12:01:20][DEBUG] Created socket primary-server.primary-notifications[0].pub
+[12:01:20][DEBUG] Attached channel primary-notifications[0] to ipc:///tmp/o2sim-primary-notifications-1917063 (bind) (pub)
+[12:01:20][DEBUG] Validating channel 'primary-get[0]'... VALID
+[12:01:20][DEBUG] Created socket primary-server.primary-get[0].rep
+[12:01:20][DEBUG] Attached channel primary-get[0] to ipc:///tmp/o2sim-primary-get-1917063 (bind) (rep)
+[12:01:20][STATE] BINDING ---> BOUND
+[12:01:20][STATE] BOUND ---> CONNECTING
+[12:01:20][STATE] CONNECTING ---> DEVICE READY
+[12:01:20][STATE] DEVICE READY ---> INITIALIZING TASK
+[12:01:20][INFO] INITTASK CHANGING STATE TO INIT
+[12:01:20][INFO] Init Server device 
+[12:01:21][FATAL] Inexistant ConfigurableParam key: BBoxGun.phirange[0]
+[12:01:21][DEBUG] Exception caught in ProcessWork(), going to Error state
+[12:01:21][DEBUG] Shutting down Plugin Manager
+[12:01:21][DEBUG] Unloaded plugin: 'control', version '1.8.0', maintainer 'FairRootGroup <fairroot@gsi.de>', homepage 'https://github.com/FairRootGroup/FairMQ'
+[12:01:21][DEBUG] Unloaded plugin: 'config', version '1.8.0', maintainer 'FairRootGroup <fairroot@gsi.de>', homepage 'https://github.com/FairRootGroup/FairMQ'
+[12:01:21][DEBUG] Shutting down Plugin Services
+[12:01:21][DEBUG] Shutting down device primary-server
+[12:01:21][STATE] Exiting FairMQ state machine
+[12:01:21][DEBUG] Destroying ZeroMQ transport...
+[12:01:21][ERROR] Uncaught exception reached the top of main.
+[12:01:21][DEBUG] removed RTDB container factory PassiveContFact
+[12:01:21][DEBUG] removed RTDB container factory ContainerFactory
+[12:01:21][DEBUG] removed RTDB container factory MagFieldContFact
+[12:01:21][DEBUG] removed RTDB container factory FairBaseContFact

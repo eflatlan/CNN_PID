@@ -2,274 +2,274 @@ Running: TIME="#walltime %e" /usr/bin/time --output=fv0reco.log_time ./fv0reco.l
 [INFO] WorkflowSpec defineDataProcessing
 [INFO] WorkflowSpec getRecoWorkflow useMC 1
 [INFO] Currently Reconstruction does not consume and provide MC truth
-[INFO] Initialising O2 Data Processing Layer. Driver PID: 547043.
-[INFO] Driver listening on port: 15123
+[INFO] Initialising O2 Data Processing Layer. Driver PID: 1992107.
+[INFO] Driver listening on port: 20187
 [INFO] Rate limiting set up at 500MB distributed over 1 readers
 [INFO] O2 Data Processing Layer initialised. We brake for nobody.
 [INFO] Optimised build. O2DEBUG / LOG(debug) / LOGF(debug) / assert statement will not be shown.
 [INFO] Redeployment of configuration asked.
-[INFO] Starting internal-dpl-clock on pid 547083
-[INFO] Starting fv0-digit-reader on pid 547084
-[INFO] Starting internal-dpl-ccdb-backend on pid 547085
-[INFO] Starting fv0-reconstructor on pid 547086
-[INFO] Starting fv0-recpoint-writer on pid 547087
-[INFO] Starting internal-dpl-injected-dummy-sink on pid 547088
+[INFO] Starting internal-dpl-clock on pid 1992142
+[INFO] Starting fv0-digit-reader on pid 1992143
+[INFO] Starting internal-dpl-ccdb-backend on pid 1992144
+[INFO] Starting fv0-reconstructor on pid 1992145
+[INFO] Starting fv0-recpoint-writer on pid 1992146
+[INFO] Starting internal-dpl-injected-dummy-sink on pid 1992147
 [INFO] Redeployment of configuration done.
-[547085:internal-dpl-ccdb-backend]: [INFO] WorkflowSpec defineDataProcessing
-[547083:internal-dpl-clock]: [INFO] WorkflowSpec defineDataProcessing
-[547084:fv0-digit-reader]: [INFO] WorkflowSpec defineDataProcessing
-[547086:fv0-reconstructor]: [INFO] WorkflowSpec defineDataProcessing
-[547087:fv0-recpoint-writer]: [INFO] WorkflowSpec defineDataProcessing
-[547088:internal-dpl-injected-dummy-sink]: [INFO] WorkflowSpec defineDataProcessing
-[547084:fv0-digit-reader]: [INFO] WorkflowSpec getRecoWorkflow useMC 1
-[547084:fv0-digit-reader]: [INFO] Currently Reconstruction does not consume and provide MC truth
-[547085:internal-dpl-ccdb-backend]: [INFO] WorkflowSpec getRecoWorkflow useMC 1
-[547084:fv0-digit-reader]: [INFO] Instrumenting crash signals
-[547084:fv0-digit-reader]: [INFO] Spawing new device fv0-digit-reader in process with pid 547084
-[547085:internal-dpl-ccdb-backend]: [INFO] Currently Reconstruction does not consume and provide MC truth
-[547086:fv0-reconstructor]: [INFO] WorkflowSpec getRecoWorkflow useMC 1
-[547086:fv0-reconstructor]: [INFO] Currently Reconstruction does not consume and provide MC truth
-[547084:fv0-digit-reader]: [14:04:32][INFO] 
-[547084:fv0-digit-reader]:       ______      _    _______  _________ 
-[547084:fv0-digit-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[547084:fv0-digit-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[547084:fv0-digit-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[547084:fv0-digit-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[547084:fv0-digit-reader]: 
-[547084:fv0-digit-reader]: [14:04:32][STATE] Starting FairMQ state machine --> IDLE
-[547084:fv0-digit-reader]: [14:04:32][STATE] IDLE ---> INITIALIZING DEVICE
-[547087:fv0-recpoint-writer]: [INFO] WorkflowSpec getRecoWorkflow useMC 1
-[547087:fv0-recpoint-writer]: [INFO] Currently Reconstruction does not consume and provide MC truth
-[547086:fv0-reconstructor]: [INFO] Instrumenting crash signals
-[547085:internal-dpl-ccdb-backend]: [INFO] Instrumenting crash signals
-[547085:internal-dpl-ccdb-backend]: [INFO] Spawing new device internal-dpl-ccdb-backend in process with pid 547085
-[547086:fv0-reconstructor]: [INFO] Spawing new device fv0-reconstructor in process with pid 547086
-[547085:internal-dpl-ccdb-backend]: [14:04:32][INFO] 
-[547085:internal-dpl-ccdb-backend]:       ______      _    _______  _________ 
-[547085:internal-dpl-ccdb-backend]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[547085:internal-dpl-ccdb-backend]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[547085:internal-dpl-ccdb-backend]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[547085:internal-dpl-ccdb-backend]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[547085:internal-dpl-ccdb-backend]: 
-[547086:fv0-reconstructor]: [14:04:32][INFO] 
-[547086:fv0-reconstructor]:       ______      _    _______  _________ 
-[547086:fv0-reconstructor]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[547086:fv0-reconstructor]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[547086:fv0-reconstructor]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[547086:fv0-reconstructor]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[547086:fv0-reconstructor]: 
-[547085:internal-dpl-ccdb-backend]: [14:04:32][STATE] Starting FairMQ state machine --> IDLE
-[547086:fv0-reconstructor]: [14:04:32][STATE] Starting FairMQ state machine --> IDLE
-[547083:internal-dpl-clock]: [INFO] WorkflowSpec getRecoWorkflow useMC 1
-[547083:internal-dpl-clock]: [INFO] Currently Reconstruction does not consume and provide MC truth
-[547085:internal-dpl-ccdb-backend]: [14:04:32][STATE] IDLE ---> INITIALIZING DEVICE
-[547085:internal-dpl-ccdb-backend]: [14:04:32][INFO] CCDB Backend at: http://alice-ccdb.cern.ch, validity check for every 2147483647 TF
-[547087:fv0-recpoint-writer]: [INFO] Instrumenting crash signals
-[547085:internal-dpl-ccdb-backend]: [14:04:32][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1694606672-f5vLn1, Host: http://alice-ccdb.cern.ch
-[547085:internal-dpl-ccdb-backend]: [14:04:32][INFO] Initialised default CCDB host http://alice-ccdb.cern.ch
-[547085:internal-dpl-ccdb-backend]: [14:04:32][INFO] The following route is a condition FV0/TimeOffset/0
-[547085:internal-dpl-ccdb-backend]: [14:04:32][INFO] - ccdb-path: FV0/Calib/ChannelTimeOffset
-[547085:internal-dpl-ccdb-backend]: [14:04:32][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[547085:internal-dpl-ccdb-backend]: [14:04:32][STATE] INITIALIZED ---> BINDING
-[547085:internal-dpl-ccdb-backend]: [14:04:32][STATE] BINDING ---> BOUND
-[547085:internal-dpl-ccdb-backend]: [14:04:32][STATE] BOUND ---> CONNECTING
-[547085:internal-dpl-ccdb-backend]: [14:04:32][STATE] CONNECTING ---> DEVICE READY
-[547085:internal-dpl-ccdb-backend]: [14:04:32][STATE] DEVICE READY ---> INITIALIZING TASK
-[547087:fv0-recpoint-writer]: [INFO] Spawing new device fv0-recpoint-writer in process with pid 547087
-[547087:fv0-recpoint-writer]: [14:04:32][INFO] 
-[547087:fv0-recpoint-writer]:       ______      _    _______  _________ 
-[547087:fv0-recpoint-writer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[547087:fv0-recpoint-writer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[547087:fv0-recpoint-writer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[547087:fv0-recpoint-writer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[547087:fv0-recpoint-writer]: 
-[547087:fv0-recpoint-writer]: [14:04:32][STATE] Starting FairMQ state machine --> IDLE
-[547085:internal-dpl-ccdb-backend]: [14:04:32][STATE] INITIALIZING TASK ---> READY
-[547085:internal-dpl-ccdb-backend]: [14:04:32][STATE] READY ---> RUNNING
-[547085:internal-dpl-ccdb-backend]: [14:04:32][INFO] fair::mq::Device running...
-[547085:internal-dpl-ccdb-backend]: [14:04:32][INFO] LHCPeriod is not available, using current month SEP
-[547085:internal-dpl-ccdb-backend]: [14:04:32][INFO] Correctly handshaken websocket connection.
-[547086:fv0-reconstructor]: [14:04:32][STATE] IDLE ---> INITIALIZING DEVICE
-[547086:fv0-reconstructor]: [14:04:32][INFO] ReconstructionDPL::init
-[547087:fv0-recpoint-writer]: [14:04:32][STATE] IDLE ---> INITIALIZING DEVICE
-[547086:fv0-reconstructor]: [14:04:32][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[547086:fv0-reconstructor]: [14:04:32][STATE] INITIALIZED ---> BINDING
-[547086:fv0-reconstructor]: [14:04:32][STATE] BINDING ---> BOUND
-[547086:fv0-reconstructor]: [14:04:32][STATE] BOUND ---> CONNECTING
-[547083:internal-dpl-clock]: [INFO] Instrumenting crash signals
-[547086:fv0-reconstructor]: [14:04:32][STATE] CONNECTING ---> DEVICE READY
-[547086:fv0-reconstructor]: [14:04:32][STATE] DEVICE READY ---> INITIALIZING TASK
-[547086:fv0-reconstructor]: [14:04:33][STATE] INITIALIZING TASK ---> READY
-[547086:fv0-reconstructor]: [14:04:33][STATE] READY ---> RUNNING
-[547086:fv0-reconstructor]: [14:04:33][INFO] fair::mq::Device running...
-[547086:fv0-reconstructor]: [14:04:33][INFO] LHCPeriod is not available, using current month SEP
-[547086:fv0-reconstructor]: [14:04:33][INFO] Correctly handshaken websocket connection.
-[547083:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 547083
-[547083:internal-dpl-clock]: [14:04:33][INFO] 
-[547083:internal-dpl-clock]:       ______      _    _______  _________ 
-[547083:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[547083:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[547083:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[547083:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[547083:internal-dpl-clock]: 
-[547083:internal-dpl-clock]: [14:04:33][STATE] Starting FairMQ state machine --> IDLE
-[547083:internal-dpl-clock]: [14:04:33][STATE] IDLE ---> INITIALIZING DEVICE
-[547083:internal-dpl-clock]: [14:04:33][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[547083:internal-dpl-clock]: [14:04:33][STATE] INITIALIZED ---> BINDING
-[547087:fv0-recpoint-writer]: [14:04:33][INFO] 0: branch  FV0Cluster set up
-[547087:fv0-recpoint-writer]: [14:04:33][INFO] 1: branch  FV0RecChData set up
-[547083:internal-dpl-clock]: [14:04:33][STATE] BINDING ---> BOUND
-[547083:internal-dpl-clock]: [14:04:33][STATE] BOUND ---> CONNECTING
-[547083:internal-dpl-clock]: [14:04:33][STATE] CONNECTING ---> DEVICE READY
-[547087:fv0-recpoint-writer]: [14:04:33][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[547083:internal-dpl-clock]: [14:04:33][STATE] DEVICE READY ---> INITIALIZING TASK
-[547087:fv0-recpoint-writer]: [14:04:33][STATE] INITIALIZED ---> BINDING
-[547087:fv0-recpoint-writer]: [14:04:33][STATE] BINDING ---> BOUND
-[547083:internal-dpl-clock]: [14:04:33][STATE] INITIALIZING TASK ---> READY
-[547083:internal-dpl-clock]: [14:04:33][STATE] READY ---> RUNNING
-[547083:internal-dpl-clock]: [14:04:33][INFO] fair::mq::Device running...
-[547083:internal-dpl-clock]: [14:04:33][INFO] LHCPeriod is not available, using current month SEP
-[547087:fv0-recpoint-writer]: [14:04:33][STATE] BOUND ---> CONNECTING
-[547083:internal-dpl-clock]: [14:04:33][INFO] Correctly handshaken websocket connection.
-[547087:fv0-recpoint-writer]: [14:04:33][STATE] CONNECTING ---> DEVICE READY
-[547087:fv0-recpoint-writer]: [14:04:33][STATE] DEVICE READY ---> INITIALIZING TASK
-[547087:fv0-recpoint-writer]: [14:04:33][STATE] INITIALIZING TASK ---> READY
-[547087:fv0-recpoint-writer]: [14:04:33][STATE] READY ---> RUNNING
-[547087:fv0-recpoint-writer]: [14:04:33][INFO] fair::mq::Device running...
-[547087:fv0-recpoint-writer]: [14:04:33][INFO] LHCPeriod is not available, using current month SEP
-[547087:fv0-recpoint-writer]: [14:04:33][INFO] Correctly handshaken websocket connection.
-[547088:internal-dpl-injected-dummy-sink]: [INFO] WorkflowSpec getRecoWorkflow useMC 1
-[547088:internal-dpl-injected-dummy-sink]: [INFO] Currently Reconstruction does not consume and provide MC truth
-[547088:internal-dpl-injected-dummy-sink]: [INFO] Instrumenting crash signals
-[547088:internal-dpl-injected-dummy-sink]: [INFO] Spawing new device internal-dpl-injected-dummy-sink in process with pid 547088
-[547088:internal-dpl-injected-dummy-sink]: [14:04:33][INFO] 
-[547088:internal-dpl-injected-dummy-sink]:       ______      _    _______  _________ 
-[547088:internal-dpl-injected-dummy-sink]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[547088:internal-dpl-injected-dummy-sink]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[547088:internal-dpl-injected-dummy-sink]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[547088:internal-dpl-injected-dummy-sink]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[547088:internal-dpl-injected-dummy-sink]: 
-[547088:internal-dpl-injected-dummy-sink]: [14:04:33][STATE] Starting FairMQ state machine --> IDLE
-[547088:internal-dpl-injected-dummy-sink]: [14:04:33][STATE] IDLE ---> INITIALIZING DEVICE
-[547088:internal-dpl-injected-dummy-sink]: [14:04:33][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[547088:internal-dpl-injected-dummy-sink]: [14:04:33][STATE] INITIALIZED ---> BINDING
-[547088:internal-dpl-injected-dummy-sink]: [14:04:33][STATE] BINDING ---> BOUND
-[547088:internal-dpl-injected-dummy-sink]: [14:04:33][STATE] BOUND ---> CONNECTING
-[547088:internal-dpl-injected-dummy-sink]: [14:04:33][STATE] CONNECTING ---> DEVICE READY
-[547088:internal-dpl-injected-dummy-sink]: [14:04:33][STATE] DEVICE READY ---> INITIALIZING TASK
-[547088:internal-dpl-injected-dummy-sink]: [14:04:33][STATE] INITIALIZING TASK ---> READY
-[547088:internal-dpl-injected-dummy-sink]: [14:04:33][STATE] READY ---> RUNNING
-[547088:internal-dpl-injected-dummy-sink]: [14:04:33][INFO] fair::mq::Device running...
-[547088:internal-dpl-injected-dummy-sink]: [14:04:33][INFO] LHCPeriod is not available, using current month SEP
-[547088:internal-dpl-injected-dummy-sink]: [14:04:33][INFO] Correctly handshaken websocket connection.
-[547084:fv0-digit-reader]: [14:04:36][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[547084:fv0-digit-reader]: [14:04:36][STATE] INITIALIZED ---> BINDING
-[547084:fv0-digit-reader]: [14:04:36][STATE] BINDING ---> BOUND
-[547084:fv0-digit-reader]: [14:04:36][STATE] BOUND ---> CONNECTING
-[547084:fv0-digit-reader]: [14:04:36][STATE] CONNECTING ---> DEVICE READY
-[547084:fv0-digit-reader]: [14:04:36][STATE] DEVICE READY ---> INITIALIZING TASK
-[547084:fv0-digit-reader]: [14:04:36][STATE] INITIALIZING TASK ---> READY
-[547084:fv0-digit-reader]: [14:04:36][STATE] READY ---> RUNNING
-[547084:fv0-digit-reader]: [14:04:36][INFO] fair::mq::Device running...
-[547084:fv0-digit-reader]: [14:04:36][INFO] LHCPeriod is not available, using current month SEP
-[547084:fv0-digit-reader]: IncrementalExecutor::executeFunction: symbol '_ZN2o211dataformats16MCTruthContainerINS_3fv07MCLabelEE5ClassEv' unresolved while linking [cling interface function]!
-[547084:fv0-digit-reader]: You are probably missing the definition of o2::dataformats::MCTruthContainer<o2::fv0::MCLabel>::Class()
-[547084:fv0-digit-reader]: Maybe you need to load the corresponding shared library?
-[547084:fv0-digit-reader]: [14:04:40][INFO] Sending end-of-stream message to channel from_fv0-digit-reader_to_internal-dpl-ccdb-backend
-[547084:fv0-digit-reader]: [14:04:40][INFO] Sending end-of-stream message to channel from_fv0-digit-reader_to_fv0-reconstructor
-[547084:fv0-digit-reader]: [14:04:40][INFO] Sending end-of-stream message to channel from_fv0-digit-reader_to_internal-dpl-injected-dummy-sink
-[547084:fv0-digit-reader]: [14:04:40][INFO] Correctly handshaken websocket connection.
-[547085:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to JCentral. Please wait
-[547085:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to 137.138.99.139
-[547085:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Successfully connected to 137.138.99.139
-[547085:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/CTP/Calib/OrbitReset/06/62200/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee in SE <ALICE::CERN::EOS>
-[547085:internal-dpl-ccdb-backend]: [14:04:41][INFO] ccdb reads http://alice-ccdb.cern.ch/CTP/Calib/OrbitReset/1546300800000/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee for 1546300800000 (load to memory, agent_id: localhost.localdomain-1694606672-f5vLn1), 
-[547085:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/FV0/Calib/ChannelTimeOffset/10/41581/ea2bed9b-d832-11ec-8eb6-200114580202 in SE <ALICE::CERN::OCDB>
-[547085:internal-dpl-ccdb-backend]: [14:04:41][INFO] ccdb reads http://alice-ccdb.cern.ch/FV0/Calib/ChannelTimeOffset/1546300800000/ea2bed9b-d832-11ec-8eb6-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1694606672-f5vLn1), 
-[547085:internal-dpl-ccdb-backend]: [14:04:41][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_fv0-reconstructor
-[547085:internal-dpl-ccdb-backend]: [14:04:41][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_internal-dpl-injected-dummy-sink
-[547086:fv0-reconstructor]: [14:04:41][INFO] Ignoring MC info
-[547086:fv0-reconstructor]: [14:04:41][INFO] Caching in 140065343092288 ptr to FV0/TimeOffset/0 (0x4a10290)
-[547086:fv0-reconstructor]: [14:04:41][INFO] FV0 reconstruction total timing: Cpu: 2.000e-02 Real: 1.373e-02 s in 1 slots
-[547086:fv0-reconstructor]: [14:04:41][INFO] Sending end-of-stream message to channel from_fv0-reconstructor_to_fv0-recpoint-writer
+[1992147:internal-dpl-injected-dummy-sink]: [INFO] WorkflowSpec defineDataProcessing
+[1992144:internal-dpl-ccdb-backend]: [INFO] WorkflowSpec defineDataProcessing
+[1992142:internal-dpl-clock]: [INFO] WorkflowSpec defineDataProcessing
+[1992143:fv0-digit-reader]: [INFO] WorkflowSpec defineDataProcessing
+[1992146:fv0-recpoint-writer]: [INFO] WorkflowSpec defineDataProcessing
+[1992145:fv0-reconstructor]: [INFO] WorkflowSpec defineDataProcessing
+[1992145:fv0-reconstructor]: [INFO] WorkflowSpec getRecoWorkflow useMC 1
+[1992145:fv0-reconstructor]: [INFO] Currently Reconstruction does not consume and provide MC truth
+[1992142:internal-dpl-clock]: [INFO] WorkflowSpec getRecoWorkflow useMC 1
+[1992142:internal-dpl-clock]: [INFO] Currently Reconstruction does not consume and provide MC truth
+[1992143:fv0-digit-reader]: [INFO] WorkflowSpec getRecoWorkflow useMC 1
+[1992143:fv0-digit-reader]: [INFO] Currently Reconstruction does not consume and provide MC truth
+[1992146:fv0-recpoint-writer]: [INFO] WorkflowSpec getRecoWorkflow useMC 1
+[1992146:fv0-recpoint-writer]: [INFO] Currently Reconstruction does not consume and provide MC truth
+[1992147:internal-dpl-injected-dummy-sink]: [INFO] WorkflowSpec getRecoWorkflow useMC 1
+[1992147:internal-dpl-injected-dummy-sink]: [INFO] Currently Reconstruction does not consume and provide MC truth
+[1992144:internal-dpl-ccdb-backend]: [INFO] WorkflowSpec getRecoWorkflow useMC 1
+[1992144:internal-dpl-ccdb-backend]: [INFO] Currently Reconstruction does not consume and provide MC truth
+[1992142:internal-dpl-clock]: [INFO] Instrumenting crash signals
+[1992143:fv0-digit-reader]: [INFO] Instrumenting crash signals
+[1992145:fv0-reconstructor]: [INFO] Instrumenting crash signals
+[1992146:fv0-recpoint-writer]: [INFO] Instrumenting crash signals
+[1992142:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 1992142
+[1992143:fv0-digit-reader]: [INFO] Spawing new device fv0-digit-reader in process with pid 1992143
+[1992145:fv0-reconstructor]: [INFO] Spawing new device fv0-reconstructor in process with pid 1992145
+[1992145:fv0-reconstructor]: [12:47:00][INFO] 
+[1992145:fv0-reconstructor]:       ______      _    _______  _________ 
+[1992145:fv0-reconstructor]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1992145:fv0-reconstructor]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1992145:fv0-reconstructor]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1992145:fv0-reconstructor]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1992145:fv0-reconstructor]: 
+[1992146:fv0-recpoint-writer]: [INFO] Spawing new device fv0-recpoint-writer in process with pid 1992146
+[1992143:fv0-digit-reader]: [12:47:00][INFO] 
+[1992143:fv0-digit-reader]:       ______      _    _______  _________ 
+[1992143:fv0-digit-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1992143:fv0-digit-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1992143:fv0-digit-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1992143:fv0-digit-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1992143:fv0-digit-reader]: 
+[1992142:internal-dpl-clock]: [12:47:00][INFO] 
+[1992142:internal-dpl-clock]:       ______      _    _______  _________ 
+[1992142:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1992142:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1992142:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1992142:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1992142:internal-dpl-clock]: 
+[1992145:fv0-reconstructor]: [12:47:00][STATE] Starting FairMQ state machine --> IDLE
+[1992142:internal-dpl-clock]: [12:47:00][STATE] Starting FairMQ state machine --> IDLE
+[1992143:fv0-digit-reader]: [12:47:00][STATE] Starting FairMQ state machine --> IDLE
+[1992146:fv0-recpoint-writer]: [12:47:00][INFO] 
+[1992146:fv0-recpoint-writer]:       ______      _    _______  _________ 
+[1992146:fv0-recpoint-writer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1992146:fv0-recpoint-writer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1992146:fv0-recpoint-writer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1992146:fv0-recpoint-writer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1992146:fv0-recpoint-writer]: 
+[1992146:fv0-recpoint-writer]: [12:47:00][STATE] Starting FairMQ state machine --> IDLE
+[1992145:fv0-reconstructor]: [12:47:00][STATE] IDLE ---> INITIALIZING DEVICE
+[1992145:fv0-reconstructor]: [12:47:00][INFO] ReconstructionDPL::init
+[1992143:fv0-digit-reader]: [12:47:00][STATE] IDLE ---> INITIALIZING DEVICE
+[1992146:fv0-recpoint-writer]: [12:47:00][STATE] IDLE ---> INITIALIZING DEVICE
+[1992142:internal-dpl-clock]: [12:47:00][STATE] IDLE ---> INITIALIZING DEVICE
+[1992145:fv0-reconstructor]: [12:47:00][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1992145:fv0-reconstructor]: [12:47:00][STATE] INITIALIZED ---> BINDING
+[1992142:internal-dpl-clock]: [12:47:00][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1992145:fv0-reconstructor]: [12:47:00][STATE] BINDING ---> BOUND
+[1992145:fv0-reconstructor]: [12:47:00][STATE] BOUND ---> CONNECTING
+[1992145:fv0-reconstructor]: [12:47:00][STATE] CONNECTING ---> DEVICE READY
+[1992145:fv0-reconstructor]: [12:47:00][STATE] DEVICE READY ---> INITIALIZING TASK
+[1992145:fv0-reconstructor]: [12:47:00][STATE] INITIALIZING TASK ---> READY
+[1992145:fv0-reconstructor]: [12:47:00][STATE] READY ---> RUNNING
+[1992145:fv0-reconstructor]: [12:47:00][INFO] fair::mq::Device running...
+[1992145:fv0-reconstructor]: [12:47:00][INFO] LHCPeriod is not available, using current month OCT
+[1992142:internal-dpl-clock]: [12:47:00][STATE] INITIALIZED ---> BINDING
+[1992145:fv0-reconstructor]: [12:47:00][INFO] Correctly handshaken websocket connection.
+[1992142:internal-dpl-clock]: [12:47:00][STATE] BINDING ---> BOUND
+[1992142:internal-dpl-clock]: [12:47:00][STATE] BOUND ---> CONNECTING
+[1992142:internal-dpl-clock]: [12:47:00][STATE] CONNECTING ---> DEVICE READY
+[1992142:internal-dpl-clock]: [12:47:00][STATE] DEVICE READY ---> INITIALIZING TASK
+[1992142:internal-dpl-clock]: [12:47:00][STATE] INITIALIZING TASK ---> READY
+[1992142:internal-dpl-clock]: [12:47:00][STATE] READY ---> RUNNING
+[1992142:internal-dpl-clock]: [12:47:00][INFO] fair::mq::Device running...
+[1992142:internal-dpl-clock]: [12:47:00][INFO] LHCPeriod is not available, using current month OCT
+[1992144:internal-dpl-ccdb-backend]: [INFO] Instrumenting crash signals
+[1992142:internal-dpl-clock]: [12:47:00][INFO] Correctly handshaken websocket connection.
+[1992147:internal-dpl-injected-dummy-sink]: [INFO] Instrumenting crash signals
+[1992144:internal-dpl-ccdb-backend]: [INFO] Spawing new device internal-dpl-ccdb-backend in process with pid 1992144
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][INFO] 
+[1992144:internal-dpl-ccdb-backend]:       ______      _    _______  _________ 
+[1992144:internal-dpl-ccdb-backend]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1992144:internal-dpl-ccdb-backend]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1992144:internal-dpl-ccdb-backend]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1992144:internal-dpl-ccdb-backend]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1992144:internal-dpl-ccdb-backend]: 
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][STATE] Starting FairMQ state machine --> IDLE
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][STATE] IDLE ---> INITIALIZING DEVICE
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][INFO] CCDB Backend at: http://alice-ccdb.cern.ch, validity check for every 2147483647 TF
+[1992146:fv0-recpoint-writer]: [12:47:00][INFO] 0: branch  FV0Cluster set up
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1697194020-Nor3ZX, Host: http://alice-ccdb.cern.ch
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][INFO] Initialised default CCDB host http://alice-ccdb.cern.ch
+[1992146:fv0-recpoint-writer]: [12:47:00][INFO] 1: branch  FV0RecChData set up
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][INFO] The following route is a condition FV0/TimeOffset/0
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][INFO] - ccdb-path: FV0/Calib/ChannelTimeOffset
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][STATE] INITIALIZED ---> BINDING
+[1992147:internal-dpl-injected-dummy-sink]: [INFO] Spawing new device internal-dpl-injected-dummy-sink in process with pid 1992147
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][STATE] BINDING ---> BOUND
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][STATE] BOUND ---> CONNECTING
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][STATE] CONNECTING ---> DEVICE READY
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][STATE] DEVICE READY ---> INITIALIZING TASK
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:00][INFO] 
+[1992147:internal-dpl-injected-dummy-sink]:       ______      _    _______  _________ 
+[1992147:internal-dpl-injected-dummy-sink]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[1992147:internal-dpl-injected-dummy-sink]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[1992147:internal-dpl-injected-dummy-sink]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[1992147:internal-dpl-injected-dummy-sink]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[1992147:internal-dpl-injected-dummy-sink]: 
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:00][STATE] Starting FairMQ state machine --> IDLE
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][STATE] INITIALIZING TASK ---> READY
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][STATE] READY ---> RUNNING
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][INFO] fair::mq::Device running...
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][INFO] LHCPeriod is not available, using current month OCT
+[1992144:internal-dpl-ccdb-backend]: [12:47:00][INFO] Correctly handshaken websocket connection.
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:00][STATE] IDLE ---> INITIALIZING DEVICE
+[1992146:fv0-recpoint-writer]: [12:47:00][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1992146:fv0-recpoint-writer]: [12:47:00][STATE] INITIALIZED ---> BINDING
+[1992146:fv0-recpoint-writer]: [12:47:00][STATE] BINDING ---> BOUND
+[1992146:fv0-recpoint-writer]: [12:47:00][STATE] BOUND ---> CONNECTING
+[1992146:fv0-recpoint-writer]: [12:47:00][STATE] CONNECTING ---> DEVICE READY
+[1992146:fv0-recpoint-writer]: [12:47:00][STATE] DEVICE READY ---> INITIALIZING TASK
+[1992146:fv0-recpoint-writer]: [12:47:00][STATE] INITIALIZING TASK ---> READY
+[1992146:fv0-recpoint-writer]: [12:47:00][STATE] READY ---> RUNNING
+[1992146:fv0-recpoint-writer]: [12:47:00][INFO] fair::mq::Device running...
+[1992146:fv0-recpoint-writer]: [12:47:00][INFO] LHCPeriod is not available, using current month OCT
+[1992146:fv0-recpoint-writer]: [12:47:00][INFO] Correctly handshaken websocket connection.
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:00][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:00][STATE] INITIALIZED ---> BINDING
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:00][STATE] BINDING ---> BOUND
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:00][STATE] BOUND ---> CONNECTING
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:00][STATE] CONNECTING ---> DEVICE READY
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:00][STATE] DEVICE READY ---> INITIALIZING TASK
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:00][STATE] INITIALIZING TASK ---> READY
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:00][STATE] READY ---> RUNNING
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:00][INFO] fair::mq::Device running...
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:00][INFO] LHCPeriod is not available, using current month OCT
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:00][INFO] Correctly handshaken websocket connection.
+[1992143:fv0-digit-reader]: [12:47:03][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[1992143:fv0-digit-reader]: [12:47:03][STATE] INITIALIZED ---> BINDING
+[1992143:fv0-digit-reader]: [12:47:03][STATE] BINDING ---> BOUND
+[1992143:fv0-digit-reader]: [12:47:03][STATE] BOUND ---> CONNECTING
+[1992143:fv0-digit-reader]: [12:47:03][STATE] CONNECTING ---> DEVICE READY
+[1992143:fv0-digit-reader]: [12:47:03][STATE] DEVICE READY ---> INITIALIZING TASK
+[1992143:fv0-digit-reader]: [12:47:03][STATE] INITIALIZING TASK ---> READY
+[1992143:fv0-digit-reader]: [12:47:03][STATE] READY ---> RUNNING
+[1992143:fv0-digit-reader]: [12:47:03][INFO] fair::mq::Device running...
+[1992143:fv0-digit-reader]: [12:47:03][INFO] LHCPeriod is not available, using current month OCT
+[1992143:fv0-digit-reader]: IncrementalExecutor::executeFunction: symbol '_ZN2o211dataformats16MCTruthContainerINS_3fv07MCLabelEE5ClassEv' unresolved while linking [cling interface function]!
+[1992143:fv0-digit-reader]: You are probably missing the definition of o2::dataformats::MCTruthContainer<o2::fv0::MCLabel>::Class()
+[1992143:fv0-digit-reader]: Maybe you need to load the corresponding shared library?
+[1992143:fv0-digit-reader]: [12:47:05][INFO] Sending end-of-stream message to channel from_fv0-digit-reader_to_internal-dpl-ccdb-backend
+[1992143:fv0-digit-reader]: [12:47:05][INFO] Sending end-of-stream message to channel from_fv0-digit-reader_to_fv0-reconstructor
+[1992143:fv0-digit-reader]: [12:47:05][INFO] Sending end-of-stream message to channel from_fv0-digit-reader_to_internal-dpl-injected-dummy-sink
+[1992143:fv0-digit-reader]: [12:47:05][INFO] Correctly handshaken websocket connection.
+[1992144:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to JCentral. Please wait
+[1992144:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to 137.138.47.222
+[1992144:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Successfully connected to 137.138.47.222
+[1992144:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/CTP/Calib/OrbitReset/06/62200/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee in SE <ALICE::CERN::EOS>
+[1992144:internal-dpl-ccdb-backend]: [12:47:06][INFO] ccdb reads http://alice-ccdb.cern.ch/CTP/Calib/OrbitReset/1546300800000/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697194020-Nor3ZX), 
+[1992144:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/FV0/Calib/ChannelTimeOffset/10/41581/ea2bed9b-d832-11ec-8eb6-200114580202 in SE <ALICE::CERN::OCDB>
+[1992144:internal-dpl-ccdb-backend]: [12:47:06][INFO] ccdb reads http://alice-ccdb.cern.ch/FV0/Calib/ChannelTimeOffset/1546300800000/ea2bed9b-d832-11ec-8eb6-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697194020-Nor3ZX), 
+[1992145:fv0-reconstructor]: [12:47:06][INFO] Ignoring MC info
+[1992144:internal-dpl-ccdb-backend]: [12:47:06][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_fv0-reconstructor
+[1992144:internal-dpl-ccdb-backend]: [12:47:06][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_internal-dpl-injected-dummy-sink
+[1992145:fv0-reconstructor]: [12:47:06][INFO] Caching in 139883396524192 ptr to FV0/TimeOffset/0 (0x3875f00)
+[1992145:fv0-reconstructor]: [12:47:06][INFO] FV0 reconstruction total timing: Cpu: 1.000e-02 Real: 1.259e-02 s in 1 slots
+[1992145:fv0-reconstructor]: [12:47:06][INFO] Sending end-of-stream message to channel from_fv0-reconstructor_to_fv0-recpoint-writer
 [INFO] Quitting
 [INFO] QUIT_REQUESTED
-[547085:internal-dpl-ccdb-backend]: [14:04:41][INFO] Received device shutdown request (signal 15).
-[547085:internal-dpl-ccdb-backend]: [14:04:41][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[547085:internal-dpl-ccdb-backend]: [14:04:41][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[547085:internal-dpl-ccdb-backend]: [14:04:41][INFO] CCDB cache miss/hit ratio:
-[547085:internal-dpl-ccdb-backend]: [14:04:41][INFO]   FV0/Calib/ChannelTimeOffset: 1/0 (2048-2048 bytes)
-[547085:internal-dpl-ccdb-backend]: [14:04:41][INFO]   CTP/Calib/OrbitReset: 1/1 (1024-1024 bytes)
-[547085:internal-dpl-ccdb-backend]: [14:04:41][STATE] RUNNING ---> READY
-[547085:internal-dpl-ccdb-backend]: [14:04:41][STATE] READY ---> RESETTING TASK
-[547085:internal-dpl-ccdb-backend]: [14:04:41][STATE] RESETTING TASK ---> DEVICE READY
-[547085:internal-dpl-ccdb-backend]: [14:04:41][STATE] DEVICE READY ---> RESETTING DEVICE
-[547085:internal-dpl-ccdb-backend]: [14:04:41][STATE] RESETTING DEVICE ---> IDLE
-[547085:internal-dpl-ccdb-backend]: [14:04:41][STATE] IDLE ---> EXITING
-[547085:internal-dpl-ccdb-backend]: [14:04:41][STATE] Exiting FairMQ state machine
-[547086:fv0-reconstructor]: [14:04:41][INFO] Received device shutdown request (signal 15).
-[547086:fv0-reconstructor]: [14:04:41][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[547086:fv0-reconstructor]: [14:04:41][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[547086:fv0-reconstructor]: [14:04:41][STATE] RUNNING ---> READY
-[547083:internal-dpl-clock]: [14:04:41][INFO] Received device shutdown request (signal 15).
-[547083:internal-dpl-clock]: [14:04:41][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[547086:fv0-reconstructor]: [14:04:41][STATE] READY ---> RESETTING TASK
-[547086:fv0-reconstructor]: [14:04:41][STATE] RESETTING TASK ---> DEVICE READY
-[547086:fv0-reconstructor]: [14:04:41][STATE] DEVICE READY ---> RESETTING DEVICE
-[547087:fv0-recpoint-writer]: [14:04:41][INFO] Received device shutdown request (signal 15).
-[547087:fv0-recpoint-writer]: [14:04:41][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[547088:internal-dpl-injected-dummy-sink]: [14:04:41][INFO] Received device shutdown request (signal 15).
-[547088:internal-dpl-injected-dummy-sink]: [14:04:41][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[547084:fv0-digit-reader]: [14:04:41][INFO] Received device shutdown request (signal 15).
-[547084:fv0-digit-reader]: [14:04:41][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[547087:fv0-recpoint-writer]: [14:04:41][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[547083:internal-dpl-clock]: [14:04:41][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[547083:internal-dpl-clock]: [14:04:41][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_fv0-digit-reader
-[547083:internal-dpl-clock]: [14:04:41][STATE] RUNNING ---> READY
-[547083:internal-dpl-clock]: [14:04:41][STATE] READY ---> RESETTING TASK
-[547083:internal-dpl-clock]: [14:04:41][STATE] RESETTING TASK ---> DEVICE READY
-[547083:internal-dpl-clock]: [14:04:41][STATE] DEVICE READY ---> RESETTING DEVICE
-[547088:internal-dpl-injected-dummy-sink]: [14:04:41][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[547088:internal-dpl-injected-dummy-sink]: [14:04:41][STATE] RUNNING ---> READY
-[547084:fv0-digit-reader]: [14:04:41][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[547084:fv0-digit-reader]: [14:04:41][STATE] RUNNING ---> READY
-[547084:fv0-digit-reader]: [14:04:41][STATE] READY ---> RESETTING TASK
-[547084:fv0-digit-reader]: [14:04:41][STATE] RESETTING TASK ---> DEVICE READY
-[547084:fv0-digit-reader]: [14:04:41][STATE] DEVICE READY ---> RESETTING DEVICE
-[547083:internal-dpl-clock]: [14:04:41][STATE] RESETTING DEVICE ---> IDLE
-[547083:internal-dpl-clock]: [14:04:41][STATE] IDLE ---> EXITING
-[547088:internal-dpl-injected-dummy-sink]: [14:04:41][STATE] READY ---> RESETTING TASK
-[547083:internal-dpl-clock]: [14:04:41][STATE] Exiting FairMQ state machine
-[547088:internal-dpl-injected-dummy-sink]: [14:04:41][STATE] RESETTING TASK ---> DEVICE READY
-[547088:internal-dpl-injected-dummy-sink]: [14:04:41][STATE] DEVICE READY ---> RESETTING DEVICE
-[547086:fv0-reconstructor]: [14:04:41][STATE] RESETTING DEVICE ---> IDLE
-[547084:fv0-digit-reader]: [14:04:41][STATE] RESETTING DEVICE ---> IDLE
-[547084:fv0-digit-reader]: [14:04:41][STATE] IDLE ---> EXITING
-[547084:fv0-digit-reader]: [14:04:41][STATE] Exiting FairMQ state machine
-[547086:fv0-reconstructor]: [14:04:41][STATE] IDLE ---> EXITING
-[547088:internal-dpl-injected-dummy-sink]: [14:04:41][STATE] RESETTING DEVICE ---> IDLE
-[547088:internal-dpl-injected-dummy-sink]: [14:04:41][STATE] IDLE ---> EXITING
-[547088:internal-dpl-injected-dummy-sink]: [14:04:41][STATE] Exiting FairMQ state machine
-[547086:fv0-reconstructor]: [14:04:41][STATE] Exiting FairMQ state machine
-[547087:fv0-recpoint-writer]: [14:04:41][STATE] RUNNING ---> READY
-[547087:fv0-recpoint-writer]: [14:04:41][STATE] READY ---> RESETTING TASK
-[547087:fv0-recpoint-writer]: [14:04:41][STATE] RESETTING TASK ---> DEVICE READY
-[547087:fv0-recpoint-writer]: [14:04:41][STATE] DEVICE READY ---> RESETTING DEVICE
-[547087:fv0-recpoint-writer]: [14:04:41][INFO] Cleaning up for shared memory id '2ec46207'...
-[547087:fv0-recpoint-writer]: [14:04:41][INFO] Found 0 unmanaged regions...
-[547087:fv0-recpoint-writer]: [14:04:41][INFO] Found 1 managed segments...
-[547087:fv0-recpoint-writer]: [14:04:41][INFO] Successfully removed 'fmq_2ec46207_m_0'.
-[547087:fv0-recpoint-writer]: [14:04:41][INFO] Successfully removed 'fmq_2ec46207_mng'.
-[547087:fv0-recpoint-writer]: [14:04:41][STATE] RESETTING DEVICE ---> IDLE
-[547087:fv0-recpoint-writer]: [14:04:41][STATE] IDLE ---> EXITING
-[547087:fv0-recpoint-writer]: [14:04:41][STATE] Exiting FairMQ state machine
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:06][INFO] Received device shutdown request (signal 15).
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:06][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:06][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:06][STATE] RUNNING ---> READY
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:06][STATE] READY ---> RESETTING TASK
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:06][STATE] RESETTING TASK ---> DEVICE READY
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:06][STATE] DEVICE READY ---> RESETTING DEVICE
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:06][STATE] RESETTING DEVICE ---> IDLE
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:06][STATE] IDLE ---> EXITING
+[1992147:internal-dpl-injected-dummy-sink]: [12:47:06][STATE] Exiting FairMQ state machine
+[1992144:internal-dpl-ccdb-backend]: [12:47:06][INFO] Received device shutdown request (signal 15).
+[1992144:internal-dpl-ccdb-backend]: [12:47:06][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1992145:fv0-reconstructor]: [12:47:06][INFO] Received device shutdown request (signal 15).
+[1992145:fv0-reconstructor]: [12:47:06][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1992142:internal-dpl-clock]: [12:47:06][INFO] Received device shutdown request (signal 15).
+[1992142:internal-dpl-clock]: [12:47:06][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1992146:fv0-recpoint-writer]: [12:47:06][INFO] Received device shutdown request (signal 15).
+[1992146:fv0-recpoint-writer]: [12:47:06][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1992142:internal-dpl-clock]: [12:47:06][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1992142:internal-dpl-clock]: [12:47:06][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_fv0-digit-reader
+[1992145:fv0-reconstructor]: [12:47:06][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1992145:fv0-reconstructor]: [12:47:06][STATE] RUNNING ---> READY
+[1992146:fv0-recpoint-writer]: [12:47:06][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1992142:internal-dpl-clock]: [12:47:06][STATE] RUNNING ---> READY
+[1992142:internal-dpl-clock]: [12:47:06][STATE] READY ---> RESETTING TASK
+[1992142:internal-dpl-clock]: [12:47:06][STATE] RESETTING TASK ---> DEVICE READY
+[1992142:internal-dpl-clock]: [12:47:06][STATE] DEVICE READY ---> RESETTING DEVICE
+[1992144:internal-dpl-ccdb-backend]: [12:47:06][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1992144:internal-dpl-ccdb-backend]: [12:47:06][INFO] CCDB cache miss/hit ratio:
+[1992144:internal-dpl-ccdb-backend]: [12:47:06][INFO]   FV0/Calib/ChannelTimeOffset: 1/0 (2048-2048 bytes)
+[1992144:internal-dpl-ccdb-backend]: [12:47:06][INFO]   CTP/Calib/OrbitReset: 1/1 (1024-1024 bytes)
+[1992144:internal-dpl-ccdb-backend]: [12:47:06][STATE] RUNNING ---> READY
+[1992145:fv0-reconstructor]: [12:47:06][STATE] READY ---> RESETTING TASK
+[1992145:fv0-reconstructor]: [12:47:06][STATE] RESETTING TASK ---> DEVICE READY
+[1992144:internal-dpl-ccdb-backend]: [12:47:06][STATE] READY ---> RESETTING TASK
+[1992144:internal-dpl-ccdb-backend]: [12:47:06][STATE] RESETTING TASK ---> DEVICE READY
+[1992145:fv0-reconstructor]: [12:47:06][STATE] DEVICE READY ---> RESETTING DEVICE
+[1992144:internal-dpl-ccdb-backend]: [12:47:06][STATE] DEVICE READY ---> RESETTING DEVICE
+[1992142:internal-dpl-clock]: [12:47:06][STATE] RESETTING DEVICE ---> IDLE
+[1992142:internal-dpl-clock]: [12:47:06][STATE] IDLE ---> EXITING
+[1992145:fv0-reconstructor]: [12:47:06][STATE] RESETTING DEVICE ---> IDLE
+[1992145:fv0-reconstructor]: [12:47:06][STATE] IDLE ---> EXITING
+[1992142:internal-dpl-clock]: [12:47:06][STATE] Exiting FairMQ state machine
+[1992145:fv0-reconstructor]: [12:47:06][STATE] Exiting FairMQ state machine
+[1992144:internal-dpl-ccdb-backend]: [12:47:06][STATE] RESETTING DEVICE ---> IDLE
+[1992144:internal-dpl-ccdb-backend]: [12:47:06][STATE] IDLE ---> EXITING
+[1992144:internal-dpl-ccdb-backend]: [12:47:06][STATE] Exiting FairMQ state machine
+[1992143:fv0-digit-reader]: [12:47:06][INFO] Received device shutdown request (signal 15).
+[1992143:fv0-digit-reader]: [12:47:06][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[1992143:fv0-digit-reader]: [12:47:06][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[1992143:fv0-digit-reader]: [12:47:06][STATE] RUNNING ---> READY
+[1992143:fv0-digit-reader]: [12:47:06][STATE] READY ---> RESETTING TASK
+[1992143:fv0-digit-reader]: [12:47:06][STATE] RESETTING TASK ---> DEVICE READY
+[1992143:fv0-digit-reader]: [12:47:06][STATE] DEVICE READY ---> RESETTING DEVICE
+[1992143:fv0-digit-reader]: [12:47:06][STATE] RESETTING DEVICE ---> IDLE
+[1992143:fv0-digit-reader]: [12:47:06][STATE] IDLE ---> EXITING
+[1992143:fv0-digit-reader]: [12:47:06][STATE] Exiting FairMQ state machine
+[1992146:fv0-recpoint-writer]: [12:47:06][STATE] RUNNING ---> READY
+[1992146:fv0-recpoint-writer]: [12:47:06][STATE] READY ---> RESETTING TASK
+[1992146:fv0-recpoint-writer]: [12:47:06][STATE] RESETTING TASK ---> DEVICE READY
+[1992146:fv0-recpoint-writer]: [12:47:06][STATE] DEVICE READY ---> RESETTING DEVICE
+[1992146:fv0-recpoint-writer]: [12:47:06][INFO] Cleaning up for shared memory id 'bf6c0bb3'...
+[1992146:fv0-recpoint-writer]: [12:47:06][INFO] Found 0 unmanaged regions...
+[1992146:fv0-recpoint-writer]: [12:47:06][INFO] Found 1 managed segments...
+[1992146:fv0-recpoint-writer]: [12:47:06][INFO] Successfully removed 'fmq_bf6c0bb3_m_0'.
+[1992146:fv0-recpoint-writer]: [12:47:06][INFO] Successfully removed 'fmq_bf6c0bb3_mng'.
+[1992146:fv0-recpoint-writer]: [12:47:06][STATE] RESETTING DEVICE ---> IDLE
+[1992146:fv0-recpoint-writer]: [12:47:06][STATE] IDLE ---> EXITING
+[1992146:fv0-recpoint-writer]: [12:47:06][STATE] Exiting FairMQ state machine
 [INFO] ## Processes completed. Run summary:
 [INFO] ### Devices started: 6
-[INFO]  - Device internal-dpl-clock: pid 547083 (exit 0)
-[INFO]  - Device fv0-digit-reader: pid 547084 (exit 0)
-[INFO]  - Device internal-dpl-ccdb-backend: pid 547085 (exit 0)
-[INFO]  - Device fv0-reconstructor: pid 547086 (exit 0)
-[INFO]  - Device fv0-recpoint-writer: pid 547087 (exit 0)
-[INFO]  - Device internal-dpl-injected-dummy-sink: pid 547088 (exit 0)
+[INFO]  - Device internal-dpl-clock: pid 1992142 (exit 0)
+[INFO]  - Device fv0-digit-reader: pid 1992143 (exit 0)
+[INFO]  - Device internal-dpl-ccdb-backend: pid 1992144 (exit 0)
+[INFO]  - Device fv0-reconstructor: pid 1992145 (exit 0)
+[INFO]  - Device fv0-recpoint-writer: pid 1992146 (exit 0)
+[INFO]  - Device internal-dpl-injected-dummy-sink: pid 1992147 (exit 0)
 [INFO] Dumping used configuration in dpl-config.json
 TASK-EXIT-CODE: 0
