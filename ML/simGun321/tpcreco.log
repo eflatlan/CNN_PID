@@ -402,4 +402,183 @@ Running: TIME="#walltime %e" /usr/bin/time --output=tpcreco.log_time ./tpcreco.l
 [2104149:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPECS/03/07584/646e9be2-0210-11ed-8000-200114580202 in SE <ALICE::CERN::OCDB>
 [2104149:internal-dpl-ccdb-backend]: [14:34:51][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPECS/1546300800000/646e9be2-0210-11ed-8000-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200485-FrvdrJ), 
 [2104149:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GeometryAligned/06/21224/787687c0-287a-11ed-8141-200114580202 in SE <ALICE::CERN::OCDB>
-[2104149:internal-dpl-ccdb-backend]: [14:34:52][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/Geome
+[2104149:internal-dpl-ccdb-backend]: [14:34:52][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GeometryAligned/1546300800000/787687c0-287a-11ed-8141-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200485-FrvdrJ), 
+[2104149:internal-dpl-ccdb-backend]: [14:34:52][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_tpc-tracker
+[2104149:internal-dpl-ccdb-backend]: [14:34:52][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_internal-dpl-injected-dummy-sink
+[2104150:tpc-zsEncoder]: [14:34:52][INFO] TOTAL ENCODED SIZE: 59529984 (24293106 of 24293106 digits encoded)
+[2104150:tpc-zsEncoder]: [14:34:53][INFO] Sending end-of-stream message to channel from_tpc-zsEncoder_to_tpc-tracker
+[2104151:tpc-tracker]: [14:34:53][INFO] GRP MagField object updated
+[2104151:tpc-tracker]: [14:34:53][INFO] MagneticField::Print: MagneticFieldMap:
+[2104151:tpc-tracker]: [14:34:53][INFO] MagneticField::Print: Solenoid (-1*)5 kG, Dipole ON (-1) 
+[2104151:tpc-tracker]: [14:34:53][INFO] MagneticField::Print: Machine B fields for p-p  beam (7000 GeV): QGrad: 22.0002 Dipole: 37.8781
+[2104151:tpc-tracker]: [14:34:53][INFO] MagneticField::Print: Uses Sol30_Dip6_Hole  of /root/alice/sw/slc9_x86-64/O2/segment-local1/share/Common/maps/mfchebKGI_sym.root
+[2104151:tpc-tracker]: Info in <TGeoGlobalMagField::SetField>: Global magnetic field set to <MagneticFieldMap>
+[2104151:tpc-tracker]: Info in <TGeoGlobalMagField::Lock>: Global magnetic field <MagneticFieldMap> is now locked
+[2104151:tpc-tracker]: [14:34:53][INFO] Caching in 140508709212112 ptr to GLO/GRPMAGFIELD/0 (0x4ea9480)
+[2104151:tpc-tracker]: [14:34:53][INFO] GRP ECS object updated
+[2104151:tpc-tracker]: [14:34:53][INFO] Caching in 140508709213360 ptr to GLO/GRPECS/0 (0x3219910)
+[2104151:tpc-tracker]: [14:34:53][INFO] material LUT updated
+[2104151:tpc-tracker]: [14:34:53][INFO] Loaded 440 params from $(O2_ROOT)/share/Common/maps/sol5k.txt
+[2104151:tpc-tracker]: [14:34:53][INFO] Caching in 140508699986672 ptr to GLO/MATLUT/0 (0x5cd94a0)
+[2104151:tpc-tracker]: Info in <TGeoManager::CloseGeometry>: Geometry loaded from file...
+[2104151:tpc-tracker]: Info in <TGeoManager::SetTopVolume>: Top volume is cave. Master volume is cave
+[2104151:tpc-tracker]: Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+[2104151:tpc-tracker]: Info in <TGeoManager::Voxelize>: Voxelizing...
+[2104151:tpc-tracker]: Info in <TGeoManager::CountLevels>: max level = 13, max placements = 735
+[2104151:tpc-tracker]: Info in <TGeoManager::CloseGeometry>: 5346742 nodes/ 27442 volume UID's in FAIR geometry
+[2104151:tpc-tracker]: Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+[2104151:tpc-tracker]: [14:34:53][INFO] aligned geometry updated
+[2104151:tpc-tracker]: [14:34:53][INFO] Caching in 140508709215632 ptr to GLO/GEOMALIGN/0 (0x5dbbf40)
+[2104151:tpc-tracker]: [14:34:53][INFO] Loading ITS T2L matrices from TGeo
+[2104151:tpc-tracker]: [14:34:54][WARN] It is faster to use 2D rotation for T2G instead of full Transform3D matrices
+[2104151:tpc-tracker]: [14:34:54][INFO] Loading ITS T2G matrices from TGeo
+[2104151:tpc-tracker]: [14:34:54][INFO] Loading ITS T2G rotation 2D matrices
+[2104151:tpc-tracker]: [14:34:54][INFO] Updating solenoid field -5.00668
+[2104151:tpc-tracker]: [14:34:54][INFO] Updating max time bin 57025
+[2104151:tpc-tracker]: [14:34:54][INFO] Loaded material budget lookup table
+[2104151:tpc-tracker]: [14:34:54][INFO] Updating gain map from CCDB
+[2104151:tpc-tracker]: [14:34:54][INFO] Caching in 140508698275696 ptr to TPC/PADGAINFULL/0 (0x53bd2c0)
+[2104151:tpc-tracker]: [14:34:54][INFO] Updating threshold map from CCDB
+[2104151:tpc-tracker]: [14:34:54][INFO] Caching in 140508693807536 ptr to TPC/PADTHRESHOLD/0 (0x53c9fe0)
+[2104151:tpc-tracker]: [14:34:54][INFO] Updating residual gain map from CCDB
+[2104151:tpc-tracker]: [14:34:54][INFO] Caching in 140508698272400 ptr to TPC/PADGAINRESIDUAL/0 (0x5444c50)
+[2104151:tpc-tracker]: [14:34:54][INFO] Updating Q topology correction from CCDB
+[2104151:tpc-tracker]: [14:34:54][INFO] Caching in 140508688526320 ptr to TPC/TOPOLOGYGAIN/0 (0x5484170)
+[2104151:tpc-tracker]: [14:34:54][INFO] Updating residual gain correction from CCDB
+[2104151:tpc-tracker]: [14:34:54][INFO] Caching in 140508693806288 ptr to TPC/TIMEGAIN/0 (0x53e8c60)
+[2104151:tpc-tracker]: [14:34:54][INFO] accountLaserCalibration 1 t 10 vs 0
+[2104151:tpc-tracker]: [14:34:54][INFO] Caching in 140508699984400 ptr to TPC/CalibLaserTracks/0 (0x33c4e60)
+[2104151:tpc-tracker]: [14:34:54][INFO] accountDriftCorrectionITSTPCTgl 1 t 0 vs 0
+[2104151:tpc-tracker]: [14:34:54][INFO] Caching in 140508688524048 ptr to TPC/VDriftTgl/0 (0xefde0f0)
+[2104151:tpc-tracker]: [14:34:54][INFO] Will prefer TPC Drift from Laser with time 10 to TPCITSTgl with time 0
+[2104151:tpc-tracker]: [14:34:54][INFO] InstLumiOverride=0, UseCTPLumi=false -> instLumi=0, meanLumi=1 -> LumiScale=0, lumiScaleMode=0
+[2104151:tpc-tracker]: [14:34:54][INFO] Caching in 140508699974960 ptr to TPC/CorrMap/0 (0xe265550)
+[2104151:tpc-tracker]: [14:34:54][INFO] Caching in 140508699965520 ptr to TPC/CorrMapRef/0 (0xe266760)
+[2104151:tpc-tracker]: [14:34:54][INFO] Updating new TPC fast transform map and/or VDrift factor of 1 wrt reference 2.58 and TDrift offset 0 wrt reference 0 from source Laser
+[2104151:tpc-tracker]: [14:34:54][INFO] Updating GPUReconstruction calibration objects
+[2104151:tpc-tracker]: [14:34:54][INFO] Event has 10880 8kb TPC ZS pages (version 4), 24293106 digits
+[2104151:tpc-tracker]: [14:35:04][INFO] Event has 3620269 TPC Clusters, 0 TRD Tracklets
+[2104151:tpc-tracker]: [14:35:09][INFO] found 29280 track(s)
+[2104151:tpc-tracker]: [14:35:09][INFO] GPU Reoncstruction time for this TF 57.39 s (cpu), 16.6012 s (wall)
+[2104151:tpc-tracker]: [14:35:09][INFO] Sending end-of-stream message to channel from_tpc-tracker_to_tpc-native-cluster-writer
+[2104151:tpc-tracker]: [14:35:09][INFO] Sending end-of-stream message to channel from_tpc-tracker_to_tpc-track-writer
+[2104151:tpc-tracker]: [14:35:09][INFO] Sending end-of-stream message to channel from_tpc-tracker_to_internal-dpl-injected-dummy-sink
+[2104153:tpc-track-writer]: [14:35:09][INFO] writing 29280 track(s)
+[2104153:tpc-track-writer]: [14:35:10][ERROR] Some Lifetime::Timeframe data got dropped starting at 1
+[INFO] Quitting
+[2104152:tpc-native-cluster-writer]: [14:35:11][ERROR] Some Lifetime::Timeframe data got dropped starting at 1
+[INFO] QUIT_REQUESTED
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO] Received device shutdown request (signal 15).
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2104151:tpc-tracker]: [14:35:11][INFO] Received device shutdown request (signal 15).
+[2104151:tpc-tracker]: [14:35:11][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2104147:internal-dpl-clock]: [14:35:11][INFO] Received device shutdown request (signal 15).
+[2104147:internal-dpl-clock]: [14:35:11][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2104152:tpc-native-cluster-writer]: [14:35:11][INFO] Received device shutdown request (signal 15).
+[2104152:tpc-native-cluster-writer]: [14:35:11][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2104153:tpc-track-writer]: [14:35:11][INFO] Received device shutdown request (signal 15).
+[2104153:tpc-track-writer]: [14:35:11][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2104147:internal-dpl-clock]: [14:35:11][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO] CCDB cache miss/hit ratio:
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO]   TPC/Calib/VDriftTgl: 1/1 (2048-2048 bytes)
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO]   TPC/Calib/CorrectionMapV2: 1/1 (9216-9216 bytes)
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO]   GLO/Config/GRPECS: 1/1 (2048-2048 bytes)
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO]   TPC/Calib/TopologyGainPiecewise: 1/1 (5279744-5279744 bytes)
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO]   TPC/Config/FEEPad: 1/1 (4464640-4464640 bytes)
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO]   GLO/Config/GeometryAligned: 1/1 (1847296-1847296 bytes)
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO]   TPC/Calib/TimeGain: 1/1 (1024-1024 bytes)
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO]   TPC/Calib/PadGainResidual: 1/1 (3072-3072 bytes)
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO]   GLO/Param/MatLUT: 1/1 (9225216-9225216 bytes)
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO]   TPC/Calib/LaserTracks: 1/1 (2048-2048 bytes)
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO]   TPC/Calib/PadGainFull: 1/1 (1689600-1689600 bytes)
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO]   TPC/Calib/CorrectionMapRefV2: 1/1 (9216-9216 bytes)
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO]   CTP/Calib/OrbitReset: 1/2 (1024-1024 bytes)
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][INFO]   GLO/Config/GRPMagField: 1/1 (1024-1024 bytes)
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][STATE] RUNNING ---> READY
+[2104151:tpc-tracker]: [14:35:11][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2104151:tpc-tracker]: [14:35:11][INFO] GPU Reconstruction total timing: Cpu: 5.739e+01 Real: 1.660e+01 s in 1 slots
+[2104151:tpc-tracker]: [14:35:11][STATE] RUNNING ---> READY
+[2104152:tpc-native-cluster-writer]: [14:35:11][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2104153:tpc-track-writer]: [14:35:11][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2104147:internal-dpl-clock]: [14:35:11][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_tpc-digit-reader
+[2104151:tpc-tracker]: [14:35:11][STATE] READY ---> RESETTING TASK
+[2104151:tpc-tracker]: [14:35:11][STATE] RESETTING TASK ---> DEVICE READY
+[2104147:internal-dpl-clock]: [14:35:11][STATE] RUNNING ---> READY
+[2104147:internal-dpl-clock]: [14:35:11][STATE] READY ---> RESETTING TASK
+[2104147:internal-dpl-clock]: [14:35:11][STATE] RESETTING TASK ---> DEVICE READY
+[2104147:internal-dpl-clock]: [14:35:11][STATE] DEVICE READY ---> RESETTING DEVICE
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][STATE] READY ---> RESETTING TASK
+[2104151:tpc-tracker]: [14:35:11][STATE] DEVICE READY ---> RESETTING DEVICE
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][STATE] RESETTING TASK ---> DEVICE READY
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][STATE] DEVICE READY ---> RESETTING DEVICE
+[2104147:internal-dpl-clock]: [14:35:11][STATE] RESETTING DEVICE ---> IDLE
+[2104147:internal-dpl-clock]: [14:35:11][STATE] IDLE ---> EXITING
+[2104147:internal-dpl-clock]: [14:35:11][STATE] Exiting FairMQ state machine
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][STATE] RESETTING DEVICE ---> IDLE
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][STATE] IDLE ---> EXITING
+[2104149:internal-dpl-ccdb-backend]: [14:35:11][STATE] Exiting FairMQ state machine
+[2104154:internal-dpl-injected-dummy-sink]: [14:35:11][INFO] Received device shutdown request (signal 15).
+[2104154:internal-dpl-injected-dummy-sink]: [14:35:11][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2104150:tpc-zsEncoder]: [14:35:11][INFO] Received device shutdown request (signal 15).
+[2104150:tpc-zsEncoder]: [14:35:11][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2104148:tpc-digit-reader]: [14:35:11][INFO] Received device shutdown request (signal 15).
+[2104148:tpc-digit-reader]: [14:35:11][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2104150:tpc-zsEncoder]: [14:35:11][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2104150:tpc-zsEncoder]: [14:35:11][STATE] RUNNING ---> READY
+[2104154:internal-dpl-injected-dummy-sink]: [14:35:11][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2104154:internal-dpl-injected-dummy-sink]: [14:35:11][STATE] RUNNING ---> READY
+[2104150:tpc-zsEncoder]: [14:35:11][STATE] READY ---> RESETTING TASK
+[2104150:tpc-zsEncoder]: [14:35:11][STATE] RESETTING TASK ---> DEVICE READY
+[2104154:internal-dpl-injected-dummy-sink]: [14:35:11][STATE] READY ---> RESETTING TASK
+[2104154:internal-dpl-injected-dummy-sink]: [14:35:11][STATE] RESETTING TASK ---> DEVICE READY
+[2104148:tpc-digit-reader]: [14:35:11][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2104148:tpc-digit-reader]: [14:35:11][STATE] RUNNING ---> READY
+[2104150:tpc-zsEncoder]: [14:35:11][STATE] DEVICE READY ---> RESETTING DEVICE
+[2104154:internal-dpl-injected-dummy-sink]: [14:35:11][STATE] DEVICE READY ---> RESETTING DEVICE
+[2104148:tpc-digit-reader]: [14:35:11][STATE] READY ---> RESETTING TASK
+[2104148:tpc-digit-reader]: [14:35:11][STATE] RESETTING TASK ---> DEVICE READY
+[2104148:tpc-digit-reader]: [14:35:11][STATE] DEVICE READY ---> RESETTING DEVICE
+[2104154:internal-dpl-injected-dummy-sink]: [14:35:11][STATE] RESETTING DEVICE ---> IDLE
+[2104154:internal-dpl-injected-dummy-sink]: [14:35:11][STATE] IDLE ---> EXITING
+[2104154:internal-dpl-injected-dummy-sink]: [14:35:11][STATE] Exiting FairMQ state machine
+[2104151:tpc-tracker]: [14:35:11][STATE] RESETTING DEVICE ---> IDLE
+[2104150:tpc-zsEncoder]: [14:35:11][STATE] RESETTING DEVICE ---> IDLE
+[2104151:tpc-tracker]: [14:35:11][STATE] IDLE ---> EXITING
+[2104150:tpc-zsEncoder]: [14:35:11][STATE] IDLE ---> EXITING
+[2104151:tpc-tracker]: [14:35:11][STATE] Exiting FairMQ state machine
+[2104148:tpc-digit-reader]: [14:35:11][STATE] RESETTING DEVICE ---> IDLE
+[2104150:tpc-zsEncoder]: [14:35:11][STATE] Exiting FairMQ state machine
+[2104148:tpc-digit-reader]: [14:35:11][STATE] IDLE ---> EXITING
+[2104148:tpc-digit-reader]: [14:35:11][STATE] Exiting FairMQ state machine
+[2104153:tpc-track-writer]: [14:35:11][STATE] RUNNING ---> READY
+[2104153:tpc-track-writer]: [14:35:11][STATE] READY ---> RESETTING TASK
+[2104153:tpc-track-writer]: [14:35:11][STATE] RESETTING TASK ---> DEVICE READY
+[2104153:tpc-track-writer]: [14:35:11][STATE] DEVICE READY ---> RESETTING DEVICE
+[2104153:tpc-track-writer]: [14:35:11][STATE] RESETTING DEVICE ---> IDLE
+[2104153:tpc-track-writer]: [14:35:11][STATE] IDLE ---> EXITING
+[2104153:tpc-track-writer]: [14:35:11][STATE] Exiting FairMQ state machine
+[2104152:tpc-native-cluster-writer]: [14:35:11][STATE] RUNNING ---> READY
+[2104152:tpc-native-cluster-writer]: [14:35:11][STATE] READY ---> RESETTING TASK
+[2104152:tpc-native-cluster-writer]: [14:35:11][STATE] RESETTING TASK ---> DEVICE READY
+[2104152:tpc-native-cluster-writer]: [14:35:11][STATE] DEVICE READY ---> RESETTING DEVICE
+[2104152:tpc-native-cluster-writer]: [14:35:11][INFO] Cleaning up for shared memory id 'effcfc60'...
+[2104152:tpc-native-cluster-writer]: [14:35:11][INFO] Found 0 unmanaged regions...
+[2104152:tpc-native-cluster-writer]: [14:35:11][INFO] Found 1 managed segments...
+[2104152:tpc-native-cluster-writer]: [14:35:11][INFO] Successfully removed 'fmq_effcfc60_m_0'.
+[2104152:tpc-native-cluster-writer]: [14:35:11][INFO] Successfully removed 'fmq_effcfc60_mng'.
+[2104152:tpc-native-cluster-writer]: [14:35:11][STATE] RESETTING DEVICE ---> IDLE
+[2104152:tpc-native-cluster-writer]: [14:35:11][STATE] IDLE ---> EXITING
+[2104152:tpc-native-cluster-writer]: [14:35:11][STATE] Exiting FairMQ state machine
+[INFO] ## Processes completed. Run summary:
+[INFO] ### Devices started: 8
+[INFO]  - Device internal-dpl-clock: pid 2104147 (exit 0)
+[INFO]  - Device tpc-digit-reader: pid 2104148 (exit 0)
+[INFO]  - Device internal-dpl-ccdb-backend: pid 2104149 (exit 0)
+[INFO]  - Device tpc-zsEncoder: pid 2104150 (exit 0)
+[INFO]  - Device tpc-tracker: pid 2104151 (exit 0)
+[INFO]  - Device tpc-native-cluster-writer: pid 2104152 (exit 0)
+[INFO]  - Device tpc-track-writer: pid 2104153 (exit 0)
+[INFO]  - Device internal-dpl-injected-dummy-sink: pid 2104154 (exit 0)
+[INFO] Dumping used configuration in dpl-config.json
+TASK-EXIT-CODE: 0

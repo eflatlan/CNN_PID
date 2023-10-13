@@ -1,438 +1,438 @@
 Running: TIME="#walltime %e" /usr/bin/time --output=mftmchMatch.log_time ./mftmchMatch.log_tmp.sh
-[INFO] Initialising O2 Data Processing Layer. Driver PID: 2094332.
-[INFO] Driver listening on port: 32412
+[INFO] Initialising O2 Data Processing Layer. Driver PID: 2111816.
+[INFO] Driver listening on port: 19896
 [INFO] Rate limiting set up at 500MB distributed over 1 readers
 [INFO] O2 Data Processing Layer initialised. We brake for nobody.
 [INFO] Optimised build. O2DEBUG / LOG(debug) / LOGF(debug) / assert statement will not be shown.
 [INFO] Redeployment of configuration asked.
-[INFO] Starting internal-dpl-clock on pid 2094368
-[INFO] Starting mft-cluster-reader on pid 2094369
-[INFO] Starting mch-tracks-reader0 on pid 2094370
-[INFO] Starting mft-track-reader on pid 2094371
-[INFO] Starting mchmid-matches-reader on pid 2094372
-[INFO] Starting internal-dpl-ccdb-backend on pid 2094373
-[INFO] Starting globalfwd-track-matcher on pid 2094374
-[INFO] Starting globalfwd-track-writer on pid 2094375
-[INFO] Starting internal-dpl-injected-dummy-sink on pid 2094376
+[INFO] Starting internal-dpl-clock on pid 2111852
+[INFO] Starting mft-cluster-reader on pid 2111853
+[INFO] Starting mch-tracks-reader0 on pid 2111854
+[INFO] Starting mft-track-reader on pid 2111855
+[INFO] Starting mchmid-matches-reader on pid 2111856
+[INFO] Starting internal-dpl-ccdb-backend on pid 2111857
+[INFO] Starting globalfwd-track-matcher on pid 2111858
+[INFO] Starting globalfwd-track-writer on pid 2111859
+[INFO] Starting internal-dpl-injected-dummy-sink on pid 2111860
 [INFO] Redeployment of configuration done.
-[2094368:internal-dpl-clock]: [INFO] Instrumenting crash signals
-[2094368:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 2094368
-[2094368:internal-dpl-clock]: [14:28:55][INFO] 
-[2094368:internal-dpl-clock]:       ______      _    _______  _________ 
-[2094368:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2094368:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2094368:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2094368:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2094368:internal-dpl-clock]: 
-[2094368:internal-dpl-clock]: [14:28:55][STATE] Starting FairMQ state machine --> IDLE
-[2094368:internal-dpl-clock]: [14:28:55][STATE] IDLE ---> INITIALIZING DEVICE
-[2094368:internal-dpl-clock]: [14:28:55][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2094368:internal-dpl-clock]: [14:28:55][STATE] INITIALIZED ---> BINDING
-[2094368:internal-dpl-clock]: [14:28:55][STATE] BINDING ---> BOUND
-[2094368:internal-dpl-clock]: [14:28:55][STATE] BOUND ---> CONNECTING
-[2094368:internal-dpl-clock]: [14:28:55][STATE] CONNECTING ---> DEVICE READY
-[2094368:internal-dpl-clock]: [14:28:55][STATE] DEVICE READY ---> INITIALIZING TASK
-[2094368:internal-dpl-clock]: [14:28:55][STATE] INITIALIZING TASK ---> READY
-[2094368:internal-dpl-clock]: [14:28:55][STATE] READY ---> RUNNING
-[2094368:internal-dpl-clock]: [14:28:55][INFO] fair::mq::Device running...
-[2094368:internal-dpl-clock]: [14:28:55][INFO] LHCPeriod is not available, using current month OCT
-[2094368:internal-dpl-clock]: [14:28:55][INFO] Correctly handshaken websocket connection.
-[2094372:mchmid-matches-reader]: [INFO] Instrumenting crash signals
-[2094372:mchmid-matches-reader]: [INFO] Spawing new device mchmid-matches-reader in process with pid 2094372
-[2094372:mchmid-matches-reader]: [14:28:55][INFO] 
-[2094372:mchmid-matches-reader]:       ______      _    _______  _________ 
-[2094372:mchmid-matches-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2094372:mchmid-matches-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2094372:mchmid-matches-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2094372:mchmid-matches-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2094372:mchmid-matches-reader]: 
-[2094372:mchmid-matches-reader]: [14:28:55][STATE] Starting FairMQ state machine --> IDLE
-[2094372:mchmid-matches-reader]: [14:28:55][STATE] IDLE ---> INITIALIZING DEVICE
-[2094371:mft-track-reader]: [INFO] Instrumenting crash signals
-[2094371:mft-track-reader]: [INFO] Spawing new device mft-track-reader in process with pid 2094371
-[2094371:mft-track-reader]: [14:28:55][INFO] 
-[2094371:mft-track-reader]:       ______      _    _______  _________ 
-[2094371:mft-track-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2094371:mft-track-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2094371:mft-track-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2094371:mft-track-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2094371:mft-track-reader]: 
-[2094371:mft-track-reader]: [14:28:55][STATE] Starting FairMQ state machine --> IDLE
-[2094371:mft-track-reader]: [14:28:55][STATE] IDLE ---> INITIALIZING DEVICE
-[2094374:globalfwd-track-matcher]: [INFO] Instrumenting crash signals
-[2094374:globalfwd-track-matcher]: [INFO] Spawing new device globalfwd-track-matcher in process with pid 2094374
-[2094374:globalfwd-track-matcher]: [14:28:55][INFO] 
-[2094374:globalfwd-track-matcher]:       ______      _    _______  _________ 
-[2094374:globalfwd-track-matcher]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2094374:globalfwd-track-matcher]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2094374:globalfwd-track-matcher]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2094374:globalfwd-track-matcher]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2094374:globalfwd-track-matcher]: 
-[2094374:globalfwd-track-matcher]: [14:28:55][STATE] Starting FairMQ state machine --> IDLE
-[2094374:globalfwd-track-matcher]: [14:28:55][STATE] IDLE ---> INITIALIZING DEVICE
-[2094374:globalfwd-track-matcher]: [14:28:55][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2094374:globalfwd-track-matcher]: [14:28:55][STATE] INITIALIZED ---> BINDING
-[2094374:globalfwd-track-matcher]: [14:28:55][STATE] BINDING ---> BOUND
-[2094374:globalfwd-track-matcher]: [14:28:55][STATE] BOUND ---> CONNECTING
-[2094374:globalfwd-track-matcher]: [14:28:55][STATE] CONNECTING ---> DEVICE READY
-[2094374:globalfwd-track-matcher]: [14:28:55][STATE] DEVICE READY ---> INITIALIZING TASK
-[2094369:mft-cluster-reader]: [INFO] Instrumenting crash signals
-[2094369:mft-cluster-reader]: [INFO] Spawing new device mft-cluster-reader in process with pid 2094369
-[2094369:mft-cluster-reader]: [14:28:55][INFO] 
-[2094369:mft-cluster-reader]:       ______      _    _______  _________ 
-[2094369:mft-cluster-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2094369:mft-cluster-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2094369:mft-cluster-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2094369:mft-cluster-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2094369:mft-cluster-reader]: 
-[2094369:mft-cluster-reader]: [14:28:55][STATE] Starting FairMQ state machine --> IDLE
-[2094376:internal-dpl-injected-dummy-sink]: [INFO] Instrumenting crash signals
-[2094376:internal-dpl-injected-dummy-sink]: [INFO] Spawing new device internal-dpl-injected-dummy-sink in process with pid 2094376
-[2094369:mft-cluster-reader]: [14:28:55][STATE] IDLE ---> INITIALIZING DEVICE
-[2094376:internal-dpl-injected-dummy-sink]: [14:28:55][INFO] 
-[2094376:internal-dpl-injected-dummy-sink]:       ______      _    _______  _________ 
-[2094376:internal-dpl-injected-dummy-sink]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2094376:internal-dpl-injected-dummy-sink]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2094376:internal-dpl-injected-dummy-sink]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2094376:internal-dpl-injected-dummy-sink]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2094376:internal-dpl-injected-dummy-sink]: 
-[2094376:internal-dpl-injected-dummy-sink]: [14:28:55][STATE] Starting FairMQ state machine --> IDLE
-[2094376:internal-dpl-injected-dummy-sink]: [14:28:55][STATE] IDLE ---> INITIALIZING DEVICE
-[2094374:globalfwd-track-matcher]: [14:28:55][STATE] INITIALIZING TASK ---> READY
-[2094374:globalfwd-track-matcher]: [14:28:55][STATE] READY ---> RUNNING
-[2094374:globalfwd-track-matcher]: [14:28:55][INFO] fair::mq::Device running...
-[2094374:globalfwd-track-matcher]: [14:28:55][INFO] LHCPeriod is not available, using current month OCT
-[2094374:globalfwd-track-matcher]: [14:28:55][INFO] Correctly handshaken websocket connection.
-[2094376:internal-dpl-injected-dummy-sink]: [14:28:55][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2094376:internal-dpl-injected-dummy-sink]: [14:28:55][STATE] INITIALIZED ---> BINDING
-[2094376:internal-dpl-injected-dummy-sink]: [14:28:55][STATE] BINDING ---> BOUND
-[2094376:internal-dpl-injected-dummy-sink]: [14:28:55][STATE] BOUND ---> CONNECTING
-[2094376:internal-dpl-injected-dummy-sink]: [14:28:55][STATE] CONNECTING ---> DEVICE READY
-[2094376:internal-dpl-injected-dummy-sink]: [14:28:55][STATE] DEVICE READY ---> INITIALIZING TASK
-[2094375:globalfwd-track-writer]: [INFO] Instrumenting crash signals
-[2094376:internal-dpl-injected-dummy-sink]: [14:28:55][STATE] INITIALIZING TASK ---> READY
-[2094376:internal-dpl-injected-dummy-sink]: [14:28:55][STATE] READY ---> RUNNING
-[2094376:internal-dpl-injected-dummy-sink]: [14:28:55][INFO] fair::mq::Device running...
-[2094376:internal-dpl-injected-dummy-sink]: [14:28:55][INFO] LHCPeriod is not available, using current month OCT
-[2094376:internal-dpl-injected-dummy-sink]: [14:28:55][INFO] Correctly handshaken websocket connection.
-[2094375:globalfwd-track-writer]: [INFO] Spawing new device globalfwd-track-writer in process with pid 2094375
-[2094375:globalfwd-track-writer]: [14:28:55][INFO] 
-[2094375:globalfwd-track-writer]:       ______      _    _______  _________ 
-[2094375:globalfwd-track-writer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2094375:globalfwd-track-writer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2094375:globalfwd-track-writer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2094375:globalfwd-track-writer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2094375:globalfwd-track-writer]: 
-[2094375:globalfwd-track-writer]: [14:28:55][STATE] Starting FairMQ state machine --> IDLE
-[2094375:globalfwd-track-writer]: [14:28:55][STATE] IDLE ---> INITIALIZING DEVICE
-[2094373:internal-dpl-ccdb-backend]: [INFO] Instrumenting crash signals
-[2094373:internal-dpl-ccdb-backend]: [INFO] Spawing new device internal-dpl-ccdb-backend in process with pid 2094373
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] 
-[2094373:internal-dpl-ccdb-backend]:       ______      _    _______  _________ 
-[2094373:internal-dpl-ccdb-backend]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2094373:internal-dpl-ccdb-backend]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2094373:internal-dpl-ccdb-backend]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2094373:internal-dpl-ccdb-backend]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2094373:internal-dpl-ccdb-backend]: 
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][STATE] Starting FairMQ state machine --> IDLE
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][STATE] IDLE ---> INITIALIZING DEVICE
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] CCDB Backend at: http://alice-ccdb.cern.ch, validity check for every 2147483647 TF
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1697200135-z1hRx7, Host: http://alice-ccdb.cern.ch
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] Initialised default CCDB host http://alice-ccdb.cern.ch
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] The following route is a condition MFT/ALPIDEPARAM/0
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] - ccdb-path: MFT/Config/AlpideParam
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] The following route is a condition MFT/CLUSDICT/0
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] - ccdb-path: MFT/Calib/ClusterDictionary
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] The following route is a condition GLO/GRPMAGFIELD/0
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] - ccdb-path: GLO/Config/GRPMagField
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] The following route is a condition GLO/GRPLHCIF/0
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] - ccdb-path: GLO/Config/GRPLHCIF
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] The following route is a condition GLO/GRPECS/0
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] - ccdb-path: GLO/Config/GRPECS
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] The following route is a condition GLO/GEOMALIGN/0
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] - ccdb-path: GLO/Config/GeometryAligned
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][STATE] INITIALIZED ---> BINDING
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][STATE] BINDING ---> BOUND
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][STATE] BOUND ---> CONNECTING
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][STATE] CONNECTING ---> DEVICE READY
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][STATE] DEVICE READY ---> INITIALIZING TASK
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][STATE] INITIALIZING TASK ---> READY
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][STATE] READY ---> RUNNING
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] fair::mq::Device running...
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] LHCPeriod is not available, using current month OCT
-[2094373:internal-dpl-ccdb-backend]: [14:28:55][INFO] Correctly handshaken websocket connection.
-[2094370:mch-tracks-reader0]: [INFO] Instrumenting crash signals
-[2094370:mch-tracks-reader0]: [INFO] Spawing new device mch-tracks-reader0 in process with pid 2094370
-[2094370:mch-tracks-reader0]: [14:28:55][INFO] 
-[2094370:mch-tracks-reader0]:       ______      _    _______  _________ 
-[2094370:mch-tracks-reader0]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
-[2094370:mch-tracks-reader0]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
-[2094370:mch-tracks-reader0]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
-[2094370:mch-tracks-reader0]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
-[2094370:mch-tracks-reader0]: 
-[2094370:mch-tracks-reader0]: [14:28:55][STATE] Starting FairMQ state machine --> IDLE
-[2094370:mch-tracks-reader0]: [14:28:55][STATE] IDLE ---> INITIALIZING DEVICE
-[2094372:mchmid-matches-reader]: [14:28:56][INFO] Loaded tree from muontracks.root with 1 entries
-[2094372:mchmid-matches-reader]: [14:28:56][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2094372:mchmid-matches-reader]: [14:28:56][STATE] INITIALIZED ---> BINDING
-[2094372:mchmid-matches-reader]: [14:28:56][STATE] BINDING ---> BOUND
-[2094371:mft-track-reader]: [14:28:56][INFO] Loaded tree from mfttracks.root with 1 entries
-[2094372:mchmid-matches-reader]: [14:28:56][STATE] BOUND ---> CONNECTING
-[2094372:mchmid-matches-reader]: [14:28:56][STATE] CONNECTING ---> DEVICE READY
-[2094371:mft-track-reader]: [14:28:56][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2094372:mchmid-matches-reader]: [14:28:56][STATE] DEVICE READY ---> INITIALIZING TASK
-[2094371:mft-track-reader]: [14:28:56][STATE] INITIALIZED ---> BINDING
-[2094372:mchmid-matches-reader]: [14:28:56][STATE] INITIALIZING TASK ---> READY
-[2094372:mchmid-matches-reader]: [14:28:56][STATE] READY ---> RUNNING
-[2094372:mchmid-matches-reader]: [14:28:56][INFO] fair::mq::Device running...
-[2094371:mft-track-reader]: [14:28:56][STATE] BINDING ---> BOUND
-[2094372:mchmid-matches-reader]: [14:28:56][INFO] LHCPeriod is not available, using current month OCT
-[2094371:mft-track-reader]: [14:28:56][STATE] BOUND ---> CONNECTING
-[2094371:mft-track-reader]: [14:28:56][STATE] CONNECTING ---> DEVICE READY
-[2094371:mft-track-reader]: [14:28:56][STATE] DEVICE READY ---> INITIALIZING TASK
-[2094371:mft-track-reader]: [14:28:56][STATE] INITIALIZING TASK ---> READY
-[2094371:mft-track-reader]: [14:28:56][STATE] READY ---> RUNNING
-[2094371:mft-track-reader]: [14:28:56][INFO] fair::mq::Device running...
-[2094371:mft-track-reader]: [14:28:56][INFO] LHCPeriod is not available, using current month OCT
-[2094372:mchmid-matches-reader]: [14:28:56][INFO] Pushing 0 MCHMID matches at entry 0
-[2094371:mft-track-reader]: [14:28:56][INFO] Pushing 0 track in 118 ROFs at entry 0
-[2094371:mft-track-reader]: [14:28:56][INFO] Sending end-of-stream message to channel from_mft-track-reader_to_globalfwd-track-matcher
-[2094372:mchmid-matches-reader]: [14:28:56][INFO] Sending end-of-stream message to channel from_mchmid-matches-reader_to_globalfwd-track-matcher
-[2094371:mft-track-reader]: [14:28:56][INFO] Correctly handshaken websocket connection.
-[2094372:mchmid-matches-reader]: [14:28:56][INFO] Correctly handshaken websocket connection.
-[2094375:globalfwd-track-writer]: [14:28:56][INFO] 0: branch  fwdtracks set up
-[2094375:globalfwd-track-writer]: [14:28:56][INFO] 1: branch  MCTruth set up
-[2094375:globalfwd-track-writer]: [14:28:56][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2094375:globalfwd-track-writer]: [14:28:56][STATE] INITIALIZED ---> BINDING
-[2094375:globalfwd-track-writer]: [14:28:56][STATE] BINDING ---> BOUND
-[2094375:globalfwd-track-writer]: [14:28:56][STATE] BOUND ---> CONNECTING
-[2094375:globalfwd-track-writer]: [14:28:56][STATE] CONNECTING ---> DEVICE READY
-[2094375:globalfwd-track-writer]: [14:28:56][STATE] DEVICE READY ---> INITIALIZING TASK
-[2094375:globalfwd-track-writer]: [14:28:56][STATE] INITIALIZING TASK ---> READY
-[2094375:globalfwd-track-writer]: [14:28:56][STATE] READY ---> RUNNING
-[2094375:globalfwd-track-writer]: [14:28:56][INFO] fair::mq::Device running...
-[2094375:globalfwd-track-writer]: [14:28:56][INFO] LHCPeriod is not available, using current month OCT
-[2094375:globalfwd-track-writer]: [14:28:56][INFO] Correctly handshaken websocket connection.
-[2094369:mft-cluster-reader]: [14:28:56][INFO] Loaded tree from mftclusters.root with 1 entries
-[2094369:mft-cluster-reader]: [14:28:56][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2094369:mft-cluster-reader]: [14:28:56][STATE] INITIALIZED ---> BINDING
-[2094369:mft-cluster-reader]: [14:28:56][STATE] BINDING ---> BOUND
-[2094369:mft-cluster-reader]: [14:28:56][STATE] BOUND ---> CONNECTING
-[2094369:mft-cluster-reader]: [14:28:56][STATE] CONNECTING ---> DEVICE READY
-[2094369:mft-cluster-reader]: [14:28:56][STATE] DEVICE READY ---> INITIALIZING TASK
-[2094369:mft-cluster-reader]: [14:28:56][STATE] INITIALIZING TASK ---> READY
-[2094369:mft-cluster-reader]: [14:28:56][STATE] READY ---> RUNNING
-[2094369:mft-cluster-reader]: [14:28:56][INFO] fair::mq::Device running...
-[2094369:mft-cluster-reader]: [14:28:56][INFO] LHCPeriod is not available, using current month OCT
-[2094369:mft-cluster-reader]: [14:28:56][INFO] MFTClusterReader pushes 118 ROFRecords,672 compact clusters at entry 0
-[2094370:mch-tracks-reader0]: [14:28:56][INFO] branch set up: trackrofs
-[2094370:mch-tracks-reader0]: [14:28:56][INFO] branch set up: tracks
-[2094370:mch-tracks-reader0]: [14:28:56][INFO] branch set up: trackclusters
-[2094370:mch-tracks-reader0]: [14:28:56][INFO] branch set up: tracklabels
-[2094370:mch-tracks-reader0]: [14:28:56][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[2094370:mch-tracks-reader0]: [14:28:56][STATE] INITIALIZED ---> BINDING
-[2094370:mch-tracks-reader0]: [14:28:56][STATE] BINDING ---> BOUND
-[2094370:mch-tracks-reader0]: [14:28:56][STATE] BOUND ---> CONNECTING
-[2094370:mch-tracks-reader0]: [14:28:56][STATE] CONNECTING ---> DEVICE READY
-[2094370:mch-tracks-reader0]: [14:28:56][STATE] DEVICE READY ---> INITIALIZING TASK
-[2094370:mch-tracks-reader0]: [14:28:56][STATE] INITIALIZING TASK ---> READY
-[2094370:mch-tracks-reader0]: [14:28:56][STATE] READY ---> RUNNING
-[2094370:mch-tracks-reader0]: [14:28:56][INFO] fair::mq::Device running...
-[2094370:mch-tracks-reader0]: [14:28:56][INFO] LHCPeriod is not available, using current month OCT
-[2094370:mch-tracks-reader0]: [14:28:56][INFO] MCH 0 ROFS
-[2094370:mch-tracks-reader0]: [14:28:56][INFO] MCH 0 TRACKS
-[2094370:mch-tracks-reader0]: [14:28:56][INFO] MCH 0 CLUSTERS
-[2094370:mch-tracks-reader0]: [14:28:56][INFO] MCH 0 LABELS
-[2094369:mft-cluster-reader]: [14:28:56][INFO] Sending end-of-stream message to channel from_mft-cluster-reader_to_globalfwd-track-matcher
-[2094369:mft-cluster-reader]: [14:28:56][INFO] Sending end-of-stream message to channel from_mft-cluster-reader_to_internal-dpl-injected-dummy-sink
-[2094369:mft-cluster-reader]: [14:28:56][INFO] Correctly handshaken websocket connection.
-[2094370:mch-tracks-reader0]: [14:28:56][INFO] Correctly handshaken websocket connection.
-[2094370:mch-tracks-reader0]: [14:28:56][INFO] Sending end-of-stream message to channel from_mch-tracks-reader0_to_internal-dpl-ccdb-backend
-[2094370:mch-tracks-reader0]: [14:28:56][INFO] Sending end-of-stream message to channel from_mch-tracks-reader0_to_globalfwd-track-matcher
-[2094373:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to JCentral. Please wait
-[2094373:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to 137.138.99.140
-[2094373:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Successfully connected to 137.138.99.140
-[2094373:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/CTP/Calib/OrbitReset/06/62200/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee in SE <ALICE::CERN::EOS>
-[2094373:internal-dpl-ccdb-backend]: [14:28:58][INFO] ccdb reads http://alice-ccdb.cern.ch/CTP/Calib/OrbitReset/1546300800000/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200135-z1hRx7), 
-[2094373:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/MFT/Config/AlpideParam/04/29512/fd421b4c-d4ae-11ec-90c5-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
-[2094373:internal-dpl-ccdb-backend]: [14:28:58][INFO] ccdb reads http://alice-ccdb.cern.ch/MFT/Config/AlpideParam/1/fd421b4c-d4ae-11ec-90c5-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200135-z1hRx7), 
-[2094373:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/MFT/Calib/ClusterDictionary/13/20237/c9a0bd70-9fe3-11ec-975c-200114580202 in SE <ALICE::CERN::EOS>
-[2094373:internal-dpl-ccdb-backend]: [14:28:58][INFO] ccdb reads http://alice-ccdb.cern.ch/MFT/Calib/ClusterDictionary/0/c9a0bd70-9fe3-11ec-975c-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200135-z1hRx7), 
-[2094373:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPMagField/06/62924/01d633ab-efdf-11ec-841e-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
-[2094373:internal-dpl-ccdb-backend]: [14:28:58][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPMagField/1546300800000/01d633ab-efdf-11ec-841e-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200135-z1hRx7), 
-[2094373:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPLHCIF/04/60609/b3296373-efea-11ec-b9c0-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
-[2094373:internal-dpl-ccdb-backend]: [14:28:58][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPLHCIF/1546300800000/b3296373-efea-11ec-b9c0-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200135-z1hRx7), 
-[2094373:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPECS/03/07584/646e9be2-0210-11ed-8000-200114580202 in SE <ALICE::CERN::OCDB>
-[2094373:internal-dpl-ccdb-backend]: [14:28:58][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPECS/1546300800000/646e9be2-0210-11ed-8000-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200135-z1hRx7), 
-[2094373:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GeometryAligned/06/21224/787687c0-287a-11ed-8141-200114580202 in SE <ALICE::CERN::OCDB>
-[2094373:internal-dpl-ccdb-backend]: [14:28:58][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GeometryAligned/1546300800000/787687c0-287a-11ed-8141-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200135-z1hRx7), 
-[2094373:internal-dpl-ccdb-backend]: [14:28:58][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_globalfwd-track-matcher
-[2094373:internal-dpl-ccdb-backend]: [14:28:58][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_internal-dpl-injected-dummy-sink
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] MFT Alpide param updated
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] Caching in 140493401647008 ptr to MFT/ALPIDEPARAM/0 (0x7fc9aade17c0)
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] cluster dictionary updated
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] Caching in 140493401660448 ptr to MFT/CLUSDICT/0 (0x48066a0)
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] GRP MagField object updated
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] MagneticField::Print: MagneticFieldMap:
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] MagneticField::Print: Solenoid (-1*)5 kG, Dipole ON (-1) 
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] MagneticField::Print: Machine B fields for p-p  beam (7000 GeV): QGrad: 22.0002 Dipole: 37.8781
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] MagneticField::Print: Uses Sol30_Dip6_Hole  of /root/alice/sw/slc9_x86-64/O2/segment-local1/share/Common/maps/mfchebKGI_sym.root
-[2094374:globalfwd-track-matcher]: Info in <TGeoGlobalMagField::SetField>: Global magnetic field set to <MagneticFieldMap>
-[2094374:globalfwd-track-matcher]: Info in <TGeoGlobalMagField::Lock>: Global magnetic field <MagneticFieldMap> is now locked
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] Track extrapolation with magnetic field ON
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] Caching in 140493401649472 ptr to GLO/GRPMAGFIELD/0 (0x4775d30)
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] GRP LHCIF object updated
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] Caching in 140493401650720 ptr to GLO/GRPLHCIF/0 (0x5284080)
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] GRP ECS object updated
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] Caching in 140493401652992 ptr to GLO/GRPECS/0 (0x2fe1510)
-[2094374:globalfwd-track-matcher]: Info in <TGeoManager::CloseGeometry>: Geometry loaded from file...
-[2094374:globalfwd-track-matcher]: Info in <TGeoManager::SetTopVolume>: Top volume is cave. Master volume is cave
-[2094374:globalfwd-track-matcher]: Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
-[2094374:globalfwd-track-matcher]: Info in <TGeoManager::Voxelize>: Voxelizing...
-[2094374:globalfwd-track-matcher]: Info in <TGeoManager::CountLevels>: max level = 13, max placements = 735
-[2094374:globalfwd-track-matcher]: Info in <TGeoManager::CloseGeometry>: 5346742 nodes/ 27442 volume UID's in FAIR geometry
-[2094374:globalfwd-track-matcher]: Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] aligned geometry updated
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] Caching in 140493401681984 ptr to GLO/GEOMALIGN/0 (0x599ba30)
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] Setting Global forward matching Bz = -5.00188
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] Setting MFT ROF bias to 60 BCs
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] Initializing Global Forward Matcher
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] MFT Radiation Length = 0.042
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] MFT Align residuals = 1
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] MFTMCH matchingPlaneZ = -77.5
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] Match function string = matchALL
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO]   Found built-in matching function matchALL
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] MFTMCH pair candidate cut function string = cutDisabled
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO]   Found built-in cut function cutDisabled
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] UseMIDMCH Matching = true
-[2094374:globalfwd-track-matcher]: [14:28:59][INFO] Save mode MFTMCH candidates = 0
-[2094374:globalfwd-track-matcher]: [14:29:00][INFO] MFT GeometryTGeo::Build total number of sensors 936
-[2094374:globalfwd-track-matcher]: [14:29:00][INFO] Loading MFT L2G matrices from TGeo
-[2094374:globalfwd-track-matcher]: [14:29:00][INFO] Loading MFT T2L matrices from TGeo
-[2094374:globalfwd-track-matcher]: [14:29:00][INFO] Loaded 0 MFT Tracks in 118 ROFs
-[2094374:globalfwd-track-matcher]: [14:29:00][INFO] Forward matcher total timing: Cpu: 1.490e+00 Real: 4.628e+00 s in 1 slots
-[2094375:globalfwd-track-writer]: [14:29:00][INFO] Writing 0 GlobalForward Tracks
-[2094374:globalfwd-track-matcher]: [14:29:00][INFO] Sending end-of-stream message to channel from_globalfwd-track-matcher_to_globalfwd-track-writer
+[2111852:internal-dpl-clock]: [INFO] Instrumenting crash signals
+[2111852:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 2111852
+[2111852:internal-dpl-clock]: [14:36:35][INFO] 
+[2111852:internal-dpl-clock]:       ______      _    _______  _________ 
+[2111852:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2111852:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2111852:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2111852:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2111852:internal-dpl-clock]: 
+[2111852:internal-dpl-clock]: [14:36:35][STATE] Starting FairMQ state machine --> IDLE
+[2111852:internal-dpl-clock]: [14:36:35][STATE] IDLE ---> INITIALIZING DEVICE
+[2111852:internal-dpl-clock]: [14:36:35][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2111852:internal-dpl-clock]: [14:36:35][STATE] INITIALIZED ---> BINDING
+[2111852:internal-dpl-clock]: [14:36:35][STATE] BINDING ---> BOUND
+[2111852:internal-dpl-clock]: [14:36:35][STATE] BOUND ---> CONNECTING
+[2111852:internal-dpl-clock]: [14:36:35][STATE] CONNECTING ---> DEVICE READY
+[2111852:internal-dpl-clock]: [14:36:35][STATE] DEVICE READY ---> INITIALIZING TASK
+[2111854:mch-tracks-reader0]: [INFO] Instrumenting crash signals
+[2111852:internal-dpl-clock]: [14:36:35][STATE] INITIALIZING TASK ---> READY
+[2111852:internal-dpl-clock]: [14:36:35][STATE] READY ---> RUNNING
+[2111852:internal-dpl-clock]: [14:36:35][INFO] fair::mq::Device running...
+[2111852:internal-dpl-clock]: [14:36:35][INFO] LHCPeriod is not available, using current month OCT
+[2111852:internal-dpl-clock]: [14:36:35][INFO] Correctly handshaken websocket connection.
+[2111854:mch-tracks-reader0]: [INFO] Spawing new device mch-tracks-reader0 in process with pid 2111854
+[2111856:mchmid-matches-reader]: [INFO] Instrumenting crash signals
+[2111854:mch-tracks-reader0]: [14:36:35][INFO] 
+[2111854:mch-tracks-reader0]:       ______      _    _______  _________ 
+[2111854:mch-tracks-reader0]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2111854:mch-tracks-reader0]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2111854:mch-tracks-reader0]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2111854:mch-tracks-reader0]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2111854:mch-tracks-reader0]: 
+[2111854:mch-tracks-reader0]: [14:36:35][STATE] Starting FairMQ state machine --> IDLE
+[2111854:mch-tracks-reader0]: [14:36:35][STATE] IDLE ---> INITIALIZING DEVICE
+[2111856:mchmid-matches-reader]: [INFO] Spawing new device mchmid-matches-reader in process with pid 2111856
+[2111856:mchmid-matches-reader]: [14:36:35][INFO] 
+[2111856:mchmid-matches-reader]:       ______      _    _______  _________ 
+[2111856:mchmid-matches-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2111856:mchmid-matches-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2111856:mchmid-matches-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2111856:mchmid-matches-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2111856:mchmid-matches-reader]: 
+[2111856:mchmid-matches-reader]: [14:36:35][STATE] Starting FairMQ state machine --> IDLE
+[2111856:mchmid-matches-reader]: [14:36:35][STATE] IDLE ---> INITIALIZING DEVICE
+[2111853:mft-cluster-reader]: [INFO] Instrumenting crash signals
+[2111853:mft-cluster-reader]: [INFO] Spawing new device mft-cluster-reader in process with pid 2111853
+[2111853:mft-cluster-reader]: [14:36:35][INFO] 
+[2111853:mft-cluster-reader]:       ______      _    _______  _________ 
+[2111853:mft-cluster-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2111853:mft-cluster-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2111853:mft-cluster-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2111853:mft-cluster-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2111853:mft-cluster-reader]: 
+[2111853:mft-cluster-reader]: [14:36:35][STATE] Starting FairMQ state machine --> IDLE
+[2111855:mft-track-reader]: [INFO] Instrumenting crash signals
+[2111855:mft-track-reader]: [INFO] Spawing new device mft-track-reader in process with pid 2111855
+[2111855:mft-track-reader]: [14:36:35][INFO] 
+[2111855:mft-track-reader]:       ______      _    _______  _________ 
+[2111855:mft-track-reader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2111855:mft-track-reader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2111855:mft-track-reader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2111855:mft-track-reader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2111855:mft-track-reader]: 
+[2111855:mft-track-reader]: [14:36:35][STATE] Starting FairMQ state machine --> IDLE
+[2111853:mft-cluster-reader]: [14:36:35][STATE] IDLE ---> INITIALIZING DEVICE
+[2111855:mft-track-reader]: [14:36:35][STATE] IDLE ---> INITIALIZING DEVICE
+[2111859:globalfwd-track-writer]: [INFO] Instrumenting crash signals
+[2111859:globalfwd-track-writer]: [INFO] Spawing new device globalfwd-track-writer in process with pid 2111859
+[2111859:globalfwd-track-writer]: [14:36:35][INFO] 
+[2111859:globalfwd-track-writer]:       ______      _    _______  _________ 
+[2111859:globalfwd-track-writer]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2111859:globalfwd-track-writer]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2111859:globalfwd-track-writer]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2111859:globalfwd-track-writer]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2111859:globalfwd-track-writer]: 
+[2111859:globalfwd-track-writer]: [14:36:35][STATE] Starting FairMQ state machine --> IDLE
+[2111859:globalfwd-track-writer]: [14:36:35][STATE] IDLE ---> INITIALIZING DEVICE
+[2111860:internal-dpl-injected-dummy-sink]: [INFO] Instrumenting crash signals
+[2111860:internal-dpl-injected-dummy-sink]: [INFO] Spawing new device internal-dpl-injected-dummy-sink in process with pid 2111860
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:35][INFO] 
+[2111860:internal-dpl-injected-dummy-sink]:       ______      _    _______  _________ 
+[2111860:internal-dpl-injected-dummy-sink]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2111860:internal-dpl-injected-dummy-sink]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2111860:internal-dpl-injected-dummy-sink]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2111860:internal-dpl-injected-dummy-sink]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2111860:internal-dpl-injected-dummy-sink]: 
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:35][STATE] Starting FairMQ state machine --> IDLE
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:35][STATE] IDLE ---> INITIALIZING DEVICE
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:35][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:35][STATE] INITIALIZED ---> BINDING
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:35][STATE] BINDING ---> BOUND
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:35][STATE] BOUND ---> CONNECTING
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:35][STATE] CONNECTING ---> DEVICE READY
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:35][STATE] DEVICE READY ---> INITIALIZING TASK
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:35][STATE] INITIALIZING TASK ---> READY
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:35][STATE] READY ---> RUNNING
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:35][INFO] fair::mq::Device running...
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:35][INFO] LHCPeriod is not available, using current month OCT
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:35][INFO] Correctly handshaken websocket connection.
+[2111858:globalfwd-track-matcher]: [INFO] Instrumenting crash signals
+[2111858:globalfwd-track-matcher]: [INFO] Spawing new device globalfwd-track-matcher in process with pid 2111858
+[2111858:globalfwd-track-matcher]: [14:36:35][INFO] 
+[2111858:globalfwd-track-matcher]:       ______      _    _______  _________ 
+[2111858:globalfwd-track-matcher]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2111858:globalfwd-track-matcher]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2111858:globalfwd-track-matcher]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2111858:globalfwd-track-matcher]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2111858:globalfwd-track-matcher]: 
+[2111858:globalfwd-track-matcher]: [14:36:35][STATE] Starting FairMQ state machine --> IDLE
+[2111858:globalfwd-track-matcher]: [14:36:35][STATE] IDLE ---> INITIALIZING DEVICE
+[2111858:globalfwd-track-matcher]: [14:36:35][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2111858:globalfwd-track-matcher]: [14:36:35][STATE] INITIALIZED ---> BINDING
+[2111858:globalfwd-track-matcher]: [14:36:35][STATE] BINDING ---> BOUND
+[2111858:globalfwd-track-matcher]: [14:36:35][STATE] BOUND ---> CONNECTING
+[2111858:globalfwd-track-matcher]: [14:36:35][STATE] CONNECTING ---> DEVICE READY
+[2111858:globalfwd-track-matcher]: [14:36:35][STATE] DEVICE READY ---> INITIALIZING TASK
+[2111858:globalfwd-track-matcher]: [14:36:35][STATE] INITIALIZING TASK ---> READY
+[2111858:globalfwd-track-matcher]: [14:36:35][STATE] READY ---> RUNNING
+[2111858:globalfwd-track-matcher]: [14:36:35][INFO] fair::mq::Device running...
+[2111858:globalfwd-track-matcher]: [14:36:35][INFO] LHCPeriod is not available, using current month OCT
+[2111858:globalfwd-track-matcher]: [14:36:35][INFO] Correctly handshaken websocket connection.
+[2111857:internal-dpl-ccdb-backend]: [INFO] Instrumenting crash signals
+[2111857:internal-dpl-ccdb-backend]: [INFO] Spawing new device internal-dpl-ccdb-backend in process with pid 2111857
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] 
+[2111857:internal-dpl-ccdb-backend]:       ______      _    _______  _________ 
+[2111857:internal-dpl-ccdb-backend]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+[2111857:internal-dpl-ccdb-backend]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[2111857:internal-dpl-ccdb-backend]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[2111857:internal-dpl-ccdb-backend]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[2111857:internal-dpl-ccdb-backend]: 
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][STATE] Starting FairMQ state machine --> IDLE
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][STATE] IDLE ---> INITIALIZING DEVICE
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] CCDB Backend at: http://alice-ccdb.cern.ch, validity check for every 2147483647 TF
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1697200596-F3X9Xx, Host: http://alice-ccdb.cern.ch
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] Initialised default CCDB host http://alice-ccdb.cern.ch
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] The following route is a condition MFT/ALPIDEPARAM/0
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] - ccdb-path: MFT/Config/AlpideParam
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] The following route is a condition MFT/CLUSDICT/0
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] - ccdb-path: MFT/Calib/ClusterDictionary
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] The following route is a condition GLO/GRPMAGFIELD/0
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] - ccdb-path: GLO/Config/GRPMagField
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] The following route is a condition GLO/GRPLHCIF/0
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] - ccdb-path: GLO/Config/GRPLHCIF
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] The following route is a condition GLO/GRPECS/0
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] - ccdb-path: GLO/Config/GRPECS
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] The following route is a condition GLO/GEOMALIGN/0
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] - ccdb-path: GLO/Config/GeometryAligned
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][STATE] INITIALIZED ---> BINDING
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][STATE] BINDING ---> BOUND
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][STATE] BOUND ---> CONNECTING
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][STATE] CONNECTING ---> DEVICE READY
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][STATE] DEVICE READY ---> INITIALIZING TASK
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][STATE] INITIALIZING TASK ---> READY
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][STATE] READY ---> RUNNING
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] fair::mq::Device running...
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] LHCPeriod is not available, using current month OCT
+[2111857:internal-dpl-ccdb-backend]: [14:36:36][INFO] Correctly handshaken websocket connection.
+[2111854:mch-tracks-reader0]: [14:36:36][INFO] branch set up: trackrofs
+[2111854:mch-tracks-reader0]: [14:36:36][INFO] branch set up: tracks
+[2111854:mch-tracks-reader0]: [14:36:36][INFO] branch set up: trackclusters
+[2111854:mch-tracks-reader0]: [14:36:36][INFO] branch set up: tracklabels
+[2111854:mch-tracks-reader0]: [14:36:36][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2111854:mch-tracks-reader0]: [14:36:36][STATE] INITIALIZED ---> BINDING
+[2111854:mch-tracks-reader0]: [14:36:36][STATE] BINDING ---> BOUND
+[2111854:mch-tracks-reader0]: [14:36:36][STATE] BOUND ---> CONNECTING
+[2111854:mch-tracks-reader0]: [14:36:36][STATE] CONNECTING ---> DEVICE READY
+[2111854:mch-tracks-reader0]: [14:36:36][STATE] DEVICE READY ---> INITIALIZING TASK
+[2111854:mch-tracks-reader0]: [14:36:36][STATE] INITIALIZING TASK ---> READY
+[2111854:mch-tracks-reader0]: [14:36:36][STATE] READY ---> RUNNING
+[2111854:mch-tracks-reader0]: [14:36:36][INFO] fair::mq::Device running...
+[2111854:mch-tracks-reader0]: [14:36:36][INFO] LHCPeriod is not available, using current month OCT
+[2111854:mch-tracks-reader0]: [14:36:36][INFO] MCH 0 ROFS
+[2111854:mch-tracks-reader0]: [14:36:36][INFO] MCH 0 TRACKS
+[2111854:mch-tracks-reader0]: [14:36:36][INFO] MCH 0 CLUSTERS
+[2111854:mch-tracks-reader0]: [14:36:36][INFO] MCH 0 LABELS
+[2111854:mch-tracks-reader0]: [14:36:36][INFO] Correctly handshaken websocket connection.
+[2111854:mch-tracks-reader0]: [14:36:36][INFO] Sending end-of-stream message to channel from_mch-tracks-reader0_to_internal-dpl-ccdb-backend
+[2111854:mch-tracks-reader0]: [14:36:36][INFO] Sending end-of-stream message to channel from_mch-tracks-reader0_to_globalfwd-track-matcher
+[2111855:mft-track-reader]: [14:36:36][INFO] Loaded tree from mfttracks.root with 1 entries
+[2111855:mft-track-reader]: [14:36:36][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2111855:mft-track-reader]: [14:36:36][STATE] INITIALIZED ---> BINDING
+[2111855:mft-track-reader]: [14:36:36][STATE] BINDING ---> BOUND
+[2111855:mft-track-reader]: [14:36:36][STATE] BOUND ---> CONNECTING
+[2111855:mft-track-reader]: [14:36:36][STATE] CONNECTING ---> DEVICE READY
+[2111855:mft-track-reader]: [14:36:36][STATE] DEVICE READY ---> INITIALIZING TASK
+[2111855:mft-track-reader]: [14:36:36][STATE] INITIALIZING TASK ---> READY
+[2111855:mft-track-reader]: [14:36:36][STATE] READY ---> RUNNING
+[2111855:mft-track-reader]: [14:36:36][INFO] fair::mq::Device running...
+[2111855:mft-track-reader]: [14:36:36][INFO] LHCPeriod is not available, using current month OCT
+[2111855:mft-track-reader]: [14:36:36][INFO] Pushing 0 track in 116 ROFs at entry 0
+[2111856:mchmid-matches-reader]: [14:36:36][INFO] Loaded tree from muontracks.root with 1 entries
+[2111856:mchmid-matches-reader]: [14:36:36][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2111856:mchmid-matches-reader]: [14:36:36][STATE] INITIALIZED ---> BINDING
+[2111856:mchmid-matches-reader]: [14:36:36][STATE] BINDING ---> BOUND
+[2111856:mchmid-matches-reader]: [14:36:36][STATE] BOUND ---> CONNECTING
+[2111856:mchmid-matches-reader]: [14:36:36][STATE] CONNECTING ---> DEVICE READY
+[2111856:mchmid-matches-reader]: [14:36:36][STATE] DEVICE READY ---> INITIALIZING TASK
+[2111859:globalfwd-track-writer]: [14:36:36][INFO] 0: branch  fwdtracks set up
+[2111859:globalfwd-track-writer]: [14:36:36][INFO] 1: branch  MCTruth set up
+[2111856:mchmid-matches-reader]: [14:36:36][STATE] INITIALIZING TASK ---> READY
+[2111856:mchmid-matches-reader]: [14:36:36][STATE] READY ---> RUNNING
+[2111856:mchmid-matches-reader]: [14:36:36][INFO] fair::mq::Device running...
+[2111856:mchmid-matches-reader]: [14:36:36][INFO] LHCPeriod is not available, using current month OCT
+[2111859:globalfwd-track-writer]: [14:36:36][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2111859:globalfwd-track-writer]: [14:36:36][STATE] INITIALIZED ---> BINDING
+[2111859:globalfwd-track-writer]: [14:36:36][STATE] BINDING ---> BOUND
+[2111859:globalfwd-track-writer]: [14:36:36][STATE] BOUND ---> CONNECTING
+[2111856:mchmid-matches-reader]: [14:36:36][INFO] Pushing 0 MCHMID matches at entry 0
+[2111859:globalfwd-track-writer]: [14:36:36][STATE] CONNECTING ---> DEVICE READY
+[2111859:globalfwd-track-writer]: [14:36:36][STATE] DEVICE READY ---> INITIALIZING TASK
+[2111859:globalfwd-track-writer]: [14:36:36][STATE] INITIALIZING TASK ---> READY
+[2111859:globalfwd-track-writer]: [14:36:36][STATE] READY ---> RUNNING
+[2111859:globalfwd-track-writer]: [14:36:36][INFO] fair::mq::Device running...
+[2111859:globalfwd-track-writer]: [14:36:36][INFO] LHCPeriod is not available, using current month OCT
+[2111859:globalfwd-track-writer]: [14:36:36][INFO] Correctly handshaken websocket connection.
+[2111855:mft-track-reader]: [14:36:36][INFO] Sending end-of-stream message to channel from_mft-track-reader_to_globalfwd-track-matcher
+[2111855:mft-track-reader]: [14:36:36][INFO] Correctly handshaken websocket connection.
+[2111856:mchmid-matches-reader]: [14:36:36][INFO] Sending end-of-stream message to channel from_mchmid-matches-reader_to_globalfwd-track-matcher
+[2111856:mchmid-matches-reader]: [14:36:36][INFO] Correctly handshaken websocket connection.
+[2111853:mft-cluster-reader]: [14:36:37][INFO] Loaded tree from mftclusters.root with 1 entries
+[2111853:mft-cluster-reader]: [14:36:37][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[2111853:mft-cluster-reader]: [14:36:37][STATE] INITIALIZED ---> BINDING
+[2111853:mft-cluster-reader]: [14:36:37][STATE] BINDING ---> BOUND
+[2111853:mft-cluster-reader]: [14:36:37][STATE] BOUND ---> CONNECTING
+[2111853:mft-cluster-reader]: [14:36:37][STATE] CONNECTING ---> DEVICE READY
+[2111853:mft-cluster-reader]: [14:36:37][STATE] DEVICE READY ---> INITIALIZING TASK
+[2111853:mft-cluster-reader]: [14:36:37][STATE] INITIALIZING TASK ---> READY
+[2111853:mft-cluster-reader]: [14:36:37][STATE] READY ---> RUNNING
+[2111853:mft-cluster-reader]: [14:36:37][INFO] fair::mq::Device running...
+[2111853:mft-cluster-reader]: [14:36:37][INFO] LHCPeriod is not available, using current month OCT
+[2111853:mft-cluster-reader]: [14:36:37][INFO] MFTClusterReader pushes 116 ROFRecords,668 compact clusters at entry 0
+[2111853:mft-cluster-reader]: [14:36:37][INFO] Sending end-of-stream message to channel from_mft-cluster-reader_to_globalfwd-track-matcher
+[2111853:mft-cluster-reader]: [14:36:37][INFO] Sending end-of-stream message to channel from_mft-cluster-reader_to_internal-dpl-injected-dummy-sink
+[2111853:mft-cluster-reader]: [14:36:37][INFO] Correctly handshaken websocket connection.
+[2111857:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to JCentral. Please wait
+[2111857:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Opening connection to 137.138.47.221
+[2111857:internal-dpl-ccdb-backend]: Info in <TJAlienConnectionManager>: Successfully connected to 137.138.47.221
+[2111857:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/CTP/Calib/OrbitReset/06/62200/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee in SE <ALICE::CERN::EOS>
+[2111857:internal-dpl-ccdb-backend]: [14:36:39][INFO] ccdb reads http://alice-ccdb.cern.ch/CTP/Calib/OrbitReset/1546300800000/b9f985c3-b4b0-11ec-8fd3-90ce809b24ee for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200596-F3X9Xx), 
+[2111857:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/MFT/Config/AlpideParam/04/29512/fd421b4c-d4ae-11ec-90c5-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[2111857:internal-dpl-ccdb-backend]: [14:36:39][INFO] ccdb reads http://alice-ccdb.cern.ch/MFT/Config/AlpideParam/1/fd421b4c-d4ae-11ec-90c5-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200596-F3X9Xx), 
+[2111857:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/MFT/Calib/ClusterDictionary/13/20237/c9a0bd70-9fe3-11ec-975c-200114580202 in SE <ALICE::CERN::EOS>
+[2111857:internal-dpl-ccdb-backend]: [14:36:39][INFO] ccdb reads http://alice-ccdb.cern.ch/MFT/Calib/ClusterDictionary/0/c9a0bd70-9fe3-11ec-975c-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200596-F3X9Xx), 
+[2111857:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPMagField/06/62924/01d633ab-efdf-11ec-841e-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[2111857:internal-dpl-ccdb-backend]: [14:36:39][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPMagField/1546300800000/01d633ab-efdf-11ec-841e-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200596-F3X9Xx), 
+[2111857:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPLHCIF/04/60609/b3296373-efea-11ec-b9c0-2a010e0a0b16 in SE <ALICE::CERN::OCDB>
+[2111857:internal-dpl-ccdb-backend]: [14:36:39][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPLHCIF/1546300800000/b3296373-efea-11ec-b9c0-2a010e0a0b16 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200596-F3X9Xx), 
+[2111857:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GRPECS/03/07584/646e9be2-0210-11ed-8000-200114580202 in SE <ALICE::CERN::OCDB>
+[2111857:internal-dpl-ccdb-backend]: [14:36:39][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GRPECS/1546300800000/646e9be2-0210-11ed-8000-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200596-F3X9Xx), 
+[2111857:internal-dpl-ccdb-backend]: Info in <TJAlienFile::Open>: Accessing file /alice/data/CCDB/GLO/Config/GeometryAligned/06/21224/787687c0-287a-11ed-8141-200114580202 in SE <ALICE::CERN::OCDB>
+[2111857:internal-dpl-ccdb-backend]: [14:36:39][INFO] ccdb reads http://alice-ccdb.cern.ch/GLO/Config/GeometryAligned/1546300800000/787687c0-287a-11ed-8141-200114580202 for 1546300800000 (load to memory, agent_id: localhost.localdomain-1697200596-F3X9Xx), 
+[2111857:internal-dpl-ccdb-backend]: [14:36:39][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_globalfwd-track-matcher
+[2111857:internal-dpl-ccdb-backend]: [14:36:39][INFO] Sending end-of-stream message to channel from_internal-dpl-ccdb-backend_to_internal-dpl-injected-dummy-sink
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] MFT Alpide param updated
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Caching in 140152744471312 ptr to MFT/ALPIDEPARAM/0 (0x7f7a5a1d87c0)
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] cluster dictionary updated
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Caching in 140152744473584 ptr to MFT/CLUSDICT/0 (0x6095c80)
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] GRP MagField object updated
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] MagneticField::Print: MagneticFieldMap:
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] MagneticField::Print: Solenoid (-1*)5 kG, Dipole ON (-1) 
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] MagneticField::Print: Machine B fields for p-p  beam (7000 GeV): QGrad: 22.0002 Dipole: 37.8781
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] MagneticField::Print: Uses Sol30_Dip6_Hole  of /root/alice/sw/slc9_x86-64/O2/segment-local1/share/Common/maps/mfchebKGI_sym.root
+[2111858:globalfwd-track-matcher]: Info in <TGeoGlobalMagField::SetField>: Global magnetic field set to <MagneticFieldMap>
+[2111858:globalfwd-track-matcher]: Info in <TGeoGlobalMagField::Lock>: Global magnetic field <MagneticFieldMap> is now locked
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Track extrapolation with magnetic field ON
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Caching in 140152744495312 ptr to GLO/GRPMAGFIELD/0 (0x60052c0)
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] GRP LHCIF object updated
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Caching in 140152744496560 ptr to GLO/GRPLHCIF/0 (0x6b119a0)
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] GRP ECS object updated
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Caching in 140152744498832 ptr to GLO/GRPECS/0 (0x48705c0)
+[2111858:globalfwd-track-matcher]: Info in <TGeoManager::CloseGeometry>: Geometry loaded from file...
+[2111858:globalfwd-track-matcher]: Info in <TGeoManager::SetTopVolume>: Top volume is cave. Master volume is cave
+[2111858:globalfwd-track-matcher]: Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+[2111858:globalfwd-track-matcher]: Info in <TGeoManager::Voxelize>: Voxelizing...
+[2111858:globalfwd-track-matcher]: Info in <TGeoManager::CountLevels>: max level = 13, max placements = 735
+[2111858:globalfwd-track-matcher]: Info in <TGeoManager::CloseGeometry>: 5346742 nodes/ 27442 volume UID's in FAIR geometry
+[2111858:globalfwd-track-matcher]: Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] aligned geometry updated
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Caching in 140152744501104 ptr to GLO/GEOMALIGN/0 (0x7229f30)
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Setting Global forward matching Bz = -5.00188
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Setting MFT ROF bias to 60 BCs
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Initializing Global Forward Matcher
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] MFT Radiation Length = 0.042
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] MFT Align residuals = 1
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] MFTMCH matchingPlaneZ = -77.5
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Match function string = matchALL
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO]   Found built-in matching function matchALL
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] MFTMCH pair candidate cut function string = cutDisabled
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO]   Found built-in cut function cutDisabled
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] UseMIDMCH Matching = true
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Save mode MFTMCH candidates = 0
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] MFT GeometryTGeo::Build total number of sensors 936
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Loading MFT L2G matrices from TGeo
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Loading MFT T2L matrices from TGeo
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Loaded 0 MFT Tracks in 116 ROFs
+[2111859:globalfwd-track-writer]: [14:36:40][INFO] Writing 0 GlobalForward Tracks
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Forward matcher total timing: Cpu: 1.440e+00 Real: 4.733e+00 s in 1 slots
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Sending end-of-stream message to channel from_globalfwd-track-matcher_to_globalfwd-track-writer
 [INFO] Quitting
 [INFO] QUIT_REQUESTED
-[2094370:mch-tracks-reader0]: [14:29:00][INFO] Received device shutdown request (signal 15).
-[2094370:mch-tracks-reader0]: [14:29:00][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2094372:mchmid-matches-reader]: [14:29:00][INFO] Received device shutdown request (signal 15).
-[2094372:mchmid-matches-reader]: [14:29:00][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2094368:internal-dpl-clock]: [14:29:00][INFO] Received device shutdown request (signal 15).
-[2094368:internal-dpl-clock]: [14:29:00][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2094369:mft-cluster-reader]: [14:29:00][INFO] Received device shutdown request (signal 15).
-[2094369:mft-cluster-reader]: [14:29:00][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2094374:globalfwd-track-matcher]: [14:29:00][INFO] Received device shutdown request (signal 15).
-[2094374:globalfwd-track-matcher]: [14:29:00][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2094375:globalfwd-track-writer]: [14:29:00][INFO] Received device shutdown request (signal 15).
-[2094375:globalfwd-track-writer]: [14:29:00][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2094369:mft-cluster-reader]: [14:29:00][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2094369:mft-cluster-reader]: [14:29:00][STATE] RUNNING ---> READY
-[2094370:mch-tracks-reader0]: [14:29:00][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2094370:mch-tracks-reader0]: [14:29:00][STATE] RUNNING ---> READY
-[2094372:mchmid-matches-reader]: [14:29:00][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2094372:mchmid-matches-reader]: [14:29:00][STATE] RUNNING ---> READY
-[2094368:internal-dpl-clock]: [14:29:00][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2094372:mchmid-matches-reader]: [14:29:00][STATE] READY ---> RESETTING TASK
-[2094372:mchmid-matches-reader]: [14:29:00][STATE] RESETTING TASK ---> DEVICE READY
-[2094374:globalfwd-track-matcher]: [14:29:00][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2094375:globalfwd-track-writer]: [14:29:00][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2094368:internal-dpl-clock]: [14:29:00][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_mft-cluster-reader
-[2094368:internal-dpl-clock]: [14:29:00][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_mch-tracks-reader0
-[2094368:internal-dpl-clock]: [14:29:00][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_mft-track-reader
-[2094368:internal-dpl-clock]: [14:29:00][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_mchmid-matches-reader
-[2094374:globalfwd-track-matcher]: [14:29:00][STATE] RUNNING ---> READY
-[2094368:internal-dpl-clock]: [14:29:00][STATE] RUNNING ---> READY
-[2094370:mch-tracks-reader0]: [14:29:00][STATE] READY ---> RESETTING TASK
-[2094370:mch-tracks-reader0]: [14:29:00][STATE] RESETTING TASK ---> DEVICE READY
-[2094370:mch-tracks-reader0]: [14:29:00][STATE] DEVICE READY ---> RESETTING DEVICE
-[2094369:mft-cluster-reader]: [14:29:00][STATE] READY ---> RESETTING TASK
-[2094369:mft-cluster-reader]: [14:29:00][STATE] RESETTING TASK ---> DEVICE READY
-[2094372:mchmid-matches-reader]: [14:29:00][STATE] DEVICE READY ---> RESETTING DEVICE
-[2094374:globalfwd-track-matcher]: [14:29:00][STATE] READY ---> RESETTING TASK
-[2094374:globalfwd-track-matcher]: [14:29:00][STATE] RESETTING TASK ---> DEVICE READY
-[2094368:internal-dpl-clock]: [14:29:00][STATE] READY ---> RESETTING TASK
-[2094369:mft-cluster-reader]: [14:29:00][STATE] DEVICE READY ---> RESETTING DEVICE
-[2094368:internal-dpl-clock]: [14:29:00][STATE] RESETTING TASK ---> DEVICE READY
-[2094374:globalfwd-track-matcher]: [14:29:00][STATE] DEVICE READY ---> RESETTING DEVICE
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][INFO] Received device shutdown request (signal 15).
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2094368:internal-dpl-clock]: [14:29:00][STATE] DEVICE READY ---> RESETTING DEVICE
-[2094376:internal-dpl-injected-dummy-sink]: [14:29:00][INFO] Received device shutdown request (signal 15).
-[2094376:internal-dpl-injected-dummy-sink]: [14:29:00][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][INFO] CCDB cache miss/hit ratio:
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][INFO]   GLO/Config/GeometryAligned: 1/0 (1847296-1847296 bytes)
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][INFO]   GLO/Config/GRPECS: 1/0 (2048-2048 bytes)
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][INFO]   GLO/Config/GRPLHCIF: 1/0 (2048-2048 bytes)
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][INFO]   GLO/Config/GRPMagField: 1/0 (1024-1024 bytes)
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][INFO]   MFT/Calib/ClusterDictionary: 1/0 (21504-21504 bytes)
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][INFO]   MFT/Config/AlpideParam: 1/0 (2048-2048 bytes)
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][INFO]   CTP/Calib/OrbitReset: 1/1 (1024-1024 bytes)
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][STATE] RUNNING ---> READY
-[2094376:internal-dpl-injected-dummy-sink]: [14:29:00][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2094376:internal-dpl-injected-dummy-sink]: [14:29:00][STATE] RUNNING ---> READY
-[2094376:internal-dpl-injected-dummy-sink]: [14:29:00][STATE] READY ---> RESETTING TASK
-[2094376:internal-dpl-injected-dummy-sink]: [14:29:00][STATE] RESETTING TASK ---> DEVICE READY
-[2094376:internal-dpl-injected-dummy-sink]: [14:29:00][STATE] DEVICE READY ---> RESETTING DEVICE
-[2094370:mch-tracks-reader0]: [14:29:00][STATE] RESETTING DEVICE ---> IDLE
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][STATE] READY ---> RESETTING TASK
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][STATE] RESETTING TASK ---> DEVICE READY
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][STATE] DEVICE READY ---> RESETTING DEVICE
-[2094371:mft-track-reader]: [14:29:00][INFO] Received device shutdown request (signal 15).
-[2094371:mft-track-reader]: [14:29:00][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
-[2094371:mft-track-reader]: [14:29:00][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
-[2094371:mft-track-reader]: [14:29:00][STATE] RUNNING ---> READY
-[2094374:globalfwd-track-matcher]: [14:29:00][STATE] RESETTING DEVICE ---> IDLE
-[2094369:mft-cluster-reader]: [14:29:00][STATE] RESETTING DEVICE ---> IDLE
-[2094372:mchmid-matches-reader]: [14:29:00][STATE] RESETTING DEVICE ---> IDLE
-[2094370:mch-tracks-reader0]: [14:29:00][STATE] IDLE ---> EXITING
-[2094371:mft-track-reader]: [14:29:00][STATE] READY ---> RESETTING TASK
-[2094368:internal-dpl-clock]: [14:29:00][STATE] RESETTING DEVICE ---> IDLE
-[2094368:internal-dpl-clock]: [14:29:00][STATE] IDLE ---> EXITING
-[2094369:mft-cluster-reader]: [14:29:00][STATE] IDLE ---> EXITING
-[2094369:mft-cluster-reader]: [14:29:00][STATE] Exiting FairMQ state machine
-[2094370:mch-tracks-reader0]: [14:29:00][STATE] Exiting FairMQ state machine
-[2094371:mft-track-reader]: [14:29:00][STATE] RESETTING TASK ---> DEVICE READY
-[2094371:mft-track-reader]: [14:29:00][STATE] DEVICE READY ---> RESETTING DEVICE
-[2094374:globalfwd-track-matcher]: [14:29:00][STATE] IDLE ---> EXITING
-[2094374:globalfwd-track-matcher]: [14:29:00][STATE] Exiting FairMQ state machine
-[2094376:internal-dpl-injected-dummy-sink]: [14:29:00][STATE] RESETTING DEVICE ---> IDLE
-[2094368:internal-dpl-clock]: [14:29:00][STATE] Exiting FairMQ state machine
-[2094372:mchmid-matches-reader]: [14:29:00][STATE] IDLE ---> EXITING
-[2094372:mchmid-matches-reader]: [14:29:00][STATE] Exiting FairMQ state machine
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][STATE] RESETTING DEVICE ---> IDLE
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][STATE] IDLE ---> EXITING
-[2094373:internal-dpl-ccdb-backend]: [14:29:00][STATE] Exiting FairMQ state machine
-[2094376:internal-dpl-injected-dummy-sink]: [14:29:00][STATE] IDLE ---> EXITING
-[2094376:internal-dpl-injected-dummy-sink]: [14:29:00][STATE] Exiting FairMQ state machine
-[2094371:mft-track-reader]: [14:29:00][STATE] RESETTING DEVICE ---> IDLE
-[2094371:mft-track-reader]: [14:29:00][STATE] IDLE ---> EXITING
-[2094371:mft-track-reader]: [14:29:00][STATE] Exiting FairMQ state machine
-[2094375:globalfwd-track-writer]: [14:29:00][STATE] RUNNING ---> READY
-[2094375:globalfwd-track-writer]: [14:29:00][STATE] READY ---> RESETTING TASK
-[2094375:globalfwd-track-writer]: [14:29:00][STATE] RESETTING TASK ---> DEVICE READY
-[2094375:globalfwd-track-writer]: [14:29:00][STATE] DEVICE READY ---> RESETTING DEVICE
-[2094375:globalfwd-track-writer]: [14:29:00][INFO] Cleaning up for shared memory id 'f6284b86'...
-[2094375:globalfwd-track-writer]: [14:29:00][INFO] Found 0 unmanaged regions...
-[2094375:globalfwd-track-writer]: [14:29:00][INFO] Found 1 managed segments...
-[2094375:globalfwd-track-writer]: [14:29:00][INFO] Successfully removed 'fmq_f6284b86_m_0'.
-[2094375:globalfwd-track-writer]: [14:29:00][INFO] Successfully removed 'fmq_f6284b86_mng'.
-[2094375:globalfwd-track-writer]: [14:29:00][STATE] RESETTING DEVICE ---> IDLE
-[2094375:globalfwd-track-writer]: [14:29:00][STATE] IDLE ---> EXITING
-[2094375:globalfwd-track-writer]: [14:29:00][STATE] Exiting FairMQ state machine
+[2111859:globalfwd-track-writer]: [14:36:40][INFO] Received device shutdown request (signal 15).
+[2111859:globalfwd-track-writer]: [14:36:40][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2111859:globalfwd-track-writer]: [14:36:40][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2111855:mft-track-reader]: [14:36:40][INFO] Received device shutdown request (signal 15).
+[2111855:mft-track-reader]: [14:36:40][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2111856:mchmid-matches-reader]: [14:36:40][INFO] Received device shutdown request (signal 15).
+[2111856:mchmid-matches-reader]: [14:36:40][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Received device shutdown request (signal 15).
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:40][INFO] Received device shutdown request (signal 15).
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:40][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:40][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:40][STATE] RUNNING ---> READY
+[2111855:mft-track-reader]: [14:36:40][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2111855:mft-track-reader]: [14:36:40][STATE] RUNNING ---> READY
+[2111855:mft-track-reader]: [14:36:40][STATE] READY ---> RESETTING TASK
+[2111855:mft-track-reader]: [14:36:40][STATE] RESETTING TASK ---> DEVICE READY
+[2111856:mchmid-matches-reader]: [14:36:40][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2111856:mchmid-matches-reader]: [14:36:40][STATE] RUNNING ---> READY
+[2111856:mchmid-matches-reader]: [14:36:40][STATE] READY ---> RESETTING TASK
+[2111856:mchmid-matches-reader]: [14:36:40][STATE] RESETTING TASK ---> DEVICE READY
+[2111858:globalfwd-track-matcher]: [14:36:40][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2111858:globalfwd-track-matcher]: [14:36:40][STATE] RUNNING ---> READY
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:40][STATE] READY ---> RESETTING TASK
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:40][STATE] RESETTING TASK ---> DEVICE READY
+[2111855:mft-track-reader]: [14:36:40][STATE] DEVICE READY ---> RESETTING DEVICE
+[2111856:mchmid-matches-reader]: [14:36:40][STATE] DEVICE READY ---> RESETTING DEVICE
+[2111858:globalfwd-track-matcher]: [14:36:40][STATE] READY ---> RESETTING TASK
+[2111858:globalfwd-track-matcher]: [14:36:40][STATE] RESETTING TASK ---> DEVICE READY
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:40][STATE] DEVICE READY ---> RESETTING DEVICE
+[2111858:globalfwd-track-matcher]: [14:36:40][STATE] DEVICE READY ---> RESETTING DEVICE
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:40][STATE] RESETTING DEVICE ---> IDLE
+[2111853:mft-cluster-reader]: [14:36:40][INFO] Received device shutdown request (signal 15).
+[2111853:mft-cluster-reader]: [14:36:40][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2111854:mch-tracks-reader0]: [14:36:40][INFO] Received device shutdown request (signal 15).
+[2111854:mch-tracks-reader0]: [14:36:40][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:40][STATE] IDLE ---> EXITING
+[2111852:internal-dpl-clock]: [14:36:40][INFO] Received device shutdown request (signal 15).
+[2111852:internal-dpl-clock]: [14:36:40][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2111853:mft-cluster-reader]: [14:36:40][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2111853:mft-cluster-reader]: [14:36:40][STATE] RUNNING ---> READY
+[2111853:mft-cluster-reader]: [14:36:40][STATE] READY ---> RESETTING TASK
+[2111853:mft-cluster-reader]: [14:36:40][STATE] RESETTING TASK ---> DEVICE READY
+[2111853:mft-cluster-reader]: [14:36:40][STATE] DEVICE READY ---> RESETTING DEVICE
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][INFO] Received device shutdown request (signal 15).
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[2111860:internal-dpl-injected-dummy-sink]: [14:36:40][STATE] Exiting FairMQ state machine
+[2111854:mch-tracks-reader0]: [14:36:40][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2111854:mch-tracks-reader0]: [14:36:40][STATE] RUNNING ---> READY
+[2111852:internal-dpl-clock]: [14:36:40][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2111852:internal-dpl-clock]: [14:36:40][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_mft-cluster-reader
+[2111852:internal-dpl-clock]: [14:36:40][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_mch-tracks-reader0
+[2111858:globalfwd-track-matcher]: [14:36:40][STATE] RESETTING DEVICE ---> IDLE
+[2111855:mft-track-reader]: [14:36:40][STATE] RESETTING DEVICE ---> IDLE
+[2111854:mch-tracks-reader0]: [14:36:40][STATE] READY ---> RESETTING TASK
+[2111856:mchmid-matches-reader]: [14:36:40][STATE] RESETTING DEVICE ---> IDLE
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][INFO] CCDB cache miss/hit ratio:
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][INFO]   GLO/Config/GeometryAligned: 1/0 (1847296-1847296 bytes)
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][INFO]   GLO/Config/GRPECS: 1/0 (2048-2048 bytes)
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][INFO]   GLO/Config/GRPLHCIF: 1/0 (2048-2048 bytes)
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][INFO]   GLO/Config/GRPMagField: 1/0 (1024-1024 bytes)
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][INFO]   MFT/Calib/ClusterDictionary: 1/0 (21504-21504 bytes)
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][INFO]   MFT/Config/AlpideParam: 1/0 (2048-2048 bytes)
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][INFO]   CTP/Calib/OrbitReset: 1/1 (1024-1024 bytes)
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][STATE] RUNNING ---> READY
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][STATE] READY ---> RESETTING TASK
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][STATE] RESETTING TASK ---> DEVICE READY
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][STATE] DEVICE READY ---> RESETTING DEVICE
+[2111858:globalfwd-track-matcher]: [14:36:40][STATE] IDLE ---> EXITING
+[2111855:mft-track-reader]: [14:36:40][STATE] IDLE ---> EXITING
+[2111855:mft-track-reader]: [14:36:40][STATE] Exiting FairMQ state machine
+[2111856:mchmid-matches-reader]: [14:36:40][STATE] IDLE ---> EXITING
+[2111853:mft-cluster-reader]: [14:36:40][STATE] RESETTING DEVICE ---> IDLE
+[2111854:mch-tracks-reader0]: [14:36:40][STATE] RESETTING TASK ---> DEVICE READY
+[2111854:mch-tracks-reader0]: [14:36:40][STATE] DEVICE READY ---> RESETTING DEVICE
+[2111856:mchmid-matches-reader]: [14:36:40][STATE] Exiting FairMQ state machine
+[2111853:mft-cluster-reader]: [14:36:40][STATE] IDLE ---> EXITING
+[2111853:mft-cluster-reader]: [14:36:40][STATE] Exiting FairMQ state machine
+[2111854:mch-tracks-reader0]: [14:36:40][STATE] RESETTING DEVICE ---> IDLE
+[2111854:mch-tracks-reader0]: [14:36:40][STATE] IDLE ---> EXITING
+[2111854:mch-tracks-reader0]: [14:36:40][STATE] Exiting FairMQ state machine
+[2111858:globalfwd-track-matcher]: [14:36:40][STATE] Exiting FairMQ state machine
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][STATE] RESETTING DEVICE ---> IDLE
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][STATE] IDLE ---> EXITING
+[2111857:internal-dpl-ccdb-backend]: [14:36:40][STATE] Exiting FairMQ state machine
+[2111859:globalfwd-track-writer]: [14:36:40][STATE] RUNNING ---> READY
+[2111859:globalfwd-track-writer]: [14:36:40][STATE] READY ---> RESETTING TASK
+[2111859:globalfwd-track-writer]: [14:36:40][STATE] RESETTING TASK ---> DEVICE READY
+[2111859:globalfwd-track-writer]: [14:36:40][STATE] DEVICE READY ---> RESETTING DEVICE
+[2111859:globalfwd-track-writer]: [14:36:40][STATE] RESETTING DEVICE ---> IDLE
+[2111859:globalfwd-track-writer]: [14:36:40][STATE] IDLE ---> EXITING
+[2111859:globalfwd-track-writer]: [14:36:40][STATE] Exiting FairMQ state machine
+[2111852:internal-dpl-clock]: [14:36:40][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_mft-track-reader
+[2111852:internal-dpl-clock]: [14:36:43][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_mchmid-matches-reader
+[2111852:internal-dpl-clock]: [14:36:43][STATE] RUNNING ---> READY
+[2111852:internal-dpl-clock]: [14:36:43][STATE] READY ---> RESETTING TASK
+[2111852:internal-dpl-clock]: [14:36:43][STATE] RESETTING TASK ---> DEVICE READY
+[2111852:internal-dpl-clock]: [14:36:43][STATE] DEVICE READY ---> RESETTING DEVICE
+[2111852:internal-dpl-clock]: [14:36:43][INFO] Cleaning up for shared memory id 'd46fe0f3'...
+[2111852:internal-dpl-clock]: [14:36:43][INFO] Found 0 unmanaged regions...
+[2111852:internal-dpl-clock]: [14:36:43][INFO] Found 1 managed segments...
+[2111852:internal-dpl-clock]: [14:36:43][INFO] Successfully removed 'fmq_d46fe0f3_m_0'.
+[2111852:internal-dpl-clock]: [14:36:43][INFO] Successfully removed 'fmq_d46fe0f3_mng'.
+[2111852:internal-dpl-clock]: [14:36:43][STATE] RESETTING DEVICE ---> IDLE
+[2111852:internal-dpl-clock]: [14:36:43][STATE] IDLE ---> EXITING
+[2111852:internal-dpl-clock]: [14:36:43][STATE] Exiting FairMQ state machine
 [INFO] ## Processes completed. Run summary:
 [INFO] ### Devices started: 9
-[INFO]  - Device internal-dpl-clock: pid 2094368 (exit 0)
-[INFO]  - Device mft-cluster-reader: pid 2094369 (exit 0)
-[INFO]  - Device mch-tracks-reader0: pid 2094370 (exit 0)
-[INFO]  - Device mft-track-reader: pid 2094371 (exit 0)
-[INFO]  - Device mchmid-matches-reader: pid 2094372 (exit 0)
-[INFO]  - Device internal-dpl-ccdb-backend: pid 2094373 (exit 0)
-[INFO]  - Device globalfwd-track-matcher: pid 2094374 (exit 0)
-[INFO]  - Device globalfwd-track-writer: pid 2094375 (exit 0)
-[INFO]  - Device internal-dpl-injected-dummy-sink: pid 2094376 (exit 0)
+[INFO]  - Device internal-dpl-clock: pid 2111852 (exit 0)
+[INFO]  - Device mft-cluster-reader: pid 2111853 (exit 0)
+[INFO]  - Device mch-tracks-reader0: pid 2111854 (exit 0)
+[INFO]  - Device mft-track-reader: pid 2111855 (exit 0)
+[INFO]  - Device mchmid-matches-reader: pid 2111856 (exit 0)
+[INFO]  - Device internal-dpl-ccdb-backend: pid 2111857 (exit 0)
+[INFO]  - Device globalfwd-track-matcher: pid 2111858 (exit 0)
+[INFO]  - Device globalfwd-track-writer: pid 2111859 (exit 0)
+[INFO]  - Device internal-dpl-injected-dummy-sink: pid 2111860 (exit 0)
 [INFO] Dumping used configuration in dpl-config.json
 TASK-EXIT-CODE: 0
