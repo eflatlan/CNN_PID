@@ -33,7 +33,7 @@ def build_species_layers2(input_map, filters, filter_sizes, stride_arr, alpha, d
         
         layers = BatchNormalization()(layers)
         layers = LeakyReLU(alpha=alpha)(layers)
-        layers = MaxPooling3D((2, 2, 2))(layers)  # Updated to MaxPooling3D
+        layers = MaxPooling3D((2, 2, 1))(layers)  # Updated to MaxPooling3D
         layers = Dropout(dropout_rate)(layers)
 
     flat_map = Flatten()(layers)
