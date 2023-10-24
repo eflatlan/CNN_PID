@@ -24,13 +24,12 @@ def build_species_layers2(input_map, filters, filter_sizes, stride_arr, alpha, d
     layers = input_map
 
     for i in range(len(filters)):
-        # Notice the kernel size has an added dimension for depth
-        # Assuming you want the depth kernel size to be the same as height and width
         layers = Conv3D(filters[i], 
-                        (filter_sizes[i], filter_sizes[i], filter_sizes[i]), 
-                        strides=(stride_arr[i], stride_arr[i], stride_arr[i]), 
+                        filter_sizes[i],  
+                        strides=stride_arr[i], 
                         padding='same', 
                         kernel_regularizer=reg)(layers)
+
         
         layers = BatchNormalization()(layers)
         layers = LeakyReLU(alpha=alpha)(layers)
