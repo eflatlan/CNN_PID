@@ -7,6 +7,40 @@ import tensorflow as tf
 from tensorflow.keras.layers import Conv2D, BatchNormalization, LeakyReLU, MaxPooling2D, Dropout, Flatten
 from tensorflow.keras.regularizers import l1, l2, l1_l2
 
+from tensorflow.keras.layers import Conv3D, MaxPooling3D, BatchNormalization, LeakyReLU, Dropout, Flatten
+from tensorflow.keras.regularizers import l1, l2, l1_l2
+
+def build_species_layers2(input_map, filters, filter_sizes, stride_arr, alpha, dropout_rate, l1_reg=0.0, l2_reg=0.0):
+
+    if l1_reg > 0.0 and l2_reg > 0.0:
+        reg = l1_l2(l1=l1_reg, l2=l2_reg)
+    elif l1_reg > 0.0:
+        reg = l1(l1_reg)
+    elif l2_reg > 0.0:
+        reg = l2(l2_reg)
+    else:
+        reg = None
+
+    layers = input_map
+
+    for i in range(len(filters)):
+        # Notice the kernel size has an added dimension for depth
+        # Assuming you want the depth kernel size to be the same as height and width
+        layers = Conv3D(filters[i], 
+                        (filter_sizes[i], filter_sizes[i], filter_sizes[i]), 
+                        strides=(stride_arr[i], stride_arr[i], stride_arr[i]), 
+                        padding='same', 
+                        kernel_regularizer=reg)(layers)
+        
+        layers = BatchNormalization()(layers)
+        layers = LeakyReLU(alpha=alpha)(layers)
+        layers = MaxPooling3D((2, 2, 2))(layers)  # Updated to MaxPooling3D
+        layers = Dropout(dropout_rate)(layers)
+
+    flat_map = Flatten()(layers)
+    return flat_map
+
+
 def build_species_layers(input_map, filters, filter_sizes, stride_arr, alpha, dropout_rate, l1_reg=0.0, l2_reg=0.0):
 
     if l1_reg > 0.0 and l2_reg > 0.0:
