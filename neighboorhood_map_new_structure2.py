@@ -362,7 +362,7 @@ def extract_neighborhood_map_new_vectorized(hadron_candidates, mip_positions, sp
         plt.show()
 
     return neighborhood_maps
-""""
+"""
 
 
 import tensorflow as tf
