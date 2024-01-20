@@ -908,7 +908,7 @@ CkovTools (double radParams[7], double refIndexes[3], double MIP[3],
 	trkDir.SetMagThetaPhi(1, thetaP, phiP);  // track direction in LORS at RAD
 
   nF = 1.2928  - 0.0025; // ef got this from 1 run .. assuming T = 20 for sim
-	auto nFstd2 = 0.01; // 2 times std-dev for tejh run
+  auto nFstd2 = 0.01; // 2 times std-dev for tejh run
 
 
   populatePtrInner.reset(new Populate2(trkPos, trkDir, nF));
