@@ -1,4 +1,5 @@
 import os
+from tensorflow.keras.callbacks import EarlyStopping
 
 # create a callback
 early_stopping = EarlyStopping(
