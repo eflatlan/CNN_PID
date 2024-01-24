@@ -11,9 +11,9 @@ masses = masses.reshape(1, 5)
 
 NON_VALID_PION_COUNT, NON_VALID_KAON_COUNT, NON_VALID_PROTON_COUNT = 0, 0, 0
 GLOBAL_VALID_PION_COUNT, GLOBAL_VALID_KAON_COUNT, GLOBAL_VALID_PROTON_COUNT = 0, 0, 0
+MAX_TRACKS_IN_EVENT = 15
 
-
-def calc_ckov_hyp_arrays(event_data_dict,):
+def calc_ckov_hyp_arrays(event_data_dict):
 		"""
 		# Calculate the ckov hyps
 		# shape : num_tracks_in_event, 5 || : 5 species
