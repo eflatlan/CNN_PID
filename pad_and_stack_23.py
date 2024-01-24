@@ -2,6 +2,7 @@
 
 
 
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 def pad_and_stack2(sequences, max_length=None):
 	try:
