@@ -1,4 +1,4 @@
-# import numpy as np
+import numpy as np
 import matplotlib.pyplot as plt
 
 
@@ -343,5 +343,4 @@ def plt_something(group):
 
 
     plt.show()
-
 
