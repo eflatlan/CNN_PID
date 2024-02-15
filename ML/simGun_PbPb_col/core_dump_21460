@@ -1,0 +1,18 @@
+#0  0x00007f6a89f1830f in wait4 () from /lib64/libc.so.6
+#1  0x00007f6a89e61953 in do_system () from /lib64/libc.so.6
+#2  0x00007f6a8a8e14cc in TUnixSystem::Exec (shellcmd=<optimized out>, this=0x17baf60) at /root/alice/sw/SOURCES/ROOT/v6-28-04-alice2/v6-28-04-alice2/core/unix/src/TUnixSystem.cxx:2104
+#3  TUnixSystem::StackTrace (this=0x17baf60) at /root/alice/sw/SOURCES/ROOT/v6-28-04-alice2/v6-28-04-alice2/core/unix/src/TUnixSystem.cxx:2395
+#4  0x00007f6a919a46cb in FairLogger::LogFatalMessage () at /root/alice/sw/SOURCES/FairRoot/v18.4.9-alice2/v18.4.9-alice2/fairtools/FairLogger.cxx:195
+#5  0x00007f6a8dd1c308 in std::function<void ()>::operator()() const (this=0x7f6a8dd3ab40 <fair::Logger::fFatalCallback>) at /root/alice/sw/slc9_x86-64/GCC-Toolchain/v12.2.0-alice1-local1/include/c++/12.2.0/bits/std_function.h:591
+#6  fair::Logger::~Logger (this=0x7ffda5f1ae80, __in_chrg=<optimized out>) at /root/alice/sw/SOURCES/FairLogger/v1.11.1/v1.11.1/logger/Logger.cxx:276
+#7  0x00007f6a9172d335 in o2::ccdb::CcdbApi::initTGrid (this=0x43e5e50) at /root/alice/sw/slc9_x86-64/FairLogger/v1.11.1-local1/include/fairlogger/Logger.h:310
+#8  0x00007f6a91734f77 in o2::ccdb::CcdbApi::loadFileToMemory (this=0x43e5e50, dest=..., path=..., localHeaders=0x0) at /root/alice/sw/SOURCES/O2/segment/0/CCDB/src/CcdbApi.cxx:1715
+#9  0x00007f6a91736022 in o2::ccdb::CcdbApi::navigateURLsAndLoadFileToMemory (this=0x43e5e50, dest=..., curl_handle=0x45ccab0, url=..., headers=0x7ffda5f1cee0) at /root/alice/sw/SOURCES/O2/segment/0/CCDB/src/CcdbApi.cxx:1680
+#10 0x00007f6a9173645e in o2::ccdb::CcdbApi::loadFileToMemory (this=0x43e5e50, dest=..., path=..., metadata=..., timestamp=1546300800000, headers=0x7ffda5f1cee0, etag=..., createdNotAfter=..., createdNotBefore=..., considerSnapshot=false) at /root/alice/sw/SOURCES/O2/segment/0/CCDB/src/CcdbApi.cxx:1543
+#11 0x00007f6a91737b34 in o2::ccdb::CcdbApi::retrieveBlob (this=0x43e5e50, path=..., targetdir=..., metadata=..., timestamp=timestamp
+entry=1546300800000, preservePath=preservePath
+entry=true, localFileName=..., createdNotAfter=..., createdNotBefore=...) at /root/alice/sw/SOURCES/O2/segment/0/CCDB/src/CcdbApi.cxx:725
+#12 0x00000000004150fa in anchor_GRPs (opts=..., paths=...) at /root/alice/sw/slc9_x86-64/GCC-Toolchain/v12.2.0-alice1-local1/include/c++/12.2.0/bits/basic_string.tcc:238
+#13 0x0000000000415c15 in create_MeanVertexObject (opts=...) at /root/alice/sw/SOURCES/O2/segment/0/DataFormats/Parameters/src/GRPTool.cxx:247
+#14 0x0000000000415eca in create_GRPs (opts=...) at /root/alice/sw/SOURCES/O2/segment/0/DataFormats/Parameters/src/GRPTool.cxx:301
+#15 0x00000000004112b4 in main (argc=8, argv=0x7ffda5f201e8) at /root/alice/sw/SOURCES/O2/segment/0/DataFormats/Parameters/src/GRPTool.cxx:643
