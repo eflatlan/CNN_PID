@@ -10,7 +10,6 @@
 
 #include "CkovToolsSingle.cpp"
 #include "HmpidDataReader.cpp"
-// #include "CkovToolsErlend.cpp"
 #include "ParticleUtils2.cpp"
 
 #include <utility>
@@ -21,39 +20,6 @@
 
 float calcCkovFromMass(float p, float n, int pdg);
 
-/*
-struct ShallowDigit {
-  int mMotherTrackId;
-  int mSourceId;
-  int mEventNumber;
-  int mTrackId;
-  int mParticlePdg;
-  uint16_t mQ = 0;
-  uint8_t mCh = 0; // 0xFF indicates invalid digit
-  uint8_t mPh = 0;
-  uint8_t mX = 0;
-  uint8_t mY = 0;
-
-  uint16_t getQ() const { return mQ; }
-  uint8_t getCh() const { return mCh; }
-  uint8_t getPh() const { return mPh; }
-  uint8_t getX() const { return mX; }
-  uint8_t getY() const { return mY; }
-
-
-  void setEventNumber (int eventNumber) {mEventNumber = eventNumber;}
-  int getEventNumber () const  {return mEventNumber;}
-
-
-  void setMotherId (int motherTrackId) {mMotherTrackId = motherTrackId;}
-  int getMotherId () const  {return mMotherTrackId;}
-
-
-  int getSourceId () const  {return mSourceId;}
-    ShallowDigit(uint16_t q, uint8_t x, uint8_t y, Int_t trackId, Int_t
-particlePdg) : mQ(q), mX(x), mY(y), trackId(mTrackId),particlePdg(mParticlePdg)
-{}
-}; */
 
 void evaluateClusterTrack(
     std::vector<o2::hmpid::ClusterCandidate> &clusterPerChamber,
@@ -63,100 +29,43 @@ void evaluateClusterTrack(
 
 std::array<float, 3> calcCherenkovHyp(float p, float n);
 
-/*
-struct ClusterCandidate {
-
-    int mCh = 0;
-    double mX = 0., mY = 0.;
-    double mQ = 0;
-    double mChi2 = 0;
-    double mXe = 0., mYe = 0.;
-    int mPDG = -1;
-
-    // vector e.l. som holder truth? // i.e., for hver track, set MIP og
-trackIndex fra track int trackId = -1; bool isMip = false;
-
-    std::vector<std::pair<int,int>>* mCandidateStatusVector = nullptr;
-    // std::vector<o2::hmpid::Cluster::Topology> mTopologyVector = nullptr;
-
-    // Constructor based on the order and types you provided
-    ClusterCandidate(int ch, double x, double y, double q, double chi2,
-                     double xe, double ye, /*std::vector<Topology>*
-topologyVector,* /, int pdg, std::vector<std::pair<int,int>>*
-candidateStatusVector) : mCh(ch), mX(x), mY(y), mQ(q), mChi2(chi2), mXe(xe),
-mYe(ye),
-          /*mTopologyVector(topologyVector),* / mPDG(pdg),
-mCandidateStatusVector(candidateStatusVector) {}
-
-
-    //obj.ch, obj.x, obj.y, obj.q, shallowDigits, obj.chi2, obj.xE, obj.yE,
-candStatus
-
-
-    /*
-    void setDigits(const std::vector<Topology>*& topologyVector)
-    {
-        if(!mTopologyVector) {
-            mTopologyVector = new std::vector<Topology>;
-        }
-        *mTopologyVector = topologyVector;
-    } * /
-
-    void addCandidateStatus(int iTrack, int hadronCandidateBit)
-    {
-        if(!mCandidateStatusVector) {
-            mCandidateStatusVector = new std::vector<std::pair<int,int>>;
-        }
-        mCandidateStatusVector->emplace_back(iTrack, hadronCandidateBit);
-    }
-
-    std::vector<std::pair<int,int>>* getCandidateStatus()
-    {
-        if(!mCandidateStatusVector) {
-            mCandidateStatusVector = new std::vector<std::pair<int,int>>;
-        }
-        return mCandidateStatusVector;
-    }
-};*/
-
 float sigmaSep = 1.5;
+
 void SegmentationCkov(double _sigmaSep = 1.5) {
   sigmaSep = _sigmaSep;
 
   int plotNumber = 0;
   ParticleUtils2 mParticleEvents;
 
-  auto myTree = std::make_unique<TTree>(
-      "myTree", "Tree to store clusters, trackInfo, and mcPDG");
+  auto treeOut = std::make_unique<TTree>(
+      "treeOut", "Tree to store clusters, trackInfo, and mcPDG");
 
   std::vector<o2::hmpid::ClusterCandidate> *clusterBranch = nullptr;
-  std::vector<o2::hmpid::Cluster> *clusterBranch2 = nullptr;
   o2::dataformats::MatchInfoHMP *trackInfoBranch = nullptr;
   int mcPDGBranch = 0;
 
   float reconCkovBranch = 0;
 
-  myTree->Branch("clusters2", &clusterBranch2);
-  myTree->Branch("clusters", &clusterBranch);
-  myTree->Branch("trackInfo", &trackInfoBranch);
-  myTree->Branch("mcPDG", &mcPDGBranch);
+  treeOut->Branch("clusters", &clusterBranch);
+  treeOut->Branch("trackInfo", &trackInfoBranch);
+  treeOut->Branch("mcPDG", &mcPDGBranch);
 
   int cluChargeBranch, cluSizeBranch;
 
   float refIndexBranch, xRadBranch, yRadBranch, xMipBranch, yMipBranch;
   float thBranch, phBranch, pBranch;
 
-  myTree->Branch("reconCkov", &reconCkovBranch);
-  myTree->Branch("cluCharge", &cluChargeBranch);
-  myTree->Branch("cluSize", &cluSizeBranch);
-  myTree->Branch("refIndex", &refIndexBranch);
-  myTree->Branch("xRad", &xRadBranch);
-  myTree->Branch("yRad", &yRadBranch);
-  myTree->Branch("xMip", &xMipBranch);
-  myTree->Branch("yMip", &yMipBranch);
-  myTree->Branch("th", &thBranch);
-  myTree->Branch("ph", &phBranch);
-  myTree->Branch("p", &pBranch);
+  treeOut->Branch("reconCkov", &reconCkovBranch);
+  treeOut->Branch("cluCharge", &cluChargeBranch);
+  treeOut->Branch("cluSize", &cluSizeBranch);
+  treeOut->Branch("refIndex", &refIndexBranch);
+  treeOut->Branch("xRad", &xRadBranch);
+  treeOut->Branch("yRad", &yRadBranch);
+  treeOut->Branch("xMip", &xMipBranch);
+  treeOut->Branch("yMip", &yMipBranch);
+  treeOut->Branch("th", &thBranch);
+  treeOut->Branch("ph", &phBranch);
+  treeOut->Branch("p", &pBranch);
 
   // clusters and triggers
   std::vector<Cluster> *clusterArr = nullptr;
@@ -165,13 +74,13 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
 
   std::vector<Trigger> *trigArr = nullptr;
 
-  TTree *tCluster = HmpidDataReader::initializeClusterTree(
+  TTree *treeCluster = HmpidDataReader::initializeClusterTree(
       clusterArr, trigArr, mTopologyFromFilePtr);
   // clusterArr now initialized correctly
 
   // MathcInfoHMP : holding trackinfo
   std::vector<o2::dataformats::MatchInfoHMP> *matchArr = nullptr;
-  TTree *tMatch = HmpidDataReader::initializeMatchTree(matchArr, 0, 0, 0);
+  TTree *treeMatch = HmpidDataReader::initializeMatchTree(matchArr, 0, 0, 0);
 
   // McTrack : holding PDG code of track
   std::vector<o2::MCTrack> *mcArr = nullptr;
@@ -183,6 +92,9 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
     return;
   }
 
+
+
+  // Arrays of triggers file 
   for (int i = 0; i < trigArr->size();
        i++) // for(const auto& clusters : clustersVector) // "events loop"
   {
@@ -193,103 +105,78 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
       continue;
     }
 
-    const int firstEntry = pTgr->getFirstEntry();
-    const int lastEntry = pTgr->getLastEntry();
+    const int firstCluInTrig = pTgr->getFirstEntry();
+    const int lastCluInTrig = pTgr->getLastEntry();
 
-    // Printf("Checking trigger number %d Range Clu = %d :: %d", i, firstEntry,
-    // lastEntry);
+    // Printf("Checking trigger number %d Range Clu = %d :: %d", i, firstCluInTrig,
+    // lastCluInTrig);
 
-    std::vector<Cluster> oneEventClusters;
+    std::vector<Cluster> oneEvenClusters;
 
-    auto fClu = static_cast<o2::hmpid::Cluster>(clusterArr->at(firstEntry));
-    auto s1Clu = static_cast<o2::hmpid::Cluster>(clusterArr->at(lastEntry - 1));
-    auto sClu = static_cast<o2::hmpid::Cluster>(clusterArr->at(lastEntry));
-    int eventNumber1 = fClu.getEventNumber();
-    int eventNumberLast = sClu.getEventNumber();
-    int eventNumberLast1 = s1Clu.getEventNumber();
+    auto firstCluInEvent = static_cast<o2::hmpid::Cluster>(clusterArr->at(firstCluInTrig));
+    auto lastClu = static_cast<o2::hmpid::Cluster>(clusterArr->at(lastCluInTrig));
+    int eventNumberFirstClu = firstCluInEvent.getEventNumber();
+    int eventNumberLast = lastClu.getEventNumber();
 
-    /* ef : TODO some clusters in the same trigger have different
-            event-number!?
-    if(eventNumberLast != eventNumber1) {
-        Printf("eventNumberLast%d != eventNumber1%d", eventNumberLast,
-    eventNumber1); Printf("eventNumberLast1%d",eventNumberLast1); } // TODO:
-    throw error? ef:
-    */
 
+    // loop over clusters in the trigger
     for (int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++) {
       const auto &clu = static_cast<o2::hmpid::Cluster>(clusterArr->at(j));
-      // std::cout << j << " evNum " <<  clu.getEventNumber() << " |";
+      oneEvenClusters.push_back(clu);      
     }
 
-    for (int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++) {
-      const auto &clu = static_cast<o2::hmpid::Cluster>(clusterArr->at(j));
 
-      oneEventClusters.push_back(clu);
-
-      // ef: dont check this atm, resolve error wrt different eNum for
-      // same trigger later
-      /*
-Printf("============\n Cluster Loop \n ===============");
-if(clu.getEventNumber() != eventNumber1) {
-Printf("Eventnumber changed??");
-Printf("clu.getEventNumber()%d", clu.getEventNumber());
-} else {
-oneEventClusters.push_back(clu);
-std::cout << " clu " << j << " eventNum " << clu.getEventNumber();
-} */
-    }
     Printf("============\n Cluster Loop \n ===============");
     // find entries in tracksOneEvent which corresponds to correct eventNumber
     Printf("Reading match vector<MatchInfoHMP> for startIndexTrack %d",
            startIndexTrack);
 
-    // read instead MatchInfoHMP field mEvent? (i)
+
+    // Read Information from  ROOT files:
+    // 1
     std::vector<o2::dataformats::MatchInfoHMP> *tracksOneEvent =
-        HmpidDataReader::readMatch(tMatch, matchArr, i, startIndexTrack);
+        HmpidDataReader::readMatch(treeMatch, matchArr, i, startIndexTrack);
 
     // get MC tracks for given event from mc;
+    /*
     Printf("Reading vector<o2::MCTrack>* mcTracks for  eventNumber %d",
-           eventNumber1);
+           eventNumberFirstClu);
     std::vector<o2::MCTrack> *mcTracks =
-        HmpidDataReader::readMC(mcArr, tMcTrack, eventNumber1);
+        HmpidDataReader::readMC(mcArr, tMcTrack, eventNumberFirstClu); */ 
+
+
 
     Printf("tracksOneEvent size %d", tracksOneEvent->size());
 
-    // for this event
 
-    Printf("Sorting events by chamber");
 
+    // sort the tracksOneEvent vector based on chamber number
     std::sort((*tracksOneEvent).begin(), (*tracksOneEvent).end(),
               [](const o2::dataformats::MatchInfoHMP &a,
                  const o2::dataformats::MatchInfoHMP &b) {
                 return a.getChamber() < b.getChamber();
               });
 
-    Printf("Sorting clusteres by chamber");
-
+    // sort the oneEvenClusters vector based on chamber number
     std::sort(
-        (oneEventClusters).begin(), (oneEventClusters).end(),
+        (oneEvenClusters).begin(), (oneEvenClusters).end(),
         [](const Cluster &a, const Cluster &b) { return a.ch() < b.ch(); });
 
-    std::vector<o2::dataformats::MatchInfoHMP> sortedTracks[7];
-    // Assign MLinfoHMP objects to corresponding vectors based on iCh value
-    for (const auto &obj : *tracksOneEvent) {
 
+    std::vector<o2::dataformats::MatchInfoHMP> sortedTracks[7];
+    // Assign MatchInfoHMP objects to corresponding vectors based on iCh value
+    for (const auto &obj : *tracksOneEvent) {
       const auto &iCh = obj.getChamber();
       if (iCh < 0 || iCh > 6) {
         std::cerr << "Warning: iCh value out of expected range: " << iCh
                   << std::endl;
       } else {
-        // check if there was a match:
-        if (obj.getMatchStatus()) {
+        if (obj.getreeMatchStatus()) {
           sortedTracks[iCh].push_back(obj);
-        } else {
-          // Printf("track didnt match MIP skipping");
-        }
-        // sstd::cerr << "sortedTracks[iCh] " << iCh << " pushback" <<
-        // std::endl;
+        } ;
       }
     }
+
     std::cout << "Length of sortedTracks vector ";
     for (int i = 0; i < 7; i++) {
       if (sortedTracks[i].size() != 0)
@@ -297,10 +184,11 @@ std::cout << " clu " << j << " eventNum " << clu.getEventNumber();
     }
     std::cout << std::endl;
 
-    // Assuming the range of iCh values is from 0 to 6 (inclusive)
+
     std::vector<o2::hmpid::ClusterCandidate> sortedClusters[7];
-    // Assign MLinfoHMP objects to corresponding vectors based on iCh value
-    for (const auto &obj : oneEventClusters) {
+
+    // Assign ClusterCandidate objects to corresponding vectors based on iCh value
+    for (const auto &obj : oneEvenClusters) {
 
       // from each track; we assign a label to each of the clusters in
       // corresponding to the type of hadron it can be
@@ -309,7 +197,7 @@ std::cout << " clu " << j << " eventNum " << clu.getEventNumber();
         if (sortedTracks[iCh].size() > 0) {
 
           // const std::vector<o2::hmpid::Cluster::Topology>& topology =
-          // obj.getClusterTopology();  // some info about digits associated w
+          // obj.getreeClusterTopology();  // some info about digits associated w
           // cluster*/
 
           // std::vector<std::pair<int,int>> candStatus;
@@ -320,26 +208,23 @@ std::cout << " clu " << j << " eventNum " << clu.getEventNumber();
                                            obj.chi2(), obj.xe(), obj.ye(),
                                            obj.getPDG(), obj.size());
           sortedClusters[iCh].emplace_back(temp);
-        } else {
-          // std::cerr << "sortedTracks[iCh] " << iCh << " empty " <<
-          // sortedTracks[iCh].size() << std::endl;
-        }
+        } 
+      } 
+    } // end of loop over clusters in the trigger
 
-      } else {
-        std::cerr << "Warning: iCh value out of expected range: " << iCh
-                  << std::endl;
-      }
 
-    } // end for
 
+    // loop over the sortedTracks and sortedClusters
     for (int i = 0; i < 7; i++) {
 
-      // check if has more than one track --> this means there is no candidates
+      // if no tracks in the chamber, skip
       if (sortedTracks[i].size() < 1) {
         // Printf("sortedTracks[iCh%d].size() %d", i, sortedTracks[i].size());
         continue;
       }
 
+
+      // std::vector<o2::hmpid::ClusterCandidate> clusterPerChamber
       auto &clusterPerChamber = sortedClusters[i];
 
       std::vector<float> mipCharges;
@@ -364,10 +249,7 @@ std::cout << " clu " << j << " eventNum " << clu.getEventNumber();
         // of the photons, this is a vector of length of sortedTracks[i].size();
         // and holds the fields
 
-        // checked earleir also but..
-        if (track.getMatchStatus()) {
-          // if (true) {
-          // get MCTrack correspondign to trackId
+        if (track.getreeMatchStatus()) {
           const auto mcTrackIndex = track.getTrackIndex();
 
           // find the PDG code in teh o2Kine_sim.root file by matching the
@@ -379,39 +261,24 @@ std::cout << " clu " << j << " eventNum " << clu.getEventNumber();
 
           // mcPDGBranch = mcTrack->GetPdgCode();
 
-          const double winThick = 0.5, radThick = 1.5;
-          const int gapThick = 8;
-          const double gapIdx = 1.0005, winIdx = 1.5787;
-          auto dz = 9.25;
-
           float xRad, yRad, xPc, yPc, th, ph; // make for these
           float xMip = track.getMipX(), yMip = track.getMipY(); // and thse
           track.getHMPIDtrk(xRad, yRad, xPc, yPc, th, ph);
 
-          auto ypc = yRad + dz * TMath::Tan(th) * TMath::Sin(ph);
-          auto xpc = xRad + dz * TMath::Tan(th) * TMath::Cos(ph);
-
           TVector2 mip(xMip, yMip);
-
-          TVector2 pcC(xpc, ypc);
-
-          if ((mip - pcC).Mod() > 1) {
-            //	Printf("(mip-pcC).Mod() > 1 %.2f", (mip-pcC).Mod());
-            continue;
-          }
 
           refIndexBranch = track.getRefIndex();
           cluChargeBranch = track.getMipClusQ();
           cluSizeBranch = track.getMipClusSize();
 
-          xRadBranch = xRad; // also for xPc yPc
-          yRadBranch = yRad; // also for xPc yPc
+          xRadBranch = xRad; 
+          yRadBranch = yRad; 
 
-          xMipBranch = xMip; // also for xPc yPc
-          yMipBranch = yMip; // also for xPc yPc
+          xMipBranch = xMip;
+          yMipBranch = yMip; 
 
-          thBranch = th; // also for xPc yPc
-          phBranch = ph; // also for xPc yPc
+          thBranch = th; 
+          phBranch = ph; 
 
           // get the calculated recon track ckov signal
           reconCkovBranch = track.getHMPsignal();
@@ -432,17 +299,15 @@ std::cout << " clu " << j << " eventNum " << clu.getEventNumber();
 
           clusterBranch =
               const_cast<std::vector<o2::hmpid::ClusterCandidate> *>(
-                  &clusterPerChamber); // Make sure your ClusterCandidate class
-                                       // is compatible with ROOT I/O
+                  &clusterPerChamber); 
           trackInfoBranch = const_cast<o2::dataformats::MatchInfoHMP *>(
-              &track); // Make sure your MatchInfoHMP class is compatible with
-                       // ROOT I/O
+              &track); 
 
           // mcPDGBranch = mcTrack->GetPdgCode();
 
           pBranch = track.getHmpMom();
           // Fill the tree
-          myTree->Fill();
+          treeOut->Fill();
 
           mParticleEvents.fillCandidate(clusterPerChamber, track, 0);
 
@@ -467,128 +332,20 @@ std::cout << " clu " << j << " eventNum " << clu.getEventNumber();
     }
   }
 
-  auto fOut = std::make_unique<TFile>("MLOUTPUT.root", "RECREATE");
-  myTree->Write();
-  fOut->Close();
+  auto fileOut = std::make_unique<TFile>("MLOUTPUT.root", "RECREATE");
+  treeOut->Write();
+  fileOut->Close();
 
-  Long64_t nEntries = myTree->GetEntries();
+  Long64_t nEntries = treeOut->GetEntries();
   for (Long64_t i = 0; i < nEntries; ++i) {
-    myTree->GetEntry(i);
+    treeOut->GetEntry(i);
 
-    // The TBranches you are interested in (clusterBranch, trackInfoBranch,
-    // mcPDGBranch) should now be filled with the data from the i-th entry.
 
-    // Perform some checks or analysis using these variables.
-    // For example, to print the size of clusterBranch (assuming it is a
-    // std::vector)
     // std::cout << "Size of clusterBranch: " << clusterBranch->size() <<
     // std::endl;
   }
 
   mParticleEvents.writeH5();
-}
-
-void read_tree() {
-  TCanvas *canvas1 =
-      new TCanvas("canvas1", "Particle Distributions", 1200, 400);
-
-  // Initialize histograms
-  TH1F *momHistPion =
-      new TH1F("momHistPion", ";Cherenkov Angle;Frequency", 50, 0.5, 0.728);
-  TH1F *momHistKaon =
-      new TH1F("momHistKaon", ";Cherenkov Angle;Frequency", 50, 0.5, 0.728);
-  TH1F *momHistProton =
-      new TH1F("momHistProton", ";Cherenkov Angle;Frequency", 50, 0.5, 0.728);
-
-  // Reading for pions
-  auto fPion = std::make_unique<TFile>(Form("MLOUTPUTPion.root"));
-  std::unique_ptr<TTree> treePion((TTree *)fPion->Get("myTree"));
-
-  // Reading for kaons
-  auto fKaon = std::make_unique<TFile>(Form("MLOUTPUTKaon.root"));
-  std::unique_ptr<TTree> treeKaon((TTree *)fKaon->Get("myTree"));
-
-  // Reading for protons
-  auto fProton = std::make_unique<TFile>(Form("MLOUTPUTProton.root"));
-  std::unique_ptr<TTree> treeProton((TTree *)fProton->Get("myTree"));
-
-  // Variables for reading tree branches
-  float pPion, pKaon, pProton;
-  float ckovPion, ckovKaon, ckovProton;
-
-  // Setup branches
-  treePion->SetBranchAddress("p", &pPion);
-  treePion->SetBranchAddress("reconCkov", &ckovPion);
-
-  treeKaon->SetBranchAddress("p", &pKaon);
-  treeKaon->SetBranchAddress("reconCkov", &ckovKaon);
-
-  treeProton->SetBranchAddress("p", &pProton);
-  treeProton->SetBranchAddress("reconCkov", &ckovProton);
-
-  // Assume that all trees have the same number of entries
-  Long64_t nEntries = treePion->GetEntries();
-
-  for (Long64_t i = 0; i < nEntries; ++i) {
-    // Fill histograms based on momentum range
-    treePion->GetEntry(i);
-    if (pPion > 2.8 && pPion < 2.85 && ckovPion > 0.66 &&
-        0.66 + 0.048 > ckovPion) {
-
-      momHistPion->Fill(ckovPion);
-    }
-
-    treeKaon->GetEntry(i);
-    if (pKaon > 2.8 && pKaon < 2.85 && ckovKaon > 0.644 && 0.69 > ckovKaon) {
-      momHistKaon->Fill(ckovKaon);
-    }
-
-    treeProton->GetEntry(i);
-    if (pProton > 2.8 && pProton < 2.85 && ckovProton > 0.59 &&
-        0.645 > ckovProton) {
-      momHistProton->Fill(ckovProton);
-    }
-  }
-
-  // Draw and fit histograms
-  canvas1->Divide(3);
-
-  // Pion
-  canvas1->cd(1);
-  momHistPion->Draw();
-  TF1 *fitPion = new TF1("fitPion", "gaus", 0.4, 0.8);
-  momHistPion->Fit("fitPion", "R");
-  TLatex lPion;
-  // lPion.DrawLatex(0.45, momHistPion->GetMaximum() * 0.9, Form("#entries =
-  // %lld, #mu = %.3f, #sigma = %.3f", momHistPion->GetEntries(),
-  // fitPion->GetParameter(1), fitPion->GetParameter(2)));
-
-  // Kaon
-  canvas1->cd(2);
-  momHistKaon->Draw();
-  TF1 *fitKaon = new TF1("fitKaon", "gaus", 0.4, 0.8);
-  momHistKaon->Fit("fitKaon", "R");
-  TLatex lKaon;
-  // lKaon.DrawLatex(0.45, momHistKaon->GetMaximum() * 0.9, Form("#entries =
-  // %lld, #mu = %.3f, #sigma = %.3f", momHistKaon->GetEntries(),
-  // fitKaon->GetParameter(1), fitKaon->GetParameter(2)));
-
-  // Proton
-  canvas1->cd(3);
-  momHistProton->Draw();
-  TF1 *fitProton = new TF1("fitProton", "gaus", 0.4, 0.8);
-  momHistProton->Fit("fitProton", "R");
-  TLatex lProton;
-  // lProton.DrawLatex(0.45, momHistProton->GetMaximum() * 0.9, Form("#entries =
-  // %lld, #mu = %.3f, #sigma = %.3f", momHistProton->GetEntries(),
-  // fitProton->GetParameter(1), fitProton->GetParameter(2)));
-
-  // Save plots
-  canvas1->Update();
-  canvas1->SaveAs("ParticlePlots.png");
-  canvas1->SaveAs("ParticlePlots.jpg");
-  canvas1->SaveAs("ParticlePlots.pdf");
-  canvas1->SaveAs("ParticlePlots.eps");
 }
 
 float calcCkovFromMass(float p, float n, int pdg) {
@@ -705,10 +462,6 @@ void evaluateClusterTrack(
   // numBackgroundLabeledCkov
   std::array<int, 4> arrayInfo;
 
-  // add charge of MIPS here? to skip them in candidates ?
-
-  // clusterPerChamber by reference, add element to vector {trackNumber,
-  // bitHadronStatus}
 
   // mcTrackPdg check that it matches with clusterPDG?
   //

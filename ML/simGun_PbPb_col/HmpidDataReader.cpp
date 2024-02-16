@@ -81,7 +81,7 @@ public:
 
   static TTree *initializeMCTree(std::vector<o2::MCTrack> *&mcArr);
   static std::vector<o2::MCTrack> *readMC(std::vector<o2::MCTrack> *&mcArr,
-                                          TTree *tKine, int eventId);
+                                          TTree *treeKine, int eventId);
   static const o2::MCTrack *getMCEntry(std::vector<o2::MCTrack> *mcArr,
                                        int trackID);
   static void readTreeEntries();
@@ -128,6 +128,7 @@ HmpidDataReader::readMatch(TTree *tMatch,
       new std::vector<o2::dataformats::MatchInfoHMP>;
   // tracks should be stored in "time" --> when we find our event we can then
   // switch this condition "of" when the event changes:
+
   bool found = false;
 
   if (matchArr == nullptr) {
@@ -170,66 +171,66 @@ HmpidDataReader::readMatch(TTree *tMatch,
 TTree *HmpidDataReader::initializeClusterTree(
     std::vector<Cluster> *&cluArr, std::vector<Trigger> *&trigArr,
     std::vector<o2::hmpid::Topology> *&mTopologyFromFilePtr) {
-  TFile *fClu = TFile::Open("hmpidclusters.root");
-  if (!fClu || fClu->IsZombie()) {
+  TFile *fileClu = TFile::Open("hmpidclusters.root");
+  if (!fileClu || fileClu->IsZombie()) {
     Printf("Error opening file");
     return nullptr;
   }
 
-  TTree *tClu = (TTree *)fClu->Get("o2sim");
-  if (!tClu)
-    tClu = (TTree *)fClu->Get("o2hmp");
-  if (!tClu) {
+  TTree *treeClu = (TTree *)fileClu->Get("o2sim");
+  if (!treeClu)
+    treeClu = (TTree *)fileClu->Get("o2hmp");
+  if (!treeClu) {
     Printf("Error accessing TTree");
-    fClu->Close();
-    delete fClu;
+    fileClu->Close();
+    delete fileClu;
     return nullptr;
   }
-  tClu->Print("toponly");
+  treeClu->Print("toponly");
 
-  tClu->SetBranchAddress("HMPIDDigitTopology", &mTopologyFromFilePtr);
-  tClu->SetBranchAddress("HMPIDclusters", &cluArr);
-  tClu->SetBranchAddress("InteractionRecords", &trigArr);
+  treeClu->SetBranchAddress("HMPIDDigitTopology", &mTopologyFromFilePtr);
+  treeClu->SetBranchAddress("HMPIDclusters", &cluArr);
+  treeClu->SetBranchAddress("InteractionRecords", &trigArr);
 
-  tClu->GetEntry(0);
-  return tClu;
+  treeClu->GetEntry(0);
+  return treeClu;
 }
 
 TTree *HmpidDataReader::initializeMCTree(std::vector<o2::MCTrack> *&mcArr) {
-  TFile *fKine = TFile::Open("o2sim_Kine.root");
-  if (!fKine || fKine->IsZombie()) {
+  TFile *fileKine = TFile::Open("o2sim_Kine.root");
+  if (!fileKine || fileKine->IsZombie()) {
     Printf("Error opening file");
     return nullptr;
   }
 
-  TTree *tKine = (TTree *)fKine->Get("o2sim");
-  if (!tKine) {
+  TTree *treeKine = (TTree *)fileKine->Get("o2sim");
+  if (!treeKine) {
     Printf("Error accessing TTree");
-    fKine->Close();
-    delete fKine;
+    fileKine->Close();
+    delete fileKine;
     return nullptr;
   }
 
-  tKine->SetBranchAddress("MCTrack", &mcArr);
-  tKine->GetEntry(0);
-  tKine->Print("toponly");
-  return tKine;
+  treeKine->SetBranchAddress("MCTrack", &mcArr);
+  treeKine->GetEntry(0);
+  treeKine->Print("toponly");
+  return treeKine;
 }
 
 std::vector<o2::MCTrack> *
-HmpidDataReader::readMC(std::vector<o2::MCTrack> *&mcArr, TTree *tKine,
+HmpidDataReader::readMC(std::vector<o2::MCTrack> *&mcArr, TTree *treeKine,
                         int eventID) {
-  if (tKine == nullptr) {
-    Printf("Error : tKine == nullptr");
+  if (treeKine == nullptr) {
+    Printf("Error : treeKine == nullptr");
     return nullptr;
   }
 
-  if (eventID < tKine->GetEntries()) {
-    tKine->GetEntry(eventID);
+  if (eventID < treeKine->GetEntries()) {
+    treeKine->GetEntry(eventID);
     Printf("readMC at entry %d", eventID);
     return mcArr;
   } else {
-    Printf("eventId > tKine->GetEntries()");
+    Printf("eventId > treeKine->GetEntries()");
     return nullptr;
   }
 }
