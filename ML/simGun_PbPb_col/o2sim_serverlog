@@ -1,0 +1,789 @@
+o2-sim-primary-server-device-runner
+--control
+static
+--id
+primary-server
+--mq-config
+o2simtopology_329519.json
+--severity
+debug
+--color
+false
+-n1
+--configKeyValues
+Diamond.width[2]=6.
+-g
+pythia8hi
+-e
+TGeant3
+-j
+5
+--run
+300000
+--timestamp
+1546300800000
+$$$$
+[16:28:23][INFO] 
+      ______      _    _______  _________ 
+     / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+    / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+   / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+  /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+
+[16:28:23][STATE] Starting FairMQ state machine --> IDLE
+[16:28:23][DEBUG] PID: 329556
+[16:28:23][DEBUG] Loaded plugin: 'config', version '1.8.0', maintainer 'FairRootGroup <fairroot@gsi.de>', homepage 'https://github.com/FairRootGroup/FairMQ'
+[16:28:23][DEBUG] Loaded plugin: 'control', version '1.8.0', maintainer 'FairRootGroup <fairroot@gsi.de>', homepage 'https://github.com/FairRootGroup/FairMQ'
+[16:28:23][DEBUG] Running builtin controller: static
+[16:28:23][DEBUG] Plugin 'control' is setting up signal handling for SIGINT and SIGTERM
+[16:28:23][DEBUG] Configuration: 
+CCDBUrl                       = http://alice-ccdb.cern.ch <string>         [default] 
+asservice                     = false                     <bool>           [default] 
+bMax                          = 0                         <float>          [default] 
+bad-alloc-attempt-interval    = 50                        <int>            [default] 
+catch-signals                 = 1                         <int>            [default] 
+chunkSize                     = 500                       <unsigned>       [default] 
+chunkSizeI                    = -1                        <int>            [default] 
+color                         = false                     <bool>           [provided]
+configFile                    =                           <string>         [default] 
+configKeyValues               = Diamond.width[2]=6.       <string>         [provided]
+control                       = static                    <string>         [provided]
+embedIntoFile                 =                           <string>         [default] 
+extKinFile                    = Kinematics.root           <string>         [default] 
+field                         = -5                        <string>         [default] 
+file-severity                 = debug                     <string>         [default] 
+forwardKine                   = false                     <bool>           [default] 
+fromCollContext               =                           <string>         [default] 
+generator                     = pythia8hi                 <string>         [provided]
+id                            = primary-server            <string>         [provided]
+init-timeout                  = 120                       <int>            [default] 
+io-threads                    = 1                         <int>            [default] 
+isMT                          = false                     <bool>           [default] 
+log-to-file                   =                           <string>         [default] 
+logseverity                   = INFO                      <string>         [default] 
+logverbosity                  = medium                    <string>         [default] 
+mcEngine                      = TGeant3                   <string>         [provided]
+modules                       = all                       <vector<string>> [default] 
+mq-config                     = o2simtopology_329519.json <string>         [provided]
+nEvents                       = 1                         <unsigned>       [provided]
+network-interface             = default                   <string>         [default] 
+noDiscOutput                  = false                     <bool>           [default] 
+noGeant                       = false                     <bool>           [default] 
+nworkers                      = 5                         <int>            [provided]
+outPrefix                     = o2sim                     <string>         [default] 
+rate                          = 0                         <float>          [default] 
+readoutDetectors              =                           <vector<string>> [default] 
+run                           = 300000                    <int>            [provided]
+seed                          = 0                         <unsigned long>  [default] 
+session                       = default                   <string>         [default] 
+severity                      = debug                     <string>         [provided]
+shm-allocation                = rbtree_best_fit           <string>         [default] 
+shm-metadata-msg-size         = 0                         <unsigned long>  [default] 
+shm-mlock-segment             = false                     <bool>           [default] 
+shm-mlock-segment-on-creation = false                     <bool>           [default] 
+shm-monitor                   = false                     <bool>           [default] 
+shm-no-cleanup                = false                     <bool>           [default] 
+shm-segment-id                = 0                         <unsigned short> [default] 
+shm-segment-size              = 2147483648                <unsigned long>  [default] 
+shm-throw-bad-alloc           = true                      <bool>           [default] 
+shm-zero-segment              = false                     <bool>           [default] 
+shm-zero-segment-on-creation  = false                     <bool>           [default] 
+skipModules                   =                           <vector<string>> [default] 
+skipReadoutDetectors          =                           <vector<string>> [default] 
+startEvent                    = 0                         <unsigned>       [default] 
+timestamp                     = 1546300800000             <unsigned long>  [provided]
+transport                     = zeromq                    <string>         [default] 
+trigger                       =                           <string>         [default] 
+verbosity                     = medium                    <string>         [default] 
+vertexMode                    = kDiamondParam             <string>         [default] 
+
+[16:28:23][STATE] IDLE ---> INITIALIZING DEVICE
+[16:28:23][DEBUG] mq-config: Using default JSON parser
+[16:28:23][DEBUG] Parsing JSON from o2simtopology_329519.json ...
+[16:28:23][DEBUG] Setting 'zeromq' as default transport for the device
+[16:28:23][DEBUG] Adding 'zeromq' transport
+[16:28:23][DEBUG] Transport: Using ZeroMQ library, version: 4.3.3
+[16:28:23][DEBUG] Initializing transport for channel o2sim-primserv-info[0]: default
+[16:28:23][DEBUG] Reusing existing 'zeromq' transport
+[16:28:23][DEBUG] Initializing transport for channel primary-notifications[0]: default
+[16:28:23][DEBUG] Reusing existing 'zeromq' transport
+[16:28:23][DEBUG] Initializing transport for channel primary-get[0]: default
+[16:28:23][DEBUG] Reusing existing 'zeromq' transport
+[16:28:23][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[16:28:23][STATE] INITIALIZED ---> BINDING
+[16:28:23][DEBUG] Validating channel 'o2sim-primserv-info[0]'... VALID
+[16:28:23][DEBUG] Created socket primary-server.o2sim-primserv-info[0].rep
+[16:28:23][DEBUG] Attached channel o2sim-primserv-info[0] to ipc:///tmp/o2sim-primserv-info-329519 (bind) (rep)
+[16:28:23][DEBUG] Validating channel 'primary-notifications[0]'... VALID
+[16:28:23][DEBUG] Created socket primary-server.primary-notifications[0].pub
+[16:28:23][DEBUG] Attached channel primary-notifications[0] to ipc:///tmp/o2sim-primary-notifications-329519 (bind) (pub)
+[16:28:23][DEBUG] Validating channel 'primary-get[0]'... VALID
+[16:28:23][DEBUG] Created socket primary-server.primary-get[0].rep
+[16:28:23][DEBUG] Attached channel primary-get[0] to ipc:///tmp/o2sim-primary-get-329519 (bind) (rep)
+[16:28:23][STATE] BINDING ---> BOUND
+[16:28:23][STATE] BOUND ---> CONNECTING
+[16:28:23][STATE] CONNECTING ---> DEVICE READY
+[16:28:23][STATE] DEVICE READY ---> INITIALIZING TASK
+[16:28:23][INFO] INITTASK CHANGING STATE TO INIT
+[16:28:23][INFO] Init Server device 
+[16:28:23][INFO] Stack.storeSecondaries : true		[ CODE ]
+Stack.pruneKine : true		[ CODE ]
+Stack.transportPrimary : all		[ CODE ]
+Stack.transportPrimaryFileName : 		[ CODE ]
+Stack.transportPrimaryFuncName : 		[ CODE ]
+Stack.transportPrimaryInvert : false		[ CODE ]
+
+[16:28:23][INFO] ENGINE SET TO TGeant3
+[16:28:23][INFO] CHUNK SIZE SET TO 500
+[16:28:23][INFO] RNG INITIAL SEED 9458890165168739137
+[16:28:23][INFO] LAUNCHING STATUS THREAD
+[16:28:23][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1708270103-tF3Nod, Host: http://alice-ccdb.cern.ch/
+[16:28:23][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1708270103-tF3Nod, Host: http://alice-ccdb.cern.ch
+[16:28:23][INFO] MagneticField::CreateField: Maximim possible beam energy for requested beam is assumed
+[16:28:23][INFO] MagneticField::Print: Maps:
+[16:28:23][INFO] MagneticField::Print: Solenoid (-1*)5 kG, Dipole ON (-1) 
+[16:28:23][INFO] MagneticField::Print: Machine B fields for p-p  beam (7000 GeV): QGrad: 22.0002 Dipole: 37.8781
+[16:28:23][INFO] MagneticField::Print: Uses Sol30_Dip6_Hole  of $(O2_ROOT)/share/Common/maps/mfchebKGI_sym.root
+Info in <TGeoGlobalMagField::SetField>: Global magnetic field set to <Maps>
+Info in <TGeoGlobalMagField::Lock>: Global magnetic field <Maps> is now locked
+
+ *------------------------------------------------------------------------------------* 
+ |                                                                                    | 
+ |  *------------------------------------------------------------------------------*  | 
+ |  |                                                                              |  | 
+ |  |                                                                              |  | 
+ |  |   PPP   Y   Y  TTTTT  H   H  III    A      Welcome to the Lund Monte Carlo!  |  | 
+ |  |   P  P   Y Y     T    H   H   I    A A     This is PYTHIA version 8.304      |  | 
+ |  |   PPP     Y      T    HHHHH   I   AAAAA    Last date of change:  9 Apr 2021  |  | 
+ |  |   P       Y      T    H   H   I   A   A                                      |  | 
+ |  |   P       Y      T    H   H  III  A   A    Now is 18 Feb 2024 at 16:28:24    |  | 
+ |  |                                                                              |  | 
+ |  |   Christian Bierlich;  Department of Astronomy and Theoretical Physics,      |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: christian.bierlich@thep.lu.se                                   |  | 
+ |  |   Nishita Desai;  Department of Theoretical Physics, Tata Institute,         |  | 
+ |  |      Homi Bhabha Road, Mumbai 400005, India;                                 |  | 
+ |  |      e-mail: desai@theory.tifr.res.in                                        |  | 
+ |  |   Leif Gellersen;  Department of Astronomy and Theoretical Physics,          |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: leif.gellersen@thep.lu.se                                       |  | 
+ |  |   Ilkka Helenius;  Department of Physics, University of Jyvaskyla,           |  | 
+ |  |      P.O. Box 35, FI-40014 University of Jyvaskyla, Finland;                 |  | 
+ |  |      e-mail: ilkka.m.helenius@jyu.fi                                         |  | 
+ |  |   Philip Ilten;  Department of Physics,                                      |  | 
+ |  |      University of Cincinnati, Cincinnati, OH 45221, USA;                    |  | 
+ |  |      e-mail: philten@cern.ch                                                 |  | 
+ |  |   Leif Lonnblad;  Department of Astronomy and Theoretical Physics,           |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: leif.lonnblad@thep.lu.se                                        |  | 
+ |  |   Stephen Mrenna;  Computing Division, Simulations Group,                    |  | 
+ |  |      Fermi National Accelerator Laboratory, MS 234, Batavia, IL 60510, USA;  |  | 
+ |  |      e-mail: mrenna@fnal.gov                                                 |  | 
+ |  |   Stefan Prestel;  Department of Astronomy and Theoretical Physics,          |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: stefan.prestel@thep.lu.se                                       |  | 
+ |  |   Christian Preuss;  School of Physics and Astronomy,                        |  | 
+ |  |      Monash University, PO Box 27, 3800 Melbourne, Australia;                |  | 
+ |  |      e-mail: christian.preuss@monash.edu                                     |  | 
+ |  |   Torbjorn Sjostrand;  Department of Astronomy and Theoretical Physics,      |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: torbjorn@thep.lu.se                                             |  | 
+ |  |   Peter Skands;  School of Physics and Astronomy,                            |  | 
+ |  |      Monash University, PO Box 27, 3800 Melbourne, Australia;                |  | 
+ |  |      e-mail: peter.skands@monash.edu                                         |  | 
+ |  |   Marius Utheim;  Department of Astronomy and Theoretical Physics,           |  | 
+ |  |      Lund University, Solvegatan 14A, SE-223 62 Lund, Sweden;                |  | 
+ |  |      e-mail: marius.utheim@thep.lu.se                                        |  | 
+ |  |   Rob Verheyen;  Department of Physics and Astronomy,                        |  | 
+ |  |      University College London, Gower St, Bloomsbury, London WC1E 6BT, UK;   |  | 
+ |  |      e-mail: r.verheyen@ucl.ac.uk                                            |  | 
+ |  |                                                                              |  | 
+ |  |   The main program reference is 'An Introduction to PYTHIA 8.2',             |  | 
+ |  |   T. Sjostrand et al, Comput. Phys. Commun. 191 (2015) 159                   |  | 
+ |  |   [arXiv:1410.3012 [hep-ph]]                                                 |  | 
+ |  |                                                                              |  | 
+ |  |   The main physics reference is the 'PYTHIA 6.4 Physics and Manual',         |  | 
+ |  |   T. Sjostrand, S. Mrenna and P. Skands, JHEP05 (2006) 026 [hep-ph/0603175]  |  | 
+ |  |                                                                              |  | 
+ |  |   An archive of program versions and documentation is found on the web:      |  | 
+ |  |   http://www.thep.lu.se/Pythia                                               |  | 
+ |  |                                                                              |  | 
+ |  |   This program is released under the GNU General Public Licence version 2.   |  | 
+ |  |   Please respect the MCnet Guidelines for Event Generator Authors and Users. |  | 
+ |  |                                                                              |  | 
+ |  |   Disclaimer: this program comes without any guarantees.                     |  | 
+ |  |   Beware of errors and use common sense when interpreting results.           |  | 
+ |  |                                                                              |  | 
+ |  |   Copyright (C) 2021 Torbjorn Sjostrand                                      |  | 
+ |  |                                                                              |  | 
+ |  |                                                                              |  | 
+ |  *------------------------------------------------------------------------------*  | 
+ |                                                                                    | 
+ *------------------------------------------------------------------------------------* 
+
+[16:28:24][INFO] Instance 'Pythia8' generator with following parameters
+[16:28:24][INFO] GeneratorPythia8.config : 		[ CODE ]
+GeneratorPythia8.hooksFileName : 		[ CODE ]
+GeneratorPythia8.hooksFuncName : 		[ CODE ]
+
+[16:28:24][INFO] Reading 'Pythia8' base configuration: /root/alice/sw/slc9_x86-64/O2/segment-local1/share/Generators/egconfig/pythia8_hi.cfg
+
+[16:28:24][INFO] Using random seed from gRandom % 900000000: 850176577
+[16:28:24][INFO] Initialising primary generator
+ *------ HeavyIon fitting of SubCollisionModel to cross sections ------* 
+ |                    Total:    87.35 mb      (+-  2%)                 | 
+ |          non-diffractive:    48.52 mb      (+-  2%)                 | 
+ |           XX diffractive:     7.84 mb      (+- 10%)                 | 
+ |       wounded target (B):    62.46 mb      (+-  5%)                 | 
+ |   wounded projectile (A):    62.46 mb      (+-  5%)                 | 
+ |          AXB diffractive:     0.00 mb      not used                 | 
+ |                  elastic:    18.79 mb      (+- 10%)                 | 
+ |          elastic b-slope:    21.10 GeV^-2  not used                 | 
+ |                                                                     | 
+ |     Resulting cross sections (target value)                         | 
+ |                    Total:    87.04 *( 87.35) mb                     | 
+ |          non-diffractive:    48.78 *( 48.52) mb                     | 
+ |           XX diffractive:     8.00 *(  7.84) mb                     | 
+ |       wounded target (B):    62.52 *( 62.46) mb                     | 
+ |   wounded projectile (A):    62.47 *( 62.46) mb                     | 
+ |          AXB diffractive:     0.00  (  0.00) mb                     | 
+ |                  elastic:    18.83 *( 18.79) mb                     | 
+ |          elastic b-slope:    25.10  ( 21.10) GeV^-2                 | 
+ |                 Chi2/Ndf:     0.05                                  | 
+ |                                                                     | 
+ |     Resulting parameters:                                           | 
+ |                        0:    14.82                                  | 
+ |                        1:     1.82                                  | 
+ |                        2:     0.25                                  | 
+ |                                                                     | 
+ |     Resulting non-diffractive average impact parameter:             | 
+ |                      <b>:     1.23 +- 0.01 fm                       | 
+ |                                                                     | 
+ *--- End HeavyIon fitting of parameters in nucleon collision model ---* 
+
+ Angantyr Info: No signal process specified. Assuming minimum bias.
+ Angantyr Info: Initializing minimum bias processes.
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 5.520e+03 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | non-diffractive                                101 |   4.852e+01 |
+ | A B -> A B elastic                             102 |   1.879e+01 |
+ | A B -> X B single diffractive                  103 |   6.101e+00 |
+ | A B -> A X single diffractive                  104 |   6.101e+00 |
+ | A B -> X X double diffractive                  105 |   7.839e+00 |
+ | A B -> A X B central diffractive               106 |   0.000e+00 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Multiparton Interactions Initialization  ---------* 
+ |                                                                  | 
+ |                   sigmaNonDiffractive =    48.52 mb              | 
+ |                                                                  | 
+ |    pT0 =  2.17 gives sigmaInteraction =   219.43 mb: accepted    | 
+ |                                                                  | 
+ *-------  End PYTHIA Multiparton Interactions Initialization  -----* 
+
+ *-------  PYTHIA Multiparton Interactions Initialization  ---------* 
+ |                                                                  | 
+ |                          diffraction XB                          | 
+ |                                                                  | 
+ |   diffractive mass = 1.00e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.56 gives sigmaInteraction =    25.17 mb: accepted    | 
+ |   diffractive mass = 1.63e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.62 gives sigmaInteraction =    24.17 mb: accepted    | 
+ |   diffractive mass = 2.64e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.69 gives sigmaInteraction =    22.19 mb: accepted    | 
+ |   diffractive mass = 4.29e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.76 gives sigmaInteraction =    20.12 mb: accepted    | 
+ |   diffractive mass = 6.98e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.85 gives sigmaInteraction =    18.08 mb: accepted    | 
+ |   diffractive mass = 1.13e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.94 gives sigmaInteraction =    16.95 mb: accepted    | 
+ |   diffractive mass = 1.84e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.04 gives sigmaInteraction =    16.62 mb: accepted    | 
+ |   diffractive mass = 3.00e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.16 gives sigmaInteraction =    17.15 mb: accepted    | 
+ |   diffractive mass = 4.87e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.29 gives sigmaInteraction =    18.93 mb: accepted    | 
+ |   diffractive mass = 7.91e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.43 gives sigmaInteraction =    22.09 mb: accepted    | 
+ |   diffractive mass = 1.29e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.58 gives sigmaInteraction =    25.82 mb: accepted    | 
+ |   diffractive mass = 2.09e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.76 gives sigmaInteraction =    31.10 mb: accepted    | 
+ |   diffractive mass = 3.40e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.95 gives sigmaInteraction =    37.66 mb: accepted    | 
+ |   diffractive mass = 5.52e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =    45.11 mb: accepted    | 
+ |                                                                  | 
+ *-------  End PYTHIA Multiparton Interactions Initialization  -----* 
+ PYTHIA Warning in MultipartonInteractions::init: maximum increased by factor 4.143
+
+ *-------  PYTHIA Multiparton Interactions Initialization  ---------* 
+ |                                                                  | 
+ |                          diffraction AX                          | 
+ |                                                                  | 
+ |   diffractive mass = 1.00e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.56 gives sigmaInteraction =    24.99 mb: accepted    | 
+ |   diffractive mass = 1.63e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.62 gives sigmaInteraction =    23.85 mb: accepted    | 
+ |   diffractive mass = 2.64e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.69 gives sigmaInteraction =    22.06 mb: accepted    | 
+ |   diffractive mass = 4.29e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.76 gives sigmaInteraction =    20.03 mb: accepted    | 
+ |   diffractive mass = 6.98e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.85 gives sigmaInteraction =    18.21 mb: accepted    | 
+ |   diffractive mass = 1.13e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.94 gives sigmaInteraction =    16.95 mb: accepted    | 
+ |   diffractive mass = 1.84e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.04 gives sigmaInteraction =    16.50 mb: accepted    | 
+ |   diffractive mass = 3.00e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.16 gives sigmaInteraction =    17.30 mb: accepted    | 
+ |   diffractive mass = 4.87e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.29 gives sigmaInteraction =    19.03 mb: accepted    | 
+ |   diffractive mass = 7.91e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.43 gives sigmaInteraction =    21.82 mb: accepted    | 
+ |   diffractive mass = 1.29e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.58 gives sigmaInteraction =    25.70 mb: accepted    | 
+ |   diffractive mass = 2.09e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.76 gives sigmaInteraction =    31.17 mb: accepted    | 
+ |   diffractive mass = 3.40e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.95 gives sigmaInteraction =    37.33 mb: accepted    | 
+ |   diffractive mass = 5.52e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =    45.51 mb: accepted    | 
+ |                                                                  | 
+ *-------  End PYTHIA Multiparton Interactions Initialization  -----* 
+
+ *-------  PYTHIA Multiparton Interactions Initialization  ---------* 
+ |                                                                  | 
+ |                          diffraction AXB                         | 
+ |                                                                  | 
+ |   diffractive mass = 1.00e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.56 gives sigmaInteraction =     5.92 mb: rejected    | 
+ |    pT0 =  0.50 gives sigmaInteraction =     8.78 mb: rejected    | 
+ |    pT0 =  0.45 gives sigmaInteraction =    13.25 mb: accepted    | 
+ |   diffractive mass = 1.63e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.62 gives sigmaInteraction =     4.79 mb: rejected    | 
+ |    pT0 =  0.56 gives sigmaInteraction =     7.00 mb: rejected    | 
+ |    pT0 =  0.50 gives sigmaInteraction =    10.26 mb: rejected    | 
+ |    pT0 =  0.45 gives sigmaInteraction =    15.03 mb: accepted    | 
+ |   diffractive mass = 2.64e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.69 gives sigmaInteraction =     3.83 mb: rejected    | 
+ |    pT0 =  0.62 gives sigmaInteraction =     5.45 mb: rejected    | 
+ |    pT0 =  0.56 gives sigmaInteraction =     7.87 mb: rejected    | 
+ |    pT0 =  0.50 gives sigmaInteraction =    11.35 mb: accepted    | 
+ |   diffractive mass = 4.29e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.76 gives sigmaInteraction =     3.11 mb: rejected    | 
+ |    pT0 =  0.69 gives sigmaInteraction =     4.35 mb: rejected    | 
+ |    pT0 =  0.62 gives sigmaInteraction =     6.06 mb: rejected    | 
+ |    pT0 =  0.56 gives sigmaInteraction =     8.61 mb: rejected    | 
+ |    pT0 =  0.50 gives sigmaInteraction =    12.24 mb: accepted    | 
+ |   diffractive mass = 6.98e+01 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.85 gives sigmaInteraction =     2.71 mb: rejected    | 
+ |    pT0 =  0.76 gives sigmaInteraction =     3.61 mb: rejected    | 
+ |    pT0 =  0.69 gives sigmaInteraction =     4.87 mb: rejected    | 
+ |    pT0 =  0.62 gives sigmaInteraction =     6.68 mb: rejected    | 
+ |    pT0 =  0.56 gives sigmaInteraction =     9.29 mb: rejected    | 
+ |    pT0 =  0.50 gives sigmaInteraction =    12.95 mb: accepted    | 
+ |   diffractive mass = 1.13e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  0.94 gives sigmaInteraction =     2.52 mb: rejected    | 
+ |    pT0 =  0.85 gives sigmaInteraction =     3.24 mb: rejected    | 
+ |    pT0 =  0.76 gives sigmaInteraction =     4.20 mb: rejected    | 
+ |    pT0 =  0.69 gives sigmaInteraction =     5.51 mb: rejected    | 
+ |    pT0 =  0.62 gives sigmaInteraction =     7.44 mb: rejected    | 
+ |    pT0 =  0.55 gives sigmaInteraction =    10.10 mb: rejected    | 
+ |    pT0 =  0.50 gives sigmaInteraction =    13.75 mb: accepted    | 
+ |   diffractive mass = 1.84e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.04 gives sigmaInteraction =     2.56 mb: rejected    | 
+ |    pT0 =  0.94 gives sigmaInteraction =     3.16 mb: rejected    | 
+ |    pT0 =  0.84 gives sigmaInteraction =     3.93 mb: rejected    | 
+ |    pT0 =  0.76 gives sigmaInteraction =     4.99 mb: rejected    | 
+ |    pT0 =  0.68 gives sigmaInteraction =     6.41 mb: rejected    | 
+ |    pT0 =  0.62 gives sigmaInteraction =     8.27 mb: rejected    | 
+ |    pT0 =  0.55 gives sigmaInteraction =    10.93 mb: rejected    | 
+ |    pT0 =  0.50 gives sigmaInteraction =    14.80 mb: accepted    | 
+ |   diffractive mass = 3.00e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.16 gives sigmaInteraction =     2.77 mb: rejected    | 
+ |    pT0 =  1.04 gives sigmaInteraction =     3.33 mb: rejected    | 
+ |    pT0 =  0.94 gives sigmaInteraction =     4.02 mb: rejected    | 
+ |    pT0 =  0.84 gives sigmaInteraction =     4.88 mb: rejected    | 
+ |    pT0 =  0.76 gives sigmaInteraction =     5.99 mb: rejected    | 
+ |    pT0 =  0.68 gives sigmaInteraction =     7.46 mb: rejected    | 
+ |    pT0 =  0.62 gives sigmaInteraction =     9.45 mb: rejected    | 
+ |    pT0 =  0.55 gives sigmaInteraction =    12.30 mb: accepted    | 
+ |   diffractive mass = 4.87e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.29 gives sigmaInteraction =     3.12 mb: rejected    | 
+ |    pT0 =  1.16 gives sigmaInteraction =     3.71 mb: rejected    | 
+ |    pT0 =  1.04 gives sigmaInteraction =     4.37 mb: rejected    | 
+ |    pT0 =  0.94 gives sigmaInteraction =     5.17 mb: rejected    | 
+ |    pT0 =  0.84 gives sigmaInteraction =     6.08 mb: rejected    | 
+ |    pT0 =  0.76 gives sigmaInteraction =     7.29 mb: rejected    | 
+ |    pT0 =  0.68 gives sigmaInteraction =     8.82 mb: rejected    | 
+ |    pT0 =  0.61 gives sigmaInteraction =    10.96 mb: rejected    | 
+ |    pT0 =  0.55 gives sigmaInteraction =    13.73 mb: accepted    | 
+ |   diffractive mass = 7.91e+02 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.43 gives sigmaInteraction =     3.62 mb: rejected    | 
+ |    pT0 =  1.28 gives sigmaInteraction =     4.22 mb: rejected    | 
+ |    pT0 =  1.16 gives sigmaInteraction =     4.94 mb: rejected    | 
+ |    pT0 =  1.04 gives sigmaInteraction =     5.68 mb: rejected    | 
+ |    pT0 =  0.94 gives sigmaInteraction =     6.59 mb: rejected    | 
+ |    pT0 =  0.84 gives sigmaInteraction =     7.75 mb: rejected    | 
+ |    pT0 =  0.76 gives sigmaInteraction =     8.97 mb: rejected    | 
+ |    pT0 =  0.68 gives sigmaInteraction =    10.57 mb: rejected    | 
+ |    pT0 =  0.61 gives sigmaInteraction =    12.86 mb: accepted    | 
+ |   diffractive mass = 1.29e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.58 gives sigmaInteraction =     4.16 mb: rejected    | 
+ |    pT0 =  1.43 gives sigmaInteraction =     4.86 mb: rejected    | 
+ |    pT0 =  1.28 gives sigmaInteraction =     5.63 mb: rejected    | 
+ |    pT0 =  1.15 gives sigmaInteraction =     6.41 mb: rejected    | 
+ |    pT0 =  1.04 gives sigmaInteraction =     7.43 mb: rejected    | 
+ |    pT0 =  0.94 gives sigmaInteraction =     8.45 mb: rejected    | 
+ |    pT0 =  0.84 gives sigmaInteraction =     9.63 mb: rejected    | 
+ |    pT0 =  0.76 gives sigmaInteraction =    11.16 mb: accepted    | 
+ |   diffractive mass = 2.09e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.76 gives sigmaInteraction =     4.79 mb: rejected    | 
+ |    pT0 =  1.58 gives sigmaInteraction =     5.54 mb: rejected    | 
+ |    pT0 =  1.42 gives sigmaInteraction =     6.45 mb: rejected    | 
+ |    pT0 =  1.28 gives sigmaInteraction =     7.46 mb: rejected    | 
+ |    pT0 =  1.15 gives sigmaInteraction =     8.32 mb: rejected    | 
+ |    pT0 =  1.04 gives sigmaInteraction =     9.54 mb: rejected    | 
+ |    pT0 =  0.93 gives sigmaInteraction =    10.77 mb: rejected    | 
+ |    pT0 =  0.84 gives sigmaInteraction =    12.22 mb: accepted    | 
+ |   diffractive mass = 3.40e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  1.95 gives sigmaInteraction =     5.45 mb: rejected    | 
+ |    pT0 =  1.76 gives sigmaInteraction =     6.34 mb: rejected    | 
+ |    pT0 =  1.58 gives sigmaInteraction =     7.36 mb: rejected    | 
+ |    pT0 =  1.42 gives sigmaInteraction =     8.38 mb: rejected    | 
+ |    pT0 =  1.28 gives sigmaInteraction =     9.58 mb: rejected    | 
+ |    pT0 =  1.15 gives sigmaInteraction =    10.76 mb: rejected    | 
+ |    pT0 =  1.04 gives sigmaInteraction =    12.07 mb: accepted    | 
+ |   diffractive mass = 5.52e+03 GeV and sigmaNorm =    10.00 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =     6.09 mb: rejected    | 
+ |    pT0 =  1.95 gives sigmaInteraction =     7.16 mb: rejected    | 
+ |    pT0 =  1.75 gives sigmaInteraction =     8.36 mb: rejected    | 
+ |    pT0 =  1.58 gives sigmaInteraction =     9.51 mb: rejected    | 
+ |    pT0 =  1.42 gives sigmaInteraction =    10.75 mb: rejected    | 
+ |    pT0 =  1.28 gives sigmaInteraction =    11.99 mb: accepted    | 
+ |                                                                  | 
+ *-------  End PYTHIA Multiparton Interactions Initialization  -----* 
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | Beams:eA                                      |                 2760.000 |     7000.000         0.0             | 
+ | Beams:eB                                      |                 2760.000 |     7000.000         0.0             | 
+ | Beams:eCM                                     |                 5520.000 |    14000.000         0.0             | 
+ | Beams:frameType                               |                        2 |            1           1           5 | 
+ | HadronLevel:all                               |                      off |           on                         | 
+ | HeavyIon:bWidth                               |                 15.00000 |          0.0         0.0             | 
+ | HeavyIon:SigFitDefPar                         |                 14.82000 |     17.24000                         | 
+ |                                               |                  1.82000 |      2.15000                         | 
+ |                                               |                  0.25000 |      0.33000                         | 
+ |                                               |                      0.0 |          0.0                         | 
+ |                                               |                      0.0 |          0.0                         | 
+ |                                               |                      0.0 |          0.0                         | 
+ |                                               |                      0.0 |          0.0                         | 
+ |                                               |                      0.0 |          0.0                         | 
+ | HeavyIon:SigFitNGen                           |                        0 |           20           0             | 
+ | Next:numberCount                              |                        0 |         1000           0             | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowLHA                            |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | ParticleDecays:limitTau0                      |                       on |          off                         | 
+ | Random:seed                                   |                850176577 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ | SoftQCD:all                                   |                       on |          off                         | 
+ | Tune:ee                                       |                        0 |            7          -1           7 | 
+ | Tune:pp                                       |                        0 |           14          -1          34 | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+
+ --------  PYTHIA Particle Data Table (changed only)  ------------------------------------------------------------------------------
+ 
+      id   name            antiName         spn chg col      m0        mWidth      mMin       mMax       tau0    res dec ext vis wid
+             no onMode   bRatio   meMode     products 
+
+ no particle data has been changed from its default value 
+
+ --------  End PYTHIA Particle Data Table  -----------------------------------------------------------------------------------------
+
+ Angantyr Info: Initializing secondary absorptive processes as single diffraction..
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 5.520e+03 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | A B -> X B single diffractive                  103 |   6.101e+00 |
+ | A B -> A X single diffractive                  104 |   6.101e+00 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Multiparton Interactions Initialization  ---------* 
+ |                                                                  | 
+ |                   sigmaNonDiffractive =    48.52 mb              | 
+ |                                                                  | 
+ |    pT0 =  2.17 gives sigmaInteraction =   218.88 mb: accepted    | 
+ |                                                                  | 
+ *-------  End PYTHIA Multiparton Interactions Initialization  -----* 
+
+ *-------  PYTHIA Multiparton Interactions Initialization  ---------* 
+ |                                                                  | 
+ |                          diffraction XB                          | 
+ |                                                                  | 
+ |   diffractive mass = 1.00e+01 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =    16.30 mb: rejected    | 
+ |    pT0 =  1.95 gives sigmaInteraction =    25.76 mb: rejected    | 
+ |    pT0 =  1.75 gives sigmaInteraction =    40.27 mb: rejected    | 
+ |    pT0 =  1.58 gives sigmaInteraction =    62.83 mb: accepted    | 
+ |   diffractive mass = 1.63e+01 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =    21.99 mb: rejected    | 
+ |    pT0 =  1.95 gives sigmaInteraction =    33.93 mb: rejected    | 
+ |    pT0 =  1.75 gives sigmaInteraction =    51.36 mb: rejected    | 
+ |    pT0 =  1.58 gives sigmaInteraction =    78.73 mb: accepted    | 
+ |   diffractive mass = 2.64e+01 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =    28.83 mb: rejected    | 
+ |    pT0 =  1.95 gives sigmaInteraction =    43.04 mb: rejected    | 
+ |    pT0 =  1.75 gives sigmaInteraction =    63.63 mb: accepted    | 
+ |   diffractive mass = 4.29e+01 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =    38.50 mb: rejected    | 
+ |    pT0 =  1.95 gives sigmaInteraction =    54.78 mb: accepted    | 
+ |   diffractive mass = 6.98e+01 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =    51.00 mb: rejected    | 
+ |    pT0 =  1.95 gives sigmaInteraction =    71.02 mb: accepted    | 
+ |   diffractive mass = 1.13e+02 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =    67.50 mb: accepted    | 
+ |   diffractive mass = 1.84e+02 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =    85.76 mb: accepted    | 
+ |   diffractive mass = 3.00e+02 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =   107.40 mb: accepted    | 
+ |   diffractive mass = 4.87e+02 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =   129.71 mb: accepted    | 
+ |   diffractive mass = 7.91e+02 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =   152.03 mb: accepted    | 
+ |   diffractive mass = 1.29e+03 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =   172.26 mb: accepted    | 
+ |   diffractive mass = 2.09e+03 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =   189.76 mb: accepted    | 
+ |   diffractive mass = 3.40e+03 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =   199.49 mb: accepted    | 
+ |   diffractive mass = 5.52e+03 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =   201.99 mb: accepted    | 
+ |                                                                  | 
+ *-------  End PYTHIA Multiparton Interactions Initialization  -----* 
+ PYTHIA Warning in MultipartonInteractions::init: maximum increased by factor 2.435
+
+ *-------  PYTHIA Multiparton Interactions Initialization  ---------* 
+ |                                                                  | 
+ |                          diffraction AX                          | 
+ |                                                                  | 
+ |   diffractive mass = 1.00e+01 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =    16.36 mb: rejected    | 
+ |    pT0 =  1.95 gives sigmaInteraction =    25.51 mb: rejected    | 
+ |    pT0 =  1.75 gives sigmaInteraction =    40.15 mb: rejected    | 
+ |    pT0 =  1.58 gives sigmaInteraction =    62.59 mb: accepted    | 
+ |   diffractive mass = 1.63e+01 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =    22.08 mb: rejected    | 
+ |    pT0 =  1.95 gives sigmaInteraction =    33.75 mb: rejected    | 
+ |    pT0 =  1.75 gives sigmaInteraction =    51.09 mb: rejected    | 
+ |    pT0 =  1.58 gives sigmaInteraction =    78.76 mb: accepted    | 
+ |   diffractive mass = 2.64e+01 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =    28.77 mb: rejected    | 
+ |    pT0 =  1.95 gives sigmaInteraction =    42.72 mb: rejected    | 
+ |    pT0 =  1.75 gives sigmaInteraction =    63.52 mb: accepted    | 
+ |   diffractive mass = 4.29e+01 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =    38.53 mb: rejected    | 
+ |    pT0 =  1.95 gives sigmaInteraction =    54.98 mb: accepted    | 
+ |   diffractive mass = 6.98e+01 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =    51.08 mb: rejected    | 
+ |    pT0 =  1.95 gives sigmaInteraction =    70.21 mb: accepted    | 
+ |   diffractive mass = 1.13e+02 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =    67.42 mb: accepted    | 
+ |   diffractive mass = 1.84e+02 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =    86.69 mb: accepted    | 
+ |   diffractive mass = 3.00e+02 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =   107.84 mb: accepted    | 
+ |   diffractive mass = 4.87e+02 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =   130.88 mb: accepted    | 
+ |   diffractive mass = 7.91e+02 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =   151.97 mb: accepted    | 
+ |   diffractive mass = 1.29e+03 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =   174.13 mb: accepted    | 
+ |   diffractive mass = 2.09e+03 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =   188.81 mb: accepted    | 
+ |   diffractive mass = 3.40e+03 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =   199.98 mb: accepted    | 
+ |   diffractive mass = 5.52e+03 GeV and sigmaNorm =    48.52 mb    | 
+ |    pT0 =  2.17 gives sigmaInteraction =   202.45 mb: accepted    | 
+ |                                                                  | 
+ *-------  End PYTHIA Multiparton Interactions Initialization  -----* 
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | Beams:eA                                      |                 2760.000 |     7000.000         0.0             | 
+ | Beams:eB                                      |                 2760.000 |     7000.000         0.0             | 
+ | Beams:eCM                                     |                 5520.000 |    14000.000         0.0             | 
+ | Beams:frameType                               |                        2 |            1           1           5 | 
+ | Diffraction:mRefPomP                          |                 5520.000 |    100.00000     1.00000             | 
+ | Diffraction:sigmaRefPomP                      |                 48.51976 |     10.00000     2.00000    40.00000 | 
+ | HadronLevel:all                               |                      off |           on                         | 
+ | HeavyIon:bWidth                               |                 15.00000 |          0.0         0.0             | 
+ | HeavyIon:SigFitDefPar                         |                 14.82000 |     17.24000                         | 
+ |                                               |                  1.82000 |      2.15000                         | 
+ |                                               |                  0.25000 |      0.33000                         | 
+ |                                               |                      0.0 |          0.0                         | 
+ |                                               |                      0.0 |          0.0                         | 
+ |                                               |                      0.0 |          0.0                         | 
+ |                                               |                      0.0 |          0.0                         | 
+ |                                               |                      0.0 |          0.0                         | 
+ | HeavyIon:SigFitNGen                           |                        0 |           20           0             | 
+ | MultipartonInteractions:ecmPow                |                      0.0 |      0.21500         0.0     0.50000 | 
+ | MultipartonInteractions:ecmRef                |                 5520.000 |     7000.000     1.00000             | 
+ | MultipartonInteractions:pT0Ref                |                  2.16648 |      2.28000     0.50000    10.00000 | 
+ | Next:numberCount                              |                        0 |         1000           0             | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowLHA                            |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | ParticleDecays:limitTau0                      |                       on |          off                         | 
+ | PDF:PomSet                                    |                       11 |            6                         | 
+ | Random:seed                                   |                850176577 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ | SoftQCD:singleDiffractive                     |                       on |          off                         | 
+ | Tune:ee                                       |                        0 |            7          -1           7 | 
+ | Tune:pp                                       |                        0 |           14          -1          34 | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+
+ --------  PYTHIA Particle Data Table (changed only)  ------------------------------------------------------------------------------
+ 
+      id   name            antiName         spn chg col      m0        mWidth      mMin       mMax       tau0    res dec ext vis wid
+             no onMode   bRatio   meMode     products 
+
+ no particle data has been changed from its default value 
+
+ --------  End PYTHIA Particle Data Table  -----------------------------------------------------------------------------------------
+
+ Angantyr Info: Initializing hadronisation processes.
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | Beams:eA                                      |                 2760.000 |     7000.000         0.0             | 
+ | Beams:eB                                      |                 2760.000 |     7000.000         0.0             | 
+ | Beams:eCM                                     |                 5520.000 |    14000.000         0.0             | 
+ | Beams:frameType                               |                        2 |            1           1           5 | 
+ | Beams:idA                                     |               1000822080 |         2212                         | 
+ | Beams:idB                                     |               1000822080 |         2212                         | 
+ | HeavyIon:bWidth                               |                 15.00000 |          0.0         0.0             | 
+ | HeavyIon:SigFitDefPar                         |                 14.82000 |     17.24000                         | 
+ |                                               |                  1.82000 |      2.15000                         | 
+ |                                               |                  0.25000 |      0.33000                         | 
+ |                                               |                      0.0 |          0.0                         | 
+ |                                               |                      0.0 |          0.0                         | 
+ |                                               |                      0.0 |          0.0                         | 
+ |                                               |                      0.0 |          0.0                         | 
+ |                                               |                      0.0 |          0.0                         | 
+ | HeavyIon:SigFitNGen                           |                        0 |           20           0             | 
+ | Next:numberCount                              |                        0 |         1000           0             | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowLHA                            |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | ParticleDecays:limitTau0                      |                       on |          off                         | 
+ | PartonLevel:all                               |                      off |           on                         | 
+ | ProcessLevel:all                              |                      off |           on                         | 
+ | Random:seed                                   |                850176577 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ | Tune:ee                                       |                        0 |            7          -1           7 | 
+ | Tune:pp                                       |                        0 |           14          -1          34 | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+
+ --------  PYTHIA Particle Data Table (changed only)  ------------------------------------------------------------------------------
+ 
+      id   name            antiName         spn chg col      m0        mWidth      mMin       mMax       tau0    res dec ext vis wid
+             no onMode   bRatio   meMode     products 
+
+ no particle data has been changed from its default value 
+
+ --------  End PYTHIA Particle Data Table  -----------------------------------------------------------------------------------------
+
+[16:28:44][INFO] Generator initialization took 20.65s
+[16:28:44][INFO] Event generation started 
+[16:28:44][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[16:28:44][INFO] Sampled interacting vertex (-0.0102191,0.0111093,-1.21062)
+Warning in <TParticle::SetPdgCode>: PDG code 1000822080 unknown from TDatabasePDG
+Warning in <TParticle::SetPdgCode>: PDG code 1000822080 unknown from TDatabasePDG
+Warning in <TParticle::SetPdgCode>: PDG code 1000822079 unknown from TDatabasePDG
+Warning in <TParticle::SetPdgCode>: PDG code 1000822079 unknown from TDatabasePDG
+Warning in <TParticle::SetPdgCode>: PDG code 1000822080 unknown from TDatabasePDG
+Warning in <TParticle::SetPdgCode>: PDG code 1000822080 unknown from TDatabasePDG
+[16:28:44][WARN] Particle to be tracked is not defined in PDG: pdg = 1000822079
+Warning in <TParticle::SetPdgCode>: PDG code 1000822079 unknown from TDatabasePDG
+[16:28:44][WARN] Particle to be tracked is not defined in PDG: pdg = 1000822079
+Warning in <TParticle::SetPdgCode>: PDG code 1000822079 unknown from TDatabasePDG
+[16:28:44][INFO] Event generation took 0.07s and produced 25 primaries 
+[16:28:44][INFO] GENEVENT CHANGING STATE TO SERVING
+[16:28:44][INFO] ASSIGNED PIPE HANDLE 11
+[16:28:44][INFO] INITTASK CHANGING STATE TO SERVING
+[16:28:44][STATE] INITIALIZING TASK ---> READY
+[16:28:44][STATE] READY ---> RUNNING
+[16:28:44][INFO] fair::mq::Device running...
+[16:28:44][INFO] INFO REQUEST RECEIVED
+[16:28:44][INFO] Received config request
+[16:28:44][INFO] config reply send 
+[16:28:45][INFO] INFO REQUEST RECEIVED
+[16:28:45][INFO] Received config request
+[16:28:45][INFO] config reply send 
+[16:29:00][INFO] Sending 25 particles
+[16:29:00][INFO] treating ev 1 part 1 out of 1
+[16:29:00][INFO] CONDRUN CHANGING STATE TO STOPPED
+[16:29:00][INFO] Waiting info thread
+[16:29:01][STATE] RUNNING ---> READY
+[16:29:01][STATE] READY ---> RESETTING TASK
+[16:29:01][STATE] RESETTING TASK ---> DEVICE READY
+[16:29:01][STATE] DEVICE READY ---> RESETTING DEVICE
+[16:29:01][STATE] RESETTING DEVICE ---> IDLE
+[16:29:01][STATE] IDLE ---> EXITING
+[16:29:01][STATE] Exiting FairMQ state machine
+ding 500 particles
+[16:28:00][INFO] treating ev 1 part 5 out of 261
+[16:28:06][INFO] Sending 500 particles
+[16:28:06][INFO] treating ev 1 part 6 out of 261
+[16:28:08][INFO] Sending 500 particles
+[16:28:08][INFO] treating ev 1 part 7 out of 261
+[16:28:08][INFO] Sending 500 particles
+[16:28:08][INFO] treating ev 1 part 8 out of 261
+[16:28:09][INFO] Sending 500 particles
+[16:28:09][INFO] treating ev 1 part 9 out of 261
+[16:28:10][INFO] Sending 500 particles
+[16:28:10][INFO] treating ev 1 part 10 out of 261
+[16:28:14][INFO] Sending 500 particles
+[16:28:14][INFO] treating ev 1 part 11 out of 261
+[16:28:14][INFO] Sending 500 particles
+[16:28:14][INFO] treating ev 1 part 12 out of 261
+[16:28:15][INFO] Sending 500 particles
+[16:28:15][INFO] treating ev 1 part 13 out of 261
+[16:28:15][INFO] Sending 500 particles
+[16:28:15][INFO] treating ev 1 part 14 out of 261

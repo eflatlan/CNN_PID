@@ -1,0 +1,62 @@
+[16:28:44][INFO] 
+      ______      _    _______  _________ 
+     / ____/___ _(_)_______   |/  /_  __ \    version 1.8.0
+    / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+   / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+  /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+
+[16:28:44][STATE] Starting FairMQ state machine --> IDLE
+[16:28:44][WARN] Signal handling (e.g. Ctrl-C) has been deactivated.
+[16:28:44][STATE] IDLE ---> INITIALIZING DEVICE
+[16:28:44][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[16:28:44][STATE] INITIALIZED ---> BINDING
+[16:28:44][STATE] BINDING ---> BOUND
+[16:28:44][STATE] BOUND ---> CONNECTING
+[16:28:44][STATE] CONNECTING ---> DEVICE READY
+[16:28:44][STATE] DEVICE READY ---> INITIALIZING TASK
+[16:28:44][INFO] INIT HIT MERGER
+[16:28:45][INFO] Waiting for configuration answer 
+[16:28:45][INFO] Configuration answer received, containing 1032 bytes 
+[16:28:45][INFO] COMMUNICATED ENGINE TGeant3
+[16:28:45][INFO] L# 0 Phi:16.42 R:2.34 Nst:12 Nunit:9 W:1.5 Tilt:17.503 Lthick:0.005 Dthick:0.003 DetID:0 B:0
+[16:28:45][INFO] L# 1 Phi:12.18 R:3.15 Nst:16 Nunit:9 W:1.5 Tilt:17.9445 Lthick:0.005 Dthick:0.003 DetID:0 B:0
+[16:28:45][INFO] L# 2 Phi:9.55 R:3.93 Nst:20 Nunit:9 W:1.5 Tilt:16.9423 Lthick:0.005 Dthick:0.003 DetID:0 B:0
+[16:28:45][INFO] L# 3 Phi:7.5 R:19.45 Nst:24 Nunit:4 Lthick:0.01 Dthick:0.003 DetID:0 B:0
+[16:28:45][INFO] L# 4 Phi:6 R:24.4 Nst:30 Nunit:4 Lthick:0.01 Dthick:0.003 DetID:0 B:0
+[16:28:45][INFO] L# 5 Phi:4.29 R:34.24 Nst:42 Nunit:7 Lthick:0.01 Dthick:0.003 DetID:0 B:0
+[16:28:45][INFO] L# 6 Phi:3.75 R:39.2 Nst:48 Nunit:7 Lthick:0.01 Dthick:0.003 DetID:0 B:0
+[16:28:45][INFO] o2::emcal::Geometry::GetInstanceFromRunNumber() - Initialized geometry with name <<EMCAL_COMPLETE12SMV1_DCAL_8SM>>
+ Image initialized with 44 x 44 pixels  Image initialized with 56 x 30 pixels [16:28:45][INFO] FastSim module disabled
+[16:28:45][WARN]  O2HitMerger: Some Detectors are potentially missing in this initialization 
+[16:28:45][INFO] OCCUPYING A SEGMENT IN A SHARED REGION
+[16:28:45][INFO] FOUND ID TO ATTACH 5
+[16:28:45][INFO] TRYING ADDRESS 0x7fed17fff000
+[16:28:45][INFO] ASSIGNED PIPE HANDLE 13
+[16:28:45][STATE] INITIALIZING TASK ---> READY
+[16:28:45][STATE] READY ---> RUNNING
+[16:28:45][INFO] fair::mq::Device running...
+[16:29:05][INFO] SIMDATA channel got 68 parts for event 1 part 1 out of 1
+[16:29:05][INFO] Event 1 complete. Marking as flushable
+[16:29:05][INFO] ALL EVENTS HERE; CHECKSUM 1
+[16:29:05][INFO] Launching merge kernel 
+[16:29:05][INFO] Merge and flush event 1
+HitMerger entry: 0 nprimry:    25 trackoffset:  1160 
+[16:29:05][INFO] flushing tree to file o2sim_HitsITS.root
+[16:29:05][INFO] flushing tree to file o2sim_HitsTPC.root
+[16:29:05][INFO] flushing tree to file o2sim_HitsTRD.root
+[16:29:05][INFO] flushing tree to file o2sim_HitsTOF.root
+[16:29:05][INFO] flushing tree to file o2sim_HitsPHS.root
+[16:29:05][INFO] flushing tree to file o2sim_HitsCPV.root
+[16:29:05][INFO] flushing tree to file o2sim_HitsEMC.root
+[16:29:05][INFO] flushing tree to file o2sim_HitsHMP.root
+[16:29:05][INFO] flushing tree to file o2sim_HitsMFT.root
+[16:29:05][INFO] flushing tree to file o2sim_HitsMCH.root
+[16:29:05][INFO] flushing tree to file o2sim_HitsMID.root
+[16:29:05][INFO] flushing tree to file o2sim_HitsZDC.root
+[16:29:05][INFO] flushing tree to file o2sim_HitsFT0.root
+[16:29:05][INFO] flushing tree to file o2sim_HitsFV0.root
+[16:29:05][INFO] flushing tree to file o2sim_HitsFDD.root
+[16:29:05][INFO] outtree has file o2sim_Kine.root
+[16:29:05][INFO] Merge/flush for event 1 took 0.115569
+[16:29:05][INFO] Writing TTrees
+[16:29:05][INFO] Launching merge kernel 
