@@ -171,7 +171,7 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
         std::cerr << "Warning: iCh value out of expected range: " << iCh
                   << std::endl;
       } else {
-        if (obj.getreeMatchStatus()) {
+        if (obj.getMatchStatus()) {
           sortedTracks[iCh].push_back(obj);
         } ;
       }
@@ -188,26 +188,22 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
     std::vector<o2::hmpid::ClusterCandidate> sortedClusters[7];
 
     // Assign ClusterCandidate objects to corresponding vectors based on iCh value
-    for (const auto &obj : oneEvenClusters) {
+    for (const auto &cluster : oneEvenClusters) {
 
       // from each track; we assign a label to each of the clusters in
       // corresponding to the type of hadron it can be
-      const auto &iCh = obj.ch();
+      const auto &iCh = cluster.ch();
+      auto& clusterInChamber =  sortedClusters[iCh];
       if (iCh >= 0 && iCh <= 6) {
+
+        // if there is matched tracks for the chamber fill clusters for chamber 
         if (sortedTracks[iCh].size() > 0) {
 
-          // const std::vector<o2::hmpid::Cluster::Topology>& topology =
-          // obj.getreeClusterTopology();  // some info about digits associated w
-          // cluster*/
+          o2::hmpid::ClusterCandidate cluCandidate(cluster.ch(), cluster.x(), cluster.y(), cluster.q(),
+                                           cluster.chi2(), cluster.xe(), cluster.ye(),
+                                           cluster.getPDG(), cluster.size());
 
-          // std::vector<std::pair<int,int>> candStatus;
-          // candStatus.resize(sortedTracks[iCh].size()); // should now be
-          // initialized to (0,0) x numTracks
-          //  Printf("ClusterCandidate Ch %d", iCh);
-          o2::hmpid::ClusterCandidate temp(obj.ch(), obj.x(), obj.y(), obj.q(),
-                                           obj.chi2(), obj.xe(), obj.ye(),
-                                           obj.getPDG(), obj.size());
-          sortedClusters[iCh].emplace_back(temp);
+          clusterInChamber.emplace_back(cluCandidate);
         } 
       } 
     } // end of loop over clusters in the trigger
@@ -227,13 +223,16 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
       // std::vector<o2::hmpid::ClusterCandidate> clusterPerChamber
       auto &clusterPerChamber = sortedClusters[i];
 
-      std::vector<float> mipCharges;
       // fill charges of MIPs
+
+      /*
+      std::vector<float> mipCharges;
+
       for (const auto &track : sortedTracks[i]) {
 
         auto q = track.getMipClusQ();
         mipCharges.emplace_back(q);
-      }
+      }*/
 
       int tNum = 0;
       for (const auto &track : sortedTracks[i]) {
@@ -249,7 +248,7 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
         // of the photons, this is a vector of length of sortedTracks[i].size();
         // and holds the fields
 
-        if (track.getreeMatchStatus()) {
+        if (track.getMatchStatus()) {
           const auto mcTrackIndex = track.getTrackIndex();
 
           // find the PDG code in teh o2Kine_sim.root file by matching the
@@ -288,8 +287,10 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
           // mcTradckPDG : MC truth
           //
           int pdg = track.getMipClusEventPDG();
-          evaluateClusterTrack(clusterPerChamber, track, mipCharges, pdg, tNum,
-                               plotNumber);
+          
+          // ikke call denne, istedet run updateH5.C 
+          //evaluateClusterTrack(clusterPerChamber, track, mipCharges, pdg, tNum,
+          //                     plotNumber);
 
           // saving...
           // branch : mcTrackPdg
@@ -441,7 +442,7 @@ void evaluateClusterTrack(
   //  std::array<float, 3> ckovHyps, float trackCkov, int eventCnt)
   // ef: TODO use MIP to get radius and phi in CkovTools:
   auto ckovAngle = 0.;
-
+  /*
   CkovTools ckovTools(radParams, refIndexes, MIP, ckovHypsMin, ckovHypsMax,
                       ckovAngle, eventCnt, mcTrackPdg, sigmaSep);
 
@@ -450,14 +451,12 @@ void evaluateClusterTrack(
          eventCnt, ckovTools.getMinCkovPion(), ckovTools.getMaxCkovPion(),
          ckovTools.getMinCkovKaon(), ckovTools.getMaxCkovKaon(),
          ckovTools.getMinCkovProton(), ckovTools.getMaxCkovProton(), eventCnt);
+  */
 
   // only consider if adequate momentum?
   // LOGP(info, "Momentum {} ckovHyps {} {} {}", ckov[0], ckov[1], ckov[2]);
 
-  if (TMath::IsNaN(ckovHypsMax[0])) {
-    Printf("was isnan!!!");
-    return;
-  }
+
   // numBackgroundPhotons, numFoundActualCkov, numActualCkov,
   // numBackgroundLabeledCkov
   std::array<int, 4> arrayInfo;
@@ -465,9 +464,9 @@ void evaluateClusterTrack(
 
   // mcTrackPdg check that it matches with clusterPDG?
   //
-  ckovTools.segment(clusterPerChamber, arrayInfo, track.getTrackIndex(),
-                    mipCharges, xMip, yMip, q /*MIP-charge*/, mcTrackPdg, track,
-                    trackNumber, plotNumber); // temp --> mapBins
+  /*  ckovTools.segment(clusterPerChamber, arrayInfo, track.getTrackIndex(),
+                    xMip, yMip, q /* MIP-charge* /, mcTrackPdg, track,
+                    trackNumber, plotNumber); // temp --> mapBins*/
 }
 
 const float mass_Pion = 0.1396, mass_Kaon = 0.4937,
@@ -476,6 +475,8 @@ std::array<float, 3> masses = {mass_Pion, mass_Kaon, mass_Proton};
 const float mass_Pion_sq = mass_Pion * mass_Pion,
             mass_Kaon_sq = mass_Kaon * mass_Kaon,
             mass_Proton_sq = mass_Proton * mass_Proton;
+
+
 std::array<float, 3> calcCherenkovHyp(float p, float n) {
   const float p_sq = p * p;
   const float cos_ckov_denom = p * n;
