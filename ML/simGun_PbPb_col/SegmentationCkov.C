@@ -135,7 +135,11 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
 
     // Read Information from  ROOT files:
     // 1
-    std::vector<o2::dataformats::MatchInfoHMP> *tracksOneEvent =
+    
+    LOGP(info, "now reading ReadMatch");
+    
+    
+    std::vector<o2::dataformats::MatchInfoHMP> tracksOneEvent =
         HmpidDataReader::readMatch(treeMatch, matchArr, i, startIndexTrack);
 
     // get MC tracks for given event from mc;
@@ -144,22 +148,23 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
            eventNumberFirstClu);
     std::vector<o2::MCTrack> *mcTracks =
         HmpidDataReader::readMC(mcArr, tMcTrack, eventNumberFirstClu); */ 
-
+		/*
 		if(!tracksOneEvent) {
+		    Printf("tracksOneEvent nullptr");
     	continue;
-		}	
+		}	*/ 
 
-    Printf("tracksOneEvent size %zu", tracksOneEvent->size());
+    Printf("tracksOneEvent size %zu", tracksOneEvent.size());
 	
 
 	
-    if(tracksOneEvent->size() < 1) {
+    if(tracksOneEvent.size() < 1) {
     	continue;
     }
 
 
     // sort the tracksOneEvent vector based on chamber number
-    std::sort((*tracksOneEvent).begin(), (*tracksOneEvent).end(),
+    std::sort((tracksOneEvent).begin(), (tracksOneEvent).end(),
               [](const o2::dataformats::MatchInfoHMP &a,
                  const o2::dataformats::MatchInfoHMP &b) {
                 return a.getChamber() < b.getChamber();
@@ -173,7 +178,7 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
 
     std::vector<o2::dataformats::MatchInfoHMP> sortedTracks[7];
     // Assign MatchInfoHMP objects to corresponding vectors based on iCh value
-    for (const auto &obj : *tracksOneEvent) {
+    for (const auto &obj : tracksOneEvent) {
       const auto &iCh = obj.getChamber();
       if (iCh < 0 || iCh > 6) {
         std::cerr << "Warning: iCh value out of expected range: " << iCh

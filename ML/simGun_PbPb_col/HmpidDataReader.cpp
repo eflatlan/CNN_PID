@@ -72,7 +72,7 @@ public:
   initializeMatchTree(std::vector<o2::dataformats::MatchInfoHMP> *&matchArr,
                       int eventID, int trackID, int pdg);
 
-  static std::vector<o2::dataformats::MatchInfoHMP> *
+  static std::vector<o2::dataformats::MatchInfoHMP>
   readMatch(TTree *tMatch, std::vector<o2::dataformats::MatchInfoHMP> *matchArr,
             int eventID, int &startIndex);
   static TTree *initializeClusterTree(
@@ -90,11 +90,21 @@ public:
 TTree *HmpidDataReader::initializeMatchTree(
     std::vector<o2::dataformats::MatchInfoHMP> *&matchArr, int eventID,
     int trackID, int pdg) {
-  TFile *fMatch = new TFile("o2match_hmp.root");
-  TTree *tMatch = (TTree *)fMatch->Get("matchHMP");
+    
+    
+	TFile *fMatch = TFile::Open("o2match_hmp.root", "READ");
 
+	if (!fMatch || fMatch->IsZombie()) {
+	    return nullptr;
+	}    
+  else {
+    LOGP(info, "found o2matchhmp");
+  }
+  
+  TTree *tMatch = (TTree *)fMatch->Get("matchHMP");
   if (!tMatch)
     tMatch = (TTree *)fMatch->Get("o2hmp");
+    
   if (!tMatch)
     tMatch = (TTree *)fMatch->Get("o2sim");
 
@@ -107,24 +117,31 @@ TTree *HmpidDataReader::initializeMatchTree(
     return nullptr;
   }
 
+  
   return tMatch;
 }
 
 // eventId = eventID to be searched for;
 // startIndex : index of where matchArr is to be searched
 // newStartIndex startIndex for next event
-std::vector<o2::dataformats::MatchInfoHMP> *
+std::vector<o2::dataformats::MatchInfoHMP> 
 HmpidDataReader::readMatch(TTree *tMatch,
                            std::vector<o2::dataformats::MatchInfoHMP> *matchArr,
                            int eventID, int &startIndex) {
+               
+               
+    Printf("Call HmpidDataReader::readMatch");                           
+	std::vector<o2::dataformats::MatchInfoHMP> filteredMatches;// = new std::vector<o2::dataformats::MatchInfoHMP>;                           
+                           
   if (!tMatch) {
     Printf("TTree not initialized");
-    return nullptr;
+    return filteredMatches;
+  } else {
+      Printf("HmpidDataReader::readMatch : TTree  initialized");
   }
 
   // Prepare to store filtered matches
-  std::vector<o2::dataformats::MatchInfoHMP> *filteredMatches =
-      new std::vector<o2::dataformats::MatchInfoHMP>;
+  // std::vector<o2::dataformats::MatchInfoHMP> filteredMatches;// = new std::vector<o2::dataformats::MatchInfoHMP>;
   // tracks should be stored in "time" --> when we find our event we can then
   // switch this condition "of" when the event changes:
 
@@ -132,11 +149,24 @@ HmpidDataReader::readMatch(TTree *tMatch,
 
   if (matchArr == nullptr) {
     Printf("HmpidDataReader::readMatch :: matchArr== nullptr");
-    return nullptr;
+    return filteredMatches;
+  } else {
+      Printf("HmpidDataReader::readMatch : matchArr ok");
   }
+  
+  Printf("readMatch : (*matchArr) size : %zu ", (*matchArr).size());
+  Printf("readMatch : startIndex %d", startIndex);
 
+         
+  if((*matchArr).size() < 1) {
+  	LOGP(info, "matchArr was 0");
+    return filteredMatches;
+  }       
+         
+         
   Printf("readMatch : (*matchArr)[startIndex].getEvent() %d eventID %d",
          (*matchArr)[startIndex].getEvent(), eventID);
+         
   if ((*matchArr)[startIndex].getEvent() != eventID) {
     Printf("This shouldnt happen");
   } else
@@ -158,7 +188,7 @@ HmpidDataReader::readMatch(TTree *tMatch,
       break;
     } else {
 
-      filteredMatches->push_back(track);
+      filteredMatches.push_back(track);
     }
   }
 
