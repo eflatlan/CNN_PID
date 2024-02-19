@@ -243,6 +243,8 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
     std::vector<o2::hmpid::ClusterCandidate> sortedClusters[7];
 
     // Assign ClusterCandidate objects to corresponding vectors based on iCh value
+    
+    LOGP(info, "now looping over clusters ");
     for (const auto &cluster : oneEventClusters) {
 
       // from each track; we assign a label to each of the clusters in
@@ -261,11 +263,9 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
           clusterInChamber.emplace_back(cluCandidate);
         } 
       } 
-    } // end of loop over clusters in the trigger
-
-
-
+    } // end of loop over clusters in theOP(()			
     // loop over the sortedTracks and sortedClusters
+    LOGP(info, "now looping over sortedTracks and sortedClusters ");
     for (int iCh = 0; iCh < 7; iCh++) {
 
       // if no tracks in the chamber, skip
@@ -291,8 +291,13 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
 
       int tNum = 0;
 
+
+    	LOGP(info, "now looping over sortedTracks[iCh]");
       //  loop over the tracks in the event
+      int trackCount = 1;
       for (const auto &track : sortedTracks[iCh]) {
+      
+      	LOGP(info, "Track {} of {}", trackCount++, sortedTracks[iCh].size());
         // Printf("TrackNumber%d track[iCh%d].size() %d", tNum++, i,
         // sortedTracks[i].size());
 
@@ -306,8 +311,10 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
         // and holds the fields
 
         if (track.getMatchStatus()) {
+        
+        	
           const auto mcTrackIndex = track.getTrackIndex();
-
+					// LOGP(info, "Track mathced, mcTrackIndex: {} ", mcTrackIndex);
           // find the PDG code in teh o2Kine_sim.root file by matching the
           // mcTrackIndex for the current event ;
           //--((const o2::MCTrack* mcTrack =
@@ -320,6 +327,8 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
           float xRad, yRad, xPc, yPc, th, ph; // make for these
           float xMip = track.getMipX(), yMip = track.getMipY(); // and thse
           track.getHMPIDtrk(xRad, yRad, xPc, yPc, th, ph);
+
+					LOGP(info, "Track mathced, xRad: {}", xRad);
 
           TVector2 mip(xMip, yMip);
 
@@ -361,20 +370,31 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
           trackInfoBranch = const_cast<o2::dataformats::MatchInfoHMP *>(
               &track); 
 
-          // mcPDGBranch = mcTrack->GetPdgCode();
+
+					LOGP(info, "Track mathced, clusterBranch");
+
+          mParticleEvents.fillCandidate(clusterPerChamber, track, 0);
+					LOGP(info, "Track mathced mParticleEvents fileld ! ");
+					
+	        // mcPDGBranch = mcTrack->GetPdgCode();
 
           pBranch = track.getHmpMom();
           // Fill the tree
+          
+          
+          
           treeOut->Fill();
 
-          mParticleEvents.fillCandidate(clusterPerChamber, track, 0);
-
+					
           // for(auto& clusterPerChamber)
         } else {
-          // Printf("Track didnt match!");
-        }
-      }
-
+          LOGP(info, "Track didnt match!");
+        } // end if matched 
+        LOGP(info, "end if matched");
+        
+        // end if matched
+      } // end for ( track : sortedTracks[iCh] )
+        LOGP(info, "end end for ( track : sortedTracks[iCh] )");
       // save ClusterPerChamber
 
       // save trackInfo :
@@ -387,14 +407,22 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
       // now assigned all types of candidates for all clusters in teh given
       // chamber match sortedClusters[i] with sortedTracks[i] -->
       //
-    }
-  }
+    }  // end for (int iCh = 0; iCh < 7; iCh++)
+    
+    LOGP(info, "end end for (int iCh = 0; iCh < 7; iCh++) )");
+  } // end for (int i = 0; i < trigArr->size();
+  LOGP(info, "end for (int i = 0; i < trigArr->size()");
 
-
+	/*
   treeOut->Write();
-  fileOut->Close();
+  
+  
+  LOGP(info, " treeOut->Write()");
 
+  
   Long64_t nEntries = treeOut->GetEntries();
+  LOGP(info, " nEntries {}", nEntries);
+  
   for (Long64_t i = 0; i < nEntries; ++i) {
     treeOut->GetEntry(i);
 
@@ -402,8 +430,13 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
     // std::cout << "Size of clusterBranch: " << clusterBranch->size() <<
     // std::endl;
   }
-
+  fileOut->Close();
+  
+  
+  LOGP(info, "fileOut->Close();"); */ 
   mParticleEvents.writeH5();
+  LOGP(info, " mParticleEvents.writeH5();");
+  
 }
 
 float calcCkovFromMass(float p, float n, int pdg) {
