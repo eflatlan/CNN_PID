@@ -114,17 +114,14 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
 	// hmpidDataReader.initializeMatchTree(0, 0, 0);
 	
 	
-	std::vector<Trigger>* trigArr= hmpidDataReader.getTrigArr();
-	
-
+	std::vector<Trigger>* trigArr = hmpidDataReader.getTrigArr();
 	
 	clusterArr
   int startIndexTrack = 0;
   if (trigArr == nullptr) {
-    Printf("HmpidDataReader::initializeClusterTree trigArr== nullptr");
+    Printf(" trigArr== nullptr");
     return;
   }
-
 
 
   // Arrays of triggers file 
@@ -138,9 +135,11 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
       continue;
     }
     
-  	std::vector<Cluster>* clusterArr= hmpidDataReader.getCluArr();
+  	/* OLD HmpidDataReader usage :  
+    std::vector<Cluster>* clusterArr = hmpidDataReader.getCluArr();
     const int firstCluInTrig = pTgr->getFirstEntry();
     const int lastCluInTrig = pTgr->getLastEntry();
+    */ 
 
     // Printf("Checking trigger number %d Range Clu = %d :: %d", i, firstCluInTrig,
     // lastCluInTrig);
@@ -152,7 +151,7 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
       oneEventClusters.push_back(clu);      
     } */ 
 
-	  auto oneEventClusters = getClusInEvent(/*int event*/ i);
+	  auto oneEventClusters = hmpidDataReader.getClusInEvent(/*int event*/ i);
 	  
 	  if(oneEventClusters.size() < 1) {
 	  	continue;
@@ -291,6 +290,8 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
       }*/
 
       int tNum = 0;
+
+      //  loop over the tracks in the event
       for (const auto &track : sortedTracks[iCh]) {
         // Printf("TrackNumber%d track[iCh%d].size() %d", tNum++, i,
         // sortedTracks[i].size());
