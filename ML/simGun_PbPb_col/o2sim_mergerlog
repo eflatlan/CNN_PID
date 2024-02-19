@@ -1,703 +1,564 @@
-[11:15:21][INFO] 
+[13:29:21][INFO] 
       ______      _    _______  _________ 
      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.4
     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
 
-[11:15:21][STATE] Starting FairMQ state machine --> IDLE
-[11:15:21][WARN] Signal handling (e.g. Ctrl-C) has been deactivated.
-[11:15:21][STATE] IDLE ---> INITIALIZING DEVICE
-[11:15:21][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[11:15:21][STATE] INITIALIZED ---> BINDING
-[11:15:21][STATE] BINDING ---> BOUND
-[11:15:21][STATE] BOUND ---> CONNECTING
-[11:15:21][STATE] CONNECTING ---> DEVICE READY
-[11:15:21][STATE] DEVICE READY ---> INITIALIZING TASK
-[11:15:21][INFO] INIT HIT MERGER
-[11:15:22][INFO] Waiting for configuration answer 
-[11:15:22][INFO] Configuration answer received, containing 1032 bytes 
-[11:15:22][INFO] COMMUNICATED ENGINE TGeant3
-[11:15:22][INFO] L# 0 Phi:16.42 R:2.34 Nst:12 Nunit:9 W:1.5 Tilt:17.503 Lthick:0.005 Dthick:0.003 DetID:0 B:0
-[11:15:22][INFO] L# 1 Phi:12.18 R:3.15 Nst:16 Nunit:9 W:1.5 Tilt:17.9445 Lthick:0.005 Dthick:0.003 DetID:0 B:0
-[11:15:22][INFO] L# 2 Phi:9.55 R:3.93 Nst:20 Nunit:9 W:1.5 Tilt:16.9423 Lthick:0.005 Dthick:0.003 DetID:0 B:0
-[11:15:22][INFO] L# 3 Phi:7.5 R:19.45 Nst:24 Nunit:4 Lthick:0.01 Dthick:0.003 DetID:0 B:0
-[11:15:22][INFO] L# 4 Phi:6 R:24.4 Nst:30 Nunit:4 Lthick:0.01 Dthick:0.003 DetID:0 B:0
-[11:15:22][INFO] L# 5 Phi:4.29 R:34.24 Nst:42 Nunit:7 Lthick:0.01 Dthick:0.003 DetID:0 B:0
-[11:15:22][INFO] L# 6 Phi:3.75 R:39.2 Nst:48 Nunit:7 Lthick:0.01 Dthick:0.003 DetID:0 B:0
-[11:15:22][INFO] o2::emcal::Geometry::GetInstanceFromRunNumber() - Initialized geometry with name <<EMCAL_COMPLETE12SMV1_DCAL_8SM>>
- Image initialized with 44 x 44 pixels  Image initialized with 56 x 30 pixels [11:15:22][INFO] FastSim module disabled
-[11:15:22][WARN]  O2HitMerger: Some Detectors are potentially missing in this initialization 
-[11:15:22][INFO] OCCUPYING A SEGMENT IN A SHARED REGION
-[11:15:22][INFO] FOUND ID TO ATTACH 22
-[11:15:22][INFO] TRYING ADDRESS 0x7fd9dbfff000
-[11:15:22][INFO] ASSIGNED PIPE HANDLE 22
-[11:15:22][STATE] INITIALIZING TASK ---> READY
-[11:15:22][STATE] READY ---> RUNNING
-[11:15:22][INFO] fair::mq::Device running...
-[11:15:41][INFO] SIMDATA channel got 68 parts for event 1 part 4 out of 49
-[11:15:41][INFO] HitMerger processing took 0.010886
-[11:15:41][INFO] SIMDATA channel got 68 parts for event 1 part 3 out of 49
-[11:15:41][INFO] HitMerger processing took 0.00167608
-[11:15:41][INFO] SIMDATA channel got 68 parts for event 1 part 2 out of 49
-[11:15:41][INFO] HitMerger processing took 0.00212383
-[11:15:43][INFO] SIMDATA channel got 68 parts for event 1 part 1 out of 49
-[11:15:43][INFO] HitMerger processing took 0.00275898
-[11:15:45][INFO] SIMDATA channel got 68 parts for event 1 part 5 out of 49
-[11:15:45][INFO] HitMerger processing took 0.00301909
-[11:15:50][INFO] SIMDATA channel got 68 parts for event 1 part 7 out of 49
-[11:15:50][INFO] HitMerger processing took 0.00173593
-[11:15:50][INFO] SIMDATA channel got 68 parts for event 1 part 9 out of 49
-[11:15:50][INFO] HitMerger processing took 0.00205779
-[11:15:51][INFO] SIMDATA channel got 68 parts for event 1 part 8 out of 49
-[11:15:51][INFO] HitMerger processing took 0.00208497
-[11:15:51][INFO] SIMDATA channel got 68 parts for event 1 part 6 out of 49
-[11:15:51][INFO] HitMerger processing took 0.00367188
-[11:15:58][INFO] SIMDATA channel got 68 parts for event 1 part 13 out of 49
-[11:15:58][INFO] HitMerger processing took 0.00559402
-[11:15:58][INFO] SIMDATA channel got 68 parts for event 1 part 12 out of 49
-[11:15:58][INFO] HitMerger processing took 0.00848198
-[11:15:59][INFO] SIMDATA channel got 68 parts for event 1 part 14 out of 49
-[11:15:59][INFO] HitMerger processing took 0.00459194
-[11:16:00][INFO] SIMDATA channel got 68 parts for event 1 part 10 out of 49
-[11:16:00][INFO] HitMerger processing took 0.00310993
-[11:16:03][INFO] SIMDATA channel got 68 parts for event 1 part 16 out of 49
-[11:16:03][INFO] HitMerger processing took 0.00552297
-[11:16:05][INFO] SIMDATA channel got 68 parts for event 1 part 15 out of 49
-[11:16:05][INFO] HitMerger processing took 0.00648999
-[11:16:07][INFO] SIMDATA channel got 68 parts for event 1 part 11 out of 49
-[11:16:07][INFO] HitMerger processing took 0.00676107
-[11:16:07][INFO] SIMDATA channel got 68 parts for event 1 part 17 out of 49
-[11:16:07][INFO] HitMerger processing took 0.00587106
-[11:16:07][INFO] SIMDATA channel got 68 parts for event 1 part 18 out of 49
-[11:16:07][INFO] HitMerger processing took 0.00699711
-[11:16:11][INFO] SIMDATA channel got 68 parts for event 1 part 19 out of 49
-[11:16:11][INFO] HitMerger processing took 0.00575519
-[11:16:16][INFO] SIMDATA channel got 68 parts for event 1 part 20 out of 49
-[11:16:16][INFO] HitMerger processing took 0.00562
-[11:16:16][INFO] SIMDATA channel got 68 parts for event 1 part 22 out of 49
-[11:16:16][INFO] HitMerger processing took 0.0132411
-[11:16:17][INFO] SIMDATA channel got 68 parts for event 1 part 23 out of 49
-[11:16:17][INFO] HitMerger processing took 0.0107851
-[11:16:19][INFO] SIMDATA channel got 68 parts for event 1 part 24 out of 49
-[11:16:19][INFO] HitMerger processing took 0.00940394
-[11:16:21][INFO] SIMDATA channel got 68 parts for event 1 part 21 out of 49
-[11:16:21][INFO] HitMerger processing took 0.00746894
-[11:16:23][INFO] SIMDATA channel got 68 parts for event 1 part 25 out of 49
-[11:16:23][INFO] HitMerger processing took 0.00910306
-[11:16:23][INFO] SIMDATA channel got 68 parts for event 1 part 26 out of 49
-[11:16:23][INFO] HitMerger processing took 0.012063
-[11:16:26][INFO] SIMDATA channel got 68 parts for event 1 part 28 out of 49
-[11:16:26][INFO] HitMerger processing took 0.010654
-[11:16:26][INFO] SIMDATA channel got 68 parts for event 1 part 27 out of 49
-[11:16:26][INFO] HitMerger processing took 0.0104611
-[11:16:28][INFO] SIMDATA channel got 68 parts for event 1 part 29 out of 49
-[11:16:28][INFO] HitMerger processing took 0.0136151
-[11:16:30][INFO] SIMDATA channel got 68 parts for event 1 part 33 out of 49
-[11:16:30][INFO] HitMerger processing took 0.00503802
-[11:16:31][INFO] SIMDATA channel got 68 parts for event 1 part 30 out of 49
-[11:16:31][INFO] HitMerger processing took 0.0133641
-[11:16:31][INFO] SIMDATA channel got 68 parts for event 1 part 34 out of 49
-[11:16:31][INFO] HitMerger processing took 0.00746512
-[11:16:33][INFO] SIMDATA channel got 68 parts for event 1 part 31 out of 49
-[11:16:33][INFO] HitMerger processing took 0.0125971
-[11:16:34][INFO] SIMDATA channel got 68 parts for event 1 part 35 out of 49
-[11:16:34][INFO] HitMerger processing took 0.00476599
-[11:16:35][INFO] SIMDATA channel got 68 parts for event 1 part 37 out of 49
-[11:16:36][INFO] HitMerger processing took 0.011832
-[11:16:36][INFO] SIMDATA channel got 68 parts for event 1 part 36 out of 49
-[11:16:36][INFO] HitMerger processing took 0.00584197
-[11:16:38][INFO] SIMDATA channel got 68 parts for event 1 part 38 out of 49
-[11:16:38][INFO] HitMerger processing took 0.00748801
-[11:16:39][INFO] SIMDATA channel got 68 parts for event 1 part 40 out of 49
-[11:16:39][INFO] HitMerger processing took 0.00539303
-[11:16:39][INFO] SIMDATA channel got 68 parts for event 1 part 39 out of 49
-[11:16:39][INFO] HitMerger processing took 0.010072
-[11:16:41][INFO] SIMDATA channel got 68 parts for event 1 part 41 out of 49
-[11:16:41][INFO] HitMerger processing took 0.00557494
-[11:16:43][INFO] SIMDATA channel got 68 parts for event 1 part 43 out of 49
-[11:16:43][INFO] HitMerger processing took 0.00716019
-[11:16:43][INFO] SIMDATA channel got 68 parts for event 1 part 42 out of 49
-[11:16:43][INFO] HitMerger processing took 0.009197
-[11:16:44][INFO] SIMDATA channel got 68 parts for event 1 part 44 out of 49
-[11:16:44][INFO] HitMerger processing took 0.0087018
-[11:16:45][INFO] SIMDATA channel got 68 parts for event 1 part 45 out of 49
-[11:16:45][INFO] HitMerger processing took 0.0070281
-[11:16:50][INFO] SIMDATA channel got 68 parts for event 1 part 46 out of 49
-[11:16:50][INFO] HitMerger processing took 0.00602889
-[11:16:50][INFO] SIMDATA channel got 68 parts for event 1 part 47 out of 49
-[11:16:50][INFO] HitMerger processing took 0.00554395
-[11:16:50][INFO] SIMDATA channel got 68 parts for event 1 part 32 out of 49
-[11:16:50][INFO] HitMerger processing took 0.00868917
-[11:16:53][INFO] SIMDATA channel got 68 parts for event 1 part 48 out of 49
-[11:16:53][INFO] HitMerger processing took 0.00655699
-[11:17:02][INFO] SIMDATA channel got 68 parts for event 1 part 49 out of 49
-[11:17:02][INFO] Event 1 complete. Marking as flushable
-[11:17:02][INFO] ALL EVENTS HERE; CHECKSUM 1
-[11:17:02][INFO] Launching merge kernel 
-[11:17:02][INFO] Merge and flush event 1
-HitMerger entry: 48 nprimry:   150 trackoffset:  9236 
-HitMerger entry: 47 nprimry:   500 trackoffset: 50079 
-HitMerger entry: 46 nprimry:   500 trackoffset: 73369 
-HitMerger entry: 45 nprimry:   500 trackoffset: 59155 
-HitMerger entry: 44 nprimry:   500 trackoffset: 81691 
-HitMerger entry: 43 nprimry:   500 trackoffset: 65512 
-HitMerger entry: 42 nprimry:   500 trackoffset: 53055 
-HitMerger entry: 41 nprimry:   500 trackoffset: 58930 
-HitMerger entry: 40 nprimry:   500 trackoffset: 43569 
-HitMerger entry: 39 nprimry:   500 trackoffset: 61384 
-HitMerger entry: 38 nprimry:   500 trackoffset: 89298 
-HitMerger entry: 37 nprimry:   500 trackoffset: 51252 
-HitMerger entry: 36 nprimry:   500 trackoffset: 59238 
-HitMerger entry: 35 nprimry:   500 trackoffset: 47506 
-HitMerger entry: 34 nprimry:   500 trackoffset: 44550 
-HitMerger entry: 33 nprimry:   500 trackoffset: 58870 
-HitMerger entry: 32 nprimry:   500 trackoffset: 99622 
-HitMerger entry: 31 nprimry:   500 trackoffset: 56150 
-HitMerger entry: 30 nprimry:   500 trackoffset: 108676 
-HitMerger entry: 29 nprimry:   500 trackoffset: 63382 
-HitMerger entry: 28 nprimry:   500 trackoffset: 105670 
-HitMerger entry: 27 nprimry:   500 trackoffset: 94656 
-HitMerger entry: 26 nprimry:   500 trackoffset: 85437 
-HitMerger entry: 25 nprimry:   500 trackoffset: 77730 
-HitMerger entry: 24 nprimry:   500 trackoffset: 90544 
-HitMerger entry: 23 nprimry:   500 trackoffset: 37611 
-HitMerger entry: 22 nprimry:   500 trackoffset: 96694 
-HitMerger entry: 21 nprimry:   500 trackoffset: 82353 
-HitMerger entry: 20 nprimry:   500 trackoffset: 80419 
-HitMerger entry: 19 nprimry:   500 trackoffset: 25884 
-HitMerger entry: 18 nprimry:   500 trackoffset: 37732 
-HitMerger entry: 17 nprimry:   500 trackoffset: 44406 
-HitMerger entry: 16 nprimry:   500 trackoffset: 41747 
-HitMerger entry: 15 nprimry:   500 trackoffset: 32514 
-HitMerger entry: 14 nprimry:   500 trackoffset: 47001 
-HitMerger entry: 13 nprimry:   500 trackoffset: 52457 
-HitMerger entry: 12 nprimry:   500 trackoffset: 14653 
-HitMerger entry: 11 nprimry:   500 trackoffset: 48354 
-HitMerger entry: 10 nprimry:   500 trackoffset: 48851 
-HitMerger entry: 9 nprimry:   500 trackoffset: 40370 
-HitMerger entry: 8 nprimry:   500 trackoffset:  7108 
-HitMerger entry: 7 nprimry:   500 trackoffset:  6335 
-HitMerger entry: 6 nprimry:   500 trackoffset:  6709 
-HitMerger entry: 5 nprimry:   500 trackoffset:  3684 
-HitMerger entry: 4 nprimry:   500 trackoffset: 19132 
-HitMerger entry: 3 nprimry:   500 trackoffset: 28536 
-HitMerger entry: 2 nprimry:   500 trackoffset:  5337 
-HitMerger entry: 1 nprimry:   500 trackoffset:  3894 
-HitMerger entry: 0 nprimry:   500 trackoffset:  6600 
-merge 48    48    48    48 
-merge 47    47    47    47 
-merge 46    45    45    44 
-merge 45    44    44    43 
-merge 44    43    43    42 
-merge 43    42    42    40 
-merge 42    40    40    39 
-merge 41    41    41    41 
-merge 40    39    39    37 
-merge 39    37    37    36 
-merge 38    38    38    38 
-merge 37    36    36    34 
-merge 36    34    34    33 
-merge 35    35    35    35 
-merge 34    33    33    31 
-merge 33    31    31    46 
-merge 32    29    29    30 
-merge 31    46    46    45 
-merge 30    32    32    29 
-merge 29    30    30    32 
-merge 28    28    28    28 
-merge 27    26    26    27 
-merge 26    27    27    26 
-merge 25    25    25    25 
-merge 24    24    24    24 
-merge 23    22    22    21 
-merge 22    21    21    20 
-merge 21    20    20    23 
-merge 20    23    23    22 
-merge 19    19    19    19 
-merge 18    18    18    18 
-merge 17    17    17    17 
-merge 16    16    16    16 
-merge 15    13    13    11 
-merge 14    14    14    14 
-merge 13    11    11    10 
-merge 12     9     9    12 
-merge 11    10    10    15 
-merge 10    15    15    13 
-merge 9    12    12     9 
-merge 8     6     6     5 
-merge 7     7     7     7 
-merge 6     5     5     8 
-merge 5     8     8     6 
-merge 4     4     4     4 
-merge 3     0     0     3 
-merge 2     1     1     2 
-merge 1     2     2     1 
-merge 0     3     3     0 
-[11:17:05][INFO] flushing tree to file o2sim_HitsITS.root
-[11:17:09][INFO] flushing tree to file o2sim_HitsTPC.root
-[11:17:10][INFO] flushing tree to file o2sim_HitsTRD.root
-[11:17:10][INFO] flushing tree to file o2sim_HitsTOF.root
-[11:17:10][INFO] flushing tree to file o2sim_HitsPHS.root
-[11:17:10][INFO] flushing tree to file o2sim_HitsCPV.root
-[11:17:10][INFO] flushing tree to file o2sim_HitsEMC.root
-[11:17:10][INFO] flushing tree to file o2sim_HitsHMP.root
-[11:17:10][INFO] flushing tree to file o2sim_HitsMFT.root
-[11:17:10][INFO] flushing tree to file o2sim_HitsMCH.root
-[11:17:10][INFO] flushing tree to file o2sim_HitsMID.root
-[11:17:10][INFO] flushing tree to file o2sim_HitsZDC.root
-[11:17:11][INFO] flushing tree to file o2sim_HitsFT0.root
-[11:17:11][INFO] flushing tree to file o2sim_HitsFV0.root
-[11:17:11][INFO] flushing tree to file o2sim_HitsFDD.root
-[11:17:11][INFO] outtree has file o2sim_Kine.root
-[11:17:11][INFO] mc header outtree has file o2sim_MCHeader.root
-[11:17:11][INFO] Merge/flush for event 1 took 8.21612
-[11:17:11][INFO] Writing TTrees
-[11:17:11][INFO] Launching merge kernel 
-[11:17:11][INFO] HitMerger processing took 8.46167
-[11:17:11][STATE] RUNNING ---> READY
-[11:17:11][STATE] READY ---> RESETTING TASK
-[11:17:11][STATE] RESETTING TASK ---> DEVICE READY
-Merger entry: 35 nprimry:   500 trackoffset: 97594 
-HitMerger entry: 34 nprimry:   500 trackoffset: 91268 
-HitMerger entry: 33 nprimry:   500 trackoffset: 79661 
-HitMerger entry: 32 nprimry:   500 trackoffset: 95374 
-HitMerger entry: 31 nprimry:   500 trackoffset: 53614 
-HitMerger entry: 30 nprimry:   500 trackoffset: 46685 
-HitMerger entry: 29 nprimry:   500 trackoffset: 43183 
-HitMerger entry: 28 nprimry:   500 trackoffset: 26147 
-HitMerger entry: 27 nprimry:   500 trackoffset: 45707 
-HitMerger entry: 26 nprimry:   500 trackoffset: 48957 
-HitMerger entry: 25 nprimry:   500 trackoffset: 35749 
-HitMerger entry: 24 nprimry:   500 trackoffset: 35060 
-HitMerger entry: 23 nprimry:   500 trackoffset: 29927 
-HitMerger entry: 22 nprimry:   500 trackoffset: 34535 
-HitMerger entry: 21 nprimry:   500 trackoffset: 21514 
-HitMerger entry: 20 nprimry:   500 trackoffset: 40325 
-HitMerger entry: 19 nprimry:   500 trackoffset: 48235 
-HitMerger entry: 18 nprimry:   500 trackoffset: 39196 
-HitMerger entry: 17 nprimry:   500 trackoffset: 36830 
-HitMerger entry: 16 nprimry:   500 trackoffset: 51351 
-HitMerger entry: 15 nprimry:   500 trackoffset:  4547 
-HitMerger entry: 14 nprimry:   500 trackoffset: 12218 
-HitMerger entry: 13 nprimry:   500 trackoffset: 49650 
-HitMerger entry: 12 nprimry:   500 trackoffset:  4529 
-HitMerger entry: 11 nprimry:   500 trackoffset:  5293 
-HitMerger entry: 10 nprimry:   500 trackoffset:  4536 
-HitMerger entry: 9 nprimry:   500 trackoffset:  4472 
-HitMerger entry: 8 nprimry:   500 trackoffset: 12153 
-HitMerger entry: 7 nprimry:   500 trackoffset: 16361 
-HitMerger entry: 6 nprimry:   500 trackoffset:  5857 
-HitMerger entry: 5 nprimry:   500 trackoffset:  6360 
-HitMerger entry: 4 nprimry:   500 trackoffset: 11192 
-HitMerger entry: 3 nprimry:   500 trackoffset:  9187 
-HitMerger entry: 2 nprimry:   500 trackoffset: 11812 
-HitMerger entry: 1 nprimry:   500 trackoffset: 19203 
-HitMerger entry: 0 nprimry:   500 trackoffset:  7006 
-merge 73    73    73    73 
-merge 72    72    72    72 
-merge 71    70    70    69 
-merge 70    69    69    68 
-merge 69    68    68    71 
-merge 68    71    71    70 
-merge 67    67    67    67 
-merge 66    66    66    66 
-merge 65    65    65    65 
-merge 64    64    64    64 
-merge 63    62    62    61 
-merge 62    61    61    63 
-merge 61    63    63    62 
-merge 60    60    60    60 
-merge 59    57    57    56 
-merge 58    59    59    57 
-merge 57    56    56    58 
-merge 56    58    58    59 
-merge 55    52    52    51 
-merge 54    54    54    54 
-merge 53    53    53    53 
-merge 52    51    51    48 
-merge 51    48    48    47 
-merge 50    49    49    45 
-merge 49    45    45    46 
-merge 48    47    47    55 
-merge 47    55    55    52 
-merge 46    50    50    49 
-merge 45    46    46    50 
-merge 44    43    43    44 
-merge 43    44    44    43 
-merge 42    41    41    42 
-merge 41    42    42    41 
-merge 40    40    40    40 
-merge 39    39    39    39 
-merge 38    38    38    38 
-merge 37    37    37    37 
-merge 36    35    35    34 
-merge 35    34    34    32 
-merge 34    32    32    31 
-merge 33    33    33    33 
-merge 32    31    31    36 
-merge 31    36    36    35 
-merge 30    30    30    30 
-merge 29    29    29    29 
-merge 28    28    28    28 
-merge 27    26    26    27 
-merge 26    27    27    26 
-merge 25    25    25    25 
-merge 24    23    23    24 
-merge 23    24    24    23 
-merge 22    22    22    22 
-merge 21    20    20    19 
-merge 20    19    19    18 
-merge 19    18    18    17 
-merge 18    17    17    16 
-merge 17    16    16    13 
-merge 16    13    13    15 
-merge 15    21    21    20 
-merge 14    14    14    14 
-merge 13    15    15    21 
-merge 12    12    12    12 
-merge 11     9     9    11 
-merge 10    10    10    10 
-merge 9    11    11     9 
-merge 8     8     8     8 
-merge 7     7     7     7 
-merge 6     6     6     6 
-merge 5     4     4     5 
-merge 4     5     5     4 
-merge 3     0     0     1 
-merge 2     3     3     0 
-merge 1     2     2     3 
-merge 0     1     1     2 
-[11:05:49][INFO] flushing tree to file o2sim_HitsITS.root
-[11:05:58][INFO] flushing tree to file o2sim_HitsTPC.root
-[11:06:01][INFO] flushing tree to file o2sim_HitsTRD.root
-[11:06:01][INFO] flushing tree to file o2sim_HitsTOF.root
-[11:06:01][INFO] flushing tree to file o2sim_HitsPHS.root
-[11:06:01][INFO] flushing tree to file o2sim_HitsCPV.root
-[11:06:01][INFO] flushing tree to file o2sim_HitsEMC.root
-[11:06:01][INFO] flushing tree to file o2sim_HitsHMP.root
-[11:06:01][INFO] flushing tree to file o2sim_HitsMFT.root
-[11:06:01][INFO] flushing tree to file o2sim_HitsMCH.root
-[11:06:01][INFO] flushing tree to file o2sim_HitsMID.root
-[11:06:01][INFO] flushing tree to file o2sim_HitsZDC.root
-[11:06:01][INFO] flushing tree to file o2sim_HitsFT0.root
-[11:06:02][INFO] flushing tree to file o2sim_HitsFV0.root
-[11:06:02][INFO] flushing tree to file o2sim_HitsFDD.root
-[11:06:02][INFO] outtree has file o2sim_Kine.root
-[11:06:02][INFO] mc header outtree has file o2sim_MCHeader.root
-[11:06:02][INFO] Merge/flush for event 1 took 15.9997
-[11:06:02][INFO] Writing TTrees
-[11:06:02][INFO] Launching merge kernel 
-er entry: 58 nprimry:   500 trackoffset: 79358 
-HitMerger entry: 57 nprimry:   500 trackoffset: 98270 
-HitMerger entry: 56 nprimry:   500 trackoffset: 96231 
-HitMerger entry: 55 nprimry:   500 trackoffset: 95047 
-HitMerger entry: 54 nprimry:   500 trackoffset: 109239 
-HitMerger entry: 53 nprimry:   500 trackoffset: 112415 
-HitMerger entry: 52 nprimry:   500 trackoffset: 93603 
-HitMerger entry: 51 nprimry:   500 trackoffset: 86309 
-HitMerger entry: 50 nprimry:   500 trackoffset: 103361 
-HitMerger entry: 49 nprimry:   500 trackoffset: 103677 
-HitMerger entry: 48 nprimry:   500 trackoffset: 32910 
-HitMerger entry: 47 nprimry:   500 trackoffset: 36833 
-HitMerger entry: 46 nprimry:   500 trackoffset: 106139 
-HitMerger entry: 45 nprimry:   500 trackoffset: 81172 
-HitMerger entry: 44 nprimry:   500 trackoffset: 33680 
-HitMerger entry: 43 nprimry:   500 trackoffset: 58392 
-HitMerger entry: 42 nprimry:   500 trackoffset: 39930 
-HitMerger entry: 41 nprimry:   500 trackoffset: 33840 
-HitMerger entry: 40 nprimry:   500 trackoffset: 34150 
-HitMerger entry: 39 nprimry:   500 trackoffset: 37941 
-HitMerger entry: 38 nprimry:   500 trackoffset: 45017 
-HitMerger entry: 37 nprimry:   500 trackoffset: 50183 
-HitMerger entry: 36 nprimry:   500 trackoffset: 54709 
-HitMerger entry: 35 nprimry:   500 trackoffset: 44772 
-HitMerger entry: 34 nprimry:   500 trackoffset: 43309 
-HitMerger entry: 33 nprimry:   500 trackoffset: 40533 
-HitMerger entry: 32 nprimry:   500 trackoffset: 46183 
-HitMerger entry: 31 nprimry:   500 trackoffset: 46613 
-HitMerger entry: 30 nprimry:   500 trackoffset: 17425 
-HitMerger entry: 29 nprimry:   500 trackoffset: 55015 
-HitMerger entry: 28 nprimry:   500 trackoffset: 49111 
-HitMerger entry: 27 nprimry:   500 trackoffset: 52089 
-HitMerger entry: 26 nprimry:   500 trackoffset: 40126 
-HitMerger entry: 25 nprimry:   500 trackoffset: 38011 
-HitMerger entry: 24 nprimry:   500 trackoffset: 49866 
-HitMerger entry: 23 nprimry:   500 trackoffset: 56541 
-HitMerger entry: 22 nprimry:   500 trackoffset: 58824 
-HitMerger entry: 21 nprimry:   500 trackoffset:  4649 
-HitMerger entry: 20 nprimry:   500 trackoffset:  4334 
-HitMerger entry: 19 nprimry:   500 trackoffset:  4705 
-HitMerger entry: 18 nprimry:   500 trackoffset: 10386 
-HitMerger entry: 17 nprimry:   500 trackoffset: 14208 
-HitMerger entry: 16 nprimry:   500 trackoffset:  5897 
-HitMerger entry: 15 nprimry:   500 trackoffset:  4722 
-HitMerger entry: 14 nprimry:   500 trackoffset:  4771 
-HitMerger entry: 13 nprimry:   500 trackoffset:  8572 
-HitMerger entry: 12 nprimry:   500 trackoffset:  8089 
-HitMerger entry: 11 nprimry:   500 trackoffset:  7330 
-HitMerger entry: 10 nprimry:   500 trackoffset: 15805 
-HitMerger entry: 9 nprimry:   500 trackoffset: 15340 
-HitMerger entry: 8 nprimry:   500 trackoffset:  7189 
-HitMerger entry: 7 nprimry:   500 trackoffset: 15562 
-HitMerger entry: 6 nprimry:   500 trackoffset: 10552 
-HitMerger entry: 5 nprimry:   500 trackoffset:  8845 
-HitMerger entry: 4 nprimry:   500 trackoffset: 13540 
-HitMerger entry: 3 nprimry:   500 trackoffset: 14167 
-HitMerger entry: 2 nprimry:   500 trackoffset: 33367 
-HitMerger entry: 1 nprimry:   500 trackoffset: 15369 
-HitMerger entry: 0 nprimry:   500 trackoffset: 11238 
-merge 107   107   107   107 
-merge 106   106   106   106 
-merge 105   104   104   105 
-merge 104   105   105   104 
-merge 103   102   102   103 
-merge 102   103   103   102 
+[13:29:21][STATE] Starting FairMQ state machine --> IDLE
+[13:29:21][WARN] Signal handling (e.g. Ctrl-C) has been deactivated.
+[13:29:21][STATE] IDLE ---> INITIALIZING DEVICE
+[13:29:21][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[13:29:21][STATE] INITIALIZED ---> BINDING
+[13:29:21][STATE] BINDING ---> BOUND
+[13:29:21][STATE] BOUND ---> CONNECTING
+[13:29:21][STATE] CONNECTING ---> DEVICE READY
+[13:29:21][STATE] DEVICE READY ---> INITIALIZING TASK
+[13:29:21][INFO] INIT HIT MERGER
+[13:29:22][INFO] Waiting for configuration answer 
+[13:29:22][INFO] Configuration answer received, containing 1032 bytes 
+[13:29:22][INFO] COMMUNICATED ENGINE TGeant3
+[13:29:22][INFO] L# 0 Phi:16.42 R:2.34 Nst:12 Nunit:9 W:1.5 Tilt:17.503 Lthick:0.005 Dthick:0.003 DetID:0 B:0
+[13:29:22][INFO] L# 1 Phi:12.18 R:3.15 Nst:16 Nunit:9 W:1.5 Tilt:17.9445 Lthick:0.005 Dthick:0.003 DetID:0 B:0
+[13:29:22][INFO] L# 2 Phi:9.55 R:3.93 Nst:20 Nunit:9 W:1.5 Tilt:16.9423 Lthick:0.005 Dthick:0.003 DetID:0 B:0
+[13:29:22][INFO] L# 3 Phi:7.5 R:19.45 Nst:24 Nunit:4 Lthick:0.01 Dthick:0.003 DetID:0 B:0
+[13:29:22][INFO] L# 4 Phi:6 R:24.4 Nst:30 Nunit:4 Lthick:0.01 Dthick:0.003 DetID:0 B:0
+[13:29:22][INFO] L# 5 Phi:4.29 R:34.24 Nst:42 Nunit:7 Lthick:0.01 Dthick:0.003 DetID:0 B:0
+[13:29:22][INFO] L# 6 Phi:3.75 R:39.2 Nst:48 Nunit:7 Lthick:0.01 Dthick:0.003 DetID:0 B:0
+[13:29:22][INFO] o2::emcal::Geometry::GetInstanceFromRunNumber() - Initialized geometry with name <<EMCAL_COMPLETE12SMV1_DCAL_8SM>>
+ Image initialized with 44 x 44 pixels  Image initialized with 56 x 30 pixels [13:29:22][INFO] FastSim module disabled
+[13:29:22][WARN]  O2HitMerger: Some Detectors are potentially missing in this initialization 
+[13:29:22][INFO] OCCUPYING A SEGMENT IN A SHARED REGION
+[13:29:22][INFO] FOUND ID TO ATTACH 29
+[13:29:22][INFO] TRYING ADDRESS 0x7f1313fff000
+[13:29:23][INFO] ASSIGNED PIPE HANDLE 22
+[13:29:23][STATE] INITIALIZING TASK ---> READY
+[13:29:23][STATE] READY ---> RUNNING
+[13:29:23][INFO] fair::mq::Device running...
+[13:29:42][INFO] SIMDATA channel got 68 parts for event 1 part 1 out of 125
+[13:29:42][INFO] HitMerger processing took 0.0102
+[13:29:43][INFO] SIMDATA channel got 68 parts for event 1 part 2 out of 125
+[13:29:43][INFO] HitMerger processing took 0.00172305
+[13:29:43][INFO] SIMDATA channel got 68 parts for event 1 part 4 out of 125
+[13:29:43][INFO] HitMerger processing took 0.00260401
+[13:29:46][INFO] SIMDATA channel got 68 parts for event 1 part 3 out of 125
+[13:29:46][INFO] HitMerger processing took 0.00322413
+[13:29:47][INFO] SIMDATA channel got 68 parts for event 1 part 5 out of 125
+[13:29:47][INFO] HitMerger processing took 0.00176501
+[13:29:48][INFO] SIMDATA channel got 68 parts for event 1 part 6 out of 125
+[13:29:48][INFO] HitMerger processing took 0.00423884
+[13:29:49][INFO] SIMDATA channel got 68 parts for event 1 part 8 out of 125
+[13:29:50][INFO] HitMerger processing took 0.00482702
+[13:29:50][INFO] SIMDATA channel got 68 parts for event 1 part 7 out of 125
+[13:29:50][INFO] HitMerger processing took 0.00324106
+[13:29:50][INFO] SIMDATA channel got 68 parts for event 1 part 9 out of 125
+[13:29:50][INFO] HitMerger processing took 0.00214195
+[13:29:52][INFO] SIMDATA channel got 68 parts for event 1 part 10 out of 125
+[13:29:52][INFO] HitMerger processing took 0.00260401
+[13:29:55][INFO] SIMDATA channel got 68 parts for event 1 part 11 out of 125
+[13:29:55][INFO] HitMerger processing took 0.00199008
+[13:29:56][INFO] SIMDATA channel got 68 parts for event 1 part 12 out of 125
+[13:29:56][INFO] HitMerger processing took 0.002496
+[13:30:01][INFO] SIMDATA channel got 68 parts for event 1 part 13 out of 125
+[13:30:01][INFO] HitMerger processing took 0.00318313
+[13:30:01][INFO] SIMDATA channel got 68 parts for event 1 part 15 out of 125
+[13:30:01][INFO] HitMerger processing took 0.00240207
+[13:30:01][INFO] SIMDATA channel got 68 parts for event 1 part 14 out of 125
+[13:30:01][INFO] HitMerger processing took 0.00223804
+[13:30:02][INFO] SIMDATA channel got 68 parts for event 1 part 16 out of 125
+[13:30:02][INFO] HitMerger processing took 0.00179005
+[13:30:07][INFO] SIMDATA channel got 68 parts for event 1 part 20 out of 125
+[13:30:07][INFO] HitMerger processing took 0.00136399
+[13:30:09][INFO] SIMDATA channel got 68 parts for event 1 part 18 out of 125
+[13:30:09][INFO] HitMerger processing took 0.0021348
+[13:30:09][INFO] SIMDATA channel got 68 parts for event 1 part 17 out of 125
+[13:30:09][INFO] HitMerger processing took 0.00255084
+[13:30:09][INFO] SIMDATA channel got 68 parts for event 1 part 19 out of 125
+[13:30:09][INFO] HitMerger processing took 0.00260711
+[13:30:10][INFO] SIMDATA channel got 68 parts for event 1 part 21 out of 125
+[13:30:10][INFO] HitMerger processing took 0.00165796
+[13:30:15][INFO] SIMDATA channel got 68 parts for event 1 part 24 out of 125
+[13:30:15][INFO] HitMerger processing took 0.00149798
+[13:30:16][INFO] SIMDATA channel got 68 parts for event 1 part 22 out of 125
+[13:30:16][INFO] HitMerger processing took 0.00215793
+[13:30:17][INFO] SIMDATA channel got 68 parts for event 1 part 23 out of 125
+[13:30:17][INFO] HitMerger processing took 0.00232482
+[13:30:23][INFO] SIMDATA channel got 68 parts for event 1 part 25 out of 125
+[13:30:23][INFO] HitMerger processing took 0.00522804
+[13:30:24][INFO] SIMDATA channel got 68 parts for event 1 part 27 out of 125
+[13:30:24][INFO] HitMerger processing took 0.0039022
+[13:30:25][INFO] SIMDATA channel got 68 parts for event 1 part 28 out of 125
+[13:30:25][INFO] HitMerger processing took 0.00821781
+[13:30:27][INFO] SIMDATA channel got 68 parts for event 1 part 26 out of 125
+[13:30:27][INFO] HitMerger processing took 0.00164104
+[13:30:28][INFO] SIMDATA channel got 68 parts for event 1 part 29 out of 125
+[13:30:28][INFO] HitMerger processing took 0.007972
+[13:30:29][INFO] SIMDATA channel got 68 parts for event 1 part 30 out of 125
+[13:30:29][INFO] HitMerger processing took 0.00707889
+[13:30:32][INFO] SIMDATA channel got 68 parts for event 1 part 32 out of 125
+[13:30:32][INFO] HitMerger processing took 0.005867
+[13:30:33][INFO] SIMDATA channel got 68 parts for event 1 part 31 out of 125
+[13:30:33][INFO] HitMerger processing took 0.0037961
+[13:30:34][INFO] SIMDATA channel got 68 parts for event 1 part 33 out of 125
+[13:30:34][INFO] HitMerger processing took 0.00296497
+[13:30:38][INFO] SIMDATA channel got 68 parts for event 1 part 35 out of 125
+[13:30:38][INFO] HitMerger processing took 0.00492311
+[13:30:38][INFO] SIMDATA channel got 68 parts for event 1 part 34 out of 125
+[13:30:38][INFO] HitMerger processing took 0.00484204
+[13:30:38][INFO] SIMDATA channel got 68 parts for event 1 part 37 out of 125
+[13:30:38][INFO] HitMerger processing took 0.00418711
+[13:30:39][INFO] SIMDATA channel got 68 parts for event 1 part 36 out of 125
+[13:30:39][INFO] HitMerger processing took 0.0034349
+[13:30:41][INFO] SIMDATA channel got 68 parts for event 1 part 38 out of 125
+[13:30:41][INFO] HitMerger processing took 0.00531507
+[13:30:44][INFO] SIMDATA channel got 68 parts for event 1 part 40 out of 125
+[13:30:44][INFO] HitMerger processing took 0.00668097
+[13:30:45][INFO] SIMDATA channel got 68 parts for event 1 part 39 out of 125
+[13:30:45][INFO] HitMerger processing took 0.00743794
+[13:30:45][INFO] SIMDATA channel got 68 parts for event 1 part 43 out of 125
+[13:30:45][INFO] HitMerger processing took 0.00631785
+[13:30:45][INFO] SIMDATA channel got 68 parts for event 1 part 42 out of 125
+[13:30:45][INFO] HitMerger processing took 0.00640798
+[13:30:49][INFO] SIMDATA channel got 68 parts for event 1 part 41 out of 125
+[13:30:49][INFO] HitMerger processing took 0.00541997
+[13:30:52][INFO] SIMDATA channel got 68 parts for event 1 part 46 out of 125
+[13:30:52][INFO] HitMerger processing took 0.0035162
+[13:30:52][INFO] SIMDATA channel got 68 parts for event 1 part 44 out of 125
+[13:30:52][INFO] HitMerger processing took 0.00784516
+[13:30:53][INFO] SIMDATA channel got 68 parts for event 1 part 45 out of 125
+[13:30:53][INFO] HitMerger processing took 0.00566292
+[13:30:54][INFO] SIMDATA channel got 68 parts for event 1 part 47 out of 125
+[13:30:54][INFO] HitMerger processing took 0.00455284
+[13:30:55][INFO] SIMDATA channel got 68 parts for event 1 part 48 out of 125
+[13:30:55][INFO] HitMerger processing took 0.00651312
+[13:30:58][INFO] SIMDATA channel got 68 parts for event 1 part 49 out of 125
+[13:30:58][INFO] HitMerger processing took 0.0104251
+[13:31:01][INFO] SIMDATA channel got 68 parts for event 1 part 50 out of 125
+[13:31:01][INFO] HitMerger processing took 0.0133901
+[13:31:04][INFO] SIMDATA channel got 68 parts for event 1 part 51 out of 125
+[13:31:04][INFO] HitMerger processing took 0.00959802
+[13:31:10][INFO] SIMDATA channel got 68 parts for event 1 part 52 out of 125
+[13:31:10][INFO] HitMerger processing took 0.00709105
+[13:31:10][INFO] SIMDATA channel got 68 parts for event 1 part 53 out of 125
+[13:31:10][INFO] HitMerger processing took 0.00782609
+[13:31:10][INFO] SIMDATA channel got 68 parts for event 1 part 55 out of 125
+[13:31:10][INFO] HitMerger processing took 0.0181561
+[13:31:10][INFO] SIMDATA channel got 68 parts for event 1 part 56 out of 125
+[13:31:10][INFO] HitMerger processing took 0.0103369
+[13:31:13][INFO] SIMDATA channel got 68 parts for event 1 part 54 out of 125
+[13:31:13][INFO] HitMerger processing took 0.011656
+[13:31:17][INFO] SIMDATA channel got 68 parts for event 1 part 57 out of 125
+[13:31:17][INFO] HitMerger processing took 0.00819492
+[13:31:17][INFO] SIMDATA channel got 68 parts for event 1 part 58 out of 125
+[13:31:17][INFO] HitMerger processing took 0.0123551
+[13:31:18][INFO] SIMDATA channel got 68 parts for event 1 part 59 out of 125
+[13:31:18][INFO] HitMerger processing took 0.020937
+[13:31:20][INFO] SIMDATA channel got 68 parts for event 1 part 60 out of 125
+[13:31:20][INFO] HitMerger processing took 0.0165062
+[13:31:20][INFO] SIMDATA channel got 68 parts for event 1 part 61 out of 125
+[13:31:20][INFO] HitMerger processing took 0.0152719
+[13:31:27][INFO] SIMDATA channel got 68 parts for event 1 part 62 out of 125
+[13:31:27][INFO] HitMerger processing took 0.0103102
+[13:31:27][INFO] SIMDATA channel got 68 parts for event 1 part 63 out of 125
+[13:31:27][INFO] HitMerger processing took 0.011729
+[13:31:28][INFO] SIMDATA channel got 68 parts for event 1 part 66 out of 125
+[13:31:28][INFO] HitMerger processing took 0.012193
+[13:31:29][INFO] SIMDATA channel got 68 parts for event 1 part 64 out of 125
+[13:31:29][INFO] HitMerger processing took 0.0185308
+[13:31:30][INFO] SIMDATA channel got 68 parts for event 1 part 65 out of 125
+[13:31:30][INFO] HitMerger processing took 0.0122402
+[13:31:35][INFO] SIMDATA channel got 68 parts for event 1 part 67 out of 125
+[13:31:35][INFO] HitMerger processing took 0.013715
+[13:31:37][INFO] SIMDATA channel got 68 parts for event 1 part 68 out of 125
+[13:31:37][INFO] HitMerger processing took 0.0105619
+[13:31:37][INFO] SIMDATA channel got 68 parts for event 1 part 69 out of 125
+[13:31:37][INFO] HitMerger processing took 0.0142689
+[13:31:37][INFO] SIMDATA channel got 68 parts for event 1 part 70 out of 125
+[13:31:37][INFO] HitMerger processing took 0.010653
+[13:31:38][INFO] SIMDATA channel got 68 parts for event 1 part 71 out of 125
+[13:31:38][INFO] HitMerger processing took 0.0135491
+[13:31:44][INFO] SIMDATA channel got 68 parts for event 1 part 72 out of 125
+[13:31:44][INFO] HitMerger processing took 0.019969
+[13:31:47][INFO] SIMDATA channel got 68 parts for event 1 part 75 out of 125
+[13:31:47][INFO] HitMerger processing took 0.013262
+[13:31:48][INFO] SIMDATA channel got 68 parts for event 1 part 73 out of 125
+[13:31:48][INFO] HitMerger processing took 0.00955009
+[13:31:48][INFO] SIMDATA channel got 68 parts for event 1 part 74 out of 125
+[13:31:48][INFO] HitMerger processing took 0.0299592
+[13:31:50][INFO] SIMDATA channel got 68 parts for event 1 part 76 out of 125
+[13:31:50][INFO] HitMerger processing took 0.0117271
+[13:31:55][INFO] SIMDATA channel got 68 parts for event 1 part 77 out of 125
+[13:31:55][INFO] HitMerger processing took 0.016463
+[13:31:59][INFO] SIMDATA channel got 68 parts for event 1 part 79 out of 125
+[13:31:59][INFO] HitMerger processing took 0.00926805
+[13:31:59][INFO] SIMDATA channel got 68 parts for event 1 part 78 out of 125
+[13:31:59][INFO] HitMerger processing took 0.0126739
+[13:32:03][INFO] SIMDATA channel got 68 parts for event 1 part 80 out of 125
+[13:32:03][INFO] HitMerger processing took 0.00880814
+[13:32:03][INFO] SIMDATA channel got 68 parts for event 1 part 82 out of 125
+[13:32:03][INFO] HitMerger processing took 0.0122819
+[13:32:05][INFO] SIMDATA channel got 68 parts for event 1 part 83 out of 125
+[13:32:05][INFO] HitMerger processing took 0.00767303
+[13:32:08][INFO] SIMDATA channel got 68 parts for event 1 part 85 out of 125
+[13:32:08][INFO] HitMerger processing took 0.00813985
+[13:32:10][INFO] SIMDATA channel got 68 parts for event 1 part 84 out of 125
+[13:32:10][INFO] HitMerger processing took 0.00617599
+[13:32:12][INFO] SIMDATA channel got 68 parts for event 1 part 87 out of 125
+[13:32:12][INFO] HitMerger processing took 0.00638795
+[13:32:12][INFO] SIMDATA channel got 68 parts for event 1 part 86 out of 125
+[13:32:12][INFO] HitMerger processing took 0.012526
+[13:32:14][INFO] SIMDATA channel got 68 parts for event 1 part 88 out of 125
+[13:32:14][INFO] HitMerger processing took 0.00781989
+[13:32:18][INFO] SIMDATA channel got 68 parts for event 1 part 91 out of 125
+[13:32:18][INFO] HitMerger processing took 0.00619221
+[13:32:18][INFO] SIMDATA channel got 68 parts for event 1 part 89 out of 125
+[13:32:18][INFO] HitMerger processing took 0.00759816
+[13:32:19][INFO] SIMDATA channel got 68 parts for event 1 part 90 out of 125
+[13:32:19][INFO] HitMerger processing took 0.015023
+[13:32:20][INFO] SIMDATA channel got 68 parts for event 1 part 92 out of 125
+[13:32:20][INFO] HitMerger processing took 0.00701499
+[13:32:23][INFO] SIMDATA channel got 68 parts for event 1 part 81 out of 125
+[13:32:23][INFO] HitMerger processing took 0.00886703
+[13:32:24][INFO] SIMDATA channel got 68 parts for event 1 part 93 out of 125
+[13:32:24][INFO] HitMerger processing took 0.0109611
+[13:32:24][INFO] SIMDATA channel got 68 parts for event 1 part 94 out of 125
+[13:32:24][INFO] HitMerger processing took 0.00559306
+[13:32:26][INFO] SIMDATA channel got 68 parts for event 1 part 96 out of 125
+[13:32:26][INFO] HitMerger processing took 0.0107689
+[13:32:26][INFO] SIMDATA channel got 68 parts for event 1 part 95 out of 125
+[13:32:26][INFO] HitMerger processing took 0.00803399
+[13:32:29][INFO] SIMDATA channel got 68 parts for event 1 part 97 out of 125
+[13:32:29][INFO] HitMerger processing took 0.00661087
+[13:32:30][INFO] SIMDATA channel got 68 parts for event 1 part 98 out of 125
+[13:32:30][INFO] HitMerger processing took 0.00852895
+[13:32:31][INFO] SIMDATA channel got 68 parts for event 1 part 99 out of 125
+[13:32:31][INFO] HitMerger processing took 0.00567508
+[13:32:33][INFO] SIMDATA channel got 68 parts for event 1 part 101 out of 125
+[13:32:33][INFO] HitMerger processing took 0.00519109
+[13:32:34][INFO] SIMDATA channel got 68 parts for event 1 part 100 out of 125
+[13:32:34][INFO] HitMerger processing took 0.00815988
+[13:32:35][INFO] SIMDATA channel got 68 parts for event 1 part 102 out of 125
+[13:32:35][INFO] HitMerger processing took 0.00487208
+[13:32:35][INFO] SIMDATA channel got 68 parts for event 1 part 103 out of 125
+[13:32:35][INFO] HitMerger processing took 0.00631499
+[13:32:36][INFO] SIMDATA channel got 68 parts for event 1 part 104 out of 125
+[13:32:36][INFO] HitMerger processing took 0.00588298
+[13:32:39][INFO] SIMDATA channel got 68 parts for event 1 part 107 out of 125
+[13:32:39][INFO] HitMerger processing took 0.00648594
+[13:32:39][INFO] SIMDATA channel got 68 parts for event 1 part 105 out of 125
+[13:32:39][INFO] HitMerger processing took 0.00855494
+[13:32:40][INFO] SIMDATA channel got 68 parts for event 1 part 109 out of 125
+[13:32:40][INFO] HitMerger processing took 0.00938606
+[13:32:41][INFO] SIMDATA channel got 68 parts for event 1 part 106 out of 125
+[13:32:41][INFO] HitMerger processing took 0.0130248
+[13:32:42][INFO] SIMDATA channel got 68 parts for event 1 part 108 out of 125
+[13:32:42][INFO] HitMerger processing took 0.00724816
+[13:32:44][INFO] SIMDATA channel got 68 parts for event 1 part 111 out of 125
+[13:32:44][INFO] HitMerger processing took 0.00547409
+[13:32:46][INFO] SIMDATA channel got 68 parts for event 1 part 110 out of 125
+[13:32:46][INFO] HitMerger processing took 0.00967216
+[13:32:46][INFO] SIMDATA channel got 68 parts for event 1 part 113 out of 125
+[13:32:46][INFO] HitMerger processing took 0.013015
+[13:32:47][INFO] SIMDATA channel got 68 parts for event 1 part 114 out of 125
+[13:32:47][INFO] HitMerger processing took 0.00799584
+[13:32:48][INFO] SIMDATA channel got 68 parts for event 1 part 112 out of 125
+[13:32:48][INFO] HitMerger processing took 0.00673294
+[13:32:50][INFO] SIMDATA channel got 68 parts for event 1 part 115 out of 125
+[13:32:50][INFO] HitMerger processing took 0.00783801
+[13:32:50][INFO] SIMDATA channel got 68 parts for event 1 part 117 out of 125
+[13:32:50][INFO] HitMerger processing took 0.00688004
+[13:32:51][INFO] SIMDATA channel got 68 parts for event 1 part 116 out of 125
+[13:32:51][INFO] HitMerger processing took 0.00895405
+[13:32:54][INFO] SIMDATA channel got 68 parts for event 1 part 118 out of 125
+[13:32:54][INFO] HitMerger processing took 0.00608587
+[13:32:56][INFO] SIMDATA channel got 68 parts for event 1 part 121 out of 125
+[13:32:56][INFO] HitMerger processing took 0.00997901
+[13:32:58][INFO] SIMDATA channel got 68 parts for event 1 part 119 out of 125
+[13:32:58][INFO] HitMerger processing took 0.0112081
+[13:32:58][INFO] SIMDATA channel got 68 parts for event 1 part 120 out of 125
+[13:32:58][INFO] HitMerger processing took 0.00927901
+[13:33:02][INFO] SIMDATA channel got 68 parts for event 1 part 122 out of 125
+[13:33:02][INFO] HitMerger processing took 0.00848699
+[13:33:04][INFO] SIMDATA channel got 68 parts for event 1 part 123 out of 125
+[13:33:04][INFO] HitMerger processing took 0.011971
+[13:33:05][INFO] SIMDATA channel got 68 parts for event 1 part 125 out of 125
+[13:33:05][INFO] HitMerger processing took 0.00048089
+[13:33:20][INFO] SIMDATA channel got 68 parts for event 1 part 124 out of 125
+[13:33:20][INFO] Event 1 complete. Marking as flushable
+[13:33:20][INFO] Launching merge kernel 
+[13:33:20][INFO] Merge and flush event 1
+[13:33:20][INFO] ALL EVENTS HERE; CHECKSUM 1
+HitMerger entry: 124 nprimry:   500 trackoffset: 49708 
+HitMerger entry: 123 nprimry:    48 trackoffset:  1475 
+HitMerger entry: 122 nprimry:   500 trackoffset: 51744 
+HitMerger entry: 121 nprimry:   500 trackoffset: 58110 
+HitMerger entry: 120 nprimry:   500 trackoffset: 79333 
+HitMerger entry: 119 nprimry:   500 trackoffset: 76291 
+HitMerger entry: 118 nprimry:   500 trackoffset: 47012 
+HitMerger entry: 117 nprimry:   500 trackoffset: 49609 
+HitMerger entry: 116 nprimry:   500 trackoffset: 59171 
+HitMerger entry: 115 nprimry:   500 trackoffset: 60878 
+HitMerger entry: 114 nprimry:   500 trackoffset: 53602 
+HitMerger entry: 113 nprimry:   500 trackoffset: 49590 
+HitMerger entry: 112 nprimry:   500 trackoffset: 64756 
+HitMerger entry: 111 nprimry:   500 trackoffset: 59190 
+HitMerger entry: 110 nprimry:   500 trackoffset: 56026 
+HitMerger entry: 109 nprimry:   500 trackoffset: 56474 
+HitMerger entry: 108 nprimry:   500 trackoffset: 57608 
+HitMerger entry: 107 nprimry:   500 trackoffset: 73776 
+HitMerger entry: 106 nprimry:   500 trackoffset: 52184 
+HitMerger entry: 105 nprimry:   500 trackoffset: 53257 
+HitMerger entry: 104 nprimry:   500 trackoffset: 51774 
+HitMerger entry: 103 nprimry:   500 trackoffset: 35198 
+HitMerger entry: 102 nprimry:   500 trackoffset: 54497 
+HitMerger entry: 101 nprimry:   500 trackoffset: 37616 
+HitMerger entry: 100 nprimry:   500 trackoffset: 53949 
+HitMerger entry: 99 nprimry:   500 trackoffset: 52851 
+HitMerger entry: 98 nprimry:   500 trackoffset: 44505 
+HitMerger entry: 97 nprimry:   500 trackoffset: 53698 
+HitMerger entry: 96 nprimry:   500 trackoffset: 55658 
+HitMerger entry: 95 nprimry:   500 trackoffset: 51269 
+HitMerger entry: 94 nprimry:   500 trackoffset: 70115 
+HitMerger entry: 93 nprimry:   500 trackoffset: 67478 
+HitMerger entry: 92 nprimry:   500 trackoffset: 52251 
+HitMerger entry: 91 nprimry:   500 trackoffset: 64404 
+HitMerger entry: 90 nprimry:   500 trackoffset: 50270 
+HitMerger entry: 89 nprimry:   500 trackoffset: 67900 
+HitMerger entry: 88 nprimry:   500 trackoffset: 50906 
+HitMerger entry: 87 nprimry:   500 trackoffset: 49467 
+HitMerger entry: 86 nprimry:   500 trackoffset: 48796 
+HitMerger entry: 85 nprimry:   500 trackoffset: 84288 
+HitMerger entry: 84 nprimry:   500 trackoffset: 55728 
+HitMerger entry: 83 nprimry:   500 trackoffset: 49805 
+HitMerger entry: 82 nprimry:   500 trackoffset: 78308 
+HitMerger entry: 81 nprimry:   500 trackoffset: 68361 
+HitMerger entry: 80 nprimry:   500 trackoffset: 81150 
+HitMerger entry: 79 nprimry:   500 trackoffset: 65772 
+HitMerger entry: 78 nprimry:   500 trackoffset: 111648 
+HitMerger entry: 77 nprimry:   500 trackoffset: 93191 
+HitMerger entry: 76 nprimry:   500 trackoffset: 96204 
+HitMerger entry: 75 nprimry:   500 trackoffset: 82399 
+HitMerger entry: 74 nprimry:   500 trackoffset: 98556 
+HitMerger entry: 73 nprimry:   500 trackoffset: 55543 
+HitMerger entry: 72 nprimry:   500 trackoffset: 100011 
+HitMerger entry: 71 nprimry:   500 trackoffset: 87045 
+HitMerger entry: 70 nprimry:   500 trackoffset: 96720 
+HitMerger entry: 69 nprimry:   500 trackoffset: 85976 
+HitMerger entry: 68 nprimry:   500 trackoffset: 93437 
+HitMerger entry: 67 nprimry:   500 trackoffset: 92005 
+HitMerger entry: 66 nprimry:   500 trackoffset: 63043 
+HitMerger entry: 65 nprimry:   500 trackoffset: 89631 
+HitMerger entry: 64 nprimry:   500 trackoffset: 83845 
+HitMerger entry: 63 nprimry:   500 trackoffset: 59550 
+HitMerger entry: 62 nprimry:   500 trackoffset: 87527 
+HitMerger entry: 61 nprimry:   500 trackoffset: 118739 
+HitMerger entry: 60 nprimry:   500 trackoffset: 76741 
+HitMerger entry: 59 nprimry:   500 trackoffset: 97319 
+HitMerger entry: 58 nprimry:   500 trackoffset: 108137 
+HitMerger entry: 57 nprimry:   500 trackoffset: 107634 
+HitMerger entry: 56 nprimry:   500 trackoffset: 119574 
+HitMerger entry: 55 nprimry:   500 trackoffset: 25444 
+HitMerger entry: 54 nprimry:   500 trackoffset: 89114 
+HitMerger entry: 53 nprimry:   500 trackoffset: 125355 
+HitMerger entry: 52 nprimry:   500 trackoffset: 25025 
+HitMerger entry: 51 nprimry:   500 trackoffset: 41555 
+HitMerger entry: 50 nprimry:   500 trackoffset: 36581 
+HitMerger entry: 49 nprimry:   500 trackoffset: 48785 
+HitMerger entry: 48 nprimry:   500 trackoffset: 53239 
+HitMerger entry: 47 nprimry:   500 trackoffset: 46850 
+HitMerger entry: 46 nprimry:   500 trackoffset: 49656 
+HitMerger entry: 45 nprimry:   500 trackoffset: 36781 
+HitMerger entry: 44 nprimry:   500 trackoffset: 48094 
+HitMerger entry: 43 nprimry:   500 trackoffset: 25969 
+HitMerger entry: 42 nprimry:   500 trackoffset: 31936 
+HitMerger entry: 41 nprimry:   500 trackoffset: 46692 
+HitMerger entry: 40 nprimry:   500 trackoffset: 29797 
+HitMerger entry: 39 nprimry:   500 trackoffset: 59573 
+HitMerger entry: 38 nprimry:   500 trackoffset: 31103 
+HitMerger entry: 37 nprimry:   500 trackoffset: 24593 
+HitMerger entry: 36 nprimry:   500 trackoffset: 20508 
+HitMerger entry: 35 nprimry:   500 trackoffset: 49175 
+HitMerger entry: 34 nprimry:   500 trackoffset: 50625 
+HitMerger entry: 33 nprimry:   500 trackoffset: 30955 
+HitMerger entry: 32 nprimry:   500 trackoffset: 32723 
+HitMerger entry: 31 nprimry:   500 trackoffset: 36593 
+HitMerger entry: 30 nprimry:   500 trackoffset: 46750 
+HitMerger entry: 29 nprimry:   500 trackoffset: 40237 
+HitMerger entry: 28 nprimry:   500 trackoffset: 54188 
+HitMerger entry: 27 nprimry:   500 trackoffset:  7338 
+HitMerger entry: 26 nprimry:   500 trackoffset: 48976 
+HitMerger entry: 25 nprimry:   500 trackoffset: 33140 
+HitMerger entry: 24 nprimry:   500 trackoffset:  9540 
+HitMerger entry: 23 nprimry:   500 trackoffset:  5479 
+HitMerger entry: 22 nprimry:   500 trackoffset:  7258 
+HitMerger entry: 21 nprimry:   500 trackoffset:  4566 
+HitMerger entry: 20 nprimry:   500 trackoffset:  3891 
+HitMerger entry: 19 nprimry:   500 trackoffset:  4314 
+HitMerger entry: 18 nprimry:   500 trackoffset: 13380 
+HitMerger entry: 17 nprimry:   500 trackoffset:  6172 
+HitMerger entry: 16 nprimry:   500 trackoffset:  3811 
+HitMerger entry: 15 nprimry:   500 trackoffset:  8447 
+HitMerger entry: 14 nprimry:   500 trackoffset:  5071 
+HitMerger entry: 13 nprimry:   500 trackoffset:  6277 
+HitMerger entry: 12 nprimry:   500 trackoffset: 19633 
+HitMerger entry: 11 nprimry:   500 trackoffset: 15596 
+HitMerger entry: 10 nprimry:   500 trackoffset:  4643 
+HitMerger entry: 9 nprimry:   500 trackoffset:  8590 
+HitMerger entry: 8 nprimry:   500 trackoffset:  7896 
+HitMerger entry: 7 nprimry:   500 trackoffset: 11635 
+HitMerger entry: 6 nprimry:   500 trackoffset:  6775 
+HitMerger entry: 5 nprimry:   500 trackoffset:  8372 
+HitMerger entry: 4 nprimry:   500 trackoffset:  9057 
+HitMerger entry: 3 nprimry:   500 trackoffset: 16795 
+HitMerger entry: 2 nprimry:   500 trackoffset: 22462 
+HitMerger entry: 1 nprimry:   500 trackoffset:  9177 
+HitMerger entry: 0 nprimry:   500 trackoffset: 25241 
+merge 124   123   123   124 
+merge 123   124   124   123 
+merge 122   122   122   122 
+merge 121   121   121   121 
+merge 120   118   118   119 
+merge 119   120   120   118 
+merge 118   119   119   120 
+merge 117   117   117   117 
+merge 116   115   115   116 
+merge 115   116   116   115 
+merge 114   114   114   114 
+merge 113   112   112   111 
+merge 112   111   111   113 
+merge 111   113   113   112 
+merge 110   109   109   110 
+merge 109   110   110   109 
+merge 108   106   106   104 
+merge 107   108   108   106 
+merge 106   104   104   105 
+merge 105   107   107   108 
+merge 104   105   105   107 
+merge 103   103   103   103 
+merge 102   102   102   102 
 merge 101   101   101   101 
-merge 100   100   100   100 
-merge 99    99    99    99 
+merge 100    99    99   100 
+merge 99   100   100    99 
 merge 98    98    98    98 
 merge 97    97    97    97 
 merge 96    96    96    96 
 merge 95    94    94    95 
 merge 94    95    95    94 
 merge 93    93    93    93 
-merge 92    91    91    92 
-merge 91    92    92    91 
-merge 90    90    90    90 
+merge 92    92    92    92 
+merge 91    90    90    87 
+merge 90    87    87    86 
 merge 89    89    89    89 
 merge 88    88    88    88 
-merge 87    87    87    87 
-merge 86    86    86    86 
-merge 85    84    84    85 
-merge 84    85    85    84 
-merge 83    81    81    83 
-merge 82    82    82    82 
-merge 81    83    83    81 
-merge 80    80    80    80 
-merge 79    77    77    76 
-merge 78    78    78    78 
-merge 77    76    76    75 
-merge 76    75    75    73 
-merge 75    73    73    71 
-merge 74    72    72    70 
-merge 73    71    71    69 
-merge 72    70    70    74 
-merge 71    69    69    79 
-merge 70    74    74    72 
-merge 69    79    79    77 
-merge 68    67    67    66 
-merge 67    66    66    68 
-merge 66    68    68    67 
-merge 65    65    65    65 
-merge 64    63    63    64 
-merge 63    64    64    63 
+merge 87    86    86    84 
+merge 86    84    84    82 
+merge 85    85    85    85 
+merge 84    82    82    81 
+merge 83    83    83    83 
+merge 82    81    81    80 
+merge 81    80    80    91 
+merge 80    91    91    90 
+merge 79    79    79    79 
+merge 78    77    77    78 
+merge 77    78    78    77 
+merge 76    76    76    76 
+merge 75    75    75    75 
+merge 74    72    72    73 
+merge 73    74    74    72 
+merge 72    73    73    74 
+merge 71    71    71    71 
+merge 70    70    70    70 
+merge 69    69    69    69 
+merge 68    68    68    68 
+merge 67    67    67    67 
+merge 66    66    66    66 
+merge 65    63    63    64 
+merge 64    65    65    63 
+merge 63    64    64    65 
 merge 62    62    62    62 
-merge 61    60    60    61 
-merge 60    61    61    60 
+merge 61    61    61    61 
+merge 60    60    60    60 
 merge 59    59    59    59 
 merge 58    58    58    58 
-merge 57    56    56    57 
-merge 56    57    57    56 
-merge 55    55    55    55 
-merge 54    54    54    54 
-merge 53    53    53    53 
-merge 52    51    51    50 
-merge 51    50    50    52 
-merge 50    52    52    51 
-merge 49    45    45    48 
-merge 48    46    46    47 
-merge 47    49    49    45 
-merge 46    47    47    49 
-merge 45    48    48    46 
-merge 44    44    44    44 
-merge 43    43    43    43 
-merge 42    40    40    41 
-merge 41    42    42    40 
-merge 40    41    41    42 
-merge 39    39    39    39 
-merge 38    38    38    38 
+merge 57    57    57    57 
+merge 56    56    56    56 
+merge 55    54    54    53 
+merge 54    53    53    55 
+merge 53    55    55    54 
+merge 52    52    52    52 
+merge 51    51    51    51 
+merge 50    50    50    50 
+merge 49    49    49    49 
+merge 48    48    48    48 
+merge 47    47    47    47 
+merge 46    46    46    46 
+merge 45    43    43    44 
+merge 44    45    45    43 
+merge 43    44    44    45 
+merge 42    40    40    42 
+merge 41    41    41    41 
+merge 40    42    42    40 
+merge 39    38    38    39 
+merge 38    39    39    38 
 merge 37    37    37    37 
 merge 36    35    35    36 
 merge 35    36    36    35 
-merge 34    34    34    34 
-merge 33    33    33    33 
+merge 34    33    33    34 
+merge 33    34    34    33 
 merge 32    32    32    32 
-merge 31    31    31    31 
-merge 30    29    29    28 
-merge 29    28    28    26 
-merge 28    26    26    25 
-merge 27    27    27    27 
-merge 26    25    25    24 
-merge 25    24    24    23 
-merge 24    23    23    22 
-merge 23    22    22    30 
-merge 22    30    30    29 
-merge 21    21    21    21 
+merge 31    30    30    31 
+merge 30    31    31    30 
+merge 29    29    29    29 
+merge 28    28    28    28 
+merge 27    26    26    25 
+merge 26    25    25    27 
+merge 25    27    27    26 
+merge 24    24    24    24 
+merge 23    21    21    22 
+merge 22    23    23    21 
+merge 21    22    22    23 
 merge 20    20    20    20 
 merge 19    16    16    18 
 merge 18    19    19    16 
 merge 17    17    17    17 
 merge 16    18    18    19 
 merge 15    15    15    15 
-merge 14    11    11    13 
-merge 13    14    14    11 
+merge 14    13    13    14 
+merge 13    14    14    13 
 merge 12    12    12    12 
-merge 11    13    13    14 
+merge 11    11    11    11 
 merge 10    10    10    10 
 merge 9     9     9     9 
-merge 8     7     7     8 
-merge 7     8     8     7 
-merge 6     6     6     6 
+merge 8     8     8     8 
+merge 7     6     6     7 
+merge 6     7     7     6 
 merge 5     5     5     5 
-merge 4     1     1     4 
-merge 3     0     0     2 
-merge 2     3     3     0 
-merge 1     4     4     1 
-merge 0     2     2     3 
-[10:27:33][INFO] flushing tree to file o2sim_HitsITS.root
-[10:27:44][INFO] flushing tree to file o2sim_HitsTPC.root
-[10:27:47][INFO] flushing tree to file o2sim_HitsTRD.root
-[10:27:47][INFO] flushing tree to file o2sim_HitsTOF.root
-[10:27:47][INFO] flushing tree to file o2sim_HitsPHS.root
-[10:27:47][INFO] flushing tree to file o2sim_HitsCPV.root
-[10:27:47][INFO] flushing tree to file o2sim_HitsEMC.root
-[10:27:47][INFO] flushing tree to file o2sim_HitsHMP.root
-[10:27:47][INFO] flushing tree to file o2sim_HitsMFT.root
-[10:27:47][INFO] flushing tree to file o2sim_HitsMCH.root
-[10:27:47][INFO] flushing tree to file o2sim_HitsMID.root
-[10:27:47][INFO] flushing tree to file o2sim_HitsZDC.root
-[10:27:48][INFO] flushing tree to file o2sim_HitsFT0.root
-[10:27:48][INFO] flushing tree to file o2sim_HitsFV0.root
-[10:27:48][INFO] flushing tree to file o2sim_HitsFDD.root
-[10:27:48][INFO] outtree has file o2sim_Kine.root
-[10:27:48][INFO] mc header outtree has file o2sim_MCHeader.root
-[10:27:48][INFO] Merge/flush for event 1 took 19.6849
-[10:27:48][INFO] Writing TTrees
-[10:27:48][INFO] Launching merge kernel 
-[10:27:48][INFO] HitMerger processing took 19.8548
-[10:27:48][STATE] RUNNING ---> READY
-[10:27:48][STATE] READY ---> RESETTING TASK
-try: 5 nprimry:   500 trackoffset:  6217 
-HitMerger entry: 4 nprimry:   500 trackoffset: 11901 
-HitMerger entry: 3 nprimry:   500 trackoffset: 20673 
-HitMerger entry: 2 nprimry:   500 trackoffset: 25521 
-HitMerger entry: 1 nprimry:   500 trackoffset: 11456 
-HitMerger entry: 0 nprimry:   500 trackoffset:  9473 
-merge 131   127   127   123 
-merge 130   126   126   122 
-merge 129   125   125   121 
-merge 128   124   124   120 
-merge 127   123   123   119 
-merge 126   122   122   118 
-merge 125   121   121   117 
-merge 124   120   120   116 
-merge 123   119   119   115 
-merge 122   118   118   114 
-merge 121   117   117   113 
-merge 120   116   116   112 
-merge 119   115   115   111 
-merge 118   114   114   110 
-merge 117   113   113   109 
-merge 116   112   112   108 
-merge 115   111   111   107 
-merge 114   110   110   106 
-merge 113   109   109   105 
-merge 112   108   108   104 
-merge 111   107   107   103 
-merge 110   106   106   102 
-merge 109   105   105   101 
-merge 108   104   104   100 
-merge 107   103   103    99 
-merge 106   102   102    98 
-merge 105   101   101    97 
-merge 104   100   100    96 
-merge 103    99    99    95 
-merge 102    98    98    94 
-merge 101    97    97    93 
-merge 100    96    96    92 
-merge 99    95    95    91 
-merge 98    94    94    90 
-merge 97    93    93    89 
-merge 96    92    92    88 
-merge 95    91    91    87 
-merge 94    90    90    86 
-merge 93    89    89    85 
-merge 92    88    88    84 
-merge 91    87    87    83 
-merge 90    86    86   128 
-merge 89    85    85   130 
-merge 88    84    84    80 
-merge 87    83    83    81 
-merge 86   128   128   124 
-merge 85   130   130   126 
-merge 84    80    80    76 
-merge 83    81    81    79 
-merge 82    78    78    74 
-merge 81    79    79    75 
-merge 80    76    76    72 
-merge 79    75    75    71 
-merge 78    74    74   131 
-merge 77    82    82    78 
-merge 76    72    72    77 
-merge 75    71    71    70 
-merge 74   131   131   127 
-merge 73   129   129   125 
-merge 72    77    77    82 
-merge 71    70    70    73 
-merge 70    73    73   129 
-merge 69    68    68    67 
-merge 68    67    67    66 
-merge 67    66    66    69 
-merge 66    69    69    68 
-merge 65    64    64    63 
-merge 64    63    63    65 
-merge 63    65    65    64 
-merge 62    62    62    62 
-merge 61    60    60    59 
-merge 60    59    59    61 
-merge 59    61    61    60 
-merge 58    56    56    58 
-merge 57    57    57    57 
-merge 56    58    58    56 
-merge 55    54    54    55 
-merge 54    55    55    54 
-merge 53    53    53    53 
-merge 52    52    52    52 
-merge 51    49    49    47 
-merge 50    51    51    49 
-merge 49    47    47    50 
-merge 48    48    48    48 
-merge 47    50    50    51 
-merge 46    46    46    46 
-merge 45    41    41    45 
-merge 44    42    42    43 
-merge 43    44    44    42 
-merge 42    43    43    44 
-merge 41    45    45    41 
-merge 40    39    39    38 
-merge 39    38    38    40 
-merge 38    40    40    39 
-merge 37    37    37    37 
-merge 36    34    34    33 
-merge 35    36    36    34 
-merge 34    33    33    32 
-merge 33    32    32    31 
-merge 32    31    31    30 
-merge 31    30    30    28 
-merge 30    28    28    29 
-merge 29    27    27    35 
-merge 28    29    29    27 
-merge 27    35    35    36 
-merge 26    26    26    26 
-merge 25    24    24    25 
-merge 24    25    25    24 
-merge 23    23    23    23 
-merge 22    22    22    22 
-merge 21    21    21    21 
-merge 20    20    20    20 
-merge 19    17    17    18 
-merge 18    16    16    12 
+merge 4     4     4     4 
+merge 3     2     2     3 
+merge 2     3     3     2 
+merge 1     1     1     1 
+merge 0     0     0     0 
+[13:33:30][INFO] flushing tree to file o2sim_HitsITS.root
+[13:33:42][INFO] flushing tree to file o2sim_HitsTPC.root
+[13:33:45][INFO] flushing tree to file o2sim_HitsTRD.root
+[13:33:45][INFO] flushing tree to file o2sim_HitsTOF.root
+[13:33:45][INFO] flushing tree to file o2sim_HitsPHS.root
+[13:33:45][INFO] flushing tree to file o2sim_HitsCPV.root
+[13:33:45][INFO] flushing tree to file o2sim_HitsEMC.root
+[13:33:45][INFO] flushing tree to file o2sim_HitsHMP.root
+[13:33:45][INFO] flushing tree to file o2sim_HitsMFT.root
+[13:33:45][INFO] flushing tree to file o2sim_HitsMCH.root
+[13:33:45][INFO] flushing tree to file o2sim_HitsMID.root
+[13:33:45][INFO] flushing tree to file o2sim_HitsZDC.root
+[13:33:46][INFO] flushing tree to file o2sim_HitsFT0.root
+[13:33:46][INFO] flushing tree to file o2sim_HitsFV0.root
+[13:33:46][INFO] flushing tree to file o2sim_HitsFDD.root
+[13:33:46][INFO] outtree has file o2sim_Kine.root
+[13:33:46][INFO] mc header outtree has file o2sim_MCHeader.root
+[13:33:46][INFO] Merge/flush for event 1 took 26.0014
+[13:33:46][INFO] Writing TTrees
+[13:33:46][INFO] Launching merge kernel 
+ 
 merge 17    18    18    16 
 merge 16    12    12    13 
 merge 15    15    15    15 
