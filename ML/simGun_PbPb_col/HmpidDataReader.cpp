@@ -59,24 +59,94 @@ using Cluster = o2::hmpid::Cluster; //, o2::hmpid::Digit, o2::hmpid::Trigger,
 
 class HmpidDataReader {
 private:
+    TFile fileKine;
+    TFile fileClu;
+    TFile fMatch;
+    
+    TTree* tMatch;
+    TTree* treeClu;
+    TTree* tMCTree;
+    
+    std::vector<o2::MCTrack> *mcArr = nullptr;
+    std::vector<o2::dataformats::MatchInfoHMP> *matchArr = nullptr;
+  	std::vector<Cluster> *cluArr = nullptr;
+  	/*std::vector<o2::hmpid::Topology> mTopologyFromFile,
+      *mTopologyFromFilePtr = &mTopologyFromFile;*/ 
+
+  	std::vector<Trigger> *trigArr = nullptr;
+
+
+
 public:
-  HmpidDataReader() {
-    // Constructor to initialize any member variables or resources
-  }
+
+
+
+    HmpidDataReader(const char* matchFileName, const char* cluFileName, const char* mcFileName)
+    : fileKine(mcFileName, "READ"), fileClu(cluFileName, "READ"), fMatch(matchFileName, "READ") {
+        // Check if files are opened correctly
+        if (fileKine.IsZombie() || fileClu.IsZombie() || fMatch.IsZombie()) {
+            throw std::runtime_error("Failed to open one or more files.");
+        }
+
+        // Initialize TTree objects
+        tMatch = dynamic_cast<TTree*>(fMatch.Get("matchHMP"));
+        treeClu = dynamic_cast<TTree*>(fileClu.Get("o2sim"));
+				if (!treeClu)
+	        treeClu = dynamic_cast<TTree*>(fileClu.Get("o2sim"));
+        	        
+        tMCTree = dynamic_cast<TTree*>(fileKine.Get("o2hmp"));
+
+				if (!treeClu) {
+					Printf("Error accessing TTree");
+
+				}
+
+
+        // Check if TTree objects are initialized correctly
+        if (!tMatch || !tClusterTree || !tMCTree) {
+            throw std::runtime_error("Failed to initialize one or more TTree objects.");
+        }
+        
+
+
+				// all ok now : 
+				
+				treeClu->SetBranchAddress("HMPIDclusters", &cluArr);
+				treeClu->SetBranchAddress("InteractionRecords", &trigArr);
+				treeClu->GetEntry(0);
+				
+				// int eventID, int trackID, int pdg
+				initializeMatchTree(0, 0, 0);
+    }
+
 
   ~HmpidDataReader() {
-    // Destructor to clean up any allocated resources
+
   }
 
-  static TTree *
-  initializeMatchTree(std::vector<o2::dataformats::MatchInfoHMP> *&matchArr,
-                      int eventID, int trackID, int pdg);
+	std::vector<Cluster> * getClusInEvent(int event) const {
+    auto pTgr = &trigArr->at(event);
+    std::vector<Cluster>  oneEventClusters;
+		for (int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++) {
+			const auto &clu = static_cast<o2::hmpid::Cluster>(cluArr->at(j));
+			oneEvenClusters.push_back(clu);      
+		}    
+
+	 	return oneEventClusters; 
+	}
+	
+	std::vector<Cluster> * getCluArr() const { return cluArr };
+
+	std::vector<Trigger> * getTrigArr() = const {return trigArr};
+
+  void initializeMatchTree(int eventID, int trackID, int pdg);
 
   static std::vector<o2::dataformats::MatchInfoHMP>
-  readMatch(TTree *tMatch, std::vector<o2::dataformats::MatchInfoHMP> *matchArr,
-            int eventID, int &startIndex);
-  static TTree *initializeClusterTree(
-      std::vector<Cluster> *&cluArr, std::vector<Trigger> *&trigArr);
+  readMatch(int eventID, int &startIndex);
+  /*static TTree *initializeClusterTree(
+      std::vector<Cluster> *&cluArr, std::vector<Trigger> *&trigArr);*/ 
+
+
 
   static TTree *initializeMCTree(std::vector<o2::MCTrack> *&mcArr);
   static std::vector<o2::MCTrack> *readMC(std::vector<o2::MCTrack> *&mcArr,
@@ -87,21 +157,13 @@ public:
 };
 
 // should they be static here ? :
-TTree *HmpidDataReader::initializeMatchTree(
-    std::vector<o2::dataformats::MatchInfoHMP> *&matchArr, int eventID,
+void HmpidDataReader::initializeMatchTree(int eventID,
     int trackID, int pdg) {
     
-    
-	TFile *fMatch = TFile::Open("o2match_hmp.root", "READ");
+   
+  // std::unique_ptr<TFile> fMatch(TFile::Open("o2match_hmp.root", "READ"));
 
-	if (!fMatch || fMatch->IsZombie()) {
-	    return nullptr;
-	}    
-  else {
-    LOGP(info, "found o2matchhmp");
-  }
-  
-  TTree *tMatch = (TTree *)fMatch->Get("matchHMP");
+
   if (!tMatch)
     tMatch = (TTree *)fMatch->Get("o2hmp");
     
@@ -113,21 +175,18 @@ TTree *HmpidDataReader::initializeMatchTree(
   tMatch->GetEntry(0);
   tMatch->Print("toponly");
   if (matchArr == nullptr) {
-    Printf("HmpidDataReader::initializeClusterTree matchArr== nullptr");
-    return nullptr;
-  }
+    Printf("HmpidDataReader::initializeMatchTree matchArr== nullptr");
+		// fMatch->Close();
+		throw std::runtime_error("matchArr nullptr");
 
-  
-  return tMatch;
+  }
 }
 
 // eventId = eventID to be searched for;
 // startIndex : index of where matchArr is to be searched
 // newStartIndex startIndex for next event
 std::vector<o2::dataformats::MatchInfoHMP> 
-HmpidDataReader::readMatch(TTree *tMatch,
-                           std::vector<o2::dataformats::MatchInfoHMP> *matchArr,
-                           int eventID, int &startIndex) {
+HmpidDataReader::readMatch(int eventID, int &startIndex) {
                
                
     Printf("Call HmpidDataReader::readMatch");                           
@@ -152,7 +211,7 @@ HmpidDataReader::readMatch(TTree *tMatch,
     return filteredMatches;
   } else {
       Printf("HmpidDataReader::readMatch : matchArr ok");
-  }
+  } 
   
   Printf("readMatch : (*matchArr) size : %zu ", (*matchArr).size());
   Printf("readMatch : startIndex %d", startIndex);
@@ -196,18 +255,14 @@ HmpidDataReader::readMatch(TTree *tMatch,
 
   return filteredMatches;
 }
-
+/*
 TTree *HmpidDataReader::initializeClusterTree(
     std::vector<Cluster> *&cluArr, std::vector<Trigger> *&trigArr) {
-  TFile *fileClu = TFile::Open("hmpidclusters.root");
-  if (!fileClu || fileClu->IsZombie()) {
-    Printf("Error opening file");
-    return nullptr;
-  }
 
-  TTree *treeClu = (TTree *)fileClu->Get("o2sim");
+
+  TTree *treeClu = (TTree *)fileClu.Get("o2sim");
   if (!treeClu)
-    treeClu = (TTree *)fileClu->Get("o2hmp");
+    treeClu = (TTree *)fileClu.Get("o2hmp");
   if (!treeClu) {
     Printf("Error accessing TTree");
     fileClu->Close();
@@ -222,20 +277,16 @@ TTree *HmpidDataReader::initializeClusterTree(
 
   treeClu->GetEntry(0);
   return treeClu;
-}
+} */ 
 
 TTree *HmpidDataReader::initializeMCTree(std::vector<o2::MCTrack> *&mcArr) {
-  TFile *fileKine = TFile::Open("o2sim_Kine.root");
-  if (!fileKine || fileKine->IsZombie()) {
-    Printf("Error opening file");
-    return nullptr;
-  }
 
-  TTree *treeKine = (TTree *)fileKine->Get("o2sim");
+
+  TTree *treeKine = (TTree *)fileKine.Get("o2sim");
   if (!treeKine) {
     Printf("Error accessing TTree");
-    fileKine->Close();
-    delete fileKine;
+    /*fileKine->Close();
+    delete fileKine;*/
     return nullptr;
   }
 

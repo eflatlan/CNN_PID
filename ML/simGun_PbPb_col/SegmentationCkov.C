@@ -36,6 +36,8 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
 
   int plotNumber = 0;
   ParticleUtils2 mParticleEvents;
+  
+  
   auto fileOut = std::make_unique<TFile>("MLOUTPUT.root", "RECREATE");
   
   auto treeOut = std::make_unique<TTree>(
@@ -73,8 +75,25 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
   /*std::vector<o2::hmpid::Topology> mTopologyFromFile,
       *mTopologyFromFilePtr = &mTopologyFromFile;*/ 
 
-  std::vector<Trigger> *trigArr = nullptr;
 
+
+
+	auto matchFileName = "o2match_hmp.root";
+	auto cluFileName = "hmpidclusters.root";
+	auto mcFileName = "o2sim_Kine.root";
+	
+	
+	/*
+	TFile *fileKine = TFile::Open("o2sim_Kine.root");
+	 	  
+  TFile *fileClu = TFile::Open("hmpidclusters.root");
+  */
+  
+  
+	HmpidDataReader hmpidDataReader(matchFileName, cluFileName, mcFileName);
+
+
+	/*
   TTree *treeCluster = HmpidDataReader::initializeClusterTree(
       clusterArr, trigArr);
   // clusterArr now initialized correctly
@@ -86,7 +105,20 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
   // McTrack : holding PDG code of track
   //std::vector<o2::MCTrack> *mcArr = nullptr;
   //TTree *tMcTrack = HmpidDataReader::initializeMCTree(mcArr);
+	*/ 
+	
+	
+	// (int eventID, int trackID, int pdg)
+	
+	// must be called in loop ? 
+	// hmpidDataReader.initializeMatchTree(0, 0, 0);
+	
+	
+	std::vector<Trigger>* trigArr= hmpidDataReader.getTrigArr();
+	
 
+	
+	clusterArr
   int startIndexTrack = 0;
   if (trigArr == nullptr) {
     Printf("HmpidDataReader::initializeClusterTree trigArr== nullptr");
@@ -105,28 +137,34 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
       Printf("pTgr== nullptr");
       continue;
     }
-
+    
+  	std::vector<Cluster>* clusterArr= hmpidDataReader.getCluArr();
     const int firstCluInTrig = pTgr->getFirstEntry();
     const int lastCluInTrig = pTgr->getLastEntry();
 
     // Printf("Checking trigger number %d Range Clu = %d :: %d", i, firstCluInTrig,
     // lastCluInTrig);
 
-    std::vector<Cluster> oneEvenClusters;
-
-    auto firstCluInEvent = static_cast<o2::hmpid::Cluster>(clusterArr->at(firstCluInTrig));
-    auto lastClu = static_cast<o2::hmpid::Cluster>(clusterArr->at(lastCluInTrig));
-    int eventNumberFirstClu = firstCluInEvent.getEventNumber();
-    int eventNumberLast = lastClu.getEventNumber();
-
 
     // loop over clusters in the trigger
-    for (int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++) {
+    /*for (int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++) {
       const auto &clu = static_cast<o2::hmpid::Cluster>(clusterArr->at(j));
-      oneEvenClusters.push_back(clu);      
-    }
+      oneEventClusters.push_back(clu);      
+    } */ 
 
-
+	  auto oneEventClusters = getClusInEvent(/*int event*/ i);
+	  
+	  if(oneEventClusters.size() < 1) {
+	  	continue;
+	  }
+	  
+	  auto firstCluInEvent = static_cast<o2::hmpid::Cluster>(oneEventClusters[0]);
+	  
+    auto lastClu = static_cast<o2::hmpid::Cluster>(oneEventClusters[-1]);
+    
+    int eventNumberFirstClu = firstCluInEvent.getEventNumber();
+    int eventNumberLast = lastClu.getEventNumber();
+	  
     Printf("============\n Cluster Loop \n ===============");
     // find entries in tracksOneEvent which corresponds to correct eventNumber
     Printf("Reading match vector<MatchInfoHMP> for startIndexTrack %d",
@@ -136,27 +174,30 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
     // Read Information from  ROOT files:
     // 1
     
-    LOGP(info, "now reading ReadMatch");
+    LOGP(info, "now reading ReadMatch for trigger {} of {}", i+1, trigArr->size());
     
     
     std::vector<o2::dataformats::MatchInfoHMP> tracksOneEvent =
-        HmpidDataReader::readMatch(treeMatch, matchArr, i, startIndexTrack);
+        hmpidDataReader.readMatch(i, startIndexTrack);
+		// readMatch(int eventID, int &startIndex)
+
 
     // get MC tracks for given event from mc;
     /*
     Printf("Reading vector<o2::MCTrack>* mcTracks for  eventNumber %d",
            eventNumberFirstClu);
     std::vector<o2::MCTrack> *mcTracks =
-        HmpidDataReader::readMC(mcArr, tMcTrack, eventNumberFirstClu); */ 
+        hmpidDataReader.readMC(eventNumberFirstClu); */ 
 		/*
 		if(!tracksOneEvent) {
 		    Printf("tracksOneEvent nullptr");
     	continue;
 		}	*/ 
+		
+		
 
-    Printf("tracksOneEvent size %zu", tracksOneEvent.size());
+    LOGP(info, "tracksOneEvent size {}", tracksOneEvent.size());
 	
-
 	
     if(tracksOneEvent.size() < 1) {
     	continue;
@@ -170,30 +211,30 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
                 return a.getChamber() < b.getChamber();
               });
 
-    // sort the oneEvenClusters vector based on chamber number
+    // sort the oneEventClusters vector based on chamber number
     std::sort(
-        (oneEvenClusters).begin(), (oneEvenClusters).end(),
+        (oneEventClusters).begin(), (oneEventClusters).end(),
         [](const Cluster &a, const Cluster &b) { return a.ch() < b.ch(); });
 
 
     std::vector<o2::dataformats::MatchInfoHMP> sortedTracks[7];
     // Assign MatchInfoHMP objects to corresponding vectors based on iCh value
-    for (const auto &obj : tracksOneEvent) {
-      const auto &iCh = obj.getChamber();
+    for (const auto &track : tracksOneEvent) {
+      const auto &iCh = track.getChamber();
       if (iCh < 0 || iCh > 6) {
         std::cerr << "Warning: iCh value out of expected range: " << iCh
                   << std::endl;
       } else {
-        if (obj.getMatchStatus()) {
-          sortedTracks[iCh].push_back(obj);
+        if (track.getMatchStatus()) {
+          sortedTracks[iCh].push_back(track);
         } ;
       }
     }
 
     std::cout << "Length of sortedTracks vector ";
-    for (int i = 0; i < 7; i++) {
-      if (sortedTracks[i].size() != 0)
-        std::cout << i << " : " << sortedTracks[i].size() << " |";
+    for (int iCh = 0; iCh < 7; iCh++) {
+      if (sortedTracks[iCh].size() != 0)
+        std::cout << iCh << " : " << sortedTracks[iCh].size() << " |";
     }
     
     
@@ -203,7 +244,7 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
     std::vector<o2::hmpid::ClusterCandidate> sortedClusters[7];
 
     // Assign ClusterCandidate objects to corresponding vectors based on iCh value
-    for (const auto &cluster : oneEvenClusters) {
+    for (const auto &cluster : oneEventClusters) {
 
       // from each track; we assign a label to each of the clusters in
       // corresponding to the type of hadron it can be
@@ -212,7 +253,7 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
       if (iCh >= 0 && iCh <= 6) {
 
         // if there is matched tracks for the chamber fill clusters for chamber 
-        if (sortedTracks[iCh].size() > 0) {
+        if (clusterInChamber.size() > 0) {
 
           o2::hmpid::ClusterCandidate cluCandidate(cluster.ch(), cluster.x(), cluster.y(), cluster.q(),
                                            cluster.chi2(), cluster.xe(), cluster.ye(),
@@ -226,17 +267,17 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
 
 
     // loop over the sortedTracks and sortedClusters
-    for (int i = 0; i < 7; i++) {
+    for (int iCh = 0; iCh < 7; iCh++) {
 
       // if no tracks in the chamber, skip
-      if (sortedTracks[i].size() < 1) {
+      if (sortedTracks[iCh].size() < 1) {
         // Printf("sortedTracks[iCh%d].size() %d", i, sortedTracks[i].size());
         continue;
       }
 
 
       // std::vector<o2::hmpid::ClusterCandidate> clusterPerChamber
-      auto &clusterPerChamber = sortedClusters[i];
+      auto &clusterPerChamber = sortedClusters[iCh];
 
       // fill charges of MIPs
 
@@ -250,7 +291,7 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
       }*/
 
       int tNum = 0;
-      for (const auto &track : sortedTracks[i]) {
+      for (const auto &track : sortedTracks[iCh]) {
         // Printf("TrackNumber%d track[iCh%d].size() %d", tNum++, i,
         // sortedTracks[i].size());
 
