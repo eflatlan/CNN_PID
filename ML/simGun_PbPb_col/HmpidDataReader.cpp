@@ -134,20 +134,20 @@ public:
 
   }
 
-	std::vector<Cluster> * getClusInEvent(int event) const {
+	std::vector<Cluster> getClusInEvent(int event) const {
     auto pTgr = &trigArr->at(event);
     std::vector<Cluster>  oneEventClusters;
 		for (int j = pTgr->getFirstEntry(); j <= pTgr->getLastEntry(); j++) {
 			const auto &clu = static_cast<o2::hmpid::Cluster>(cluArr->at(j));
-			oneEvenClusters.push_back(clu);      
+			oneEventClusters.push_back(clu);      
 		}    
 
 	 	return oneEventClusters; 
 	}
 	
-	std::vector<Cluster> * getCluArr() const { return cluArr };
+	std::vector<Cluster> * getCluArr() const { return cluArr ;}
 
-	std::vector<Trigger> * getTrigArr() = const {return trigArr};
+	std::vector<Trigger> * getTrigArr() const {return trigArr ;}
 
 
   void initializeClusterTree(/*std::vector<Cluster> *&cluArr, std::vector<Trigger> *&trigArr*/ );
@@ -178,10 +178,10 @@ void HmpidDataReader::initializeMatchTree(int eventID,
   treeMatch = dynamic_cast<TTree*>(fileMatch.Get("matchHMP"));
 
   if (!treeMatch)
-    treeMatch = dynamic_cast<TTree*>fileMatch->Get("o2hmp");
+    treeMatch = dynamic_cast<TTree*>(fileMatch.Get("o2hmp"));
     
   if (!treeMatch)
-    treeMatch = dynamic_cast<TTree*>fileMatch->Get("o2sim");
+    treeMatch = dynamic_cast<TTree*>(fileMatch.Get("o2sim"));
 
   if (!treeMatch)
 		throw std::runtime_error("treeMatch nullptr");
@@ -194,7 +194,7 @@ void HmpidDataReader::initializeMatchTree(int eventID,
   treeMatch->Print("toponly");
   if (matchArr == nullptr) {
     Printf("HmpidDataReader::initializeMatchTree matchArr== nullptr");
-		// fileMatch->Close();
+		// fileMatch.Close();
 		throw std::runtime_error("matchArr nullptr");
 
   }

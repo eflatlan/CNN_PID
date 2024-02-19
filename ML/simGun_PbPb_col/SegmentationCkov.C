@@ -116,7 +116,7 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
 	
 	std::vector<Trigger>* trigArr = hmpidDataReader.getTrigArr();
 	
-	clusterArr
+	
   int startIndexTrack = 0;
   if (trigArr == nullptr) {
     Printf(" trigArr== nullptr");
