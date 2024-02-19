@@ -36,7 +36,8 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
 
   int plotNumber = 0;
   ParticleUtils2 mParticleEvents;
-
+  auto fileOut = std::make_unique<TFile>("MLOUTPUT.root", "RECREATE");
+  
   auto treeOut = std::make_unique<TTree>(
       "treeOut", "Tree to store clusters, trackInfo, and mcPDG");
 
@@ -69,13 +70,13 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
 
   // clusters and triggers
   std::vector<Cluster> *clusterArr = nullptr;
-  std::vector<o2::hmpid::Topology> mTopologyFromFile,
-      *mTopologyFromFilePtr = &mTopologyFromFile;
+  /*std::vector<o2::hmpid::Topology> mTopologyFromFile,
+      *mTopologyFromFilePtr = &mTopologyFromFile;*/ 
 
   std::vector<Trigger> *trigArr = nullptr;
 
   TTree *treeCluster = HmpidDataReader::initializeClusterTree(
-      clusterArr, trigArr, mTopologyFromFilePtr);
+      clusterArr, trigArr);
   // clusterArr now initialized correctly
 
   // MathcInfoHMP : holding trackinfo
@@ -83,8 +84,8 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
   TTree *treeMatch = HmpidDataReader::initializeMatchTree(matchArr, 0, 0, 0);
 
   // McTrack : holding PDG code of track
-  std::vector<o2::MCTrack> *mcArr = nullptr;
-  TTree *tMcTrack = HmpidDataReader::initializeMCTree(mcArr);
+  //std::vector<o2::MCTrack> *mcArr = nullptr;
+  //TTree *tMcTrack = HmpidDataReader::initializeMCTree(mcArr);
 
   int startIndexTrack = 0;
   if (trigArr == nullptr) {
@@ -144,10 +145,17 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
     std::vector<o2::MCTrack> *mcTracks =
         HmpidDataReader::readMC(mcArr, tMcTrack, eventNumberFirstClu); */ 
 
+		if(!tracksOneEvent) {
+    	continue;
+		}	
 
+    Printf("tracksOneEvent size %zu", tracksOneEvent->size());
+	
 
-    Printf("tracksOneEvent size %d", tracksOneEvent->size());
-
+	
+    if(tracksOneEvent->size() < 1) {
+    	continue;
+    }
 
 
     // sort the tracksOneEvent vector based on chamber number
@@ -182,6 +190,8 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
       if (sortedTracks[i].size() != 0)
         std::cout << i << " : " << sortedTracks[i].size() << " |";
     }
+    
+    
     std::cout << std::endl;
 
 
@@ -333,7 +343,7 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
     }
   }
 
-  auto fileOut = std::make_unique<TFile>("MLOUTPUT.root", "RECREATE");
+
   treeOut->Write();
   fileOut->Close();
 
@@ -465,7 +475,7 @@ void evaluateClusterTrack(
   // mcTrackPdg check that it matches with clusterPDG?
   //
   /*  ckovTools.segment(clusterPerChamber, arrayInfo, track.getTrackIndex(),
-                    xMip, yMip, q /* MIP-charge* /, mcTrackPdg, track,
+                    xMip, yMip, q / * MIP-charge* /, mcTrackPdg, track,
                     trackNumber, plotNumber); // temp --> mapBins*/
 }
 

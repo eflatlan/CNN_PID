@@ -27,19 +27,6 @@
         "end-value-enumeration": "-1",
         "step-value-enumeration": "1"
     },
-    "TRDTrackletReader": {
-        "trd-tracklet-infile": "trdtracklets.root",
-        "trd-calib-tracklet-infile": "trdcalibratedtracklets.root",
-        "input-dir": "none",
-        "treename": "o2sim",
-        "tf-info-source": "hbfutils",
-        "reader-delay": "0",
-        "orbit-offset-enumeration": "0",
-        "orbit-multiplier-enumeration": "0",
-        "start-value-enumeration": "0",
-        "end-value-enumeration": "-1",
-        "step-value-enumeration": "1"
-    },
     "its-cluster-reader": {
         "its-cluster-infile": "o2clus_its.root",
         "input-dir": "none",
@@ -51,8 +38,8 @@
         "end-value-enumeration": "-1",
         "step-value-enumeration": "1"
     },
-    "itstpc-track-reader": {
-        "itstpc-track-infile": "o2match_itstpc.root",
+    "ctp-digit-reader": {
+        "ctp-digit-infile": "ctpdigits.root",
         "input-dir": "none",
         "tf-info-source": "hbfutils",
         "reader-delay": "0",
@@ -85,6 +72,17 @@
         "end-value-enumeration": "-1",
         "step-value-enumeration": "1"
     },
+    "tpc-trigger-reader": {
+        "infile": "tpctriggers.root",
+        "input-dir": "none",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
     "internal-dpl-ccdb-backend": {
         "condition-backend": "http:\/\/alice-ccdb.cern.ch",
         "condition-not-before": "0",
@@ -100,38 +98,23 @@
         "step-value-enumeration": "1"
     },
     "tpc-clusters-sharing-map-producer": "",
-    "trd-globaltracking_TPC_FT0_ITS-TPC_": {
-        "corrmap-lumi-mean": "0",
-        "corrmap-lumi-inst": "0",
-        "corrmap-lumi-mode": "0",
+    "itstpc-track-matcher": {
+        "nthreads": "1",
+        "ignore-bc-check": "false",
+        "debug-tree-flags": "0",
+        "do-not-recalculate-inverse-correction": "false",
+        "nthreads-inverse-correction": "4",
         "condition-backend": "http:\/\/alice-ccdb.cern.ch",
         "condition-timestamp": "0"
     },
-    "trd-track-writer-tpc": {
-        "outfile": "trdmatches_tpc.root",
+    "itstpc-track-writer": {
+        "outfile": "o2match_itstpc.root",
         "output-dir": "none",
-        "treename": "tracksTRD",
-        "treetitle": "tracksTRD",
+        "treename": "matchTPCITS",
+        "treetitle": "matchTPCITS",
         "nevents": "-1",
         "autosave": "-1",
-        "terminate": "process",
-        "tracks-branch-name": "tracks",
-        "trgrec-branch-name": "trgrec",
-        "trdlabels-branch-name": "labelsTRD",
-        "labels-branch-name": "labels"
-    },
-    "trd-track-writer-tpcits": {
-        "outfile": "trdmatches_itstpc.root",
-        "output-dir": "none",
-        "treename": "tracksTRD",
-        "treetitle": "tracksTRD",
-        "nevents": "-1",
-        "autosave": "-1",
-        "terminate": "process",
-        "tracks-branch-name": "tracks",
-        "trgrec-branch-name": "trgrec",
-        "trdlabels-branch-name": "labelsTRD",
-        "labels-branch-name": "labels"
+        "terminate": "process"
     },
     "internal-dpl-injected-dummy-sink": ""
 }

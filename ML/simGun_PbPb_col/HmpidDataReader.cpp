@@ -76,8 +76,7 @@ public:
   readMatch(TTree *tMatch, std::vector<o2::dataformats::MatchInfoHMP> *matchArr,
             int eventID, int &startIndex);
   static TTree *initializeClusterTree(
-      std::vector<Cluster> *&cluArr, std::vector<Trigger> *&trigArr,
-      std::vector<o2::hmpid::Topology> *&mTopologyFromFilePtr);
+      std::vector<Cluster> *&cluArr, std::vector<Trigger> *&trigArr);
 
   static TTree *initializeMCTree(std::vector<o2::MCTrack> *&mcArr);
   static std::vector<o2::MCTrack> *readMC(std::vector<o2::MCTrack> *&mcArr,
@@ -169,8 +168,7 @@ HmpidDataReader::readMatch(TTree *tMatch,
 }
 
 TTree *HmpidDataReader::initializeClusterTree(
-    std::vector<Cluster> *&cluArr, std::vector<Trigger> *&trigArr,
-    std::vector<o2::hmpid::Topology> *&mTopologyFromFilePtr) {
+    std::vector<Cluster> *&cluArr, std::vector<Trigger> *&trigArr) {
   TFile *fileClu = TFile::Open("hmpidclusters.root");
   if (!fileClu || fileClu->IsZombie()) {
     Printf("Error opening file");
@@ -188,7 +186,7 @@ TTree *HmpidDataReader::initializeClusterTree(
   }
   treeClu->Print("toponly");
 
-  treeClu->SetBranchAddress("HMPIDDigitTopology", &mTopologyFromFilePtr);
+
   treeClu->SetBranchAddress("HMPIDclusters", &cluArr);
   treeClu->SetBranchAddress("InteractionRecords", &trigArr);
 

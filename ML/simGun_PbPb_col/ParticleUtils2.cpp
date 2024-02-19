@@ -83,7 +83,7 @@ public:
 
   void fillCandidate(
       const std::vector<o2::hmpid::ClusterCandidate> &clusterPerChamber,
-      const o2::dataformats::MatchInfoHMP &track, int mcTrackPdg) {
+      const o2::dataformats::MatchInfoHMP &track, int mcTrackPdg) {
 
     float xRad, yRad, xPc, yPc, th, ph;                   // make for these
     float xMip = track.getMipX(), yMip = track.getMipY(); // and thse
