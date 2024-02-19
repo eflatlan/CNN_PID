@@ -310,7 +310,7 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
         // of the photons, this is a vector of length of sortedTracks[i].size();
         // and holds the fields
 
-        if (track.getMatchStatus()) {
+        if (track.getMatchStatus() or true) {
         
         	
           const auto mcTrackIndex = track.getTrackIndex();
@@ -329,6 +329,10 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
           track.getHMPIDtrk(xRad, yRad, xPc, yPc, th, ph);
 
 					LOGP(info, "Track mathced, xRad: {}", xRad);
+
+					LOGP(info, "Track mathced, xPc: {}", xPc);
+					LOGP(info, "Track mathced, xMip: {}", xMip);
+					LOGP(info, "Track mathced, mipSize: {}", track.getMipClusSize());
 
           TVector2 mip(xMip, yMip);
 
