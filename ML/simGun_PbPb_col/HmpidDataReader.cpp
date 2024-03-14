@@ -250,13 +250,20 @@ HmpidDataReader::readMatch(int eventID, int &startIndex) {
     found = true;
 
   Printf("readMatch : event %d startIndex %d", eventID, startIndex);
-
+	LOGP(info, "matchArr->size() {}", matchArr->size());
   for (int i = startIndex; i < matchArr->size(); i++) {
-    const auto &track = (*matchArr)[i];
+    const auto &track = (*matchArr)[1];
     // filteredMatches->push_back(track);
     // startIndex = i;
     //  ef : we cant use this atm, since the clusters from the same trigger
     //  sometimes have different eventNumber!
+    
+    
+    
+    LOGP(info, "trackEvent {}, i {} | getMipClusEvent {}", track.getEvent(), i, track.getMipClusEvent());
+    
+    
+    
     if (track.getEvent() != eventID) {
       startIndex = i; // new startIndex for next event
       Printf("readMatch : eventID changed - %d; end of loop ",

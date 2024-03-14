@@ -128,7 +128,6 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
   for (int i = 0; i < trigArr->size();
        i++) // for(const auto& clusters : clustersVector) // "events loop"
   {
-
     auto pTgr = &trigArr->at(i);
     if (pTgr == nullptr) {
       Printf("pTgr== nullptr");
@@ -310,7 +309,7 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
         // of the photons, this is a vector of length of sortedTracks[i].size();
         // and holds the fields
 
-        if (track.getMatchStatus() or true) {
+        if (track.getMatchStatus() ) {
         
         	
           const auto mcTrackIndex = track.getTrackIndex();
@@ -329,7 +328,6 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
           track.getHMPIDtrk(xRad, yRad, xPc, yPc, th, ph);
 
 					LOGP(info, "Track mathced, xRad: {}", xRad);
-
 					LOGP(info, "Track mathced, xPc: {}", xPc);
 					LOGP(info, "Track mathced, xMip: {}", xMip);
 					LOGP(info, "Track mathced, mipSize: {}", track.getMipClusSize());
