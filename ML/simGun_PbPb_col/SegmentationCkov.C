@@ -175,9 +175,12 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
     LOGP(info, "now reading ReadMatch for trigger {} of {}", i+1, trigArr->size());
     
     
-    std::vector<o2::dataformats::MatchInfoHMP> tracksOneEvent =
-        hmpidDataReader.readMatch(i, startIndexTrack);
-		// readMatch(int eventID, int &startIndex)
+    std::vector<o2::dataformats::MatchInfoHMP> tracksOneEvent;
+    std::vector<o2::MCCompLabel> labelTracksOneEvent;
+
+    
+    hmpidDataReader.readMatch(i, startIndexTrack, tracksOneEvent, labelTracksOneEvent);
+    // readMatch(int eventID, int &startIndex)
 
 
     // get MC tracks for given event from mc;
@@ -397,15 +400,7 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
         // end if matched
       } // end for ( track : sortedTracks[iCh] )
         LOGP(info, "end end for ( track : sortedTracks[iCh] )");
-      // save ClusterPerChamber
-
-      // save trackInfo :
-      //                  trackIndex : mIdxTrack
-      //                  scalar : p, refIndex,
-      //                  trackInfo theta, phi, xRad, yRad; {xPc yPc is
-      //                  redundant} MIP            : x, y, q MCTruth : pdg code
-      //                  of track || pdg code of MIP?
-
+      // save 
       // now assigned all types of candidates for all clusters in teh given
       // chamber match sortedClusters[i] with sortedTracks[i] -->
       //
