@@ -38,12 +38,14 @@ class HMPIDDataSorter2 {
   public:
     HMPIDDataSorter2(const std::vector<Cluster>& allClusters, const std::vector<MatchInfoHMP>& allMatchInfo, const std::vector<MCLabel>& allMcLabels) {
                 
-        organizeAndSortMatchInfo(allMatchInfo, allMcLabels);
-        organizeAndSortClusters(allClusters);
+        organizeAndSortMatchInfo(allMatchInfo, allMcLabels, matchInfoByEventChamber, mcMatchInfoByEventChamber);
+        organizeAndSortClusters(allClusters, clustersByEventChamber);
         
     }
 
     void iterateOverMatchedTracks() {
+
+
 
         // to get sigmaRing
         const double refIndexTmp = 1.2904;
@@ -148,27 +150,68 @@ class HMPIDDataSorter2 {
             }
         }
     }
-    void organizeAndSortClusters(const std::vector<Cluster>& allClusters) {
-        for (const auto& cluster : allClusters) {
-            int eventNum = cluster.getEventNumber();
-            int chamberNum = cluster.getChamber();
-            clustersByEventChamber[eventNum][chamberNum].push_back(cluster);
+
+    // Define the "3D" structures for MatchInfoHMP and MC labels
+
+
+    // Function to organize and sort MatchInfoHMP objects
+    EventChamberMatchInfoMap organizeAndSortMatchInfo(const std::vector<MatchInfoHMP>& allMatchInfo, const std::vector<MCLabel>& allMcLabels, EventChamberMatchInfoMap& matchInfoByEventChamber, EventChamberMCLabelMap& mcMatchInfoByEventChamber) {
+
+        #pragma omp parallel
+        {
+            EventChamberMatchInfoMap localMatchInfoByEventChamber;
+            EventChamberMCLabelMap localMcMatchInfoByEventChamber;
+
+            #pragma omp for nowait
+            for (size_t i = 0; i < allMatchInfo.size(); ++i) {
+                const auto& matchInfo = allMatchInfo[i];
+                const auto& mcMatchInfo = allMcLabels[i];
+
+                int eventNum = matchInfo.getEventNumberFromTrack();
+                int chamberNum = matchInfo.getChamber();
+
+                localMatchInfoByEventChamber[eventNum][chamberNum].push_back(matchInfo);
+                localMcMatchInfoByEventChamber[eventNum][chamberNum].push_back(mcMatchInfo);
+
+
+            }
+
+
+
+            // insert to global nested MC map
+
+            #pragma omp critical
+            for (const auto& eventEntry : localMatchInfoByEventChamber) {
+                for (const auto& chamberEntry : eventEntry.second) {
+                    matchInfoByEventChamber[eventEntry.first][chamberEntry.first].insert(
+                        matchInfoByEventChamber[eventEntry.first][chamberEntry.first].end(),
+                        chamberEntry.second.begin(),
+                        chamberEntry.second.end()
+                    );
+                }
+            }
+
+            
+
+            // insert to global nested MC map
+            #pragma omp critical
+            for (const auto& eventEntry : localMcMatchInfoByEventChamber) {
+                for (const auto& chamberEntry : eventEntry.second) {
+                    mcMatchInfoByEventChamber[eventEntry.first][chamberEntry.first].insert(
+                        mcMatchInfoByEventChamber[eventEntry.first][chamberEntry.first].end(),
+                        chamberEntry.second.begin(),
+                        chamberEntry.second.end()
+                    );
+                }
+            }
+
+
         }
 
-    }
+        // Optionally, sort MatchInfoHMP objects within each chamber of each event
+        // Implement sorting logic as per your requirements
 
-    void organizeAndSortMatchInfo(const std::vector<MatchInfoHMP>& allMatchInfo, const std::vector<MCLabel>& allMcLabels) {
-        for (size_t i = 0; i < allMatchInfo.size(); ++i) {
-            const auto& matchInfo = allMatchInfo[i];
-            const auto& mcMatchInfo = allMcLabels[i];
-
-            int eventNum = matchInfo.getEventNumberFromTrack();
-            int chamberNum = matchInfo.getChamber();
-
-            matchInfoByEventChamber[eventNum][chamberNum].push_back(matchInfo);
-            mcMatchInfoByEventChamber[eventNum][chamberNum].push_back(mcMatchInfo);
-        }
-
+        return matchInfoByEventChamber, mcMatchInfoByEventChamber;
     }
 
 
@@ -182,6 +225,49 @@ class HMPIDDataSorter2 {
 
     std::vector<MCLabel> getMcMatchInfo(int eventNum, int chamberNum) {
         return mcMatchInfoByEventChamber[eventNum][chamberNum];
+    }
+
+
+    // Function to organize and sort Clusters
+    EventChamberClustersMap organizeAndSortClusters(const std::vector<Cluster>& allClusters) {
+        EventChamberClustersMap clustersByEventChamber;
+
+        #pragma omp parallel
+        {
+            EventChamberClustersMap localClustersByEventChamber;
+
+            #pragma omp for nowait
+            for (size_t i = 0; i < allClusters.size(); ++i) {
+                const auto& cluster = allClusters[i];
+                int eventNum = cluster.getEventNumber(); // Assuming getEventNumber() exists in Cluster
+                int chamberNum = cluster.getChamber(); // Assuming getChamber() exists in Cluster
+
+                localClustersByEventChamber[eventNum][chamberNum].push_back(cluster);
+            }
+
+            #pragma omp critical
+            for (const auto& eventEntry : localClustersByEventChamber) {
+                for (const auto& chamberEntry : eventEntry.second) {
+                    clustersByEventChamber[eventEntry.first][chamberEntry.first].insert(
+                        clustersByEventChamber[eventEntry.first][chamberEntry.first].end(),
+                        chamberEntry.second.begin(),
+                        chamberEntry.second.end()
+                    );
+                }
+            }
+        }
+
+        // Optionally, sort Clusters within each chamber of each event
+        for (auto& eventEntry : clustersByEventChamber) {
+            for (auto& chamberEntry : eventEntry.second) {
+                std::sort(chamberEntry.second.begin(), chamberEntry.second.end(), [](const Cluster& a, const Cluster& b) {
+                    // Define your sorting criteria for Clusters within the same chamber
+                    return a.getSomeProperty() < b.getSomeProperty(); // Replace 'getSomeProperty' with your actual sorting criterion
+                });
+            }
+        }
+
+        return clustersByEventChamber;
     }
 
 
