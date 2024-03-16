@@ -1,4 +1,7 @@
-#include "HMPIDBase/Cluster.h"
+#ifndef HMPID_DATA_SORTER_H
+#define HMPID_DATA_SORTER_H
+
+#include "DataFormatsHMP/Cluster.h"
 #include "ReconstructionDataFormats/MatchInfoHMP.h"
 #include "SimulationDataFormat/MCCompLabel.h"
 #include <vector>
@@ -275,3 +278,4 @@ class HMPIDDataSorter2 {
 
 
 };
+#endif

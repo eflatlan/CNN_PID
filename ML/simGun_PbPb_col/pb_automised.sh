@@ -5,7 +5,7 @@ for i in {0..100250}; do
     while [[ $success -eq 0 ]]; do
         echo "Iteration: $i"
 
-        if /root/alice/O2/prodtests/sim_challenge.sh -f sim -n 1 -j 5 -s pbpb; then
+        if /root/alice/O2/prodtests/sim_challenge.sh -f sim -n 4 -j 4 -s pbpb; then
             if root -b -q -l "SegmentationCkov.C(1.75)"; then
                 # Check if file size is greater than 1KB
                 fileSize=$(stat -c %s ParticleInfo2.h5)

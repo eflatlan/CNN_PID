@@ -1,0 +1,13 @@
+#0  0x00007f6b801182ca in wait4 () from /lib64/libc.so.6
+#1  0x00007f6b80061953 in do_system () from /lib64/libc.so.6
+#2  0x00007f6b80b4fa0c in TUnixSystem::Exec (shellcmd=<optimized out>, this=0x13cdfa0) at /local/workspace/build-any-ib/sw/2015/1/SOURCES/ROOT/v6-30-01-alice2/v6-30-01-alice2/core/unix/src/TUnixSystem.cxx:2120
+#3  TUnixSystem::StackTrace (this=0x13cdfa0) at /local/workspace/build-any-ib/sw/2015/1/SOURCES/ROOT/v6-30-01-alice2/v6-30-01-alice2/core/unix/src/TUnixSystem.cxx:2411
+#4  0x00007f6b84e43769 in FairLogger::LogFatalMessage () at /local/workspace/build-any-ib/sw/2015/1/SOURCES/FairRoot/v18.4.9-alice3/v18.4.9-alice3/fairtools/FairLogger.cxx:195
+#5  0x00007f6b82429738 in std::function<void ()>::operator()() const (this=0x7f6b8243d9a0 <fair::Logger::fFatalCallback>) at /local/workspace/build-any-ib/sw/2015/1/slc9_x86-64/GCC-Toolchain/v12.2.0-alice1-4/include/c++/12.2.0/bits/std_function.h:591
+#6  fair::Logger::~Logger (this=0x7ffd7633de80, __in_chrg=<optimized out>) at /local/workspace/build-any-ib/sw/2015/1/SOURCES/FairLogger/v1.11.1/v1.11.1/logger/Logger.cxx:276
+#7  0x00007f6b846176ec in doUnknownException (s=..., processName=0x7ffd763408c9 "o2-hmpid-matcher-workflow") at /root/alice/sw/slc9_x86-64/GCC-Toolchain/v12.2.0-alice1-4/include/c++/12.2.0/bits/allocator.h:174
+#8  0x00007f6b84355296 in callMain (argc=argc
+entry=1, argv=argv
+entry=0x7ffd7633e6f8, mainNoCatch=mainNoCatch
+entry=0x416210 <mainNoCatch(int, char**)>) at /root/alice/sw/SOURCES/O2/segment/0/Framework/Core/src/runDataProcessing.cxx:206
+#9  0x000000000040dc00 in main (argc=1, argv=0x7ffd7633e6f8) at /root/alice/sw/SOURCES/O2/segment/0/Framework/Core/include/Framework/runDataProcessing.h:220

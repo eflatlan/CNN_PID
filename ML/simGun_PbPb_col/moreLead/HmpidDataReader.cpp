@@ -135,6 +135,12 @@ HmpidDataReader::readMatch(TTree *tMatch,
     return nullptr;
   }
 
+  
+  Printf("readMatch : (*matchArr) size : %zu ", (*matchArr).size());
+  Printf("readMatch : startIndex %d", startIndex);
+
+         
+
   Printf("readMatch : (*matchArr)[startIndex].getEvent() %d eventID %d",
          (*matchArr)[startIndex].getEvent(), eventID);
   if ((*matchArr)[startIndex].getEvent() != eventID) {

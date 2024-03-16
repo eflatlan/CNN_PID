@@ -1,0 +1,36 @@
+#0  0x00007f3110f1830f in wait4 () from /lib64/libc.so.6
+#1  0x00007f3110e61953 in do_system () from /lib64/libc.so.6
+#2  0x00007f311194fa0c in TUnixSystem::Exec (shellcmd=<optimized out>, this=0x1fc1f90) at /local/workspace/build-any-ib/sw/2015/1/SOURCES/ROOT/v6-30-01-alice2/v6-30-01-alice2/core/unix/src/TUnixSystem.cxx:2120
+#3  TUnixSystem::StackTrace (this=0x1fc1f90) at /local/workspace/build-any-ib/sw/2015/1/SOURCES/ROOT/v6-30-01-alice2/v6-30-01-alice2/core/unix/src/TUnixSystem.cxx:2411
+#4  0x00007f3115e8a769 in FairLogger::LogFatalMessage () at /local/workspace/build-any-ib/sw/2015/1/SOURCES/FairRoot/v18.4.9-alice3/v18.4.9-alice3/fairtools/FairLogger.cxx:195
+#5  0x00007f3113881738 in std::function<void ()>::operator()() const (this=0x7f31138959a0 <fair::Logger::fFatalCallback>) at /local/workspace/build-any-ib/sw/2015/1/slc9_x86-64/GCC-Toolchain/v12.2.0-alice1-4/include/c++/12.2.0/bits/std_function.h:591
+#6  fair::Logger::~Logger (this=0x7ffd5910fc30, __in_chrg=<optimized out>) at /local/workspace/build-any-ib/sw/2015/1/SOURCES/FairLogger/v1.11.1/v1.11.1/logger/Logger.cxx:276
+#7  0x00007f3115bff8b5 in o2::ccdb::CcdbApi::initTGrid (this=0x489d8a0) at /root/alice/sw/slc9_x86-64/FairLogger/v1.11.1-10/include/fairlogger/Logger.h:310
+#8  0x00007f3115c0a452 in o2::ccdb::CcdbApi::loadFileToMemory (this=0x489d8a0, dest=..., path=..., localHeaders=0x0) at /root/alice/sw/SOURCES/O2/segment/0/CCDB/src/CcdbApi.cxx:1897
+#9  0x00007f3115c0dc60 in o2::ccdb::CcdbApi::loadLocalContentToMemory (this=0x489d8a0, dest=..., url=...) at /root/alice/sw/SOURCES/O2/segment/0/CCDB/src/CcdbApi.cxx:1873
+#10 0x00007f3115c0ddc2 in operator() (url=..., __closure=0x47b15e8) at /root/alice/sw/SOURCES/O2/segment/0/CCDB/src/CcdbApi.cxx:1618
+#11 std::__invoke_impl<bool, o2::ccdb::CcdbApi::scheduleDownload(RequestContext&, size_t*) const::<lambda(std::string)>&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > (__f=...) at /root/alice/sw/slc9_x86-64/GCC-Toolchain/v12.2.0-alice1-4/include/c++/12.2.0/bits/invoke.h:61
+#12 std::__invoke_r<bool, o2::ccdb::CcdbApi::scheduleDownload(RequestContext&, size_t*) const::<lambda(std::string)>&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > (__fn=...) at /root/alice/sw/slc9_x86-64/GCC-Toolchain/v12.2.0-alice1-4/include/c++/12.2.0/bits/invoke.h:114
+#13 std::_Function_handler<bool(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >), o2::ccdb::CcdbApi::scheduleDownload(RequestContext&, size_t*) const::<lambda(std::string)> >::_M_invoke(const std::_Any_data &, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > &&) (__functor=..., __args#0=...) at /root/alice/sw/slc9_x86-64/GCC-Toolchain/v12.2.0-alice1-4/include/c++/12.2.0/bits/std_function.h:290
+#14 0x00007f3115c2da0b in std::function<bool (std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)>::operator()(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) const (__args#0=..., this=0x47b15e8) at /root/alice/sw/slc9_x86-64/GCC-Toolchain/v12.2.0-alice1-4/include/c++/12.2.0/bits/std_function.h:591
+#15 o2::ccdb::CCDBDownloader::getLocalContent (this=0x2b7ced0, performData=0x4ae7a20, newLocation=..., contentRetrieved=
+0x7ffd59111367: false, locations=...) at /root/alice/sw/SOURCES/O2/segment/0/CCDB/src/CCDBDownloader.cxx:361
+#16 0x00007f3115c2df24 in o2::ccdb::CCDBDownloader::followRedirect (this=0x2b7ced0, performData=0x4ae7a20, easy_handle=0x4ae0860, locations=..., rescheduled=
+0x7ffd59111366: false, contentRetrieved=
+0x7ffd59111367: false) at /root/alice/sw/SOURCES/O2/segment/0/CCDB/src/CCDBDownloader.cxx:394
+#17 0x00007f3115c2f3e6 in o2::ccdb::CCDBDownloader::transferFinished (this=0x2b7ced0, easy_handle=0x4ae0860, curlCode=<optimized out>) at /root/alice/sw/SOURCES/O2/segment/0/CCDB/src/CCDBDownloader.cxx:503
+#18 0x00007f3115c2fd0f in o2::ccdb::CCDBDownloader::checkMultiInfo (this=0x2b7ced0) at /root/alice/sw/SOURCES/O2/segment/0/CCDB/src/CCDBDownloader.cxx:565
+#19 0x00007f3115c2fda3 in o2::ccdb::CCDBDownloader::curlPerform (handle=0x46c9800, status=<optimized out>, events=<optimized out>) at /root/alice/sw/SOURCES/O2/segment/0/CCDB/src/CCDBDownloader.cxx:229
+#20 0x00007f3115ad3d0f in uv__io_poll (loop=loop
+entry=0x406b180, timeout=<optimized out>) at /local/workspace/build-any-ib/sw/2015/1/SOURCES/libuv/v1.40.0/v1.40.0/src/unix/linux-core.c:462
+#21 0x00007f3115ac4f28 in uv_run (loop=0x406b180, mode=UV_RUN_ONCE) at /local/workspace/build-any-ib/sw/2015/1/SOURCES/libuv/v1.40.0/v1.40.0/src/unix/core.c:385
+#22 0x00007f3115c0b6e3 in o2::ccdb::CcdbApi::vectoredLoadFileToMemory (this=0x489d8a0, requestContexts=...) at /root/alice/sw/SOURCES/O2/segment/0/CCDB/src/CcdbApi.cxx:1854
+#23 0x00007f3115c0bce4 in o2::ccdb::CcdbApi::loadFileToMemory (this=0x489d8a0, dest=..., path=..., metadata=..., timestamp=<optimized out>, headers=<optimized out>, etag=..., createdNotAfter=..., createdNotBefore=..., considerSnapshot=false) at /root/alice/sw/SOURCES/O2/segment/0/CCDB/src/CcdbApi.cxx:1821
+#24 0x00007f3115c0c1ed in o2::ccdb::CcdbApi::retrieveBlob (this=this
+entry=0x489d8a0, path=..., targetdir=..., metadata=..., timestamp=timestamp
+entry=1546300800000, preservePath=preservePath
+entry=true, localFileName=..., createdNotAfter=..., createdNotBefore=...) at /root/alice/sw/SOURCES/O2/segment/0/CCDB/src/CcdbApi.cxx:770
+#25 0x0000000000415467 in anchor_GRPs (opts=..., paths=...) at /root/alice/sw/SOURCES/O2/segment/0/DataFormats/Parameters/src/GRPTool.cxx:236
+#26 0x0000000000415f7d in create_MeanVertexObject (opts=...) at /root/alice/sw/SOURCES/O2/segment/0/DataFormats/Parameters/src/GRPTool.cxx:247
+#27 0x000000000041621a in create_GRPs (opts=...) at /root/alice/sw/SOURCES/O2/segment/0/DataFormats/Parameters/src/GRPTool.cxx:301
+#28 0x00000000004111e4 in main (argc=8, argv=0x7ffd591183f8) at /root/alice/sw/SOURCES/O2/segment/0/DataFormats/Parameters/src/GRPTool.cxx:643

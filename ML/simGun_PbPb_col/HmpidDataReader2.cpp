@@ -1,7 +1,7 @@
 #ifndef HMPID_DATA_READER2_H
 #define HMPID_DATA_READER2_H
 
-#include "HMPIDDataSorter2.cpp"
+#include "HmpidDataSorter2.cpp"
 
 #include "DataFormatsHMP/Cluster.h"
 #include "DataFormatsHMP/Digit.h"
@@ -59,6 +59,8 @@ using Cluster = o2::hmpid::Cluster; //, o2::hmpid::Digit, o2::hmpid::Trigger,
 
 class HmpidDataReader2 {
 private:
+    bool mUseMc = true;
+
     TFile fileKine;
     TFile fileClu;
     TFile fileMatch;
@@ -169,7 +171,7 @@ public:
         
         // mcTrackArrPtr
         if (mUseMc) {
-          HMPIDDataSorter2 hmpidDataSorter2(cluArr, mMatches, mLabelHMP);
+          HmpidDataSorter2 hmpidDataSorter2(cluArr, mMatches, mLabelHMP);
           hmpidDataSorter2.iterateOverMatchedTracks();
         }  
         

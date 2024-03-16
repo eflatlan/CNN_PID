@@ -1,4 +1,6 @@
-#pragma once
+#if !defined(__CLING__) || defined(__ROOTCLING__)
+
+// #pragma once
 #include "CommonDataFormat/InteractionRecord.h"
 #include "CommonDataFormat/RangeReference.h"
 
@@ -9,7 +11,7 @@
 #include "SimulationDataFormat/MCTruthContainer.h"
 
 // #include "CkovToolsSingle.cpp"
-#include "HmpidDataReader.cpp"
+#include "HmpidDataReader2.cpp"
 #include "ParticleUtils2.cpp"
 
 #include <utility>
@@ -58,7 +60,7 @@ void SegmentationCkov2(double _sigmaSep = 1.5) {
   auto mcFileName = "o2sim_Kine.root";
 	
   
-  HmpidDataReader hmpidDataReader(matchFileName, cluFileName, mcFileName);
+  HmpidDataReader2 hmpidDataReader(matchFileName, cluFileName, mcFileName);
 
 
   LOGP(info, "fileOut->Close();"); */ 

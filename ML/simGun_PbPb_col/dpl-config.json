@@ -16,6 +16,17 @@
         "end-value-enumeration": "-1",
         "step-value-enumeration": "1"
     },
+    "secondary-vertex-reader": {
+        "secondary-vertex-infile": "o2_secondary_vertex.root",
+        "input-dir": "none",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
     "its-track-reader": {
         "its-tracks-infile": "o2trac_its.root",
         "input-dir": "none",
@@ -38,6 +49,41 @@
         "end-value-enumeration": "-1",
         "step-value-enumeration": "1"
     },
+    "mft-cluster-reader": {
+        "mft-cluster-infile": "mftclusters.root",
+        "input-dir": "none",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "mid-tracks-reader": {
+        "infile": "mid-reco.root",
+        "input-dir": "none",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "TRDTrackletReader": {
+        "trd-tracklet-infile": "trdtracklets.root",
+        "trd-calib-tracklet-infile": "trdcalibratedtracklets.root",
+        "input-dir": "none",
+        "treename": "o2sim",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
     "itstpc-track-reader": {
         "itstpc-track-infile": "o2match_itstpc.root",
         "input-dir": "none",
@@ -49,8 +95,41 @@
         "end-value-enumeration": "-1",
         "step-value-enumeration": "1"
     },
+    "HMP-ClusterReader": {
+        "hmpid-cluster-infile": "hmpidclusters.root",
+        "input-dir": ".\/",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
     "itstpctrd-track-reader": {
         "track-infile": "trdmatches_itstpc.root",
+        "input-dir": "none",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "mch-tracks-reader0": {
+        "infile": "mchtracks.root",
+        "input-dir": "none",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "mft-track-reader": {
+        "mft-tracks-infile": "mfttracks.root",
         "input-dir": "none",
         "tf-info-source": "hbfutils",
         "reader-delay": "0",
@@ -84,10 +163,9 @@
         "end-value-enumeration": "-1",
         "step-value-enumeration": "1"
     },
-    "TOFMatchedReader_ITSTPC": {
-        "tof-matched-infile": "o2match_tof_itstpc.root",
+    "zdc-reco-reader": {
+        "zdc-reco-infile": "zdcreco.root",
         "input-dir": "none",
-        "treename": "matchTOF",
         "tf-info-source": "hbfutils",
         "reader-delay": "0",
         "orbit-offset-enumeration": "0",
@@ -100,6 +178,45 @@
         "tof-matched-infile": "o2match_tof_tpc.root",
         "input-dir": "none",
         "treename": "matchTOF",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "cpv-cluster-reader": {
+        "cpv-clusters-infile": "cpvclusters.root",
+        "input-dir": "none",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "emcal-cell-reader": {
+        "infile": "emccells.root",
+        "input-dir": "none",
+        "treename": "o2sim",
+        "cellbranch": "EMCALCell",
+        "celltriggerbranch": "EMCALCellTRGR",
+        "mcbranch": "EMCALCellMCTruth",
+        "nevents": "-1",
+        "terminate-on-eod": "true",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "phos-cells-reader": {
+        "phos-cells-infile": "phoscells.root",
+        "input-dir": "none",
         "tf-info-source": "hbfutils",
         "reader-delay": "0",
         "orbit-offset-enumeration": "0",
@@ -123,6 +240,27 @@
         "infile": "tpctracks.root",
         "input-dir": "none",
         "skip-clusref": "false",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "HMPMatchedReader": {
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "TOFMatchedReader_ITSTPC": {
+        "tof-matched-infile": "o2match_tof_itstpc.root",
+        "input-dir": "none",
+        "treename": "matchTOF",
         "tf-info-source": "hbfutils",
         "reader-delay": "0",
         "orbit-offset-enumeration": "0",
@@ -166,6 +304,72 @@
         "end-value-enumeration": "-1",
         "step-value-enumeration": "1"
     },
+    "fdd-recpoints-reader": {
+        "fdd-recpoints-infile": "o2reco_fdd.root",
+        "input-dir": "none",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "ft0-recpoints-reader": {
+        "infile": "o2reco_ft0.root",
+        "input-dir": "none",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "fv0-recpoints-reader": {
+        "fv0-recpoints-infile": "o2reco_fv0.root",
+        "input-dir": "none",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "globalfwd-track-reader": {
+        "globalfwd-track-infile": "globalfwdtracks.root",
+        "input-dir": "none",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "mchmid-matches-reader": {
+        "matchmchmid-track-infile": "muontracks.root",
+        "input-dir": "none",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
+    "strangeness-tracking-reader": {
+        "strange-tracks-infile": "o2_strange_tracks.root",
+        "input-dir": "none",
+        "tf-info-source": "hbfutils",
+        "reader-delay": "0",
+        "orbit-offset-enumeration": "0",
+        "orbit-multiplier-enumeration": "0",
+        "start-value-enumeration": "0",
+        "end-value-enumeration": "-1",
+        "step-value-enumeration": "1"
+    },
     "tpc-trigger-reader": {
         "infile": "tpctriggers.root",
         "input-dir": "none",
@@ -192,31 +396,27 @@
         "step-value-enumeration": "1"
     },
     "tpc-clusters-sharing-map-producer": "",
-    "secondary-vertexing": {
-        "material-lut-path": "",
-        "threads": "1",
-        "do-not-recalculate-inverse-correction": "false",
-        "nthreads-inverse-correction": "4",
+    "aod-producer-workflow": {
+        "run-number": "300000",
+        "aod-timeframe-id": "1",
+        "fill-calo-cells": "1",
+        "enable-truncation": "1",
+        "lpmp-prod-tag": "",
+        "anchor-pass": "",
+        "anchor-prod": "",
+        "reco-pass": "",
+        "nthreads": "3",
+        "reco-mctracks-only": "0",
+        "ctpreadout-create": "0",
+        "emc-select-leading": "false",
+        "propagate-tracks": "false",
+        "hepmc-update": "always",
+        "propagate-muons": "false",
+        "trackqc-fraction": "0.100000001",
+        "trackqc-NTrCut": "4",
         "condition-backend": "http:\/\/alice-ccdb.cern.ch",
         "condition-timestamp": "0"
     },
-    "secondary-vertex-writer": {
-        "outfile": "o2_secondary_vertex.root",
-        "output-dir": "none",
-        "treename": "o2sim",
-        "treetitle": "Tree with Secondary Vertices",
-        "nevents": "-1",
-        "autosave": "-1",
-        "terminate": "process"
-    },
-    "strangenesstracking-writer": {
-        "outfile": "o2_strange_tracks.root",
-        "output-dir": "none",
-        "treename": "o2sim",
-        "treetitle": "Tree with Strange Tracks",
-        "nevents": "-1",
-        "autosave": "-1",
-        "terminate": "process"
-    },
+    "internal-dpl-aod-writer": "",
     "internal-dpl-injected-dummy-sink": ""
 }
