@@ -198,7 +198,8 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
 		
 
     LOGP(info, "tracksOneEvent size {}", tracksOneEvent.size());
-	
+	  LOGP(info, "labelTracksOneEvent size {}", labelTracksOneEvent.size());
+
 	
     if(tracksOneEvent.size() < 1) {
     	continue;
@@ -299,7 +300,7 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
       int trackCount = 1;
       for (const auto &track : sortedTracks[iCh]) {
       
-      	LOGP(info, "Track {} of {}", trackCount++, sortedTracks[iCh].size());
+      	LOGP(info, "Track {} of {}", trackCount++, sortedTracks[iCh].size());
         // Printf("TrackNumber%d track[iCh%d].size() %d", tNum++, i,
         // sortedTracks[i].size());
 
@@ -316,7 +317,7 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
         
         	
           const auto mcTrackIndex = track.getTrackIndex();
-					// LOGP(info, "Track mathced, mcTrackIndex: {} ", mcTrackIndex);
+					LOGP(info, "Track mathced, mcTrackIndex: {} ", mcTrackIndex);
           // find the PDG code in teh o2Kine_sim.root file by matching the
           // mcTrackIndex for the current event ;
           //--((const o2::MCTrack* mcTrack =
@@ -386,10 +387,8 @@ void SegmentationCkov(double _sigmaSep = 1.5) {
           pBranch = track.getHmpMom();
           // Fill the tree
           
-          
-          
+                    
           treeOut->Fill();
-
 					
           // for(auto& clusterPerChamber)
         } else {

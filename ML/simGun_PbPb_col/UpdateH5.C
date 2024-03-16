@@ -278,9 +278,9 @@ void updateParams(H5::Group &particleGroup, double momentum, double thetaP,
 
   // datasetSigmaRing datasetThetaCer datasetPhiCer
   /*
-datasetSigmaRing.read(sigma_ring_values.data(), PredType::NATIVE_DOUBLE);
-datasetThetaCer.read(theta_cer_values.data(), PredType::NATIVE_DOUBLE);
-datasetPhiCer.read(phi_cer_values.data(), PredType::NATIVE_DOUBLE);*/
+  datasetSigmaRing.read(sigma_ring_values.data(), PredType::NATIVE_DOUBLE);
+  datasetThetaCer.read(theta_cer_values.data(), PredType::NATIVE_DOUBLE);
+  datasetPhiCer.read(phi_cer_values.data(), PredType::NATIVE_DOUBLE);*/
 
   const double refIndexTmp = 1.2904;
 

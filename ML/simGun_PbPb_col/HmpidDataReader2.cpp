@@ -1,7 +1,7 @@
-#ifndef HMPID_DATA_READER_H
-#define HMPID_DATA_READER_H
+#ifndef HMPID_DATA_READER2_H
+#define HMPID_DATA_READER2_H
 
-#include "HmpidDataReader.cpp"
+#include "HMPIDDataSorter2.cpp"
 
 #include "DataFormatsHMP/Cluster.h"
 #include "DataFormatsHMP/Digit.h"
@@ -57,7 +57,7 @@ using Clusters = o2::hmpid::Cluster;
 using Cluster = o2::hmpid::Cluster; //, o2::hmpid::Digit, o2::hmpid::Trigger,
                                     //o2::hmpid::Clusterer;
 
-class HmpidDataReader {
+class HmpidDataReader2 {
 private:
     TFile fileKine;
     TFile fileClu;
@@ -98,7 +98,7 @@ public:
 
 
 
-    HmpidDataReader(const char* matchFileName, const char* cluFileName, const char* mcFileName)
+    HmpidDataReader2(const char* matchFileName, const char* cluFileName, const char* mcFileName)
     : fileKine(mcFileName, "READ"), fileClu(cluFileName, "READ"), fileMatch(matchFileName, "READ") {
         // Check if files are opened correctly
 
@@ -177,7 +177,7 @@ public:
     }
 
 
-  ~HmpidDataReader() {
+  ~HmpidDataReader2() {
 
   }
 
