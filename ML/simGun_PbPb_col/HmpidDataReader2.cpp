@@ -120,8 +120,8 @@ public:
         }
 
 
-
-        if(mUseMc) {
+        bool mUseMC = true;
+        if(mUseMC) {
           if (fileKine.IsZombie()) {
             LOGP(error, "Failed to open mc truth file: {}", mcFileName);
             throw std::runtime_error("Failed to open mcFileName.");
@@ -170,8 +170,12 @@ public:
 
         
         // mcTrackArrPtr
-        if (mUseMc) {
-          HmpidDataSorter2 hmpidDataSorter2(cluArr, mMatches, mLabelHMP);
+        //bool mUseMc = true;
+        if (mUseMC) {
+          LOGP(info, "HmpidDataReader2 : useMC {} ; call hmpidDataSorter2", mUseMC);
+          HmpidDataSorter2 hmpidDataSorter2;
+          hmpidDataSorter2.organizeAndSortMatchInfo(mMatches, mLabelHMP);
+          hmpidDataSorter2.organizeAndSortClusters(cluArr/*, trigArr*/);
           hmpidDataSorter2.iterateOverMatchedTracks();
         }  
         
@@ -180,7 +184,6 @@ public:
 
 
   ~HmpidDataReader2() {
-
   }
 
 	std::vector<Cluster> getClusInEvent(int event) const {
@@ -211,7 +214,7 @@ public:
 
 
 
-  TTree *initializeMCTree(std::vector<o2::MCTrack> *&mcTrackArrPtr);
+  TTree *initializeMCTree();
 
 
   std::vector<o2::MCTrack> *readMC(std::vector<o2::MCTrack> *&mcTrackArrPtr,
@@ -223,7 +226,7 @@ public:
   static void readTreeEntries();
 };
 
-void HmpidDataReader::initializeMatchTree(/*int eventID,
+void HmpidDataReader2::initializeMatchTree(/*int eventID,
     int trackID, int pdg*/) {
     
    
@@ -238,7 +241,7 @@ void HmpidDataReader::initializeMatchTree(/*int eventID,
 
   // std::vector<o2::dataformats::MatchInfoHMP>* matchArrPtr = nullptr;
   treeMatch->SetBranchAddress("HMPMatchInfo", &matchArrPtr);
-
+  bool mUseMC = true;
   if (mUseMC) {
     treeMatch->SetBranchAddress("MatchHMPMCTruth", &mLabelHMPPtr);
   }
@@ -246,18 +249,18 @@ void HmpidDataReader::initializeMatchTree(/*int eventID,
   treeMatch->GetEntry(0);
   treeMatch->Print("toponly");
 
-  Printf("treeMatch entries %d", treeMatch->GetEntries());
+  Printf("treeMatch entries %lld", treeMatch->GetEntries());
 
 
 
   if (matchArrPtr == nullptr) {
-    Printf("HmpidDataReader::initializeMatchTree matchArrPtr== nullptr");
+    Printf("HmpidDataReader2::initializeMatchTree matchArrPtr== nullptr");
 		// fileMatch.Close();
 		throw std::runtime_error("matchArrPtr nullptr");
   }
 
   if(mUseMC && !mLabelHMPPtr) {
-    Printf("HmpidDataReader::initializeMatchTree mLabelHMPPtr== nullptr");
+    Printf("HmpidDataReader2::initializeMatchTree mLabelHMPPtr== nullptr");
 		// fileMatch.Close();
 		throw std::runtime_error("mLabelHMPPtr nullptr");
   }
@@ -267,17 +270,17 @@ void HmpidDataReader::initializeMatchTree(/*int eventID,
 // startIndex : index of where matchArrPtr is to be searched
 // newStartIndex startIndex for next event
 
-void HmpidDataReader::readMatch(int eventID, int &startIndex, std::vector<o2::dataformats::MatchInfoHMP>& filteredMatches, std::vector<o2::MCCompLabel>& filteredLblMatches) {
+void HmpidDataReader2::readMatch(int eventID, int &startIndex, std::vector<o2::dataformats::MatchInfoHMP>& filteredMatches, std::vector<o2::MCCompLabel>& filteredLblMatches) {
                
                
-  Printf("Call HmpidDataReader::readMatch");                           
+  Printf("Call HmpidDataReader2::readMatch");                           
 	//std::vector<o2::dataformats::MatchInfoHMP> filteredMatches;// = new std::vector<o2::dataformats::MatchInfoHMP>;                           
                            
   if (!treeMatch) {
     Printf("TTree not initialized");
     return;// filteredMatches;
   } else {
-      Printf("HmpidDataReader::readMatch : TTree  initialized");
+      Printf("HmpidDataReader2::readMatch : TTree  initialized");
   }
 
   // Prepare to store filtered matches
@@ -288,10 +291,10 @@ void HmpidDataReader::readMatch(int eventID, int &startIndex, std::vector<o2::da
   bool found = false;
 
   if (matchArrPtr == nullptr) {
-    Printf("HmpidDataReader::readMatch :: matchArrPtr== nullptr");
+    Printf("HmpidDataReader2::readMatch :: matchArrPtr== nullptr");
     return;// filteredMatches;
   } else {
-      Printf("HmpidDataReader::readMatch : matchArrPtr ok");
+      Printf("HmpidDataReader2::readMatch : matchArrPtr ok");
   } 
   
   Printf("readMatch : (*matchArrPtr) size : %zu ", (*matchArrPtr).size());
@@ -309,7 +312,7 @@ void HmpidDataReader::readMatch(int eventID, int &startIndex, std::vector<o2::da
          
   if ((*matchArrPtr)[startIndex].getEvent() != eventID) {
     Printf("This shouldnt happen");
-    LOGP(info, "(*matchArrPtr)[startIndex].getEvent() {} eventID {}", (*matchArrPtr)[startIndex].getEvent(), eventID);|
+    LOGP(info, "(*matchArrPtr)[startIndex].getEvent() {} eventID {}", (*matchArrPtr)[startIndex].getEvent(), eventID);
   } else {
     found = true;
   }
@@ -354,7 +357,7 @@ void HmpidDataReader::readMatch(int eventID, int &startIndex, std::vector<o2::da
 
 }
 
-void HmpidDataReader::initializeClusterTree(/*std::vector<Cluster> *&cluArrPtr, std::vector<Trigger> *&trigArr*/ ) {
+void HmpidDataReader2::initializeClusterTree(/*std::vector<Cluster> *&cluArrPtr, std::vector<Trigger> *&trigArr*/ ) {
   // TTree *treeClu = (TTree *)fileClu.Get("o2sim");
   treeClu = dynamic_cast<TTree*>(fileClu.Get("o2hmp"));
   if (!treeClu)
@@ -363,28 +366,27 @@ void HmpidDataReader::initializeClusterTree(/*std::vector<Cluster> *&cluArrPtr, 
   if (!treeClu) {
     Printf("Error accessing TTree");
   }
-  
   treeClu->Print("toponly");
 
   treeClu->SetBranchAddress("HMPIDclusters", &cluArrPtr);
   treeClu->SetBranchAddress("InteractionRecords", &trigArr);
 
   // ef : add MC clus information
-
+  bool mUseMC = true;
   if(treeClu->GetBranchStatus("HMPIDClusterLabels") && mUseMC) {
     treeClu->SetBranchAddress("HMPIDClusterLabels", &cluLblArrPtr);
   }
   
   if(!cluLblArrPtr && mUseMC) {
-    Printf("HmpidDataReader::initializeClusterTree cluLblArrPtr== nullptr");
+    Printf("HmpidDataReader2::initializeClusterTree cluLblArrPtr== nullptr");
     throw std::runtime_error("cluLblArrPtr nullptr");
   }
 
   treeClu->GetEntry(0);
-  Printf("treeClu entries %d", treeClu->GetEntries());
+  Printf("treeClu entries %lld", treeClu->GetEntries());
 } 
 
-TTree *HmpidDataReader::initializeMCTree() {
+TTree *HmpidDataReader2::initializeMCTree() {
 
   treeKine = dynamic_cast<TTree*>(fileKine.Get("o2sim"));
   //if (!treeKine)
@@ -397,25 +399,25 @@ TTree *HmpidDataReader::initializeMCTree() {
     return nullptr;
   }
 
-  std::vector<o2::MCTrack> mcTrackArrPtr;
+  std::vector<o2::MCTrack>* mcTrackArrPtr;
   treeKine->SetBranchAddress("MCTrack", &mcTrackArrPtr);
   //treeKine->SetBranchAddress("TrackRefs", &mcTrackArrPtr);
 
-
-  if(!mcTrackArrPtr && mUseMC) {
-    Printf("HmpidDataReader::initializeMCTree mcTrackArrPtr== nullptr");
+  bool mUseMC = true;
+  if(/*!mcTrackArrPtr &&*/ mUseMC) {
+    Printf("HmpidDataReader2::initializeMCTree mcTrackArrPtr== nullptr");
     throw std::runtime_error("mcTrackArrPtr nullptr");
   }
 
   treeKine->GetEntry(0);
   treeKine->Print("toponly");
-  Printf("treeKine entries %d", treeKine->GetEntries());
+  Printf("treeKine entries %lld", treeKine->GetEntries());
 
   return treeKine;
 }
 
 std::vector<o2::MCTrack> *
-HmpidDataReader::readMC(std::vector<o2::MCTrack> *&mcTrackArrPtr, TTree *treeKine,
+HmpidDataReader2::readMC(std::vector<o2::MCTrack> *&mcTrackArrPtr, TTree *treeKine,
                         int eventID) {
   if (treeKine == nullptr) {
     Printf("Error : treeKine == nullptr");
@@ -433,7 +435,7 @@ HmpidDataReader::readMC(std::vector<o2::MCTrack> *&mcTrackArrPtr, TTree *treeKin
 }
 
 // for the given eventID; read trackID
-const o2::MCTrack *HmpidDataReader::getMCEntry(std::vector<o2::MCTrack> *mcTrackArrPtr,
+const o2::MCTrack *HmpidDataReader2::getMCEntry(std::vector<o2::MCTrack> *mcTrackArrPtr,
                                                int trackID) {
 
   if (trackID < 0 || trackID >= mcTrackArrPtr->size()) {
@@ -444,28 +446,28 @@ const o2::MCTrack *HmpidDataReader::getMCEntry(std::vector<o2::MCTrack> *mcTrack
       const auto &mcTrack = (*mcTrackArrPtr)[i];
       if (i == trackID) {
 
-        TParticlePDG* pPDG = TDatabasePDG::Instance()->GetParticle(mcTrack->GetPdgCode());
-        auto pT = TMath::Abs(mcTrack.GetStartVertexMomentumX() *
-                              mcTrack.GetStartVertexMomentumX() +
-                          mcTrack.GetStartVertexMomentumY() *
-                              mcTrack.GetStartVertexMomentumY());
-        auto pdgCode = mcTrack.GetPdgCode();
+        /*TParticlePDG* pPDG = TDatabasePDG::Instance()->GetParticle(mcTrack->GetPdgCode());
+        auto pT = TMath::Abs(mcTrack->GetStartVertexMomentumX() *
+                              mcTrack->GetStartVertexMomentumX() +
+                          mcTrack->GetStartVertexMomentumY() *
+                              mcTrack->GetStartVertexMomentumY());
+        auto pdgCode = mcTrack->GetPdgCode();
         LOGP(info, "Particle {}: pdg = {}, pT = {}", i, pdgCode, pT);
-
+        */
         /*
         Printf("Particle %d: pdg = %d, pT = %f, px = %f, py = %f, pz = %f, vx "
                "= %f, vy = %f, vz = %f",
-               i, mcTrack.GetPdgCode(),
-               TMath::Abs(mcTrack.GetStartVertexMomentumX() *
-                              mcTrack.GetStartVertexMomentumX() +
-                          mcTrack.GetStartVertexMomentumY() *
-                              mcTrack.GetStartVertexMomentumY()),
-               mcTrack.GetStartVertexMomentumX(),
-               mcTrack.GetStartVertexMomentumY(),
-               mcTrack.GetStartVertexMomentumZ(),
-               mcTrack.GetStartVertexCoordinatesX(),
-               mcTrack.GetStartVertexCoordinatesY(),
-               mcTrack.GetStartVertexCoordinatesZ());*/
+               i, mcTrack->GetPdgCode(),
+               TMath::Abs(mcTrack->GetStartVertexMomentumX() *
+                              mcTrack->GetStartVertexMomentumX() +
+                          mcTrack->GetStartVertexMomentumY() *
+                              mcTrack->GetStartVertexMomentumY()),
+               mcTrack->GetStartVertexMomentumX(),
+               mcTrack->GetStartVertexMomentumY(),
+               mcTrack->GetStartVertexMomentumZ(),
+               mcTrack->GetStartVertexCoordinatesX(),
+               mcTrack->GetStartVertexCoordinatesY(),
+               mcTrack->GetStartVertexCoordinatesZ());*/
         return &mcTrack;
       }
     }
@@ -473,7 +475,7 @@ const o2::MCTrack *HmpidDataReader::getMCEntry(std::vector<o2::MCTrack> *mcTrack
   return nullptr;
 }
 
-void HmpidDataReader::readTreeEntries() {
+void HmpidDataReader2::readTreeEntries() {
   // Open the ROOT file
   /*
   int i;

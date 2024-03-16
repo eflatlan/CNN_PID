@@ -1,6 +1,6 @@
-#if !defined(__CLING__) || defined(__ROOTCLING__)
+//#if !defined(__CLING__) || defined(__ROOTCLING__)
 
-// #pragma once
+#pragma once
 #include "CommonDataFormat/InteractionRecord.h"
 #include "CommonDataFormat/RangeReference.h"
 
@@ -11,14 +11,18 @@
 #include "SimulationDataFormat/MCTruthContainer.h"
 
 // #include "CkovToolsSingle.cpp"
-#include "HmpidDataReader2.cpp"
 #include "ParticleUtils2.cpp"
+#include "HmpidDataReader2.cpp"
 
 #include <utility>
 #include <vector>
 
 #include <TMath.h>
 #include <cmath>
+
+
+// #endif
+
 
 float calcCkovFromMass(float p, float n, int pdg);
 
@@ -50,7 +54,7 @@ void SegmentationCkov2(double _sigmaSep = 1.5) {
   */ 
 
   // clusters and triggers
-  std::vector<Cluster> *clusterArr = nullptr;
+  std::vector<o2::hmpid::Cluster> *clusterArr = nullptr;
   /*std::vector<o2::hmpid::Topology> mTopologyFromFile,
       *mTopologyFromFilePtr = &mTopologyFromFile;*/ 
 
@@ -63,10 +67,10 @@ void SegmentationCkov2(double _sigmaSep = 1.5) {
   HmpidDataReader2 hmpidDataReader(matchFileName, cluFileName, mcFileName);
 
 
-  LOGP(info, "fileOut->Close();"); */ 
+  /*LOGP(info, "fileOut->Close();"); * / 
   mParticleEvents.writeH5();
   LOGP(info, " mParticleEvents.writeH5();");
-  
+  */
 }
 
 float calcCkovFromMass(float p, float n, int pdg) {
