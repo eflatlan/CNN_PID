@@ -176,6 +176,9 @@ public:
           HmpidDataSorter2 hmpidDataSorter2;
           hmpidDataSorter2.organizeAndSortMatchInfo(mMatches, mLabelHMP);
           hmpidDataSorter2.organizeAndSortClusters(cluArr/*, trigArr*/);
+
+          hmpidDataSorter2.setTriggers(trigArr/*, trigArr*/);
+          
           hmpidDataSorter2.iterateOverMatchedTracks();
         }  
         

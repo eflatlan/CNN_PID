@@ -7,6 +7,8 @@
 #include "Alisigma2_.cpp"
 #include "SimpleCluster.cpp"
 
+
+#include "DataFormatsHMP/Trigger.h"
 #include "DataFormatsHMP/Cluster.h"
 #include "ReconstructionDataFormats/MatchInfoHMP.h"
 #include "SimulationDataFormat/MCCompLabel.h"
@@ -54,32 +56,51 @@ class HmpidDataSorter2 {
         // to get sigmaRing
         const double refIndexTmp = 1.2904;
         Alisigma2_ alisSigma2(refIndexTmp);
-
+        int trigNum = 0;
         for (const auto& eventEntry : matchInfoByEventChamber) {
             LOGP(info, "\n=======================================");
             LOGP(info, "  Event {}", eventEntry.first);
             LOGP(info, "=======================================");
+        
+            const auto& trig = triggers[trigNum++];
 
+            std::vector<o2::hmpid::Cluster> clustersInEvent;
+
+            // std::ordered_map<int, std::vector<o2::DataFormatsHMP::cluster>> clusterMaps;
+            std::array<std::vector<o2::hmpid::Cluster>, 7> clusterArray;
+            for(int cluNum = trig.getFirstEntry(); cluNum < trig.getLastEntry(); cluNum++)
+            {
+                if (cluNum < mClusters.size() ) {
+                  const auto& clu = mClusters[cluNum]; 
+                  const int chNum = clu.ch();
+                  if (chNum >= o2::hmpid::Param::EChamberData::kMinCh && chNum <= o2::hmpid::Param::EChamberData::kMaxCh)
+                  {
+
+                    clustersInEvent.emplace_back(clu);
+                    clusterArray[chNum].emplace_back(clu);
+                  }
+                }
+                
+            }
             for (const auto& chamberEntry : eventEntry.second) {
-                LOGP(info, "=======================================");
 
                 // here all the matched and unmatched tracks for a given event and chamber
             
                 // get clusters for the given event and chamber
                 // const auto& clusters = clustersByEventChamber[eventEntry.first][chamberEntry.first];
-                const auto& clusters = getClusters(eventEntry.first, chamberEntry.first);
-
+                // const auto& clusters = getClusters(eventEntry.first, chamberEntry.first);
+                const auto& clustersInChamber = clusterArray[chamberEntry.first];
                 const auto& mcMatchInfoArr = mcMatchInfoByEventChamber[eventEntry.first][chamberEntry.first];
 
                 std::vector<SimpleCluster> simpleClusters;
-                for (const auto& cluster : clusters) {
+                for (const auto& cluster : clustersInChamber) {
                     simpleClusters.emplace_back(cluster.x(), cluster.y(), cluster.q(), cluster.ch());                    
                 } 
 
-                LOGP(info, "    Event {}, chamber {} : num Clusters = {}", eventEntry.first, chamberEntry.first, clusters.size());
-
                 int trackNum = 0;
-                
+                LOGP(info, "=======================================");
+                LOGP(info, "    Event {}, chamber {} : num Clusters = {}", eventEntry.first, chamberEntry.first, clustersInChamber.size());
+ 
                 const o2::MCTrack* mcTrack = nullptr;
                 for (const auto& matchInfo : chamberEntry.second) {
 
@@ -95,15 +116,15 @@ class HmpidDataSorter2 {
                     const auto dist = TMath::Sqrt((xPcCon - xMip)*(xPcCon - xMip) + (yPcCon - yMip)*(yPcCon - yMip));
                     
                     
-                    LOGP(info, "        =========================================================");
-                    LOGP(info, "        Track number {} : matched Status {}", trackNum, matchInfo.getMatchStatus());
-                                        
-                    if(dist > 10) {
-                        Printf("               Too large distance %.0f : Skip", dist);
+                   
+                    if(dist > 6.) {
+                        // Printf("               Too large distance %.0f : Skip", dist);
                         trackNum++;
                         continue;                    
                     }
-
+                    LOGP(info, "        =========================================================");
+                    LOGP(info, "        Track number {} : matched Status {}", trackNum, matchInfo.getMatchStatus());
+                      
 
 
                     // LOGP(info, "        Dist PC CONC-UNC: deltaX {} deltaY {}", xPcCon - xPcUnc, yPcCon - yPcUnc);
@@ -118,6 +139,10 @@ class HmpidDataSorter2 {
                     int sourceIdKine = -1;
 
                     const auto& mcMatchInfo = mcMatchInfoArr[trackNum];
+
+                    if (!mcMatchInfo.isValid() ) {
+                        LOGP(info, "        mcMatchInfo not valid");
+                    }
 
                     trackIdKine = mcMatchInfo.getTrackID();
                     eventIdKine = mcMatchInfo.getEventID();
@@ -175,36 +200,110 @@ class HmpidDataSorter2 {
                     LOGP(info, "        Particle {}: mcTrack pdgCode = {} | pdgFromMip {} pdgFromTrack {}", trackNum, pdgCode, pdgFromMip, pdgFromTrack);
 
                     if(pdgCode != pdgFromMip) {
-                      LOGP(info, "      PDG code ulik! : num Clusters = {}", clusters.size());
-                      
-                      for(const auto& clu : clusters){
-                       const auto cluDist2Mip = TMath::Sqrt((clu.x() - xMip)*(clu.x() - xMip) + (clu.y() - yMip)*(clu.y() - yMip));
-                       Printf("      cluDist2Mip : %.1f", cluDist2Mip);
+                      LOGP(info, "      PDG code ulik! : num clustersInChamber = {}", clustersInChamber.size());
 
-                       if(cluDist2Mip < 10) {
+                      LOGP(info, "      **********************************");
+                      LOGP(info, "      Check clusters \n");
+
+                      const int mipcluSize = matchInfo.getMipClusSize();
+
+                      //void setIdxHMPClus(int ch, int idx) { mIdxHMPClus = ch * 1000000 + idx; }
+                      //matching.setIdxHMPClus(iCh, index + 1000 * cluSize); // set chamber, index of cluster + cluster size
+
+                      const int mipIndex = matchInfo.getIdxHMPClus();
+                      
+                      
+                      int chTrack = matchInfo.getChamber();
+
+                      int mipch = mipIndex / 1000000; // Extract chamber
+                      int remainder = mipIndex % 1000000; // Remainder after removing chamber information
+                      int mipSz = remainder / 1000; // Extract cluster size
+                      int index = remainder % 1000; // Extract index of cluster                        
+                      
+                      
+
+                      const int cluTrigStartIndex = trig.getFirstEntry();
+
+                      const int numCluTotal = mClusters.size();
+
+                      const int numCluInTrig = trig.getNumberOfObjects();
+
+                      LOGP(info,"       cluTrigStartIndex {} numCluTotal {} : numCluInTrig {} indexMIP {}",cluTrigStartIndex,numCluTotal,numCluInTrig,index);
+
+                      const int mipcluCharge = matchInfo.getMipClusCharge();
+                      Printf("              MIP PDG %d; x %.1f y %.1f q %d size %d", matchInfo.getMipClusEventPDG(), xMip, yMip, mipcluCharge, mipcluSize);
+
+                      // for aa sjekke index :
+                      const int indexTotal = cluTrigStartIndex  + index;
+                      Printf("              mipIndex %d mipch %d mipSz %d index (%d/%d)", mipIndex, mipch, mipSz, indexTotal, numCluTotal);
+
+                      const auto& mipFromMatch = mClusters[indexTotal];
+                      Printf("              mipFromMatch PDG %d; Chamber %d x %.1f y %.1f q %d size %d", mipFromMatch.getPDG(), mipFromMatch.ch(), mipFromMatch.x(), mipFromMatch.y(), mipFromMatch.q(), mipFromMatch.size());
+
+                      
+                      const auto& mipFromMatch2 = clustersInEvent[index];
+                      Printf("              mipFromMatch2 PDG %d; Chamber %d x %.1f y %.1f q %d size %d", mipFromMatch2.getPDG(), mipFromMatch2.ch(), mipFromMatch2.x(), mipFromMatch2.y(), mipFromMatch2.q(), mipFromMatch2.size());
+
+                      for(const auto& clu : clustersInChamber){
+                       const auto cluDist2Mip = TMath::Sqrt((clu.x() - xMip)*(clu.x() - xMip) + (clu.y() - yMip)*(clu.y() - yMip));
+
+                       if(cluDist2Mip < 20) {
+                         
                          const auto tid = clu.getTrackId();
                          const auto mid = clu.getMotherId();
                          const auto sid = clu.getSourceId();
                           
                          const auto mcFromClu = mcReader->getTrack(eventIdKine, tid);
                          const auto mcFromCluMother = mcReader->getTrack(eventIdKine, mid);
+                        
+                        if(clu.q() < 100. || clu.size() < 2)
+                        {
+                            continue;
+                        }
 
-                         Printf("              Cluster PDG %d, q %d size %d", clu.getPDG(), clu.q(), clu.size());
+                        Printf("\n                cluDist2Mip : %.1f", cluDist2Mip);
+
+                        //Printf("              Cluster PDG %d, q %.2f size %d", clu.getPDG(), clu.q(), clu.size());
 
 
-                         LOGP(info, "        Cluster MC INFO : tid {} mid {} sid {}", tid, mid, sid);
+                        Printf("              Cluster PDG %d; ch %d x %.1f y %.1f q %.2f size %d", clu.getPDG(), clu.ch(),clu.x(), clu.y(), clu.q(), clu.size());
 
-                         if(mcFromClu && mcFromCluMother) {
+
+                        //void setIdxHMPClus(int ch, int idx) { mIdxHMPClus = ch * 1000000 + idx; }
+                        //matching.setIdxHMPClus(iCh, index + 1000 * cluSize); // set chamber, index of cluster + cluster size
+                        Printf("              mipIndex %d mipch %d mipSz %d index %d", mipIndex, mipch, mipSz, index);
+                    
+                        Printf("               matchInfo ; chTrack %d", chTrack);
+                        Printf("              MIP PDG %d; x %.1f y %.1f q %d size %d", matchInfo.getMipClusEventPDG(), xMip, yMip, mipcluCharge, mipcluSize);
+
+                        // LOGP
+                        // xMip, yMip, qMip, nph
+
+                        LOGP(info, "        Cluster MC INFO : tid {} mid {} sid {}", tid, mid, sid);
+
+                        if(mcFromClu == nullptr) {
+                            LOGP(info, "        mcFromClu nullptr");
+                            continue;
+                        }  
+
+
+
+                        if(mcFromCluMother == nullptr) {
+                            LOGP(info, "        mcFromCluMother nullptr");
+                            continue;
+                        }  
+
+                         if(mcFromClu!=nullptr && mcFromCluMother!=nullptr) {
                             auto pdgTid = mcFromClu->GetPdgCode();
                             auto pdgMid = mcFromCluMother->GetPdgCode();
-
-                            LOGP(info, "        Cluster MC INFO : From tid {} mid {}", pdgTid, pdgMid);
+                            LOGP(info, "        Cluster MC INFO PDG: From tid {} mid {}", pdgTid, pdgMid);
                          }
 
 
                        }
 
                       }
+                      LOGP(info, "      No valid clusters");
                     }
 
 
@@ -250,16 +349,60 @@ class HmpidDataSorter2 {
     }
     void organizeAndSortClusters(const std::vector<o2::hmpid::Cluster>& allClusters) {
         
-        LOGP(info, "organizeAndSortClusters : numClusters = {}", allClusters.size());
 
         for (const auto& cluster : allClusters) {
-            int eventNum = cluster.getEventNumber();
+            mClusters.emplace_back(cluster);
+            int eventNum = cluster.getEventNumberFromTrack();
             int chamberNum = cluster.ch();
+
+            if(eventNum < 0) {
+                LOGP(info, "evenNumber {}", eventNum);
+            }
+
+            if(chamberNum < 0 || chamberNum > 6) {
+                LOGP(info, "chamberNum {}", chamberNum);
+            }       
+
+            if(cluster.q() < 0) {
+                LOGP(info, "cluster.q() {}", cluster.q());
+            }  
+
+            if(cluster.size() < 0) {
+                LOGP(info, "cluster.size() {}", cluster.size());
+            }  
+
             clustersByEventChamber[eventNum][chamberNum].push_back(cluster);
-            LOGP(info, "organizeAndSortClusters : eventNum {} chamberNum {} : size {}", eventNum, chamberNum, clustersByEventChamber[eventNum][chamberNum].size());
-            LOGP(info, "organizeAndSortClusters : eventNum {} chamberNum {} : size {}", eventNum, chamberNum, getClusters(eventNum,chamberNum).size());
+            //LOGP(info, "organizeAndSortClusters : eventNum {} chamberNum {} : size {}", eventNum, chamberNum, clustersByEventChamber[eventNum][chamberNum].size());
+            //LOGP(info, "organizeAndSortClusters : eventNum {} chamberNum {} : size {}", eventNum, chamberNum, getClusters(eventNum,chamberNum).size());
 
         }
+
+
+
+        for (const auto& cluster : mClusters) {
+            int eventNum = cluster.getEventNumberFromTrack();
+            int chamberNum = cluster.ch();
+            if(cluster.q()>100 && cluster.size()>2) 
+              Printf("evenNumber %d chamberNum %d x %.1f y %.1f q %.1f size %d", eventNum, chamberNum,  cluster.x(), cluster.y(), cluster.q(), cluster.size());
+
+            if(eventNum < 0) {
+                LOGP(info, "evenNumber {}", eventNum);
+            }
+
+            if(chamberNum < 0 || chamberNum > 6) {
+                LOGP(info, "chamberNum {}", chamberNum);
+            }       
+                 
+            if(cluster.q() < 0) {
+                LOGP(info, "cluster.q() {}", cluster.q());
+            }  
+
+            if(cluster.size() < 0) {
+                LOGP(info, "cluster.size() {}", cluster.size());
+            }  
+
+        }        
+        LOGP(info, "organizeAndSortClusters : numClusters in = {}; out = {} ", allClusters.size(), mClusters.size());
 
     }
 
@@ -291,7 +434,20 @@ class HmpidDataSorter2 {
     }
 
 
+    void setTriggers(std::vector<o2::hmpid::Trigger>* trigArrPtr) {
+      if(!trigArrPtr) {
+        throw std::runtime_error("trigArrPtr nullptr");
+        return;
+
+      }
+      for(const auto trig : *trigArrPtr) {
+        triggers.emplace_back(trig);
+      } 
+    }
+
   private:
+    std::vector<o2::hmpid::Cluster> mClusters;
+    std::vector<o2::hmpid::Trigger> triggers;
     EventChamberMatchInfoMap matchInfoByEventChamber;
     EventChamberMCLabelMap mcMatchInfoByEventChamber;    
     EventChamberClustersMap clustersByEventChamber;
