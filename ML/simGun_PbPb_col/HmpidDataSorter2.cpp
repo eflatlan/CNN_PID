@@ -62,16 +62,29 @@ class HmpidDataSorter2 {
             LOGP(info, "  Event {}", eventEntry.first);
             LOGP(info, "=======================================");
         
-            const auto& trig = triggers[trigNum++];
+            // const auto& trig = triggers[trigNum++]; // eventEntry.first?
+
+            const auto& trig = triggers[eventEntry.first]; // eventEntry.first?
+
 
             std::vector<o2::hmpid::Cluster> clustersInEvent;
 
             // std::ordered_map<int, std::vector<o2::DataFormatsHMP::cluster>> clusterMaps;
             std::array<std::vector<o2::hmpid::Cluster>, 7> clusterArray;
+            int tnum = 0;
+            int cluNumPre = 0;
             for(int cluNum = trig.getFirstEntry(); cluNum < trig.getLastEntry(); cluNum++)
             {
+
+                if(trig.getNumberOfObjects()<1) {
+                  continue;
+                }
+
                 if (cluNum < mClusters.size() ) {
                   const auto& clu = mClusters[cluNum]; 
+
+                  const int evNum = clu.getEventNumber();
+
                   const int chNum = clu.ch();
                   if (chNum >= o2::hmpid::Param::EChamberData::kMinCh && chNum <= o2::hmpid::Param::EChamberData::kMaxCh)
                   {
@@ -79,8 +92,9 @@ class HmpidDataSorter2 {
                     clustersInEvent.emplace_back(clu);
                     clusterArray[chNum].emplace_back(clu);
                   }
+                  cluNumPre = evNum;
                 }
-                
+                tnum++;
             }
             for (const auto& chamberEntry : eventEntry.second) {
 
@@ -379,11 +393,61 @@ class HmpidDataSorter2 {
 
 
 
+        int tnum = 0;
+
+        LOGP(info, "organizeAndSortClusters : nTriggers {}", triggers.size());
+
+        for(const auto& trig : triggers)
+        {
+
+
+            /*
+            if(trig.getNumberOfObjects() < 1) {
+                LOGP(info, "no clus in trig");
+                continue;
+            }*/ 
+            LOGP(info, "numClus in trig {}", trig.getNumberOfObjects());
+
+            std::vector<o2::hmpid::Cluster> clustersInEvent;
+
+            // std::ordered_map<int, std::vector<o2::DataFormatsHMP::cluster>> clusterMaps;
+            int cluNumPre = 0;
+            LOGP(info, " trigRange {}--{}", trig.getFirstEntry(), trig.getLastEntry());
+
+            for(int cluNum = trig.getFirstEntry(); cluNum < trig.getLastEntry(); cluNum++)
+            {
+
+                if (cluNum < mClusters.size() ) {
+                    const auto& clu = mClusters[cluNum]; 
+
+                    const int evNum = clu.getEventNumber();
+
+                    //if(evNum!=cluNumPre && cluNumPre!=0) 
+                    LOGP(info, "tnum {}, evNum {}, cluNumPre {}", tnum, evNum, cluNumPre);
+                    
+                    /*
+                    const int chNum = clu.ch();
+                    if (chNum >= o2::hmpid::Param::EChamberData::kMinCh && chNum <= o2::hmpid::Param::EChamberData::kMaxCh)
+                    {
+
+                    }*/
+                    cluNumPre = evNum;
+                } else {
+                    LOGP(info, "clusters out of range");
+                }
+                
+            }
+            tnum++;
+        }
+
+
+
+
         for (const auto& cluster : mClusters) {
-            int eventNum = cluster.getEventNumberFromTrack();
+            int eventNum = cluster.getEventNumber();
             int chamberNum = cluster.ch();
-            if(cluster.q()>100 && cluster.size()>2) 
-              Printf("evenNumber %d chamberNum %d x %.1f y %.1f q %.1f size %d", eventNum, chamberNum,  cluster.x(), cluster.y(), cluster.q(), cluster.size());
+            //if(cluster.q()>100 && cluster.size()>2) 
+            //  Printf("evenNumber %d chamberNum %d x %.1f y %.1f q %.1f size %d", eventNum, chamberNum,  cluster.x(), cluster.y(), cluster.q(), cluster.size());
 
             if(eventNum < 0) {
                 LOGP(info, "evenNumber {}", eventNum);
@@ -407,6 +471,7 @@ class HmpidDataSorter2 {
     }
 
     void organizeAndSortMatchInfo(const std::vector<o2::dataformats::MatchInfoHMP>& allMatchInfo, const std::vector<o2::MCCompLabel>& allMcLabels) {
+        
         for (size_t i = 0; i < allMatchInfo.size(); ++i) {
             const auto& matchInfo = allMatchInfo[i];
             const auto& mcMatchInfo = allMcLabels[i];
@@ -417,6 +482,18 @@ class HmpidDataSorter2 {
             matchInfoByEventChamber[eventNum][chamberNum].push_back(matchInfo);
             mcMatchInfoByEventChamber[eventNum][chamberNum].push_back(mcMatchInfo);
         }
+
+
+        for (size_t i = 0; i < allMatchInfo.size(); ++i) {
+            const auto& matchInfo = allMatchInfo[i];
+            const auto& mcMatchInfo = allMcLabels[i];
+
+            int eventNum = matchInfo.getEventNumberFromTrack();
+            int chamberNum = matchInfo.getChamber();
+
+            matchInfoByEventChamber[eventNum][chamberNum].push_back(matchInfo);
+            mcMatchInfoByEventChamber[eventNum][chamberNum].push_back(mcMatchInfo);
+        }        
 
     }
 
