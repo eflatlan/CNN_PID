@@ -80,6 +80,7 @@ class HmpidDataSorter2 {
                   continue;
                 }
 
+
                 if (cluNum < mClusters.size() ) {
                   const auto& clu = mClusters[cluNum]; 
 
@@ -96,6 +97,8 @@ class HmpidDataSorter2 {
                 }
                 tnum++;
             }
+
+
             for (const auto& chamberEntry : eventEntry.second) {
 
                 // here all the matched and unmatched tracks for a given event and chamber
@@ -106,10 +109,15 @@ class HmpidDataSorter2 {
                 const auto& clustersInChamber = clusterArray[chamberEntry.first];
                 const auto& mcMatchInfoArr = mcMatchInfoByEventChamber[eventEntry.first][chamberEntry.first];
 
+
+
                 std::vector<SimpleCluster> simpleClusters;
                 for (const auto& cluster : clustersInChamber) {
                     simpleClusters.emplace_back(cluster.x(), cluster.y(), cluster.q(), cluster.ch());                    
                 } 
+
+                LOGP(info, "clustersInEvent size {} : in chamber-- simpleClusters size {}", clustersInEvent.size(), simpleClusters.size());
+
 
                 int trackNum = 0;
                 LOGP(info, "=======================================");
@@ -136,6 +144,7 @@ class HmpidDataSorter2 {
                         trackNum++;
                         continue;                    
                     }
+
                     LOGP(info, "        =========================================================");
                     LOGP(info, "        Track number {} : matched Status {}", trackNum, matchInfo.getMatchStatus());
                       
@@ -174,7 +183,7 @@ class HmpidDataSorter2 {
                     // mcTrack = mcReader->getTrack(mcMatchInfo);        // mcTrack = mcReader->getTrack(lbl)
                     int status;
                     char* demangled = abi::__cxa_demangle(typeid(mcMatchInfo).name(), 0, 0, &status);
-                    LOGP(info, "        Type of mcMatchInfo: {}", (status == 0 ? demangled : typeid(mcMatchInfo).name()));
+                    //LOGP(info, "        Type of mcMatchInfo: {}", (status == 0 ? demangled : typeid(mcMatchInfo).name()));
                     free(demangled);  
 
                     if(mcReader == nullptr) {
@@ -241,6 +250,8 @@ class HmpidDataSorter2 {
                       const int numCluTotal = mClusters.size();
 
                       const int numCluInTrig = trig.getNumberOfObjects();
+                      
+                      LOGP(info, "clustersInEvent size {} simpleClusters size {} numCluInTrig", clustersInEvent.size(), simpleClusters.size(), numCluInTrig);
 
                       LOGP(info,"       cluTrigStartIndex {} numCluTotal {} : numCluInTrig {} indexMIP {}",cluTrigStartIndex,numCluTotal,numCluInTrig,index);
 
@@ -258,11 +269,20 @@ class HmpidDataSorter2 {
                       const auto& mipFromMatch2 = clustersInEvent[index];
                       Printf("              mipFromMatch2 PDG %d; Chamber %d x %.1f y %.1f q %d size %d", mipFromMatch2.getPDG(), mipFromMatch2.ch(), mipFromMatch2.x(), mipFromMatch2.y(), mipFromMatch2.q(), mipFromMatch2.size());
 
-                      for(const auto& clu : clustersInChamber){
+
+
+
+                      //for(const auto& clu : clustersInChamber){
+                      for(int ind = trig.getFirstEntry(), ind < trig.getLastEntry(); ind++) {
+
+                       const auto& clu = mClusters[ind];
                        const auto cluDist2Mip = TMath::Sqrt((clu.x() - xMip)*(clu.x() - xMip) + (clu.y() - yMip)*(clu.y() - yMip));
 
                        if(cluDist2Mip < 20) {
                          
+                        if(clu.ch() != mipch)
+                          continue;
+
                          const auto tid = clu.getTrackId();
                          const auto mid = clu.getMotherId();
                          const auto sid = clu.getSourceId();
