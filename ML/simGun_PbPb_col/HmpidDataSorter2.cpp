@@ -256,29 +256,32 @@ class HmpidDataSorter2 {
                       LOGP(info,"       cluTrigStartIndex {} numCluTotal {} : numCluInTrig {} indexMIP {}",cluTrigStartIndex,numCluTotal,numCluInTrig,index);
 
                       const int mipcluCharge = matchInfo.getMipClusCharge();
-                      Printf("              MIP PDG %d; x %.1f y %.1f q %d size %d", matchInfo.getMipClusEventPDG(), xMip, yMip, mipcluCharge, mipcluSize);
+                      Printf("              MIP PDG %d; x %.1f y %.1f q %.d size %d", matchInfo.getMipClusEventPDG(), xMip, yMip, mipcluCharge, mipcluSize);
 
                       // for aa sjekke index :
                       const int indexTotal = cluTrigStartIndex  + index;
                       Printf("              mipIndex %d mipch %d mipSz %d index (%d/%d)", mipIndex, mipch, mipSz, indexTotal, numCluTotal);
 
                       const auto& mipFromMatch = mClusters[indexTotal];
-                      Printf("              mipFromMatch PDG %d; Chamber %d x %.1f y %.1f q %d size %d", mipFromMatch.getPDG(), mipFromMatch.ch(), mipFromMatch.x(), mipFromMatch.y(), mipFromMatch.q(), mipFromMatch.size());
+                      Printf("              mipFromMatch PDG %d; Chamber %d x %.1f y %.1f q %.0f size %d", mipFromMatch.getPDG(), mipFromMatch.ch(), mipFromMatch.x(), mipFromMatch.y(), mipFromMatch.q(), mipFromMatch.size());
 
                       
                       const auto& mipFromMatch2 = clustersInEvent[index];
-                      Printf("              mipFromMatch2 PDG %d; Chamber %d x %.1f y %.1f q %d size %d", mipFromMatch2.getPDG(), mipFromMatch2.ch(), mipFromMatch2.x(), mipFromMatch2.y(), mipFromMatch2.q(), mipFromMatch2.size());
+                      Printf("              mipFromMatch2 PDG %d; Chamber %d x %.1f y %.1f q %.0f size %d", mipFromMatch2.getPDG(), mipFromMatch2.ch(), mipFromMatch2.x(), mipFromMatch2.y(), mipFromMatch2.q(), mipFromMatch2.size());
 
 
 
 
                       //for(const auto& clu : clustersInChamber){
-                      for(int ind = trig.getFirstEntry(), ind < trig.getLastEntry(); ind++) {
+                      for(int ind = trig.getFirstEntry(); ind < trig.getLastEntry(); ind++) {
 
                        const auto& clu = mClusters[ind];
                        const auto cluDist2Mip = TMath::Sqrt((clu.x() - xMip)*(clu.x() - xMip) + (clu.y() - yMip)*(clu.y() - yMip));
 
-                       if(cluDist2Mip < 20) {
+                       const auto cluDist2PC = TMath::Sqrt((clu.x() - xPcCon)*(clu.x() - xPcCon) + (clu.y() - yPcCon)*(clu.y() - yPcCon));
+
+
+                       if(cluDist2PC < 20) {
                          
                         if(clu.ch() != mipch)
                           continue;
@@ -287,20 +290,41 @@ class HmpidDataSorter2 {
                          const auto mid = clu.getMotherId();
                          const auto sid = clu.getSourceId();
                           
-                         const auto mcFromClu = mcReader->getTrack(eventIdKine, tid);
-                         const auto mcFromCluMother = mcReader->getTrack(eventIdKine, mid);
-                        
+
+                        if(!mcReader->getTrack(eventIdKine, tid)) {
+                            LOGP(info, "nullptr mcReader->getTrack(eventIdKine, tid)");
+                            //continue;
+                        }
+
+
+                        if(!mcReader->getTrack(eventIdKine, mid)) {
+                            LOGP(info, "nullptr mcReader->getTrack(eventIdKine, tid)");
+                            //continue;
+                        }     
+
+
+                        auto printPDG = false;      
+                        std::unique_ptr<o2::MCTrack> mcFromClu, mcFromCluMother;
+                        try {
+                            mcFromCluMother = std::make_unique<o2::MCTrack>(*mcReader->getTrack(eventIdKine, mid));
+                            mcFromClu = std::make_unique<o2::MCTrack>(*mcReader->getTrack(eventIdKine, tid));
+                        } catch (const std::exception& e) {
+                            // std::cout << "An exception occurred: " << e.what() << std::endl;
+                            printPDG = false;
+                        }                                     
+
+
                         if(clu.q() < 100. || clu.size() < 2)
                         {
                             continue;
                         }
 
-                        Printf("\n                cluDist2Mip : %.1f", cluDist2Mip);
+                        Printf("\n                cluDist2Mip : %.1f | cluDist2PC : %.1f", cluDist2Mip, cluDist2PC);
 
-                        //Printf("              Cluster PDG %d, q %.2f size %d", clu.getPDG(), clu.q(), clu.size());
+                        //Printf("              Cluster PDG %d, q %.0f size %d", clu.getPDG(), clu.q(), clu.size());
 
 
-                        Printf("              Cluster PDG %d; ch %d x %.1f y %.1f q %.2f size %d", clu.getPDG(), clu.ch(),clu.x(), clu.y(), clu.q(), clu.size());
+                        Printf("              Cluster PDG %d; ch %d x %.1f y %.1f q %.0f size %d", clu.getPDG(), clu.ch(),clu.x(), clu.y(), clu.q(), clu.size());
 
 
                         //void setIdxHMPClus(int ch, int idx) { mIdxHMPClus = ch * 1000000 + idx; }
@@ -330,6 +354,13 @@ class HmpidDataSorter2 {
                          if(mcFromClu!=nullptr && mcFromCluMother!=nullptr) {
                             auto pdgTid = mcFromClu->GetPdgCode();
                             auto pdgMid = mcFromCluMother->GetPdgCode();
+                            
+                            if(!mcFromClu) 
+                              continue;
+
+                            if(!mcFromCluMother) 
+                              continue;
+
                             LOGP(info, "        Cluster MC INFO PDG: From tid {} mid {}", pdgTid, pdgMid);
                          }
 
@@ -467,7 +498,7 @@ class HmpidDataSorter2 {
             int eventNum = cluster.getEventNumber();
             int chamberNum = cluster.ch();
             //if(cluster.q()>100 && cluster.size()>2) 
-            //  Printf("evenNumber %d chamberNum %d x %.1f y %.1f q %.1f size %d", eventNum, chamberNum,  cluster.x(), cluster.y(), cluster.q(), cluster.size());
+            //  Printf("evenNumber %d chamberNum %d x %.1f y %.1f q %.0f size %d", eventNum, chamberNum,  cluster.x(), cluster.y(), cluster.q(), cluster.size());
 
             if(eventNum < 0) {
                 LOGP(info, "evenNumber {}", eventNum);
