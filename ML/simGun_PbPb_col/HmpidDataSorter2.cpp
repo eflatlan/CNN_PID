@@ -139,7 +139,7 @@ class HmpidDataSorter2 {
                     
                     
                    
-                    if(dist > 6.) {
+                    if(dist > 3.) {
                         // Printf("               Too large distance %.0f : Skip", dist);
                         trackNum++;
                         continue;                    
@@ -221,9 +221,10 @@ class HmpidDataSorter2 {
                     int pdgFromTrack = matchInfo.getParticlePdg();
 
                     LOGP(info, "        Particle {}: mcTrack pdgCode = {} | pdgFromMip {} pdgFromTrack {}", trackNum, pdgCode, pdgFromMip, pdgFromTrack);
+                    bool isMipMathced = false;
 
-                    if(pdgCode != pdgFromMip) {
-                      LOGP(info, "      PDG code ulik! : num clustersInChamber = {}", clustersInChamber.size());
+                    if(true /*pdgCode != pdgFromMip*/) {
+                      // LOGP(info, "      PDG code ulik! : num clustersInChamber = {}", clustersInChamber.size());
 
                       LOGP(info, "      **********************************");
                       LOGP(info, "      Check clusters \n");
@@ -281,7 +282,7 @@ class HmpidDataSorter2 {
                        const auto cluDist2PC = TMath::Sqrt((clu.x() - xPcCon)*(clu.x() - xPcCon) + (clu.y() - yPcCon)*(clu.y() - yPcCon));
 
 
-                       if(cluDist2PC < 20) {
+                       if(cluDist2PC < 10) {
                          
                         if(clu.ch() != mipch)
                           continue;
@@ -334,6 +335,13 @@ class HmpidDataSorter2 {
                         Printf("               matchInfo ; chTrack %d", chTrack);
                         Printf("              MIP PDG %d; x %.1f y %.1f q %d size %d", matchInfo.getMipClusEventPDG(), xMip, yMip, mipcluCharge, mipcluSize);
 
+
+
+                        if(xMip == clu.x() && yMip == clu.y() && clu.size() == mipcluSize)
+                        {
+                            isMipMathced = true;
+                        } 
+
                         // LOGP
                         // xMip, yMip, qMip, nph
 
@@ -341,14 +349,14 @@ class HmpidDataSorter2 {
 
                         if(mcFromClu == nullptr) {
                             LOGP(info, "        mcFromClu nullptr");
-                            continue;
-                        }  
+                            //continue;
+                        } 
 
 
 
                         if(mcFromCluMother == nullptr) {
                             LOGP(info, "        mcFromCluMother nullptr");
-                            continue;
+                            //continue;
                         }  
 
                          if(mcFromClu!=nullptr && mcFromCluMother!=nullptr) {
@@ -362,13 +370,23 @@ class HmpidDataSorter2 {
                               continue;
 
                             LOGP(info, "        Cluster MC INFO PDG: From tid {} mid {}", pdgTid, pdgMid);
+                         } else {
+                            
+                            if(mcFromCluMother) {
+                                auto pdgMid = mcFromCluMother->GetPdgCode();
+                                LOGP(info, "        Cluster MC INFO PDG: From mid {}", pdgMid);
+                            }
                          }
 
 
                        }
 
+                      } 
+                      if(!isMipMathced) {
+                         LOGP(info, "      No valid clusters : isMipMathced == False");
+                      } else {
+                        LOGP(info, "      isMipMathced == {}", isMipMathced);
                       }
-                      LOGP(info, "      No valid clusters");
                     }
 
 
@@ -457,13 +475,13 @@ class HmpidDataSorter2 {
                 LOGP(info, "no clus in trig");
                 continue;
             }*/ 
-            LOGP(info, "numClus in trig {}", trig.getNumberOfObjects());
+            // LOGP(info, "numClus in trig {}", trig.getNumberOfObjects());
 
             std::vector<o2::hmpid::Cluster> clustersInEvent;
 
             // std::ordered_map<int, std::vector<o2::DataFormatsHMP::cluster>> clusterMaps;
             int cluNumPre = 0;
-            LOGP(info, " trigRange {}--{}", trig.getFirstEntry(), trig.getLastEntry());
+            // LOGP(info, " trigRange {}--{}", trig.getFirstEntry(), trig.getLastEntry());
 
             for(int cluNum = trig.getFirstEntry(); cluNum < trig.getLastEntry(); cluNum++)
             {
@@ -473,8 +491,12 @@ class HmpidDataSorter2 {
 
                     const int evNum = clu.getEventNumber();
 
-                    //if(evNum!=cluNumPre && cluNumPre!=0) 
-                    LOGP(info, "tnum {}, evNum {}, cluNumPre {}", tnum, evNum, cluNumPre);
+                    // ef : I get different evNum
+                    // from clusters in same triggeR?
+
+
+                    // if(evNum!=cluNumPre && cluNumPre!=0) 
+                    // LOGP(info, "tnum {}, evNum {}, cluNumPre {}", tnum, evNum, cluNumPre);
                     
                     /*
                     const int chNum = clu.ch();
