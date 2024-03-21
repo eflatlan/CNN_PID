@@ -20,6 +20,8 @@
 #include "Steer/MCKinematicsReader.h"
 
 
+
+
 class HmpidDataSorter2 {
 
     // o2::steer::MCKinematicsReader mcReader; // reader of MC information
@@ -48,6 +50,15 @@ class HmpidDataSorter2 {
     HmpidDataSorter2() { 
       mcReader = std::make_unique<o2::steer::MCKinematicsReader>("collisioncontext.root");        
     }
+
+    static bool compareMCLabels(const o2::MCCompLabel& a, const o2::MCCompLabel& b) {
+      if (a.getEventID() != b.getEventID()) {
+        return a.getEventID() < b.getEventID();
+      } else {
+        return a.getTrackID() < b.getTrackID();
+      }
+    }
+
 
     void setClusterMcTruth(const o2::dataformats::MCTruthContainer<o2::MCCompLabel>& cluLabels) 
     {
@@ -275,9 +286,14 @@ class HmpidDataSorter2 {
                       LOGP(info, "Get MC-truth for MIP : size {}", mipLabels.size());
                       
                       int indexLabel = 1;
+
+
+                      // ef : sort labels on 1. eventID 2. trackID
+                      std::sort(mipLabels.begin(), mipLabels.end(), compareMCLabels);
+
                       for(const auto& mipLabel : mipLabels) {
                         const auto& mcTruthHit = mcReader->getTrack(mipLabel);
-                        Printf("MC label %d: trackID = %d, eventID = %d, sourceID = %d", indexLabel, mipLabel.getTrackID(), mipLabel.getEventID(), mipLabel.getSourceID());
+                        Printf("MC label %d: eventID = %d, trackID = %d, sourceID = %d", indexLabel, mipLabel.getEventID(), mipLabel.getTrackID(), mipLabel.getSourceID());
 
                         int pdgHitMc = mcTruthHit->GetPdgCode();
                         LOGP(info, "Hit MC-truth {}/{} : pdg {}", indexLabel, mipLabels.size(), pdgHitMc);
