@@ -57,6 +57,8 @@ using Clusters = o2::hmpid::Cluster;
 using Cluster = o2::hmpid::Cluster; //, o2::hmpid::Digit, o2::hmpid::Trigger,
                                     //o2::hmpid::Clusterer;
 
+using MCLabelContainer = o2::dataformats::MCTruthContainer<o2::MCCompLabel>;
+
 class HmpidDataReader2 {
 private:
     bool mUseMc = true;
@@ -104,6 +106,7 @@ public:
     : fileKine(mcFileName, "READ"), fileClu(cluFileName, "READ"), fileMatch(matchFileName, "READ") {
         // Check if files are opened correctly
 
+        bool mUseMC = true;
 
         if (fileClu.IsZombie()) {
           LOGP(error, "Failed to open cluster File: {}", cluFileName);
@@ -119,8 +122,7 @@ public:
           LOGP(info, "Match file opened successfully: {}", matchFileName);
         }
 
-
-        bool mUseMC = true;
+        // ok : we use mcReader instead
         if(mUseMC) {
           if (fileKine.IsZombie()) {
             LOGP(error, "Failed to open mc truth file: {}", mcFileName);
@@ -179,6 +181,9 @@ public:
           hmpidDataSorter2.organizeAndSortClusters(cluArr/*, trigArr*/);                    
           hmpidDataSorter2.organizeAndSortMatchInfo(mMatches, mLabelHMP);
           
+          hmpidDataSorter2.setClusterMcTruth(cluLblArr);                    
+
+
           hmpidDataSorter2.iterateOverMatchedTracks();
         }  
         
@@ -229,8 +234,7 @@ public:
   static void readTreeEntries();
 };
 
-void HmpidDataReader2::initializeMatchTree(/*int eventID,
-    int trackID, int pdg*/) {
+void HmpidDataReader2::initializeMatchTree() {
     
    
   // std::unique_ptr<TFile> fileMatch(TFile::Open("o2match_hmp.root", "READ"));
@@ -256,6 +260,7 @@ void HmpidDataReader2::initializeMatchTree(/*int eventID,
 
 
 
+
   if (matchArrPtr == nullptr) {
     Printf("HmpidDataReader2::initializeMatchTree matchArrPtr== nullptr");
 		// fileMatch.Close();
@@ -266,6 +271,9 @@ void HmpidDataReader2::initializeMatchTree(/*int eventID,
     Printf("HmpidDataReader2::initializeMatchTree mLabelHMPPtr== nullptr");
 		// fileMatch.Close();
 		throw std::runtime_error("mLabelHMPPtr nullptr");
+  } else if (mUseMC && mLabelHMPPtr) {
+    LOGP(info, "Match-tracks        : entries {}", matchArrPtr->size());
+    LOGP(info, "Got MC-Match-labels : entries {}", mLabelHMPPtr->size());
   }
 }
 
@@ -378,14 +386,22 @@ void HmpidDataReader2::initializeClusterTree(/*std::vector<Cluster> *&cluArrPtr,
   bool mUseMC = true;
   if(treeClu->GetBranchStatus("HMPIDClusterLabels") && mUseMC) {
     treeClu->SetBranchAddress("HMPIDClusterLabels", &cluLblArrPtr);
+    LOGP(info, "HMPIDClusterLabels adress");
   }
   
+  treeClu->GetEntry(0);
+
+
   if(!cluLblArrPtr && mUseMC) {
     Printf("HmpidDataReader2::initializeClusterTree cluLblArrPtr== nullptr");
     throw std::runtime_error("cluLblArrPtr nullptr");
+  } else if (cluLblArrPtr && mUseMC) {
+    LOGP(info, "triggers          : entries {}", trigArr->size());
+    LOGP(info, "Got MC-clu-labels : entries {}", cluLblArrPtr->getIndexedSize());
+    LOGP(info, "clusters          :  entries {}", cluArrPtr->size());
   }
+  
 
-  treeClu->GetEntry(0);
   Printf("treeClu entries %lld", treeClu->GetEntries());
 } 
 

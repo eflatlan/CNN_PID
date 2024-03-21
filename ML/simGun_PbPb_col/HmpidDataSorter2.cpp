@@ -49,6 +49,11 @@ class HmpidDataSorter2 {
       mcReader = std::make_unique<o2::steer::MCKinematicsReader>("collisioncontext.root");        
     }
 
+    void setClusterMcTruth(const o2::dataformats::MCTruthContainer<o2::MCCompLabel>& cluLabels) 
+    {
+      cluLblArr = cluLabels; 
+    }
+
     void iterateOverMatchedTracks() {
         LOGP(info, "\n=======================================");
         LOGP(info, "iterateOverMatchedTracks");
@@ -68,6 +73,7 @@ class HmpidDataSorter2 {
 
 
             std::vector<o2::hmpid::Cluster> clustersInEvent;
+            // std::vector<o2::hmpid::Cluster> clusterLabelsInEvent;
 
             // std::ordered_map<int, std::vector<o2::DataFormatsHMP::cluster>> clusterMaps;
             std::array<std::vector<o2::hmpid::Cluster>, 7> clusterArray;
@@ -262,6 +268,22 @@ class HmpidDataSorter2 {
                       // for aa sjekke index :
                       const int indexTotal = cluTrigStartIndex  + index;
                       Printf("              mipIndex %d mipch %d mipSz %d index (%d/%d)", mipIndex, mipch, mipSz, indexTotal, numCluTotal);
+
+                       
+                      // get hit-->dig-->clu MC-truth for MIP
+                      const auto& mipLabels = cluLblArr.getLabels(indexTotal);
+                      LOGP(info, "Get MC-truth for MIP : size {}", mipLabels.size());
+                      
+                      int indexLabel = 1;
+                      for(const auto& mipLabel : mipLabels) {
+                        const auto& mcTruthHit = mcReader->getTrack(mipLabel);
+                        Printf("MC label %d: trackID = %d, eventID = %d, sourceID = %d", indexLabel, mipLabel.getTrackID(), mipLabel.getEventID(), mipLabel.getSourceID());
+
+                        int pdgHitMc = mcTruthHit->GetPdgCode();
+                        LOGP(info, "Hit MC-truth {}/{} : pdg {}", indexLabel, mipLabels.size(), pdgHitMc);
+                        indexLabel++;
+                      }
+
 
                       const auto& mipFromMatch = mClusters[indexTotal];
                       Printf("              mipFromMatch PDG %d; Chamber %d x %.1f y %.1f q %.0f size %d", mipFromMatch.getPDG(), mipFromMatch.ch(), mipFromMatch.x(), mipFromMatch.y(), mipFromMatch.q(), mipFromMatch.size());
@@ -596,6 +618,10 @@ class HmpidDataSorter2 {
     }
 
   private:
+
+    o2::dataformats::MCTruthContainer<o2::MCCompLabel> cluLblArr, *cluLblArrPtr = &cluLblArr;
+
+
     std::vector<o2::hmpid::Cluster> mClusters;
     std::vector<o2::hmpid::Trigger> triggers;
     EventChamberMatchInfoMap matchInfoByEventChamber;
