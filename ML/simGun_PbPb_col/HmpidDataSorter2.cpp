@@ -218,8 +218,7 @@ class HmpidDataSorter2 {
 
                     const auto dist = TMath::Sqrt((xPcUnc - xMip)*(xPcUnc - xMip) + (yPcUnc - yMip)*(yPcUnc - yMip));
                     
-                    LOGP(info, "xMip {} pcconc {} pcunc {}", xMip, xPcCon, xPcUnc);
-                    LOGP(info, "yMip {} pcconc {} pcunc {}", yMip, yPcCon, yPcUnc);
+
                    
                     if(dist > 3.) {
                         Printf("               Too large distance %.0f : Skip", dist);
@@ -227,9 +226,16 @@ class HmpidDataSorter2 {
                         continue;                    
                     }
 
+
+
                     LOGP(info, "        =========================================================");
                     LOGP(info, "        Track number {} : matched Status {}", trackNum, matchInfo.getMatchStatus());
                       
+                    Printf("              xMip %.1f pcconc %.1f pcunc %.1f", xMip, xPcCon, xPcUnc);
+                    Printf("               yMip %.1f pcconc %.1f pcunc %.1f", yMip, yPcCon, yPcUnc);
+
+
+
 
 
                     // LOGP(info, "        Dist PC CONC-UNC: deltaX {} deltaY {}", xPcCon - xPcUnc, yPcCon - yPcUnc);
@@ -256,25 +262,31 @@ class HmpidDataSorter2 {
                     // int eventID, int trackID
 
                     // ef : get cluMC truths for the given track
-                    std::vector<std::pair<o2::MCCompLabel, int>> cluLabelsFromTrack = lookupLabels(eventIdKine, trackIdKine);
+
 
                     // readMcTrack(eventIdKine, trackIdKine, sourceIdKine); eventIdKine, trackIdKine
 
-                    LOGP(info, "cluLabelsFromTrack size {}", cluLabelsFromTrack.size());
-                    for(const auto& cluLabelPair : cluLabelsFromTrack){
 
-                      const auto& cluLabel = cluLabelPair.first;
-                      LOGP(info, "        From cluLabel | Event: {}, track: {}, source: {} || Cluindex {}", cluLabel.getEventID(), cluLabel.getTrackID(), cluLabel.getSourceID(),cluLabelPair.second);
+                    // ef : if we want to find the MIP of the clusters indicated by the track
+                    bool printCluLabels = false;
+                    if(printCluLabels) {
+                      std::vector<std::pair<o2::MCCompLabel, int>> cluLabelsFromTrack = lookupLabels(eventIdKine, trackIdKine);
 
-                      if(mcReader->getTrack(cluLabel)) {
-                        const auto& mcCluFromTrack = mcReader->getTrack(cluLabel);
-                        if(mcCluFromTrack) {
-                          int pdgCluFromTrack = mcCluFromTrack->GetPdgCode();
+                      LOGP(info, "cluLabelsFromTrack size {}", cluLabelsFromTrack.size());
+                      for(const auto& cluLabelPair : cluLabelsFromTrack){
 
-                          LOGP(info, "        pdgCluFromTrack pdgCode = {} ", pdgCluFromTrack);
+                        const auto& cluLabel = cluLabelPair.first;
+                        LOGP(info, "        From cluLabel | Event: {}, track: {}, source: {} || Cluindex {}", cluLabel.getEventID(), cluLabel.getTrackID(), cluLabel.getSourceID(),cluLabelPair.second);
+
+                        if(mcReader->getTrack(cluLabel)) {
+                          const auto& mcCluFromTrack = mcReader->getTrack(cluLabel);
+                          if(mcCluFromTrack) {
+                            int pdgCluFromTrack = mcCluFromTrack->GetPdgCode();
+
+                            LOGP(info, "        pdgCluFromTrack pdgCode = {} ", pdgCluFromTrack);
+                          }
                         }
                       }
-
                     }
 
                     // treeKine->GetEntry(eventIdKine);
@@ -282,7 +294,7 @@ class HmpidDataSorter2 {
                     // LOGP(info, "        Class name of mcMatchInfo: {}", typeid(mcMatchInfo).name());
 
 
-                    LOGP(info, "        DataSorter2 : try to read MC-track");
+                    // LOGP(info, "        DataSorter2 : try to read MC-track");
 
                     // mcTrack = mcReader->getTrack(mcMatchInfo);        // mcTrack = mcReader->getTrack(lbl);
                     int status;
@@ -295,7 +307,9 @@ class HmpidDataSorter2 {
                     }
 
                     try {
-                        LOGP(info, "        try mcReader w IP types: trackIdKine: {} {}, eventIdKine: {} {}, sourceIdKine: {} {}", trackIdKine, typeid(trackIdKine).name(), eventIdKine, typeid(eventIdKine).name(), sourceIdKine, typeid(sourceIdKine).name());
+
+
+                        /*LOGP(info, "        try mcReader w IP types: trackIdKine: {} {}, eventIdKine: {} {}, sourceIdKine: {} {}", trackIdKine, typeid(trackIdKine).name(), eventIdKine, typeid(eventIdKine).name(), sourceIdKine, typeid(sourceIdKine).name());*/
                          
                         mcTrack = mcReader->getTrack(mcMatchInfo);                        
                         // mcTrack = mcReader->getTrack(sourceIdKine, eventIdKine, trackIdKine);
@@ -305,7 +319,9 @@ class HmpidDataSorter2 {
                         LOGP(error, "       Unknown exception caught while trying to read MC track");
                     }
                     
-                    LOGP(info, "        From mcTrack | Event: {}, track: {}, source: {}", eventIdKine, trackIdKine, sourceIdKine);
+
+                    /*
+                    LOGP(info, "        From mcTrack | Event: {}, track: {}, source: {}", eventIdKine, trackIdKine, sourceIdKine);*/
 
                     if(mcTrack == nullptr) {
                         LOGP(info, "        MC track not found for event {} and track {}", eventIdKine, trackIdKine);
@@ -357,10 +373,10 @@ class HmpidDataSorter2 {
                       if(index < clustersIndexChamber.size()) {
                         mipIndexGobal = clustersIndexChamber[index];
                       } else {
-                        LOGP(info, "index {} greater than size of clustersIndexChamber {}", index, clustersIndexChamber.size());
+                        LOGP(info, "      index {} greater than size of clustersIndexChamber {}", index, clustersIndexChamber.size());
 
                       }
-                      LOGP(info, "mipIndexGobal {}", mipIndexGobal);
+                      LOGP(info, "      mipIndexGobal {}", mipIndexGobal);
                       // indexOfMipGlobal = cluIndexArray[chNum][index];
                       
 
@@ -370,7 +386,7 @@ class HmpidDataSorter2 {
 
                       const int numCluInTrig = trig.getNumberOfObjects();
                       
-                      LOGP(info, "clustersInEvent size {} simpleClusters size {} numCluInTrig", clustersInEvent.size(), simpleClusters.size(), numCluInTrig);
+                      LOGP(info, "      clustersInEvent size {} simpleClusters size {} numCluInTrig", clustersInEvent.size(), simpleClusters.size(), numCluInTrig);
 
                       LOGP(info,"       cluTrigStartIndex {} numCluTotal {} : numCluInTrig {} indexMIP {}",cluTrigStartIndex,numCluTotal,numCluInTrig,index);
 
@@ -386,12 +402,12 @@ class HmpidDataSorter2 {
                       // mipIndexGobal : ikke mipIndexGobal + cluTrigStartIndex
 
 
-                      Printf("              mipIndex %d mipch %d mipSz %d index (%d/%d) %d", mipIndex, mipch, mipSz, mipIndexGobal, numCluTotal);
+                      Printf("              mipIndex %d mipch %d mipSz %d index (%d/%d)", mipIndex, mipch, mipSz, mipIndexGobal);
 
                        
                       // get hit-->dig-->clu MC-truth for MIP
                       const auto& mipLabels = cluLblArr.getLabels(mipIndexGobal);
-                      LOGP(info, "Get MC-truth for MIP : size {}", mipLabels.size());
+                      LOGP(info, "      Get MC-truth for MIP : size {}", mipLabels.size());
                       
                       int indexLabel = 1;
 
@@ -401,25 +417,46 @@ class HmpidDataSorter2 {
 
                       for(const auto& mipLabel : mipLabels) {
                         const auto& mcTruthHit = mcReader->getTrack(mipLabel);
-                        Printf("MC label %d: eventID = %d, trackID = %d, sourceID = %d", indexLabel, mipLabel.getEventID(), mipLabel.getTrackID(), mipLabel.getSourceID());
+
 
                         int pdgHitMc = mcTruthHit->GetPdgCode();
-                        LOGP(info, "Hit MC-truth {}/{} : pdg {}", indexLabel, mipLabels.size(), pdgHitMc);
+
+                        const auto& tidMip = mipLabel.getTrackID();
+
+                        const auto& eidMip = mipLabel.getEventID();
+
+
+                        // check pdg and trackID of matched
+                        // MIP-track pair
+                        if(pdgCode==pdgHitMc && tidMip==trackIdKine) {
+                          isMipMathced = true;
+                        }
+
+
+                        if(!isMipMathced) {
+                          Printf("        MC label %d: eventID = %d, trackID = %d, sourceID = %d", indexLabel, mipLabel.getEventID(), mipLabel.getTrackID(), mipLabel.getSourceID());
+                          LOGP(info, "        Hit MC-truth {}/{} : pdg {}", indexLabel, mipLabels.size(), pdgHitMc);
+                        }
+
                         indexLabel++;
                       }
 
 
+
+                      /*
                       const auto& mipFromMatch = mClusters[indexTotal];
                       Printf("              mipFromMatch PDG %d; Chamber %d x %.1f y %.1f q %.0f size %d", mipFromMatch.getPDG(), mipFromMatch.ch(), mipFromMatch.x(), mipFromMatch.y(), mipFromMatch.q(), mipFromMatch.size());
 
                       
                       const auto& mipFromMatch2 = clustersInEvent[index];
                       Printf("              mipFromMatch2 PDG %d; Chamber %d x %.1f y %.1f q %.0f size %d", mipFromMatch2.getPDG(), mipFromMatch2.ch(), mipFromMatch2.x(), mipFromMatch2.y(), mipFromMatch2.q(), mipFromMatch2.size());
-
+                      */
 
 
 
                       //for(const auto& clu : clustersInChamber){
+
+                      /*
                       for(int ind = trig.getFirstEntry(); ind < trig.getLastEntry(); ind++) {
 
                        const auto& clu = mClusters[ind];
@@ -527,11 +564,16 @@ class HmpidDataSorter2 {
 
                        }
 
-                      } 
-                      if(!isMipMathced) {
-                         LOGP(info, "      No valid clusters : isMipMathced == False");
+                      }*/
+
+                      // ef :compare track-label
+                      // with matched mipch
+                      // fx check pdg code,
+                      // can also chekc tradkID etc
+                      if(isMipMathced) {
+                         LOGP(info, "      matched with correct cluster\n\n\n");
                       } else {
-                        LOGP(info, "      isMipMathced == {}", isMipMathced);
+                        LOGP(info, "      matched with wrong cluster\n\n\n", isMipMathced);
                       }
                     }
 
@@ -564,14 +606,9 @@ class HmpidDataSorter2 {
                         }
 
                     }
-                    */   
-
-
-
-                
+                    */
                     trackNum++;
                     
-
                 }
             }
         }
