@@ -45,6 +45,8 @@ class HmpidDataSorter2 {
     std::vector<o2::MCTrack> mcTrackArr, *mcTrackArrPtr = &mcTrackArr;
 
 
+
+    using MCTruthContainerLabel = o2::dataformats::MCTruthContainer<o2::MCCompLabel>;
   public:
     //HMPIDDataSorter2(/*const std::vector<o2::hmpid::Cluster>& allClusters, const std::vector<o2::dataformats::MatchInfoHMP>& allMatchInfo, const std::vector<o2::MCCompLabel>& allMcLabels*/) {
     HmpidDataSorter2() { 
@@ -59,11 +61,54 @@ class HmpidDataSorter2 {
       }
     }
 
+    using TrackMap = std::map<int, std::vector<std::pair<MCLabel, int>>>; // Inner map: trackID -> Labels
+    using EventMap = std::map<int, TrackMap>; // Outer map: eventID -> TrackMap
+    EventMap mEventMap;
 
-    void setClusterMcTruth(const o2::dataformats::MCTruthContainer<o2::MCCompLabel>& cluLabels) 
+
+    void setClusterMcTruth(o2::dataformats::MCTruthContainer<o2::MCCompLabel> cluLabels)
     {
-      cluLblArr = cluLabels; 
+      cluLblArr = cluLabels;
+
+      for (int i = 0; i < cluLabels.getIndexedSize();i++) {
+          auto labels = cluLabels.getLabels(i);
+          for(auto label : labels ) {
+            mEventMap[label.getEventID()][label.getTrackID()].push_back({label, i}); // set the Cluster MC-truth position (should then corespond to cluter-index also)
+          }
+
+      }
+
     }
+
+
+    std::vector<MCLabel> lookupLabels(int eventID, int trackID) {
+        std::vector<std::pair<MCLabel, int>> pairedLabels;
+
+        // Check if the eventID exists in the eventMap
+        auto eventIt = mEventMap.find(eventID);
+        if (eventIt != mEventMap.end()) {
+            // Event ID found, now look for the trackID in the TrackMap
+            const TrackMap& trackMap = eventIt->second;
+            auto trackIt = trackMap.find(trackID);
+            if (trackIt != trackMap.end()) {
+                // Track ID found, return the vector of MCLabel objects
+                pairedLabels  = trackIt->second;
+            }
+        }
+      // Sort pairedLabels based on the int values
+      std::sort(pairedLabels.begin(), pairedLabels.end(), [](const std::pair<MCLabel, int>& a, const std::pair<MCLabel, int>& b) {
+          return a.second < b.second; // Compare based on the int part of the pair
+      });
+
+      // Extract MCLabel objects from the sorted pairs into the result vector
+      std::vector<MCLabel> result;
+      for (const auto& labelPair : pairedLabels) {
+          result.push_back(labelPair.first); // Add only the MCLabel part of each sorted pair
+      }
+
+      return result;
+    }
+
 
     void iterateOverMatchedTracks() {
         LOGP(info, "\n=======================================");
@@ -152,12 +197,13 @@ class HmpidDataSorter2 {
                     matchInfo.getUnconstrainedPc(xPcUnc, yPcUnc);
                     matchInfo.getHMPIDmip(xMip, yMip, qMip, nph);
 
-                    const auto dist = TMath::Sqrt((xPcCon - xMip)*(xPcCon - xMip) + (yPcCon - yMip)*(yPcCon - yMip));
+                    const auto dist = TMath::Sqrt((xPcUnc - xMip)*(xPcUnc - xMip) + (yPcUnc - yMip)*(yPcUnc - yMip));
                     
-                    
+                    LOGP(info, "xMip {} pcconc {} pcunc {}", xMip, xPcCon, xPcUnc);
+                    LOGP(info, "yMip {} pcconc {} pcunc {}", yMip, yPcCon, yPcUnc);
                    
                     if(dist > 3.) {
-                        // Printf("               Too large distance %.0f : Skip", dist);
+                        Printf("               Too large distance %.0f : Skip", dist);
                         trackNum++;
                         continue;                    
                     }
@@ -188,8 +234,29 @@ class HmpidDataSorter2 {
                     eventIdKine = mcMatchInfo.getEventID();
                     sourceIdKine = mcMatchInfo.getSourceID();   
 
+                    // int eventID, int trackID
 
-                    // readMcTrack(eventIdKine, trackIdKine, sourceIdKine);
+                    // ef : get cluMC truths for the given track
+                    std::vector<o2::MCCompLabel> cluLabelsFromTrack = lookupLabels(eventIdKine, trackIdKine);
+
+                    // readMcTrack(eventIdKine, trackIdKine, sourceIdKine); eventIdKine, trackIdKine
+
+
+                    LOGP(info, "cluLabelsFromTrack size {}", cluLabelsFromTrack.size());
+                    for(const auto& cluLabel : cluLabelsFromTrack){
+                      LOGP(info, "        From cluLabel | Event: {}, track: {}, source: {}", cluLabel.getEventID(), cluLabel.getTrackID(), cluLabel.getSourceID());
+
+                      if(mcReader->getTrack(cluLabel)) {
+                        const auto& mcCluFromTrack = mcReader->getTrack(cluLabel);
+                        if(mcCluFromTrack) {
+                          int pdgCluFromTrack = mcCluFromTrack->GetPdgCode();
+
+                          LOGP(info, "        pdgCluFromTrack pdgCode = {} ", pdgCluFromTrack);
+                        }
+                      }
+
+                    }
+
                     // treeKine->GetEntry(eventIdKine);
                     LOGP(info, "        From mcMatchInfo | Event: {}, track: {}, source: {}", eventIdKine, trackIdKine, sourceIdKine);
                     // LOGP(info, "        Class name of mcMatchInfo: {}", typeid(mcMatchInfo).name());
@@ -197,7 +264,7 @@ class HmpidDataSorter2 {
 
                     LOGP(info, "        DataSorter2 : try to read MC-track");
 
-                    // mcTrack = mcReader->getTrack(mcMatchInfo);        // mcTrack = mcReader->getTrack(lbl)
+                    // mcTrack = mcReader->getTrack(mcMatchInfo);        // mcTrack = mcReader->getTrack(lbl);
                     int status;
                     char* demangled = abi::__cxa_demangle(typeid(mcMatchInfo).name(), 0, 0, &status);
                     //LOGP(info, "        Type of mcMatchInfo: {}", (status == 0 ? demangled : typeid(mcMatchInfo).name()));
@@ -346,7 +413,7 @@ class HmpidDataSorter2 {
                         std::unique_ptr<o2::MCTrack> mcFromClu, mcFromCluMother;
                         try {
                             mcFromCluMother = std::make_unique<o2::MCTrack>(*mcReader->getTrack(eventIdKine, mid));
-                            mcFromClu = std::make_unique<o2::MCTrack>(*mcReader->getTrack(eventIdKine, tid));
+                            mcFromClu = std::make_unique<o2::MCTrack>(*mcReader->getTrack(eventIdKine, trackIdKine)); // ef : was tid
                         } catch (const std::exception& e) {
                             // std::cout << "An exception occurred: " << e.what() << std::endl;
                             printPDG = false;
