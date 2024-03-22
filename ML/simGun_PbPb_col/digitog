@@ -1,0 +1,414 @@
+[INFO] Initialising O2 Data Processing Layer. Driver PID: 143997.
+[INFO] Driver listening on port: 32077
+[INFO] Rate limiting set up at 500MB distributed over 1 readers
+[INFO] O2 Data Processing Layer initialised. We brake for nobody.
+[INFO] Optimised build. O2DEBUG / LOG(debug) / LOGF(debug) / assert statement will not be shown.
+[INFO] Redeployment of configuration asked.
+[INFO] Starting internal-dpl-clock on pid 144006
+[INFO] Starting HMP-DigitReader on pid 144007
+[INFO] Starting internal-dpl-injected-dummy-sink on pid 144008
+[INFO] Redeployment of configuration done.
+[144007:HMP-DigitReader]: [INFO] Instrumenting crash signals
+[144007:HMP-DigitReader]: [INFO] Spawing new device HMP-DigitReader in process with pid 144007
+[144007:HMP-DigitReader]: [20:52:04][INFO] 
+[144007:HMP-DigitReader]:       ______      _    _______  _________ 
+[144007:HMP-DigitReader]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.4
+[144007:HMP-DigitReader]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[144007:HMP-DigitReader]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[144007:HMP-DigitReader]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[144007:HMP-DigitReader]: 
+[144007:HMP-DigitReader]: [20:52:04][STATE] Starting FairMQ state machine --> IDLE
+[144007:HMP-DigitReader]: [20:52:04][STATE] IDLE ---> INITIALIZING DEVICE
+[144006:internal-dpl-clock]: [INFO] Instrumenting crash signals
+[144006:internal-dpl-clock]: [INFO] Spawing new device internal-dpl-clock in process with pid 144006
+[144006:internal-dpl-clock]: [20:52:04][INFO] 
+[144006:internal-dpl-clock]:       ______      _    _______  _________ 
+[144006:internal-dpl-clock]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.4
+[144006:internal-dpl-clock]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[144006:internal-dpl-clock]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[144006:internal-dpl-clock]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[144006:internal-dpl-clock]: 
+[144006:internal-dpl-clock]: [20:52:04][STATE] Starting FairMQ state machine --> IDLE
+[144006:internal-dpl-clock]: [20:52:04][STATE] IDLE ---> INITIALIZING DEVICE
+[144006:internal-dpl-clock]: [20:52:04][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[144006:internal-dpl-clock]: [20:52:04][STATE] INITIALIZED ---> BINDING
+[144006:internal-dpl-clock]: [20:52:04][STATE] BINDING ---> BOUND
+[144006:internal-dpl-clock]: [20:52:04][STATE] BOUND ---> CONNECTING
+[144006:internal-dpl-clock]: [20:52:04][STATE] CONNECTING ---> DEVICE READY
+[144006:internal-dpl-clock]: [20:52:04][STATE] DEVICE READY ---> INITIALIZING TASK
+[144006:internal-dpl-clock]: [20:52:04][STATE] INITIALIZING TASK ---> READY
+[144006:internal-dpl-clock]: [20:52:04][STATE] READY ---> RUNNING
+[144006:internal-dpl-clock]: [20:52:04][INFO] fair::mq::Device running...
+[144006:internal-dpl-clock]: [20:52:04][INFO] LHCPeriod is not available, using current month MAR
+[144006:internal-dpl-clock]: [20:52:04][INFO] Correctly handshaken websocket connection.
+[144007:HMP-DigitReader]: [20:52:04][INFO] HMPID DigitWriterSpec::init() : Trying to read File : /root/CNN_PID/ML/simGun_PbPb_col/hmpiddigits.root
+[144008:internal-dpl-injected-dummy-sink]: [INFO] Instrumenting crash signals
+[144008:internal-dpl-injected-dummy-sink]: [INFO] Spawing new device internal-dpl-injected-dummy-sink in process with pid 144008
+[144008:internal-dpl-injected-dummy-sink]: [20:52:04][INFO] 
+[144008:internal-dpl-injected-dummy-sink]:       ______      _    _______  _________ 
+[144008:internal-dpl-injected-dummy-sink]:      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.4
+[144008:internal-dpl-injected-dummy-sink]:     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
+[144008:internal-dpl-injected-dummy-sink]:    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
+[144008:internal-dpl-injected-dummy-sink]:   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
+[144008:internal-dpl-injected-dummy-sink]: 
+[144008:internal-dpl-injected-dummy-sink]: [20:52:04][STATE] Starting FairMQ state machine --> IDLE
+[144008:internal-dpl-injected-dummy-sink]: [20:52:04][STATE] IDLE ---> INITIALIZING DEVICE
+[144008:internal-dpl-injected-dummy-sink]: [20:52:04][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[144008:internal-dpl-injected-dummy-sink]: [20:52:04][STATE] INITIALIZED ---> BINDING
+[144008:internal-dpl-injected-dummy-sink]: [20:52:04][STATE] BINDING ---> BOUND
+[144008:internal-dpl-injected-dummy-sink]: [20:52:04][STATE] BOUND ---> CONNECTING
+[144008:internal-dpl-injected-dummy-sink]: [20:52:04][STATE] CONNECTING ---> DEVICE READY
+[144008:internal-dpl-injected-dummy-sink]: [20:52:04][STATE] DEVICE READY ---> INITIALIZING TASK
+[144008:internal-dpl-injected-dummy-sink]: [20:52:04][STATE] INITIALIZING TASK ---> READY
+[144008:internal-dpl-injected-dummy-sink]: [20:52:04][STATE] READY ---> RUNNING
+[144008:internal-dpl-injected-dummy-sink]: [20:52:04][INFO] fair::mq::Device running...
+[144008:internal-dpl-injected-dummy-sink]: [20:52:04][INFO] LHCPeriod is not available, using current month MAR
+[144008:internal-dpl-injected-dummy-sink]: [20:52:04][INFO] Correctly handshaken websocket connection.
+[144007:HMP-DigitReader]: [20:52:05][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[144007:HMP-DigitReader]: [20:52:05][STATE] INITIALIZED ---> BINDING
+[144007:HMP-DigitReader]: [20:52:05][STATE] BINDING ---> BOUND
+[144007:HMP-DigitReader]: [20:52:05][STATE] BOUND ---> CONNECTING
+[144007:HMP-DigitReader]: [20:52:05][STATE] CONNECTING ---> DEVICE READY
+[144007:HMP-DigitReader]: [20:52:05][STATE] DEVICE READY ---> INITIALIZING TASK
+[144007:HMP-DigitReader]: [20:52:05][STATE] INITIALIZING TASK ---> READY
+[144007:HMP-DigitReader]: [20:52:05][STATE] READY ---> RUNNING
+[144007:HMP-DigitReader]: [20:52:05][INFO] fair::mq::Device running...
+[144007:HMP-DigitReader]: [20:52:05][INFO] LHCPeriod is not available, using current month MAR
+[144007:HMP-DigitReader]: [20:52:05][INFO] Correctly handshaken websocket connection.
+[144007:HMP-DigitReader]: ******************************************************************************
+[144007:HMP-DigitReader]: *Tree    :o2sim     : o2sim                                                  *
+[144007:HMP-DigitReader]: *Entries :        1 : Total =           22597 bytes  File  Size =       6824 *
+[144007:HMP-DigitReader]: *        :          : Tree compression factor =   2.39                       *
+[144007:HMP-DigitReader]: ******************************************************************************
+[144007:HMP-DigitReader]: branch: HMPDigit                  2864
+[144007:HMP-DigitReader]: 
+[144007:HMP-DigitReader]: branch: InteractionRecords         637
+[144007:HMP-DigitReader]: 
+[144007:HMP-DigitReader]: branch: HMPIDDigitMCTruth          871
+[144007:HMP-DigitReader]: 
+[144007:HMP-DigitReader]: [20:52:05][INFO] trigger number 0 : entreis 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] trigger number 1 : entreis 29
+[144007:HMP-DigitReader]: [20:52:05][INFO] trigger number 2 : entreis 16
+[144007:HMP-DigitReader]: [20:52:05][INFO] trigger number 3 : entreis 37
+[144007:HMP-DigitReader]: [20:52:05][INFO] trigger number 4 : entreis 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] trigger number 5 : entreis 82
+[144007:HMP-DigitReader]: [20:52:05][INFO] trigger number 6 : entreis 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 0 digtEvent 0
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 1 digtEvent 1
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 3 digtEvent 3
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] labelEventId 7 digtEvent 7
+[144007:HMP-DigitReader]: [20:52:05][INFO] [HMPID DigitsReader - run() ] digits  = 164
+[144007:HMP-DigitReader]: [20:52:05][INFO] [HMPID DigitsReader - with useMC : mcLabels size : headerArray 164; truthArray 271
+[144007:HMP-DigitReader]: [20:52:05][INFO] End DigitsReader !  digits = 164 Execution time = 0.46
+[144007:HMP-DigitReader]: [20:52:06][INFO] Sending end-of-stream message to channel from_HMP-DigitReader_to_internal-dpl-injected-dummy-sink
+[INFO] Quitting
+[INFO] QUIT_REQUESTED
+[144007:HMP-DigitReader]: [20:52:07][INFO] Received device shutdown request (signal 15).
+[144007:HMP-DigitReader]: [20:52:07][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[144008:internal-dpl-injected-dummy-sink]: [20:52:07][INFO] Received device shutdown request (signal 15).
+[144008:internal-dpl-injected-dummy-sink]: [20:52:07][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[144006:internal-dpl-clock]: [20:52:07][INFO] Received device shutdown request (signal 15).
+[144006:internal-dpl-clock]: [20:52:07][INFO] Waiting for graceful device shutdown. Hit Ctrl-C again to abort immediately.
+[144006:internal-dpl-clock]: [20:52:07][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[144007:HMP-DigitReader]: [20:52:07][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[144007:HMP-DigitReader]: [20:52:07][STATE] RUNNING ---> READY
+[144008:internal-dpl-injected-dummy-sink]: [20:52:07][INFO] New state requested. No timeout set, quitting immediately as per --completion-policy
+[144008:internal-dpl-injected-dummy-sink]: [20:52:07][STATE] RUNNING ---> READY
+[144006:internal-dpl-clock]: [20:52:07][INFO] Sending end-of-stream message to channel from_internal-dpl-clock_to_HMP-DigitReader
+[144006:internal-dpl-clock]: [20:52:07][STATE] RUNNING ---> READY
+[144007:HMP-DigitReader]: [20:52:07][STATE] READY ---> RESETTING TASK
+[144007:HMP-DigitReader]: [20:52:07][STATE] RESETTING TASK ---> DEVICE READY
+[144008:internal-dpl-injected-dummy-sink]: [20:52:07][STATE] READY ---> RESETTING TASK
+[144008:internal-dpl-injected-dummy-sink]: [20:52:07][STATE] RESETTING TASK ---> DEVICE READY
+[144006:internal-dpl-clock]: [20:52:07][STATE] READY ---> RESETTING TASK
+[144007:HMP-DigitReader]: [20:52:07][STATE] DEVICE READY ---> RESETTING DEVICE
+[144006:internal-dpl-clock]: [20:52:07][STATE] RESETTING TASK ---> DEVICE READY
+[144006:internal-dpl-clock]: [20:52:07][STATE] DEVICE READY ---> RESETTING DEVICE
+[144007:HMP-DigitReader]: [20:52:07][STATE] RESETTING DEVICE ---> IDLE
+[144008:internal-dpl-injected-dummy-sink]: [20:52:07][STATE] DEVICE READY ---> RESETTING DEVICE
+[144007:HMP-DigitReader]: [20:52:07][STATE] IDLE ---> EXITING
+[144007:HMP-DigitReader]: [20:52:07][STATE] Exiting FairMQ state machine
+[144006:internal-dpl-clock]: [20:52:07][STATE] RESETTING DEVICE ---> IDLE
+[144006:internal-dpl-clock]: [20:52:07][STATE] IDLE ---> EXITING
+[144006:internal-dpl-clock]: [20:52:07][STATE] Exiting FairMQ state machine
+[144008:internal-dpl-injected-dummy-sink]: [20:52:07][INFO] Cleaning up for shared memory id 'c6c24bc0'...
+[144008:internal-dpl-injected-dummy-sink]: [20:52:07][INFO] Found 0 unmanaged regions...
+[144008:internal-dpl-injected-dummy-sink]: [20:52:07][INFO] Found 1 managed segments...
+[144008:internal-dpl-injected-dummy-sink]: [20:52:07][INFO] Successfully removed 'fmq_c6c24bc0_m_0'.
+[144008:internal-dpl-injected-dummy-sink]: [20:52:07][INFO] Successfully removed 'fmq_c6c24bc0_mng'.
+[144008:internal-dpl-injected-dummy-sink]: [20:52:07][STATE] RESETTING DEVICE ---> IDLE
+[144008:internal-dpl-injected-dummy-sink]: [20:52:07][STATE] IDLE ---> EXITING
+[144008:internal-dpl-injected-dummy-sink]: [20:52:07][STATE] Exiting FairMQ state machine
+[INFO] ## Processes completed. Run summary:
+[INFO] ### Devices started: 3
+[INFO]  - Device internal-dpl-clock: pid 144006 (exit 0)
+[INFO]  - Device HMP-DigitReader: pid 144007 (exit 0)
+[INFO]  - Device internal-dpl-injected-dummy-sink: pid 144008 (exit 0)
+[INFO] Dumping used configuration in dpl-config.json

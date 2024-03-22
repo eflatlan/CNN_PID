@@ -81,7 +81,7 @@ class HmpidDataSorter2 {
     }
 
 
-    std::vector<MCLabel> lookupLabels(int eventID, int trackID) {
+    std::vector<std::pair<MCLabel, int>> lookupLabels(int eventID, int trackID) {
         std::vector<std::pair<MCLabel, int>> pairedLabels;
 
         // Check if the eventID exists in the eventMap
@@ -106,7 +106,7 @@ class HmpidDataSorter2 {
           result.push_back(labelPair.first); // Add only the MCLabel part of each sorted pair
       }
 
-      return result;
+      return pairedLabels;
     }
 
 
@@ -133,8 +133,18 @@ class HmpidDataSorter2 {
 
             // std::ordered_map<int, std::vector<o2::DataFormatsHMP::cluster>> clusterMaps;
             std::array<std::vector<o2::hmpid::Cluster>, 7> clusterArray;
+
+
+
+            // ef : do more elegant, but aof this
+            // to map mipIndex which has just the index of the mip
+            // in one event and one chamber of clusters
+            std::array<std::vector<int>, 7> cluIndexArray;
+
             int tnum = 0;
             int cluNumPre = 0;
+
+
             for(int cluNum = trig.getFirstEntry(); cluNum < trig.getLastEntry(); cluNum++)
             {
 
@@ -154,6 +164,13 @@ class HmpidDataSorter2 {
 
                     clustersInEvent.emplace_back(clu);
                     clusterArray[chNum].emplace_back(clu);
+
+
+                    // sok som
+                    // indexOfMipGlobal = cluIndexArray[chNum][index];
+                    cluIndexArray[chNum].emplace_back(cluNum);
+
+
                   }
                   cluNumPre = evNum;
                 }
@@ -169,6 +186,8 @@ class HmpidDataSorter2 {
                 // const auto& clusters = clustersByEventChamber[eventEntry.first][chamberEntry.first];
                 // const auto& clusters = getClusters(eventEntry.first, chamberEntry.first);
                 const auto& clustersInChamber = clusterArray[chamberEntry.first];
+
+
                 const auto& mcMatchInfoArr = mcMatchInfoByEventChamber[eventEntry.first][chamberEntry.first];
 
 
@@ -237,14 +256,15 @@ class HmpidDataSorter2 {
                     // int eventID, int trackID
 
                     // ef : get cluMC truths for the given track
-                    std::vector<o2::MCCompLabel> cluLabelsFromTrack = lookupLabels(eventIdKine, trackIdKine);
+                    std::vector<std::pair<o2::MCCompLabel, int>> cluLabelsFromTrack = lookupLabels(eventIdKine, trackIdKine);
 
                     // readMcTrack(eventIdKine, trackIdKine, sourceIdKine); eventIdKine, trackIdKine
 
-
                     LOGP(info, "cluLabelsFromTrack size {}", cluLabelsFromTrack.size());
-                    for(const auto& cluLabel : cluLabelsFromTrack){
-                      LOGP(info, "        From cluLabel | Event: {}, track: {}, source: {}", cluLabel.getEventID(), cluLabel.getTrackID(), cluLabel.getSourceID());
+                    for(const auto& cluLabelPair : cluLabelsFromTrack){
+
+                      const auto& cluLabel = cluLabelPair.first;
+                      LOGP(info, "        From cluLabel | Event: {}, track: {}, source: {} || Cluindex {}", cluLabel.getEventID(), cluLabel.getTrackID(), cluLabel.getSourceID(),cluLabelPair.second);
 
                       if(mcReader->getTrack(cluLabel)) {
                         const auto& mcCluFromTrack = mcReader->getTrack(cluLabel);
@@ -321,13 +341,27 @@ class HmpidDataSorter2 {
                       const int mipIndex = matchInfo.getIdxHMPClus();
                       
                       
+
+
                       int chTrack = matchInfo.getChamber();
 
                       int mipch = mipIndex / 1000000; // Extract chamber
                       int remainder = mipIndex % 1000000; // Remainder after removing chamber information
                       int mipSz = remainder / 1000; // Extract cluster size
-                      int index = remainder % 1000; // Extract index of cluster                        
-                      
+                      int index = remainder % 1000; // Extract index of cluster
+
+                      const std::vector<int>& clustersIndexChamber =  cluIndexArray[mipch];
+
+
+                      int mipIndexGobal = 0;
+                      if(index < clustersIndexChamber.size()) {
+                        mipIndexGobal = clustersIndexChamber[index];
+                      } else {
+                        LOGP(info, "index {} greater than size of clustersIndexChamber {}", index, clustersIndexChamber.size());
+
+                      }
+                      LOGP(info, "mipIndexGobal {}", mipIndexGobal);
+                      // indexOfMipGlobal = cluIndexArray[chNum][index];
                       
 
                       const int cluTrigStartIndex = trig.getFirstEntry();
@@ -345,11 +379,18 @@ class HmpidDataSorter2 {
 
                       // for aa sjekke index :
                       const int indexTotal = cluTrigStartIndex  + index;
-                      Printf("              mipIndex %d mipch %d mipSz %d index (%d/%d)", mipIndex, mipch, mipSz, indexTotal, numCluTotal);
+
+                      // kommer det her ? mipIndexGobal
+
+
+                      // mipIndexGobal : ikke mipIndexGobal + cluTrigStartIndex
+
+
+                      Printf("              mipIndex %d mipch %d mipSz %d index (%d/%d) %d", mipIndex, mipch, mipSz, mipIndexGobal, numCluTotal);
 
                        
                       // get hit-->dig-->clu MC-truth for MIP
-                      const auto& mipLabels = cluLblArr.getLabels(indexTotal);
+                      const auto& mipLabels = cluLblArr.getLabels(mipIndexGobal);
                       LOGP(info, "Get MC-truth for MIP : size {}", mipLabels.size());
                       
                       int indexLabel = 1;

@@ -4,12 +4,12 @@ static
 --id
 primary-server
 --mq-config
-o2simtopology_29868.json
+o2simtopology_41795.json
 --severity
 debug
 --color
 false
--n500
+-n50
 -e
 TGeant3
 -g
@@ -23,20 +23,20 @@ BoxGun.pdg=321; BoxGun.phirange[0]=-5; BoxGun.phirange[1]=60; BoxGun.number=60; 
 --timestamp
 1546300800000
 $$$$
-[15:25:24][INFO] 
+[23:33:42][INFO] 
       ______      _    _______  _________ 
      / ____/___ _(_)_______   |/  /_  __ \    version 1.8.4
     / /_  / __ `/ / ___/__  /|_/ /_  / / /    build RELWITHDEBINFO
    / __/ / /_/ / / /    _  /  / / / /_/ /     https://github.com/FairRootGroup/FairMQ
   /_/    \__,_/_/_/     /_/  /_/  \___\_\     LGPL-3.0  © 2012-2023 GSI
 
-[15:25:24][STATE] Starting FairMQ state machine --> IDLE
-[15:25:24][DEBUG] PID: 29874
-[15:25:24][DEBUG] Loaded plugin: 'config', version '1.8.4', maintainer 'FairRootGroup <fairroot@gsi.de>', homepage 'https://github.com/FairRootGroup/FairMQ'
-[15:25:24][DEBUG] Loaded plugin: 'control', version '1.8.4', maintainer 'FairRootGroup <fairroot@gsi.de>', homepage 'https://github.com/FairRootGroup/FairMQ'
-[15:25:24][DEBUG] Running builtin controller: static
-[15:25:24][DEBUG] Plugin 'control' is setting up signal handling for SIGINT and SIGTERM
-[15:25:24][DEBUG] Configuration: 
+[23:33:42][STATE] Starting FairMQ state machine --> IDLE
+[23:33:42][DEBUG] PID: 41799
+[23:33:42][DEBUG] Loaded plugin: 'config', version '1.8.4', maintainer 'FairRootGroup <fairroot@gsi.de>', homepage 'https://github.com/FairRootGroup/FairMQ'
+[23:33:42][DEBUG] Loaded plugin: 'control', version '1.8.4', maintainer 'FairRootGroup <fairroot@gsi.de>', homepage 'https://github.com/FairRootGroup/FairMQ'
+[23:33:42][DEBUG] Running builtin controller: static
+[23:33:42][DEBUG] Plugin 'control' is setting up signal handling for SIGINT and SIGTERM
+[23:33:42][DEBUG] Configuration: 
 CCDBUrl                       = http://alice-ccdb.cern.ch                                                                            <string>         [default] 
 asservice                     = false                                                                                                <bool>           [default] 
 bMax                          = 0                                                                                                    <float>          [default] 
@@ -64,8 +64,8 @@ logseverity                   = INFO                                            
 logverbosity                  = medium                                                                                               <string>         [default] 
 mcEngine                      = TGeant3                                                                                              <string>         [provided]
 modules                       = all                                                                                                  <vector<string>> [default] 
-mq-config                     = o2simtopology_29868.json                                                                             <string>         [provided]
-nEvents                       = 500                                                                                                  <unsigned>       [provided]
+mq-config                     = o2simtopology_41795.json                                                                             <string>         [provided]
+nEvents                       = 50                                                                                                   <unsigned>       [provided]
 network-interface             = default                                                                                              <string>         [default] 
 noDiscOutput                  = false                                                                                                <bool>           [default] 
 noGeant                       = false                                                                                                <bool>           [default] 
@@ -97,51 +97,51 @@ trigger                       =                                                 
 verbosity                     = medium                                                                                               <string>         [default] 
 vertexMode                    = kDiamondParam                                                                                        <string>         [default] 
 
-[15:25:24][STATE] IDLE ---> INITIALIZING DEVICE
-[15:25:24][DEBUG] mq-config: Using default JSON parser
-[15:25:24][DEBUG] Parsing JSON from o2simtopology_29868.json ...
-[15:25:24][DEBUG] Setting 'zeromq' as default transport for the device
-[15:25:24][DEBUG] Adding 'zeromq' transport
-[15:25:24][DEBUG] Transport: Using ZeroMQ library, version: 4.3.5
-[15:25:24][DEBUG] Initializing transport for channel o2sim-primserv-info[0]: default
-[15:25:24][DEBUG] Reusing existing 'zeromq' transport
-[15:25:24][DEBUG] Initializing transport for channel primary-notifications[0]: default
-[15:25:24][DEBUG] Reusing existing 'zeromq' transport
-[15:25:24][DEBUG] Initializing transport for channel primary-get[0]: default
-[15:25:24][DEBUG] Reusing existing 'zeromq' transport
-[15:25:24][STATE] INITIALIZING DEVICE ---> INITIALIZED
-[15:25:24][STATE] INITIALIZED ---> BINDING
-[15:25:24][DEBUG] Validating channel 'o2sim-primserv-info[0]'... VALID
-[15:25:24][DEBUG] Created socket primary-server.o2sim-primserv-info[0].rep
-[15:25:24][DEBUG] Attached channel o2sim-primserv-info[0] to ipc:///tmp/o2sim-primserv-info-29868 (bind) (rep)
-[15:25:24][DEBUG] Validating channel 'primary-notifications[0]'... VALID
-[15:25:24][DEBUG] Created socket primary-server.primary-notifications[0].pub
-[15:25:24][DEBUG] Attached channel primary-notifications[0] to ipc:///tmp/o2sim-primary-notifications-29868 (bind) (pub)
-[15:25:24][DEBUG] Validating channel 'primary-get[0]'... VALID
-[15:25:24][DEBUG] Created socket primary-server.primary-get[0].rep
-[15:25:24][DEBUG] Attached channel primary-get[0] to ipc:///tmp/o2sim-primary-get-29868 (bind) (rep)
-[15:25:24][STATE] BINDING ---> BOUND
-[15:25:24][STATE] BOUND ---> CONNECTING
-[15:25:24][STATE] CONNECTING ---> DEVICE READY
-[15:25:24][STATE] DEVICE READY ---> INITIALIZING TASK
-[15:25:24][INFO] INITTASK CHANGING STATE TO INIT
-[15:25:24][INFO] Init Server device 
-[15:25:24][INFO] ENGINE SET TO TGeant3
-[15:25:24][INFO] CHUNK SIZE SET TO 500
-[15:25:24][INFO] RNG INITIAL SEED 3960205381462041574
-[15:25:25][INFO] LAUNCHING STATUS THREAD
-[15:25:25][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1711031125-GvuA95, Host: http://alice-ccdb.cern.ch/
-[15:25:25][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1711031125-GvuA95, Host: http://alice-ccdb.cern.ch
-[15:25:25][INFO] MagneticField::CreateField: Maximim possible beam energy for requested beam is assumed
-[15:25:25][INFO] MagneticField::Print: Maps:
-[15:25:25][INFO] MagneticField::Print: Solenoid (-1*)5 kG, Dipole ON (-1) 
-[15:25:25][INFO] MagneticField::Print: Machine B fields for p-p  beam (7000 GeV): QGrad: 22.0002 Dipole: 37.8781
-[15:25:25][INFO] MagneticField::Print: Uses Sol30_Dip6_Hole  of $(O2_ROOT)/share/Common/maps/mfchebKGI_sym.root
+[23:33:42][STATE] IDLE ---> INITIALIZING DEVICE
+[23:33:42][DEBUG] mq-config: Using default JSON parser
+[23:33:42][DEBUG] Parsing JSON from o2simtopology_41795.json ...
+[23:33:42][DEBUG] Setting 'zeromq' as default transport for the device
+[23:33:42][DEBUG] Adding 'zeromq' transport
+[23:33:42][DEBUG] Transport: Using ZeroMQ library, version: 4.3.5
+[23:33:42][DEBUG] Initializing transport for channel o2sim-primserv-info[0]: default
+[23:33:42][DEBUG] Reusing existing 'zeromq' transport
+[23:33:42][DEBUG] Initializing transport for channel primary-notifications[0]: default
+[23:33:42][DEBUG] Reusing existing 'zeromq' transport
+[23:33:42][DEBUG] Initializing transport for channel primary-get[0]: default
+[23:33:42][DEBUG] Reusing existing 'zeromq' transport
+[23:33:42][STATE] INITIALIZING DEVICE ---> INITIALIZED
+[23:33:42][STATE] INITIALIZED ---> BINDING
+[23:33:42][DEBUG] Validating channel 'o2sim-primserv-info[0]'... VALID
+[23:33:42][DEBUG] Created socket primary-server.o2sim-primserv-info[0].rep
+[23:33:42][DEBUG] Attached channel o2sim-primserv-info[0] to ipc:///tmp/o2sim-primserv-info-41795 (bind) (rep)
+[23:33:42][DEBUG] Validating channel 'primary-notifications[0]'... VALID
+[23:33:42][DEBUG] Created socket primary-server.primary-notifications[0].pub
+[23:33:42][DEBUG] Attached channel primary-notifications[0] to ipc:///tmp/o2sim-primary-notifications-41795 (bind) (pub)
+[23:33:42][DEBUG] Validating channel 'primary-get[0]'... VALID
+[23:33:42][DEBUG] Created socket primary-server.primary-get[0].rep
+[23:33:42][DEBUG] Attached channel primary-get[0] to ipc:///tmp/o2sim-primary-get-41795 (bind) (rep)
+[23:33:42][STATE] BINDING ---> BOUND
+[23:33:42][STATE] BOUND ---> CONNECTING
+[23:33:42][STATE] CONNECTING ---> DEVICE READY
+[23:33:42][STATE] DEVICE READY ---> INITIALIZING TASK
+[23:33:42][INFO] INITTASK CHANGING STATE TO INIT
+[23:33:42][INFO] Init Server device 
+[23:33:42][INFO] ENGINE SET TO TGeant3
+[23:33:42][INFO] CHUNK SIZE SET TO 500
+[23:33:42][INFO] RNG INITIAL SEED 4828590064612365242
+[23:33:43][INFO] LAUNCHING STATUS THREAD
+[23:33:43][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1711060423-h7dBtN, Host: http://alice-ccdb.cern.ch/
+[23:33:43][INFO] Init CcdApi with UserAgentID: localhost.localdomain-1711060423-h7dBtN, Host: http://alice-ccdb.cern.ch
+[23:33:43][INFO] MagneticField::CreateField: Maximim possible beam energy for requested beam is assumed
+[23:33:43][INFO] MagneticField::Print: Maps:
+[23:33:43][INFO] MagneticField::Print: Solenoid (-1*)5 kG, Dipole ON (-1) 
+[23:33:43][INFO] MagneticField::Print: Machine B fields for p-p  beam (7000 GeV): QGrad: 22.0002 Dipole: 37.8781
+[23:33:43][INFO] MagneticField::Print: Uses Sol30_Dip6_Hole  of $(O2_ROOT)/share/Common/maps/mfchebKGI_sym.root
 Info in <TGeoGlobalMagField::SetField>: Global magnetic field set to <Maps>
 Info in <TGeoGlobalMagField::Lock>: Global magnetic field <Maps> is now locked
-[15:25:25][INFO] ** Generator to use: 'boxgen'
-[15:25:25][INFO] Init generic box generator with following parameters
-[15:25:25][INFO] BoxGun.pdg : 321		[ RT ]
+[23:33:43][INFO] ** Generator to use: 'boxgen'
+[23:33:43][INFO] Init generic box generator with following parameters
+[23:33:43][INFO] BoxGun.pdg : 321		[ RT ]
 BoxGun.number : 60		[ RT ]
 BoxGun.eta[0] : -0.5		[ RT ]
 BoxGun.eta[1] : 0.5		[ RT ]
@@ -151,379 +151,381 @@ BoxGun.phirange[0] : -5		[ RT ]
 BoxGun.phirange[1] : 60		[ RT ]
 BoxGun.debug : false		[ CODE ]
 
-[15:25:25][INFO] Initialising primary generator
-[15:25:25][INFO] FairBoxGenerator: particle with PDG =321 Found
-[15:25:25][INFO] Generator initialization took 0.11s
-[15:25:25][INFO] Event generation started 
-[15:25:25][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:25][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:25][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:25][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:25][INFO] ASSIGNED PIPE HANDLE 21
-[15:25:25][INFO] INITTASK CHANGING STATE TO SERVING
-[15:25:25][STATE] INITIALIZING TASK ---> READY
-[15:25:25][STATE] READY ---> RUNNING
-[15:25:25][INFO] fair::mq::Device running...
-[15:25:26][INFO] INFO REQUEST RECEIVED
-[15:25:26][INFO] Received config request
-[15:25:26][INFO] config reply send 
-[15:25:27][INFO] INFO REQUEST RECEIVED
-[15:25:27][INFO] Received config request
-[15:25:27][INFO] config reply send 
-[15:25:40][INFO] Sending 60 particles
-[15:25:40][INFO] treating ev 1 part 1 out of 1
-[15:25:40][INFO] Event generation started 
-[15:25:40][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:40][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:40][INFO] Event generation took 0.06s and produced 60 primaries 
-[15:25:40][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:40][INFO] Sending 60 particles
-[15:25:40][INFO] treating ev 2 part 1 out of 1
-[15:25:40][INFO] Event generation started 
-[15:25:40][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:40][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:40][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:40][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:40][INFO] Sending 60 particles
-[15:25:40][INFO] treating ev 3 part 1 out of 1
-[15:25:40][INFO] Event generation started 
-[15:25:40][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:40][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:40][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:40][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:40][INFO] Sending 60 particles
-[15:25:40][INFO] treating ev 4 part 1 out of 1
-[15:25:40][INFO] Event generation started 
-[15:25:40][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:40][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:40][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:40][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:42][INFO] Sending 60 particles
-[15:25:42][INFO] treating ev 5 part 1 out of 1
-[15:25:42][INFO] Event generation started 
-[15:25:42][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:42][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:42][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:42][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:42][INFO] Sending 60 particles
-[15:25:42][INFO] treating ev 6 part 1 out of 1
-[15:25:42][INFO] Event generation started 
-[15:25:42][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:42][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:42][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:42][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:42][INFO] Sending 60 particles
-[15:25:42][INFO] treating ev 7 part 1 out of 1
-[15:25:42][INFO] Event generation started 
-[15:25:42][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:42][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:42][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:42][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:42][INFO] Sending 60 particles
-[15:25:42][INFO] treating ev 8 part 1 out of 1
-[15:25:42][INFO] Event generation started 
-[15:25:42][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:42][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:42][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:42][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:43][INFO] Sending 60 particles
-[15:25:43][INFO] treating ev 9 part 1 out of 1
-[15:25:43][INFO] Event generation started 
-[15:25:43][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:43][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:43][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:43][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:44][INFO] Sending 60 particles
-[15:25:44][INFO] treating ev 10 part 1 out of 1
-[15:25:44][INFO] Event generation started 
-[15:25:44][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:44][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:44][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:44][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:45][INFO] Sending 60 particles
-[15:25:45][INFO] treating ev 11 part 1 out of 1
-[15:25:45][INFO] Event generation started 
-[15:25:45][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:45][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:45][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:45][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:45][INFO] Sending 60 particles
-[15:25:45][INFO] treating ev 12 part 1 out of 1
-[15:25:45][INFO] Event generation started 
-[15:25:45][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:45][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:45][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:45][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:46][INFO] Sending 60 particles
-[15:25:46][INFO] treating ev 13 part 1 out of 1
-[15:25:46][INFO] Event generation started 
-[15:25:46][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:46][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:46][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:46][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:46][INFO] Sending 60 particles
-[15:25:46][INFO] treating ev 14 part 1 out of 1
-[15:25:46][INFO] Event generation started 
-[15:25:46][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:46][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:46][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:46][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:47][INFO] Sending 60 particles
-[15:25:47][INFO] treating ev 15 part 1 out of 1
-[15:25:47][INFO] Event generation started 
-[15:25:47][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:47][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:47][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:47][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:48][INFO] Sending 60 particles
-[15:25:48][INFO] treating ev 16 part 1 out of 1
-[15:25:48][INFO] Event generation started 
-[15:25:48][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:48][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:48][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:48][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:50][INFO] Sending 60 particles
-[15:25:50][INFO] treating ev 17 part 1 out of 1
-[15:25:50][INFO] Event generation started 
-[15:25:50][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:50][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:50][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:50][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:50][INFO] Sending 60 particles
-[15:25:50][INFO] treating ev 18 part 1 out of 1
-[15:25:50][INFO] Event generation started 
-[15:25:50][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:50][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:50][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:50][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:50][INFO] Sending 60 particles
-[15:25:50][INFO] treating ev 19 part 1 out of 1
-[15:25:50][INFO] Event generation started 
-[15:25:50][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:50][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:50][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:50][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:50][INFO] Sending 60 particles
-[15:25:50][INFO] treating ev 20 part 1 out of 1
-[15:25:50][INFO] Event generation started 
-[15:25:50][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:50][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:50][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:50][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:52][INFO] Sending 60 particles
-[15:25:52][INFO] treating ev 21 part 1 out of 1
-[15:25:52][INFO] Event generation started 
-[15:25:52][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:52][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:52][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:52][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:52][INFO] Sending 60 particles
-[15:25:52][INFO] treating ev 22 part 1 out of 1
-[15:25:52][INFO] Event generation started 
-[15:25:52][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:52][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:52][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:52][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:52][INFO] Sending 60 particles
-[15:25:52][INFO] treating ev 23 part 1 out of 1
-[15:25:52][INFO] Event generation started 
-[15:25:52][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:52][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:52][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:52][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:53][INFO] Sending 60 particles
-[15:25:53][INFO] treating ev 24 part 1 out of 1
-[15:25:53][INFO] Event generation started 
-[15:25:53][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:53][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:53][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:53][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:54][INFO] Sending 60 particles
-[15:25:54][INFO] treating ev 25 part 1 out of 1
-[15:25:54][INFO] Event generation started 
-[15:25:54][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:54][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:54][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:54][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:54][INFO] Sending 60 particles
-[15:25:54][INFO] treating ev 26 part 1 out of 1
-[15:25:54][INFO] Event generation started 
-[15:25:54][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:54][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:54][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:54][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:55][INFO] Sending 60 particles
-[15:25:55][INFO] treating ev 27 part 1 out of 1
-[15:25:55][INFO] Event generation started 
-[15:25:55][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:55][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:55][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:55][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:55][INFO] Sending 60 particles
-[15:25:55][INFO] treating ev 28 part 1 out of 1
-[15:25:55][INFO] Event generation started 
-[15:25:55][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:55][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:55][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:55][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:57][INFO] Sending 60 particles
-[15:25:57][INFO] treating ev 29 part 1 out of 1
-[15:25:57][INFO] Event generation started 
-[15:25:57][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:57][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:57][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:57][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:58][INFO] Sending 60 particles
-[15:25:58][INFO] treating ev 30 part 1 out of 1
-[15:25:58][INFO] Event generation started 
-[15:25:58][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:58][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:58][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:58][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:58][INFO] Sending 60 particles
-[15:25:58][INFO] treating ev 31 part 1 out of 1
-[15:25:58][INFO] Event generation started 
-[15:25:58][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:58][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:58][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:58][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:58][INFO] Sending 60 particles
-[15:25:58][INFO] treating ev 32 part 1 out of 1
-[15:25:58][INFO] Event generation started 
-[15:25:58][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:58][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:58][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:58][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:25:59][INFO] Sending 60 particles
-[15:25:59][INFO] treating ev 33 part 1 out of 1
-[15:25:59][INFO] Event generation started 
-[15:25:59][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:25:59][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:25:59][INFO] Event generation took 0s and produced 60 primaries 
-[15:25:59][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:00][INFO] Sending 60 particles
-[15:26:00][INFO] treating ev 34 part 1 out of 1
-[15:26:00][INFO] Event generation started 
-[15:26:00][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:26:00][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:26:00][INFO] Event generation took 0s and produced 60 primaries 
-[15:26:00][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:01][INFO] Sending 60 particles
-[15:26:01][INFO] treating ev 35 part 1 out of 1
-[15:26:01][INFO] Event generation started 
-[15:26:01][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:26:01][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:26:01][INFO] Event generation took 0.01s and produced 60 primaries 
-[15:26:01][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:01][INFO] Sending 60 particles
-[15:26:01][INFO] treating ev 36 part 1 out of 1
-[15:26:01][INFO] Event generation started 
-[15:26:01][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:26:01][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:26:01][INFO] Event generation took 0s and produced 60 primaries 
-[15:26:01][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:01][INFO] Sending 60 particles
-[15:26:01][INFO] treating ev 37 part 1 out of 1
-[15:26:01][INFO] Event generation started 
-[15:26:01][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:26:01][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:26:01][INFO] Event generation took 0s and produced 60 primaries 
-[15:26:01][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:02][INFO] Sending 60 particles
-[15:26:02][INFO] treating ev 38 part 1 out of 1
-[15:26:02][INFO] Event generation started 
-[15:26:02][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:26:02][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:26:02][INFO] Event generation took 0s and produced 60 primaries 
-[15:26:02][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:03][INFO] Sending 60 particles
-[15:26:03][INFO] treating ev 39 part 1 out of 1
-[15:26:03][INFO] Event generation started 
-[15:26:03][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:26:03][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:26:03][INFO] Event generation took 0s and produced 60 primaries 
-[15:26:03][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:03][INFO] Sending 60 particles
-[15:26:03][INFO] treating ev 40 part 1 out of 1
-[15:26:03][INFO] Event generation started 
-[15:26:03][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:26:03][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:26:03][INFO] Event generation took 0s and produced 60 primaries 
-[15:26:03][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:03][INFO] Sending 60 particles
-[15:26:03][INFO] treating ev 41 part 1 out of 1
-[15:26:03][INFO] Event generation started 
-[15:26:03][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:26:03][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:26:03][INFO] Event generation took 0s and produced 60 primaries 
-[15:26:03][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:04][INFO] Sending 60 particles
-[15:26:04][INFO] treating ev 42 part 1 out of 1
-[15:26:04][INFO] Event generation started 
-[15:26:04][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:26:04][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:26:04][INFO] Event generation took 0s and produced 60 primaries 
-[15:26:04][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:05][INFO] Sending 60 particles
-[15:26:05][INFO] treating ev 43 part 1 out of 1
-[15:26:05][INFO] Event generation started 
-[15:26:05][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:26:05][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:26:05][INFO] Event generation took 0s and produced 60 primaries 
-[15:26:05][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:05][INFO] Sending 60 particles
-[15:26:05][INFO] treating ev 44 part 1 out of 1
-[15:26:05][INFO] Event generation started 
-[15:26:05][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:26:05][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:26:05][INFO] Event generation took 0s and produced 60 primaries 
-[15:26:05][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:06][INFO] Sending 60 particles
-[15:26:06][INFO] treating ev 45 part 1 out of 1
-[15:26:06][INFO] Event generation started 
-[15:26:06][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:26:06][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:26:06][INFO] Event generation took 0s and produced 60 primaries 
-[15:26:06][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:06][INFO] Sending 60 particles
-[15:26:06][INFO] treating ev 46 part 1 out of 1
-[15:26:06][INFO] Event generation started 
-[15:26:06][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:26:06][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:26:06][INFO] Event generation took 0s and produced 60 primaries 
-[15:26:06][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:07][INFO] Sending 60 particles
-[15:26:07][INFO] treating ev 47 part 1 out of 1
-[15:26:07][INFO] Event generation started 
-[15:26:07][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:26:07][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:26:07][INFO] Event generation took 0s and produced 60 primaries 
-[15:26:07][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:07][INFO] Sending 60 particles
-[15:26:07][INFO] treating ev 48 part 1 out of 1
-[15:26:07][INFO] Event generation started 
-[15:26:07][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:26:07][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:26:07][INFO] Event generation took 0s and produced 60 primaries 
-[15:26:07][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:07][INFO] Sending 60 particles
-[15:26:07][INFO] treating ev 49 part 1 out of 1
-[15:26:07][INFO] Event generation started 
-[15:26:07][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:26:07][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:26:07][INFO] Event generation took 0s and produced 60 primaries 
-[15:26:07][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:07][INFO] Sending 60 particles
-[15:26:07][INFO] treating ev 50 part 1 out of 1
-[15:26:07][INFO] Event generation started 
-[15:26:07][INFO] GENEVENT CHANGING STATE TO WAITEVENT
-[15:26:07][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
-[15:26:07][INFO] Event generation took 0s and produced 60 primaries 
-[15:26:07][INFO] GENEVENT CHANGING STATE TO SERVING
-[15:26:08][INFO] Sending 60 particles
-[15:26:08][INFO] treating ev 51 part 1 out of 1
-[15:26:08][INFO] Event generation started 
-[15:26:08][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:33:43][INFO] Initialising primary generator
+[23:33:43][INFO] FairBoxGenerator: particle with PDG =321 Found
+[23:33:43][INFO] Generator initialization took 0.1s
+[23:33:43][INFO] Event generation started 
+[23:33:43][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:33:43][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:33:43][INFO] Event generation took 0s and produced 60 primaries 
+[23:33:43][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:33:43][INFO] ASSIGNED PIPE HANDLE 21
+[23:33:43][INFO] INITTASK CHANGING STATE TO SERVING
+[23:33:43][STATE] INITIALIZING TASK ---> READY
+[23:33:43][STATE] READY ---> RUNNING
+[23:33:43][INFO] fair::mq::Device running...
+[23:33:44][INFO] INFO REQUEST RECEIVED
+[23:33:44][INFO] Received config request
+[23:33:44][INFO] config reply send 
+[23:33:45][INFO] INFO REQUEST RECEIVED
+[23:33:45][INFO] Received config request
+[23:33:45][INFO] config reply send 
+[23:33:56][INFO] Sending 60 particles
+[23:33:56][INFO] treating ev 1 part 1 out of 1
+[23:33:56][INFO] Event generation started 
+[23:33:56][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:33:56][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:33:56][INFO] Event generation took 0s and produced 60 primaries 
+[23:33:56][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:33:56][INFO] Sending 60 particles
+[23:33:56][INFO] treating ev 2 part 1 out of 1
+[23:33:56][INFO] Event generation started 
+[23:33:56][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:33:56][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:33:56][INFO] Event generation took 0s and produced 60 primaries 
+[23:33:56][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:33:56][INFO] Sending 60 particles
+[23:33:56][INFO] treating ev 3 part 1 out of 1
+[23:33:56][INFO] Event generation started 
+[23:33:56][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:33:56][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:33:56][INFO] Event generation took 0s and produced 60 primaries 
+[23:33:56][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:33:57][INFO] Sending 60 particles
+[23:33:57][INFO] treating ev 4 part 1 out of 1
+[23:33:57][INFO] Event generation started 
+[23:33:57][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:33:57][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:33:57][INFO] Event generation took 0s and produced 60 primaries 
+[23:33:57][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:33:58][INFO] Sending 60 particles
+[23:33:58][INFO] treating ev 5 part 1 out of 1
+[23:33:58][INFO] Event generation started 
+[23:33:58][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:33:58][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:33:58][INFO] Event generation took 0s and produced 60 primaries 
+[23:33:58][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:33:58][INFO] Sending 60 particles
+[23:33:58][INFO] treating ev 6 part 1 out of 1
+[23:33:58][INFO] Event generation started 
+[23:33:58][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:33:58][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:33:58][INFO] Event generation took 0s and produced 60 primaries 
+[23:33:58][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:33:58][INFO] Sending 60 particles
+[23:33:58][INFO] treating ev 7 part 1 out of 1
+[23:33:58][INFO] Event generation started 
+[23:33:58][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:33:58][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:33:58][INFO] Event generation took 0s and produced 60 primaries 
+[23:33:58][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:33:59][INFO] Sending 60 particles
+[23:33:59][INFO] treating ev 8 part 1 out of 1
+[23:33:59][INFO] Event generation started 
+[23:33:59][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:33:59][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:33:59][INFO] Event generation took 0s and produced 60 primaries 
+[23:33:59][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:33:59][INFO] Sending 60 particles
+[23:33:59][INFO] treating ev 9 part 1 out of 1
+[23:33:59][INFO] Event generation started 
+[23:33:59][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:33:59][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:33:59][INFO] Event generation took 0s and produced 60 primaries 
+[23:33:59][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:33:59][INFO] Sending 60 particles
+[23:33:59][INFO] treating ev 10 part 1 out of 1
+[23:33:59][INFO] Event generation started 
+[23:33:59][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:33:59][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:33:59][INFO] Event generation took 0s and produced 60 primaries 
+[23:33:59][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:33:59][INFO] Sending 60 particles
+[23:33:59][INFO] treating ev 11 part 1 out of 1
+[23:33:59][INFO] Event generation started 
+[23:33:59][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:33:59][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:33:59][INFO] Event generation took 0s and produced 60 primaries 
+[23:33:59][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:00][INFO] Sending 60 particles
+[23:34:00][INFO] treating ev 12 part 1 out of 1
+[23:34:00][INFO] Event generation started 
+[23:34:00][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:00][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:00][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:00][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:00][INFO] Sending 60 particles
+[23:34:00][INFO] treating ev 13 part 1 out of 1
+[23:34:00][INFO] Event generation started 
+[23:34:00][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:00][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:00][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:00][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:00][INFO] Sending 60 particles
+[23:34:00][INFO] treating ev 14 part 1 out of 1
+[23:34:00][INFO] Event generation started 
+[23:34:00][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:00][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:00][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:00][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:00][INFO] Sending 60 particles
+[23:34:00][INFO] treating ev 15 part 1 out of 1
+[23:34:00][INFO] Event generation started 
+[23:34:00][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:00][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:01][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:01][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:01][INFO] Sending 60 particles
+[23:34:01][INFO] treating ev 16 part 1 out of 1
+[23:34:01][INFO] Event generation started 
+[23:34:01][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:01][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:01][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:01][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:01][INFO] Sending 60 particles
+[23:34:01][INFO] treating ev 17 part 1 out of 1
+[23:34:01][INFO] Event generation started 
+[23:34:01][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:01][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:01][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:01][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:01][INFO] Sending 60 particles
+[23:34:01][INFO] treating ev 18 part 1 out of 1
+[23:34:01][INFO] Event generation started 
+[23:34:01][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:01][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:01][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:01][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:01][INFO] Sending 60 particles
+[23:34:01][INFO] treating ev 19 part 1 out of 1
+[23:34:01][INFO] Event generation started 
+[23:34:01][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:01][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:01][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:01][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:02][INFO] Sending 60 particles
+[23:34:02][INFO] treating ev 20 part 1 out of 1
+[23:34:02][INFO] Event generation started 
+[23:34:02][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:02][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:02][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:02][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:02][INFO] Sending 60 particles
+[23:34:02][INFO] treating ev 21 part 1 out of 1
+[23:34:02][INFO] Event generation started 
+[23:34:02][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:02][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:02][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:02][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:02][INFO] Sending 60 particles
+[23:34:02][INFO] treating ev 22 part 1 out of 1
+[23:34:02][INFO] Event generation started 
+[23:34:02][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:02][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:02][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:02][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:03][INFO] Sending 60 particles
+[23:34:03][INFO] treating ev 23 part 1 out of 1
+[23:34:03][INFO] Event generation started 
+[23:34:03][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:03][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:03][INFO] Event generation took 0.01s and produced 60 primaries 
+[23:34:03][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:03][INFO] Sending 60 particles
+[23:34:03][INFO] treating ev 24 part 1 out of 1
+[23:34:03][INFO] Event generation started 
+[23:34:03][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:03][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:03][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:03][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:03][INFO] Sending 60 particles
+[23:34:03][INFO] treating ev 25 part 1 out of 1
+[23:34:03][INFO] Event generation started 
+[23:34:03][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:03][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:03][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:03][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:04][INFO] Sending 60 particles
+[23:34:04][INFO] treating ev 26 part 1 out of 1
+[23:34:04][INFO] Event generation started 
+[23:34:04][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:04][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:04][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:04][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:04][INFO] Sending 60 particles
+[23:34:04][INFO] treating ev 27 part 1 out of 1
+[23:34:04][INFO] Event generation started 
+[23:34:04][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:04][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:04][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:04][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:04][INFO] Sending 60 particles
+[23:34:04][INFO] treating ev 28 part 1 out of 1
+[23:34:04][INFO] Event generation started 
+[23:34:04][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:04][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:04][INFO] Event generation took 0.01s and produced 60 primaries 
+[23:34:04][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:05][INFO] Sending 60 particles
+[23:34:05][INFO] treating ev 29 part 1 out of 1
+[23:34:05][INFO] Event generation started 
+[23:34:05][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:05][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:05][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:05][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:05][INFO] Sending 60 particles
+[23:34:05][INFO] treating ev 30 part 1 out of 1
+[23:34:05][INFO] Event generation started 
+[23:34:05][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:05][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:05][INFO] Event generation took 0.01s and produced 60 primaries 
+[23:34:05][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:05][INFO] Sending 60 particles
+[23:34:05][INFO] treating ev 31 part 1 out of 1
+[23:34:05][INFO] Event generation started 
+[23:34:05][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:05][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:05][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:05][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:06][INFO] Sending 60 particles
+[23:34:06][INFO] treating ev 32 part 1 out of 1
+[23:34:06][INFO] Event generation started 
+[23:34:06][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:06][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:06][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:06][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:06][INFO] Sending 60 particles
+[23:34:06][INFO] treating ev 33 part 1 out of 1
+[23:34:06][INFO] Event generation started 
+[23:34:06][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:06][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:06][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:06][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:06][INFO] Sending 60 particles
+[23:34:06][INFO] treating ev 34 part 1 out of 1
+[23:34:06][INFO] Event generation started 
+[23:34:06][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:06][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:06][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:06][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:07][INFO] Sending 60 particles
+[23:34:07][INFO] treating ev 35 part 1 out of 1
+[23:34:07][INFO] Event generation started 
+[23:34:07][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:07][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:07][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:07][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:07][INFO] Sending 60 particles
+[23:34:07][INFO] treating ev 36 part 1 out of 1
+[23:34:07][INFO] Event generation started 
+[23:34:07][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:07][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:07][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:07][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:07][INFO] Sending 60 particles
+[23:34:07][INFO] treating ev 37 part 1 out of 1
+[23:34:07][INFO] Event generation started 
+[23:34:07][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:07][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:07][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:07][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:07][INFO] Sending 60 particles
+[23:34:07][INFO] treating ev 38 part 1 out of 1
+[23:34:07][INFO] Event generation started 
+[23:34:07][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:07][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:07][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:07][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:08][INFO] Sending 60 particles
+[23:34:08][INFO] treating ev 39 part 1 out of 1
+[23:34:08][INFO] Event generation started 
+[23:34:08][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:08][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:08][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:08][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:08][INFO] Sending 60 particles
+[23:34:08][INFO] treating ev 40 part 1 out of 1
+[23:34:08][INFO] Event generation started 
+[23:34:08][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:08][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:08][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:08][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:08][INFO] Sending 60 particles
+[23:34:08][INFO] treating ev 41 part 1 out of 1
+[23:34:08][INFO] Event generation started 
+[23:34:08][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:08][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:08][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:08][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:08][INFO] Sending 60 particles
+[23:34:08][INFO] treating ev 42 part 1 out of 1
+[23:34:08][INFO] Event generation started 
+[23:34:08][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:08][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:08][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:08][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:09][INFO] Sending 60 particles
+[23:34:09][INFO] treating ev 43 part 1 out of 1
+[23:34:09][INFO] Event generation started 
+[23:34:09][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:09][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:09][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:09][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:09][INFO] Sending 60 particles
+[23:34:09][INFO] treating ev 44 part 1 out of 1
+[23:34:09][INFO] Event generation started 
+[23:34:09][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:09][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:09][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:09][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:10][INFO] Sending 60 particles
+[23:34:10][INFO] treating ev 45 part 1 out of 1
+[23:34:10][INFO] Event generation started 
+[23:34:10][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:10][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:10][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:10][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:10][INFO] Sending 60 particles
+[23:34:10][INFO] treating ev 46 part 1 out of 1
+[23:34:10][INFO] Event generation started 
+[23:34:10][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:10][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:10][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:10][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:10][INFO] Sending 60 particles
+[23:34:10][INFO] treating ev 47 part 1 out of 1
+[23:34:10][INFO] Event generation started 
+[23:34:10][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:10][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:10][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:10][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:10][INFO] Sending 60 particles
+[23:34:10][INFO] treating ev 48 part 1 out of 1
+[23:34:10][INFO] Event generation started 
+[23:34:10][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:10][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:10][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:10][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:11][INFO] Sending 60 particles
+[23:34:11][INFO] treating ev 49 part 1 out of 1
+[23:34:11][INFO] Event generation started 
+[23:34:11][INFO] GENEVENT CHANGING STATE TO WAITEVENT
+[23:34:11][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
+[23:34:11][INFO] Event generation took 0s and produced 60 primaries 
+[23:34:11][INFO] GENEVENT CHANGING STATE TO SERVING
+[23:34:11][INFO] Sending 60 particles
+[23:34:11][INFO] treating ev 50 part 1 out of 1
+[23:34:12][INFO] CONDRUN CHANGING STATE TO STOPPED
+[23:34:12][INFO] Waiting info thread
+[23:34:12][INFO] Waiting info thread
+[23:34:12][STATE] RUNNING ---> READY
+[23:34:12][STATE] READY ---> RESETTING TASK
+[23:34:12][STATE] RESETTING TASK ---> DEVICE READY
+[23:34:12][STATE] DEVICE READY ---> RESETTING DEVICE
+[23:34:12][STATE] RESETTING DEVICE ---> IDLE
+[23:34:12][STATE] IDLE ---> EXITING
+[23:34:12][STATE] Exiting FairMQ state machine
+INFO] GENEVENT CHANGING STATE TO WAITEVENT
 [15:26:08][INFO] FairBoxGenerator: Event,  vertex = (0,0,0) cm,  multiplicity 60
 [15:26:08][INFO] Event generation took 0s and produced 60 primaries 
 [15:26:08][INFO] GENEVENT CHANGING STATE TO SERVING
