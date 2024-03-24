@@ -108,22 +108,22 @@ public:
 
         bool mUseMC = true;
 
-        if (fileClu.IsZombie()) {
+        /*if (fileClu.IsZombie()) {
           LOGP(error, "Failed to open cluster File: {}", cluFileName);
           throw std::runtime_error("Failed to open cluFileName.");
         } else {
           LOGP(info, "cluster File opened successfully: {}", cluFileName);
-        }
+        }*/ 
 
         if (fileMatch.IsZombie()) {
-          LOGP(error, "Failed to open match file: {}", matchFileName);
-          throw std::runtime_error("Failed to open matchFileName.");
+          LOGP(info, "Failed to open match file: {}", matchFileName);
+          // throw std::runtime_error("Failed to open matchFileName.");
         } else {
           LOGP(info, "Match file opened successfully: {}", matchFileName);
         }
 
         // ok : we use mcReader instead
-        if(mUseMC) {
+        /*if(mUseMC) {
           if (fileKine.IsZombie()) {
             LOGP(error, "Failed to open mc truth file: {}", mcFileName);
             throw std::runtime_error("Failed to open mcFileName.");
@@ -132,11 +132,11 @@ public:
           }
         } else {
           LOGP(info, "Mc truth false");
-        }
+        }*/
 
         // Initialize TTree objects        	            
         initializeClusterTree();
-				initializeMatchTree(/*0, 0, 0*/);
+	initializeMatchTree(/*0, 0, 0*/);
 
 
         /* use mcReader instead to read MC truth information from ITS-TPC

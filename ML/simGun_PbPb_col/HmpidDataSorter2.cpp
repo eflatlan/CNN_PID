@@ -80,6 +80,42 @@ class HmpidDataSorter2 {
 
     }
 
+    // if no matching is found between MIP-track
+    // find the cluster-index of the eid-tid combination
+    // given by mcTrack : to find which cluster it is
+    void printLabelsMcFromCluIndex(int eid, int tid, std::vector<int>& cluMipindices)
+    {
+
+
+      std::vector<std::pair<o2::MCCompLabel, int>> cluLabelsFromTrack = lookupLabels(eid, tid);
+
+      LOGP(info, "cluLabelsFromTrack size {}", cluLabelsFromTrack.size());
+      for(const auto& cluLabelPair : cluLabelsFromTrack){
+
+        const auto& cluLabel = cluLabelPair.first;
+        LOGP(info, "        From cluLabel | Event: {}, track: {}, source: {} || Cluindex {}", cluLabel.getEventID(), cluLabel.getTrackID(), cluLabel.getSourceID(), cluLabelPair.second);
+
+        auto cluIndex = cluLabelPair.second;
+
+
+        // store all indices for cluster-MIPs (kan det i det hele tatt vare fler?)
+        if(cluMipindices.size() > 1 && cluMipindices.back() !=  cluIndex) {
+          cluMipindices.push_back(cluIndex);
+        } else if (cluMipindices.size() == 0) {
+          cluMipindices.push_back(cluIndex);
+        }
+
+        if(mcReader->getTrack(cluLabel)) {
+          const auto& mcCluFromTrack = mcReader->getTrack(cluLabel);
+          if(mcCluFromTrack) {
+            int pdgCluFromTrack = mcCluFromTrack->GetPdgCode();
+
+            LOGP(info, "        pdgCluFromTrack pdgCode = {} ", pdgCluFromTrack);
+          }
+        }
+      }
+    }
+
 
     std::vector<std::pair<MCLabel, int>> lookupLabels(int eventID, int trackID) {
         std::vector<std::pair<MCLabel, int>> pairedLabels;
@@ -145,7 +181,7 @@ class HmpidDataSorter2 {
             int cluNumPre = 0;
 
 
-            for(int cluNum = trig.getFirstEntry(); cluNum < trig.getLastEntry(); cluNum++)
+            for(int cluNum = trig.getFirstEntry(); cluNum <= trig.getLastEntry(); cluNum++)
             {
 
                 if(trig.getNumberOfObjects()<1) {
@@ -207,19 +243,22 @@ class HmpidDataSorter2 {
                 const o2::MCTrack* mcTrack = nullptr;
                 for (const auto& matchInfo : chamberEntry.second) {
 
-                    float xMip, yMip;
-                    int qMip, nph;
+                   float xMip, yMip;
+                   int qMip, nph;
 
-                    float xPcUnc, yPcUnc;
-                    float xPcCon, yPcCon, xRa, yRa, theta, phi;
-                    matchInfo.getHMPIDtrk(xRa, yRa, xPcCon, yPcCon, theta, phi);
-                    matchInfo.getUnconstrainedPc(xPcUnc, yPcUnc);
-                    matchInfo.getHMPIDmip(xMip, yMip, qMip, nph);
+                   float xPcUnc, yPcUnc, xRa, yRa, theta, phi;
+                   matchInfo.getHMPIDtrk(xRa, yRa, xPcUnc, yPcUnc, theta, phi);
+                   matchInfo.getHMPIDmip(xMip, yMip, qMip, nph);
 
-                    const auto dist = TMath::Sqrt((xPcUnc - xMip)*(xPcUnc - xMip) + (yPcUnc - yMip)*(yPcUnc - yMip));
+                   const auto dist = TMath::Sqrt((xPcUnc - xMip)*(xPcUnc - xMip) + (yPcUnc - yMip)*(yPcUnc - yMip));
                     
-
-                   
+                    
+                   if(qMip < 150)
+                   	{
+                   		Printf("               Too small MIP cand %d : Skip", qMip);
+                   		trackNum++;
+                        continue;  
+                   	}
                     if(dist > 3.) {
                         Printf("               Too large distance %.0f : Skip", dist);
                         trackNum++;
@@ -231,17 +270,17 @@ class HmpidDataSorter2 {
                     LOGP(info, "        =========================================================");
                     LOGP(info, "        Track number {} : matched Status {}", trackNum, matchInfo.getMatchStatus());
                       
-                    Printf("              xMip %.1f pcconc %.1f pcunc %.1f", xMip, xPcCon, xPcUnc);
-                    Printf("               yMip %.1f pcconc %.1f pcunc %.1f", yMip, yPcCon, yPcUnc);
+                    Printf("              xMip %.1f xPcUnc %.1f ", xMip, xPcUnc);
+                    Printf("               yMip %.1f yPcUnc %.1f ", yMip, yPcUnc);
 
 
 
 
 
                     // LOGP(info, "        Dist PC CONC-UNC: deltaX {} deltaY {}", xPcCon - xPcUnc, yPcCon - yPcUnc);
-                    Printf("               PC_CONC-MIP : deltaX %.1f deltaY %.1f", xPcCon - xMip, yPcCon - yMip);
+                    Printf("               PC_CONC-MIP : deltaX %.1f deltaY %.1f", xPcUnc - xMip, xPcUnc - yMip);
                     Printf("               dist %.1f", dist);
-                    Printf("               xPc %.1f, mip %.1f, ra %.1f | yPc %.1f mip %.1f ra %.1f", xPcCon, xMip, xRa, yPcCon, yMip, yRa);
+                    Printf("               xPc %.1f, mip %.1f, ra %.1f | yPc %.1f mip %.1f ra %.1f", yPcUnc, xMip, xRa, yPcUnc, yMip, yRa);
 
 
                     // get MC truth 
@@ -388,7 +427,7 @@ class HmpidDataSorter2 {
                       
                       LOGP(info, "      clustersInEvent size {} simpleClusters size {} numCluInTrig", clustersInEvent.size(), simpleClusters.size(), numCluInTrig);
 
-                      LOGP(info,"       cluTrigStartIndex {} numCluTotal {} : numCluInTrig {} indexMIP {}",cluTrigStartIndex,numCluTotal,numCluInTrig,index);
+                      LOGP(info,"       cluTrigStartIndex {} numCluTotal {} : numCluInTrig {} indexMIP {}",cluTrigStartIndex,numCluTotal,numCluInTrig, numCluTotal);
 
                       const int mipcluCharge = matchInfo.getMipClusCharge();
                       Printf("              MIP PDG %d; x %.1f y %.1f q %.d size %d", matchInfo.getMipClusEventPDG(), xMip, yMip, mipcluCharge, mipcluSize);
@@ -402,7 +441,7 @@ class HmpidDataSorter2 {
                       // mipIndexGobal : ikke mipIndexGobal + cluTrigStartIndex
 
 
-                      Printf("              mipIndex %d mipch %d mipSz %d index (%d/%d)", mipIndex, mipch, mipSz, mipIndexGobal);
+                      Printf("              mipIndex %d mipch %d mipSz %d index (%d/%d)", mipIndex, mipch, mipSz, mipIndexGobal, numCluTotal);
 
                        
                       // get hit-->dig-->clu MC-truth for MIP
@@ -526,7 +565,7 @@ class HmpidDataSorter2 {
                         } 
 
                         // LOGP
-                        // xMip, yMip, qMip, nph
+                        // xMip, yMip, sizeMipMatch, nph
 
                         LOGP(info, "        Cluster MC INFO : tid {} mid {} sid {}", tid, mid, sid);
 
@@ -573,7 +612,75 @@ class HmpidDataSorter2 {
                       if(isMipMathced) {
                          LOGP(info, "      matched with correct cluster\n\n\n");
                       } else {
+
+                        // ef : return index of cluster, and print the pos etc
+
                         LOGP(info, "      matched with wrong cluster\n\n\n", isMipMathced);
+                        std::vector<int> cluMipindices;
+
+
+                        LOGP(info, "      Looking up cluster-MIP index");
+
+                        printLabelsMcFromCluIndex(eventIdKine, trackIdKine, cluMipindices);
+
+
+                        // ef : TODO : read cluster-MC truth index of mip
+                        // retrieve cluster MIP info and positons
+                        LOGP(info, "      Looking up cluster-MIP positions");
+
+
+
+                        for(const int& cluMipIndex : cluMipindices) {
+
+                          if(cluMipIndex < mClusters.size()) {
+
+
+                            // MIP matched w track
+                            const auto& clu = mClusters[mipIndexGobal];
+
+                            // actual MIP per indexing
+                            const auto& clu2 = mClusters[cluMipIndex];
+
+
+                            const auto distMipMatched2PC = TMath::Sqrt((clu.x() - xPcUnc)*(clu.x() - xPcUnc) + (clu.y() - yPcUnc)*(clu.y() - yPcUnc));
+
+
+                            const auto distMipCorrect2PC = TMath::Sqrt((clu2.x() - xPcUnc)*(clu2.x() - xPcUnc) + (clu2.y() - yPcUnc)*(clu2.y() - yPcUnc));
+
+
+                            Printf("          chamber for matched MIP %d : chamber correct MIP %d", clu.ch(), clu2.ch());
+
+                            LOGP(info, "      possibly misplaced cluster ? mipIndexGobal {} actualIndexMip  {}", mipIndexGobal, cluMipIndex);
+
+
+                            const int trigFirst = trig.getFirstEntry();
+                            const int trigLast = trig.getFirstEntry();
+
+                            LOGP(info, "      trigFirst {} trigLast  {}", trigFirst, trigLast);
+
+                            // ef: TODO: find if mipIndexGobal and cluMipIndex are in different triggers
+                            // then sth wrong with logic
+                            //if(mipIndexGobal)
+
+                            Printf("          Actual Cluster at x %.1f y %.1f : mip Matched was xMip %.1f yMip %.1f xPc %.1f yPc %.1f", clu.x(), clu.y(), xMip, yMip, xPcUnc, yPcUnc);
+
+
+                            Printf("          mip mipIndexGobal %d :: at x %.1f y %.1f", mipIndexGobal, clu2.x(), clu2.y());
+
+
+                            Printf("          MIP-PC for matched MIP %.1f : for correct MIP %.1f", distMipMatched2PC, distMipCorrect2PC);
+
+                            Printf("          matched MIP (q = %.1f, size %d) : correct MIP (q = %.1f, size %d)", clu.q(), clu.size(), clu2.q(), clu2.size());
+
+                            Printf("\n\n\n");
+
+
+                          }
+                        }
+
+
+
+
                       }
                     }
 
